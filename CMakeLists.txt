@@ -1,8 +1,8 @@
 # CMakeLists.txt
 cmake_minimum_required(VERSION 3.28)
-project(MyModuleProject CXX)
+project(NewScanmem CXX)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -14,11 +14,11 @@ add_library(greeter_lib)
 target_sources(greeter_lib
         PUBLIC
         FILE_SET CXX_MODULES FILES
-        greeter.cppm
+        src/greeter.cppm
 )
 
 # 3. 创建可执行文件
-add_executable(my_app main.cpp)
+add_executable(NewScanmem src/main.cpp)
 
 # 4. 将可执行文件链接到包含模块的库
-target_link_libraries(my_app PRIVATE greeter_lib)
+target_link_libraries(NewScanmem PRIVATE greeter_lib)
