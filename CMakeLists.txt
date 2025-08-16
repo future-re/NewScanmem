@@ -7,6 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+find_package(Boost REQUIRED COMPONENTS filesystem system)
+
 # 1. 创建一个库来承载我们的模块
 add_library(greeter_lib)
 
@@ -14,8 +16,12 @@ add_library(greeter_lib)
 target_sources(greeter_lib
         PUBLIC
         FILE_SET CXX_MODULES FILES
+        src/value.cppm
         src/greeter.cppm
 )
+
+# 链接 Boost 到库
+target_link_libraries(greeter_lib PUBLIC Boost::filesystem Boost::system)
 
 # 3. 创建可执行文件
 add_executable(NewScanmem src/main.cpp)
