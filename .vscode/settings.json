@@ -1,0 +1,12 @@
+{
+    // 配置 CMake Tools 扩展
+    "cmake.generator": "Ninja",
+    "cmake.configureOnOpen": true,
+    "clangd.path": "/usr/bin/clangd-20",
+    // 告诉 clangd 编译数据库在构建目录中
+    "clangd.arguments": [
+        "-compile-commands-dir=${workspaceFolder}/build"
+    ],
+    // format
+    "editor.tabSize": 4,
+}
