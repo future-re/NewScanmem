@@ -1,10 +1,8 @@
 module;
-#include <algorithm>
 #include <array>
 #include <bit>
 #include <cstddef>
 #include <cstdint>
-#include <string>
 
 export module value;
 
@@ -98,7 +96,7 @@ struct Mem64 {
     }
 } __attribute__((packed));
 
-enum class Wildcard : uint8_t { FIXED = 0xffu, WILDCARD = 0x00u };
+enum class Wildcard : uint8_t { FIXED = 0xffU, WILDCARD = 0x00U };
 
 struct UserValue {
     int8_t int8_value = 0;
@@ -109,7 +107,7 @@ struct UserValue {
     uint32_t uint32_value = 0;
     int64_t int64_value = 0;
     uint64_t uint64_value = 0;
-    float float32_value = 0.0f;
+    float float32_value = 0.0F;
     double float64_value = 0.0;
 
     const uint8_t* bytearray_value =
@@ -121,4 +119,4 @@ struct UserValue {
         nullptr;  // 可选：改为 std::string_view 或 std::string
 
     MatchFlags flags = MatchFlags::Empty;  // 使用现代枚举类型
-};
+} __attribute__((packed));
