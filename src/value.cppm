@@ -1,104 +1,94 @@
 module;
 #include <array>
 #include <bit>
-#include <cstddef>
 #include <cstdint>
-
+#include <optional>
+#include <string>
+#include <variant>
+#include <vector>
 export module value;
 
-export enum class MatchFlags : uint16_t {
-    Empty = 0,
+export enum class [[gnu::packed]] MatchFlags : uint16_t {
+    EMPTY = 0,
 
-    U8b = 1 << 0,   // Unsigned 8-bit
-    S8b = 1 << 1,   // Signed 8-bit
-    U16b = 1 << 2,  // Unsigned 16-bit
-    S16b = 1 << 3,  // Signed 16-bit
-    U32b = 1 << 4,  // Unsigned 32-bit
-    S32b = 1 << 5,  // Signed 32-bit
-    U64b = 1 << 6,  // Unsigned 64-bit
-    S64b = 1 << 7,  // Signed 64-bit
+    U8B = 1 << 0,   // Unsigned 8-bit
+    S8B = 1 << 1,   // Signed 8-bit
+    U16B = 1 << 2,  // Unsigned 16-bit
+    S16B = 1 << 3,  // Signed 16-bit
+    U32B = 1 << 4,  // Unsigned 32-bit
+    S32B = 1 << 5,  // Signed 32-bit
+    U64B = 1 << 6,  // Unsigned 64-bit
+    S64B = 1 << 7,  // Signed 64-bit
 
-    F32b = 1 << 8,  // 32-bit float
-    F64b = 1 << 9,  // 64-bit float
+    F32B = 1 << 8,  // 32-bit float
+    F64B = 1 << 9,  // 64-bit float
 
-    I8b = U8b | S8b,
-    I16b = U16b | S16b,
-    I32b = U32b | S32b,
-    I64b = U64b | S64b,
+    I8B = U8B | S8B,
+    I16B = U16B | S16B,
+    I32B = U32B | S32B,
+    I64B = U64B | S64B,
 
-    Integer = I8b | I16b | I32b | I64b,
-    Float = F32b | F64b,
-    All = Integer | Float,
+    INTEGER = I8B | I16B | I32B | I64B,
+    FLOAT = F32B | F64B,
+    ALL = INTEGER | FLOAT,
 
-    B8 = I8b,
-    B16 = I16b,
-    B32 = I32b | F32b,
-    B64 = I64b | F64b,
+    B8 = I8B,
+    B16 = I16B,
+    B32 = I32B | F32B,
+    B64 = I64B | F64B,
 
-    Max = 0xffffU
-} __attribute__((packed));
+    MAX = 0xffffU
+};
 
-export struct Value {
-    union {
-        int8_t int8_value;
-        uint8_t uint8_value;
-        int16_t int16_value;
-        uint16_t uint16_value;
-        int32_t int32_value;
-        uint32_t uint32_value;
-        int64_t int64_value;
-        uint64_t uint64_value;
-        float float32_value;
-        double float64_value;
-        std::array<uint8_t, sizeof(int64_t)> bytes;
-        std::array<char, sizeof(int64_t)> chars;
-    };
+export struct [[gnu::packed]] Value {
+    std::variant<int8_t, uint8_t, int16_t, uint16_t, int32_t, uint32_t, int64_t,
+                 uint64_t, float, double, std::array<uint8_t, sizeof(int64_t)>,
+                 std::array<char, sizeof(int64_t)>>
+        value;
 
-    MatchFlags flags = MatchFlags::Empty;
+    MatchFlags flags = MatchFlags::EMPTY;
 
     // constexpr 静态函数，支持编译期调用
     constexpr static void zero(Value& val) {
-        val.int64_value = 0;
-        val.flags = MatchFlags::Empty;
+        val.value = int64_t{0};
+        val.flags = MatchFlags::EMPTY;
     }
-} __attribute__((packed));
+};
 
-struct Mem64 {
-    union {
-        int8_t int8_value;
-        uint8_t uint8_value;
-        int16_t int16_value;
-        uint16_t uint16_value;
-        int32_t int32_value;
-        uint32_t uint32_value;
-        int64_t int64_value;
-        uint64_t uint64_value;
-        float float32_value;
-        double float64_value;
-        std::array<std::byte, sizeof(int64_t)> bytes;
-        std::array<char, sizeof(int64_t)> chars;
-    };
+struct [[gnu::packed]] Mem64 {
+    std::variant<int8_t, uint8_t, int16_t, uint16_t, int32_t, uint32_t, int64_t,
+                 uint64_t, float, double, std::array<uint8_t, sizeof(int64_t)>,
+                 std::array<char, sizeof(int64_t)>>
+        mem64Value;
 
     // 提供安全的访问器函数
     template <typename T>
     T get() const {
         static_assert(std::is_trivially_copyable_v<T>,
                       "Type must be trivially copyable");
-        return std::bit_cast<T>(int64_value);  // 使用 std::bit_cast 替代 memcpy
+        if (auto* value = std::get_if<T>(&mem64Value)) {
+            return *value;
+        }
+        throw std::bad_variant_access();  // 如果类型不匹配，抛出异常
+    }
+
+    // 提供通用的访问接口
+    template <typename Visitor>
+    void visit(Visitor&& visitor) const {
+        std::visit(std::forward<Visitor>(visitor), mem64Value);
     }
 
     template <typename T>
     void set(const T& value) {
         static_assert(std::is_trivially_copyable_v<T>,
                       "Type must be trivially copyable");
-        int64_value =
-            std::bit_cast<int64_t>(value);  // 使用 std::bit_cast 替代 memcpy
+        mem64Value = std::bit_cast<int64_t>(value);
     }
-} __attribute__((packed));
+};
 
 enum class Wildcard : uint8_t { FIXED = 0xffU, WILDCARD = 0x00U };
 
-struct UserValue {
+struct [[gnu::packed]] UserValue {
     int8_t int8_value = 0;
     uint8_t uint8_value = 0;
     int16_t int16_value = 0;
@@ -110,13 +100,9 @@ struct UserValue {
     float float32_value = 0.0F;
     double float64_value = 0.0;
 
-    const uint8_t* bytearray_value =
-        nullptr;  // 可选：改为 std::optional<std::vector<uint8_t>>
-    const Wildcard* wildcard_value =
-        nullptr;  // 可选：改为 std::optional<Wildcard>
+    std::optional<std::vector<uint8_t>> bytearray_value;
+    std::optional<Wildcard> wildcard_value;
 
-    const char* string_value =
-        nullptr;  // 可选：改为 std::string_view 或 std::string
-
-    MatchFlags flags = MatchFlags::Empty;  // 使用现代枚举类型
-} __attribute__((packed));
+    std::string string_value;
+    MatchFlags flags = MatchFlags::EMPTY;
+};
