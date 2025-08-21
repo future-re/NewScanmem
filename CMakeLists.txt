@@ -20,6 +20,7 @@ target_sources(greeter_lib
         src/safe_linux_api.cppm
         src/value.cppm
         src/targetmem.cppm
+        src/sets.cppm
         src/greeter.cppm
 )
 
