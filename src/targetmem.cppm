@@ -1,3 +1,5 @@
+module;
+
 #include <algorithm>
 #include <cassert>
 #include <cctype>
@@ -77,7 +79,7 @@ export {
             size_t count = 0;
             for (auto& swath : swaths) {
                 for (size_t i = 0; i < swath.data.size(); ++i) {
-                    if (swath.data[i].match_info != MatchFlags::Empty) {
+                    if (swath.data[i].match_info != MatchFlags::EMPTY) {
                         if (count == n) {
                             return std::make_pair(&swath, i);
                         }
@@ -99,7 +101,7 @@ export {
                             static_cast<char*>(swath.firstByteInChild) +
                             (&info - &swath.data[0]);
                         if (addr >= start && addr < end) {
-                            if (info.match_info != MatchFlags::Empty) {
+                            if (info.match_info != MatchFlags::EMPTY) {
                                 ++numMatches;
                             }
                             return true;

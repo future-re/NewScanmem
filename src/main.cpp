@@ -1,7 +1,6 @@
-// main.cpp
-import greeter; // 导入 greeter 模块;
+import sets;
 
 int main() {
-    say_hello("Linux Developer");
+    Set val;
     return 0;
 }
