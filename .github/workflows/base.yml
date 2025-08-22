@@ -13,11 +13,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 检出代码
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 安装 Clang 20
+      - name: Cache ccache
+        uses: actions/cache@v3
+        with:
+          path: ~/.ccache
+          key: ${{ runner.os }}-ccache-${{ hashFiles('**/CMakeLists.txt','**/*.cpp','**/*.c','**/*.h','**/*.hpp') }}
+          restore-keys: |
+            ${{ runner.os }}-ccache-
+
+      - name: Show tool versions
+        run: |
+          uname -a
+          lsb_release -a || true
+          cmake --version || true
+          clang --version || true
+
+      # 安装 Clang 20（使用 llvm.sh 脚本）
       - name: Install Clang 20
         run: |
           wget https://apt.llvm.org/llvm.sh
@@ -28,30 +42,38 @@ jobs:
           sudo update-alternatives --set cc /usr/bin/clang-20
           sudo update-alternatives --set c++ /usr/bin/clang++-20
 
-      # 安装 CMake 3.28
-      - name: Install CMake 3.28
+      # 安装系统依赖（包含 libboost 和 gtest 源）
+      - name: Install deps via apt
         run: |
-          sudo apt-get remove --purge --yes cmake
-          wget https://github.com/Kitware/CMake/releases/download/v3.28.0/cmake-3.28.0-linux-x86_64.sh
-          chmod +x cmake-3.28.0-linux-x86_64.sh
-          sudo ./cmake-3.28.0-linux-x86_64.sh --skip-license --prefix=/usr/local
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake pkg-config wget \
+            libboost-all-dev libgtest-dev ccache
 
-      # 编译并安装 Boost 1.89
-      - name: Build and Install Boost 1.89
+      # 编译并安装 GoogleTest（Ubuntu 的 libgtest-dev 只包含源）
+      - name: Build and install GoogleTest
         run: |
-          wget https://archives.boost.io/release/1.89.0/source/boost_1_89_0.tar.gz
-          tar -xzf boost_1_89_0.tar.gz
-          cd boost_1_89_0
-          ./bootstrap.sh
-          ./b2 install --prefix=/usr/local -j$(nproc)
+          sudo apt-get install -y cmake || true
+          tmpdir=$(mktemp -d)
+          pushd "$tmpdir"
+          cmake /usr/src/gtest -DCMAKE_BUILD_TYPE=Release
+          cmake --build . --config Release -j$(nproc)
+          sudo cp *.a /usr/lib || true
+          popd
+          rm -rf "$tmpdir"
 
-      # 配置项目
+      # 配置项目（启用 ccache 作为 compiler launcher）
       - name: Configure project
-        run: cmake -B build -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_CXX_STANDARD=23
+        env:
+          CCACHE_DIR: $HOME/.ccache
+        run: |
+          cmake -B build \
+            -DCMAKE_CXX_COMPILER=clang++ \
+            -DCMAKE_CXX_STANDARD=23 \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
 
       # 构建项目
       - name: Build project
-        run: cmake --build build
+        run: cmake --build build -j$(nproc)
 
       # 运行测试
       - name: Run tests
