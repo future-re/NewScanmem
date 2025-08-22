@@ -19,13 +19,11 @@ namespace phoenix = boost::phoenix;
 constexpr size_t DEFAULT_UINTLS_SZ = 64;
 
 export struct Set {
-    size_t size;
     std::vector<size_t> buf;
 
-    void clear() {
-        size = 0;
-        buf.clear();
-    }
+    size_t size() const { return buf.size(); }
+
+    void clear() { buf.clear(); }
 
     // 静态成员函数，用于比较两个 size_t 值
     static int cmp(const size_t& i1, const size_t& i2) {
@@ -69,8 +67,9 @@ export bool parse_uintset(std::string_view lptr, Set& set, size_t maxSZ) {
     std::string input(lptr);
 
     // 支持十进制和0x前缀十六进制
-    auto num_rule = qi::uint_parser<size_t, 10, 1, 20>() |
-                    (qi::lit("0x") >> qi::uint_parser<size_t, 16, 1, 16>());
+    auto hex_rule = qi::lit("0x") >> qi::uint_parser<size_t, 16, 1, 16>();
+    auto dec_rule = qi::uint_parser<size_t, 10, 1, 20>();
+    auto num_rule = hex_rule | dec_rule;
 
     auto range_rule = (num_rule >> ".." >> num_rule)[phoenix::bind(
         [&](size_t a, size_t b) {
@@ -97,11 +96,22 @@ export bool parse_uintset(std::string_view lptr, Set& set, size_t maxSZ) {
         return false;
     }
 
-    if (result.empty()) return false;
-
     std::sort(result.begin(), result.end());
     result.erase(std::unique(result.begin(), result.end()), result.end());
-    if (result.back() >= maxSZ) return false;
+
+    if (result.empty()) {
+        if (invert) {
+            // 如果原始结果为空但需要反转，则添加所有元素
+            for (size_t i = 0; i < maxSZ; ++i) {
+                result.push_back(i);
+            }
+            invert = false;  // 重置invert标志，因为我们已经手动处理了反转
+        } else {
+            return false;
+        }
+    }
+
+    if (!result.empty() && result.back() >= maxSZ) return false;
 
     if (invert) {
         if (result.size() == maxSZ) return false;
@@ -115,8 +125,6 @@ export bool parse_uintset(std::string_view lptr, Set& set, size_t maxSZ) {
         }
         result = std::move(inv);
     }
-
     set.buf = std::move(result);
-    set.size = set.buf.size();
     return true;
 }

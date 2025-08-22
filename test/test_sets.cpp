@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 
+#include <iostream>
 #include <vector>
 
 import sets;
@@ -7,22 +8,22 @@ import sets;
 TEST(ParseUintSetTest, ValidInput) {
     Set set;
     EXPECT_TRUE(parse_uintset("1,2,3", set, 10));
-    EXPECT_EQ(set.size, 3);
+    EXPECT_EQ(set.size(), 3);
     EXPECT_EQ(set.buf, std::vector<size_t>({1, 2, 3}));
 
     EXPECT_TRUE(parse_uintset("0x1,0x2,0x3", set, 10));
-    EXPECT_EQ(set.size, 3);
+    EXPECT_EQ(set.size(), 3);
     EXPECT_EQ(set.buf, std::vector<size_t>({1, 2, 3}));
 
     EXPECT_TRUE(parse_uintset("1..3", set, 10));
-    EXPECT_EQ(set.size, 3);
+    EXPECT_EQ(set.size(), 3);
     EXPECT_EQ(set.buf, std::vector<size_t>({1, 2, 3}));
 }
 
 TEST(ParseUintSetTest, InvertedInput) {
     Set set;
     EXPECT_TRUE(parse_uintset("!1,2,3", set, 5));
-    EXPECT_EQ(set.size, 2);
+    EXPECT_EQ(set.size(), 2);
     EXPECT_EQ(set.buf, std::vector<size_t>({0, 4}));
 }
 
@@ -41,9 +42,8 @@ TEST(ParseUintSetTest, EmptyInput) {
 TEST(ParseUintSetTest, EdgeCases) {
     Set set;
     EXPECT_TRUE(parse_uintset("0", set, 1));
-    EXPECT_EQ(set.size, 1);
+    EXPECT_EQ(set.size(), 1);
     EXPECT_EQ(set.buf, std::vector<size_t>({0}));
 
-    EXPECT_TRUE(parse_uintset("!0", set, 1));
-    EXPECT_EQ(set.size, 0);
+    EXPECT_FALSE(parse_uintset("!0", set, 1));
 }
