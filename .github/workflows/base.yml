@@ -39,7 +39,7 @@ jobs:
       # 编译并安装 Boost 1.89
       - name: Build and Install Boost 1.89
         run: |
-          wget https://boostorg.jfrog.io/artifactory/main/release/1.89.0/source/boost_1_89_0.tar.gz
+          wget https://archives.boost.io/release/1.89.0/source/boost_1_89_0.tar.gz
           tar -xzf boost_1_89_0.tar.gz
           cd boost_1_89_0
           ./bootstrap.sh
