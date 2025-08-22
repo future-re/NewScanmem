@@ -31,28 +31,45 @@ jobs:
           cmake --version || true
           clang --version || true
 
-      # 安装 Clang 20（使用 llvm.sh 脚本）
+      - name: Install basic deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake pkg-config wget ccache git python3
+
+      # 可选：保留安装 clang-20（如需）
       - name: Install Clang 20
         run: |
           wget https://apt.llvm.org/llvm.sh
           chmod +x llvm.sh
-          sudo ./llvm.sh 20
-          sudo update-alternatives --install /usr/bin/cc cc /usr/bin/clang-20 100
-          sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-20 100
-          sudo update-alternatives --set cc /usr/bin/clang-20
-          sudo update-alternatives --set c++ /usr/bin/clang++-20
+          sudo ./llvm.sh 20 || true
+          sudo update-alternatives --install /usr/bin/cc cc /usr/bin/clang-20 100 || true
+          sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-20 100 || true
+          sudo update-alternatives --set cc /usr/bin/clang-20 || true
+          sudo update-alternatives --set c++ /usr/bin/clang++-20 || true
 
-      # 安装系统依赖（包含 libboost 和 gtest 源）
-      - name: Install deps via apt
+      # 缓存 vcpkg 的下载/installed 等目录以减少重复构建
+      - name: Cache vcpkg
+        uses: actions/cache@v3
+        with:
+          path: |
+            vcpkg/installed
+            vcpkg/packages
+            vcpkg/downloads
+          key: ${{ runner.os }}-vcpkg-1.89-${{ hashFiles('**/CMakeLists.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-vcpkg-
+
+      - name: Install vcpkg and Boost 1.89
         run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential cmake pkg-config wget \
-            libboost-all-dev libgtest-dev ccache
+          git clone --depth=1 https://github.com/microsoft/vcpkg.git vcpkg
+          ./vcpkg/bootstrap-vcpkg.sh
+          # 安装需要的 Boost 组件（会构建一次，后续由 cache 加速）
+          ./vcpkg/vcpkg install boost-filesystem boost-regex boost-process --triplet x64-linux
 
-      # 编译并安装 GoogleTest（Ubuntu 的 libgtest-dev 只包含源）
+      # 如果 libgtest-dev 仍需构建静态库（保持原先逻辑）
       - name: Build and install GoogleTest
         run: |
-          sudo apt-get install -y cmake || true
+          sudo apt-get install -y libgtest-dev cmake || true
           tmpdir=$(mktemp -d)
           pushd "$tmpdir"
           cmake /usr/src/gtest -DCMAKE_BUILD_TYPE=Release
@@ -61,7 +78,7 @@ jobs:
           popd
           rm -rf "$tmpdir"
 
-      # 配置项目（启用 ccache 作为 compiler launcher）
+      # 配置项目，使用 vcpkg toolchain
       - name: Configure project
         env:
           CCACHE_DIR: $HOME/.ccache
@@ -69,12 +86,11 @@ jobs:
           cmake -B build \
             -DCMAKE_CXX_COMPILER=clang++ \
             -DCMAKE_CXX_STANDARD=23 \
-            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_TOOLCHAIN_FILE=$GITHUB_WORKSPACE/vcpkg/scripts/buildsystems/vcpkg.cmake
 
-      # 构建项目
       - name: Build project
         run: cmake --build build -j$(nproc)
 
-      # 运行测试
       - name: Run tests
         run: ctest --test-dir build --output-on-failure
