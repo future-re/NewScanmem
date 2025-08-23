@@ -23,10 +23,15 @@ jobs:
       - name: Cache ccache
         uses: actions/cache@v3
         with:
-          path: ~/.ccache
-          key: ${{ runner.os }}-ccache-${{ hashFiles('**/CMakeLists.txt','**/*.cpp','**/*.c','**/*.h','**/*.hpp') }}
+          path: /home/runner/.ccache
+          key: ${{ runner.os }}-ccache-${{ hashFiles('**/CMakeLists.txt','**/*.cpp','**/*.c','**/*.h','**/*.cppm') }}
           restore-keys: |
             ${{ runner.os }}-ccache-
+      
+      - name: Install ninja
+        run: /
+          apt-get update
+          apt-get install -y ninja-build
 
       - name: Show tool versions
         run: |
@@ -37,7 +42,13 @@ jobs:
       - name: Configure project
         env:
           CCACHE_DIR: /home/runner/.ccache
-        run: cmake -B build -DCMAKE_CXX_STANDARD=23
+        run: |
+          cmake -B build -G Ninja \
+            -DCMAKE_C_COMPILER=clang-20 \
+            -DCMAKE_CXX_COMPILER=clang++-20 \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_CXX_STANDARD=23
 
       - name: Build project
         run: cmake --build build -j$(nproc)
