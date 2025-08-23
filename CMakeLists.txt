@@ -34,6 +34,7 @@ target_sources(NewScanmem_lib
         src/value.cppm
         src/targetmem.cppm
         src/sets.cppm
+        src/process_checker.cppm
 )
 
 # 链接 Boost 到库
@@ -47,8 +48,15 @@ target_link_libraries(NewScanmem PRIVATE NewScanmem_lib)
 
 # --- 测试 ---
 enable_testing()
-add_executable(run_tests test/test_sets.cpp)
-target_link_libraries(run_tests PRIVATE GTest::GTest GTest::Main NewScanmem_lib)
+
+# Sets模块测试
+add_executable(test_sets test/test_sets.cpp)
+target_link_libraries(test_sets PRIVATE GTest::GTest GTest::Main NewScanmem_lib)
+
+# ProcessChecker模块测试
+add_executable(test_process_checker test/test_process_checker.cpp)
+target_link_libraries(test_process_checker PRIVATE GTest::GTest GTest::Main NewScanmem_lib)
 
 include(GoogleTest)
-gtest_discover_tests(run_tests)
+gtest_discover_tests(test_sets)
+gtest_discover_tests(test_process_checker)
