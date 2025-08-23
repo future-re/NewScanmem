@@ -27,9 +27,6 @@ jobs:
           key: ${{ runner.os }}-ccache-${{ hashFiles('**/CMakeLists.txt','**/*.cpp','**/*.c','**/*.h','**/*.cppm') }}
           restore-keys: |
             ${{ runner.os }}-ccache-
-      
-      - name: Install ninja
-        uses: ashutoshvarma/setup-ninja@v1
 
       - name: Show tool versions
         run: |
