@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu22.04
+    runs-on: ubuntu-22.04
     container:
       image: ghcr.io/future-re/ubuntu22.04-clang20-boost1.89-gtest1.17
 
@@ -23,8 +23,8 @@ jobs:
       - name: Cache ccache
         uses: actions/cache@v3
         with:
-          path: ~/.ccache
-          key: ${{ runner.os }}-ccache-${{ hashFiles('**/CMakeLists.txt','**/*.cpp','**/*.c','**/*.h','**/*.hpp') }}
+          path: /home/runner/.ccache
+          key: ${{ runner.os }}-ccache-${{ hashFiles('**/CMakeLists.txt','**/*.cpp','**/*.c','**/*.h','**/*.cppm') }}
           restore-keys: |
             ${{ runner.os }}-ccache-
 
@@ -37,7 +37,13 @@ jobs:
       - name: Configure project
         env:
           CCACHE_DIR: /home/runner/.ccache
-        run: cmake -B build -DCMAKE_CXX_STANDARD=23
+        run: |
+          cmake -B build -G Ninja \
+            -DCMAKE_C_COMPILER=clang-20 \
+            -DCMAKE_CXX_COMPILER=clang++-20 \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_CXX_STANDARD=23
 
       - name: Build project
         run: cmake --build build -j$(nproc)
