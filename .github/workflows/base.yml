@@ -29,9 +29,7 @@ jobs:
             ${{ runner.os }}-ccache-
       
       - name: Install ninja
-        run: /
-          sudo apt-get update
-          sudo apt-get install -y ninja-build
+        uses: ashutoshvarma/setup-ninja@v1
 
       - name: Show tool versions
         run: |
