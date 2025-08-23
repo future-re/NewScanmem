@@ -7,11 +7,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gnupg software-properties-common unzip gcc-12 g++-12 libstdc++-12-dev && \
     rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    software-properties-common && \
+    add-apt-repository ppa:ubuntu-toolchain-r/test -y && apt-get update && \
+    apt-get install -y gcc-13 g++-13 libstdc++-13-dev && \
+    rm -rf /var/lib/apt/lists/*
+
 # 安装 clang-20
 RUN wget https://apt.llvm.org/llvm.sh -O /tmp/llvm.sh && chmod +x /tmp/llvm.sh && \
     /tmp/llvm.sh 20 && \
-    apt-get update && apt-get install -y \
-    libstdc++-12-dev && \
+    apt-get update && apt-get install -y && \
     update-alternatives --install /usr/bin/cc cc /usr/bin/clang-20 100 && \
     update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-20 100 && \
     update-alternatives --set cc /usr/bin/clang-20 && update-alternatives --set c++ /usr/bin/clang++-20 && \
