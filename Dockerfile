@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential wget ca-certificates curl git python3 python3-pip \
     libbz2-dev libzstd-dev liblzma-dev libssl-dev pkg-config ccache lsb-release \
-    gnupg software-properties-common unzip && \
+    gnupg software-properties-common unzip libc++-dev libc++abi-dev && \
     rm -rf /var/lib/apt/lists/*
 
 # 安装 clang-20
