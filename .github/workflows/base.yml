@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu22.04
+    runs-on: ubuntu-22.04
     container:
       image: ghcr.io/future-re/ubuntu22.04-clang20-boost1.89-gtest1.17
 

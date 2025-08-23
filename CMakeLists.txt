@@ -2,6 +2,9 @@
 cmake_minimum_required(VERSION 3.28)
 project(NewScanmem CXX)
 
+set(CMAKE_CXX_COMPILER "clang++-20")
+set(CMAKE_C_COMPILER "clang-20")
+
 # 设置 C++ 标准和要求
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -9,9 +12,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # 生成 compile_commands.json 以便 clangd 等工具使用
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# --- 查找依赖库 ---
-# 查找 Boost 库（show_message.cppm 需要 boost::process）
-find_package(Boost 1.89 REQUIRED COMPONENTS filesystem regex process)
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+
+include(find_boost)
 
 # 查找 GTest 库
 find_package(GTest REQUIRED)
@@ -34,8 +37,8 @@ target_sources(NewScanmem_lib
         src/sets.cppm
 )
 
-# 链接 Boost 到库（使用 PUBLIC 以便消费者目标继承链接需求）
-target_link_libraries(NewScanmem_lib PUBLIC Boost::filesystem Boost::regex Boost::process)
+# 链接 Boost 到库
+target_link_libraries(NewScanmem_lib PUBLIC Boost::filesystem Boost::regex)
 
 
 # --- 主可执行文件 ---
