@@ -20,6 +20,10 @@ RUN wget https://apt.llvm.org/llvm.sh -O /tmp/llvm.sh && chmod +x /tmp/llvm.sh &
 ENV CC=/usr/bin/clang-20
 ENV CXX=/usr/bin/clang++-20
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libc6-dev linux-headers-generic && \
+    rm -rf /var/lib/apt/lists/*
+
 # 构建并安装最新版本的 CMake
 RUN wget https://github.com/Kitware/CMake/archive/refs/tags/v4.1.0.tar.gz -O /tmp/cmake.tar.gz && \
     mkdir -p /tmp/cmake && tar -xzf /tmp/cmake.tar.gz -C /tmp/cmake --strip-components=1 && \
