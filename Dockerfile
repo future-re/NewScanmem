@@ -10,6 +10,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # 安装 clang-20
 RUN wget https://apt.llvm.org/llvm.sh -O /tmp/llvm.sh && chmod +x /tmp/llvm.sh && \
     /tmp/llvm.sh 20 && \
+    apt-get update && apt-get install -y \
+    libc++-20-dev libc++abi-20-dev && \
     update-alternatives --install /usr/bin/cc cc /usr/bin/clang-20 100 && \
     update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-20 100 && \
     update-alternatives --set cc /usr/bin/clang-20 && update-alternatives --set c++ /usr/bin/clang++-20
@@ -17,10 +19,6 @@ RUN wget https://apt.llvm.org/llvm.sh -O /tmp/llvm.sh && chmod +x /tmp/llvm.sh &
 # 设置编译器环境变量为 LLVM 20
 ENV CC=/usr/bin/clang-20
 ENV CXX=/usr/bin/clang++-20
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    libc++-20-dev libc++abi-20-dev && \
-    rm -rf /var/lib/apt/lists/*
 
 # 构建并安装最新版本的 CMake
 RUN wget https://github.com/Kitware/CMake/archive/refs/tags/v4.1.0.tar.gz -O /tmp/cmake.tar.gz && \
