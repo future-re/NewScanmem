@@ -44,9 +44,6 @@ jobs:
             -DCMAKE_C_COMPILER_LAUNCHER=ccache \
             -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
             -DCMAKE_CXX_STANDARD=23 \
-            -DCMAKE_CXX_FLAGS="-stdlib=libc++ -I/usr/include/c++/v1" \
-            -DCMAKE_EXE_LINKER_FLAGS="-stdlib=libc++" \
-            -DCMAKE_SHARED_LINKER_FLAGS="-stdlib=libc++"
 
       - name: Build project
         run: cmake --build build -j$(nproc)

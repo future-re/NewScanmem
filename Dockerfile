@@ -19,7 +19,7 @@ ENV CC=/usr/bin/clang-20
 ENV CXX=/usr/bin/clang++-20
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    libc++-dev libc++abi-dev && \
+    libc++-20-dev libc++abi-20-dev && \
     rm -rf /var/lib/apt/lists/*
 
 # 构建并安装最新版本的 CMake
