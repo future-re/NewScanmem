@@ -31,7 +31,6 @@ target_sources(NewScanmem_lib
     PUBLIC
         FILE_SET CXX_MODULES FILES
         src/show_message.cppm
-        src/safe_linux_api.cppm
         src/value.cppm
         src/targetmem.cppm
         src/sets.cppm
