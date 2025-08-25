@@ -132,10 +132,12 @@ printer.user("User message"); // Prints to stdout
 ## Output Channels
 
 ### INFO, WARN, ERROR, DEBUG
+
 - **Output**: `std::cerr`
 - **Format**: `[level]: message`
 
 ### USER
+
 - **Output**: `std::cout` (unless backend mode is enabled)
 - **Format**: Raw message without prefix
 
@@ -242,7 +244,7 @@ public:
 };
 ```
 
-## Error Handling
+## Error Handling Module
 
 ### Exception Safety
 

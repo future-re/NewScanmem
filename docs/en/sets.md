@@ -138,7 +138,7 @@ parse_uintset("!", invertedEmpty, 5);  // Results: {0, 1, 2, 3, 4}
 
 The parser uses Boost Spirit Qi and supports the following grammar:
 
-```
+```text
 expression ::= ["!"] (range | single) { "," (range | single) }
 range ::= number ".." number
 single ::= number
@@ -152,6 +152,7 @@ decimal_number ::= decimal_digits
 ### Parse Errors
 
 The parser will return `false` for:
+
 - Invalid syntax (e.g., "1..", "abc", "1..2..3")
 - Out of bounds values (exceeding maxSZ)
 - Empty expressions (except for inversion of empty set)
@@ -172,6 +173,7 @@ The parser uses exception handling internally but converts all Boost Spirit exce
 ### Sorting and Deduplication
 
 After parsing, the module automatically:
+
 1. Sorts the elements in ascending order
 2. Removes duplicate values
 3. Handles inversion logic efficiently
@@ -179,12 +181,14 @@ After parsing, the module automatically:
 ### Range Expansion
 
 Ranges are expanded into individual values:
+
 - `10..15` becomes `{10, 11, 12, 13, 14, 15}`
 - Each value is validated against maxSZ
 
 ### Inversion Logic
 
 Inversion creates the complement set:
+
 - Original: `{1, 3, 5}` with maxSZ=10
 - Inverted: `{0, 2, 4, 6, 7, 8, 9}`
 

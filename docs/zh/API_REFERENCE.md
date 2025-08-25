@@ -3,11 +3,120 @@
 ## 模块索引
 
 - [endianness](#endianness)
+- [maps](#maps)  
 - [process_checker](#process_checker)
 - [sets](#sets)
 - [show_message](#show_message)
 - [targetmem](#targetmem)
 - [value](#value)
+
+---
+
+## maps
+
+### 枚举：`region_type`
+
+```cpp
+enum class region_type : uint8_t {
+    misc,   // 杂项内存区域
+    exe,    // 可执行文件二进制区域
+    code,   // 代码段（共享库等）
+    heap,   // 堆内存区域
+    stack   // 栈内存区域
+};
+
+constexpr std::array<std::string_view, 5> region_type_names;
+```
+
+### 枚举：`region_scan_level`
+
+```cpp
+enum class region_scan_level : uint8_t {
+    all,                       // 所有可读区域
+    all_rw,                    // 所有可读/可写区域
+    heap_stack_executable,     // 堆、栈和可执行区域
+    heap_stack_executable_bss  // 上述加上 BSS 段
+};
+```
+
+### 结构：`region_flags`
+
+```cpp
+struct region_flags {
+    bool read : 1;    // 读权限
+    bool write : 1;   // 写权限
+    bool exec : 1;    // 执行权限
+    bool shared : 1;  // 共享映射
+    bool private_ : 1; // 私有映射
+};
+```
+
+### 结构：`region`
+
+```cpp
+struct region {
+    void* start;           // 起始地址
+    std::size_t size;      // 区域大小（字节）
+    region_type type;      // 区域分类
+    region_flags flags;    // 权限标志
+    void* load_addr;       // ELF 文件的加载地址
+    std::string filename;  // 关联文件路径
+    std::size_t id;        // 唯一标识符
+
+    [[nodiscard]] bool is_readable() const noexcept;
+    [[nodiscard]] bool is_writable() const noexcept;
+    [[nodiscard]] bool is_executable() const noexcept;
+    [[nodiscard]] bool is_shared() const noexcept;
+    [[nodiscard]] bool is_private() const noexcept;
+    [[nodiscard]] std::pair<void*, std::size_t> as_span() const noexcept;
+    [[nodiscard]] bool contains(void* address) const noexcept;
+};
+```
+
+### 结构：`maps_reader::error`
+
+```cpp
+struct error {
+    std::string message;   // 人类可读的错误描述
+    std::error_code code;  // 系统错误代码
+};
+```
+
+### 类：`maps_reader`
+
+#### 静态方法
+
+```cpp
+[[nodiscard]] static std::expected<std::vector<region>, error> 
+read_process_maps(pid_t pid, region_scan_level level = region_scan_level::all);
+```
+
+### 便利函数
+
+```cpp
+[[nodiscard]] std::expected<std::vector<region>, maps_reader::error> 
+read_process_maps(pid_t pid, region_scan_level level = region_scan_level::all);
+```
+
+#### 使用示例
+
+```cpp
+import maps;
+
+// 基本用法
+auto regions = maps::read_process_maps(1234);
+
+// 过滤扫描
+auto heap_regions = maps::read_process_maps(
+    pid, 
+    maps::region_scan_level::heap_stack_executable
+);
+
+// 错误处理
+if (!regions) {
+    std::cerr << "错误: " << regions.error().message << "\n";
+}
+```
 
 ---
 
@@ -71,7 +180,7 @@ enum class ProcessState { RUNNING, ERROR, DEAD, ZOMBIE };
 
 ### 类: `ProcessChecker`
 
-#### 静态方法
+#### ProcessChecker 静态方法
 
 ```cpp
 static ProcessState check_process(pid_t pid);
@@ -94,7 +203,7 @@ struct Set {
 };
 ```
 
-#### 函数
+#### Set 函数
 
 ```cpp
 bool parse_uintset(std::string_view lptr, Set& set, size_t maxSZ);
@@ -177,7 +286,7 @@ void* firstByteInChild = nullptr;                    // 起始地址
 std::vector<OldValueAndMatchInfo> data;              // 匹配数据
 ```
 
-#### 方法
+#### MatchesAndOldValuesSwath 方法
 
 ```cpp
 void addElement(void* addr, uint8_t byte, MatchFlags matchFlags);
@@ -187,13 +296,13 @@ std::string toByteArrayText(size_t idx, size_t len) const;
 
 ### 类: `MatchesAndOldValuesArray`
 
-#### 成员变量
+#### MatchesAndOldValuesArray 成员变量
 
 ```cpp
 std::vector<MatchesAndOldValuesSwath> swaths;        // 内存区域集合
 ```
 
-#### 方法
+#### MatchesAndOldValuesArray 方法
 
 ```cpp
 std::optional<size_t> findSwathIndex(void* addr) const;
@@ -250,7 +359,7 @@ enum class [[gnu::packed]] MatchFlags : uint16_t {
 
 ### 结构体: `Value`
 
-#### 成员变量
+#### Value 成员变量
 
 ```cpp
 std::variant<int8_t, uint8_t, int16_t, uint16_t, int32_t, uint32_t, int64_t,
@@ -260,7 +369,7 @@ std::variant<int8_t, uint8_t, int16_t, uint16_t, int32_t, uint32_t, int64_t,
 MatchFlags flags = MatchFlags::EMPTY;
 ```
 
-#### 静态方法
+#### Value 静态方法
 
 ```cpp
 constexpr static void zero(Value& val);
@@ -430,7 +539,7 @@ constexpr static void zero(Value& val);
 
 ---
 
-## 使用示例
+## API 使用示例
 
 ### 基本用法
 

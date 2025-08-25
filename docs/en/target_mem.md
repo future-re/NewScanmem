@@ -67,26 +67,32 @@ public:
 #### Methods
 
 ##### addElement(void* addr, uint8_t byte, MatchFlags matchFlags)
+
 Adds a new memory match to the swath.
 
 **Parameters:**
+
 - `addr`: Memory address of the match
 - `byte`: The byte value at this address
 - `matchFlags`: Type of match and flags
 
 ##### toPrintableString(size_t idx, size_t len)
+
 Converts memory bytes to a printable ASCII string.
 
 **Parameters:**
+
 - `idx`: Starting index in the data vector
 - `len`: Number of bytes to convert
 
 **Returns:** Printable string with non-printable characters as '.'
 
 ##### toByteArrayText(size_t idx, size_t len)
+
 Converts memory bytes to hexadecimal text representation.
 
 **Parameters:**
+
 - `idx`: Starting index in the data vector
 - `len`: Number of bytes to convert
 
@@ -116,29 +122,36 @@ public:
 };
 ```
 
-#### Methods
+#### MatchesAndOldValuesArray Methods
 
 ##### Constructor(size_t maxBytes)
+
 Initializes with maximum memory requirement.
 
 **Parameters:**
+
 - `maxBytes`: Maximum bytes needed for all matches
 
 ##### addSwath(const MatchesAndOldValuesSwath& swath)
+
 Adds a new swath to the collection.
 
 ##### nthMatch(size_t n)
+
 Finds the nth valid match across all swaths.
 
 **Parameters:**
+
 - `n`: Match index to find (0-based)
 
 **Returns:** Optional pair of (swath pointer, index within swath) or nullopt if not found
 
-##### deleteInAddressRange(void* start, void* end, unsigned long& numMatches)
+##### deleteInAddressRange(void*start, void* end, unsigned long& numMatches)
+
 Removes all matches within a specified address range.
 
 **Parameters:**
+
 - `start`: Starting address of range (inclusive)
 - `end`: Ending address of range (exclusive)
 - `numMatches`: Output parameter counting removed matches
@@ -214,6 +227,7 @@ void* actual_address = static_cast<char*>(swath.firstByteInChild) + index;
 ### Swath Organization
 
 Each swath represents a contiguous memory region with:
+
 - Fixed starting address (`firstByteInChild`)
 - Sequential byte values (`data` vector)
 - Match flags for each byte
@@ -237,6 +251,7 @@ Each swath represents a contiguous memory region with:
 ### Bounds Checking
 
 All methods include bounds checking:
+
 - `toPrintableString` and `toByteArrayText` use `std::min` to prevent overflow
 - `nthMatch` returns `std::nullopt` for invalid indices
 

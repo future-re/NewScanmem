@@ -35,7 +35,7 @@ constexpr bool is_little_endian() noexcept;
 
 ### 2. 字节交换函数
 
-#### 基本字节交换
+#### 基本字节交换函数
 
 ```cpp
 constexpr uint8_t swap_bytes(uint8_t value) noexcept;
@@ -44,7 +44,7 @@ constexpr uint32_t swap_bytes(uint32_t value) noexcept;
 constexpr uint64_t swap_bytes(uint64_t value) noexcept;
 ```
 
-#### 通用字节交换
+#### 通用字节交换函数
 
 ```cpp
 template<typename T>
@@ -53,7 +53,7 @@ constexpr T swap_bytes_integral(T value) noexcept;
 
 支持大小为1、2、4和8字节的整数类型。
 
-#### 原地字节交换
+#### 原地字节交换函数
 
 ```cpp
 void swap_bytes_inplace(void* data, size_t size);
@@ -61,7 +61,7 @@ void swap_bytes_inplace(void* data, size_t size);
 
 对2、4或8字节数据执行原地字节交换。
 
-### 3. 值类型字节序校正
+### 3. 值类型字节序校正函数
 
 ```cpp
 void fix_endianness(Value& value, bool reverse_endianness) noexcept;
@@ -69,7 +69,7 @@ void fix_endianness(Value& value, bool reverse_endianness) noexcept;
 
 自动处理存储在 `Value` 变体中的整数类型的字节序校正。
 
-### 4. 网络字节序转换
+### 4. 网络字节序转换函数
 
 ```cpp
 template<SwappableIntegral T>
@@ -81,7 +81,7 @@ constexpr T network_to_host(T value) noexcept;
 
 在主机和网络字节序（大端）之间转换。
 
-### 5. 小端转换
+### 5. 小端转换函数
 
 ```cpp
 template<SwappableIntegral T>

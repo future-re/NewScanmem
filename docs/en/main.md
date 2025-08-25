@@ -78,24 +78,28 @@ The main application will integrate all modules:
 ## Development Roadmap
 
 ### Phase 1: Basic Framework
+
 - [ ] Command line argument parsing
 - [ ] Process selection and validation
 - [ ] Basic memory scanning
 - [ ] Result display
 
 ### Phase 2: Advanced Features
+
 - [ ] Multiple value type support
 - [ ] Memory region filtering
 - [ ] Pattern matching
 - [ ] Interactive mode
 
 ### Phase 3: Optimization
+
 - [ ] Performance tuning
 - [ ] Memory usage optimization
 - [ ] Parallel processing
 - [ ] Result caching
 
 ### Phase 4: UI/UX
+
 - [ ] Progress indicators
 - [ ] Color output
 - [ ] Export formats
@@ -159,6 +163,7 @@ make
 ### Module Dependencies
 
 The main application depends on all modules:
+
 - `sets` - Set operations and parsing
 - `process_checker` - Process state checking  
 - `targetmem` - Memory analysis structures
@@ -192,6 +197,7 @@ int main() {
 ### Environment Variables
 
 Future versions may support:
+
 - `SCANMEM_DEBUG`: Enable debug mode
 - `SCANMEM_BACKEND`: Enable backend mode
 - `SCANMEM_LOG_FILE`: Log file path
@@ -215,6 +221,7 @@ timeout=30
 ### Current Error Handling
 
 The current implementation provides minimal error handling through:
+
 - Module import verification
 - Basic compilation checks
 - Placeholder return codes
@@ -304,7 +311,7 @@ printer.debug("Starting scan for PID: {}", pid);
 
 ## Future API Design
 
-### Command Line Interface
+### Future API Command Line Interface
 
 ```bash
 # Basic scan
@@ -374,6 +381,7 @@ This project is part of the NewScanmem memory scanning utility. See individual m
 ## Support
 
 For issues and questions:
+
 - Check individual module documentation
 - Review build requirements
 - Verify system compatibility

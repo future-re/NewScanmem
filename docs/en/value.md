@@ -99,6 +99,7 @@ struct [[gnu::packed]] Value {
 #### Static Methods
 
 ##### zero(Value& val)
+
 Resets a Value to zero state with EMPTY flags.
 
 ```cpp
@@ -130,7 +131,8 @@ struct [[gnu::packed]] Mem64 {
 
 #### Methods
 
-##### get<T>()
+##### get\<T\>()
+
 Type-safe value retrieval with compile-time type checking.
 
 ```cpp
@@ -139,7 +141,8 @@ float value = mem64.get<float>();  // Returns 3.14f
 // int value = mem64.get<int>();  // Would throw std::bad_variant_access
 ```
 
-##### visit<Visitor>()
+##### visit\<Visitor\>()
+
 Generic visitor pattern for variant access.
 
 ```cpp
@@ -148,7 +151,8 @@ mem64.visit([](auto&& arg) {
 });
 ```
 
-##### set<T>()
+##### set\<T\>()
+
 Type-safe value assignment with bit-casting for numeric types.
 
 ```cpp
@@ -400,7 +404,7 @@ void test_value_module() {
 
 1. **Use appropriate types**: Choose specific numeric types over generic ones
 2. **Initialize flags**: Always set appropriate MatchFlags
-3. **Handle type mismatches**: Use try-catch for Mem64::get<T>()
+3. **Handle type mismatches**: Use try-catch for Mem64::get\<T\>()
 4. **Consider alignment**: Packed structures may impact performance
 5. **Use visitors**: Prefer std::visit for type-safe variant access
 

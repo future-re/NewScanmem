@@ -3,11 +3,120 @@
 ## Module Index
 
 - [endianness](#endianness)
+- [maps](#maps)
 - [process_checker](#process_checker)
 - [sets](#sets)
 - [show_message](#show_message)
 - [targetmem](#targetmem)
 - [value](#value)
+
+---
+
+## maps
+
+### Enum: `region_type`
+
+```cpp
+enum class region_type : uint8_t {
+    misc,   // Miscellaneous memory regions
+    exe,    // Executable binary regions
+    code,   // Code segments (shared libraries, etc.)
+    heap,   // Heap memory regions
+    stack   // Stack memory regions
+};
+
+constexpr std::array<std::string_view, 5> region_type_names;
+```
+
+### Enum: `region_scan_level`
+
+```cpp
+enum class region_scan_level : uint8_t {
+    all,                       // All readable regions
+    all_rw,                    // All readable/writable regions
+    heap_stack_executable,     // Heap, stack, and executable regions
+    heap_stack_executable_bss  // Above plus BSS segments
+};
+```
+
+### Struct: `region_flags`
+
+```cpp
+struct region_flags {
+    bool read : 1;    // Read permission
+    bool write : 1;   // Write permission
+    bool exec : 1;    // Execute permission
+    bool shared : 1;  // Shared mapping
+    bool private_ : 1; // Private mapping
+};
+```
+
+### Struct: `region`
+
+```cpp
+struct region {
+    void* start;           // Starting address
+    std::size_t size;      // Region size in bytes
+    region_type type;      // Region classification
+    region_flags flags;    // Permission flags
+    void* load_addr;       // Load address for ELF files
+    std::string filename;  // Associated file path
+    std::size_t id;        // Unique identifier
+
+    [[nodiscard]] bool is_readable() const noexcept;
+    [[nodiscard]] bool is_writable() const noexcept;
+    [[nodiscard]] bool is_executable() const noexcept;
+    [[nodiscard]] bool is_shared() const noexcept;
+    [[nodiscard]] bool is_private() const noexcept;
+    [[nodiscard]] std::pair<void*, std::size_t> as_span() const noexcept;
+    [[nodiscard]] bool contains(void* address) const noexcept;
+};
+```
+
+### Struct: `maps_reader::error`
+
+```cpp
+struct error {
+    std::string message;   // Human-readable error description
+    std::error_code code;  // System error code
+};
+```
+
+### Class: `maps_reader`
+
+#### Static Methods
+
+```cpp
+[[nodiscard]] static std::expected<std::vector<region>, error> 
+read_process_maps(pid_t pid, region_scan_level level = region_scan_level::all);
+```
+
+### Convenience Functions
+
+```cpp
+[[nodiscard]] std::expected<std::vector<region>, maps_reader::error> 
+read_process_maps(pid_t pid, region_scan_level level = region_scan_level::all);
+```
+
+#### Usage Examples
+
+```cpp
+import maps;
+
+// Basic usage
+auto regions = maps::read_process_maps(1234);
+
+// Filtered scanning
+auto heap_regions = maps::read_process_maps(
+    pid, 
+    maps::region_scan_level::heap_stack_executable
+);
+
+// Error handling
+if (!regions) {
+    std::cerr << "Error: " << regions.error().message << "\n";
+}
+```
 
 ---
 
@@ -71,7 +180,7 @@ enum class ProcessState { RUNNING, ERROR, DEAD, ZOMBIE };
 
 ### Class: `ProcessChecker`
 
-#### Static Methods
+#### ProcessChecker Static Methods
 
 ```cpp
 static ProcessState check_process(pid_t pid);
@@ -94,7 +203,7 @@ struct Set {
 };
 ```
 
-#### Functions
+#### Set Functions
 
 ```cpp
 bool parse_uintset(std::string_view lptr, Set& set, size_t maxSZ);
