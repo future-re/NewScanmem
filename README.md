@@ -66,8 +66,8 @@ This project provides bilingual documentation in Chinese and English:
 
 ```bash
 # 克隆仓库 | Clone repository
-git clone https://github.com/your-org/newscanmem.git
-cd newscanmem
+git clone https://github.com/future-re/NewScanmem.git
+cd NewScanmem
 
 # 创建构建目录 | Create build directory
 mkdir build && cd build
@@ -76,10 +76,10 @@ mkdir build && cd build
 cmake ..
 
 # 构建 | Build
-make
+ninja/make
 
 # 运行 | Run
-./newscanmem
+./NewScanmem
 ```
 
 ### 系统要求 | System Requirements
