@@ -170,4 +170,4 @@ make test
 
 - [英文文档](../en/README.md)
 - [API参考](API_REFERENCE.md)
-- [GitHub仓库](https://github.com/your-org/newscanmem)
+- [GitHub仓库](https://github.com/future-re/NewScanmem)

@@ -170,4 +170,4 @@ This project is open source and follows standard open source licensing. See indi
 
 - [Chinese Documentation](../zh/README.md)
 - [API Reference](API_REFERENCE.md)
-- [GitHub Repository](https://github.com/your-org/newscanmem)
+- [GitHub Repository](https://github.com/future-re/NewScanmem)
