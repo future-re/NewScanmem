@@ -27,8 +27,8 @@ export module endianness;
 #### Compile-time Detection
 
 ```cpp
-constexpr bool is_big_endian() noexcept;
-constexpr bool is_little_endian() noexcept;
+constexpr bool isBigEndian() noexcept;
+constexpr bool isLittleEndian() noexcept;
 ```
 
 Uses `std::endian::native` to determine host endianness at compile time.
@@ -38,17 +38,17 @@ Uses `std::endian::native` to determine host endianness at compile time.
 #### Basic Byte Swapping
 
 ```cpp
-constexpr uint8_t swap_bytes(uint8_t value) noexcept;
-constexpr uint16_t swap_bytes(uint16_t value) noexcept;
-constexpr uint32_t swap_bytes(uint32_t value) noexcept;
-constexpr uint64_t swap_bytes(uint64_t value) noexcept;
+constexpr uint8_t swapBytes(uint8_t value) noexcept;
+constexpr uint16_t swapBytes(uint16_t value) noexcept;
+constexpr uint32_t swapBytes(uint32_t value) noexcept;
+constexpr uint64_t swapBytes(uint64_t value) noexcept;
 ```
 
 #### Generic Byte Swapping
 
 ```cpp
 template<typename T>
-constexpr T swap_bytes_integral(T value) noexcept;
+constexpr T swapBytesIntegral(T value) noexcept;
 ```
 
 Supports integer types of sizes 1, 2, 4, and 8 bytes.
@@ -56,7 +56,7 @@ Supports integer types of sizes 1, 2, 4, and 8 bytes.
 #### In-place Byte Swapping
 
 ```cpp
-void swap_bytes_inplace(void* data, size_t size);
+void swapBytesInPlace(void* data, size_t size);
 ```
 
 Performs byte swapping in-place for 2, 4, or 8-byte data.
@@ -64,7 +64,7 @@ Performs byte swapping in-place for 2, 4, or 8-byte data.
 ### 3. Endianness Correction for Value Types
 
 ```cpp
-void fix_endianness(Value& value, bool reverse_endianness) noexcept;
+void fixEndianness(Value& value, bool reverseEndianness) noexcept;
 ```
 
 Automatically handles endianness correction for integral types stored in `Value` variants.
@@ -73,10 +73,10 @@ Automatically handles endianness correction for integral types stored in `Value`
 
 ```cpp
 template<SwappableIntegral T>
-constexpr T host_to_network(T value) noexcept;
+constexpr T hostToNetwork(T value) noexcept;
 
 template<SwappableIntegral T>
-constexpr T network_to_host(T value) noexcept;
+constexpr T networkToHost(T value) noexcept;
 ```
 
 Converts between host and network byte order (big-endian).
@@ -85,10 +85,10 @@ Converts between host and network byte order (big-endian).
 
 ```cpp
 template<SwappableIntegral T>
-constexpr T host_to_little_endian(T value) noexcept;
+constexpr T hostToLittleEndian(T value) noexcept;
 
 template<SwappableIntegral T>
-constexpr T little_endian_to_host(T value) noexcept;
+constexpr T littleEndianToHost(T value) noexcept;
 ```
 
 ## Usage Examples
@@ -99,7 +99,7 @@ constexpr T little_endian_to_host(T value) noexcept;
 import endianness;
 
 uint32_t value = 0x12345678;
-uint32_t swapped = endianness::swap_bytes(value);
+uint32_t swapped = endianness::swapBytes(value);
 // swapped = 0x78563412 on little-endian systems
 ```
 
@@ -110,14 +110,14 @@ import endianness;
 import value;
 
 Value val = uint32_t{0x12345678};
-endianness::fix_endianness(val, true);  // Reverse endianness
+endianness::fixEndianness(val, true);  // Reverse endianness
 ```
 
 ### Network Communication
 
 ```cpp
 uint16_t port = 8080;
-uint16_t network_port = endianness::host_to_network(port);
+uint16_t networkPort = endianness::hostToNetwork(port);
 ```
 
 ## Concepts and Constraints
@@ -150,9 +150,9 @@ Uses C++20 concepts to ensure type safety and provide clear error messages for u
 
 ## Error Handling
 
-- `swap_bytes_integral` uses `static_assert` for compile-time type checking
-- `swap_bytes_inplace` silently ignores unsupported sizes
-- `fix_endianness` safely handles variant types using `std::visit`
+- `swapBytesIntegral` uses `static_assert` for compile-time type checking
+- `swapBytesInPlace` silently ignores unsupported sizes
+- `fixEndianness` safely handles variant types using `std::visit`
 
 ## Performance Considerations
 

@@ -27,8 +27,8 @@ export module endianness;
 #### 编译时检测
 
 ```cpp
-constexpr bool is_big_endian() noexcept;
-constexpr bool is_little_endian() noexcept;
+constexpr bool isBigEndian() noexcept;
+constexpr bool isLittleEndian() noexcept;
 ```
 
 使用 `std::endian::native` 在编译时确定主机字节序。
@@ -38,17 +38,17 @@ constexpr bool is_little_endian() noexcept;
 #### 基本字节交换函数
 
 ```cpp
-constexpr uint8_t swap_bytes(uint8_t value) noexcept;
-constexpr uint16_t swap_bytes(uint16_t value) noexcept;
-constexpr uint32_t swap_bytes(uint32_t value) noexcept;
-constexpr uint64_t swap_bytes(uint64_t value) noexcept;
+constexpr uint8_t swapBytes(uint8_t value) noexcept;
+constexpr uint16_t swapBytes(uint16_t value) noexcept;
+constexpr uint32_t swapBytes(uint32_t value) noexcept;
+constexpr uint64_t swapBytes(uint64_t value) noexcept;
 ```
 
 #### 通用字节交换函数
 
 ```cpp
 template<typename T>
-constexpr T swap_bytes_integral(T value) noexcept;
+constexpr T swapBytesIntegral(T value) noexcept;
 ```
 
 支持大小为1、2、4和8字节的整数类型。
@@ -56,7 +56,7 @@ constexpr T swap_bytes_integral(T value) noexcept;
 #### 原地字节交换函数
 
 ```cpp
-void swap_bytes_inplace(void* data, size_t size);
+void swapBytesInPlace(void* data, size_t size);
 ```
 
 对2、4或8字节数据执行原地字节交换。
@@ -64,7 +64,7 @@ void swap_bytes_inplace(void* data, size_t size);
 ### 3. 值类型字节序校正函数
 
 ```cpp
-void fix_endianness(Value& value, bool reverse_endianness) noexcept;
+void fixEndianness(Value& value, bool reverseEndianness) noexcept;
 ```
 
 自动处理存储在 `Value` 变体中的整数类型的字节序校正。
@@ -73,10 +73,10 @@ void fix_endianness(Value& value, bool reverse_endianness) noexcept;
 
 ```cpp
 template<SwappableIntegral T>
-constexpr T host_to_network(T value) noexcept;
+constexpr T hostToNetwork(T value) noexcept;
 
 template<SwappableIntegral T>
-constexpr T network_to_host(T value) noexcept;
+constexpr T networkToHost(T value) noexcept;
 ```
 
 在主机和网络字节序（大端）之间转换。
@@ -85,10 +85,10 @@ constexpr T network_to_host(T value) noexcept;
 
 ```cpp
 template<SwappableIntegral T>
-constexpr T host_to_little_endian(T value) noexcept;
+constexpr T hostToLittleEndian(T value) noexcept;
 
 template<SwappableIntegral T>
-constexpr T little_endian_to_host(T value) noexcept;
+constexpr T littleEndianToHost(T value) noexcept;
 ```
 
 ## 使用示例
@@ -99,7 +99,7 @@ constexpr T little_endian_to_host(T value) noexcept;
 import endianness;
 
 uint32_t value = 0x12345678;
-uint32_t swapped = endianness::swap_bytes(value);
+uint32_t swapped = endianness::swapBytes(value);
 // 在小端系统上 swapped = 0x78563412
 ```
 
@@ -110,14 +110,14 @@ import endianness;
 import value;
 
 Value val = uint32_t{0x12345678};
-endianness::fix_endianness(val, true);  // 反转字节序
+endianness::fixEndianness(val, true);  // 反转字节序
 ```
 
 ### 网络通信
 
 ```cpp
 uint16_t port = 8080;
-uint16_t network_port = endianness::host_to_network(port);
+uint16_t networkPort = endianness::hostToNetwork(port);
 ```
 
 ## 概念和约束
@@ -150,9 +150,9 @@ concept SwappableIntegral = std::integral<T> &&
 
 ## 错误处理
 
-- `swap_bytes_integral` 使用 `static_assert` 进行编译时类型检查
-- `swap_bytes_inplace` 静默忽略不支持的尺寸
-- `fix_endianness` 使用 `std::visit` 安全处理变体类型
+- `swapBytesIntegral` 使用 `static_assert` 进行编译时类型检查
+- `swapBytesInPlace` 静默忽略不支持的尺寸
+- `fixEndianness` 使用 `std::visit` 安全处理变体类型
 
 ## 性能考虑
 

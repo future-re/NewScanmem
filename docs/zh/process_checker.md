@@ -37,14 +37,14 @@ enum class ProcessState {
 ```cpp
 class ProcessChecker {
 public:
-    static ProcessState check_process(pid_t pid);
-    static bool is_process_dead(pid_t pid);
+    static ProcessState checkProcess(pid_t pid);
+    static bool isProcessDead(pid_t pid);
 };
 ```
 
 #### 方法
 
-##### check_process(pid_t pid)
+##### checkProcess(pid_t pid)
 
 检查指定 PID 的进程状态。
 
@@ -59,7 +59,7 @@ public:
 - `ProcessState::DEAD`: 进程不存在（/proc/[pid] 目录缺失）
 - `ProcessState::ZOMBIE`: 进程处于僵尸或死亡状态
 
-##### is_process_dead(pid_t pid)
+##### isProcessDead(pid_t pid)
 
 检查进程是否未运行的便捷方法。
 
@@ -97,7 +97,7 @@ public:
 import process_checker;
 
 pid_t pid = 1234;
-ProcessState state = ProcessChecker::check_process(pid);
+ProcessState state = ProcessChecker::checkProcess(pid);
 ```
 
 ### 检查进程是否死亡
@@ -106,7 +106,7 @@ ProcessState state = ProcessChecker::check_process(pid);
 import process_checker;
 
 pid_t pid = 1234;
-if (ProcessChecker::is_process_dead(pid)) {
+if (ProcessChecker::isProcessDead(pid)) {
     std::cout << "进程 " << pid << " 已死亡或不存在" << std::endl;
 }
 ```
@@ -117,7 +117,7 @@ if (ProcessChecker::is_process_dead(pid)) {
 import process_checker;
 
 pid_t pid = 1234;
-ProcessState state = ProcessChecker::check_process(pid);
+ProcessState state = ProcessChecker::checkProcess(pid);
 
 switch (state) {
     case ProcessState::RUNNING:

@@ -37,14 +37,14 @@ enum class ProcessState {
 ```cpp
 class ProcessChecker {
 public:
-    static ProcessState check_process(pid_t pid);
-    static bool is_process_dead(pid_t pid);
+    static ProcessState checkProcess(pid_t pid);
+    static bool isProcessDead(pid_t pid);
 };
 ```
 
 #### Methods
 
-##### check_process(pid_t pid)
+##### checkProcess(pid_t pid)
 
 Checks the state of a process given its PID.
 
@@ -59,7 +59,7 @@ Checks the state of a process given its PID.
 - `ProcessState::DEAD`: Process does not exist (/proc/[pid] directory missing)
 - `ProcessState::ZOMBIE`: Process is in zombie or dead state
 
-##### is_process_dead(pid_t pid)
+##### isProcessDead(pid_t pid)
 
 Convenience method to check if a process is not running.
 
@@ -97,7 +97,7 @@ The module reads `/proc/[pid]/status` and examines the "State:" field:
 import process_checker;
 
 pid_t pid = 1234;
-ProcessState state = ProcessChecker::check_process(pid);
+ProcessState state = ProcessChecker::checkProcess(pid);
 
 switch (state) {
     case ProcessState::RUNNING:
@@ -118,7 +118,7 @@ switch (state) {
 ### Quick Process Death Check
 
 ```cpp
-if (ProcessChecker::is_process_dead(pid)) {
+if (ProcessChecker::isProcessDead(pid)) {
     std::cout << "Process is no longer running\n";
 } else {
     std::cout << "Process is still running\n";
@@ -131,9 +131,9 @@ if (ProcessChecker::is_process_dead(pid)) {
 #include <chrono>
 #include <thread>
 
-void monitor_process(pid_t pid) {
+void monitorProcess(pid_t pid) {
     while (true) {
-        if (ProcessChecker::is_process_dead(pid)) {
+        if (ProcessChecker::isProcessDead(pid)) {
             std::cout << "Process " << pid << " has terminated\n";
             break;
         }

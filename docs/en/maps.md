@@ -14,47 +14,47 @@ import maps;
 
 ### 1. Region Types
 
-#### `region_type` Enum
+#### `RegionType` Enum
 
 Represents the classification of memory regions:
 
 ```cpp
-enum class region_type : uint8_t {
-    misc,   // Miscellaneous memory regions
-    exe,    // Executable binary regions
-    code,   // Code segments (shared libraries, etc.)
-    heap,   // Heap memory regions
-    stack   // Stack memory regions
+enum class RegionType : uint8_t {
+    MISC,   // Miscellaneous memory regions
+    EXE,    // Executable binary regions
+    CODE,   // Code segments (shared libraries, etc.)
+    HEAP,   // Heap memory regions
+    STACK   // Stack memory regions
 };
 
-constexpr std::array<std::string_view, 5> region_type_names = {
+constexpr std::array<std::string_view, 5> REGION_TYPE_NAMES = {
     "misc", "exe", "code", "heap", "stack"
 };
 ```
 
 ### 2. Scan Levels
 
-#### `region_scan_level` Enum
+#### `RegionScanLevel` Enum
 
 Controls which memory regions are included in scanning:
 
 ```cpp
-enum class region_scan_level : uint8_t {
-    all,                       // All readable regions
-    all_rw,                    // All readable/writable regions
-    heap_stack_executable,     // Heap, stack, and executable regions
-    heap_stack_executable_bss  // Above plus BSS segments
+enum class RegionScanLevel : uint8_t {
+    ALL,                       // All readable regions
+    ALL_RW,                    // All readable/writable regions
+    HEAP_STACK_EXECUTABLE,     // Heap, stack, and executable regions
+    HEAP_STACK_EXECUTABLE_BSS  // Above plus BSS segments
 };
 ```
 
 ### 3. Region Metadata
 
-#### `region_flags` Structure
+#### `RegionFlags` Structure
 
 Contains permission and state flags for memory regions:
 
 ```cpp
-struct region_flags {
+struct RegionFlags {
     bool read : 1;    // Read permission
     bool write : 1;   // Write permission
     bool exec : 1;    // Execute permission
@@ -63,28 +63,28 @@ struct region_flags {
 };
 ```
 
-#### `region` Structure
+#### `Region` Structure
 
 Complete information about a memory region:
 
 ```cpp
-struct region {
+struct Region {
     void* start;           // Starting address
     std::size_t size;      // Region size in bytes
-    region_type type;      // Region classification
-    region_flags flags;    // Permission flags
-    void* load_addr;       // Load address for ELF files
+    RegionType type;       // Region classification
+    RegionFlags flags;     // Permission flags
+    void* loadAddr;        // Load address for ELF files
     std::string filename;  // Associated file path
     std::size_t id;        // Unique identifier
     
     // Helper methods
-    [[nodiscard]] bool is_readable() const noexcept;
-    [[nodiscard]] bool is_writable() const noexcept;
-    [[nodiscard]] bool is_executable() const noexcept;
-    [[nodiscard]] bool is_shared() const noexcept;
-    [[nodiscard]] bool is_private() const noexcept;
+    [[nodiscard]] bool isReadable() const noexcept;
+    [[nodiscard]] bool isWritable() const noexcept;
+    [[nodiscard]] bool isExecutable() const noexcept;
+    [[nodiscard]] bool isShared() const noexcept;
+    [[nodiscard]] bool isPrivate() const noexcept;
     
-    [[nodiscard]] std::pair<void*, std::size_t> as_span() const noexcept;
+    [[nodiscard]] std::pair<void*, std::size_t> asSpan() const noexcept;
     [[nodiscard]] bool contains(void* address) const noexcept;
 };
 ```
@@ -97,13 +97,13 @@ struct region {
 import maps;
 
 // Read all memory regions from process
-auto result = maps::read_process_maps(1234);
+auto result = maps::readProcessMaps(1234);
 if (result) {
     for (const auto& region : *result) {
         std::cout << std::format("Region: {}-{} ({})\n", 
                                region.start, 
                                static_cast<char*>(region.start) + region.size,
-                               maps::region_type_names[static_cast<size_t>(region.type)]);
+                               REGION_TYPE_NAMES[static_cast<size_t>(region.type)]);
     }
 }
 ```
@@ -112,14 +112,14 @@ if (result) {
 
 ```cpp
 // Only scan heap and stack regions
-auto regions = maps::read_process_maps(
+auto regions = maps::readProcessMaps(
     pid, 
-    maps::region_scan_level::heap_stack_executable
+    maps::RegionScanLevel::HEAP_STACK_EXECUTABLE
 );
 
 if (regions) {
     for (const auto& region : *regions) {
-        if (region.type == maps::region_type::heap) {
+        if (region.type == maps::RegionType::HEAP) {
             std::cout << "Heap region found: " << region.filename << "\n";
         }
     }
@@ -129,24 +129,24 @@ if (regions) {
 ### Error Handling
 
 ```cpp
-auto result = maps::read_process_maps(pid);
+auto result = maps::readProcessMaps(pid);
 if (!result) {
     std::cerr << "Error: " << result.error().message << "\n";
     return;
 }
 ```
 
-## Class: `maps_reader`
+## Class: `MapsReader`
 
 ### Static Methods
 
-#### `read_process_maps`
+#### `readProcessMaps`
 
 Reads memory regions from a process:
 
 ```cpp
-[[nodiscard]] static std::expected<std::vector<region>, error> 
-read_process_maps(pid_t pid, region_scan_level level = region_scan_level::all);
+[[nodiscard]] static std::expected<std::vector<Region>, Error> 
+readProcessMaps(pid_t pid, RegionScanLevel level = RegionScanLevel::ALL);
 ```
 
 **Parameters:**
@@ -165,10 +165,10 @@ read_process_maps(pid_t pid, region_scan_level level = region_scan_level::all);
 
 ## Error Handling Module
 
-### `maps_reader::error` Structure
+### `MapsReader::Error` Structure
 
 ```cpp
-struct error {
+struct Error {
     std::string message;   // Human-readable error description
     std::error_code code;  // System error code
 };
@@ -186,7 +186,7 @@ struct error {
 
 ```cpp
 // Check if address is within any region
-auto regions = maps::read_process_maps(pid);
+auto regions = maps::readProcessMaps(pid);
 void* address = /* some address */;
 
 for (const auto& region : *regions) {
@@ -233,8 +233,8 @@ for (const auto& region : *regions) {
 
 | Legacy C | Modern C++ |
 |----------|------------|
-| `region_t*` | `maps::region` |
-| `list_t` | `std::vector<region>` |
+| `region_t*` | `maps::Region` |
+| `list_t` | `std::vector<Region>` |
 | `bool return` | `std::expected` |
 | `char*` filename | `std::string` |
 | Manual memory management | RAII |
@@ -251,7 +251,7 @@ import maps;
 int main() {
     pid_t target_pid = 1234; // Replace with actual PID
     
-    auto regions = maps::read_process_maps(target_pid);
+    auto regions = maps::readProcessMaps(target_pid);
     if (!regions) {
         std::cerr << "Failed to read maps: " << regions.error().message << "\n";
         return 1;

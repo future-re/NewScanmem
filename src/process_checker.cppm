@@ -8,33 +8,38 @@ module;
 
 export module process_checker;
 
-export enum class ProcessState { RUNNING, ERROR, DEAD, ZOMBIE };
+export enum class ProcessState { 
+    RUNNING,
+    ERROR,
+    DEAD,
+    ZOMBIE
+};
 
 export class ProcessChecker {
    public:
-    static ProcessState check_process(pid_t pid) {
+    static ProcessState checkProcess(pid_t pid) {
         if (pid <= 0) {
             return ProcessState::ERROR;
         }
 
-        const std::filesystem::path proc_path =
+        const std::filesystem::path procPath =
             std::filesystem::path("/proc") / std::to_string(pid) / "status";
 
-        if (!std::filesystem::exists(proc_path)) {
+        if (!std::filesystem::exists(procPath)) {
             return ProcessState::DEAD;
         }
 
-        std::ifstream status_file(proc_path);
-        if (!status_file.is_open()) {
+        std::ifstream statusFile(procPath);
+        if (!statusFile.is_open()) {
             return ProcessState::ERROR;
         }
 
         std::string line;
-        while (std::getline(status_file, line)) {
+        while (std::getline(statusFile, line)) {
             if (line.rfind("State:", 0) == 0) {
                 if (line.size() >= sizeof("State:\t")) {
                     char state = line[sizeof("State:\t") - 1];
-                    return parse_process_state(state);
+                    return parseProcessState(state);
                 }
                 break;
             }
@@ -43,12 +48,12 @@ export class ProcessChecker {
         return ProcessState::ERROR;
     }
 
-    static bool is_process_dead(pid_t pid) {
-        return check_process(pid) != ProcessState::RUNNING;
+    static bool isProcessDead(pid_t pid) {
+        return checkProcess(pid) != ProcessState::RUNNING;
     }
 
    private:
-    static ProcessState parse_process_state(char state) {
+    static ProcessState parseProcessState(char state) {
         if (state < 'A' || state > 'Z') {
             return ProcessState::ERROR;
         }

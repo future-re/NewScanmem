@@ -19,42 +19,42 @@ import maps;
 表示内存区域的分类：
 
 ```cpp
-enum class region_type : uint8_t {
-    misc,   // 杂项内存区域
-    exe,    // 可执行文件二进制区域
-    code,   // 代码段（共享库等）
-    heap,   // 堆内存区域
-    stack   // 栈内存区域
+enum class RegionType : uint8_t {
+    MISC,   // 杂项内存区域
+    EXE,    // 可执行文件二进制区域
+    CODE,   // 代码段（共享库等）
+    HEAP,   // 堆内存区域
+    STACK   // 栈内存区域
 };
 
-constexpr std::array<std::string_view, 5> region_type_names = {
+constexpr std::array<std::string_view, 5> REGION_TYPE_NAMES = {
     "misc", "exe", "code", "heap", "stack"
 };
 ```
 
 ### 2. 扫描级别
 
-#### `region_scan_level` 枚举
+#### `RegionScanLevel` 枚举
 
 控制包含哪些内存区域的扫描：
 
 ```cpp
-enum class region_scan_level : uint8_t {
-    all,                       // 所有可读区域
-    all_rw,                    // 所有可读/可写区域
-    heap_stack_executable,     // 堆、栈和可执行区域
-    heap_stack_executable_bss  // 上述加上 BSS 段
+enum class RegionScanLevel : uint8_t {
+    ALL,                       // 所有可读区域
+    ALL_RW,                    // 所有可读/可写区域
+    HEAP_STACK_EXECUTABLE,     // 堆、栈和可执行区域
+    HEAP_STACK_EXECUTABLE_BSS  // 上述加上 BSS 段
 };
 ```
 
 ### 3. 区域元数据
 
-#### `region_flags` 结构
+#### `RegionFlags` 结构
 
 包含内存区域的权限和状态标志：
 
 ```cpp
-struct region_flags {
+struct RegionFlags {
     bool read : 1;    // 读权限
     bool write : 1;   // 写权限
     bool exec : 1;    // 执行权限
@@ -63,28 +63,28 @@ struct region_flags {
 };
 ```
 
-#### `region` 结构
+#### `Region` 结构
 
 关于内存区域的完整信息：
 
 ```cpp
-struct region {
+struct Region {
     void* start;           // 起始地址
     std::size_t size;      // 区域大小（字节）
-    region_type type;      // 区域分类
-    region_flags flags;    // 权限标志
-    void* load_addr;       // ELF 文件的加载地址
+    RegionType type;       // 区域分类
+    RegionFlags flags;     // 权限标志
+    void* loadAddr;        // ELF 文件的加载地址
     std::string filename;  // 关联文件路径
     std::size_t id;        // 唯一标识符
     
     // 辅助方法
-    [[nodiscard]] bool is_readable() const noexcept;
-    [[nodiscard]] bool is_writable() const noexcept;
-    [[nodiscard]] bool is_executable() const noexcept;
-    [[nodiscard]] bool is_shared() const noexcept;
-    [[nodiscard]] bool is_private() const noexcept;
+    [[nodiscard]] bool isReadable() const noexcept;
+    [[nodiscard]] bool isWritable() const noexcept;
+    [[nodiscard]] bool isExecutable() const noexcept;
+    [[nodiscard]] bool isShared() const noexcept;
+    [[nodiscard]] bool isPrivate() const noexcept;
     
-    [[nodiscard]] std::pair<void*, std::size_t> as_span() const noexcept;
+    [[nodiscard]] std::pair<void*, std::size_t> asSpan() const noexcept;
     [[nodiscard]] bool contains(void* address) const noexcept;
 };
 ```
@@ -97,13 +97,13 @@ struct region {
 import maps;
 
 // 读取进程的所有内存区域
-auto result = maps::read_process_maps(1234);
+auto result = maps::readProcessMaps(1234);
 if (result) {
     for (const auto& region : *result) {
         std::cout << std::format("区域: {}-{} ({})\n", 
                                region.start, 
                                static_cast<char*>(region.start) + region.size,
-                               maps::region_type_names[static_cast<size_t>(region.type)]);
+                               REGION_TYPE_NAMES[static_cast<size_t>(region.type)]);
     }
 }
 ```
@@ -112,9 +112,9 @@ if (result) {
 
 ```cpp
 // 只扫描堆和栈区域
-auto regions = maps::read_process_maps(
+auto regions = maps::readProcessMaps(
     pid, 
-    maps::region_scan_level::heap_stack_executable
+    maps::RegionScanLevel::HEAP_STACK_EXECUTABLE
 );
 
 if (regions) {
@@ -202,7 +202,7 @@ for (const auto& region : *regions) {
 ```cpp
 // 查找可写可执行区域（潜在的 shellcode 目标）
 for (const auto& region : *regions) {
-    if (region.is_writable() && region.is_executable()) {
+    if (region.isWritable() && region.isExecutable()) {
         std::cout << "WX 区域: " << region.filename << "\n";
     }
 }
@@ -251,7 +251,7 @@ import maps;
 int main() {
     pid_t target_pid = 1234; // 替换为实际 PID
     
-    auto regions = maps::read_process_maps(target_pid);
+    auto regions = maps::readProcessMaps(target_pid);
     if (!regions) {
         std::cerr << "读取映射失败: " << regions.error().message << "\n";
         return 1;
@@ -264,9 +264,9 @@ int main() {
             "0x{:x}-0x{:x} {} {} {}\n",
             reinterpret_cast<uintptr_t>(region.start),
             reinterpret_cast<uintptr_t>(region.start) + region.size,
-            region.is_readable() ? 'r' : '-',
-            region.is_writable() ? 'w' : '-',
-            region.is_executable() ? 'x' : '-',
+            region.isReadable() ? 'r' : '-',
+            region.isWritable() ? 'w' : '-',
+            region.isExecutable() ? 'x' : '-',
             region.filename.empty() ? "[匿名]" : region.filename
         );
     }

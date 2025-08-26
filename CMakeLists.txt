@@ -37,6 +37,7 @@ target_sources(NewScanmem_lib
         src/process_checker.cppm
         src/endianness.cppm
         src/maps.cppm
+        # src/scanroutines.cppm
 )
 
 # 链接 Boost 到库
