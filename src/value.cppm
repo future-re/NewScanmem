@@ -40,6 +40,21 @@ export enum class [[gnu::packed]] MatchFlags : uint16_t {
     MAX = 0xffffU
 };
 
+export constexpr MatchFlags operator&(MatchFlags lhs, MatchFlags rhs) {
+    using T = std::underlying_type_t<MatchFlags>;
+    return static_cast<MatchFlags>(static_cast<T>(lhs) & static_cast<T>(rhs));
+}
+
+export constexpr MatchFlags operator|(MatchFlags lhs, MatchFlags rhs) {
+    using T = std::underlying_type_t<MatchFlags>;
+    return static_cast<MatchFlags>(static_cast<T>(lhs) | static_cast<T>(rhs));
+}
+
+export constexpr MatchFlags operator~(MatchFlags flag) {
+    using T = std::underlying_type_t<MatchFlags>;
+    return static_cast<MatchFlags>(~static_cast<T>(flag));
+}
+
 export struct [[gnu::packed]] Value {
     std::variant<int8_t, uint8_t, int16_t, uint16_t, int32_t, uint32_t, int64_t,
                  uint64_t, float, double, std::array<uint8_t, sizeof(int64_t)>,
