@@ -85,12 +85,12 @@ ninja
 ### 系统要求 | System Requirements
 
 - **操作系统** | OS: Linux with /proc filesystem
-- **编译器** | Compiler: C++23 with modules support (GCC 13+)
-- **依赖** | Dependencies: CMake, Boost, libstdc++-13-dev ninja 1.11+
+- **编译器** | Compiler: C++23 with modules support (Clang19+,GCC 13+)
+- **依赖** | Dependencies: CMake, Boost, libstdc++-13-dev ninja-1.11
 
 ### **依赖项**
 
-- **C++ 编译器**：支持 C++20 的编译器（如 GCC 12+、Clang 18+ 或 MSVC 2022+）。
+- **C++ 编译器**：支持 C++20 的编译器（如 GCC 13+、Clang 19+ 或 MSVC 2022+）。
 - **CMake**：版本 3.28 或更高。
 - **Boost 库**：版本 1.89。
 
