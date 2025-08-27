@@ -1,5 +1,4 @@
 # .clang-tidy
-# 这是一个经过优化的 clang-tidy 配置文件，旨在提供严格但实用的静态分析。
 
 Checks: >
   # 启用大部分检查类别，以实现全面的代码分析
@@ -9,10 +8,7 @@ Checks: >
   readability-*,
   bugprone-*,
   misc-*,
-  # 禁用一些有争议或在特定项目中可能不适用的现代化检查
-  readability-identifier-naming,
-  -modernize-use-trailing-return-type,
-  -modernize-avoid-c-arrays
+  clang-analyzer-*  # 添加静态分析检查
 
 HeaderFilterRegex: '^(src)/.*'
 
@@ -45,6 +41,5 @@ CheckOptions:
     value: m_
   - key: readability-identifier-naming.StaticMemberPrefix
     value: s_
-  # [风格建议] 将枚举成员的命名规范修改为全大写，这是更通用的 C++ 编码风格。
   - key: readability-identifier-naming.EnumConstantCase
     value: UPPER_CASE
