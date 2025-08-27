@@ -53,14 +53,6 @@ constexpr T swapBytesIntegral(T value) noexcept;
 
 支持大小为1、2、4和8字节的整数类型。
 
-#### 原地字节交换函数
-
-```cpp
-void swapBytesInPlace(void* data, size_t size);
-```
-
-对2、4或8字节数据执行原地字节交换。
-
 ### 3. 值类型字节序校正函数
 
 ```cpp

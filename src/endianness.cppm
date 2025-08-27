@@ -17,14 +17,16 @@ concept SwappableIntegral =
     std::integral<T> &&
     (sizeof(T) == 1 || sizeof(T) == 2 || sizeof(T) == 4 || sizeof(T) == 8);
 
-// 大端字节序
-constexpr bool isBigEndian() noexcept {
-    return std::endian::native == std::endian::big;
-}
+export {
+    // 大端字节序
+    constexpr bool isBigEndian() noexcept {
+        return std::endian::native == std::endian::big;
+    }
 
-// 小端字节序
-constexpr bool isLittleEndian() noexcept {
-    return std::endian::native == std::endian::little;
+    // 小端字节序
+    constexpr bool isLittleEndian() noexcept {
+        return std::endian::native == std::endian::little;
+    }
 }
 
 // Byte swapping functions

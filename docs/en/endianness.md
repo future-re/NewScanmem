@@ -53,14 +53,6 @@ constexpr T swapBytesIntegral(T value) noexcept;
 
 Supports integer types of sizes 1, 2, 4, and 8 bytes.
 
-#### In-place Byte Swapping
-
-```cpp
-void swapBytesInPlace(void* data, size_t size);
-```
-
-Performs byte swapping in-place for 2, 4, or 8-byte data.
-
 ### 3. Endianness Correction for Value Types
 
 ```cpp

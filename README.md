@@ -36,26 +36,26 @@ This project provides bilingual documentation in Chinese and English:
 
 ### 核心模块 | Core Modules
 
-| 模块名称 | 中文文档 | English Documentation | 描述 |
-|----------|----------|----------------------|------|
-| `endianness` | [字节序模块](./docs/zh/endianness.md) | [Endianness Module](./docs/en/endianness.md) | 字节序检测与转换 |
-| `process_checker` | [进程检查模块](./docs/zh/process_checker.md) | [Process Checker Module](./docs/en/process_checker.md) | 进程状态监控 |
-| `sets` | [集合模块](./docs/zh/sets.md) | [Sets Module](./docs/en/sets.md) | 集合操作与解析 |
-| `show_message` | [消息显示模块](./docs/zh/show_message.md) | [Show Message Module](./docs/en/show_message.md) | 日志与消息系统 |
-| `target_mem` | [目标内存模块](./docs/zh/target_mem.md) | [Target Memory Module](./docs/en/target_mem.md) | 内存分析结构 |
-| `value` | [值类型模块](./docs/zh/value.md) | [Value Module](./docs/en/value.md) | 数值类型定义 |
+| 模块名称          | 中文文档                                     | English Documentation                                  | 描述             |
+| ----------------- | -------------------------------------------- | ------------------------------------------------------ | ---------------- |
+| `endianness`      | [字节序模块](./docs/zh/endianness.md)        | [Endianness Module](./docs/en/endianness.md)           | 字节序检测与转换 |
+| `process_checker` | [进程检查模块](./docs/zh/process_checker.md) | [Process Checker Module](./docs/en/process_checker.md) | 进程状态监控     |
+| `sets`            | [集合模块](./docs/zh/sets.md)                | [Sets Module](./docs/en/sets.md)                       | 集合操作与解析   |
+| `show_message`    | [消息显示模块](./docs/zh/show_message.md)    | [Show Message Module](./docs/en/show_message.md)       | 日志与消息系统   |
+| `target_mem`      | [目标内存模块](./docs/zh/target_mem.md)      | [Target Memory Module](./docs/en/target_mem.md)        | 内存分析结构     |
+| `value`           | [值类型模块](./docs/zh/value.md)             | [Value Module](./docs/en/value.md)                     | 数值类型定义     |
 
 ### 应用文档 | Application Documentation
 
-| 文档名称 | 中文文档 | English Documentation | 描述 |
-|----------|----------|----------------------|------|
-| 主应用 | [主应用文档](./docs/zh/main.md) | [Main Application](./docs/en/main.md) | 主程序入口与架构 |
-| API参考 | [API参考](./docs/zh/API_REFERENCE.md) | [API Reference](./docs/en/API_REFERENCE.md) | 完整API文档 |
+| 文档名称 | 中文文档                              | English Documentation                       | 描述             |
+| -------- | ------------------------------------- | ------------------------------------------- | ---------------- |
+| 主应用   | [主应用文档](./docs/zh/main.md)       | [Main Application](./docs/en/main.md)       | 主程序入口与架构 |
+| API参考  | [API参考](./docs/zh/API_REFERENCE.md) | [API Reference](./docs/en/API_REFERENCE.md) | 完整API文档      |
 
 ### 开发规范 | Development Guidelines
 
-| 文档名称 | 描述 |
-|----------|------|
+| 文档名称                               | 描述            |
+| -------------------------------------- | --------------- |
 | [命名规范](./docs/NamingConvention.md) | C++代码命名规范 |
 
 ---
@@ -76,7 +76,7 @@ mkdir build && cd build
 cmake ..
 
 # 构建 | Build
-ninja/make
+ninja
 
 # 运行 | Run
 ./NewScanmem
@@ -86,7 +86,7 @@ ninja/make
 
 - **操作系统** | OS: Linux with /proc filesystem
 - **编译器** | Compiler: C++23 with modules support (GCC 13+)
-- **依赖** | Dependencies: CMake, Boost, libstdc++-13-dev
+- **依赖** | Dependencies: CMake, Boost, libstdc++-13-dev ninja 1.11+
 
 ### **依赖项**
 
