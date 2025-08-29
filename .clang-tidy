@@ -1,18 +1,14 @@
 # .clang-tidy
 
 Checks: >
-  # 启用大部分检查类别，以实现全面的代码分析
   -*,
   modernize-*,
-  performance-*,
-  readability-*,
   bugprone-*,
-  misc-*,
-  clang-analyzer-*  # 添加静态分析检查
+  performance-*,
+  readability-*,              # 含 readability-identifier-naming
+  cppcoreguidelines-*         # 核心 C++ 指南检查
 
 HeaderFilterRegex: '^(src)/.*'
-
-AnalyzeTemporaryDtors: true
 
 CheckOptions:
   - key: readability-identifier-naming.ClassCase

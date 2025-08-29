@@ -9,46 +9,23 @@ set(CMAKE_C_COMPILER "clang-20")
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(CMAKE_CXX_CLANG_TIDY "${CMAKE_SOURCE_DIR}/scripts/clang-tidy-wrapper.sh")
+
 # 生成 compile_commands.json 以便 clangd 等工具使用
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
-include(find_boost)
+set(MODULE_CACHE_DIR "${CMAKE_BINARY_DIR}/clang-module-cache")
+file(MAKE_DIRECTORY "${MODULE_CACHE_DIR}")
 
-# 查找 GTest 库
-find_package(GTest REQUIRED)
-
-# --- 核心模块库 ---
-# 使用 STATIC 库聚合并编译 C++ 模块（避免 INTERFACE 在某些版本上的内部错误）
-add_library(NewScanmem_lib STATIC)
-
-# 要求此库及其使用者支持 C++23（不使用 cxx_modules 特性标志）
-target_compile_features(NewScanmem_lib PUBLIC cxx_std_23)
-
-# 将模块源文件添加到库的 PUBLIC 文件集中
-target_sources(NewScanmem_lib
-    PUBLIC
-        FILE_SET CXX_MODULES FILES
-        src/show_message.cppm
-        src/value.cppm
-        src/targetmem.cppm
-        src/sets.cppm
-        src/process_checker.cppm
-        src/endianness.cppm
-        src/maps.cppm
-        # src/scanroutines.cppm
+# 统一的 Clang 模块选项（INTERFACE，供所有目标继承）
+add_library(clang_module_flags INTERFACE)
+target_compile_options(clang_module_flags INTERFACE
+  $<$<CXX_COMPILER_ID:Clang>:
+    -fmodules -fcxx-modules -fimplicit-module-maps -fno-implicit-modules -fmodules-cache-path=${MODULE_CACHE_DIR}
+  >
 )
 
-# 链接 Boost 到库
-target_link_libraries(NewScanmem_lib PUBLIC Boost::filesystem Boost::regex)
-
-
-# --- 主可执行文件 ---
-add_executable(NewScanmem src/main.cpp)
-target_link_libraries(NewScanmem PRIVATE NewScanmem_lib)
-
-
-# --- 测试 ---
-enable_testing()
+add_subdirectory(src)
 add_subdirectory(test)
