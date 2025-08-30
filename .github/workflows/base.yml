@@ -39,7 +39,6 @@ jobs:
           CCACHE_DIR: /home/runner/.ccache
         run: |
           cmake -B build -G Ninja \
-            -DENABLE_CLANG_TIDY=OFF \
             -DCMAKE_C_COMPILER=clang-20 \
             -DCMAKE_CXX_COMPILER=clang++-20 \
             -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
