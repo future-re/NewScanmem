@@ -14,7 +14,7 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     container:
-      image: ghcr.io/future-re/ubuntu22.04-clang20-boost1.89-gtest1.17:0.1
+      image: ghcr.io/future-re/ubuntu22.04-clang20-boost1.89-gtest1.17:0.2
 
     steps:
       - name: Checkout code

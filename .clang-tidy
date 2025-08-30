@@ -2,11 +2,14 @@
 
 Checks: >
   -*,
-  modernize-*,
   bugprone-*,
   performance-*,
-  readability-*,              # 含 readability-identifier-naming
-  cppcoreguidelines-*         # 核心 C++ 指南检查
+  readability-identifier-naming,
+  modernize-use-nullptr,
+  modernize-use-override,
+  modernize-use-using,
+  cppcoreguidelines-pro-type-member-init,
+  cppcoreguidelines-pro-type-reinterpret-cast
 
 HeaderFilterRegex: '^(src)/.*'
 

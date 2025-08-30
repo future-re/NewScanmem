@@ -16,12 +16,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # 安装 clang-20
 RUN wget https://apt.llvm.org/llvm.sh -O /tmp/llvm.sh && chmod +x /tmp/llvm.sh && \
     /tmp/llvm.sh 20 && \
-    apt-get update && apt-get install -y && \
+    apt-get update && apt-get install -y --no-install-recommends \
+      clang-20 clang-tidy-20 clang-tools-20 clangd-20 && \
     update-alternatives --install /usr/bin/cc cc /usr/bin/clang-20 100 && \
     update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-20 100 && \
     update-alternatives --set cc /usr/bin/clang-20 && update-alternatives --set c++ /usr/bin/clang++-20 && \
     ln -sf /usr/bin/clang-20 /usr/bin/clang && \
-    ln -sf /usr/bin/clang++-20 /usr/bin/clang++
+    ln -sf /usr/bin/clang++-20 /usr/bin/clang++ && \
+    ln -sf /usr/bin/clang-tidy-20 /usr/bin/clang-tidy
 
 # 设置编译器环境变量为 LLVM 20
 ENV CC=/usr/bin/clang-20
