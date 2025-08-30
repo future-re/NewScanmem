@@ -38,6 +38,7 @@ jobs:
       - name: Configure (generate compile_commands.json)
         run: |
           cmake -B build -G Ninja \
+            -DENABLE_CLANG_TIDY=ON \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DCMAKE_C_COMPILER=clang-20 \
             -DCMAKE_CXX_COMPILER=clang++-20 \
@@ -47,13 +48,17 @@ jobs:
       - name: Determine source files to check (changed files if PR)
         id: files
         run: |
-          # For PR check only changed files; fallback to all sources
           if [ "${{ github.event_name }}" = "pull_request" ]; then
+            # ensure base ref is available for diff
+            git fetch origin ${{ github.base_ref }} --no-tags --depth=1 || true
             FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -E '\.(c|cc|cpp|cxx)$' || true)
           else
             FILES=$(git ls-files '*.c' '*.cc' '*.cpp' '*.cxx' || true)
           fi
-          echo "::set-output name=list::${FILES}"
+          # write multi-line output safely (replaces deprecated set-output)
+          echo "list<<EOF" >> $GITHUB_OUTPUT
+          echo "$FILES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Run clang-tidy and fail on any diagnostic
         run: |
@@ -64,5 +69,5 @@ jobs:
             exit 0
           fi
           echo "$FILES" | tr ' ' '\n' | tee /tmp/clang_tidy_files.txt
-          # Run in batches to avoid super long arg lists; -j parallelizes internally.
-          cat /tmp/clang_tidy_files.txt | xargs -r -n 40 clang-tidy -p build -j $(nproc) --warnings-as-errors='*' --quiet
+          # run in batches; keep output visible (remove --quiet)
+          cat /tmp/clang_tidy_files.txt | xargs -r -n 40 clang-tidy -p build -j $(nproc) --warnings-as-errors='*'
