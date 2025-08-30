@@ -61,13 +61,15 @@ jobs:
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Run clang-tidy and fail on any diagnostic
+        # force bash so `set -o pipefail` 可用
+        shell: bash -l {0}
         run: |
-          set -eo pipefail
+          set -euo pipefail
           FILES="${{ steps.files.outputs.list }}"
           if [ -z "$FILES" ]; then
             echo "No C/C++ files to check."
             exit 0
           fi
           echo "$FILES" | tr ' ' '\n' | tee /tmp/clang_tidy_files.txt
-          # run in batches; keep output visible (remove --quiet)
+          # run in batches; keep output visible
           cat /tmp/clang_tidy_files.txt | xargs -r -n 40 clang-tidy -p build -j $(nproc) --warnings-as-errors='*'
