@@ -51,9 +51,9 @@ jobs:
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             # ensure base ref is available for diff
             git fetch origin ${{ github.base_ref }} --no-tags --depth=1 || true
-            FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -E '\.(c|cc|cpp|cxx)$' || true)
+            FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -E '\.(c|cc|cpp|cxx|cppm)$' || true)
           else
-            FILES=$(git ls-files '*.c' '*.cc' '*.cpp' '*.cxx' || true)
+            FILES=$(git ls-files '*.c' '*.cc' '*.cpp' '*.cxx' '*.cppm' || true)
           fi
           # write multi-line output safely (replaces deprecated set-output)
           echo "list<<EOF" >> $GITHUB_OUTPUT
