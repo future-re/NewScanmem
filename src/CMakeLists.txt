@@ -5,6 +5,8 @@ add_library(NewScanmem_lib STATIC)
 
 target_compile_features(NewScanmem_lib PUBLIC cxx_std_23)
 
+set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-p;build")
+
 # 模块源文件（不带 src/ 前缀）
 set(MODULE_SOURCES
     show_message.cppm
