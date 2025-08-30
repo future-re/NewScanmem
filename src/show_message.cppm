@@ -21,7 +21,7 @@ export class MessagePrinter {
 
     template <typename... Args>
     void print(MessageType type, std::string_view fmt, Args&&... args) const {
-        std::string msg = std::vformat(fmt, std::make_format_args(args...));
+        std::string msg = std::vformat(fmt, std::make_format_args(std::forward<Args>(args)...));
         switch (type) {
             case MessageType::INFO:
                 std::cerr << std::format("info: {}\n", msg);
@@ -68,7 +68,7 @@ export class MessagePrinter {
     }
 
     // 暴露上下文
-    [[nodiscard]] const MessageContext& conext() const { return m_ctx; }
+    [[nodiscard]] auto conext() const -> const MessageContext& { return m_ctx; }
 
    private:
     MessageContext m_ctx;

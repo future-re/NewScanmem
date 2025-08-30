@@ -3,7 +3,7 @@
 # 启用测试
 enable_testing()
 
-# 查找 GTest（假设已在根 CMakeLists.txt 中配置）
+# 查找 GTest
 find_package(GTest REQUIRED)
 
 set(TEST_LIBS GTest::GTest GTest::Main NewScanmem_lib)

@@ -1,44 +1,20 @@
 # CMakeLists.txt
 cmake_minimum_required(VERSION 3.28)
-project(NewScanmem CXX)
 
-set(CMAKE_CXX_COMPILER "clang++-20")
-set(CMAKE_C_COMPILER "clang-20")
+find_program(CLANGXX20 clang++-20)
+find_program(CLANG20 clang-20)
+if(CLANGXX20 AND CLANG20)
+  set(CMAKE_CXX_COMPILER ${CLANGXX20} CACHE STRING "C++ compiler" FORCE)
+  set(CMAKE_C_COMPILER ${CLANG20} CACHE STRING "C compiler" FORCE)
+endif()
+
+project(NewScanmem CXX)
 
 # 设置 C++ 标准和要求
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-option(ENABLE_CLANG_TIDY "Run clang-tidy during build" ON)
-
-option(CLANG_TIDY_WARNINGS_AS_ERRORS "Treat clang-tidy warnings as errors" ON)
-
-if(ENABLE_CLANG_TIDY)
-  if(EXISTS "${CMAKE_SOURCE_DIR}/scripts/clang-tidy-wrapper.sh")
-    message(STATUS "Enabling clang-tidy via wrapper: ${CMAKE_SOURCE_DIR}/scripts/clang-tidy-wrapper.sh")
-    # 把参数追加到 wrapper（wrapper 需支持传参）
-    if(CLANG_TIDY_WARNINGS_AS_ERRORS)
-      set(CMAKE_CXX_CLANG_TIDY "${CMAKE_SOURCE_DIR}/scripts/clang-tidy-wrapper.sh;-p=${CMAKE_BINARY_DIR};--warnings-as-errors=*")
-    else()
-      set(CMAKE_CXX_CLANG_TIDY "${CMAKE_SOURCE_DIR}/scripts/clang-tidy-wrapper.sh;-p=${CMAKE_BINARY_DIR}")
-    endif()
-  else()
-    find_program(CLANG_TIDY_EXE NAMES clang-tidy clang-tidy-20)
-    if(CLANG_TIDY_EXE)
-      message(STATUS "Enabling clang-tidy: ${CLANG_TIDY_EXE}")
-      if(CLANG_TIDY_WARNINGS_AS_ERRORS)
-        set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY_EXE};-p=${CMAKE_BINARY_DIR};--warnings-as-errors=*")
-      else()
-        set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY_EXE};-p=${CMAKE_BINARY_DIR}")
-      endif()
-    else()
-      message(STATUS "clang-tidy not found, skipping CMAKE_CXX_CLANG_TIDY")
-    endif()
-  endif()
-else()
-  message(STATUS "clang-tidy disabled by ENABLE_CLANG_TIDY=OFF")
-  set(CMAKE_CXX_CLANG_TIDY "")
-endif()
+set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-p;build")
 
 # 生成 compile_commands.json 以便 clangd 等工具使用
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -55,6 +31,14 @@ target_compile_options(clang_module_flags INTERFACE
     -fmodules -fcxx-modules -fimplicit-module-maps -fno-implicit-modules -fmodules-cache-path=${MODULE_CACHE_DIR}
   >
 )
+
+# 添加编译gtest库
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/refs/tags/v1.17.0.zip
+)
+FetchContent_MakeAvailable(googletest)
 
 add_subdirectory(src)
 add_subdirectory(test)

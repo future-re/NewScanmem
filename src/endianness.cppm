@@ -12,25 +12,26 @@ export module endianness;
 import value;
 
 // Concept for swappable integral types
+template <std::size_t N>
+constexpr bool IS_SWAPPABLE_SIZE = (N == 1) || (N == 2) || (N == 4) || (N == 8);
+
 template <typename T>
-concept SwappableIntegral =
-    std::integral<T> &&
-    (sizeof(T) == 1 || sizeof(T) == 2 || sizeof(T) == 4 || sizeof(T) == 8);
+concept SwappableIntegral = std::integral<T> && IS_SWAPPABLE_SIZE<sizeof(T)>;
 
 export {
     // 大端字节序
-    constexpr bool isBigEndian() noexcept {
+    constexpr auto isBigEndian() noexcept -> bool {
         return std::endian::native == std::endian::big;
     }
 
     // 小端字节序
-    constexpr bool isLittleEndian() noexcept {
+    constexpr auto isLittleEndian() noexcept -> bool {
         return std::endian::native == std::endian::little;
     }
 }
 
 // Byte swapping functions
-constexpr uint8_t swapBytes(uint8_t value) noexcept { return value; }
+constexpr auto swapBytes(uint8_t value) noexcept -> uint8_t { return value; }
 
 /**
  * @brief Swaps the byte order of a 16-bit unsigned integer.
@@ -45,7 +46,7 @@ constexpr uint8_t swapBytes(uint8_t value) noexcept { return value; }
  * @note 此函数被标记为`constexpr`和`noexcept`，意味着它可以在编译时求值，
  *       并且不会抛出异常。
  */
-constexpr uint16_t swapBytes(uint16_t value) noexcept {
+constexpr auto swapBytes(uint16_t value) noexcept -> uint16_t {
     return static_cast<uint16_t>((value << 8) | (value >> 8));
 }
 
@@ -59,7 +60,7 @@ constexpr uint16_t swapBytes(uint16_t value) noexcept {
  * @param value 要交换字节顺序的 32 位无符号整数。
  * @return uint32_t 字节顺序已交换的 32 位无符号整数。
  */
-constexpr uint32_t swapBytes(uint32_t value) noexcept {
+constexpr auto swapBytes(uint32_t value) noexcept -> uint32_t {
     uint32_t res = swapBytes(static_cast<uint16_t>(value & 0xFFFF));
     res <<= 16;
     res |= swapBytes(static_cast<uint16_t>((value >> 16) & 0xFFFF));
@@ -79,7 +80,7 @@ constexpr uint32_t swapBytes(uint32_t value) noexcept {
  * @note 此函数是 constexpr 和 noexcept 的，允许在编译时求值，
  *       并确保不会抛出异常。
  */
-constexpr uint64_t swapBytes(uint64_t value) noexcept {
+constexpr auto swapBytes(uint64_t value) noexcept -> uint64_t {
     uint64_t res = swapBytes(static_cast<uint32_t>(value & 0xFFFFFFFF));
     res <<= 32;
     res |= swapBytes(static_cast<uint32_t>((value >> 32) & 0xFFFFFFFF));
@@ -90,7 +91,7 @@ export {
     // 通用转换函数
     // Generic byte swapping for integral types
     template <typename T>
-    constexpr T swapBytesIntegral(T value) noexcept {
+    constexpr auto swapBytesIntegral(T value) noexcept -> T {
         static_assert(std::is_integral_v<T>, "T must be an integral type");
 
         if constexpr (sizeof(T) == 1) {
@@ -123,7 +124,7 @@ export {
 
     // Convert between host and network byte order (big-endian)
     template <SwappableIntegral T>
-    constexpr T hostToNetwork(T value) noexcept {
+    constexpr auto hostToNetwork(T value) noexcept -> T {
         if constexpr (isBigEndian()) {
             return value;
         } else {
@@ -132,13 +133,13 @@ export {
     }
 
     template <SwappableIntegral T>
-    constexpr T networkToHost(T value) noexcept {
+    constexpr auto networkToHost(T value) noexcept -> T {
         return hostToNetwork(value);  // Same operation
     }
 
     // Convert between host and little-endian format
     template <SwappableIntegral T>
-    constexpr T hostToLittleEndian(T value) noexcept {
+    constexpr auto hostToLittleEndian(T value) noexcept -> T {
         if constexpr (isLittleEndian()) {
             return value;
         } else {
@@ -147,7 +148,7 @@ export {
     }
 
     template <SwappableIntegral T>
-    constexpr T littleEndianToHost(T value) noexcept {
+    constexpr auto littleEndianToHost(T value) noexcept -> T {
         return hostToLittleEndian(value);  // Same operation
     }
 }

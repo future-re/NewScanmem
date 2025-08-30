@@ -1,6 +1,6 @@
 import sets;
 
-int main() {
+auto main() -> int {
     Set val;
     return 0;
 }

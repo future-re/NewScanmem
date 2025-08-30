@@ -10,10 +10,7 @@ module;
 #include <filesystem>
 #include <format>
 #include <fstream>
-#include <memory>
 #include <optional>
-#include <ranges>
-#include <span>
 #include <string>
 #include <string_view>
 #include <system_error>
@@ -42,25 +39,36 @@ struct RegionFlags {
 };
 
 struct Region {
-    void* start;
-    std::size_t size;
-    RegionType type;
-    RegionFlags flags;
-    void* loadAddr;
+    void* start{};
+    std::size_t size{};
+    RegionType type{RegionType::MISC};
+    RegionFlags flags{};
+    void* loadAddr{};
     std::string filename;
-    std::size_t id;
+    std::size_t id{};
 
-    [[nodiscard]] bool isReadable() const noexcept { return flags.read; }
-    [[nodiscard]] bool isWritable() const noexcept { return flags.write; }
-    [[nodiscard]] bool isExecutable() const noexcept { return flags.exec; }
-    [[nodiscard]] bool isShared() const noexcept { return flags.shared; }
-    [[nodiscard]] bool isPrivate() const noexcept { return flags.private_; }
+    [[nodiscard]] auto isReadable() const noexcept -> bool {
+        return flags.read;
+    }
+    [[nodiscard]] auto isWritable() const noexcept -> bool {
+        return flags.write;
+    }
+    [[nodiscard]] auto isExecutable() const noexcept -> bool {
+        return flags.exec;
+    }
+    [[nodiscard]] auto isShared() const noexcept -> bool {
+        return flags.shared;
+    }
+    [[nodiscard]] auto isPrivate() const noexcept -> bool {
+        return flags.private_;
+    }
 
-    [[nodiscard]] std::pair<void*, std::size_t> asSpan() const noexcept {
+    [[nodiscard]] auto asSpan() const noexcept
+        -> std::pair<void*, std::size_t> {
         return {start, size};
     }
 
-    [[nodiscard]] bool contains(void* address) const noexcept {
+    [[nodiscard]] auto contains(void* address) const noexcept -> bool {
         auto* startBytes = static_cast<std::byte*>(start);
         return address >= start && address < (startBytes + size);
     }
@@ -73,24 +81,28 @@ class MapsReader {
         std::error_code code;
     };
 
-    [[nodiscard]] static std::expected<std::vector<Region>, Error>
-    readProcessMaps(pid_t pid, RegionScanLevel level = RegionScanLevel::ALL) {
+    [[nodiscard]] static auto readProcessMaps(
+        pid_t pid, RegionScanLevel level = RegionScanLevel::ALL)
+        -> std::expected<std::vector<Region>, Error> {
         auto mapsPath =
             std::filesystem::path{"/proc"} / std::to_string(pid) / "maps";
         auto exePath =
             std::filesystem::path{"/proc"} / std::to_string(pid) / "exe";
 
         if (!std::filesystem::exists(mapsPath)) {
-            return std::unexpected(Error{
-                std::format("Maps file {} does not exist", mapsPath.string()),
-                std::make_error_code(std::errc::no_such_file_or_directory)});
+            return std::unexpected(
+                Error{.message = std::format("Maps file {} does not exist",
+                                             mapsPath.string()),
+                      .code = std::make_error_code(
+                          std::errc::no_such_file_or_directory)});
         }
 
         std::ifstream mapsFile{mapsPath};
         if (!mapsFile) {
             return std::unexpected(Error{
-                std::format("Failed to open maps file {}", mapsPath.string()),
-                std::make_error_code(std::errc::permission_denied)});
+                .message = std::format("Failed to open maps file {}",
+                                       mapsPath.string()),
+                .code = std::make_error_code(std::errc::permission_denied)});
         }
 
         std::string exeName;
@@ -126,32 +138,20 @@ class MapsReader {
     }
 
    private:
-    static std::optional<Region> parseMapLine(
-        const std::string& line, const std::string& exeName,
+    static void parseFilenameFromLine(const std::string& line,
+                                      std::string& filename) {
+        auto spacePos = line.find_last_of(' ');
+        if (spacePos != std::string::npos && spacePos + 1 < line.size()) {
+            filename = line.substr(spacePos + 1);
+        }
+    }
+
+    static void updateRegionState(
+        unsigned long start, unsigned long end, char exec,
+        const std::string& filename, const std::string& exeName,
         unsigned int& codeRegions, unsigned int& exeRegions,
         unsigned long& prevEnd, unsigned long& loadAddr, unsigned long& exeLoad,
-        bool& isExe, std::string& binName, RegionScanLevel level) {
-        unsigned long start, end;
-        char read, write, exec, cow;
-        int offset, devMajor, devMinor, inode;
-        std::string filename;
-
-        if (std::sscanf(line.c_str(), "%lx-%lx %c%c%c%c %x %x:%x %d %255s",
-                        &start, &end, &read, &write, &exec, &cow, &offset,
-                        &devMajor, &devMinor, &inode, filename.data()) < 6) {
-            return std::nullopt;
-        }
-
-        // Fix filename after sscanf
-        filename.resize(strlen(filename.c_str()));
-
-        // Read the actual filename from the line
-        auto space_pos = line.find_last_of(' ');
-        if (space_pos != std::string::npos && space_pos + 1 < line.size()) {
-            filename = line.substr(space_pos + 1);
-        }
-
-        // Detect further regions of the same ELF file
+        bool& isExe, std::string& binName) {
         if (codeRegions > 0) {
             if (exec == 'x' ||
                 (filename != binName &&
@@ -190,7 +190,93 @@ class MapsReader {
                 loadAddr = start;
             }
         }
+
         prevEnd = end;
+    }
+
+    static auto determineRegionType(bool isExe, unsigned int codeRegions,
+                                    const std::string& filename) -> RegionType {
+        if (isExe) {
+            return RegionType::EXE;
+        }
+        if (codeRegions > 0) {
+            return RegionType::CODE;
+        }
+        if (filename == "[heap]") {
+            return RegionType::HEAP;
+        }
+        if (filename == "[stack]") {
+            return RegionType::STACK;
+        }
+        return RegionType::MISC;
+    }
+
+    static auto regionUsefulForLevel(RegionType type,
+                                     const std::string& filename,
+                                     const std::string& exeName,
+                                     RegionScanLevel level) -> bool {
+        switch (level) {
+            case RegionScanLevel::ALL:
+            case RegionScanLevel::ALL_RW:
+                return true;
+            case RegionScanLevel::HEAP_STACK_EXECUTABLE_BSS:
+                if (filename.empty()) {
+                    return true;
+                }
+                [[fallthrough]];
+            case RegionScanLevel::HEAP_STACK_EXECUTABLE:
+                if (type == RegionType::HEAP || type == RegionType::STACK) {
+                    return true;
+                }
+                return type == RegionType::EXE || filename == exeName;
+        }
+        return false;
+    }
+
+    static auto parseMapLine(const std::string& line,
+                             const std::string& exeName,
+                             unsigned int& codeRegions,
+                             unsigned int& exeRegions, unsigned long& prevEnd,
+                             unsigned long& loadAddr, unsigned long& exeLoad,
+                             bool& isExe, std::string& binName,
+                             RegionScanLevel level) -> std::optional<Region> {
+        unsigned long start = 0;
+        unsigned long end = 0;
+        char read = 0;
+        char write = 0;
+        char exec = 0;
+        char cow = 0;
+        int offset = 0;
+        int devMajor = 0;
+        int devMinor = 0;
+        int inode = 0;
+        std::string fnameBuf;
+
+        std::istringstream iss(line);
+        iss >> std::hex >> start;
+        iss.ignore(1, '-');
+        iss >> std::hex >> end;
+        iss >> read >> write >> exec >> cow;
+        iss >> std::hex >> offset;
+        iss >> devMajor;
+        iss.ignore(1, ':');
+        iss >> devMinor;
+        iss >> inode;
+        iss >> fnameBuf;
+
+        if (iss.fail()) {
+            return std::nullopt;
+        }
+
+        std::string filename = fnameBuf;
+
+        // Read the actual filename from the line (override if present)
+        parseFilenameFromLine(line, filename);
+
+        // Update code/exe detection state
+        updateRegionState(start, end, exec, filename, exeName, codeRegions,
+                          exeRegions, prevEnd, loadAddr, exeLoad, isExe,
+                          binName);
 
         // Must have read permissions and non-zero size
         if (read != 'r' || (end - start) == 0) {
@@ -198,44 +284,10 @@ class MapsReader {
         }
 
         // Determine region type
-        RegionType type = RegionType::MISC;
-        if (isExe) {
-            type = RegionType::EXE;
-        } else if (codeRegions > 0) {
-            type = RegionType::CODE;
-        } else if (filename == "[heap]") {
-            type = RegionType::HEAP;
-        } else if (filename == "[stack]") {
-            type = RegionType::STACK;
-        }
+        RegionType type = determineRegionType(isExe, codeRegions, filename);
 
         // Check if region is useful based on scan level
-        bool useful = false;
-        switch (level) {
-            case RegionScanLevel::ALL:
-                useful = true;
-                break;
-            case RegionScanLevel::ALL_RW:
-                useful = true;
-                break;
-            case RegionScanLevel::HEAP_STACK_EXECUTABLE_BSS:
-                if (filename.empty()) {
-                    useful = true;
-                    break;
-                }
-                [[fallthrough]];
-            case RegionScanLevel::HEAP_STACK_EXECUTABLE:
-                if (type == RegionType::HEAP || type == RegionType::STACK) {
-                    useful = true;
-                    break;
-                }
-                if (type == RegionType::EXE || filename == exeName) {
-                    useful = true;
-                }
-                break;
-        }
-
-        if (!useful) {
+        if (!regionUsefulForLevel(type, filename, exeName, level)) {
             return std::nullopt;
         }
 
@@ -245,10 +297,10 @@ class MapsReader {
         }
 
         Region result;
-        result.start = reinterpret_cast<void*>(start);
+        result.start = std::bit_cast<void*>(start);
         result.size = end - start;
         result.type = type;
-        result.loadAddr = reinterpret_cast<void*>(loadAddr);
+        result.loadAddr = std::bit_cast<void*>(loadAddr);
         result.filename = filename;
 
         result.flags.read = true;
@@ -262,7 +314,7 @@ class MapsReader {
 };
 
 // Convenience function for direct usage
-[[nodiscard]] inline std::expected<std::vector<Region>, MapsReader::Error>
-readProcessMaps(pid_t pid, RegionScanLevel level = RegionScanLevel::ALL) {
+[[nodiscard]] inline auto
+readProcessMaps(pid_t pid, RegionScanLevel level = RegionScanLevel::ALL) -> std::expected<std::vector<Region>, MapsReader::Error> {
     return MapsReader::readProcessMaps(pid, level);
 }

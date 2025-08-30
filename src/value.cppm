@@ -40,17 +40,17 @@ export enum class [[gnu::packed]] MatchFlags : uint16_t {
     MAX = 0xffffU
 };
 
-export constexpr MatchFlags operator&(MatchFlags lhs, MatchFlags rhs) {
+export constexpr auto operator&(MatchFlags lhs, MatchFlags rhs) -> MatchFlags {
     using T = std::underlying_type_t<MatchFlags>;
     return static_cast<MatchFlags>(static_cast<T>(lhs) & static_cast<T>(rhs));
 }
 
-export constexpr MatchFlags operator|(MatchFlags lhs, MatchFlags rhs) {
+export constexpr auto operator|(MatchFlags lhs, MatchFlags rhs) -> MatchFlags {
     using T = std::underlying_type_t<MatchFlags>;
     return static_cast<MatchFlags>(static_cast<T>(lhs) | static_cast<T>(rhs));
 }
 
-export constexpr MatchFlags operator~(MatchFlags flag) {
+export constexpr auto operator~(MatchFlags flag) -> MatchFlags {
     using T = std::underlying_type_t<MatchFlags>;
     return static_cast<MatchFlags>(~static_cast<T>(flag));
 }
@@ -78,7 +78,7 @@ struct [[gnu::packed]] Mem64 {
 
     // 提供安全的访问器函数
     template <typename T>
-    T get() const {
+    auto get() const -> T {
         static_assert(std::is_trivially_copyable_v<T>,
                       "Type must be trivially copyable");
         if (auto* value = std::get_if<T>(&mem64Value)) {

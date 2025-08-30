@@ -39,18 +39,18 @@ export {
             data.push_back({byte, matchFlags});
         }
 
-        std::string toPrintableString(size_t idx, size_t len) const {
+        [[nodiscard]] auto toPrintableString(size_t idx, size_t len) const -> std::string {
             std::ostringstream oss;
             size_t count = std::min(len, data.size() - idx);
             for (size_t i = 0; i < count; ++i) {
                 auto byteVal = data[idx + i].old_value;
-                oss << (std::isprint(byteVal) ? static_cast<char>(byteVal)
+                oss << ((std::isprint(byteVal) != 0) ? static_cast<char>(byteVal)
                                               : '.');
             }
             return oss.str();
         }
 
-        std::string toByteArrayText(size_t idx, size_t len) const {
+        [[nodiscard]] auto toByteArrayText(size_t idx, size_t len) const -> std::string {
             std::ostringstream oss;
             size_t count = std::min(len, data.size() - idx);
             for (size_t i = 0; i < count; ++i) {
@@ -74,8 +74,8 @@ export {
             swaths.push_back(swath);
         }
 
-        std::optional<std::pair<MatchesAndOldValuesSwath*, size_t>> nthMatch(
-            size_t n) {
+        auto nthMatch(
+            size_t n) -> std::optional<std::pair<MatchesAndOldValuesSwath*, size_t>> {
             size_t count = 0;
             for (auto& swath : swaths) {
                 for (size_t i = 0; i < swath.data.size(); ++i) {
@@ -94,12 +94,12 @@ export {
                                   unsigned long& numMatches) {
             numMatches = 0;
             for (auto& swath : swaths) {
-                auto it = std::remove_if(
-                    swath.data.begin(), swath.data.end(),
+                auto iter = std::ranges::remove_if(
+                    swath.data,
                     [&](const OldValueAndMatchInfo& info) {
                         void* addr =
                             static_cast<char*>(swath.firstByteInChild) +
-                            (&info - &swath.data[0]);
+                            (&info - swath.data.data());
                         if (addr >= start && addr < end) {
                             if (info.match_info != MatchFlags::EMPTY) {
                                 ++numMatches;
@@ -108,7 +108,7 @@ export {
                         }
                         return false;
                     });
-                swath.data.erase(it, swath.data.end());
+                swath.data.erase(iter.begin(), swath.data.end());
             }
         }
     };
