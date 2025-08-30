@@ -1,0 +1,68 @@
+name: clang-tidy check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  clang-tidy:
+    runs-on: ubuntu-22.04
+    container:
+      image: ghcr.io/future-re/ubuntu22.04-clang20-boost1.89-gtest1.17:0.2
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Cache ccache
+        uses: actions/cache@v3
+        with:
+          path: /home/runner/.ccache
+          key: ${{ runner.os }}-ccache-${{ hashFiles('**/CMakeLists.txt','**/*.cpp','**/*.c','**/*.h','**/*.cppm') }}
+          restore-keys: |
+            ${{ runner.os }}-ccache-
+
+      - name: Show tool versions
+        run: |
+          clang-tidy --version || true
+          clang++ --version || true
+          cmake --version || true
+
+      - name: Configure (generate compile_commands.json)
+        run: |
+          cmake -B build -G Ninja \
+            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+            -DCMAKE_C_COMPILER=clang-20 \
+            -DCMAKE_CXX_COMPILER=clang++-20 \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_CXX_STANDARD=23
+
+      - name: Determine source files to check (changed files if PR)
+        id: files
+        run: |
+          # For PR check only changed files; fallback to all sources
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -E '\.(c|cc|cpp|cxx)$' || true)
+          else
+            FILES=$(git ls-files '*.c' '*.cc' '*.cpp' '*.cxx' || true)
+          fi
+          echo "::set-output name=list::${FILES}"
+
+      - name: Run clang-tidy and fail on any diagnostic
+        run: |
+          set -eo pipefail
+          FILES="${{ steps.files.outputs.list }}"
+          if [ -z "$FILES" ]; then
+            echo "No C/C++ files to check."
+            exit 0
+          fi
+          echo "$FILES" | tr ' ' '\n' | tee /tmp/clang_tidy_files.txt
+          # Run in batches to avoid super long arg lists; -j parallelizes internally.
+          cat /tmp/clang_tidy_files.txt | xargs -r -n 40 clang-tidy -p build -j $(nproc) --warnings-as-errors='*' --quiet
