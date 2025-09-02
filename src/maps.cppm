@@ -20,9 +20,24 @@ export module maps;
 
 enum class RegionType : uint8_t { MISC, EXE, CODE, HEAP, STACK };
 
+/*
+ * Region Type Descriptions:
+ * - misc:   未知
+ * - exe:    主程序代码段
+ * - code:   动态库或者其他代码段
+ * - heap:   堆内存区域
+ * - stack:  栈内存区域
+ */
 constexpr std::array<std::string_view, 5> REGION_TYPE_NAMES = {
     "misc", "exe", "code", "heap", "stack"};
 
+/*
+ * RegionScanLevel Descriptions:
+ * - ALL:                       扫描所有内存区域
+ * - ALL_RW:                    扫描所有可读写的内存区域
+ * - HEAP_STACK_EXECUTABLE:     仅扫描堆、栈和可执行区域
+ * - HEAP_STACK_EXECUTABLE_BSS: 扫描堆、栈、可执行区域以及 BSS 段
+ */
 enum class RegionScanLevel : uint8_t {
     ALL,
     ALL_RW,
@@ -30,12 +45,20 @@ enum class RegionScanLevel : uint8_t {
     HEAP_STACK_EXECUTABLE_BSS
 };
 
+/*
+ * RegionFlags:
+ * - read:     是否具有读取权限
+ * - write:    是否具有写入权限
+ * - exec:     是否具有执行权限
+ * - shared:   是否为共享内存区域
+ * - private_: 是否为私有内存区域
+ */
 struct RegionFlags {
     bool read : 1;
     bool write : 1;
     bool exec : 1;
     bool shared : 1;
-    bool private_ : 1;
+    bool exclusive : 1;
 };
 
 struct Region {
@@ -60,7 +83,7 @@ struct Region {
         return flags.shared;
     }
     [[nodiscard]] auto isPrivate() const noexcept -> bool {
-        return flags.private_;
+        return flags.exclusive;
     }
 
     [[nodiscard]] auto asSpan() const noexcept
@@ -307,14 +330,15 @@ class MapsReader {
         result.flags.write = (write == 'w');
         result.flags.exec = (exec == 'x');
         result.flags.shared = (cow == 's');
-        result.flags.private_ = (cow == 'p');
+        result.flags.exclusive = (cow == 'p');
 
         return result;
     }
 };
 
 // Convenience function for direct usage
-[[nodiscard]] inline auto
-readProcessMaps(pid_t pid, RegionScanLevel level = RegionScanLevel::ALL) -> std::expected<std::vector<Region>, MapsReader::Error> {
+[[nodiscard]] inline auto readProcessMaps(
+    pid_t pid, RegionScanLevel level = RegionScanLevel::ALL)
+    -> std::expected<std::vector<Region>, MapsReader::Error> {
     return MapsReader::readProcessMaps(pid, level);
 }

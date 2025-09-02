@@ -40,3 +40,5 @@ CheckOptions:
     value: s_
   - key: readability-identifier-naming.EnumConstantCase
     value: UPPER_CASE
+  - key: readability-identifier-naming.MemberCase
+    value: camelBack
