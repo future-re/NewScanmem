@@ -16,7 +16,7 @@ export module sets;
 namespace qi = boost::spirit::qi;
 namespace phoenix = boost::phoenix;
 
-constexpr size_t DEFAULT_UINTLS_SZ = 64;
+constexpr size_t DEFAULT_UINTS_SZ = 64;
 
 export struct Set {
     std::vector<size_t> buf;
@@ -84,12 +84,12 @@ void applyInvert(std::vector<size_t>& result, size_t maxSZ) {
 }
 }  // namespace
 
-export auto parseUintSet(std::string_view lptr, Set& set, size_t maxSZ)
+export auto parseUintSet(std::string_view lPtr, Set& set, size_t maxSZ)
     -> bool {
     set.clear();
     std::vector<size_t> result;
     bool invert = false;
-    std::string input(lptr);
+    std::string input(lPtr);
 
     auto hexRule = qi::lit("0x") >> qi::uint_parser<size_t, 16, 1, 16>();
     auto decRule = qi::uint_parser<size_t, 10, 1, 20>();
