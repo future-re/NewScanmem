@@ -16,7 +16,8 @@ set(MODULE_SOURCES
     process_checker.cppm
     endianness.cppm
     maps.cppm
-    # scanroutines.cppm
+    common.cppm
+    scanroutines.cppm
 )
 
 # 添加模块源文件到库

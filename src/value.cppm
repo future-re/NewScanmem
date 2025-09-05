@@ -70,7 +70,7 @@ export struct [[gnu::packed]] Value {
     }
 };
 
-struct [[gnu::packed]] Mem64 {
+export struct [[gnu::packed]] Mem64 {
     std::variant<int8_t, uint8_t, int16_t, uint16_t, int32_t, uint32_t, int64_t,
                  uint64_t, float, double, std::array<uint8_t, sizeof(int64_t)>,
                  std::array<char, sizeof(int64_t)>>
@@ -103,21 +103,21 @@ struct [[gnu::packed]] Mem64 {
 
 enum class Wildcard : uint8_t { FIXED = 0xffU, WILDCARD = 0x00U };
 
-struct [[gnu::packed]] UserValue {
-    int8_t int8_value = 0;
-    uint8_t uint8_value = 0;
-    int16_t int16_value = 0;
-    uint16_t uint16_value = 0;
-    int32_t int32_value = 0;
-    uint32_t uint32_value = 0;
-    int64_t int64_value = 0;
-    uint64_t uint64_value = 0;
-    float float32_value = 0.0F;
-    double float64_value = 0.0;
+export struct [[gnu::packed]] UserValue {
+    int8_t int8Value = 0;
+    uint8_t uint8Value = 0;
+    int16_t int16Value = 0;
+    uint16_t uint16Value = 0;
+    int32_t int32Value = 0;
+    uint32_t uint32Value = 0;
+    int64_t int64Value = 0;
+    uint64_t uint64Value = 0;
+    float float32Value = 0.0F;
+    double float64Value = 0.0;
 
-    std::optional<std::vector<uint8_t>> bytearray_value;
-    std::optional<Wildcard> wildcard_value;
+    std::optional<std::vector<uint8_t>> bytearrayValue;
+    std::optional<Wildcard> wildcardValue;
 
-    std::string string_value;
+    std::string stringValue;
     MatchFlags flags = MatchFlags::EMPTY;
 };
