@@ -1,6 +1,7 @@
 module;
 
 #include <array>
+#include <bit>
 #include <cmath>
 #include <cstddef>
 #include <cstdint>
@@ -82,6 +83,28 @@ enum class ScanMatchType {
 using scanRoutine = std::function<unsigned int(
     const Mem64* /*memoryPtr*/, size_t /*memLength*/, const Value* /*oldValue*/,
     const UserValue* /*userValue*/, MatchFlags* /*saveFlags*/)>;
+
+// 按需交换字节序（仅当 reverse==true）。对整数使用 swapBytesIntegral；
+// 对浮点通过 bit_cast 到等宽无符号整数再交换字节序。
+template <typename T>
+constexpr auto swapIfReverse(T value, bool reverse) noexcept -> T {
+    if (!reverse) {
+        return value;
+    }
+    if constexpr (std::is_integral_v<T>) {
+        return std::byteswap(value);
+    } else if constexpr (std::is_same_v<T, float>) {
+        auto bits32 = std::bit_cast<uint32_t>(value);
+        bits32 = std::byteswap(bits32);
+        return std::bit_cast<float>(bits32);
+    } else if constexpr (std::is_same_v<T, double>) {
+        auto bits64 = std::bit_cast<uint64_t>(value);
+        bits64 = std::byteswap(bits64);
+        return std::bit_cast<double>(bits64);
+    } else {
+        return value;
+    }
+}
 
 // Helpers: map C++ type -> MatchFlags flag for the size/type
 //
@@ -331,11 +354,12 @@ inline auto matchDecreasedByImpl(const T& memv, const Value* oldValue,
  */
 // Core numeric matcher template. Returns bytes needed (sizeof T) or 0.
 template <typename T>
-auto makeNumericRoutine(ScanMatchType matchType, bool /*reverseEndianess*/)
+auto makeNumericRoutine(ScanMatchType matchType, bool reverseEndianess)
     -> scanRoutine {
-    return [matchType](const Mem64* memoryPtr, size_t memLength,
-                       const Value* oldValue, const UserValue* userValue,
-                       MatchFlags* saveFlags) -> unsigned int {
+    return [matchType, reverseEndianess](
+               const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
+               const UserValue* userValue,
+               MatchFlags* saveFlags) -> unsigned int {
         if (memLength < sizeof(T)) {
             return 0;
         }
@@ -346,6 +370,9 @@ auto makeNumericRoutine(ScanMatchType matchType, bool /*reverseEndianess*/)
         } catch (...) {
             return 0;
         }
+
+        // 按需修正字节序
+        memv = swapIfReverse<T>(memv, reverseEndianess);
 
         *saveFlags = MatchFlags::EMPTY;
 
@@ -432,6 +459,10 @@ inline auto makeBytearrayRoutine(ScanMatchType matchType) -> scanRoutine {
             if (byteArray.size() != memLength) {
                 return 0;
             }
+            // 当前实现仅支持最多 8 字节的固定缓冲区比较
+            if (memLength > sizeof(int64_t)) {
+                return 0;
+            }
             try {
                 auto memArr =
                     memoryPtr->get<std::array<uint8_t, sizeof(int64_t)>>();
@@ -459,6 +490,10 @@ inline auto makeStringRoutine(ScanMatchType matchType) -> scanRoutine {
         const auto& str = userValue->stringValue;
         if (matchType == ScanMatchType::MATCHEQUALTO) {
             if (str.size() != memLength) {
+                return 0;
+            }
+            // 当前实现仅支持最多 8 字节的固定缓冲区比较
+            if (memLength > sizeof(int64_t)) {
                 return 0;
             }
             try {
