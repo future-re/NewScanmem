@@ -9,6 +9,7 @@ module;
 #include <optional>
 #include <string>
 #include <type_traits>
+#include <unordered_map>
 #include <variant>
 #include <vector>
 
@@ -178,149 +179,19 @@ inline auto oldValueAs(const Value* valuePtr) -> std::optional<T> {
     return std::nullopt;
 }
 
-// 小型匹配辅助函数
-// 这些 helper 将常见的比较逻辑封装成统一签名，以降低主匹配 lambda
-// 的认知复杂度。
-template <typename T>
-inline auto matchEqualImpl(const T& memv, const Value* /*oldValue*/,
-                           const UserValue* userValue, MatchFlags* saveFlags)
-    -> unsigned int {
-    T userValT = userValueAs<T>(*userValue);
-    if (memv == userValT) {
+// 通用匹配辅助函数
+template <typename T, typename Predicate>
+inline auto genericMatchImpl(const T& memv, const Value* oldValue,
+                             const UserValue* userValue, MatchFlags* saveFlags,
+                             Predicate pred) -> unsigned int {
+    if (pred(memv, oldValue, userValue)) {
         *saveFlags = flagForType<T>();
         return sizeof(T);
     }
     return 0;
 }
 
-template <typename T>
-inline auto matchNotEqualImpl(const T& memv, const Value* /*oldValue*/,
-                              const UserValue* userValue, MatchFlags* saveFlags)
-    -> unsigned int {
-    T userValT = userValueAs<T>(*userValue);
-    if (memv != userValT) {
-        *saveFlags = flagForType<T>();
-        return sizeof(T);
-    }
-    return 0;
-}
-
-template <typename T>
-inline auto matchGtImpl(const T& memv, const Value* /*oldValue*/,
-                        const UserValue* userValue, MatchFlags* saveFlags)
-    -> unsigned int {
-    T userValT = userValueAs<T>(*userValue);
-    if (memv > userValT) {
-        *saveFlags = flagForType<T>();
-        return sizeof(T);
-    }
-    return 0;
-}
-
-template <typename T>
-inline auto matchLtImpl(const T& memv, const Value* /*oldValue*/,
-                        const UserValue* userValue, MatchFlags* saveFlags)
-    -> unsigned int {
-    T userValT = userValueAs<T>(*userValue);
-    if (memv < userValT) {
-        *saveFlags = flagForType<T>();
-        return sizeof(T);
-    }
-    return 0;
-}
-
-template <typename T>
-inline auto matchUpdateImpl(const T& memv, const Value* oldValue,
-                            const UserValue* /*userValue*/,
-                            MatchFlags* saveFlags) -> unsigned int {
-    if (auto oldOpt = oldValueAs<T>(oldValue)) {
-        if (memv == *oldOpt) {
-            *saveFlags = flagForType<T>();
-            return sizeof(T);
-        }
-    }
-    return 0;
-}
-
-template <typename T>
-inline auto matchChangedImpl(const T& memv, const Value* oldValue,
-                             const UserValue* /*userValue*/,
-                             MatchFlags* saveFlags) -> unsigned int {
-    if (auto oldOpt = oldValueAs<T>(oldValue)) {
-        if (memv != *oldOpt) {
-            *saveFlags = flagForType<T>();
-            return sizeof(T);
-        }
-    }
-    return 0;
-}
-
-template <typename T>
-inline auto matchNotChangedImpl(const T& memv, const Value* oldValue,
-                                const UserValue* /*userValue*/,
-                                MatchFlags* saveFlags) -> unsigned int {
-    if (auto oldOpt = oldValueAs<T>(oldValue)) {
-        if (memv == *oldOpt) {
-            *saveFlags = flagForType<T>();
-            return sizeof(T);
-        }
-    }
-    return 0;
-}
-
-template <typename T>
-inline auto matchIncreasedImpl(const T& memv, const Value* oldValue,
-                               const UserValue* /*userValue*/,
-                               MatchFlags* saveFlags) -> unsigned int {
-    if (auto oldOpt = oldValueAs<T>(oldValue)) {
-        if (memv > *oldOpt) {
-            *saveFlags = flagForType<T>();
-            return sizeof(T);
-        }
-    }
-    return 0;
-}
-
-template <typename T>
-inline auto matchDecreasedImpl(const T& memv, const Value* oldValue,
-                               const UserValue* /*userValue*/,
-                               MatchFlags* saveFlags) -> unsigned int {
-    if (auto oldOpt = oldValueAs<T>(oldValue)) {
-        if (memv < *oldOpt) {
-            *saveFlags = flagForType<T>();
-            return sizeof(T);
-        }
-    }
-    return 0;
-}
-
-template <typename T>
-inline auto matchIncreasedByImpl(const T& memv, const Value* oldValue,
-                                 const UserValue* userValue,
-                                 MatchFlags* saveFlags) -> unsigned int {
-    if (auto oldOpt = oldValueAs<T>(oldValue)) {
-        T userValT = userValueAs<T>(*userValue);
-        if (memv - *oldOpt == userValT) {
-            *saveFlags = flagForType<T>();
-            return sizeof(T);
-        }
-    }
-    return 0;
-}
-
-template <typename T>
-inline auto matchDecreasedByImpl(const T& memv, const Value* oldValue,
-                                 const UserValue* userValue,
-                                 MatchFlags* saveFlags) -> unsigned int {
-    if (auto oldOpt = oldValueAs<T>(oldValue)) {
-        T userValT = userValueAs<T>(*userValue);
-        if (*oldOpt - memv == userValT) {
-            *saveFlags = flagForType<T>();
-            return sizeof(T);
-        }
-    }
-    return 0;
-}
+// 小型匹配辅助函数已被通用模板 genericMatchImpl 替代。
 
 /**
  * 构造数值类型的扫描例程
@@ -329,6 +200,100 @@ inline auto matchDecreasedByImpl(const T& memv, const Value* oldValue,
  * 执行比较。 约定：当 memLength < sizeof(T) 或 memoryPtr->get<T>()
  * 抛出异常时返回 0。 当匹配成功时会设置 *saveFlags 并返回 sizeof(T)。
  */
+// Predicate map for numeric match types
+template <typename T>
+static const auto& getNumericPredicateMap() {
+    static const std::unordered_map<ScanMatchType, std::function<bool(const T&, const Value*, const UserValue*)>> pred_map = {
+        {ScanMatchType::MATCHEQUALTO, [](const T& memv, const Value*, const UserValue* userValuePtr) -> bool {
+            if (!userValuePtr) return false;
+            T userVal = userValueAs<T>(*userValuePtr);
+            return memv == userVal;
+        }},
+        {ScanMatchType::MATCHNOTEQUALTO, [](const T& memv, const Value*, const UserValue* userValuePtr) -> bool {
+            if (!userValuePtr) return false;
+            T userVal = userValueAs<T>(*userValuePtr);
+            return memv != userVal;
+        }},
+        {ScanMatchType::MATCHGREATERTHAN, [](const T& memv, const Value*, const UserValue* userValuePtr) -> bool {
+            if (!userValuePtr) return false;
+            T userVal = userValueAs<T>(*userValuePtr);
+            return memv > userVal;
+        }},
+        {ScanMatchType::MATCHLESSTHAN, [](const T& memv, const Value*, const UserValue* userValuePtr) -> bool {
+            if (!userValuePtr) return false;
+            T userVal = userValueAs<T>(*userValuePtr);
+            return memv < userVal;
+        }},
+        {ScanMatchType::MATCHUPDATE, [](const T& memv, const Value* oldValuePtr, const UserValue*) -> bool {
+            if (auto opt = oldValueAs<T>(oldValuePtr)) {
+                return memv == *opt;
+            }
+            return false;
+        }},
+        {ScanMatchType::MATCHCHANGED, [](const T& memv, const Value* oldValuePtr, const UserValue*) -> bool {
+            if (auto opt = oldValueAs<T>(oldValuePtr)) {
+                return memv != *opt;
+            }
+            return false;
+        }},
+        {ScanMatchType::MATCHNOTCHANGED, [](const T& memv, const Value* oldValuePtr, const UserValue*) -> bool {
+            if (auto opt = oldValueAs<T>(oldValuePtr)) {
+                return memv == *opt;
+            }
+            return false;
+        }},
+        {ScanMatchType::MATCHINCREASED, [](const T& memv, const Value* oldValuePtr, const UserValue*) -> bool {
+            if (auto opt = oldValueAs<T>(oldValuePtr)) {
+                return memv > *opt;
+            }
+            return false;
+        }},
+        {ScanMatchType::MATCHDECREASED, [](const T& memv, const Value* oldValuePtr, const UserValue*) -> bool {
+            if (auto opt = oldValueAs<T>(oldValuePtr)) {
+                return memv < *opt;
+            }
+            return false;
+        }},
+        {ScanMatchType::MATCHINCREASEDBY, [](const T& memv, const Value* oldValuePtr, const UserValue* userValuePtr) -> bool {
+            if (!userValuePtr) return false;
+            if (auto opt = oldValueAs<T>(oldValuePtr)) {
+                T userVal = userValueAs<T>(*userValuePtr);
+                return memv - *opt == userVal;
+            }
+            return false;
+        }},
+        {ScanMatchType::MATCHDECREASEDBY, [](const T& memv, const Value* oldValuePtr, const UserValue* userValuePtr) -> bool {
+            if (!userValuePtr) return false;
+            if (auto opt = oldValueAs<T>(oldValuePtr)) {
+                T userVal = userValueAs<T>(*userValuePtr);
+                return *opt - memv == userVal;
+            }
+            return false;
+        }}
+    };
+    return pred_map;
+}
+
+// Helper to check if a match type requires a user value
+inline bool requiresUserValue(ScanMatchType matchType) {
+    return matchType == ScanMatchType::MATCHEQUALTO ||
+           matchType == ScanMatchType::MATCHNOTEQUALTO ||
+           matchType == ScanMatchType::MATCHGREATERTHAN ||
+           matchType == ScanMatchType::MATCHLESSTHAN ||
+           matchType == ScanMatchType::MATCHINCREASEDBY ||
+           matchType == ScanMatchType::MATCHDECREASEDBY;
+}
+
+// Helper to safely extract memory value
+template <typename T>
+inline auto safeGetMemoryValue(const Mem64* memoryPtr) -> std::optional<T> {
+    try {
+        return memoryPtr->get<T>();
+    } catch (...) {
+        return std::nullopt;
+    }
+}
+
 // Core numeric matcher template. Returns bytes needed (sizeof T) or 0.
 template <typename T>
 auto makeNumericRoutine(ScanMatchType matchType, bool /*reverseEndianess*/)
@@ -336,80 +301,40 @@ auto makeNumericRoutine(ScanMatchType matchType, bool /*reverseEndianess*/)
     return [matchType](const Mem64* memoryPtr, size_t memLength,
                        const Value* oldValue, const UserValue* userValue,
                        MatchFlags* saveFlags) -> unsigned int {
+        // Check for sufficient memory
         if (memLength < sizeof(T)) {
             return 0;
         }
-        // extract memory value
-        T memv;
-        try {
-            memv = memoryPtr->get<T>();
-        } catch (...) {
-            return 0;
-        }
-
+        
+        // Initialize flags
         *saveFlags = MatchFlags::EMPTY;
-
-        // Guard: if match type requires a provided user value but none is
-        // supplied, bail out early.
-        if ((matchType == ScanMatchType::MATCHEQUALTO ||
-             matchType == ScanMatchType::MATCHNOTEQUALTO ||
-             matchType == ScanMatchType::MATCHGREATERTHAN ||
-             matchType == ScanMatchType::MATCHLESSTHAN ||
-             matchType == ScanMatchType::MATCHINCREASEDBY ||
-             matchType == ScanMatchType::MATCHDECREASEDBY) &&
-            (userValue == nullptr)) {
+        
+        // Handle MATCHANY separately (snapshot)
+        if (matchType == ScanMatchType::MATCHANY) {
+            *saveFlags = flagForType<T>();
+            return sizeof(T);
+        }
+        
+        // Check if user value is required but missing
+        if (requiresUserValue(matchType) && userValue == nullptr) {
             return 0;
         }
-
-        switch (matchType) {
-            case ScanMatchType::MATCHANY:
-                // match by default (snapshot)
-                *saveFlags = flagForType<T>();
-                return sizeof(T);
-
-            case ScanMatchType::MATCHEQUALTO:
-                return matchEqualImpl<T>(memv, oldValue, userValue, saveFlags);
-
-            case ScanMatchType::MATCHNOTEQUALTO:
-                return matchNotEqualImpl<T>(memv, oldValue, userValue,
-                                            saveFlags);
-
-            case ScanMatchType::MATCHGREATERTHAN:
-                return matchGtImpl<T>(memv, oldValue, userValue, saveFlags);
-
-            case ScanMatchType::MATCHLESSTHAN:
-                return matchLtImpl<T>(memv, oldValue, userValue, saveFlags);
-
-            case ScanMatchType::MATCHUPDATE:
-                return matchUpdateImpl<T>(memv, oldValue, userValue, saveFlags);
-
-            case ScanMatchType::MATCHCHANGED:
-                return matchChangedImpl<T>(memv, oldValue, userValue,
-                                           saveFlags);
-
-            case ScanMatchType::MATCHNOTCHANGED:
-                return matchNotChangedImpl<T>(memv, oldValue, userValue,
-                                              saveFlags);
-
-            case ScanMatchType::MATCHINCREASED:
-                return matchIncreasedImpl<T>(memv, oldValue, userValue,
-                                             saveFlags);
-
-            case ScanMatchType::MATCHDECREASED:
-                return matchDecreasedImpl<T>(memv, oldValue, userValue,
-                                             saveFlags);
-
-            case ScanMatchType::MATCHINCREASEDBY:
-                return matchIncreasedByImpl<T>(memv, oldValue, userValue,
-                                               saveFlags);
-
-            case ScanMatchType::MATCHDECREASEDBY:
-                return matchDecreasedByImpl<T>(memv, oldValue, userValue,
-                                               saveFlags);
-
-            default:
-                return 0;
+        
+        // Extract memory value safely
+        auto memvOpt = safeGetMemoryValue<T>(memoryPtr);
+        if (!memvOpt) {
+            return 0;
         }
+        T memv = *memvOpt;
+        
+        // Get predicate and apply match
+        const auto& predMap = getNumericPredicateMap<T>();
+        auto it = predMap.find(matchType);
+        if (it != predMap.end()) {
+            return genericMatchImpl<T>(memv, oldValue, userValue, saveFlags, it->second);
+        }
+        
+        return 0;
     };
 }
 
