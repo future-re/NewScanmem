@@ -25,7 +25,7 @@ import value;
  * INTEGER8..FLOAT64 表示精确的字节宽度用于内存读取。
  * BYTEARRAY/STRING 表示按字节序列比较的情形。
  */
-enum class ScanDataType {
+export enum class ScanDataType {
     ANYNUMBER,  /* ANYINTEGER or ANYFLOAT */
     ANYINTEGER, /* INTEGER of whatever width */
     ANYFLOAT,   /* FLOAT of whatever width */
@@ -50,7 +50,7 @@ enum class ScanDataType {
  * 与旧值比较（MATCHUPDATE 等）、或使用给定值与旧值的复合比较（MATCHINCREASEDBY
  * 等）。
  */
-enum class ScanMatchType {
+export enum class ScanMatchType {
     MATCHANY, /* 快照（snapshot） */
     /* 以下：与给定值比较 */
     MATCHEQUALTO,     /* 等于（与 userValue 比较，==） */
@@ -80,7 +80,7 @@ enum class ScanMatchType {
  *  - userValue: 可选的用户提供值（用于 MATCHEQUALTO 等）。
  *  - saveFlags: 输出参数，匹配成功时写入值类型/宽度标志。
  */
-using scanRoutine = std::function<unsigned int(
+export using scanRoutine = std::function<unsigned int(
     const Mem64* /*memoryPtr*/, size_t /*memLength*/, const Value* /*oldValue*/,
     const UserValue* /*userValue*/, MatchFlags* /*saveFlags*/)>;
 
@@ -182,6 +182,48 @@ inline auto userValueAs(const UserValue& userVal) -> T {
     if constexpr (std::is_same_v<T, double>) {
         return userVal.float64Value;
     }
+    // 应该不会到达这里，但为了编译安全
+    static_assert(std::is_arithmetic_v<T>, "Unsupported type for userValueAs");
+    return T{};
+}
+
+// 获取上界（用于 MATCHRANGE）
+template <typename T>
+inline auto userValueHighAs(const UserValue& userVal) -> T {
+    if constexpr (std::is_same_v<T, int8_t>) {
+        return userVal.int8RangeHighValue;
+    }
+    if constexpr (std::is_same_v<T, uint8_t>) {
+        return userVal.uint8RangeHighValue;
+    }
+    if constexpr (std::is_same_v<T, int16_t>) {
+        return userVal.int16RangeHighValue;
+    }
+    if constexpr (std::is_same_v<T, uint16_t>) {
+        return userVal.uint16RangeHighValue;
+    }
+    if constexpr (std::is_same_v<T, int32_t>) {
+        return userVal.int32RangeHighValue;
+    }
+    if constexpr (std::is_same_v<T, uint32_t>) {
+        return userVal.uint32RangeHighValue;
+    }
+    if constexpr (std::is_same_v<T, int64_t>) {
+        return userVal.int64RangeHighValue;
+    }
+    if constexpr (std::is_same_v<T, uint64_t>) {
+        return userVal.uint64RangeHighValue;
+    }
+    if constexpr (std::is_same_v<T, float>) {
+        return userVal.float32RangeHighValue;
+    }
+    if constexpr (std::is_same_v<T, double>) {
+        return userVal.float64RangeHighValue;
+    }
+    // 应该不会到达这里，但为了编译安全
+    static_assert(std::is_arithmetic_v<T>,
+                  "Unsupported type for userValueHighAs");
+    return T{};
 }
 
 // Try to get old value of type T from Value*
@@ -201,248 +243,125 @@ inline auto oldValueAs(const Value* valuePtr) -> std::optional<T> {
     return std::nullopt;
 }
 
-// 小型匹配辅助函数
-// 这些 helper 将常见的比较逻辑封装成统一签名，以降低主匹配 lambda
-// 的认知复杂度。
+// 统一的数值匹配核心：依据 matchType 对单个内存值做判定
+// 返回匹配成功时的 sizeof(T)，否则 0。
 template <typename T>
-inline auto matchEqualImpl(const T& memv, const Value* /*oldValue*/,
-                           const UserValue* userValue, MatchFlags* saveFlags)
-    -> unsigned int {
-    T userValT = userValueAs<T>(*userValue);
-    if (memv == userValT) {
-        *saveFlags = flagForType<T>();
-        return sizeof(T);
-    }
-    return 0;
-}
-
-template <typename T>
-inline auto matchNotEqualImpl(const T& memv, const Value* /*oldValue*/,
-                              const UserValue* userValue, MatchFlags* saveFlags)
-    -> unsigned int {
-    T userValT = userValueAs<T>(*userValue);
-    if (memv != userValT) {
-        *saveFlags = flagForType<T>();
-        return sizeof(T);
-    }
-    return 0;
-}
-
-template <typename T>
-inline auto matchGtImpl(const T& memv, const Value* /*oldValue*/,
-                        const UserValue* userValue, MatchFlags* saveFlags)
-    -> unsigned int {
-    T userValT = userValueAs<T>(*userValue);
-    if (memv > userValT) {
-        *saveFlags = flagForType<T>();
-        return sizeof(T);
-    }
-    return 0;
-}
-
-template <typename T>
-inline auto matchLtImpl(const T& memv, const Value* /*oldValue*/,
-                        const UserValue* userValue, MatchFlags* saveFlags)
-    -> unsigned int {
-    T userValT = userValueAs<T>(*userValue);
-    if (memv < userValT) {
-        *saveFlags = flagForType<T>();
-        return sizeof(T);
-    }
-    return 0;
-}
-
-template <typename T>
-inline auto matchUpdateImpl(const T& memv, const Value* oldValue,
-                            const UserValue* /*userValue*/,
-                            MatchFlags* saveFlags) -> unsigned int {
-    if (auto oldOpt = oldValueAs<T>(oldValue)) {
-        if (memv == *oldOpt) {
-            *saveFlags = flagForType<T>();
-            return sizeof(T);
-        }
-    }
-    return 0;
-}
-
-template <typename T>
-inline auto matchChangedImpl(const T& memv, const Value* oldValue,
-                             const UserValue* /*userValue*/,
+inline auto numericMatchCore(ScanMatchType matchType, T memv,
+                             const Value* oldValue, const UserValue* userValue,
                              MatchFlags* saveFlags) -> unsigned int {
-    if (auto oldOpt = oldValueAs<T>(oldValue)) {
-        if (memv != *oldOpt) {
-            *saveFlags = flagForType<T>();
-            return sizeof(T);
-        }
+    // 匹配类型是否需要 userValue
+    const bool NEEDS_USER = (matchType == ScanMatchType::MATCHEQUALTO ||
+                             matchType == ScanMatchType::MATCHNOTEQUALTO ||
+                             matchType == ScanMatchType::MATCHGREATERTHAN ||
+                             matchType == ScanMatchType::MATCHLESSTHAN ||
+                             matchType == ScanMatchType::MATCHINCREASEDBY ||
+                             matchType == ScanMatchType::MATCHDECREASEDBY ||
+                             matchType == ScanMatchType::MATCHRANGE);
+    if (NEEDS_USER && userValue == nullptr) {
+        return 0;
     }
-    return 0;
+
+    auto oldOpt = oldValueAs<T>(oldValue);
+    auto getUser = [&](void) -> T { return userValueAs<T>(*userValue); };
+
+    bool isMatched = false;
+    switch (matchType) {
+        case ScanMatchType::MATCHANY:
+            isMatched = true;  // snapshot 收集
+            break;
+        case ScanMatchType::MATCHEQUALTO:
+            isMatched = (memv == getUser());
+            break;
+        case ScanMatchType::MATCHNOTEQUALTO:
+            isMatched = (memv != getUser());
+            break;
+        case ScanMatchType::MATCHGREATERTHAN:
+            isMatched = (memv > getUser());
+            break;
+        case ScanMatchType::MATCHLESSTHAN:
+            isMatched = (memv < getUser());
+            break;
+        case ScanMatchType::MATCHUPDATE:  // 与 NOTCHANGED 归并
+        case ScanMatchType::MATCHNOTCHANGED:
+            if (oldOpt) {
+                isMatched = (memv == *oldOpt);
+            }
+            break;
+        case ScanMatchType::MATCHCHANGED:
+            if (oldOpt) {
+                isMatched = (memv != *oldOpt);
+            }
+            break;
+        case ScanMatchType::MATCHINCREASED:
+            if (oldOpt) {
+                isMatched = (memv > *oldOpt);
+            }
+            break;
+        case ScanMatchType::MATCHDECREASED:
+            if (oldOpt) {
+                isMatched = (memv < *oldOpt);
+            }
+            break;
+        case ScanMatchType::MATCHINCREASEDBY:
+            if (oldOpt) {
+                isMatched = (memv - *oldOpt == getUser());
+            }
+            break;
+        case ScanMatchType::MATCHDECREASEDBY:
+            if (oldOpt) {
+                isMatched = (*oldOpt - memv == getUser());
+            }
+            break;
+        case ScanMatchType::MATCHRANGE: {
+            if (userValue) {
+                T low = userValueAs<T>(*userValue);
+                T high = userValueHighAs<T>(*userValue);
+                if (low <= high) {
+                    isMatched = (memv >= low && memv <= high);
+                } else {  // 允许调用方传反，自动纠正
+                    isMatched = (memv >= high && memv <= low);
+                }
+            }
+            break;
+        }
+        default:
+            isMatched = false;
+            break;
+    }
+    if (!isMatched) {
+        return 0;
+    }
+    *saveFlags = flagForType<T>();
+    return sizeof(T);
 }
 
+// 数值类型扫描例程工厂
 template <typename T>
-inline auto matchNotChangedImpl(const T& memv, const Value* oldValue,
-                                const UserValue* /*userValue*/,
-                                MatchFlags* saveFlags) -> unsigned int {
-    if (auto oldOpt = oldValueAs<T>(oldValue)) {
-        if (memv == *oldOpt) {
-            *saveFlags = flagForType<T>();
-            return sizeof(T);
-        }
-    }
-    return 0;
-}
-
-template <typename T>
-inline auto matchIncreasedImpl(const T& memv, const Value* oldValue,
-                               const UserValue* /*userValue*/,
-                               MatchFlags* saveFlags) -> unsigned int {
-    if (auto oldOpt = oldValueAs<T>(oldValue)) {
-        if (memv > *oldOpt) {
-            *saveFlags = flagForType<T>();
-            return sizeof(T);
-        }
-    }
-    return 0;
-}
-
-template <typename T>
-inline auto matchDecreasedImpl(const T& memv, const Value* oldValue,
-                               const UserValue* /*userValue*/,
-                               MatchFlags* saveFlags) -> unsigned int {
-    if (auto oldOpt = oldValueAs<T>(oldValue)) {
-        if (memv < *oldOpt) {
-            *saveFlags = flagForType<T>();
-            return sizeof(T);
-        }
-    }
-    return 0;
-}
-
-template <typename T>
-inline auto matchIncreasedByImpl(const T& memv, const Value* oldValue,
-                                 const UserValue* userValue,
-                                 MatchFlags* saveFlags) -> unsigned int {
-    if (auto oldOpt = oldValueAs<T>(oldValue)) {
-        T userValT = userValueAs<T>(*userValue);
-        if (memv - *oldOpt == userValT) {
-            *saveFlags = flagForType<T>();
-            return sizeof(T);
-        }
-    }
-    return 0;
-}
-
-template <typename T>
-inline auto matchDecreasedByImpl(const T& memv, const Value* oldValue,
-                                 const UserValue* userValue,
-                                 MatchFlags* saveFlags) -> unsigned int {
-    if (auto oldOpt = oldValueAs<T>(oldValue)) {
-        T userValT = userValueAs<T>(*userValue);
-        if (*oldOpt - memv == userValT) {
-            *saveFlags = flagForType<T>();
-            return sizeof(T);
-        }
-    }
-    return 0;
-}
-
-/**
- * 构造数值类型的扫描例程
- *
- * 返回一个 scanRoutine：在给定内存位置尝试以 T 解读数据并按 matchType
- * 执行比较。 约定：当 memLength < sizeof(T) 或 memoryPtr->get<T>()
- * 抛出异常时返回 0。 当匹配成功时会设置 *saveFlags 并返回 sizeof(T)。
- */
-// Core numeric matcher template. Returns bytes needed (sizeof T) or 0.
-template <typename T>
-auto makeNumericRoutine(ScanMatchType matchType, bool reverseEndianess)
+inline auto makeNumericRoutine(ScanMatchType matchType, bool reverseEndianess)
     -> scanRoutine {
-    return [matchType, reverseEndianess](
-               const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
-               const UserValue* userValue,
-               MatchFlags* saveFlags) -> unsigned int {
-        if (memLength < sizeof(T)) {
-            return 0;
-        }
-        // extract memory value
-        T memv;
-        try {
-            memv = memoryPtr->get<T>();
-        } catch (...) {
-            return 0;
-        }
-
-        // 按需修正字节序
-        memv = swapIfReverse<T>(memv, reverseEndianess);
-
-        *saveFlags = MatchFlags::EMPTY;
-
-        // Guard: if match type requires a provided user value but none is
-        // supplied, bail out early.
-        if ((matchType == ScanMatchType::MATCHEQUALTO ||
-             matchType == ScanMatchType::MATCHNOTEQUALTO ||
-             matchType == ScanMatchType::MATCHGREATERTHAN ||
-             matchType == ScanMatchType::MATCHLESSTHAN ||
-             matchType == ScanMatchType::MATCHINCREASEDBY ||
-             matchType == ScanMatchType::MATCHDECREASEDBY) &&
-            (userValue == nullptr)) {
-            return 0;
-        }
-
-        switch (matchType) {
-            case ScanMatchType::MATCHANY:
-                // match by default (snapshot)
-                *saveFlags = flagForType<T>();
-                return sizeof(T);
-
-            case ScanMatchType::MATCHEQUALTO:
-                return matchEqualImpl<T>(memv, oldValue, userValue, saveFlags);
-
-            case ScanMatchType::MATCHNOTEQUALTO:
-                return matchNotEqualImpl<T>(memv, oldValue, userValue,
-                                            saveFlags);
-
-            case ScanMatchType::MATCHGREATERTHAN:
-                return matchGtImpl<T>(memv, oldValue, userValue, saveFlags);
-
-            case ScanMatchType::MATCHLESSTHAN:
-                return matchLtImpl<T>(memv, oldValue, userValue, saveFlags);
-
-            case ScanMatchType::MATCHUPDATE:
-                return matchUpdateImpl<T>(memv, oldValue, userValue, saveFlags);
-
-            case ScanMatchType::MATCHCHANGED:
-                return matchChangedImpl<T>(memv, oldValue, userValue,
-                                           saveFlags);
-
-            case ScanMatchType::MATCHNOTCHANGED:
-                return matchNotChangedImpl<T>(memv, oldValue, userValue,
-                                              saveFlags);
-
-            case ScanMatchType::MATCHINCREASED:
-                return matchIncreasedImpl<T>(memv, oldValue, userValue,
-                                             saveFlags);
-
-            case ScanMatchType::MATCHDECREASED:
-                return matchDecreasedImpl<T>(memv, oldValue, userValue,
-                                             saveFlags);
-
-            case ScanMatchType::MATCHINCREASEDBY:
-                return matchIncreasedByImpl<T>(memv, oldValue, userValue,
-                                               saveFlags);
-
-            case ScanMatchType::MATCHDECREASEDBY:
-                return matchDecreasedByImpl<T>(memv, oldValue, userValue,
-                                               saveFlags);
-
-            default:
+    return
+        [matchType, reverseEndianess](
+            const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
+            const UserValue* userValue, MatchFlags* saveFlags) -> unsigned int {
+            if (memLength < sizeof(T)) {
                 return 0;
-        }
-    };
+            }
+            T memv;
+            try {
+                memv = memoryPtr->get<T>();
+            } catch (...) {
+                return 0;
+            }
+            memv = swapIfReverse<T>(memv, reverseEndianess);
+            *saveFlags = MatchFlags::EMPTY;
+            return numericMatchCore<T>(matchType, memv, oldValue, userValue,
+                                       saveFlags);
+        };
 }
 
-// 字节数组 / 字符串 的匹配器工厂
-// 注意：当前实现对任意长度的支持受限（使用 Mem64 的固定数组变体），
-// 应在将来改为从目标内存读取任意长度缓冲区再比较。
+// // 字节数组 / 字符串 的匹配器工厂
+// // 注意：当前实现对任意长度的支持受限（使用 Mem64 的固定数组变体），
+// // 应在将来改为从目标内存读取任意长度缓冲区再比较。
 inline auto makeBytearrayRoutine(ScanMatchType matchType) -> scanRoutine {
     return [matchType](const Mem64* memoryPtr, size_t memLength,
                        const Value* /*oldValue*/, const UserValue* userValue,
@@ -451,7 +370,7 @@ inline auto makeBytearrayRoutine(ScanMatchType matchType) -> scanRoutine {
         if (matchType == ScanMatchType::MATCHANY) {
             return static_cast<unsigned int>(memLength);
         }
-        if (!userValue->bytearrayValue) {
+        if (!userValue || !userValue->bytearrayValue) {
             return 0;
         }
         const auto& byteArray = *userValue->bytearrayValue;
@@ -459,17 +378,16 @@ inline auto makeBytearrayRoutine(ScanMatchType matchType) -> scanRoutine {
             if (byteArray.size() != memLength) {
                 return 0;
             }
-            // 当前实现仅支持最多 8 字节的固定缓冲区比较
             if (memLength > sizeof(int64_t)) {
                 return 0;
-            }
+            }  // 受限实现
             try {
                 auto memArr =
                     memoryPtr->get<std::array<uint8_t, sizeof(int64_t)>>();
                 if (::memcmp(memArr.data(), byteArray.data(), memLength) != 0) {
                     return 0;
                 }
-                *saveFlags = MatchFlags::B8;  // generic byte flag
+                *saveFlags = MatchFlags::B8;  // 使用字节宽度标志
                 return static_cast<unsigned int>(memLength);
             } catch (...) {
                 return 0;
@@ -487,15 +405,17 @@ inline auto makeStringRoutine(ScanMatchType matchType) -> scanRoutine {
         if (matchType == ScanMatchType::MATCHANY) {
             return static_cast<unsigned int>(memLength);
         }
+        if (!userValue) {
+            return 0;
+        }
         const auto& str = userValue->stringValue;
         if (matchType == ScanMatchType::MATCHEQUALTO) {
             if (str.size() != memLength) {
                 return 0;
             }
-            // 当前实现仅支持最多 8 字节的固定缓冲区比较
             if (memLength > sizeof(int64_t)) {
                 return 0;
-            }
+            }  // 受限实现
             try {
                 auto memArr =
                     memoryPtr->get<std::array<char, sizeof(int64_t)>>();
@@ -512,23 +432,128 @@ inline auto makeStringRoutine(ScanMatchType matchType) -> scanRoutine {
     };
 }
 
-// 前向声明：按数据类型和匹配类型返回相应的 scanRoutine（实现位于文件下方）
-auto smGetScanroutine(ScanDataType dataType, ScanMatchType matchType,
-                      MatchFlags uflags, bool reverseEndianness) -> scanRoutine;
+// ANY* 聚合例程：逐类型尝试，首个匹配即返回
+// 注意：当前实现基于 Mem64::get<T>()
+// 的异常路径尝试不同类型，效率一般，后续可通过 统一原始字节缓存避免多次 variant
+// 访问失败抛异常。
+template <typename... Ts>
+struct TypeList {};
 
-auto smChooseScanroutine(ScanDataType dataType, ScanMatchType matchType,
-                         UserValue& userValue, bool reverseEndianness) -> bool {
-    // 选择并验证是否存在对应的扫描例程
-    auto routine = smGetScanroutine(dataType, matchType, userValue.flags,
-                                    reverseEndianness);
-    return static_cast<bool>(routine);
+// 尝试单一类型匹配（辅助）
+template <typename T>
+inline unsigned int tryOneType(ScanMatchType matchType, bool reverseEndianness,
+                               const Mem64* memoryPtr, size_t memLength,
+                               const Value* oldValue,
+                               const UserValue* userValue,
+                               MatchFlags* saveFlags) {
+    if (memLength < sizeof(T)) {
+        return 0;
+    }
+    T memv;
+    try {
+        memv = memoryPtr->get<T>();
+    } catch (...) {
+        return 0;  // variant 当前不含该类型
+    }
+    memv = swapIfReverse<T>(memv, reverseEndianness);
+    return numericMatchCore<T>(matchType, memv, oldValue, userValue, saveFlags);
 }
 
-auto smGetScanroutine(ScanDataType dataType, ScanMatchType matchType,
-                      MatchFlags uflags, bool reverseEndianness)
+// 递归展开 TypeList
+template <typename... Ts>
+inline unsigned int tryTypes(TypeList<Ts...> /*list*/, ScanMatchType matchType,
+                             bool reverseEndianess, const Mem64* memoryPtr,
+                             size_t memLength, const Value* oldValue,
+                             const UserValue* userValue,
+                             MatchFlags* saveFlags) {
+    (void)matchType;
+    (void)reverseEndianess;
+    (void)memoryPtr;
+    (void)memLength;
+    (void)oldValue;
+    (void)userValue;
+    (void)saveFlags;
+    return 0;  // 由递归重载处理非空类型列表
+}
+
+template <typename T, typename... Rest>
+inline unsigned int tryTypes(TypeList<T, Rest...> /*list*/,
+                             ScanMatchType matchType, bool reverseEndianess,
+                             const Mem64* memoryPtr, size_t memLength,
+                             const Value* oldValue, const UserValue* userValue,
+                             MatchFlags* saveFlags) {
+    if (auto matched =
+            tryOneType<T>(matchType, reverseEndianess, memoryPtr, memLength,
+                          oldValue, userValue, saveFlags)) {
+        return matched;
+    }
+    return tryTypes(TypeList<Rest...>{}, matchType, reverseEndianess, memoryPtr,
+                    memLength, oldValue, userValue, saveFlags);
+}
+
+template <>
+inline unsigned int tryTypes(TypeList<>, ScanMatchType matchType,
+                             bool reverseEndianess, const Mem64* memoryPtr,
+                             size_t memLength, const Value* oldValue,
+                             const UserValue* userValue,
+                             MatchFlags* saveFlags) {
+    (void)matchType;
+    (void)reverseEndianess;
+    (void)memoryPtr;
+    (void)memLength;
+    (void)oldValue;
+    (void)userValue;
+    (void)saveFlags;
+    return 0;
+}
+
+inline auto makeAnyIntegerRoutine(ScanMatchType matchType,
+                                  bool reverseEndianness) -> scanRoutine {
+    using Integers = TypeList<int8_t, uint8_t, int16_t, uint16_t, int32_t,
+                              uint32_t, int64_t, uint64_t>;
+    return
+        [matchType, reverseEndianness](
+            const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
+            const UserValue* userValue, MatchFlags* saveFlags) -> unsigned int {
+            *saveFlags = MatchFlags::EMPTY;
+            return tryTypes(Integers{}, matchType, reverseEndianness, memoryPtr,
+                            memLength, oldValue, userValue, saveFlags);
+        };
+}
+
+inline auto makeAnyFloatRoutine(ScanMatchType matchType, bool reverseEndianness)
     -> scanRoutine {
-    (void)uflags;             // 目前未使用的用户标志，保留以备将来验证/过滤
-    (void)reverseEndianness;  // 目前未实现字节序翻转，参数占位
+    using Floats = TypeList<float, double>;
+    return
+        [matchType, reverseEndianness](
+            const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
+            const UserValue* userValue, MatchFlags* saveFlags) -> unsigned int {
+            *saveFlags = MatchFlags::EMPTY;
+            return tryTypes(Floats{}, matchType, reverseEndianness, memoryPtr,
+                            memLength, oldValue, userValue, saveFlags);
+        };
+}
+
+inline auto makeAnyNumberRoutine(ScanMatchType matchType,
+                                 bool reverseEndianness) -> scanRoutine {
+    using Numbers = TypeList<int8_t, uint8_t, int16_t, uint16_t, int32_t,
+                             uint32_t, int64_t, uint64_t, float, double>;
+    return
+        [matchType, reverseEndianness](
+            const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
+            const UserValue* userValue, MatchFlags* saveFlags) -> unsigned int {
+            *saveFlags = MatchFlags::EMPTY;
+            return tryTypes(Numbers{}, matchType, reverseEndianness, memoryPtr,
+                            memLength, oldValue, userValue, saveFlags);
+        };
+}
+
+// 工厂：按数据类型返回对应的扫描例程。
+// ANY* 系列目前尚未实现（需要聚合多类型尝试，后续扩展）。
+export inline auto smGetScanroutine(ScanDataType dataType,
+                                    ScanMatchType matchType,
+                                    MatchFlags /*uflags*/,
+                                    bool reverseEndianness) -> scanRoutine {
     switch (dataType) {
         case ScanDataType::INTEGER8:
             return makeNumericRoutine<int8_t>(matchType, reverseEndianness);
@@ -546,10 +571,22 @@ auto smGetScanroutine(ScanDataType dataType, ScanMatchType matchType,
             return makeBytearrayRoutine(matchType);
         case ScanDataType::STRING:
             return makeStringRoutine(matchType);
-        case ScanDataType::ANYNUMBER:
         case ScanDataType::ANYINTEGER:
+            return makeAnyIntegerRoutine(matchType, reverseEndianness);
         case ScanDataType::ANYFLOAT:
+            return makeAnyFloatRoutine(matchType, reverseEndianness);
+        case ScanDataType::ANYNUMBER:
+            return makeAnyNumberRoutine(matchType, reverseEndianness);
         default:
-            return scanRoutine{};  // empty
+            return scanRoutine{};  // 尚未实现的聚合类型
     }
+}
+
+export inline auto smChooseScanroutine(ScanDataType dataType,
+                                       ScanMatchType matchType,
+                                       UserValue& userValue,
+                                       bool reverseEndianness) -> bool {
+    auto routine = smGetScanroutine(dataType, matchType, userValue.flags,
+                                    reverseEndianness);
+    return static_cast<bool>(routine);
 }

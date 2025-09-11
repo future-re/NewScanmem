@@ -3,6 +3,7 @@ module;
 #include <bit>
 #include <cstdint>
 #include <optional>
+#include <stdexcept>
 #include <string>
 #include <variant>
 #include <vector>
@@ -97,7 +98,9 @@ export struct [[gnu::packed]] Mem64 {
     void set(const T& value) {
         static_assert(std::is_trivially_copyable_v<T>,
                       "Type must be trivially copyable");
-        mem64Value = std::bit_cast<int64_t>(value);
+        // Store the value directly into the variant; this avoids instantiating
+        // std::bit_cast for mismatched sizes and supports all variant member types.
+        mem64Value = value;
     }
 };
 
@@ -114,6 +117,19 @@ export struct [[gnu::packed]] UserValue {
     uint64_t uint64Value = 0;
     float float32Value = 0.0F;
     double float64Value = 0.0;
+
+    // Range 上界（与对应类型字段一起使用：低端 = *Value，高端 =
+    // *RangeHighValue）
+    int8_t int8RangeHighValue = 0;
+    uint8_t uint8RangeHighValue = 0;
+    int16_t int16RangeHighValue = 0;
+    uint16_t uint16RangeHighValue = 0;
+    int32_t int32RangeHighValue = 0;
+    uint32_t uint32RangeHighValue = 0;
+    int64_t int64RangeHighValue = 0;
+    uint64_t uint64RangeHighValue = 0;
+    float float32RangeHighValue = 0.0F;
+    double float64RangeHighValue = 0.0;
 
     std::optional<std::vector<uint8_t>> bytearrayValue;
     std::optional<Wildcard> wildcardValue;

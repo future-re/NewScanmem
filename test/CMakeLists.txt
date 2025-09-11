@@ -24,8 +24,14 @@ add_executable(test_endianness test_endianness.cpp)
 target_link_libraries(test_endianness PRIVATE ${TEST_LIBS})
 add_dependencies(test_endianness NewScanmem_lib)
 
+# Scan routines 测试
+add_executable(test_scanroutines test_scanroutines.cpp)
+target_link_libraries(test_scanroutines PRIVATE ${TEST_LIBS})
+add_dependencies(test_scanroutines NewScanmem_lib)
+
 # 发现并运行测试
 include(GoogleTest)
 gtest_discover_tests(test_sets)
 gtest_discover_tests(test_process_checker)
 gtest_discover_tests(test_endianness)
+gtest_discover_tests(test_scanroutines)
