@@ -347,31 +347,36 @@ enum class Wildcard : uint8_t { FIXED = 0xffU, WILDCARD = 0x00U };
 
 ```cpp
 struct [[gnu::packed]] Value {
-    std::variant<int8_t, uint8_t, int16_t, uint16_t, int32_t, uint32_t, int64_t,
-                 uint64_t, float, double, std::array<uint8_t, sizeof(int64_t)>,
-                 std::array<char, sizeof(int64_t)>> value;
-    MatchFlags flags = MatchFlags::EMPTY;
+    std::vector<uint8_t> bytes;     // Snapshot bytes
+    MatchFlags flags = MatchFlags::EMPTY; // Type/width flag
 
     constexpr static void zero(Value& val);
+
+    std::span<const uint8_t> view() const noexcept;
+    void setBytes(const uint8_t* data, std::size_t len);
+    void setBytes(const std::vector<uint8_t>& val);
+    void setBytesWithFlag(const uint8_t* data, std::size_t len, MatchFlags f);
+    void setBytesWithFlag(const std::vector<uint8_t>& val, MatchFlags f);
+    template <typename T> void setScalar(const T& v);
+    template <typename T> void setScalarWithFlag(const T& v, MatchFlags f);
+    template <typename T> void setScalarTyped(const T& v);
 };
 ```
+
+Strict numeric decoding: the requested type must match `flags` and width must be sufficient.
 
 ### Struct: `Mem64`
 
 ```cpp
 struct [[gnu::packed]] Mem64 {
-    std::variant<int8_t, uint8_t, int16_t, uint16_t, int32_t, uint32_t, int64_t,
-                 uint64_t, float, double, std::array<uint8_t, sizeof(int64_t)>,
-                 std::array<char, sizeof(int64_t)>> mem64Value;
+    std::vector<uint8_t> buffer;    // Current bytes
 
-    template <typename T>
-    T get() const;
-
-    template <typename Visitor>
-    void visit(Visitor&& visitor) const;
-
-    template <typename T>
-    void set(const T& value);
+    template <typename T> T get() const;              // memcpy-based decode
+    std::span<const uint8_t> bytes() const noexcept;  // read-only view
+    void setBytes(const uint8_t* data, std::size_t len);
+    void setBytes(const std::vector<uint8_t>& data);
+    void setString(const std::string& s);
+    template <typename T> void setScalar(const T& v);
 };
 ```
 
@@ -390,6 +395,7 @@ struct [[gnu::packed]] UserValue {
     float float32_value = 0.0F;
     double float64_value = 0.0;
     std::optional<std::vector<uint8_t>> bytearray_value;
+    std::optional<std::vector<uint8_t>> byteMask; // 0xFF=fixed, 0x00=wildcard
     std::optional<Wildcard> wildcard_value;
     std::string string_value;
     MatchFlags flags = MatchFlags::EMPTY;

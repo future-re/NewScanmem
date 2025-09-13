@@ -17,7 +17,6 @@ export module endianness;
 - `<bit>` - Bit operations and endian detection
 - `<type_traits>` - Type traits for template metaprogramming
 - `<concepts>` - C++20 concepts
-- `<variant>` - Variant type support
 - `value` module - Value type definitions
 
 ## Core Features
@@ -59,7 +58,7 @@ Supports integer types of sizes 1, 2, 4, and 8 bytes.
 void fixEndianness(Value& value, bool reverseEndianness) noexcept;
 ```
 
-Automatically handles endianness correction for integral types stored in `Value` variants.
+Performs in-place endianness correction on `Value.bytes` based on `flags` (width 2/4/8).
 
 ### 4. Network Byte Order Conversion
 
@@ -144,7 +143,7 @@ Uses C++20 concepts to ensure type safety and provide clear error messages for u
 
 - `swapBytesIntegral` uses `static_assert` for compile-time type checking
 - `swapBytesInPlace` silently ignores unsupported sizes
-- `fixEndianness` safely handles variant types using `std::visit`
+- `fixEndianness` infers width from `flags` (B16/B32/B64) and swaps `Value.bytes` in place
 
 ## Performance Considerations
 

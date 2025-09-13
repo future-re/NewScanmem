@@ -148,7 +148,7 @@ import value;
 
 // 创建搜索值
 Value searchValue;
-searchValue.value = static_cast<int32_t>(42);
+searchValue.setScalarTyped<int32_t>(42);
 searchValue.flags = MatchFlags::S32B;
 
 // 执行值匹配

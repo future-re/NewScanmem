@@ -359,20 +359,41 @@ enum class [[gnu::packed]] MatchFlags : uint16_t {
 
 ### 结构体: `Value`
 
-#### Value 成员变量
-
 ```cpp
-std::variant<int8_t, uint8_t, int16_t, uint16_t, int32_t, uint32_t, int64_t,
-             uint64_t, float, double, std::array<uint8_t, sizeof(int64_t)>,
-             std::array<char, sizeof(int64_t)>> value;
+struct [[gnu::packed]] Value {
+    std::vector<uint8_t> bytes;      // 历史值字节
+    MatchFlags flags = MatchFlags::EMPTY; // 类型/宽度标志
 
-MatchFlags flags = MatchFlags::EMPTY;
+    // 复位
+    constexpr static void zero(Value& val);
+
+    // 视图与设置
+    std::span<const uint8_t> view() const noexcept;
+    void setBytes(const uint8_t* data, std::size_t len);
+    void setBytes(const std::vector<uint8_t>& val);
+    void setBytesWithFlag(const uint8_t* data, std::size_t len, MatchFlags f);
+    void setBytesWithFlag(const std::vector<uint8_t>& val, MatchFlags f);
+    template <typename T> void setScalar(const T& v);
+    template <typename T> void setScalarWithFlag(const T& v, MatchFlags f);
+    template <typename T> void setScalarTyped(const T& v);
+};
 ```
 
-#### Value 静态方法
+数值严格：旧值解码时需要 `flags` 与类型匹配且字节数足够；字节串/字符串不受此限制。
+
+### 结构体: `Mem64`
 
 ```cpp
-constexpr static void zero(Value& val);
+struct [[gnu::packed]] Mem64 {
+    std::vector<uint8_t> buffer;     // 当前值字节
+
+    template <typename T> T get() const;              // 以 memcpy 解码
+    std::span<const uint8_t> bytes() const noexcept;  // 只读字节视图
+    void setBytes(const uint8_t* data, std::size_t len);
+    void setBytes(const std::vector<uint8_t>& data);
+    void setString(const std::string& s);
+    template <typename T> void setScalar(const T& v);
+};
 ```
 
 ---

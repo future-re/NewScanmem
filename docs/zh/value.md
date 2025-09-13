@@ -12,12 +12,12 @@ export module value;
 
 ## 依赖项
 
-- `<array>` - 固定大小数组容器
-- `<bit>` - 位操作
 - `<cstdint>` - 固定宽度整数类型
+- `<cstring>` - 字节拷贝
 - `<optional>` - 可选类型支持
+- `<span>` - 只读/可写字节视图
 - `<string>` - 字符串操作
-- `<variant>` - 变体类型支持
+- `<type_traits>` - 类型工具
 - `<vector>` - 动态数组容器
 
 ## 核心功能
@@ -62,192 +62,104 @@ enum class [[gnu::packed]] MatchFlags : uint16_t {
 };
 ```
 
-### 2. Value 结构
+### 2. Value 结构（统一为字节存储）
 
-支持多种数据类型的主要值容器。
+Value 作为“历史值（旧值）”容器，底层仅存储连续字节，类型/宽度语义由 `flags` 表示。
 
 ```cpp
 struct [[gnu::packed]] Value {
-    std::variant<int8_t, uint8_t, int16_t, uint16_t, int32_t, uint32_t, int64_t,
-                 uint64_t, float, double, std::array<uint8_t, sizeof(int64_t)>,
-                 std::array<char, sizeof(int64_t)>> value;
+    std::vector<uint8_t> bytes;    // 历史值字节
+    MatchFlags flags = MatchFlags::EMPTY; // 类型/宽度标志（严格数值路径需要）
 
-    MatchFlags flags = MatchFlags::EMPTY;
-
-    // 静态实用方法
+    // 复位为零状态
     constexpr static void zero(Value& val);
+
+    // 获取只读字节视图
+    std::span<const uint8_t> view() const noexcept;
+
+    // 按字节设置（可附带 flag）
+    void setBytes(const uint8_t* data, std::size_t len);
+    void setBytes(const std::vector<uint8_t>& val);
+    void setBytesWithFlag(const uint8_t* data, std::size_t len, MatchFlags f);
+    void setBytesWithFlag(const std::vector<uint8_t>& val, MatchFlags f);
+
+    // 按标量设置（拷贝其内存表示）；Typed 版本自动设置正确 flag
+    template <typename T> void setScalar(const T& v);
+    template <typename T> void setScalarWithFlag(const T& v, MatchFlags f);
+    template <typename T> void setScalarTyped(const T& v);
 };
 ```
 
-#### 支持的数据类型
+要点：
+- 数值比较路径“严格校验”：只有当 `flags` 与期望类型相符且 `bytes.size() >= sizeof(T)` 时，旧值才会被解码参与比较。
+- 字节串/字符串匹配不依赖 `flags`，不受严格策略限制。
 
-| C++ 类型 | MatchFlag | 描述 |
-|----------|-----------|------|
-| `int8_t` | `S8B` | 有符号 8 位整数 |
-| `uint8_t` | `U8B` | 无符号 8 位整数 |
-| `int16_t` | `S16B` | 有符号 16 位整数 |
-| `uint16_t` | `U16B` | 无符号 16 位整数 |
-| `int32_t` | `S32B` | 有符号 32 位整数 |
-| `uint32_t` | `U32B` | 无符号 32 位整数 |
-| `int64_t` | `S64B` | 有符号 64 位整数 |
-| `uint64_t` | `U64B` | 无符号 64 位整数 |
-| `float` | `F32B` | 32 位浮点 |
-| `double` | `F64B` | 64 位浮点 |
-| `std::array<uint8_t, 8>` | - | 原始字节数组 |
-| `std::array<char, 8>` | - | 字符数组 |
+### 3. Mem64 结构（当前值读取缓冲）
 
-#### 静态方法
-
-##### zero(Value& val)
-
-将 Value 对象清零。
-
-**参数：**
-
-- `val`: 要清零的 Value 对象
-
-**效果：** 将 value 字段设置为默认值，flags 设置为 EMPTY
-
-### 3. 内存布局
-
-#### 字节序处理
-
-Value 结构支持不同字节序的内存布局：
+Mem64 表示“当前位置读取到的字节”。
 
 ```cpp
-// 小端序内存布局
-struct LittleEndianLayout {
-    uint8_t bytes[8];
-};
+struct [[gnu::packed]] Mem64 {
+    std::vector<uint8_t> buffer;   // 当前值字节
 
-// 大端序内存布局
-struct BigEndianLayout {
-    uint8_t bytes[8];
+    // 读取/写入
+    template <typename T> T get() const;  // 用 memcpy 解码 T
+    std::span<const uint8_t> bytes() const noexcept; // 只读视图
+    void setBytes(const uint8_t* data, std::size_t len);
+    void setBytes(const std::vector<uint8_t>& data);
+    void setString(const std::string& s);
+    template <typename T> void setScalar(const T& v);
 };
 ```
 
-#### 对齐要求
-
-- 结构体使用 `[[gnu::packed]]` 属性确保紧凑布局
-- 支持跨平台内存对齐
-- 兼容不同架构的内存模型
+端序处理：对于数值类型，通过 `swapIfReverse`（在扫描模块内）或对 `Value` 使用 `fixEndianness` 将旧值与当前值端序对齐。
 
 ## 使用示例
 
-### 基本使用
+### 基本使用（数值严格 + 字节自由）
 
 ```cpp
 import value;
 
-// 创建整数类型的 Value
+// 保存旧值（数值，自动设置正确 flag）
 Value intValue;
-intValue.value = static_cast<int32_t>(42);
-intValue.flags = MatchFlags::S32B;
+intValue.setScalarTyped<int32_t>(42);
 
 // 创建浮点类型的 Value
 Value floatValue;
-floatValue.value = 3.14159f;
-floatValue.flags = MatchFlags::F32B;
+floatValue.setScalarTyped<float>(3.14159f);
 
-// 创建字节数组类型的 Value
+// 保存旧值（原始字节，不设 flag 也可）
 Value byteArrayValue;
-std::array<uint8_t, 8> bytes = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
-byteArrayValue.value = bytes;
+std::vector<uint8_t> bytes = {0x01,0x02,0x03,0x04};
+byteArrayValue.setBytes(bytes);
 ```
 
-### 类型检查
+### 类型/标志检查
 
 ```cpp
-// 检查 Value 的类型
-if (std::holds_alternative<int32_t>(intValue.value)) {
-    std::cout << "这是一个 32 位整数" << std::endl;
-    int32_t val = std::get<int32_t>(intValue.value);
-    std::cout << "值: " << val << std::endl;
-}
-
 // 检查标志
 if (intValue.flags & MatchFlags::INTEGER) {
     std::cout << "这是一个整数类型" << std::endl;
 }
 ```
 
-### 类型转换
-
-```cpp
-// 从一种类型转换为另一种类型
-Value sourceValue;
-sourceValue.value = static_cast<uint16_t>(0x1234);
-sourceValue.flags = MatchFlags::U16B;
-
-// 转换为 32 位整数
-Value targetValue;
-targetValue.value = static_cast<uint32_t>(std::get<uint16_t>(sourceValue.value));
-targetValue.flags = MatchFlags::U32B;
-```
-
 ### 字节数组操作
 
 ```cpp
-// 创建字节数组
-std::array<uint8_t, 8> pattern = {0xDE, 0xAD, 0xBE, 0xEF, 0x00, 0x00, 0x00, 0x00};
 Value patternValue;
-patternValue.value = pattern;
-
-// 访问字节
-auto& bytes = std::get<std::array<uint8_t, 8>>(patternValue.value);
-for (size_t i = 0; i < bytes.size(); ++i) {
-    std::cout << "字节 " << i << ": 0x" << std::hex << (int)bytes[i] << std::endl;
-}
+std::vector<uint8_t> pattern = {0xDE,0xAD,0xBE,0xEF};
+patternValue.setBytes(pattern);
+for (auto b : patternValue.view()) { /* 遍历字节 */ }
 ```
 
 ## 匹配操作
 
-### 精确匹配
+匹配逻辑在 `scanroutines` 模块中实现：
+- 数值：严格按照 `flags` 与类型匹配（解码旧值时要求类型一致）。
+- 字节串/字符串：滑动搜索；可选掩码（0xFF=精确，0x00=通配）；字符串支持 Boost.Regex。
 
-```cpp
-bool exactMatch(const Value& val1, const Value& val2) {
-    // 检查类型兼容性
-    if ((val1.flags & val2.flags) == MatchFlags::EMPTY) {
-        return false;
-    }
-    
-    // 执行类型特定的比较
-    return std::visit([](const auto& v1, const auto& v2) {
-        return v1 == v2;
-    }, val1.value, val2.value);
-}
-```
-
-### 范围匹配
-
-```cpp
-bool rangeMatch(const Value& val, const Value& min, const Value& max) {
-    return std::visit([](const auto& v, const auto& min_val, const auto& max_val) {
-        return v >= min_val && v <= max_val;
-    }, val.value, min.value, max.value);
-}
-```
-
-### 通配符匹配
-
-```cpp
-bool wildcardMatch(const Value& pattern, const Value& target) {
-    // 检查是否为字节数组模式
-    if (!std::holds_alternative<std::array<uint8_t, 8>>(pattern.value)) {
-        return false;
-    }
-    
-    auto& pattern_bytes = std::get<std::array<uint8_t, 8>>(pattern.value);
-    auto& target_bytes = std::get<std::array<uint8_t, 8>>(target.value);
-    
-    for (size_t i = 0; i < pattern_bytes.size(); ++i) {
-        if (pattern_bytes[i] != 0x00 && pattern_bytes[i] != target_bytes[i]) {
-            return false;
-        }
-    }
-    return true;
-}
-```
+更多匹配示例（范围、掩码、正则）请参考 `scanroutines` 模块文档与实现。
 
 ## 性能优化
 
@@ -273,31 +185,11 @@ bool wildcardMatch(const Value& pattern, const Value& target) {
 
 ### 类型错误
 
-```cpp
-// 安全的类型访问
-std::optional<int32_t> getInt32Value(const Value& val) {
-    if (std::holds_alternative<int32_t>(val.value)) {
-        return std::get<int32_t>(val.value);
-    }
-    return std::nullopt;
-}
-```
+数值路径下，旧值解码时要求 `flags` 与期望类型一致且长度足够，否则上层应当放弃解码。
 
 ### 范围错误
 
-```cpp
-// 检查值是否在有效范围内
-bool isValidRange(const Value& val, MatchFlags expectedFlags) {
-    if ((val.flags & expectedFlags) == MatchFlags::EMPTY) {
-        return false;
-    }
-    
-    return std::visit([](const auto& v) {
-        // 执行范围检查
-        return true; // 简化示例
-    }, val.value);
-}
-```
+上层应根据 `flags` 推断宽度并进行边界检查，`Value` 本身仅提供字节视图与标志，不直接进行范围判断。
 
 ## 扩展性
 

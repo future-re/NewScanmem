@@ -17,7 +17,6 @@ export module endianness;
 - `<bit>` - 位操作和字节序检测
 - `<type_traits>` - 模板元编程的类型特征
 - `<concepts>` - C++20概念
-- `<variant>` - 变体类型支持
 - `value` 模块 - 值类型定义
 
 ## 核心功能
@@ -59,7 +58,7 @@ constexpr T swapBytesIntegral(T value) noexcept;
 void fixEndianness(Value& value, bool reverseEndianness) noexcept;
 ```
 
-自动处理存储在 `Value` 变体中的整数类型的字节序校正。
+对 `Value` 的 `bytes` 进行就地字节序校正（根据 `flags` 推断宽度 2/4/8）。
 
 ### 4. 网络字节序转换函数
 
@@ -144,7 +143,7 @@ concept SwappableIntegral = std::integral<T> &&
 
 - `swapBytesIntegral` 使用 `static_assert` 进行编译时类型检查
 - `swapBytesInPlace` 静默忽略不支持的尺寸
-- `fixEndianness` 使用 `std::visit` 安全处理变体类型
+- `fixEndianness` 按 `flags` 推断宽度（B16/B32/B64）对 `Value.bytes` 原地交换
 
 ## 性能考虑
 

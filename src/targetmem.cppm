@@ -20,6 +20,13 @@ import show_message;
 
 // Interface: exported types and functions
 export {
+    struct RangeMark {
+        // 以 swath.data 为基准的起始索引与长度
+        size_t startIndex;
+        size_t length;
+        MatchFlags flags;
+    };
+
     struct OldValueAndMatchInfo {
         uint8_t oldValue;
         MatchFlags matchInfo;
@@ -29,6 +36,8 @@ export {
        public:
         void* firstByteInChild = nullptr;
         std::vector<OldValueAndMatchInfo> data;
+        // 记录按区间的标记（辅助结构，便于 UI 或后处理）
+        std::vector<RangeMark> rangeMarks;
 
         MatchesAndOldValuesSwath() = default;
 
@@ -51,6 +60,33 @@ export {
                 firstByteInChild = addr;
             }
             data.push_back({byte, matchFlags});
+        }
+
+        // 以索引区间 [startIndex, startIndex+length) 方式批量标记
+        void markRangeByIndex(size_t startIndex, size_t length,
+                              MatchFlags flags) {
+            if (length == 0 || startIndex >= data.size()) {
+                return;
+            }
+            size_t endIndex = std::min(startIndex + length, data.size());
+            for (size_t i = startIndex; i < endIndex; ++i) {
+                data[i].matchInfo = data[i].matchInfo | flags;
+            }
+            rangeMarks.push_back({startIndex, endIndex - startIndex, flags});
+        }
+
+        // 以目标地址区间 [addr, addr+length) 方式批量标记
+        void markRangeByAddress(void* addr, size_t length, MatchFlags flags) {
+            if ((firstByteInChild == nullptr) || length == 0) {
+                return;
+            }
+            const auto* base = static_cast<const char*>(firstByteInChild);
+            const auto* curr = static_cast<const char*>(addr);
+            if (curr < base) {
+                return;
+            }
+            auto offset = static_cast<size_t>(curr - base);
+            markRangeByIndex(offset, length, flags);
         }
 
         /*
@@ -185,6 +221,17 @@ export {
                         return false;
                     });
                 swath.data.erase(iter.begin(), swath.data.end());
+
+                // 同步清理 rangeMarks 中完全落在删除区间内的标记（保守做法）
+                auto riter = std::ranges::remove_if(
+                    swath.rangeMarks, [&](const RangeMark& mark) {
+                        void* rstart =
+                            static_cast<char*>(swath.firstByteInChild) +
+                            mark.startIndex;
+                        void* rend = static_cast<char*>(rstart) + mark.length;
+                        return (rstart >= start && rend <= end);
+                    });
+                swath.rangeMarks.erase(riter.begin(), swath.rangeMarks.end());
             }
         }
     };

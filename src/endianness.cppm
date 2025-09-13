@@ -108,17 +108,26 @@ export {
         }
     }
 
-    // Fix endianness for Value type based on flags
+    // Fix endianness for Value type based on flags（就地交换字节）
     void fixEndianness(Value& value, bool reverseEndianness) noexcept {
         if (!reverseEndianness) {
             return;
         }
+        std::size_t width = 0;
         if ((value.flags & MatchFlags::B64) != MatchFlags::EMPTY) {
-            value.value = swapBytesIntegral(std::get<uint64_t>(value.value));
+            width = 8;
         } else if ((value.flags & MatchFlags::B32) != MatchFlags::EMPTY) {
-            value.value = swapBytesIntegral(std::get<uint32_t>(value.value));
+            width = 4;
         } else if ((value.flags & MatchFlags::B16) != MatchFlags::EMPTY) {
-            value.value = swapBytesIntegral(std::get<uint16_t>(value.value));
+            width = 2;
+        } else {
+            return;  // 未知宽度或无需交换
+        }
+        if (value.bytes.size() < width) {
+            return;
+        }
+        for (std::size_t i = 0, j = width - 1; i < j; ++i, --j) {
+            std::swap(value.bytes[i], value.bytes[j]);
         }
     }
 

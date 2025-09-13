@@ -1,5 +1,6 @@
 module;
 
+#include <algorithm>
 #include <array>
 #include <bit>
 #include <cmath>
@@ -8,7 +9,9 @@ module;
 #include <cstring>
 #include <functional>
 #include <optional>
+#include <boost/regex.hpp>
 #include <string>
+#include <span>
 #include <type_traits>
 #include <variant>
 #include <vector>
@@ -16,6 +19,70 @@ module;
 export module scanroutines;
 
 import value;
+
+template <typename T>
+struct TypeTraits;
+
+template <>
+struct TypeTraits<int8_t> {
+    static constexpr auto FLAG = MatchFlags::S8B;
+    static constexpr auto LOW = &UserValue::int8Value;
+    static constexpr auto HIGH = &UserValue::int8RangeHighValue;
+};
+template <>
+struct TypeTraits<uint8_t> {
+    static constexpr auto FLAG = MatchFlags::U8B;
+    static constexpr auto LOW = &UserValue::uint8Value;
+    static constexpr auto HIGH = &UserValue::uint8RangeHighValue;
+};
+template <>
+struct TypeTraits<int16_t> {
+    static constexpr auto FLAG = MatchFlags::S16B;
+    static constexpr auto LOW = &UserValue::int16Value;
+    static constexpr auto HIGH = &UserValue::int16RangeHighValue;
+};
+template <>
+struct TypeTraits<uint16_t> {
+    static constexpr auto FLAG = MatchFlags::U16B;
+    static constexpr auto LOW = &UserValue::uint16Value;
+    static constexpr auto HIGH = &UserValue::uint16RangeHighValue;
+};
+template <>
+struct TypeTraits<int32_t> {
+    static constexpr auto FLAG = MatchFlags::S32B;
+    static constexpr auto LOW = &UserValue::int32Value;
+    static constexpr auto HIGH = &UserValue::int32RangeHighValue;
+};
+template <>
+struct TypeTraits<uint32_t> {
+    static constexpr auto FLAG = MatchFlags::U32B;
+    static constexpr auto LOW = &UserValue::uint32Value;
+    static constexpr auto HIGH = &UserValue::uint32RangeHighValue;
+};
+template <>
+struct TypeTraits<int64_t> {
+    static constexpr auto FLAG = MatchFlags::S64B;
+    static constexpr auto LOW = &UserValue::int64Value;
+    static constexpr auto HIGH = &UserValue::int64RangeHighValue;
+};
+template <>
+struct TypeTraits<uint64_t> {
+    static constexpr auto FLAG = MatchFlags::U64B;
+    static constexpr auto LOW = &UserValue::uint64Value;
+    static constexpr auto HIGH = &UserValue::uint64RangeHighValue;
+};
+template <>
+struct TypeTraits<float> {
+    static constexpr auto FLAG = MatchFlags::F32B;
+    static constexpr auto LOW = &UserValue::float32Value;
+    static constexpr auto HIGH = &UserValue::float32RangeHighValue;
+};
+template <>
+struct TypeTraits<double> {
+    static constexpr auto FLAG = MatchFlags::F64B;
+    static constexpr auto LOW = &UserValue::float64Value;
+    static constexpr auto HIGH = &UserValue::float64RangeHighValue;
+};
 
 /**
  * 扫描数据类型枚举
@@ -58,6 +125,7 @@ export enum class ScanMatchType {
     MATCHGREATERTHAN, /* 大于（与 userValue 比较，>） */
     MATCHLESSTHAN,    /* 小于（与 userValue 比较，<） */
     MATCHRANGE,       /* 范围匹配（未在当前实现中提供） */
+    MATCHREGEX,       /* 字符串正则匹配（STRING 专用） */
     /* 以下：与快照比较 */
     MATCHUPDATE, /* 当前位置 == 先前快照（当前实现与 MATCHNOTCHANGED 等价） */
     MATCHNOTCHANGED,  /* 当前位置 == 先前快照（未变化） */
@@ -106,42 +174,40 @@ constexpr auto swapIfReverse(T value, bool reverse) noexcept -> T {
     }
 }
 
+// 浮点比较（带容差）
+template <typename F>
+constexpr auto relTol() -> F {
+    if constexpr (std::is_same_v<F, float>) {
+        return static_cast<F>(1E-5F);
+    } else {
+        return static_cast<F>(1E-12);
+    }
+}
+template <typename F>
+constexpr auto absTol() -> F {
+    if constexpr (std::is_same_v<F, float>) {
+        return static_cast<F>(1E-6F);
+    } else {
+        return static_cast<F>(1E-12);
+    }
+}
+
+template <typename F>
+[[nodiscard]] inline auto almostEqual(F firstValue, F secondValue) noexcept
+    -> bool {
+    using std::fabs;
+    const F DIFFERENCE_VALUE = fabs(firstValue - secondValue);
+    const F SCALE_VALUE =
+        std::max(F(1), std::max(fabs(firstValue), fabs(secondValue)));
+    return DIFFERENCE_VALUE <= std::max(absTol<F>(), relTol<F>() * SCALE_VALUE);
+}
+
 // Helpers: map C++ type -> MatchFlags flag for the size/type
 //
 // 说明：根据模板类型 T 返回对应的 MatchFlags，用于在匹配时记录匹配的类型/宽度。
 template <typename T>
-constexpr auto flagForType() noexcept -> MatchFlags {
-    if constexpr (std::is_same_v<T, int8_t>) {
-        return MatchFlags::S8B;
-    }
-    if constexpr (std::is_same_v<T, uint8_t>) {
-        return MatchFlags::U8B;
-    }
-    if constexpr (std::is_same_v<T, int16_t>) {
-        return MatchFlags::S16B;
-    }
-    if constexpr (std::is_same_v<T, uint16_t>) {
-        return MatchFlags::U16B;
-    }
-    if constexpr (std::is_same_v<T, int32_t>) {
-        return MatchFlags::S32B;
-    }
-    if constexpr (std::is_same_v<T, uint32_t>) {
-        return MatchFlags::U32B;
-    }
-    if constexpr (std::is_same_v<T, int64_t>) {
-        return MatchFlags::S64B;
-    }
-    if constexpr (std::is_same_v<T, uint64_t>) {
-        return MatchFlags::U64B;
-    }
-    if constexpr (std::is_same_v<T, float>) {
-        return MatchFlags::F32B;
-    }
-    if constexpr (std::is_same_v<T, double>) {
-        return MatchFlags::F64B;
-    }
-    return MatchFlags::EMPTY;
+[[nodiscard]] constexpr auto flagForType() noexcept -> MatchFlags {
+    return TypeTraits<T>::FLAG;
 }
 
 // Extract user value for given type T from UserValue
@@ -151,79 +217,16 @@ constexpr auto flagForType() noexcept -> MatchFlags {
  * 注意：调用方应确保 userValue 已经存在且与 matchType 要求一致。
  */
 template <typename T>
-inline auto userValueAs(const UserValue& userVal) -> T {
-    if constexpr (std::is_same_v<T, int8_t>) {
-        return userVal.int8Value;
-    }
-    if constexpr (std::is_same_v<T, uint8_t>) {
-        return userVal.uint8Value;
-    }
-    if constexpr (std::is_same_v<T, int16_t>) {
-        return userVal.int16Value;
-    }
-    if constexpr (std::is_same_v<T, uint16_t>) {
-        return userVal.uint16Value;
-    }
-    if constexpr (std::is_same_v<T, int32_t>) {
-        return userVal.int32Value;
-    }
-    if constexpr (std::is_same_v<T, uint32_t>) {
-        return userVal.uint32Value;
-    }
-    if constexpr (std::is_same_v<T, int64_t>) {
-        return userVal.int64Value;
-    }
-    if constexpr (std::is_same_v<T, uint64_t>) {
-        return userVal.uint64Value;
-    }
-    if constexpr (std::is_same_v<T, float>) {
-        return userVal.float32Value;
-    }
-    if constexpr (std::is_same_v<T, double>) {
-        return userVal.float64Value;
-    }
-    // 应该不会到达这里，但为了编译安全
-    static_assert(std::is_arithmetic_v<T>, "Unsupported type for userValueAs");
-    return T{};
+[[nodiscard]] inline auto userValueAs(const UserValue& userValue) noexcept
+    -> T {
+    return userValue.*(TypeTraits<T>::LOW);
 }
 
 // 获取上界（用于 MATCHRANGE）
 template <typename T>
-inline auto userValueHighAs(const UserValue& userVal) -> T {
-    if constexpr (std::is_same_v<T, int8_t>) {
-        return userVal.int8RangeHighValue;
-    }
-    if constexpr (std::is_same_v<T, uint8_t>) {
-        return userVal.uint8RangeHighValue;
-    }
-    if constexpr (std::is_same_v<T, int16_t>) {
-        return userVal.int16RangeHighValue;
-    }
-    if constexpr (std::is_same_v<T, uint16_t>) {
-        return userVal.uint16RangeHighValue;
-    }
-    if constexpr (std::is_same_v<T, int32_t>) {
-        return userVal.int32RangeHighValue;
-    }
-    if constexpr (std::is_same_v<T, uint32_t>) {
-        return userVal.uint32RangeHighValue;
-    }
-    if constexpr (std::is_same_v<T, int64_t>) {
-        return userVal.int64RangeHighValue;
-    }
-    if constexpr (std::is_same_v<T, uint64_t>) {
-        return userVal.uint64RangeHighValue;
-    }
-    if constexpr (std::is_same_v<T, float>) {
-        return userVal.float32RangeHighValue;
-    }
-    if constexpr (std::is_same_v<T, double>) {
-        return userVal.float64RangeHighValue;
-    }
-    // 应该不会到达这里，但为了编译安全
-    static_assert(std::is_arithmetic_v<T>,
-                  "Unsupported type for userValueHighAs");
-    return T{};
+[[nodiscard]] inline auto userValueHighAs(const UserValue& userValue) noexcept
+    -> T {
+    return userValue.*(TypeTraits<T>::HIGH);
 }
 
 // Try to get old value of type T from Value*
@@ -233,14 +236,22 @@ inline auto userValueHighAs(const UserValue& userVal) -> T {
  * 返回：存在则返回 std::optional 包裹的值，否者返回 std::nullopt。
  */
 template <typename T>
-inline auto oldValueAs(const Value* valuePtr) -> std::optional<T> {
+[[nodiscard]] inline auto oldValueAs(const Value* valuePtr) noexcept
+    -> std::optional<T> {
     if (!valuePtr) {
         return std::nullopt;
     }
-    if (auto* ptr = std::get_if<T>(&valuePtr->value)) {
-        return *ptr;
+    // 严格校验：flags 必须与期望类型匹配
+    const auto required = flagForType<T>();
+    if ((valuePtr->flags & required) == MatchFlags::EMPTY) {
+        return std::nullopt;
     }
-    return std::nullopt;
+    if (valuePtr->view().size() < sizeof(T)) {
+        return std::nullopt;
+    }
+    T out{};
+    std::memcpy(&out, valuePtr->view().data(), sizeof(T));
+    return out;
 }
 
 // 统一的数值匹配核心：依据 matchType 对单个内存值做判定
@@ -248,7 +259,7 @@ inline auto oldValueAs(const Value* valuePtr) -> std::optional<T> {
 template <typename T>
 inline auto numericMatchCore(ScanMatchType matchType, T memv,
                              const Value* oldValue, const UserValue* userValue,
-                             MatchFlags* saveFlags) -> unsigned int {
+                             MatchFlags* saveFlags) noexcept -> unsigned int {
     // 匹配类型是否需要 userValue
     const bool NEEDS_USER = (matchType == ScanMatchType::MATCHEQUALTO ||
                              matchType == ScanMatchType::MATCHNOTEQUALTO ||
@@ -265,61 +276,99 @@ inline auto numericMatchCore(ScanMatchType matchType, T memv,
     auto getUser = [&](void) -> T { return userValueAs<T>(*userValue); };
 
     bool isMatched = false;
+    auto isEqual = [&](T firstValue, T secondValue) {
+        if constexpr (std::is_floating_point_v<T>) {
+            return almostEqual<T>(firstValue, secondValue);
+        } else {
+            return firstValue == secondValue;
+        }
+    };
+    auto isNotEqual = [&](T firstValue, T secondValue) {
+        return !isEqual(firstValue, secondValue);
+    };
+    auto isGreaterThan = [&](T firstValue, T secondValue) {
+        if constexpr (std::is_floating_point_v<T>) {
+            return firstValue > secondValue &&
+                   !isEqual(firstValue, secondValue);
+        } else {
+            return firstValue > secondValue;
+        }
+    };
+    auto isLessThan = [&](T firstValue, T secondValue) {
+        if constexpr (std::is_floating_point_v<T>) {
+            return firstValue < secondValue &&
+                   !isEqual(firstValue, secondValue);
+        } else {
+            return firstValue < secondValue;
+        }
+    };
     switch (matchType) {
         case ScanMatchType::MATCHANY:
-            isMatched = true;  // snapshot 收集
+            isMatched = true;
             break;
         case ScanMatchType::MATCHEQUALTO:
-            isMatched = (memv == getUser());
+            isMatched = isEqual(memv, getUser());
             break;
         case ScanMatchType::MATCHNOTEQUALTO:
-            isMatched = (memv != getUser());
+            isMatched = isNotEqual(memv, getUser());
             break;
         case ScanMatchType::MATCHGREATERTHAN:
-            isMatched = (memv > getUser());
+            isMatched = isGreaterThan(memv, getUser());
             break;
         case ScanMatchType::MATCHLESSTHAN:
-            isMatched = (memv < getUser());
+            isMatched = isLessThan(memv, getUser());
             break;
         case ScanMatchType::MATCHUPDATE:  // 与 NOTCHANGED 归并
         case ScanMatchType::MATCHNOTCHANGED:
             if (oldOpt) {
-                isMatched = (memv == *oldOpt);
+                isMatched = isEqual(memv, *oldOpt);
             }
             break;
         case ScanMatchType::MATCHCHANGED:
             if (oldOpt) {
-                isMatched = (memv != *oldOpt);
+                isMatched = isNotEqual(memv, *oldOpt);
             }
             break;
         case ScanMatchType::MATCHINCREASED:
             if (oldOpt) {
-                isMatched = (memv > *oldOpt);
+                isMatched = isGreaterThan(memv, *oldOpt);
             }
             break;
         case ScanMatchType::MATCHDECREASED:
             if (oldOpt) {
-                isMatched = (memv < *oldOpt);
+                isMatched = isLessThan(memv, *oldOpt);
             }
             break;
         case ScanMatchType::MATCHINCREASEDBY:
             if (oldOpt) {
-                isMatched = (memv - *oldOpt == getUser());
+                if constexpr (std::is_floating_point_v<T>) {
+                    isMatched = almostEqual<T>(memv - *oldOpt, getUser());
+                } else {
+                    isMatched = (memv - *oldOpt == getUser());
+                }
             }
             break;
         case ScanMatchType::MATCHDECREASEDBY:
             if (oldOpt) {
-                isMatched = (*oldOpt - memv == getUser());
+                if constexpr (std::is_floating_point_v<T>) {
+                    isMatched = almostEqual<T>(*oldOpt - memv, getUser());
+                } else {
+                    isMatched = (*oldOpt - memv == getUser());
+                }
             }
             break;
         case ScanMatchType::MATCHRANGE: {
             if (userValue) {
                 T low = userValueAs<T>(*userValue);
                 T high = userValueHighAs<T>(*userValue);
-                if (low <= high) {
-                    isMatched = (memv >= low && memv <= high);
-                } else {  // 允许调用方传反，自动纠正
-                    isMatched = (memv >= high && memv <= low);
+                if constexpr (std::is_floating_point_v<T>) {
+                    const T ABS_TOLERANCE = absTol<T>();
+                    auto [lowBound, highBound] = std::minmax(low, high);
+                    isMatched = (memv >= lowBound - ABS_TOLERANCE &&
+                                 memv <= highBound + ABS_TOLERANCE);
+                } else {
+                    auto [lowBound, highBound] = std::minmax(low, high);
+                    isMatched = (memv >= lowBound && memv <= highBound);
                 }
             }
             break;
@@ -337,10 +386,10 @@ inline auto numericMatchCore(ScanMatchType matchType, T memv,
 
 // 数值类型扫描例程工厂
 template <typename T>
-inline auto makeNumericRoutine(ScanMatchType matchType, bool reverseEndianess)
+inline auto makeNumericRoutine(ScanMatchType matchType, bool reverseEndianness)
     -> scanRoutine {
     return
-        [matchType, reverseEndianess](
+        [matchType, reverseEndianness](
             const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
             const UserValue* userValue, MatchFlags* saveFlags) -> unsigned int {
             if (memLength < sizeof(T)) {
@@ -349,19 +398,114 @@ inline auto makeNumericRoutine(ScanMatchType matchType, bool reverseEndianess)
             T memv;
             try {
                 memv = memoryPtr->get<T>();
-            } catch (...) {
+            } catch (const std::bad_variant_access&) {
                 return 0;
             }
-            memv = swapIfReverse<T>(memv, reverseEndianess);
+            memv = swapIfReverse<T>(memv, reverseEndianness);
             *saveFlags = MatchFlags::EMPTY;
             return numericMatchCore<T>(matchType, memv, oldValue, userValue,
                                        saveFlags);
         };
 }
 
-// // 字节数组 / 字符串 的匹配器工厂
-// // 注意：当前实现对任意长度的支持受限（使用 Mem64 的固定数组变体），
-// // 应在将来改为从目标内存读取任意长度缓冲区再比较。
+// 统一的字节序列比较（字符串/字节数组皆可经过视图转换后复用）
+// 简单滑窗搜索版本：在当前可读范围内查找子序列
+inline auto compareBytes(const Mem64* memoryPtr, size_t memLength,
+                         std::span<const uint8_t> needle,
+                         MatchFlags* saveFlags) -> unsigned int {
+    if (needle.empty()) {
+        return 0;
+    }
+    auto hayAll = memoryPtr->bytes();
+    const size_t limit = std::min(hayAll.size(), memLength);
+    if (limit < needle.size()) {
+        return 0;
+    }
+    auto hay = std::span<const uint8_t>(hayAll.data(), limit);
+    auto it = std::search(hay.begin(), hay.end(), needle.begin(), needle.end());
+    if (it != hay.end()) {
+        *saveFlags = MatchFlags::B8;
+        return static_cast<unsigned int>(needle.size());
+    }
+    return 0;
+}
+
+// 带掩码的滑窗比较：((hay ^ needle) & mask) == 0 即视为匹配
+inline auto compareBytesMasked(const Mem64* memoryPtr, size_t memLength,
+                               std::span<const uint8_t> needle,
+                               std::span<const uint8_t> mask,
+                               MatchFlags* saveFlags) -> unsigned int {
+    if (needle.empty() || mask.size() != needle.size()) {
+        return 0;
+    }
+    auto hayAll = memoryPtr->bytes();
+    const size_t limit = std::min(hayAll.size(), memLength);
+    if (limit < needle.size()) {
+        return 0;
+    }
+    auto hay = std::span<const uint8_t>(hayAll.data(), limit);
+    const size_t n = needle.size();
+    for (size_t i = 0; i + n <= hay.size(); ++i) {
+        bool ok = true;
+        for (size_t j = 0; j < n; ++j) {
+            if (((hay[i + j] ^ needle[j]) & mask[j]) != 0) {
+                ok = false;
+                break;
+            }
+        }
+        if (ok) {
+            *saveFlags = MatchFlags::B8;
+            return static_cast<unsigned int>(n);
+        }
+    }
+    return 0;
+}
+
+// 辅助：导出可获取偏移量的查找结果，便于在 targetmem 中做范围标记
+export struct ByteMatch {
+    size_t offset;
+    size_t length;
+};
+
+export inline auto findBytePattern(const Mem64* memoryPtr, size_t memLength,
+                                   std::span<const uint8_t> needle)
+    -> std::optional<ByteMatch> {
+    if (needle.empty()) return std::nullopt;
+    auto hayAll = memoryPtr->bytes();
+    const size_t limit = std::min(hayAll.size(), memLength);
+    if (limit < needle.size()) return std::nullopt;
+    auto hay = std::span<const uint8_t>(hayAll.data(), limit);
+    auto it = std::search(hay.begin(), hay.end(), needle.begin(), needle.end());
+    if (it == hay.end()) return std::nullopt;
+    size_t off = static_cast<size_t>(std::distance(hay.begin(), it));
+    return ByteMatch{off, needle.size()};
+}
+
+// 带掩码的查找版本
+export inline auto findBytePatternMasked(const Mem64* memoryPtr,
+                                         size_t memLength,
+                                         std::span<const uint8_t> needle,
+                                         std::span<const uint8_t> mask)
+    -> std::optional<ByteMatch> {
+    if (needle.empty() || mask.size() != needle.size()) return std::nullopt;
+    auto hayAll = memoryPtr->bytes();
+    const size_t limit = std::min(hayAll.size(), memLength);
+    if (limit < needle.size()) return std::nullopt;
+    auto hay = std::span<const uint8_t>(hayAll.data(), limit);
+    const size_t n = needle.size();
+    for (size_t i = 0; i + n <= hay.size(); ++i) {
+        bool ok = true;
+        for (size_t j = 0; j < n; ++j) {
+            if (((hay[i + j] ^ needle[j]) & mask[j]) != 0) {
+                ok = false;
+                break;
+            }
+        }
+        if (ok) return ByteMatch{i, n};
+    }
+    return std::nullopt;
+}
+
 inline auto makeBytearrayRoutine(ScanMatchType matchType) -> scanRoutine {
     return [matchType](const Mem64* memoryPtr, size_t memLength,
                        const Value* /*oldValue*/, const UserValue* userValue,
@@ -373,27 +517,15 @@ inline auto makeBytearrayRoutine(ScanMatchType matchType) -> scanRoutine {
         if (!userValue || !userValue->bytearrayValue) {
             return 0;
         }
-        const auto& byteArray = *userValue->bytearrayValue;
-        if (matchType == ScanMatchType::MATCHEQUALTO) {
-            if (byteArray.size() != memLength) {
-                return 0;
-            }
-            if (memLength > sizeof(int64_t)) {
-                return 0;
-            }  // 受限实现
-            try {
-                auto memArr =
-                    memoryPtr->get<std::array<uint8_t, sizeof(int64_t)>>();
-                if (::memcmp(memArr.data(), byteArray.data(), memLength) != 0) {
-                    return 0;
-                }
-                *saveFlags = MatchFlags::B8;  // 使用字节宽度标志
-                return static_cast<unsigned int>(memLength);
-            } catch (...) {
-                return 0;
-            }
+        const auto& v = *userValue->bytearrayValue;
+        auto needle = std::span<const uint8_t>(v.data(), v.size());
+        if (userValue->byteMask && userValue->byteMask->size() == v.size()) {
+            auto mask = std::span<const uint8_t>(userValue->byteMask->data(),
+                                                 userValue->byteMask->size());
+            return compareBytesMasked(memoryPtr, memLength, needle, mask,
+                                      saveFlags);
         }
-        return 0;
+        return compareBytes(memoryPtr, memLength, needle, saveFlags);
     };
 }
 
@@ -408,152 +540,155 @@ inline auto makeStringRoutine(ScanMatchType matchType) -> scanRoutine {
         if (!userValue) {
             return 0;
         }
-        const auto& str = userValue->stringValue;
-        if (matchType == ScanMatchType::MATCHEQUALTO) {
-            if (str.size() != memLength) {
+        if (matchType == ScanMatchType::MATCHREGEX) {
+            auto hayAll = memoryPtr->bytes();
+            const size_t limit = std::min(hayAll.size(), memLength);
+            std::string hay(reinterpret_cast<const char*>(hayAll.data()), limit);
+            try {
+                const boost::regex re(userValue->stringValue,
+                                      boost::regex::perl);
+                boost::smatch m;
+                if (boost::regex_search(hay, m, re)) {
+                    *saveFlags = MatchFlags::B8;
+                    return static_cast<unsigned int>(m.length());
+                }
+            } catch (const boost::regex_error&) {
                 return 0;
             }
-            if (memLength > sizeof(int64_t)) {
-                return 0;
-            }  // 受限实现
+            return 0;
+        } else {
+            const auto& s = userValue->stringValue;
+            auto needle = std::span<const uint8_t>(
+                reinterpret_cast<const uint8_t*>(s.data()), s.size());
+            if (userValue->byteMask && userValue->byteMask->size() == s.size()) {
+                auto mask = std::span<const uint8_t>(
+                    userValue->byteMask->data(), userValue->byteMask->size());
+                return compareBytesMasked(memoryPtr, memLength, needle, mask,
+                                          saveFlags);
+            }
+            return compareBytes(memoryPtr, memLength, needle, saveFlags);
+        }
+    };
+}
+
+// 正则匹配获取偏移与长度（STRING 专用）
+export inline auto findRegexPattern(const Mem64* memoryPtr, size_t memLength,
+                                    const std::string& pattern)
+    -> std::optional<ByteMatch> {
+    auto hayAll = memoryPtr->bytes();
+    const size_t limit = std::min(hayAll.size(), memLength);
+    std::string hay(reinterpret_cast<const char*>(hayAll.data()), limit);
+    try {
+        const boost::regex re(pattern, boost::regex::perl);
+        boost::smatch m;
+        if (boost::regex_search(hay, m, re)) {
+            return ByteMatch{static_cast<size_t>(m.position()),
+                             static_cast<size_t>(m.length())};
+        }
+    } catch (const boost::regex_error&) {
+        return std::nullopt;
+    }
+    return std::nullopt;
+}
+
+// 读取当前值并保存为旧值（统一端序与 flags）
+template <typename T>
+export inline void captureOldValue(const Mem64* memoryPtr,
+                                   bool reverseEndianness, Value& out) {
+    if (!memoryPtr) {
+        Value::zero(out);
+        return;
+    }
+    try {
+        T v = memoryPtr->get<T>();
+        v = swapIfReverse<T>(v, reverseEndianness);
+        out.setScalarTyped<T>(v);
+    } catch (...) {
+        Value::zero(out);
+    }
+}
+
+// ANY* 聚合例程：基于字节读取，尝试不同宽度/类型
+inline auto makeAnyIntegerRoutine(ScanMatchType matchType,
+                                  bool reverseEndianness) -> scanRoutine {
+    return [matchType, reverseEndianness](
+               const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
+               const UserValue* userValue, MatchFlags* saveFlags) -> unsigned {
+        *saveFlags = MatchFlags::EMPTY;
+        auto try_one = [&](auto tag) -> unsigned {
+            using T = decltype(tag);
+            if (memLength < sizeof(T)) return 0;
+            T memv{};
             try {
-                auto memArr =
-                    memoryPtr->get<std::array<char, sizeof(int64_t)>>();
-                if (::memcmp(memArr.data(), str.data(), memLength) != 0) {
-                    return 0;
-                }
-                *saveFlags = MatchFlags::B8;
-                return static_cast<unsigned int>(memLength);
+                memv = memoryPtr->get<T>();
             } catch (...) {
                 return 0;
             }
-        }
+            memv = swapIfReverse<T>(memv, reverseEndianness);
+            return numericMatchCore<T>(matchType, memv, oldValue, userValue,
+                                       saveFlags);
+        };
+        // 依次尝试常见整型宽度（无符号/有符号）
+        if (auto r = try_one(uint64_t{})) return r;
+        if (auto r = try_one(int64_t{})) return r;
+        if (auto r = try_one(uint32_t{})) return r;
+        if (auto r = try_one(int32_t{})) return r;
+        if (auto r = try_one(uint16_t{})) return r;
+        if (auto r = try_one(int16_t{})) return r;
+        if (auto r = try_one(uint8_t{})) return r;
+        if (auto r = try_one(int8_t{})) return r;
         return 0;
     };
 }
 
-// ANY* 聚合例程：逐类型尝试，首个匹配即返回
-// 注意：当前实现基于 Mem64::get<T>()
-// 的异常路径尝试不同类型，效率一般，后续可通过 统一原始字节缓存避免多次 variant
-// 访问失败抛异常。
-template <typename... Ts>
-struct TypeList {};
-
-// 尝试单一类型匹配（辅助）
-template <typename T>
-inline unsigned int tryOneType(ScanMatchType matchType, bool reverseEndianness,
-                               const Mem64* memoryPtr, size_t memLength,
-                               const Value* oldValue,
-                               const UserValue* userValue,
-                               MatchFlags* saveFlags) {
-    if (memLength < sizeof(T)) {
-        return 0;
-    }
-    T memv;
-    try {
-        memv = memoryPtr->get<T>();
-    } catch (...) {
-        return 0;  // variant 当前不含该类型
-    }
-    memv = swapIfReverse<T>(memv, reverseEndianness);
-    return numericMatchCore<T>(matchType, memv, oldValue, userValue, saveFlags);
-}
-
-// 递归展开 TypeList
-template <typename... Ts>
-inline unsigned int tryTypes(TypeList<Ts...> /*list*/, ScanMatchType matchType,
-                             bool reverseEndianess, const Mem64* memoryPtr,
-                             size_t memLength, const Value* oldValue,
-                             const UserValue* userValue,
-                             MatchFlags* saveFlags) {
-    (void)matchType;
-    (void)reverseEndianess;
-    (void)memoryPtr;
-    (void)memLength;
-    (void)oldValue;
-    (void)userValue;
-    (void)saveFlags;
-    return 0;  // 由递归重载处理非空类型列表
-}
-
-template <typename T, typename... Rest>
-inline unsigned int tryTypes(TypeList<T, Rest...> /*list*/,
-                             ScanMatchType matchType, bool reverseEndianess,
-                             const Mem64* memoryPtr, size_t memLength,
-                             const Value* oldValue, const UserValue* userValue,
-                             MatchFlags* saveFlags) {
-    if (auto matched =
-            tryOneType<T>(matchType, reverseEndianess, memoryPtr, memLength,
-                          oldValue, userValue, saveFlags)) {
-        return matched;
-    }
-    return tryTypes(TypeList<Rest...>{}, matchType, reverseEndianess, memoryPtr,
-                    memLength, oldValue, userValue, saveFlags);
-}
-
-template <>
-inline unsigned int tryTypes(TypeList<>, ScanMatchType matchType,
-                             bool reverseEndianess, const Mem64* memoryPtr,
-                             size_t memLength, const Value* oldValue,
-                             const UserValue* userValue,
-                             MatchFlags* saveFlags) {
-    (void)matchType;
-    (void)reverseEndianess;
-    (void)memoryPtr;
-    (void)memLength;
-    (void)oldValue;
-    (void)userValue;
-    (void)saveFlags;
-    return 0;
-}
-
-inline auto makeAnyIntegerRoutine(ScanMatchType matchType,
-                                  bool reverseEndianness) -> scanRoutine {
-    using Integers = TypeList<int8_t, uint8_t, int16_t, uint16_t, int32_t,
-                              uint32_t, int64_t, uint64_t>;
-    return
-        [matchType, reverseEndianness](
-            const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
-            const UserValue* userValue, MatchFlags* saveFlags) -> unsigned int {
-            *saveFlags = MatchFlags::EMPTY;
-            return tryTypes(Integers{}, matchType, reverseEndianness, memoryPtr,
-                            memLength, oldValue, userValue, saveFlags);
-        };
-}
-
 inline auto makeAnyFloatRoutine(ScanMatchType matchType, bool reverseEndianness)
     -> scanRoutine {
-    using Floats = TypeList<float, double>;
-    return
-        [matchType, reverseEndianness](
-            const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
-            const UserValue* userValue, MatchFlags* saveFlags) -> unsigned int {
-            *saveFlags = MatchFlags::EMPTY;
-            return tryTypes(Floats{}, matchType, reverseEndianness, memoryPtr,
-                            memLength, oldValue, userValue, saveFlags);
+    return [matchType, reverseEndianness](
+               const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
+               const UserValue* userValue, MatchFlags* saveFlags) -> unsigned {
+        *saveFlags = MatchFlags::EMPTY;
+        auto try_one = [&](auto tag) -> unsigned {
+            using T = decltype(tag);
+            if (memLength < sizeof(T)) return 0;
+            T memv{};
+            try {
+                memv = memoryPtr->get<T>();
+            } catch (...) {
+                return 0;
+            }
+            memv = swapIfReverse<T>(memv, reverseEndianness);
+            return numericMatchCore<T>(matchType, memv, oldValue, userValue,
+                                       saveFlags);
         };
+        if (auto r = try_one(double{})) return r;
+        if (auto r = try_one(float{})) return r;
+        return 0;
+    };
 }
 
 inline auto makeAnyNumberRoutine(ScanMatchType matchType,
                                  bool reverseEndianness) -> scanRoutine {
-    using Numbers = TypeList<int8_t, uint8_t, int16_t, uint16_t, int32_t,
-                             uint32_t, int64_t, uint64_t, float, double>;
-    return
-        [matchType, reverseEndianness](
-            const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
-            const UserValue* userValue, MatchFlags* saveFlags) -> unsigned int {
-            *saveFlags = MatchFlags::EMPTY;
-            return tryTypes(Numbers{}, matchType, reverseEndianness, memoryPtr,
-                            memLength, oldValue, userValue, saveFlags);
-        };
+    return [matchType, reverseEndianness](
+               const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
+               const UserValue* userValue, MatchFlags* saveFlags) -> unsigned {
+        *saveFlags = MatchFlags::EMPTY;
+        // 先尝试浮点，再尝试整数（或按需调整策略）
+        if (auto r = makeAnyFloatRoutine(matchType, reverseEndianness)(
+                memoryPtr, memLength, oldValue, userValue, saveFlags)) {
+            return r;
+        }
+        return makeAnyIntegerRoutine(matchType, reverseEndianness)(
+            memoryPtr, memLength, oldValue, userValue, saveFlags);
+    };
 }
 
 // 工厂：按数据类型返回对应的扫描例程。
 // ANY* 系列目前尚未实现（需要聚合多类型尝试，后续扩展）。
-export inline auto smGetScanroutine(ScanDataType dataType,
-                                    ScanMatchType matchType,
-                                    MatchFlags /*uflags*/,
-                                    bool reverseEndianness) -> scanRoutine {
+export [[nodiscard]] inline auto smGetScanroutine(ScanDataType dataType,
+                                                  ScanMatchType matchType,
+                                                  MatchFlags /*uflags*/,
+                                                  bool reverseEndianness)
+    -> scanRoutine {
     switch (dataType) {
         case ScanDataType::INTEGER8:
             return makeNumericRoutine<int8_t>(matchType, reverseEndianness);

@@ -12,12 +12,12 @@ export module value;
 
 ## Dependencies
 
-- `<array>` - Fixed-size array container
-- `<bit>` - Bit operations
 - `<cstdint>` - Fixed-width integer types
+- `<cstring>` - Byte copy
 - `<optional>` - Optional type support
+- `<span>` - Byte views
 - `<string>` - String operations
-- `<variant>` - Variant type support
+- `<type_traits>` - Type utilities
 - `<vector>` - Dynamic array container
 
 ## Core Features
@@ -62,104 +62,56 @@ enum class [[gnu::packed]] MatchFlags : uint16_t {
 };
 ```
 
-### 2. Value Structure
+### 2. Value Structure (byte-centric)
 
-The primary value container supporting multiple data types.
+Value stores historical (old) values as raw bytes. Type/width semantics are carried by `flags`.
 
 ```cpp
 struct [[gnu::packed]] Value {
-    std::variant<int8_t, uint8_t, int16_t, uint16_t, int32_t, uint32_t, int64_t,
-                 uint64_t, float, double, std::array<uint8_t, sizeof(int64_t)>,
-                 std::array<char, sizeof(int64_t)>> value;
+    std::vector<uint8_t> bytes;     // Snapshot bytes
+    MatchFlags flags = MatchFlags::EMPTY; // Type/width flag (required for numeric)
 
-    MatchFlags flags = MatchFlags::EMPTY;
-
-    // Static utility methods
     constexpr static void zero(Value& val);
+
+    // Views and setters
+    std::span<const uint8_t> view() const noexcept;
+    void setBytes(const uint8_t* data, std::size_t len);
+    void setBytes(const std::vector<uint8_t>& val);
+    void setBytesWithFlag(const uint8_t* data, std::size_t len, MatchFlags f);
+    void setBytesWithFlag(const std::vector<uint8_t>& val, MatchFlags f);
+
+    template <typename T> void setScalar(const T& v);
+    template <typename T> void setScalarWithFlag(const T& v, MatchFlags f);
+    template <typename T> void setScalarTyped(const T& v); // auto-set correct flag
 };
 ```
 
-#### Data Types Supported
+Notes:
+- Numeric comparisons are strict: old value is decoded only if `flags` matches the requested type and the byte width is sufficient.
+- Byte array/string comparisons do not rely on `flags`.
 
-| C++ Type | MatchFlag | Description |
-|----------|-----------|-------------|
-| `int8_t` | `S8B` | Signed 8-bit integer |
-| `uint8_t` | `U8B` | Unsigned 8-bit integer |
-| `int16_t` | `S16B` | Signed 16-bit integer |
-| `uint16_t` | `U16B` | Unsigned 16-bit integer |
-| `int32_t` | `S32B` | Signed 32-bit integer |
-| `uint32_t` | `U32B` | Unsigned 32-bit integer |
-| `int64_t` | `S64B` | Signed 64-bit integer |
-| `uint64_t` | `U64B` | Unsigned 64-bit integer |
-| `float` | `F32B` | 32-bit floating point |
-| `double` | `F64B` | 64-bit floating point |
-| `std::array<uint8_t, 8>` | - | Raw byte array |
-| `std::array<char, 8>` | - | Character array |
+### 3. Mem64 Structure (current bytes buffer)
 
-#### Static Methods
-
-##### zero(Value& val)
-
-Resets a Value to zero state with EMPTY flags.
-
-```cpp
-Value val = uint32_t{42};
-Value::zero(val);  // val.value = int64_t{0}, val.flags = MatchFlags::EMPTY
-```
-
-### 3. Mem64 Structure
-
-Memory-aligned 64-bit value container with type-safe access.
+Mem64 represents the current bytes read at a memory location.
 
 ```cpp
 struct [[gnu::packed]] Mem64 {
-    std::variant<int8_t, uint8_t, int16_t, uint16_t, int32_t, uint32_t, int64_t,
-                 uint64_t, float, double, std::array<uint8_t, sizeof(int64_t)>,
-                 std::array<char, sizeof(int64_t)>> mem64Value;
+    std::vector<uint8_t> buffer;
 
-    // Type-safe access methods
-    template <typename T>
-    T get() const;
-
-    template <typename Visitor>
-    void visit(Visitor&& visitor) const;
-
-    template <typename T>
-    void set(const T& value);
+    template <typename T> T get() const;              // memcpy decode
+    std::span<const uint8_t> bytes() const noexcept;  // read-only view
+    void setBytes(const uint8_t* data, std::size_t len);
+    void setBytes(const std::vector<uint8_t>& data);
+    void setString(const std::string& s);
+    template <typename T> void setScalar(const T& v);
 };
 ```
 
 #### Methods
 
-##### get\<T\>()
-
-Type-safe value retrieval with compile-time type checking.
-
-```cpp
-Mem64 mem64 = float{3.14f};
-float value = mem64.get<float>();  // Returns 3.14f
-// int value = mem64.get<int>();  // Would throw std::bad_variant_access
-```
-
-##### visit\<Visitor\>()
-
-Generic visitor pattern for variant access.
-
-```cpp
-mem64.visit([](auto&& arg) {
-    std::cout << "Value: " << arg << std::endl;
-});
-```
-
-##### set\<T\>()
-
-Type-safe value assignment with bit-casting for numeric types.
-
-```cpp
-Mem64 mem64;
-mem64.set<double>(2.71828);
-// mem64.mem64Value now contains double{2.71828}
-```
+- `get<T>()`: Decode the first `sizeof(T)` bytes using `memcpy` (throws if insufficient bytes).
+- `bytes()`: Read-only span view over underlying bytes.
+- `setBytes(...)`, `setString(...)`, `setScalar<T>(...)`: Write helpers.
 
 ### 4. Wildcard Enumeration
 
@@ -190,6 +142,7 @@ struct [[gnu::packed]] UserValue {
 
     // Optional complex types
     std::optional<std::vector<uint8_t>> bytearray_value;
+    std::optional<std::vector<uint8_t>> byteMask; // 0xFF=fixed, 0x00=wildcard
     std::optional<Wildcard> wildcard_value;
 
     // String and flags
@@ -200,41 +153,26 @@ struct [[gnu::packed]] UserValue {
 
 ## Usage Examples
 
-### Basic Value Creation
+### Basic Value Creation (strict numeric + free-form bytes)
 
 ```cpp
 import value;
 
 // Create values with different types
-Value uint8_val = uint8_t{255};
-uint8_val.flags = MatchFlags::U8B;
-
-Value int32_val = int32_t{-42};
-int32_val.flags = MatchFlags::S32B;
-
-Value float_val = float{3.14f};
-float_val.flags = MatchFlags::F32B;
+Value uint8_val; uint8_val.setScalarTyped<uint8_t>(255);
+Value int32_val; int32_val.setScalarTyped<int32_t>(-42);
+Value float_val; float_val.setScalarTyped<float>(3.14f);
 ```
 
 ### Working with Mem64
 
 ```cpp
 Mem64 mem64;
-
-// Store different types
-mem64.set<int64_t>(INT64_MAX);
+mem64.setScalar<int64_t>(INT64_MAX);
 auto int64_value = mem64.get<int64_t>();
 
-mem64.set<double>(M_PI);
+mem64.setScalar<double>(M_PI);
 auto double_value = mem64.get<double>();
-
-// Visit the stored value
-mem64.visit([](auto&& val) {
-    using T = std::decay_t<decltype(val)>;
-    if constexpr (std::is_same_v<T, double>) {
-        std::cout << "Double value: " << val << std::endl;
-    }
-});
 ```
 
 ### User Value Input
@@ -242,10 +180,9 @@ mem64.visit([](auto&& val) {
 ```cpp
 UserValue user_val;
 
-// Set basic values
+// Set numeric values if needed
 user_val.int32_value = 42;
 user_val.float64_value = 1.23;
-user_val.flags = MatchFlags::I32B | MatchFlags::F64B;
 
 // Set string value
 user_val.string_value = "test_string";
@@ -253,7 +190,7 @@ user_val.string_value = "test_string";
 // Set byte array
 user_val.bytearray_value = std::vector<uint8_t>{0x01, 0x02, 0x03, 0x04};
 
-// Set wildcard
+// Optional wildcard intent (used with masked matching at higher level)
 user_val.wildcard_value = Wildcard::WILDCARD;
 ```
 
@@ -275,18 +212,14 @@ MatchFlags combined = MatchFlags::U8B | MatchFlags::U16B | MatchFlags::U32B;
 
 ```cpp
 // Create value with byte array
-std::array<uint8_t, 8> bytes{0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
-Value byte_val = bytes;
+Value byte_val;
+std::vector<uint8_t> bytes{0x01, 0x02, 0x03, 0x04};
+byte_val.setBytes(bytes);
 
-// Access via visitor
-byte_val.value.visit([](auto&& arg) {
-    if constexpr (std::is_same_v<std::decay_t<decltype(arg)>, 
-                                std::array<uint8_t, 8>>) {
-        for (uint8_t b : arg) {
-            std::cout << std::hex << static_cast<int>(b) << " ";
-        }
-    }
-});
+// Iterate bytes via view
+for (auto b : byte_val.view()) {
+    std::cout << std::hex << static_cast<int>(b) << " ";
+}
 ```
 
 ## Memory Layout and Packing
@@ -295,8 +228,8 @@ byte_val.value.visit([](auto&& arg) {
 
 All structures use `[[gnu::packed]]` attribute to minimize memory usage:
 
-- **Value**: ~72 bytes (variant + flags + padding)
-- **Mem64**: ~72 bytes (variant only)
+- **Value**: bytes vector + flag
+- **Mem64**: bytes vector buffer
 - **UserValue**: ~200+ bytes (including string and vectors)
 
 ### Alignment
@@ -308,12 +241,10 @@ Structures are packed to minimize memory usage, which may impact performance on 
 ### Runtime Type Checking
 
 ```cpp
-try {
-    Mem64 mem64 = int32_t{42};
-    double val = mem64.get<double>();  // Throws std::bad_variant_access
-} catch (const std::bad_variant_access& e) {
-    std::cerr << "Type mismatch: " << e.what() << std::endl;
-}
+Mem64 mem64;
+mem64.setScalar<int32_t>(42);
+// Decoding to a mismatched type or with insufficient bytes throws
+double val = mem64.get<double>();
 ```
 
 ### Compile-time Type Checking
@@ -332,18 +263,11 @@ static_assert(sizeof(std::array<uint8_t, 8>) == 8);
 import value;
 import targetmem;
 
-void create_match_entry(void* addr, uint8_t byte, Value::value_type value) {
+void create_match_entry(void* addr, uint8_t byte, const Value& value) {
     OldValueAndMatchInfo info;
     info.old_value = byte;
-    
-    // Determine match flags based on value type
-    info.match_info = std::visit([](auto&& arg) -> MatchFlags {
-        using T = std::decay_t<decltype(arg)>;
-        if constexpr (std::is_same_v<T, uint8_t>) return MatchFlags::U8B;
-        else if constexpr (std::is_same_v<T, int8_t>) return MatchFlags::S8B;
-        else if constexpr (std::is_same_v<T, uint16_t>) return MatchFlags::U16B;
-        // ... handle other types
-    }, value);
+    // Determine flags from context (example: 8-bit unsigned)
+    info.match_info = MatchFlags::U8B;
 }
 ```
 
@@ -365,12 +289,11 @@ void handle_endianness(Value& val, bool reverse_endianness) {
 ```cpp
 void test_value_module() {
     // Test Value creation
-    Value val = uint32_t{42};
-    assert(std::get<uint32_t>(val.value) == 42);
+    Value val; val.setScalarTyped<uint32_t>(42);
     
     // Test Mem64
     Mem64 mem64;
-    mem64.set<float>(3.14f);
+    mem64.setScalar<float>(3.14f);
     assert(mem64.get<float>() == 3.14f);
     
     // Test flags
@@ -390,8 +313,8 @@ void test_value_module() {
 
 ### Memory Usage
 
-- **Value**: Minimal overhead with variant storage
-- **Mem64**: Fixed 64-bit storage
+- **Value**: Byte vector storage + strict flags
+- **Mem64**: Byte buffer with memcpy decode
 - **UserValue**: Larger due to optional containers and string
 
 ### Runtime Performance
@@ -404,9 +327,8 @@ void test_value_module() {
 
 1. **Use appropriate types**: Choose specific numeric types over generic ones
 2. **Initialize flags**: Always set appropriate MatchFlags
-3. **Handle type mismatches**: Use try-catch for Mem64::get\<T\>()
+3. **Handle type mismatches**: Guard reads and check sizes for `get<T>()`
 4. **Consider alignment**: Packed structures may impact performance
-5. **Use visitors**: Prefer std::visit for type-safe variant access
 
 ## See Also
 
