@@ -1,17 +1,18 @@
 module;
 
 #include <algorithm>
-#include <array>
 #include <bit>
+#include <boost/regex.hpp>
 #include <cmath>
 #include <cstddef>
 #include <cstdint>
 #include <cstring>
 #include <functional>
+#include <memory>
 #include <optional>
-#include <boost/regex.hpp>
-#include <string>
+#include <ranges>
 #include <span>
+#include <string>
 #include <type_traits>
 #include <variant>
 #include <vector>
@@ -19,70 +20,6 @@ module;
 export module scanroutines;
 
 import value;
-
-template <typename T>
-struct TypeTraits;
-
-template <>
-struct TypeTraits<int8_t> {
-    static constexpr auto FLAG = MatchFlags::S8B;
-    static constexpr auto LOW = &UserValue::int8Value;
-    static constexpr auto HIGH = &UserValue::int8RangeHighValue;
-};
-template <>
-struct TypeTraits<uint8_t> {
-    static constexpr auto FLAG = MatchFlags::U8B;
-    static constexpr auto LOW = &UserValue::uint8Value;
-    static constexpr auto HIGH = &UserValue::uint8RangeHighValue;
-};
-template <>
-struct TypeTraits<int16_t> {
-    static constexpr auto FLAG = MatchFlags::S16B;
-    static constexpr auto LOW = &UserValue::int16Value;
-    static constexpr auto HIGH = &UserValue::int16RangeHighValue;
-};
-template <>
-struct TypeTraits<uint16_t> {
-    static constexpr auto FLAG = MatchFlags::U16B;
-    static constexpr auto LOW = &UserValue::uint16Value;
-    static constexpr auto HIGH = &UserValue::uint16RangeHighValue;
-};
-template <>
-struct TypeTraits<int32_t> {
-    static constexpr auto FLAG = MatchFlags::S32B;
-    static constexpr auto LOW = &UserValue::int32Value;
-    static constexpr auto HIGH = &UserValue::int32RangeHighValue;
-};
-template <>
-struct TypeTraits<uint32_t> {
-    static constexpr auto FLAG = MatchFlags::U32B;
-    static constexpr auto LOW = &UserValue::uint32Value;
-    static constexpr auto HIGH = &UserValue::uint32RangeHighValue;
-};
-template <>
-struct TypeTraits<int64_t> {
-    static constexpr auto FLAG = MatchFlags::S64B;
-    static constexpr auto LOW = &UserValue::int64Value;
-    static constexpr auto HIGH = &UserValue::int64RangeHighValue;
-};
-template <>
-struct TypeTraits<uint64_t> {
-    static constexpr auto FLAG = MatchFlags::U64B;
-    static constexpr auto LOW = &UserValue::uint64Value;
-    static constexpr auto HIGH = &UserValue::uint64RangeHighValue;
-};
-template <>
-struct TypeTraits<float> {
-    static constexpr auto FLAG = MatchFlags::F32B;
-    static constexpr auto LOW = &UserValue::float32Value;
-    static constexpr auto HIGH = &UserValue::float32RangeHighValue;
-};
-template <>
-struct TypeTraits<double> {
-    static constexpr auto FLAG = MatchFlags::F64B;
-    static constexpr auto LOW = &UserValue::float64Value;
-    static constexpr auto HIGH = &UserValue::float64RangeHighValue;
-};
 
 /**
  * 扫描数据类型枚举
@@ -96,10 +33,10 @@ export enum class ScanDataType {
     ANYNUMBER,  /* ANYINTEGER or ANYFLOAT */
     ANYINTEGER, /* INTEGER of whatever width */
     ANYFLOAT,   /* FLOAT of whatever width */
-    INTEGER8,   /* 8 位有符号整数 */
-    INTEGER16,  /* 16 位有符号整数 */
-    INTEGER32,  /* 32 位有符号整数 */
-    INTEGER64,  /* 64 位有符号整数 */
+    INTEGER8,   /* 8 位bit整数 */
+    INTEGER16,  /* 16 位bit整数 */
+    INTEGER32,  /* 32 位bit整数 */
+    INTEGER64,  /* 64 位bit整数 */
     FLOAT32,    /* 32 位单精度浮点数 */
     FLOAT64,    /* 64 位双精度浮点数 */
     BYTEARRAY,  /* 通常表示原始字节序列（raw bytes），没有字符编码含义（比如
@@ -174,6 +111,23 @@ constexpr auto swapIfReverse(T value, bool reverse) noexcept -> T {
     }
 }
 
+// 读取助手：安全读取指定类型并按需做端序转换
+template <typename T>
+[[nodiscard]] inline auto readTyped(const Mem64* memoryPtr, size_t memLength,
+                                    bool reverseEndianness) noexcept
+    -> std::optional<T> {
+    if (memLength < sizeof(T)) {
+        return std::nullopt;
+    }
+    try {
+        T val = memoryPtr->get<T>();
+        val = swapIfReverse<T>(val, reverseEndianness);
+        return val;
+    } catch (const std::bad_variant_access&) {
+        return std::nullopt;
+    }
+}
+
 // 浮点比较（带容差）
 template <typename F>
 constexpr auto relTol() -> F {
@@ -242,8 +196,8 @@ template <typename T>
         return std::nullopt;
     }
     // 严格校验：flags 必须与期望类型匹配
-    const auto required = flagForType<T>();
-    if ((valuePtr->flags & required) == MatchFlags::EMPTY) {
+    const auto REQUIRED = flagForType<T>();
+    if ((valuePtr->flags & REQUIRED) == MatchFlags::EMPTY) {
         return std::nullopt;
     }
     if (valuePtr->view().size() < sizeof(T)) {
@@ -271,9 +225,17 @@ inline auto numericMatchCore(ScanMatchType matchType, T memv,
     if (NEEDS_USER && userValue == nullptr) {
         return 0;
     }
+    // 对需要用户值的比较，确保 userValue 的 flags 与当前类型匹配，
+    // 避免 ANY* 聚合读取错误字段
+    if (NEEDS_USER && userValue != nullptr) {
+        const auto REQUIRED = flagForType<T>();
+        if ((userValue->flags & REQUIRED) == MatchFlags::EMPTY) {
+            return 0;
+        }
+    }
 
     auto oldOpt = oldValueAs<T>(oldValue);
-    auto getUser = [&](void) -> T { return userValueAs<T>(*userValue); };
+    auto getUser = [&]() -> T { return userValueAs<T>(*userValue); };
 
     bool isMatched = false;
     auto isEqual = [&](T firstValue, T secondValue) {
@@ -392,18 +354,12 @@ inline auto makeNumericRoutine(ScanMatchType matchType, bool reverseEndianness)
         [matchType, reverseEndianness](
             const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
             const UserValue* userValue, MatchFlags* saveFlags) -> unsigned int {
-            if (memLength < sizeof(T)) {
+            auto memOpt = readTyped<T>(memoryPtr, memLength, reverseEndianness);
+            if (!memOpt) {
                 return 0;
             }
-            T memv;
-            try {
-                memv = memoryPtr->get<T>();
-            } catch (const std::bad_variant_access&) {
-                return 0;
-            }
-            memv = swapIfReverse<T>(memv, reverseEndianness);
             *saveFlags = MatchFlags::EMPTY;
-            return numericMatchCore<T>(matchType, memv, oldValue, userValue,
+            return numericMatchCore<T>(matchType, *memOpt, oldValue, userValue,
                                        saveFlags);
         };
 }
@@ -411,19 +367,19 @@ inline auto makeNumericRoutine(ScanMatchType matchType, bool reverseEndianness)
 // 统一的字节序列比较（字符串/字节数组皆可经过视图转换后复用）
 // 简单滑窗搜索版本：在当前可读范围内查找子序列
 inline auto compareBytes(const Mem64* memoryPtr, size_t memLength,
-                         std::span<const uint8_t> needle,
-                         MatchFlags* saveFlags) -> unsigned int {
+                         std::span<const uint8_t> needle, MatchFlags* saveFlags)
+    -> unsigned int {
     if (needle.empty()) {
         return 0;
     }
     auto hayAll = memoryPtr->bytes();
-    const size_t limit = std::min(hayAll.size(), memLength);
-    if (limit < needle.size()) {
+    size_t limitSize = std::min(hayAll.size(), memLength);
+    if (limitSize < needle.size()) {
         return 0;
     }
-    auto hay = std::span<const uint8_t>(hayAll.data(), limit);
-    auto it = std::search(hay.begin(), hay.end(), needle.begin(), needle.end());
-    if (it != hay.end()) {
+    auto hay = std::span<const uint8_t>(hayAll.data(), limitSize);
+    // Prefix-only compare at current position instead of sliding-window
+    if (std::equal(needle.begin(), needle.end(), hay.begin())) {
         *saveFlags = MatchFlags::B8;
         return static_cast<unsigned int>(needle.size());
     }
@@ -439,26 +395,20 @@ inline auto compareBytesMasked(const Mem64* memoryPtr, size_t memLength,
         return 0;
     }
     auto hayAll = memoryPtr->bytes();
-    const size_t limit = std::min(hayAll.size(), memLength);
-    if (limit < needle.size()) {
+    size_t limitSize = std::min(hayAll.size(), memLength);
+    if (limitSize < needle.size()) {
         return 0;
     }
-    auto hay = std::span<const uint8_t>(hayAll.data(), limit);
-    const size_t n = needle.size();
-    for (size_t i = 0; i + n <= hay.size(); ++i) {
-        bool ok = true;
-        for (size_t j = 0; j < n; ++j) {
-            if (((hay[i + j] ^ needle[j]) & mask[j]) != 0) {
-                ok = false;
-                break;
-            }
-        }
-        if (ok) {
-            *saveFlags = MatchFlags::B8;
-            return static_cast<unsigned int>(n);
+    auto hay = std::span<const uint8_t>(hayAll.data(), limitSize);
+    const size_t NEEDLE_SIZE = needle.size();
+    // Prefix-only masked compare at current position
+    for (size_t j = 0; j < NEEDLE_SIZE; ++j) {
+        if (((hay[j] ^ needle[j]) & mask[j]) != 0) {
+            return 0;
         }
     }
-    return 0;
+    *saveFlags = MatchFlags::B8;
+    return static_cast<unsigned int>(NEEDLE_SIZE);
 }
 
 // 辅助：导出可获取偏移量的查找结果，便于在 targetmem 中做范围标记
@@ -470,15 +420,21 @@ export struct ByteMatch {
 export inline auto findBytePattern(const Mem64* memoryPtr, size_t memLength,
                                    std::span<const uint8_t> needle)
     -> std::optional<ByteMatch> {
-    if (needle.empty()) return std::nullopt;
+    if (needle.empty()) {
+        return std::nullopt;
+    }
     auto hayAll = memoryPtr->bytes();
-    const size_t limit = std::min(hayAll.size(), memLength);
-    if (limit < needle.size()) return std::nullopt;
-    auto hay = std::span<const uint8_t>(hayAll.data(), limit);
-    auto it = std::search(hay.begin(), hay.end(), needle.begin(), needle.end());
-    if (it == hay.end()) return std::nullopt;
-    size_t off = static_cast<size_t>(std::distance(hay.begin(), it));
-    return ByteMatch{off, needle.size()};
+    const size_t LIMIT = std::min(hayAll.size(), memLength);
+    if (LIMIT < needle.size()) {
+        return std::nullopt;
+    }
+    auto hay = std::span<const uint8_t>(hayAll.data(), LIMIT);
+    auto iter = std::ranges::search(hay, needle).begin();
+    if (iter == hay.end()) {
+        return std::nullopt;
+    }
+    auto off = static_cast<size_t>(std::distance(hay.begin(), iter));
+    return ByteMatch{.offset = off, .length = needle.size()};
 }
 
 // 带掩码的查找版本
@@ -487,21 +443,28 @@ export inline auto findBytePatternMasked(const Mem64* memoryPtr,
                                          std::span<const uint8_t> needle,
                                          std::span<const uint8_t> mask)
     -> std::optional<ByteMatch> {
-    if (needle.empty() || mask.size() != needle.size()) return std::nullopt;
+    if (needle.empty() || mask.size() != needle.size()) {
+        return std::nullopt;
+    }
     auto hayAll = memoryPtr->bytes();
-    const size_t limit = std::min(hayAll.size(), memLength);
-    if (limit < needle.size()) return std::nullopt;
-    auto hay = std::span<const uint8_t>(hayAll.data(), limit);
-    const size_t n = needle.size();
-    for (size_t i = 0; i + n <= hay.size(); ++i) {
-        bool ok = true;
-        for (size_t j = 0; j < n; ++j) {
-            if (((hay[i + j] ^ needle[j]) & mask[j]) != 0) {
-                ok = false;
+    const size_t LIMIT = std::min(hayAll.size(), memLength);
+    if (LIMIT < needle.size()) {
+        return std::nullopt;
+    }
+    auto hay = std::span<const uint8_t>(hayAll.data(), LIMIT);
+    size_t needleSize = needle.size();
+    for (size_t hayIndex = 0; hayIndex + needleSize <= hay.size(); ++hayIndex) {
+        bool matched = true;
+        for (size_t needleIndex = 0; needleIndex < needleSize; ++needleIndex) {
+            if (((hay[hayIndex + needleIndex] ^ needle[needleIndex]) &
+                 mask[needleIndex]) != 0) {
+                matched = false;
                 break;
             }
         }
-        if (ok) return ByteMatch{i, n};
+        if (matched) {
+            return ByteMatch{.offset = hayIndex, .length = needleSize};
+        }
     }
     return std::nullopt;
 }
@@ -512,14 +475,17 @@ inline auto makeBytearrayRoutine(ScanMatchType matchType) -> scanRoutine {
                        MatchFlags* saveFlags) -> unsigned int {
         *saveFlags = MatchFlags::EMPTY;
         if (matchType == ScanMatchType::MATCHANY) {
+            *saveFlags = MatchFlags::B8;
             return static_cast<unsigned int>(memLength);
         }
         if (!userValue || !userValue->bytearrayValue) {
             return 0;
         }
-        const auto& v = *userValue->bytearrayValue;
-        auto needle = std::span<const uint8_t>(v.data(), v.size());
-        if (userValue->byteMask && userValue->byteMask->size() == v.size()) {
+        const auto& byteArrayRef = *userValue->bytearrayValue;
+        auto needle =
+            std::span<const uint8_t>(byteArrayRef.data(), byteArrayRef.size());
+        if (userValue->byteMask &&
+            userValue->byteMask->size() == byteArrayRef.size()) {
             auto mask = std::span<const uint8_t>(userValue->byteMask->data(),
                                                  userValue->byteMask->size());
             return compareBytesMasked(memoryPtr, memLength, needle, mask,
@@ -535,6 +501,7 @@ inline auto makeStringRoutine(ScanMatchType matchType) -> scanRoutine {
                        MatchFlags* saveFlags) -> unsigned int {
         *saveFlags = MatchFlags::EMPTY;
         if (matchType == ScanMatchType::MATCHANY) {
+            *saveFlags = MatchFlags::B8;
             return static_cast<unsigned int>(memLength);
         }
         if (!userValue) {
@@ -542,32 +509,34 @@ inline auto makeStringRoutine(ScanMatchType matchType) -> scanRoutine {
         }
         if (matchType == ScanMatchType::MATCHREGEX) {
             auto hayAll = memoryPtr->bytes();
-            const size_t limit = std::min(hayAll.size(), memLength);
-            std::string hay(reinterpret_cast<const char*>(hayAll.data()), limit);
-            try {
-                const boost::regex re(userValue->stringValue,
-                                      boost::regex::perl);
-                boost::smatch m;
-                if (boost::regex_search(hay, m, re)) {
+            size_t limitSize = std::min(hayAll.size(), memLength);
+            std::string hay(
+                hayAll.begin(),
+                hayAll.begin() + static_cast<std::ptrdiff_t>(limitSize));
+            if (const auto* rx = getCachedRegex(userValue->stringValue)) {
+                boost::smatch matchResult;
+                if (boost::regex_search(hay, matchResult, *rx)) {
                     *saveFlags = MatchFlags::B8;
-                    return static_cast<unsigned int>(m.length());
+                    return static_cast<unsigned int>(matchResult.length());
                 }
-            } catch (const boost::regex_error&) {
+            } else {
                 return 0;
             }
             return 0;
-        } else {
-            const auto& s = userValue->stringValue;
-            auto needle = std::span<const uint8_t>(
-                reinterpret_cast<const uint8_t*>(s.data()), s.size());
-            if (userValue->byteMask && userValue->byteMask->size() == s.size()) {
-                auto mask = std::span<const uint8_t>(
-                    userValue->byteMask->data(), userValue->byteMask->size());
-                return compareBytesMasked(memoryPtr, memLength, needle, mask,
-                                          saveFlags);
-            }
-            return compareBytes(memoryPtr, memLength, needle, saveFlags);
         }
+        const auto& stringRef = userValue->stringValue;
+        // Reuse underlying storage as bytes without extra allocation
+        auto needle = std::span<const uint8_t>(
+            reinterpret_cast<const uint8_t*>(stringRef.data()),
+            stringRef.size());
+        if (userValue->byteMask &&
+            userValue->byteMask->size() == stringRef.size()) {
+            auto mask = std::span<const uint8_t>(userValue->byteMask->data(),
+                                                 userValue->byteMask->size());
+            return compareBytesMasked(memoryPtr, memLength, needle, mask,
+                                      saveFlags);
+        }
+        return compareBytes(memoryPtr, memLength, needle, saveFlags);
     };
 }
 
@@ -576,34 +545,34 @@ export inline auto findRegexPattern(const Mem64* memoryPtr, size_t memLength,
                                     const std::string& pattern)
     -> std::optional<ByteMatch> {
     auto hayAll = memoryPtr->bytes();
-    const size_t limit = std::min(hayAll.size(), memLength);
-    std::string hay(reinterpret_cast<const char*>(hayAll.data()), limit);
-    try {
-        const boost::regex re(pattern, boost::regex::perl);
-        boost::smatch m;
-        if (boost::regex_search(hay, m, re)) {
-            return ByteMatch{static_cast<size_t>(m.position()),
-                             static_cast<size_t>(m.length())};
+    size_t limitSize = std::min(hayAll.size(), memLength);
+    std::string hay(hayAll.begin(),
+                    hayAll.begin() + static_cast<std::ptrdiff_t>(limitSize));
+    if (const auto* rx = getCachedRegex(pattern)) {
+        boost::smatch matchResult;
+        if (boost::regex_search(hay, matchResult, *rx)) {
+            return ByteMatch{
+                .offset = static_cast<size_t>(matchResult.position()),
+                .length = static_cast<size_t>(matchResult.length())};
         }
-    } catch (const boost::regex_error&) {
+    } else {
         return std::nullopt;
     }
     return std::nullopt;
 }
 
 // 读取当前值并保存为旧值（统一端序与 flags）
-template <typename T>
-export inline void captureOldValue(const Mem64* memoryPtr,
-                                   bool reverseEndianness, Value& out) {
-    if (!memoryPtr) {
+export template <typename T>
+inline void captureOldValue(const Mem64* memoryPtr, bool reverseEndianness,
+                            Value& out) {
+    if (memoryPtr == nullptr) {
         Value::zero(out);
         return;
     }
-    try {
-        T v = memoryPtr->get<T>();
-        v = swapIfReverse<T>(v, reverseEndianness);
-        out.setScalarTyped<T>(v);
-    } catch (...) {
+    auto valOpt = readTyped<T>(memoryPtr, sizeof(T), reverseEndianness);
+    if (valOpt) {
+        out.setScalarTyped<T>(*valOpt);
+    } else {
         Value::zero(out);
     }
 }
@@ -615,28 +584,40 @@ inline auto makeAnyIntegerRoutine(ScanMatchType matchType,
                const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
                const UserValue* userValue, MatchFlags* saveFlags) -> unsigned {
         *saveFlags = MatchFlags::EMPTY;
-        auto try_one = [&](auto tag) -> unsigned {
+        auto tryOne = [&](auto tag) -> unsigned {
             using T = decltype(tag);
-            if (memLength < sizeof(T)) return 0;
-            T memv{};
-            try {
-                memv = memoryPtr->get<T>();
-            } catch (...) {
+            auto memOpt = readTyped<T>(memoryPtr, memLength, reverseEndianness);
+            if (!memOpt) {
                 return 0;
             }
-            memv = swapIfReverse<T>(memv, reverseEndianness);
-            return numericMatchCore<T>(matchType, memv, oldValue, userValue,
+            return numericMatchCore<T>(matchType, *memOpt, oldValue, userValue,
                                        saveFlags);
         };
         // 依次尝试常见整型宽度（无符号/有符号）
-        if (auto r = try_one(uint64_t{})) return r;
-        if (auto r = try_one(int64_t{})) return r;
-        if (auto r = try_one(uint32_t{})) return r;
-        if (auto r = try_one(int32_t{})) return r;
-        if (auto r = try_one(uint16_t{})) return r;
-        if (auto r = try_one(int16_t{})) return r;
-        if (auto r = try_one(uint8_t{})) return r;
-        if (auto r = try_one(int8_t{})) return r;
+        if (auto resultValue = tryOne(uint64_t{})) {
+            return resultValue;
+        }
+        if (auto resultValue = tryOne(int64_t{})) {
+            return resultValue;
+        }
+        if (auto resultValue = tryOne(uint32_t{})) {
+            return resultValue;
+        }
+        if (auto resultValue = tryOne(int32_t{})) {
+            return resultValue;
+        }
+        if (auto resultValue = tryOne(uint16_t{})) {
+            return resultValue;
+        }
+        if (auto resultValue = tryOne(int16_t{})) {
+            return resultValue;
+        }
+        if (auto resultValue = tryOne(uint8_t{})) {
+            return resultValue;
+        }
+        if (auto resultValue = tryOne(int8_t{})) {
+            return resultValue;
+        }
         return 0;
     };
 }
@@ -647,23 +628,39 @@ inline auto makeAnyFloatRoutine(ScanMatchType matchType, bool reverseEndianness)
                const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
                const UserValue* userValue, MatchFlags* saveFlags) -> unsigned {
         *saveFlags = MatchFlags::EMPTY;
-        auto try_one = [&](auto tag) -> unsigned {
+        auto tryOne = [&](auto tag) -> unsigned {
             using T = decltype(tag);
-            if (memLength < sizeof(T)) return 0;
-            T memv{};
-            try {
-                memv = memoryPtr->get<T>();
-            } catch (...) {
+            auto memOpt = readTyped<T>(memoryPtr, memLength, reverseEndianness);
+            if (!memOpt) {
                 return 0;
             }
-            memv = swapIfReverse<T>(memv, reverseEndianness);
-            return numericMatchCore<T>(matchType, memv, oldValue, userValue,
+            return numericMatchCore<T>(matchType, *memOpt, oldValue, userValue,
                                        saveFlags);
         };
-        if (auto r = try_one(double{})) return r;
-        if (auto r = try_one(float{})) return r;
+        if (auto resultValue = tryOne(double{})) {
+            return resultValue;
+        }
+        if (auto resultValue = tryOne(float{})) {
+            return resultValue;
+        }
         return 0;
     };
+}
+
+// 线程局部正则缓存，避免每次调用都重新编译正则
+inline const boost::regex* getCachedRegex(const std::string& pattern) noexcept {
+    thread_local std::string cachedPattern;
+    thread_local std::unique_ptr<boost::regex> cachedRegex;
+    if (!cachedRegex || cachedPattern != pattern) {
+        try {
+            cachedRegex =
+                std::make_unique<boost::regex>(pattern, boost::regex::perl);
+            cachedPattern = pattern;
+        } catch (const boost::regex_error&) {
+            return nullptr;
+        }
+    }
+    return cachedRegex.get();
 }
 
 inline auto makeAnyNumberRoutine(ScanMatchType matchType,
@@ -673,9 +670,10 @@ inline auto makeAnyNumberRoutine(ScanMatchType matchType,
                const UserValue* userValue, MatchFlags* saveFlags) -> unsigned {
         *saveFlags = MatchFlags::EMPTY;
         // 先尝试浮点，再尝试整数（或按需调整策略）
-        if (auto r = makeAnyFloatRoutine(matchType, reverseEndianness)(
-                memoryPtr, memLength, oldValue, userValue, saveFlags)) {
-            return r;
+        if (auto resultValue =
+                makeAnyFloatRoutine(matchType, reverseEndianness)(
+                    memoryPtr, memLength, oldValue, userValue, saveFlags)) {
+            return resultValue;
         }
         return makeAnyIntegerRoutine(matchType, reverseEndianness)(
             memoryPtr, memLength, oldValue, userValue, saveFlags);
