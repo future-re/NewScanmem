@@ -2,8 +2,11 @@ module;
 #include <array>
 #include <bit>
 #include <cstdint>
+#include <cstring>
 #include <optional>
+#include <span>
 #include <string>
+#include <type_traits>
 #include <variant>
 #include <vector>
 export module value;
@@ -56,48 +59,147 @@ export constexpr auto operator~(MatchFlags flag) -> MatchFlags {
 }
 
 export struct Value {
-    std::variant<int8_t, uint8_t, int16_t, uint16_t, int32_t, uint32_t, int64_t,
-                 uint64_t, float, double, std::array<uint8_t, sizeof(int64_t)>,
-                 std::array<char, sizeof(int64_t)>>
-        value;
-
+    // 底层以字节流存储（兼容旧设计）：所有按标量写入/读取均通过字节拷贝实现
+    std::vector<uint8_t> bytes;
     MatchFlags flags = MatchFlags::EMPTY;
 
-    // constexpr 静态函数，支持编译期调用
+    // 复位为零状态（清空字节并清除 flags）
     constexpr static void zero(Value& val) {
-        val.value = int64_t{0};
+        val.bytes.clear();
         val.flags = MatchFlags::EMPTY;
+    }
+
+    // 获取只读字节视图（供 scanroutines 使用）
+    std::span<const uint8_t> view() const noexcept {
+        return std::span<const uint8_t>{bytes};
+    }
+
+    // 获取可写字节视图（例如端序调整时就地修改）
+    std::span<uint8_t> mutableView() noexcept {
+        return std::span<uint8_t>(bytes.data(), bytes.size());
+    }
+
+    // 设置字节数据（复制）
+    void setBytes(std::span<const uint8_t> data) {
+        bytes.assign(data.begin(), data.end());
+    }
+    void setBytes(const uint8_t* data, std::size_t len) {
+        setBytes(std::span<const uint8_t>(data, len));
+    }
+    void setBytes(const std::vector<uint8_t>& dataVec) {
+        setBytes(std::span<const uint8_t>(dataVec));
+    }
+
+    void setBytesWithFlag(const uint8_t* data, std::size_t len,
+                          MatchFlags flagsParam) {
+        setBytes(data, len);
+        flags = flagsParam;
+    }
+    void setBytesWithFlag(const std::vector<uint8_t>& dataVec,
+                          MatchFlags flagsParam) {
+        setBytes(dataVec);
+        flags = flagsParam;
+    }
+
+    // 按标量设置（按字节拷贝），不设置 flag
+    template <typename T>
+    void setScalar(const T& val) {
+        static_assert(std::is_trivially_copyable_v<T>);
+        auto raw = std::bit_cast<std::array<uint8_t, sizeof(T)>>(val);
+        setBytes(std::span<const uint8_t>(raw.data(), raw.size()));
+    }
+
+    // 按标量设置并附带 flag
+    template <typename T>
+    void setScalarWithFlag(const T& val, MatchFlags flagsParam) {
+        setScalar<T>(val);
+        flags = flagsParam;
+    }
+
+    // 按类型自动设置正确的 flag（Typed 语义）
+    template <typename T>
+    void setScalarTyped(const T& val) {
+        setScalar<T>(val);
+        flags = deduceFlagForScalar<T>();
+    }
+
+   private:
+    template <typename T>
+    static constexpr auto deduceFlagForScalar() noexcept -> MatchFlags {
+        if constexpr (std::is_same_v<T, uint8_t>) {
+            return MatchFlags::U8B;
+        } else if constexpr (std::is_same_v<T, int8_t>) {
+            return MatchFlags::S8B;
+        } else if constexpr (std::is_same_v<T, uint16_t>) {
+            return MatchFlags::U16B;
+        } else if constexpr (std::is_same_v<T, int16_t>) {
+            return MatchFlags::S16B;
+        } else if constexpr (std::is_same_v<T, uint32_t>) {
+            return MatchFlags::U32B;
+        } else if constexpr (std::is_same_v<T, int32_t>) {
+            return MatchFlags::S32B;
+        } else if constexpr (std::is_same_v<T, uint64_t>) {
+            return MatchFlags::U64B;
+        } else if constexpr (std::is_same_v<T, int64_t>) {
+            return MatchFlags::S64B;
+        } else if constexpr (std::is_same_v<T, float>) {
+            return MatchFlags::F32B;
+        } else if constexpr (std::is_same_v<T, double>) {
+            return MatchFlags::F64B;
+        } else {
+            return MatchFlags::EMPTY;
+        }
     }
 };
 
 export struct Mem64 {
-    std::variant<int8_t, uint8_t, int16_t, uint16_t, int32_t, uint32_t, int64_t,
-                 uint64_t, float, double, std::array<uint8_t, sizeof(int64_t)>,
-                 std::array<char, sizeof(int64_t)>>
-        mem64Value;
+    // 当前读取到的字节缓冲（通常来自进程内存读取）
+    std::vector<uint8_t> buffer;
 
-    // 提供安全的访问器函数
+    // 读取为指定标量类型（通过 memcpy 解码），若长度不足抛出
+    // std::bad_variant_access
     template <typename T>
     auto get() const -> T {
-        static_assert(std::is_trivially_copyable_v<T>,
-                      "Type must be trivially copyable");
-        if (auto* value = std::get_if<T>(&mem64Value)) {
-            return *value;
+        auto opt = tryGet<T>();
+        if (!opt) {
+            throw std::bad_variant_access();
         }
-        throw std::bad_variant_access();  // 如果类型不匹配，抛出异常
-    }
-
-    // 提供通用的访问接口
-    template <typename Visitor>
-    void visit(Visitor&& visitor) const {
-        std::visit(std::forward<Visitor>(visitor), mem64Value);
+        return *opt;
     }
 
     template <typename T>
-    void set(const T& value) {
-        static_assert(std::is_trivially_copyable_v<T>,
-                      "Type must be trivially copyable");
-        mem64Value = std::bit_cast<int64_t>(value);
+    [[nodiscard]] auto tryGet() const noexcept -> std::optional<T> {
+        static_assert(std::is_trivially_copyable_v<T>);
+        if (buffer.size() < sizeof(T)) {
+            return std::nullopt;
+        }
+        T out{};
+        std::memcpy(&out, buffer.data(), sizeof(T));
+        return out;
+    }
+
+    // 提供只读字节视图
+    [[nodiscard]] auto bytes() const noexcept -> std::span<const uint8_t> {
+        return std::span<const uint8_t>{buffer};
+    }
+
+    // 设置字节缓冲
+    void setBytes(std::span<const uint8_t> data) {
+        buffer.assign(data.begin(), data.end());
+    }
+    void setBytes(const uint8_t* data, std::size_t len) {
+        setBytes(std::span<const uint8_t>(data, len));
+    }
+    void setBytes(const std::vector<uint8_t>& dataVec) {
+        setBytes(std::span<const uint8_t>(dataVec));
+    }
+
+    // 按标量写入（按字节拷贝）
+    template <typename T>
+    void set(const T& val) {
+        static_assert(std::is_trivially_copyable_v<T>);
+        auto raw = std::bit_cast<std::array<uint8_t, sizeof(T)>>(val);
+        setBytes(std::span<const uint8_t>(raw.data(), raw.size()));
     }
 };
 
@@ -116,6 +218,7 @@ export struct UserValue {
     double float64Value = 0.0;
 
     std::optional<std::vector<uint8_t>> bytearrayValue;
+    std::optional<std::vector<uint8_t>> byteMask;
     std::optional<Wildcard> wildcardValue;
 
     std::string stringValue;

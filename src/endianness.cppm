@@ -1,5 +1,6 @@
 module;
 
+#include <algorithm>
 #include <bit>
 #include <concepts>
 #include <cstdint>
@@ -122,11 +123,12 @@ export {
         } else {
             return;  // 未知宽度或无需交换
         }
-        if (value.bytes.size() < width) {
+        auto bytes = value.mutableView();
+        if (bytes.size() < width) {
             return;
         }
         for (std::size_t i = 0, j = width - 1; i < j; ++i, --j) {
-            std::swap(value.bytes[i], value.bytes[j]);
+            std::swap(bytes[i], bytes[j]);
         }
     }
 
@@ -136,7 +138,7 @@ export {
         if constexpr (isBigEndian()) {
             return value;
         } else {
-            return swapBytes(value);
+            return swapBytesIntegral(value);
         }
     }
 
@@ -151,7 +153,7 @@ export {
         if constexpr (isLittleEndian()) {
             return value;
         } else {
-            return swapBytes(value);
+            return swapBytesIntegral(value);
         }
     }
 

@@ -17,7 +17,9 @@ set(MODULE_SOURCES
     endianness.cppm
     maps.cppm
     common.cppm
-    scanroutines.cppm
+    scan/types.cppm
+    scan/read_helpers.cppm
+    scan/bytes.cppm
 )
 
 # 添加模块源文件到库
