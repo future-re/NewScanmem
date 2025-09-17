@@ -1,8 +1,11 @@
 module;
 
+#include <algorithm>
 #include <cmath>
+#include <cstdint>
 #include <functional>
 #include <optional>
+#include <type_traits>
 
 export module scan.numeric;
 

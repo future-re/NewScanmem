@@ -20,6 +20,7 @@ set(MODULE_SOURCES
     scan/types.cppm
     scan/read_helpers.cppm
     scan/bytes.cppm
+    scan/string.cppm
 )
 
 # 添加模块源文件到库

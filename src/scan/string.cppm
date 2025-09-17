@@ -1,9 +1,14 @@
 module;
 
+#include <algorithm>
 #include <boost/regex.hpp>
+#include <cstdint>
 #include <memory>
 #include <optional>
+#include <span>
 #include <string>
+#include <string_view>
+#include <vector>
 
 export module scan.string;
 
@@ -13,8 +18,8 @@ import value;
 // 本模块实现字符串和正则相关例程，以及线程局部的正则缓存。
 // 导出：makeStringRoutine, getCachedRegex, findRegexPattern
 
-export inline const boost::regex* getCachedRegex(
-    const std::string& pattern) noexcept {
+export inline auto getCachedRegex(const std::string& pattern) noexcept
+    -> const boost::regex* {
     thread_local std::string cachedPattern;
     thread_local std::unique_ptr<boost::regex> cachedRegex;
     if (!cachedRegex || cachedPattern != pattern) {
@@ -36,9 +41,9 @@ export inline auto findRegexPattern(const Mem64* memoryPtr, size_t memLength,
     size_t limitSize = std::min(hayAll.size(), memLength);
     std::string hay(hayAll.begin(),
                     hayAll.begin() + static_cast<std::ptrdiff_t>(limitSize));
-    if (const auto* rx = getCachedRegex(pattern)) {
+    if (const auto* rxVal = getCachedRegex(pattern)) {
         boost::smatch matchResult;
-        if (boost::regex_search(hay, matchResult, *rx)) {
+        if (boost::regex_search(hay, matchResult, *rxVal)) {
             return ByteMatch{
                 .offset = static_cast<size_t>(matchResult.position()),
                 .length = static_cast<size_t>(matchResult.length())};
@@ -49,46 +54,99 @@ export inline auto findRegexPattern(const Mem64* memoryPtr, size_t memLength,
     return std::nullopt;
 }
 
+namespace {
+
+[[nodiscard]] inline auto handleMatchAny(size_t memLength,
+                                         MatchFlags* saveFlags)
+    -> unsigned int {
+    *saveFlags = MatchFlags::B8;
+    return static_cast<unsigned int>(memLength);
+}
+
+[[nodiscard]] inline auto runRegexMatch(const Mem64* memoryPtr,
+                                        size_t memLength,
+                                        const std::string& pattern,
+                                        MatchFlags* saveFlags) -> unsigned int {
+    auto hayAll = memoryPtr->bytes();
+    size_t limitSize = std::min(hayAll.size(), memLength);
+    std::string hay(hayAll.begin(),
+                    hayAll.begin() + static_cast<std::ptrdiff_t>(limitSize));
+    if (const auto* rxVal = getCachedRegex(pattern)) {
+        boost::smatch matchResult;
+        if (boost::regex_search(hay, matchResult, *rxVal)) {
+            *saveFlags = MatchFlags::B8;
+            return static_cast<unsigned int>(matchResult.length());
+        }
+    }
+    return 0;
+}
+
+[[nodiscard]] inline auto clipHaySpan(const Mem64* memoryPtr, size_t memLength,
+                                      size_t required)
+    -> std::optional<std::span<const uint8_t>> {
+    auto hayAll = memoryPtr->bytes();
+    const size_t LIMIT_SIZE = std::min(hayAll.size(), memLength);
+    if (LIMIT_SIZE < required) {
+        return std::nullopt;
+    }
+    return std::span<const uint8_t>(hayAll.data(), LIMIT_SIZE);
+}
+
+[[nodiscard]] inline auto matchesWithOptionalMask(
+    std::span<const uint8_t> hay, std::string_view needle,
+    const std::vector<uint8_t>* maskPtr) -> bool {
+    const size_t NEEDLE_SIZE = needle.size();
+    for (size_t index = 0; index < NEEDLE_SIZE; ++index) {
+        const auto HAY_BYTE = hay[index];
+        const auto TARGETBYTE = static_cast<uint8_t>(needle[index]);
+        if (maskPtr != nullptr) {
+            const auto MASKBYTE = (*maskPtr)[index];
+            if (((HAY_BYTE ^ TARGETBYTE) & MASKBYTE) != 0) {
+                return false;
+            }
+        } else if (HAY_BYTE != TARGETBYTE) {
+            return false;
+        }
+    }
+    return true;
+}
+
+}  // namespace
+
 export inline auto makeStringRoutine(ScanMatchType matchType) -> scanRoutine {
     return [matchType](const Mem64* memoryPtr, size_t memLength,
                        const Value* /*oldValue*/, const UserValue* userValue,
                        MatchFlags* saveFlags) -> unsigned int {
         *saveFlags = MatchFlags::EMPTY;
         if (matchType == ScanMatchType::MATCHANY) {
-            *saveFlags = MatchFlags::B8;
-            return static_cast<unsigned int>(memLength);
+            return handleMatchAny(memLength, saveFlags);
         }
         if (!userValue) {
             return 0;
         }
         if (matchType == ScanMatchType::MATCHREGEX) {
-            auto hayAll = memoryPtr->bytes();
-            size_t limitSize = std::min(hayAll.size(), memLength);
-            std::string hay(
-                hayAll.begin(),
-                hayAll.begin() + static_cast<std::ptrdiff_t>(limitSize));
-            if (const auto* rx = getCachedRegex(userValue->stringValue)) {
-                boost::smatch matchResult;
-                if (boost::regex_search(hay, matchResult, *rx)) {
-                    *saveFlags = MatchFlags::B8;
-                    return static_cast<unsigned int>(matchResult.length());
-                }
-            } else {
-                return 0;
-            }
+            return runRegexMatch(memoryPtr, memLength, userValue->stringValue,
+                                 saveFlags);
+        }
+        const std::string_view NEEDLE{userValue->stringValue};
+        if (NEEDLE.empty()) {
             return 0;
         }
-        const auto& stringRef = userValue->stringValue;
-        auto needle = std::span<const uint8_t>(
-            reinterpret_cast<const uint8_t*>(stringRef.data()),
-            stringRef.size());
-        if (userValue->byteMask &&
-            userValue->byteMask->size() == stringRef.size()) {
-            auto mask = std::span<const uint8_t>(userValue->byteMask->data(),
-                                                 userValue->byteMask->size());
-            return compareBytesMasked(memoryPtr, memLength, needle, mask,
-                                      saveFlags);
+        const auto* const MASK_PTR =
+            (userValue->byteMask &&
+             userValue->byteMask->size() == NEEDLE.size())
+                ? &*userValue->byteMask
+                : nullptr;
+
+        auto haySpanOpt = clipHaySpan(memoryPtr, memLength, NEEDLE.size());
+        if (!haySpanOpt) {
+            return 0;
         }
-        return compareBytes(memoryPtr, memLength, needle, saveFlags);
+        if (!matchesWithOptionalMask(*haySpanOpt, NEEDLE, MASK_PTR)) {
+            return 0;
+        }
+
+        *saveFlags = MatchFlags::B8;
+        return static_cast<unsigned int>(NEEDLE.size());
     };
 }

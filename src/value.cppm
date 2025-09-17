@@ -70,7 +70,7 @@ export struct Value {
     }
 
     // 获取只读字节视图（供 scanroutines 使用）
-    std::span<const uint8_t> view() const noexcept {
+    [[nodiscard]] auto view() const noexcept -> std::span<const uint8_t> {
         return std::span<const uint8_t>{bytes};
     }
 
@@ -207,15 +207,25 @@ enum class Wildcard : uint8_t { FIXED = 0xffU, WILDCARD = 0x00U };
 
 export struct UserValue {
     int8_t int8Value = 0;
+    int8_t int8RangeHighValue = 0;
     uint8_t uint8Value = 0;
+    uint8_t uint8RangeHighValue = 0;
     int16_t int16Value = 0;
+    int16_t int16RangeHighValue = 0;
     uint16_t uint16Value = 0;
+    uint16_t uint16RangeHighValue = 0;
     int32_t int32Value = 0;
+    int32_t int32RangeHighValue = 0;
     uint32_t uint32Value = 0;
+    uint32_t uint32RangeHighValue = 0;
     int64_t int64Value = 0;
+    int64_t int64RangeHighValue = 0;
     uint64_t uint64Value = 0;
+    uint64_t uint64RangeHighValue = 0;
     float float32Value = 0.0F;
+    float float32RangeHighValue = 0.0F;
     double float64Value = 0.0;
+    double float64RangeHighValue = 0.0;
 
     std::optional<std::vector<uint8_t>> bytearrayValue;
     std::optional<std::vector<uint8_t>> byteMask;
