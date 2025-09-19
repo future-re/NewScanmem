@@ -10,19 +10,24 @@ set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-p;build")
 # 模块源文件（不带 src/ 前缀）
 set(MODULE_SOURCES
     show_message.cppm
-    value.cppm
-    targetmem.cppm
-    sets.cppm
-    process_checker.cppm
     endianness.cppm
-    maps.cppm
-    common.cppm
-    scan/types.cppm
-    scan/read_helpers.cppm
-    scan/bytes.cppm
-    scan/string.cppm
-    scan/numeric.cppm
-    scan/factory.cppm
+    # common.cppm
+    value/byte_buffer.cppm
+    # value/base_value.cppm
+    # value/mem64.cppm
+    # value/user_value.cppm
+#     targetmem.cppm
+#     sets.cppm
+#     process_checker.cppm
+#     endianness.cppm
+#     maps.cppm
+#     common.cppm
+#     scan/types.cppm
+#     scan/read_helpers.cppm
+#     scan/bytes.cppm
+#     scan/string.cppm
+#     scan/numeric.cppm
+#     scan/factory.cppm
 )
 
 # 添加模块源文件到库

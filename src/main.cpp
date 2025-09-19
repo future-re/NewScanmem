@@ -1,6 +1,1 @@
-import sets;
-
-auto main() -> int {
-    Set val;
-    return 0;
-}
+auto main() -> int { return 0; }

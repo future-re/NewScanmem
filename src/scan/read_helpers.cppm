@@ -5,6 +5,7 @@ module;
 #include <cmath>
 #include <cstdint>
 #include <cstring>
+#include <iostream>
 #include <optional>
 #include <type_traits>
 
@@ -16,102 +17,8 @@ import value; // 依赖项目中已有的 value 定义
 // 本模块导出与字节读取、端序转换、TypeTraits 相关的辅助函数。
 // 目标：为 numeric/bytes/string 模块提供统一的读取与类型标记工具。
 
-namespace detail {
-
-template <typename T>
-struct TypeTraits;
-
-template <>
-struct TypeTraits<int8_t> {
-    static constexpr MatchFlags FLAG = MatchFlags::S8B;
-    static constexpr auto LOW = &UserValue::int8Value;
-    static constexpr auto HIGH = &UserValue::int8RangeHighValue;
-};
-
-template <>
-struct TypeTraits<uint8_t> {
-    static constexpr MatchFlags FLAG = MatchFlags::U8B;
-    static constexpr auto LOW = &UserValue::uint8Value;
-    static constexpr auto HIGH = &UserValue::uint8RangeHighValue;
-};
-
-template <>
-struct TypeTraits<int16_t> {
-    static constexpr MatchFlags FLAG = MatchFlags::S16B;
-    static constexpr auto LOW = &UserValue::int16Value;
-    static constexpr auto HIGH = &UserValue::int16RangeHighValue;
-};
-
-template <>
-struct TypeTraits<uint16_t> {
-    static constexpr MatchFlags FLAG = MatchFlags::U16B;
-    static constexpr auto LOW = &UserValue::uint16Value;
-    static constexpr auto HIGH = &UserValue::uint16RangeHighValue;
-};
-
-template <>
-struct TypeTraits<int32_t> {
-    static constexpr MatchFlags FLAG = MatchFlags::S32B;
-    static constexpr auto LOW = &UserValue::int32Value;
-    static constexpr auto HIGH = &UserValue::int32RangeHighValue;
-};
-
-template <>
-struct TypeTraits<uint32_t> {
-    static constexpr MatchFlags FLAG = MatchFlags::U32B;
-    static constexpr auto LOW = &UserValue::uint32Value;
-    static constexpr auto HIGH = &UserValue::uint32RangeHighValue;
-};
-
-template <>
-struct TypeTraits<int64_t> {
-    static constexpr MatchFlags FLAG = MatchFlags::S64B;
-    static constexpr auto LOW = &UserValue::int64Value;
-    static constexpr auto HIGH = &UserValue::int64RangeHighValue;
-};
-
-template <>
-struct TypeTraits<uint64_t> {
-    static constexpr MatchFlags FLAG = MatchFlags::U64B;
-    static constexpr auto LOW = &UserValue::uint64Value;
-    static constexpr auto HIGH = &UserValue::uint64RangeHighValue;
-};
-
-template <>
-struct TypeTraits<float> {
-    static constexpr MatchFlags FLAG = MatchFlags::F32B;
-    static constexpr auto LOW = &UserValue::float32Value;
-    static constexpr auto HIGH = &UserValue::float32RangeHighValue;
-};
-
-template <>
-struct TypeTraits<double> {
-    static constexpr MatchFlags FLAG = MatchFlags::F64B;
-    static constexpr auto LOW = &UserValue::float64Value;
-    static constexpr auto HIGH = &UserValue::float64RangeHighValue;
-};
-
-}  // namespace detail
-
-export template <typename T>
-[[nodiscard]] constexpr auto flagForType() noexcept -> MatchFlags {
-    return detail::TypeTraits<T>::FLAG;
-}
-
-export template <typename T>
-[[nodiscard]] inline auto userValueAs(const UserValue& userValue) noexcept
-    -> T {
-    return userValue.*(detail::TypeTraits<T>::LOW);
-}
-
-export template <typename T>
-[[nodiscard]] inline auto userValueHighAs(const UserValue& userValue) noexcept
-    -> T {
-    return userValue.*(detail::TypeTraits<T>::HIGH);
-}
-
 // 端序条件交换（对整型/浮点/其他类型安全处理）
-export template <typename T>
+template <typename T>
 constexpr auto swapIfReverse(T value, bool reverse) noexcept -> T {
     if (!reverse) {
         return value;
@@ -127,6 +34,9 @@ constexpr auto swapIfReverse(T value, bool reverse) noexcept -> T {
         bits64 = std::byteswap(bits64);
         return std::bit_cast<double>(bits64);
     } else {
+        std::cerr << "Warning: swapIfReverse received an unsupported type, no "
+                     "endianness conversion performed!"
+                  << std::endl;
         return value;
     }
 }
@@ -136,9 +46,6 @@ export template <typename T>
 [[nodiscard]] inline auto readTyped(const Mem64* memoryPtr, size_t memLength,
                                     bool reverseEndianness) noexcept
     -> std::optional<T> {
-    if (memLength < sizeof(T)) {
-        return std::nullopt;
-    }
     auto currentOpt = memoryPtr->tryGet<T>();
     if (!currentOpt) {
         return std::nullopt;
