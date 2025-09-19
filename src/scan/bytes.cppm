@@ -12,6 +12,7 @@ module;
 export module scan.bytes;
 
 import scan.types;
+
 import value;
 
 // 本模块实现字节数组/字符串的比较与查找辅助（不包含复杂正则）

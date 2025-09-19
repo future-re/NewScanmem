@@ -58,6 +58,7 @@ export constexpr auto operator~(MatchFlags flag) -> MatchFlags {
     return static_cast<MatchFlags>(~static_cast<T>(flag));
 }
 
+// 用于存储的旧值
 export struct Value {
     // 底层以字节流存储（兼容旧设计）：所有按标量写入/读取均通过字节拷贝实现
     std::vector<uint8_t> bytes;
@@ -75,8 +76,8 @@ export struct Value {
     }
 
     // 获取可写字节视图（例如端序调整时就地修改）
-    std::span<uint8_t> mutableView() noexcept {
-        return std::span<uint8_t>(bytes.data(), bytes.size());
+    auto mutableView() noexcept -> std::span<uint8_t> {
+        return {bytes.data(), bytes.size()};
     }
 
     // 设置字节数据（复制）
@@ -152,6 +153,7 @@ export struct Value {
     }
 };
 
+// 用于当前内存的扫描值
 export struct Mem64 {
     // 当前读取到的字节缓冲（通常来自进程内存读取）
     std::vector<uint8_t> buffer;
@@ -205,6 +207,7 @@ export struct Mem64 {
 
 enum class Wildcard : uint8_t { FIXED = 0xffU, WILDCARD = 0x00U };
 
+// 用于用户传入的扫描值
 export struct UserValue {
     int8_t int8Value = 0;
     int8_t int8RangeHighValue = 0;

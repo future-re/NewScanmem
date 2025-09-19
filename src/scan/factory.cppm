@@ -1,6 +1,6 @@
 module;
 
-#include <functional>
+#include <bits/stdint-intn.h>
 
 export module scan.factory;
 

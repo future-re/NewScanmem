@@ -21,6 +21,8 @@ set(MODULE_SOURCES
     scan/read_helpers.cppm
     scan/bytes.cppm
     scan/string.cppm
+    scan/numeric.cppm
+    scan/factory.cppm
 )
 
 # 添加模块源文件到库
