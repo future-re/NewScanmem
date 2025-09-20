@@ -5,18 +5,18 @@ module;
 #include <concepts>
 #include <cstdint>
 #include <cstring>
+#include <initializer_list>
 #include <span>
 #include <stdexcept>
 #include <type_traits>
 
 export module endianness;
 
-// Concept for swappable integral types
-template <std::size_t N>
-constexpr bool IS_SWAPPABLE_SIZE = (N == 1) || (N == 2) || (N == 4) || (N == 8);
-
-template <typename T>
-concept SwappableIntegral = std::integral<T> && IS_SWAPPABLE_SIZE<sizeof(T)>;
+// 导出概念：支持 1/2/4/8 字节的可交换二进制类型（整数或浮点）
+export template <typename T>
+concept SwappableBinary =
+    std::is_trivially_copyable_v<T> &&
+    (sizeof(T) == 1 || sizeof(T) == 2 || sizeof(T) == 4 || sizeof(T) == 8);
 
 // ==========================
 // 内部工具函数（不导出）
@@ -52,7 +52,7 @@ constexpr auto swapBytes(uint64_t value) noexcept -> uint64_t {
     return res;
 }
 
-// 通用字节反转函数
+// 通用字节反转函数（整数）
 template <typename T>
 constexpr auto swapBytesIntegral(T value) noexcept -> T {
     static_assert(std::is_integral_v<T>, "T must be an integral type");
@@ -71,6 +71,32 @@ constexpr auto swapBytesIntegral(T value) noexcept -> T {
     }
 }
 
+// 通用字节反转（泛型）：整数直接调用上面的实现，其他类型通过 bit_cast
+template <SwappableBinary T>
+constexpr auto swapBytesBinary(T value) noexcept -> T {
+    if constexpr (std::is_integral_v<T>) {
+        return swapBytesIntegral(value);
+    } else {
+        if constexpr (sizeof(T) == 1) {
+            return value;
+        } else if constexpr (sizeof(T) == 2) {
+            auto uVal = std::bit_cast<uint16_t>(value);
+            uVal = swapBytes(uVal);
+            return std::bit_cast<T>(uVal);
+        } else if constexpr (sizeof(T) == 4) {
+            auto uVal = std::bit_cast<uint32_t>(value);
+            uVal = swapBytes(uVal);
+            return std::bit_cast<T>(uVal);
+        } else if constexpr (sizeof(T) == 8) {
+            auto uVal = std::bit_cast<uint64_t>(value);
+            uVal = swapBytes(uVal);
+            return std::bit_cast<T>(uVal);
+        } else {
+            return value;
+        }
+    }
+}
+
 // 字节流反转（内部使用）
 void reverseByteStream(std::span<uint8_t> byteStream) {
     std::ranges::reverse(byteStream);
@@ -79,91 +105,92 @@ void reverseByteStream(std::span<uint8_t> byteStream) {
 // ==========================
 // 对外接口（导出）
 // ==========================
-export {
-    // 标量值的字节序转换
-    template <SwappableIntegral T>
-    constexpr auto hostToNetwork(T value) noexcept -> T {
-        if constexpr (isBigEndian()) {
-            return value;
-        } else {
-            return swapBytesIntegral(value);
-        }
-    }
-
-    template <SwappableIntegral T>
-    constexpr auto networkToHost(T value) noexcept -> T {
-        return hostToNetwork(value);  // Same operation
-    }
-
-    template <SwappableIntegral T>
-    constexpr auto hostToLittleEndian(T value) noexcept -> T {
-        if constexpr (isLittleEndian()) {
-            return value;
-        } else {
-            return swapBytesIntegral(value);
-        }
-    }
-
-    template <SwappableIntegral T>
-    constexpr auto littleEndianToHost(T value) noexcept -> T {
-        return hostToLittleEndian(value);  // Same operation
-    }
-
-    // 字节流的字节序转换，toLitteEndian 为 true 表示转为小端，否则转为大端
-    template <SwappableIntegral T>
-    void convertEndian(std::span<uint8_t> byteStream, bool toLittleEndian) {
-        const size_t TYPE_SIZE = sizeof(T);
-        if (byteStream.size() % TYPE_SIZE != 0) {
-            throw std::invalid_argument(
-                "Byte stream size must be a multiple of type size");
-        }
-
-        for (size_t i = 0; i < byteStream.size(); i += TYPE_SIZE) {
-            T value;
-            std::memcpy(&value, &byteStream[i], TYPE_SIZE);
-
-            if (toLittleEndian) {
-                value = hostToLittleEndian(value);
-            } else {
-                value = hostToNetwork(value);  // Big-endian
-            }
-
-            std::memcpy(&byteStream[i], &value, TYPE_SIZE);
-        }
-    }
-
-    // 字节流的字节序转换，按指定规则解析, toLittleEndian 为 true
-    // 表示转为小端，否则转为大端
-    void convertEndian(std::span<uint8_t> byteStream, bool toLittleEndian,
-                       std::initializer_list<size_t> parseRules = {}) {
-        if (parseRules.size() == 0) {
-            // 如果没有解析规则，直接反转整个字节流
-            reverseByteStream(byteStream);
-            return;
-        }
-
-        size_t offset = 0;
-        for (size_t elementSize : parseRules) {
-            if (offset + elementSize > byteStream.size()) {
-                throw std::invalid_argument(
-                    "Byte stream size does not match parse rules");
-            }
-
-            std::span<uint8_t> element(byteStream.subspan(offset, elementSize));
-
-            // 如果目标是 Little Endian 且主机是 Big
-            // Endian，或者反之，则反转每个元素
-            if ((toLittleEndian && isBigEndian()) ||
-                (!toLittleEndian && isLittleEndian())) {
-                reverseByteStream(element);
-            }
-
-            offset += elementSize;
-        }
-
-        if (offset != byteStream.size()) {
-            throw std::invalid_argument(
-                "Parse rules do not cover the entire byte stream");
-        }
+// 将对外接口放入命名空间，与模块名一致，便于使用方以 endianness:: 方式调用
+export namespace endianness {
+// 标量值的字节序转换
+template <SwappableBinary T>
+constexpr auto hostToNetwork(T value) noexcept -> T {
+    if constexpr (isBigEndian()) {
+        return value;
+    } else {
+        return swapBytesBinary(value);
     }
 }
+
+template <SwappableBinary T>
+constexpr auto networkToHost(T value) noexcept -> T {
+    return hostToNetwork(value);  // Same operation
+}
+
+template <SwappableBinary T>
+constexpr auto hostToLittleEndian(T value) noexcept -> T {
+    if constexpr (isLittleEndian()) {
+        return value;
+    } else {
+        return swapBytesBinary(value);
+    }
+}
+
+template <SwappableBinary T>
+constexpr auto littleEndianToHost(T value) noexcept -> T {
+    return hostToLittleEndian(value);  // Same operation
+}
+
+// 字节流的字节序转换，toLitteEndian 为 true 表示转为小端，否则转为大端
+template <SwappableBinary T>
+void convertEndian(std::span<uint8_t> byteStream, bool toLittleEndian) {
+    const size_t TYPE_SIZE = sizeof(T);
+    if (byteStream.size() % TYPE_SIZE != 0) {
+        throw std::invalid_argument(
+            "Byte stream size must be a multiple of type size");
+    }
+
+    for (size_t i = 0; i < byteStream.size(); i += TYPE_SIZE) {
+        T value;
+        std::memcpy(&value, &byteStream[i], TYPE_SIZE);
+
+        if (toLittleEndian) {
+            value = hostToLittleEndian(value);
+        } else {
+            value = hostToNetwork(value);  // Big-endian
+        }
+
+        std::memcpy(&byteStream[i], &value, TYPE_SIZE);
+    }
+}
+
+// 字节流的字节序转换，按指定规则解析, toLittleEndian 为 true
+// 表示转为小端，否则转为大端
+void convertEndian(std::span<uint8_t> byteStream, bool toLittleEndian,
+                   std::initializer_list<size_t> parseRules = {}) {
+    if (parseRules.size() == 0) {
+        // 如果没有解析规则，直接反转整个字节流
+        reverseByteStream(byteStream);
+        return;
+    }
+
+    size_t offset = 0;
+    for (size_t elementSize : parseRules) {
+        if (offset + elementSize > byteStream.size()) {
+            throw std::invalid_argument(
+                "Byte stream size does not match parse rules");
+        }
+
+        std::span<uint8_t> element(byteStream.subspan(offset, elementSize));
+
+        // 如果目标是 Little Endian 且主机是 Big
+        // Endian，或者反之，则反转每个元素
+        if ((toLittleEndian && isBigEndian()) ||
+            (!toLittleEndian && isLittleEndian())) {
+            reverseByteStream(element);
+        }
+
+        offset += elementSize;
+    }
+
+    if (offset != byteStream.size()) {
+        throw std::invalid_argument(
+            "Parse rules do not cover the entire byte stream");
+    }
+}
+}  // namespace endianness

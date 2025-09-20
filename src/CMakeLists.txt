@@ -12,8 +12,11 @@ set(MODULE_SOURCES
     show_message.cppm
     endianness.cppm
     # common.cppm
-    value/byte_buffer.cppm
-    # value/base_value.cppm
+    value/buffer.cppm
+    value/view.cppm
+    value/cursor.cppm
+    value/scalar.cppm
+    value/value.cppm
     # value/mem64.cppm
     # value/user_value.cppm
 #     targetmem.cppm
