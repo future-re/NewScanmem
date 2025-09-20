@@ -17,8 +17,7 @@ set(MODULE_SOURCES
     value/cursor.cppm
     value/scalar.cppm
     value/value.cppm
-    # value/mem64.cppm
-    # value/user_value.cppm
+    mem64.cppm
 #     targetmem.cppm
 #     sets.cppm
 #     process_checker.cppm
