@@ -1,7 +1,6 @@
 module;
 
 #include <array>
-#include <bit>
 #include <cstddef>
 #include <cstdint>
 #include <stdexcept>
@@ -19,11 +18,14 @@ export struct ByteBuffer {
     explicit ByteBuffer(size_t n) : data(n) {}
     ByteBuffer(const uint8_t* point, size_t n) : data(point, point + n) {}
 
-    void append(const uint8_t* point, size_t n) {
+    // Append bytes and return starting offset in the buffer
+    auto append(const uint8_t* point, size_t n) -> size_t {
         if (frozen) {
             throw std::logic_error("ByteBuffer is frozen");
         }
+        const size_t START = data.size();
         data.insert(data.end(), point, point + n);
+        return START;
     }
 
     template <typename T>

@@ -2,6 +2,7 @@ module;
 
 #include <cstddef>
 #include <cstdint>
+#include <memory>
 #include <optional>
 #include <type_traits>
 #include <variant>
@@ -100,11 +101,13 @@ export struct ScalarValue {
     }
 
     template <typename T>
-    static auto make(const T& val, ByteBuffer& buffer) noexcept -> ScalarValue {
+    static auto make(const T& val,
+                     const std::shared_ptr<ByteBuffer>& buffer) noexcept
+        -> ScalarValue {
         static_assert(std::is_trivially_copyable_v<T>);
-        const size_t START = buffer.appendValue<T>(val);
+        const size_t START = buffer->appendValue<T>(val);
         return ScalarValue{KindOf<T>::VALUE,
-                           MemView{buffer.ptr() + START, sizeof(T)}};
+                           MemView::fromBuffer(buffer, START, sizeof(T))};
     }
 
     template <typename T>

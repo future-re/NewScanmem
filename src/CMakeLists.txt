@@ -17,6 +17,7 @@ set(MODULE_SOURCES
     value/cursor.cppm
     value/scalar.cppm
     value/value.cppm
+    value/text.cppm
     mem64.cppm
 #     targetmem.cppm
 #     sets.cppm

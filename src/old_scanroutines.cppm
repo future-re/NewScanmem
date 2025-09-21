@@ -527,8 +527,7 @@ inline auto makeStringRoutine(ScanMatchType matchType) -> scanRoutine {
         const auto& stringRef = userValue->stringValue;
         // Reuse underlying storage as bytes without extra allocation
         auto needle = std::span<const uint8_t>(
-            reinterpret_cast<const uint8_t*>(stringRef.data()),
-            stringRef.size());
+            std::bit_cast<const uint8_t*>(stringRef.data()), stringRef.size());
         if (userValue->byteMask &&
             userValue->byteMask->size() == stringRef.size()) {
             auto mask = std::span<const uint8_t>(userValue->byteMask->data(),
