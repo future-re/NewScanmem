@@ -3,6 +3,9 @@ include(find_boost)
 # --- 核心模块库 ---
 add_library(NewScanmem_lib STATIC)
 
+# 查找 ICU
+find_package(ICU REQUIRED COMPONENTS uc i18n)
+
 target_compile_features(NewScanmem_lib PUBLIC cxx_std_23)
 
 set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-p;build")
@@ -40,7 +43,7 @@ target_sources(NewScanmem_lib
         ${MODULE_SOURCES}
 )
 
-target_link_libraries(NewScanmem_lib PUBLIC Boost::filesystem Boost::regex)
+target_link_libraries(NewScanmem_lib PUBLIC Boost::filesystem Boost::regex ICU::uc ICU::i18n)
 
 # --- 主可执行文件 ---
 add_executable(NewScanmem main.cpp)
