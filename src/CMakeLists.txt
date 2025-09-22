@@ -22,6 +22,7 @@ set(MODULE_SOURCES
     value/value.cppm
     value/text.cppm
     mem64.cppm
+    user_input.cppm
 #     targetmem.cppm
 #     sets.cppm
 #     process_checker.cppm
