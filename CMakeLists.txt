@@ -1,13 +1,6 @@
 # CMakeLists.txt
 cmake_minimum_required(VERSION 3.28)
 
-find_program(CLANGXX20 clang++-20)
-find_program(CLANG20 clang-20)
-if(CLANGXX20 AND CLANG20)
-  set(CMAKE_CXX_COMPILER ${CLANGXX20} CACHE STRING "C++ compiler" FORCE)
-  set(CMAKE_C_COMPILER ${CLANG20} CACHE STRING "C compiler" FORCE)
-endif()
-
 project(NewScanmem CXX)
 
 # 设置 C++ 标准和要求
