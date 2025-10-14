@@ -28,7 +28,7 @@ set(MODULE_SOURCES
     sets.cppm
     process_checker.cppm
     maps.cppm
-#     scan/types.cppm
+    scan/types.cppm
 #     scan/read_helpers.cppm
 #     scan/bytes.cppm
 #     scan/string.cppm
