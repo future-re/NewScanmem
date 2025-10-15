@@ -18,15 +18,15 @@ concept SwappableBinary =
     (sizeof(T) == 1 || sizeof(T) == 2 || sizeof(T) == 4 || sizeof(T) == 8);
 
 // ==========================
-// 内部工具函数（不导出）
+// 内部/对外工具函数
 // ==========================
 
-// 判断主机字节序
-constexpr auto isBigEndian() noexcept -> bool {
+// 判断主机字节序（导出以便测试与工具复用）
+export constexpr auto isBigEndian() noexcept -> bool {
     return std::endian::native == std::endian::big;
 }
 
-constexpr auto isLittleEndian() noexcept -> bool {
+export constexpr auto isLittleEndian() noexcept -> bool {
     return std::endian::native == std::endian::little;
 }
 
@@ -51,8 +51,8 @@ constexpr auto swapBytes(uint64_t value) noexcept -> uint64_t {
     return res;
 }
 
-// 通用字节反转函数（整数）
-template <typename T>
+// 通用字节反转函数（整数）——导出以便单元测试直接调用
+export template <typename T>
 constexpr auto swapBytesIntegral(T value) noexcept -> T {
     static_assert(std::is_integral_v<T>, "T must be an integral type");
 
@@ -193,3 +193,10 @@ void convertEndian(std::span<uint8_t> byteStream, bool toLittleEndian,
     }
 }
 }  // namespace endianness
+
+// 便捷 re-export：将常用 API 直接导出到模块接口，便于无命名空间限定调用
+export using endianness::hostToNetwork;
+export using endianness::networkToHost;
+export using endianness::hostToLittleEndian;
+export using endianness::littleEndianToHost;
+export using endianness::convertEndian;

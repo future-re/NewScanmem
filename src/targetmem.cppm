@@ -9,6 +9,7 @@ module;
 #include <cstdlib>
 #include <cstring>
 #include <optional>
+#include <iomanip>
 #include <ranges>
 #include <sstream>
 #include <string>
@@ -46,16 +47,17 @@ export {
         /*
          * addElement(addr, byte, matchFlags)
          *
-         * 向 swath 追加一个字节（OldValueAndMatchInfo）。
-         * - addr: 该字节在目标进程中的地址（字节地址）。
+         * 向 swath 追加一个“字节”的历史值与匹配标记。
+         * 约定：data 的一个元素严格对应目标进程中的 1 个字节偏移。
+         * 这样我们可通过 `firstByteInChild + index` 还原目标地址。
+         *
+         * - addr: 该字节在目标进程中的起始地址（字节地址）。
          * - byte: 读取到的字节值。
          * - matchFlags: 该字节的匹配状态（MatchFlags）。
          *
          * 语义:
-         *  - 如果 data 为空，则将 firstByteInChild 设为 addr，之后按顺序
-         * push_back。
-         *  - 依赖调用者按地址顺序添加字节以保持 firstByteInChild 与 data
-         * 的对应关系。
+         *  - 如果 data 为空，则将 firstByteInChild 设为 addr，之后按顺序 push_back。
+         *  - 要求调用者按地址顺序添加字节以保持 firstByteInChild 与 data 的对应关系。
          */
         void addElement(void* addr, uint8_t byte, MatchFlags matchFlags) {
             if (data.empty()) {
@@ -132,14 +134,15 @@ export {
          * 将从 idx 起最多 len
          * 个字节转换为十六进制字符串（以空格分隔），便于调试查看原始字节。
          */
-        [[nodiscard]] auto toByteArrayText(size_t idx, size_t len) const
-            -> std::string {
+        [[nodiscard]] auto toByteArrayText(size_t idx, size_t len) const -> std::string {
             std::ostringstream oss;
             size_t count = std::min(len, data.size() - idx);
+            oss << std::nouppercase << std::hex;
             for (size_t i = 0; i < count; ++i) {
-                oss << std::hex << static_cast<int>(data[idx + i].oldValue);
+                oss << std::setw(2) << std::setfill('0')
+                    << (static_cast<int>(data[idx + i].oldValue) & 0xFF);
                 if (i + 1 < count) {
-                    oss << " ";
+                    oss << ' ';
                 }
             }
             return oss.str();

@@ -14,7 +14,6 @@ set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-p;build")
 set(MODULE_SOURCES
     show_message.cppm
     endianness.cppm
-    common.cppm
     value/buffer.cppm
     value/view.cppm
     value/cursor.cppm

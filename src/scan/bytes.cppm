@@ -18,7 +18,13 @@ import value;
 
 // 本模块实现字节数组/字符串的比较与查找辅助（不包含复杂正则）
 // 导出：compareBytes, compareBytesMasked, findBytePattern,
-// findBytePatternMasked, makeBytearrayRoutine
+//       findBytePatternMasked, makeBytearrayRoutine
+//
+// 约定（非常重要）：
+// - compareBytes/compareBytesMasked 仅比较“当前位置起始处”的前缀是否匹配。
+//   即：它们不会在当前缓冲内做搜索，而是由“扫描引擎”逐偏移推进并调用。
+//   若需要在一段缓冲区内查找首次出现的位置，请使用 findBytePattern*
+//   （搜索语义）。
 
 export inline auto compareBytes(const Mem64* memoryPtr, size_t memLength,
                                 std::span<const std::uint8_t> needle,
