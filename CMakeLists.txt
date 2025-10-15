@@ -33,3 +33,31 @@ FetchContent_MakeAvailable(googletest)
 
 add_subdirectory(src)
 # add_subdirectory(test)
+
+# 添加 MkDocs 构建和部署的自定义目标
+option(BUILD_DOCS "Build MkDocs documentation as part of the default build" ON)
+
+# MkDocs build target
+if(BUILD_DOCS)
+  add_custom_target(mkdocs_build ALL
+    COMMAND ${CMAKE_COMMAND} -E echo "Building MkDocs documentation..."
+    COMMAND mkdocs build --clean
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/mkdocs
+    COMMENT "Building MkDocs documentation"
+  )
+else()
+  add_custom_target(mkdocs_build
+    COMMAND ${CMAKE_COMMAND} -E echo "Building MkDocs documentation..."
+    COMMAND mkdocs build --clean
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/mkdocs
+    COMMENT "Building MkDocs documentation"
+  )
+endif()
+
+# MkDocs deploy target (manual trigger)
+add_custom_target(mkdocs_deploy
+  COMMAND ${CMAKE_COMMAND} -E echo "Deploying MkDocs documentation to GitHub Pages..."
+  COMMAND mkdocs gh-deploy --force --config-file mkdocs/mkdocs.yml
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/mkdocs
+  COMMENT "Deploying MkDocs documentation"
+)
