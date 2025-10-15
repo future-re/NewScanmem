@@ -1,4 +1,4 @@
-# 欢迎来到 NewScanmem 文档
+# 开始
 
 欢迎访问 NewScanmem 文档站点！这里提供项目概览、使用指南以及 API 参考。
 

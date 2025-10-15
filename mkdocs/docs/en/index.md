@@ -1,4 +1,4 @@
-# Welcome to NewScanmem Documentation
+# Start
 
 Welcome to the **NewScanmem** documentation site! This site provides detailed information about the project, including its features, usage, and API references.
 
