@@ -6,11 +6,10 @@ module;
 
 export module scan.types;
 
-// 轻量级前置声明：避免在基础类型定义阶段引入重依赖
-export struct Mem64;      // 来自 mem64 模块
-export struct Value;      // 旧版/快照值（后续由 value 模块提供）
-export struct UserValue;  // 旧版用户输入（逐步被 UserInput 取代）
-export enum class MatchFlags : std::uint16_t;  // 来自 value.flags
+// 引入依赖模块并向外转发其符号，避免跨模块重复声明同名类型
+export import mem64;        // 提供 Mem64
+export import value.flags;  // 提供 MatchFlags
+export import value;        // 提供 Value / UserValue 等（聚合于 value 模块）
 
 // 扫描数据类型分类
 export enum class ScanDataType {

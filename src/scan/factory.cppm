@@ -1,6 +1,6 @@
 module;
 
-#include <bits/stdint-intn.h>
+#include <cstdint>
 
 export module scan.factory;
 
@@ -15,7 +15,7 @@ import value;
 
 export [[nodiscard]] inline auto smGetScanroutine(ScanDataType dataType,
                                                   ScanMatchType matchType,
-                                                  MatchFlags uflags,
+                                                  [[maybe_unused]] MatchFlags uflags,
                                                   bool reverseEndianness)
     -> scanRoutine {
     switch (dataType) {

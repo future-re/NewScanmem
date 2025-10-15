@@ -1,6 +1,6 @@
 module;
-
 #include <algorithm>
+#include <bit>
 #include <boost/regex.hpp>
 #include <cstdint>
 #include <memory>
@@ -13,6 +13,8 @@ module;
 export module scan.string;
 
 import scan.types;
+import value.flags;
+import scan.bytes;
 import value;
 
 // 本模块实现字符串和正则相关例程，以及线程局部的正则缓存。
@@ -81,36 +83,6 @@ namespace {
     return 0;
 }
 
-[[nodiscard]] inline auto clipHaySpan(const Mem64* memoryPtr, size_t memLength,
-                                      size_t required)
-    -> std::optional<std::span<const uint8_t>> {
-    auto hayAll = memoryPtr->bytes();
-    const size_t LIMIT_SIZE = std::min(hayAll.size(), memLength);
-    if (LIMIT_SIZE < required) {
-        return std::nullopt;
-    }
-    return std::span<const uint8_t>(hayAll.data(), LIMIT_SIZE);
-}
-
-[[nodiscard]] inline auto matchesWithOptionalMask(
-    std::span<const uint8_t> hay, std::string_view needle,
-    const std::vector<uint8_t>* maskPtr) -> bool {
-    const size_t NEEDLE_SIZE = needle.size();
-    for (size_t index = 0; index < NEEDLE_SIZE; ++index) {
-        const auto HAY_BYTE = hay[index];
-        const auto TARGETBYTE = static_cast<uint8_t>(needle[index]);
-        if (maskPtr != nullptr) {
-            const auto MASKBYTE = (*maskPtr)[index];
-            if (((HAY_BYTE ^ TARGETBYTE) & MASKBYTE) != 0) {
-                return false;
-            }
-        } else if (HAY_BYTE != TARGETBYTE) {
-            return false;
-        }
-    }
-    return true;
-}
-
 }  // namespace
 
 export inline auto makeStringRoutine(ScanMatchType matchType) -> scanRoutine {
@@ -137,16 +109,14 @@ export inline auto makeStringRoutine(ScanMatchType matchType) -> scanRoutine {
              userValue->byteMask->size() == NEEDLE.size())
                 ? &*userValue->byteMask
                 : nullptr;
-
-        auto haySpanOpt = clipHaySpan(memoryPtr, memLength, NEEDLE.size());
-        if (!haySpanOpt) {
-            return 0;
+        const auto* bytePtr = std::bit_cast<const uint8_t*>(NEEDLE.data());
+        auto needleSpan = std::span<const uint8_t>(bytePtr, NEEDLE.size());
+        if (MASK_PTR) {
+            auto maskSpan =
+                std::span<const uint8_t>(MASK_PTR->data(), MASK_PTR->size());
+            return compareBytesMasked(memoryPtr, memLength, needleSpan,
+                                      maskSpan, saveFlags);
         }
-        if (!matchesWithOptionalMask(*haySpanOpt, NEEDLE, MASK_PTR)) {
-            return 0;
-        }
-
-        *saveFlags = MatchFlags::B8;
-        return static_cast<unsigned int>(NEEDLE.size());
+        return compareBytes(memoryPtr, memLength, needleSpan, saveFlags);
     };
 }

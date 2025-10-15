@@ -2,13 +2,16 @@ module;
 
 #include <algorithm>
 #include <cmath>
+#include <cstddef>
 #include <cstdint>
+#include <optional>
 #include <type_traits>
 
 export module scan.numeric;
 
 import scan.types;
 import scan.read_helpers;
+import value.flags;
 import value;
 
 // 本模块实现数值类型的匹配核心与工厂函数。
@@ -18,13 +21,7 @@ export template <typename T>
 inline auto numericMatchCore(ScanMatchType matchType, T memv,
                              const Value* oldValue, const UserValue* userValue,
                              MatchFlags* saveFlags) noexcept -> unsigned int {
-    const bool NEEDS_USER = (matchType == ScanMatchType::MATCHEQUALTO ||
-                             matchType == ScanMatchType::MATCHNOTEQUALTO ||
-                             matchType == ScanMatchType::MATCHGREATERTHAN ||
-                             matchType == ScanMatchType::MATCHLESSTHAN ||
-                             matchType == ScanMatchType::MATCHINCREASEDBY ||
-                             matchType == ScanMatchType::MATCHDECREASEDBY ||
-                             matchType == ScanMatchType::MATCHRANGE);
+    const bool NEEDS_USER = matchNeedsUserValue(matchType);
     if (NEEDS_USER && userValue == nullptr) {
         return 0;
     }
@@ -35,16 +32,24 @@ inline auto numericMatchCore(ScanMatchType matchType, T memv,
         }
     }
 
-    auto oldOpt = oldValueAs<T>(oldValue);
-    auto getUser = [&]() -> T { return userValueAs<T>(*userValue); };
+    std::optional<T> oldOpt;
+    if (matchUsesOldValue(matchType)) {
+        oldOpt = oldValueAs<T>(oldValue);
+        if (!oldOpt) {
+            return 0;
+        }
+    }
 
-    bool isMatched = false;
+    auto markMatched = [&]() -> unsigned int {
+        *saveFlags = flagForType<T>();
+        return sizeof(T);
+    };
+
     auto isEqual = [&](T firstValue, T secondValue) {
         if constexpr (std::is_floating_point_v<T>) {
             return almostEqual<T>(firstValue, secondValue);
-        } else {
-            return firstValue == secondValue;
         }
+        return firstValue == secondValue;
     };
     auto isNotEqual = [&](T firstValue, T secondValue) {
         return !isEqual(firstValue, secondValue);
@@ -53,100 +58,101 @@ inline auto numericMatchCore(ScanMatchType matchType, T memv,
         if constexpr (std::is_floating_point_v<T>) {
             return firstValue > secondValue &&
                    !isEqual(firstValue, secondValue);
-        } else {
-            return firstValue > secondValue;
         }
+        return firstValue > secondValue;
     };
     auto isLessThan = [&](T firstValue, T secondValue) {
         if constexpr (std::is_floating_point_v<T>) {
             return firstValue < secondValue &&
                    !isEqual(firstValue, secondValue);
-        } else {
-            return firstValue < secondValue;
         }
+        return firstValue < secondValue;
     };
+
+    const T USERVALUEMAIN = NEEDS_USER ? userValueAs<T>(*userValue) : T{};
 
     switch (matchType) {
         case ScanMatchType::MATCHANY:
-            isMatched = true;
-            break;
+            return markMatched();
         case ScanMatchType::MATCHEQUALTO:
-            isMatched = isEqual(memv, getUser());
-            break;
+            return isEqual(memv, USERVALUEMAIN) ? markMatched() : 0;
         case ScanMatchType::MATCHNOTEQUALTO:
-            isMatched = isNotEqual(memv, getUser());
-            break;
+            return isNotEqual(memv, USERVALUEMAIN) ? markMatched() : 0;
         case ScanMatchType::MATCHGREATERTHAN:
-            isMatched = isGreaterThan(memv, getUser());
-            break;
+            return isGreaterThan(memv, USERVALUEMAIN) ? markMatched() : 0;
         case ScanMatchType::MATCHLESSTHAN:
-            isMatched = isLessThan(memv, getUser());
-            break;
+            return isLessThan(memv, USERVALUEMAIN) ? markMatched() : 0;
         case ScanMatchType::MATCHUPDATE:
         case ScanMatchType::MATCHNOTCHANGED:
-            if (oldOpt) {
-                isMatched = isEqual(memv, *oldOpt);
-            }
-            break;
+            return isEqual(memv, *oldOpt) ? markMatched() : 0;
         case ScanMatchType::MATCHCHANGED:
-            if (oldOpt) {
-                isMatched = isNotEqual(memv, *oldOpt);
-            }
-            break;
+            return isNotEqual(memv, *oldOpt) ? markMatched() : 0;
         case ScanMatchType::MATCHINCREASED:
-            if (oldOpt) {
-                isMatched = isGreaterThan(memv, *oldOpt);
-            }
-            break;
+            return isGreaterThan(memv, *oldOpt) ? markMatched() : 0;
         case ScanMatchType::MATCHDECREASED:
-            if (oldOpt) {
-                isMatched = isLessThan(memv, *oldOpt);
+            return isLessThan(memv, *oldOpt) ? markMatched() : 0;
+        case ScanMatchType::MATCHINCREASEDBY: {
+            const T DELTA = memv - *oldOpt;
+            if constexpr (std::is_floating_point_v<T>) {
+                return almostEqual<T>(DELTA, USERVALUEMAIN) ? markMatched() : 0;
             }
-            break;
-        case ScanMatchType::MATCHINCREASEDBY:
-            if (oldOpt) {
-                if constexpr (std::is_floating_point_v<T>) {
-                    isMatched = almostEqual<T>(memv - *oldOpt, getUser());
-                } else {
-                    isMatched = (memv - *oldOpt == getUser());
-                }
+            return (DELTA == USERVALUEMAIN) ? markMatched() : 0;
+        }
+        case ScanMatchType::MATCHDECREASEDBY: {
+            const T DELTA = *oldOpt - memv;
+            if constexpr (std::is_floating_point_v<T>) {
+                return almostEqual<T>(DELTA, USERVALUEMAIN) ? markMatched() : 0;
             }
-            break;
-        case ScanMatchType::MATCHDECREASEDBY:
-            if (oldOpt) {
-                if constexpr (std::is_floating_point_v<T>) {
-                    isMatched = almostEqual<T>(*oldOpt - memv, getUser());
-                } else {
-                    isMatched = (*oldOpt - memv == getUser());
-                }
-            }
-            break;
+            return (DELTA == USERVALUEMAIN) ? markMatched() : 0;
+        }
         case ScanMatchType::MATCHRANGE: {
-            if (userValue) {
-                T low = userValueAs<T>(*userValue);
-                T high = userValueHighAs<T>(*userValue);
-                if constexpr (std::is_floating_point_v<T>) {
-                    const T ABS_TOLERANCE = absTol<T>();
-                    auto [lowBound, highBound] = std::minmax(low, high);
-                    isMatched = (memv >= lowBound - ABS_TOLERANCE &&
-                                 memv <= highBound + ABS_TOLERANCE);
-                } else {
-                    auto [lowBound, highBound] = std::minmax(low, high);
-                    isMatched = (memv >= lowBound && memv <= highBound);
-                }
+            const T HIGHVALUE = userValueHighAs<T>(*userValue);
+            auto [lowBound, highBound] = std::minmax(USERVALUEMAIN, HIGHVALUE);
+            if constexpr (std::is_floating_point_v<T>) {
+                const T ABS_TOLERANCE = absTol<T>();
+                const bool IN_RANGE = (memv >= lowBound - ABS_TOLERANCE &&
+                                       memv <= highBound + ABS_TOLERANCE);
+                return IN_RANGE ? markMatched() : 0;
             }
-            break;
+            const bool IN_RANGE = (memv >= lowBound && memv <= highBound);
+            return IN_RANGE ? markMatched() : 0;
         }
         default:
-            isMatched = false;
-            break;
+            return 0;
     }
-    if (!isMatched) {
+}
+
+namespace detail {
+
+template <typename T>
+inline auto runNumericMatch(ScanMatchType matchType, bool reverseEndianness,
+                            const Mem64* memoryPtr, size_t memLength,
+                            const Value* oldValue, const UserValue* userValue,
+                            MatchFlags* saveFlags) noexcept -> unsigned int {
+    auto memOpt = readTyped<T>(memoryPtr, memLength, reverseEndianness);
+    if (!memOpt) {
         return 0;
     }
-    *saveFlags = flagForType<T>();
-    return sizeof(T);
+    return numericMatchCore<T>(matchType, *memOpt, oldValue, userValue,
+                               saveFlags);
 }
+
+template <typename... Ts>
+inline auto tryNumericSequence(ScanMatchType matchType, bool reverseEndianness,
+                               const Mem64* memoryPtr, size_t memLength,
+                               const Value* oldValue,
+                               const UserValue* userValue,
+                               MatchFlags* saveFlags) noexcept -> unsigned int {
+    unsigned int result = 0;
+    ((result != 0 ? 0
+                  : result = runNumericMatch<Ts>(matchType, reverseEndianness,
+                                                 memoryPtr, memLength, oldValue,
+                                                 userValue, saveFlags)),
+     ...);
+    return result;
+}
+
+}  // namespace detail
 
 export template <typename T>
 inline auto makeNumericRoutine(ScanMatchType matchType, bool reverseEndianness)
@@ -155,13 +161,10 @@ inline auto makeNumericRoutine(ScanMatchType matchType, bool reverseEndianness)
         [matchType, reverseEndianness](
             const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
             const UserValue* userValue, MatchFlags* saveFlags) -> unsigned int {
-            auto memOpt = readTyped<T>(memoryPtr, memLength, reverseEndianness);
-            if (!memOpt) {
-                return 0;
-            }
             *saveFlags = MatchFlags::EMPTY;
-            return numericMatchCore<T>(matchType, *memOpt, oldValue, userValue,
-                                       saveFlags);
+            return detail::runNumericMatch<T>(matchType, reverseEndianness,
+                                              memoryPtr, memLength, oldValue,
+                                              userValue, saveFlags);
         };
 }
 
@@ -172,40 +175,10 @@ export inline auto makeAnyIntegerRoutine(ScanMatchType matchType,
                const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
                const UserValue* userValue, MatchFlags* saveFlags) -> unsigned {
         *saveFlags = MatchFlags::EMPTY;
-        auto tryOne = [&](auto tag) -> unsigned {
-            using T = decltype(tag);
-            auto memOpt = readTyped<T>(memoryPtr, memLength, reverseEndianness);
-            if (!memOpt) {
-                return 0;
-            }
-            return numericMatchCore<T>(matchType, *memOpt, oldValue, userValue,
-                                       saveFlags);
-        };
-        if (auto resultValue = tryOne(uint64_t{})) {
-            return resultValue;
-        }
-        if (auto resultValue = tryOne(int64_t{})) {
-            return resultValue;
-        }
-        if (auto resultValue = tryOne(uint32_t{})) {
-            return resultValue;
-        }
-        if (auto resultValue = tryOne(int32_t{})) {
-            return resultValue;
-        }
-        if (auto resultValue = tryOne(uint16_t{})) {
-            return resultValue;
-        }
-        if (auto resultValue = tryOne(int16_t{})) {
-            return resultValue;
-        }
-        if (auto resultValue = tryOne(uint8_t{})) {
-            return resultValue;
-        }
-        if (auto resultValue = tryOne(int8_t{})) {
-            return resultValue;
-        }
-        return 0;
+        return detail::tryNumericSequence<uint64_t, int64_t, uint32_t, int32_t,
+                                          uint16_t, int16_t, uint8_t, int8_t>(
+            matchType, reverseEndianness, memoryPtr, memLength, oldValue,
+            userValue, saveFlags);
     };
 }
 
@@ -215,22 +188,9 @@ export inline auto makeAnyFloatRoutine(ScanMatchType matchType,
                const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
                const UserValue* userValue, MatchFlags* saveFlags) -> unsigned {
         *saveFlags = MatchFlags::EMPTY;
-        auto tryOne = [&](auto tag) -> unsigned {
-            using T = decltype(tag);
-            auto memOpt = readTyped<T>(memoryPtr, memLength, reverseEndianness);
-            if (!memOpt) {
-                return 0;
-            }
-            return numericMatchCore<T>(matchType, *memOpt, oldValue, userValue,
-                                       saveFlags);
-        };
-        if (auto resultValue = tryOne(double{})) {
-            return resultValue;
-        }
-        if (auto resultValue = tryOne(float{})) {
-            return resultValue;
-        }
-        return 0;
+        return detail::tryNumericSequence<double, float>(
+            matchType, reverseEndianness, memoryPtr, memLength, oldValue,
+            userValue, saveFlags);
     };
 }
 
@@ -240,12 +200,14 @@ export inline auto makeAnyNumberRoutine(ScanMatchType matchType,
                const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
                const UserValue* userValue, MatchFlags* saveFlags) -> unsigned {
         *saveFlags = MatchFlags::EMPTY;
-        if (auto resultValue =
-                makeAnyFloatRoutine(matchType, reverseEndianness)(
-                    memoryPtr, memLength, oldValue, userValue, saveFlags)) {
+        if (auto resultValue = detail::tryNumericSequence<double, float>(
+                matchType, reverseEndianness, memoryPtr, memLength, oldValue,
+                userValue, saveFlags)) {
             return resultValue;
         }
-        return makeAnyIntegerRoutine(matchType, reverseEndianness)(
-            memoryPtr, memLength, oldValue, userValue, saveFlags);
+        return detail::tryNumericSequence<uint64_t, int64_t, uint32_t, int32_t,
+                                          uint16_t, int16_t, uint8_t, int8_t>(
+            matchType, reverseEndianness, memoryPtr, memLength, oldValue,
+            userValue, saveFlags);
     };
 }

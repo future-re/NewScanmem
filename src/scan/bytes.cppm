@@ -12,6 +12,7 @@ module;
 export module scan.bytes;
 
 import scan.types;
+import value.flags;
 
 import value;
 
