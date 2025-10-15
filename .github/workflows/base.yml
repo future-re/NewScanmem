@@ -111,4 +111,4 @@ jobs:
 
       - name: Publish site to gh-pages
         working-directory: mkdocs
-        run: mkdocs gh-deploy --force --config-file mkdocs/mkdocs.yml
+        run: mkdocs gh-deploy --force --config-file mkdocs.yml
