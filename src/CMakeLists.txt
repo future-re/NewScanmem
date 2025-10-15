@@ -29,11 +29,11 @@ set(MODULE_SOURCES
     process_checker.cppm
     maps.cppm
     scan/types.cppm
-#     scan/read_helpers.cppm
-#     scan/bytes.cppm
-#     scan/string.cppm
-#     scan/numeric.cppm
-#     scan/factory.cppm
+    scan/spec.cppm
+    scan/bytes.cppm
+    scan/string.cppm
+    scan/numeric.cppm
+    scan/factory.cppm
 )
 
 # 添加模块源文件到库

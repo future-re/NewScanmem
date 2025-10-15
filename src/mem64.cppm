@@ -4,13 +4,13 @@ module;
 #include <cstddef>
 #include <cstdint>
 #include <cstring>
+#include <memory>
 #include <optional>
 #include <span>
 #include <stdexcept>
 #include <string>
 #include <type_traits>
 #include <vector>
-#include <memory>
 
 export module mem64;
 
@@ -22,36 +22,36 @@ import value; // MemView, Endian helpers
 // - 可与 value 模块的视图/标量工具协同工作
 export struct Mem64 {
    private:
-    std::shared_ptr<ByteBuffer> buf_;
+    std::shared_ptr<ByteBuffer> m_buf;
 
    public:
-    Mem64() : buf_(std::make_shared<ByteBuffer>()) {}
-    explicit Mem64(std::size_t n) : buf_(std::make_shared<ByteBuffer>(n)) {}
+    Mem64() : m_buf(std::make_shared<ByteBuffer>()) {}
+    explicit Mem64(std::size_t n) : m_buf(std::make_shared<ByteBuffer>(n)) {}
     Mem64(const std::uint8_t* point, std::size_t n)
-        : buf_(std::make_shared<ByteBuffer>(point, n)) {}
+        : m_buf(std::make_shared<ByteBuffer>(point, n)) {}
     explicit Mem64(std::span<const std::uint8_t> span)
-        : buf_(std::make_shared<ByteBuffer>()) {
+        : m_buf(std::make_shared<ByteBuffer>()) {
         setBytes(span);
     }
     explicit Mem64(const std::string& stringInput)
-        : buf_(std::make_shared<ByteBuffer>()) {
+        : m_buf(std::make_shared<ByteBuffer>()) {
         setString(stringInput);
     }
 
     // 基本信息/视图
     [[nodiscard]] auto size() const noexcept -> std::size_t {
-        return buf_->size();
+        return m_buf->size();
     }
     [[nodiscard]] auto empty() const noexcept -> bool { return size() == 0; }
     [[nodiscard]] auto data() const noexcept -> const std::uint8_t* {
-        return buf_->ptr();
+        return m_buf->ptr();
     }
-    [[nodiscard]] auto data() noexcept -> std::uint8_t* { return buf_->ptr(); }
+    [[nodiscard]] auto data() noexcept -> std::uint8_t* { return m_buf->ptr(); }
 
     // 零拷贝视图（value.view::MemView）
     [[nodiscard]] auto view() const noexcept -> MemView {
-        auto cptr = std::const_pointer_cast<const ByteBuffer>(buf_);
-        return MemView::fromBuffer(cptr, 0, buf_->size());
+        auto cptr = std::const_pointer_cast<const ByteBuffer>(m_buf);
+        return MemView::fromBuffer(cptr, 0, m_buf->size());
     }
 
     // 标准只读 span 视图
@@ -60,12 +60,12 @@ export struct Mem64 {
     }
 
     // 赋值/写入接口
-    void clear() { buf_->clear(); }
-    void reserve(std::size_t n) { buf_->reserve(n); }
+    void clear() { m_buf->clear(); }
+    void reserve(std::size_t n) { m_buf->reserve(n); }
 
     void setBytes(const std::uint8_t* point, std::size_t n) {
-        buf_->clear();
-        buf_->append(point, n);
+        m_buf->clear();
+        m_buf->append(point, n);
     }
     void setBytes(std::span<const std::uint8_t> span) {
         setBytes(span.data(), span.size());
@@ -83,8 +83,8 @@ export struct Mem64 {
     void setScalar(const T& val) {
         static_assert(std::is_trivially_copyable_v<T>,
                       "setScalar requires trivially copyable T");
-        buf_->clear();
-        (void)buf_->appendValue<T>(val);
+        m_buf->clear();
+        (void)m_buf->appendValue<T>(val);
     }
 
     // 读取接口：尝试从起始位置解释为标量
