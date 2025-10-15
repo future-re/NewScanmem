@@ -9,12 +9,13 @@ plugins:
   - search
   - i18n:
       docs_structure: folder
+      default_language: zh
       languages:
-        - locale: zh
+        zh:
           name: 中文
           default: true
           build: true
-        - locale: en
+        en:
           name: English
           build: true
 
