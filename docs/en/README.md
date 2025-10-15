@@ -171,3 +171,27 @@ This project is open source and follows standard open source licensing. See indi
 - [Chinese Documentation](../zh/README.md)
 - [API Reference](API_REFERENCE.md)
 - [GitHub Repository](https://github.com/future-re/NewScanmem)
+
+## 🖥️ Command-Line Interface (CLI)
+
+### Overview
+The NewScanmem CLI provides an interactive REPL (Read-Eval-Print Loop) for memory scanning and analysis. Users can execute commands to interact with the system, such as scanning memory, managing results, and more.
+
+### Available Commands
+- `help`: Display available commands.
+- `quit`: Exit the CLI.
+- `pid`: Display the current process ID.
+
+### Example Usage
+```bash
+# Start the CLI
+./newscanmem
+
+# Inside the CLI
+> help
+Available commands: help, quit, pid
+> pid
+Current PID: 1234
+> quit
+Exiting...
+```

@@ -274,3 +274,7 @@ int main() {
     return 0;
 }
 ```
+
+## 与 CLI 的集成
+
+`maps` 模块在 CLI 中用于检索和显示目标进程的内存区域信息。例如，`list` 命令利用此模块解析并输出 `/proc/[pid]/maps` 数据。

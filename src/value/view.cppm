@@ -9,7 +9,7 @@ module;
 
 export module value.view;
 
-import endianness;
+import utils.endianness;
 import value.buffer;
 
 // 字节序标记（目标端序）

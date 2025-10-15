@@ -13,7 +13,7 @@ export module scan.read_helpers;
 
 import scan.types;
 import value.flags;
-import mem64;
+import utils.mem64;
 import value; // 依赖项目中已有的 value 定义
 
 // 本模块导出与字节读取、端序转换、TypeTraits 相关的辅助函数。
@@ -115,7 +115,8 @@ export template <typename T>
 }
 
 export template <typename T>
-[[nodiscard]] inline auto userValueHighAs(const UserValue& userValue) noexcept -> T {
+[[nodiscard]] inline auto userValueHighAs(const UserValue& userValue) noexcept
+    -> T {
     if constexpr (std::is_same_v<T, int8_t>) {
         return userValue.s8h;
     } else if constexpr (std::is_same_v<T, uint8_t>) {

@@ -9,7 +9,7 @@ module;
 #include <stdexcept>
 #include <type_traits>
 
-export module endianness;
+export module utils.endianness;
 
 // 导出概念：支持 1/2/4/8 字节的可交换二进制类型（整数或浮点）
 export template <typename T>

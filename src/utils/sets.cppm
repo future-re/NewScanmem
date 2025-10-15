@@ -11,7 +11,7 @@ module;
 #include <string>
 #include <vector>
 
-export module sets;
+export module utils.sets;
 
 namespace qi = boost::spirit::qi;
 namespace phoenix = boost::phoenix;

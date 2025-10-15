@@ -7,9 +7,9 @@ module;
 #include <type_traits>
 #include <vector>
 
-export module user.input;
+export module ui.user_input;
 
-import mem64;
+import utils.mem64;
 import value.scalar; // ScalarKind helpers
 
 // 简洁的用户输入载体：

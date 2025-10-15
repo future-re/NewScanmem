@@ -6,7 +6,7 @@ module;
 #include <fstream>
 #include <string>
 
-export module process_checker;
+export module core.process_checker;
 
 /**
  * @enum ProcessState

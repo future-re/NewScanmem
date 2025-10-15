@@ -6,22 +6,25 @@ module;
 #include <iostream>
 #include <string_view>
 
-export module show_message;
+export module ui.show_message;
 
-export enum class MessageType : uint8_t { INFO, WARN, ERROR, DEBUG, USER };
+export namespace ui {
 
-export struct MessageContext {
+enum class MessageType : uint8_t { INFO, WARN, ERROR, DEBUG, USER };
+
+
+struct MessageContext {
     bool debugMode = false;
     bool backendMode = false;
 };
 
-export class MessagePrinter {
+class MessagePrinter {
    public:
     MessagePrinter(MessageContext ctx = {}) : m_ctx(ctx) {}
 
     template <typename... Args>
     void print(MessageType type, std::string_view fmt, Args&&... args) const {
-        std::string msg = std::vformat(fmt, std::make_format_args(std::forward<Args>(args)...));
+        std::string msg = std::vformat(fmt, std::make_format_args(args...));
         switch (type) {
             case MessageType::INFO:
                 std::cerr << std::format("info: {}\n", msg);
@@ -66,6 +69,20 @@ export class MessagePrinter {
     void user(std::string_view fmt, Args&&... args) const {
         print(MessageType::USER, fmt, std::forward<Args>(args)...);
     }
+    
+    // 静态便捷函数，用于简单字符串消息
+    static void info(const std::string& msg) {
+        std::cerr << std::format("info: {}\n", msg);
+    }
+    static void warn(const std::string& msg) {
+        std::cerr << std::format("warn: {}\n", msg);
+    }
+    static void error(const std::string& msg) {
+        std::cerr << std::format("error: {}\n", msg);
+    }
+    static void success(const std::string& msg) {
+        std::cerr << std::format("success: {}\n", msg);
+    }
 
     // 暴露上下文
     [[nodiscard]] auto conext() const -> const MessageContext& { return m_ctx; }
@@ -73,3 +90,5 @@ export class MessagePrinter {
    private:
     MessageContext m_ctx;
 };
+
+} // namespace ui

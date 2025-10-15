@@ -386,3 +386,7 @@ For issues and questions:
 - Review build requirements
 - Verify system compatibility
 - Test with minimal examples
+
+# CLI and REPL Integration
+
+The main application now integrates a Command-Line Interface (CLI) with a REPL loop. This allows users to interactively execute commands for memory scanning and analysis. The `main.cpp` file initializes the REPL and registers commands such as `help`, `quit`, and `pid`.

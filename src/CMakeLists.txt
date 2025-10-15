@@ -12,8 +12,36 @@ set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-p;build")
 
 # 模块源文件（不带 src/ 前缀）
 set(MODULE_SOURCES
-    show_message.cppm
-    endianness.cppm
+    # Utilities
+    utils/string.cppm
+    utils/parser.cppm
+    utils/endianness.cppm
+    utils/mem64.cppm
+    utils/sets.cppm
+    
+    # UI abstraction layer
+    ui/interface.cppm
+    ui/console.cppm
+    ui/show_message.cppm
+    ui/user_input.cppm
+    
+    # CLI command system
+    cli/command.cppm
+    cli/repl.cppm
+    cli/commands/help.cppm
+    cli/commands/quit.cppm
+    cli/commands/pid.cppm
+    
+    # Core abstraction layer
+    core/config.cppm
+    core/scanner.cppm
+    core/memory.cppm
+    core/proc_mem.cppm
+    core/targetmem.cppm
+    core/maps.cppm
+    core/process_checker.cppm
+    
+    # Core modules
     value/buffer.cppm
     value/view.cppm
     value/cursor.cppm
@@ -21,18 +49,14 @@ set(MODULE_SOURCES
     value/flags.cppm
     value/value.cppm
     value/text.cppm
-    mem64.cppm
-    user_input.cppm
-    targetmem.cppm
-    sets.cppm
-    process_checker.cppm
-    maps.cppm
     scan/types.cppm
     scan/bytes.cppm
     scan/read_helpers.cppm
     scan/string.cppm
     scan/numeric.cppm
     scan/factory.cppm
+    scan/engine.cppm
+    scanmem.cppm
 )
 
 # 添加模块源文件到库

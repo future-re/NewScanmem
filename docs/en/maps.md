@@ -240,6 +240,10 @@ for (const auto& region : *regions) {
 | Manual memory management | RAII |
 | Error codes | Exception-safe error handling |
 
+## Integration with CLI
+
+The `maps` module is used in the CLI to retrieve and display memory region information for the target process. For example, the `list` command utilizes this module to parse and output `/proc/[pid]/maps` data.
+
 ## Examples
 
 ### Complete Working Example

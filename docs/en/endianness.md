@@ -152,6 +152,10 @@ Uses C++20 concepts to ensure type safety and provide clear error messages for u
 - No dynamic memory allocation
 - Minimal runtime overhead for supported types
 
+## Integration with CLI
+
+The `endianness` module is utilized in the CLI for automatic byte order handling during memory scanning operations. For example, the `scan` command leverages this module to ensure correct endianness for target values.
+
 ## See Also
 
 - [Value Module](value.md) - For Value type definitions

@@ -8,18 +8,18 @@ module;
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
-#include <optional>
 #include <iomanip>
+#include <optional>
 #include <ranges>
 #include <sstream>
 #include <string>
 #include <vector>
 
-export module targetmem;
+export module core.targetmem;
 
 import value.flags;
 import value.view; // MemView for appendRange helper
-import show_message;
+import ui.show_message;
 
 // Interface: exported types and functions
 export {
@@ -56,8 +56,10 @@ export {
          * - matchFlags: 该字节的匹配状态（MatchFlags）。
          *
          * 语义:
-         *  - 如果 data 为空，则将 firstByteInChild 设为 addr，之后按顺序 push_back。
-         *  - 要求调用者按地址顺序添加字节以保持 firstByteInChild 与 data 的对应关系。
+         *  - 如果 data 为空，则将 firstByteInChild 设为 addr，之后按顺序
+         * push_back。
+         *  - 要求调用者按地址顺序添加字节以保持 firstByteInChild 与 data
+         * 的对应关系。
          */
         void addElement(void* addr, uint8_t byte, MatchFlags matchFlags) {
             if (data.empty()) {
@@ -134,7 +136,8 @@ export {
          * 将从 idx 起最多 len
          * 个字节转换为十六进制字符串（以空格分隔），便于调试查看原始字节。
          */
-        [[nodiscard]] auto toByteArrayText(size_t idx, size_t len) const -> std::string {
+        [[nodiscard]] auto toByteArrayText(size_t idx, size_t len) const
+            -> std::string {
             std::ostringstream oss;
             size_t count = std::min(len, data.size() - idx);
             oss << std::nouppercase << std::hex;

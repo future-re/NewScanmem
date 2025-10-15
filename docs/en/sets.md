@@ -78,6 +78,10 @@ constexpr auto inc_arr_sz = [](size_t** valarr, size_t* arr_maxsz, size_t maxsz)
 
 A deprecated C-style memory management utility for dynamic array resizing.
 
+## Integration with CLI
+
+The `sets` module is utilized in the CLI for parsing and managing result sets during memory scanning. Commands like `scan` and `reset` rely on this module to handle set operations efficiently.
+
 ## Usage Examples
 
 ### Basic Set Parsing

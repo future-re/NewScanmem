@@ -7,7 +7,7 @@ module;
 export module scan.types;
 
 // 引入依赖模块并向外转发其符号，避免跨模块重复声明同名类型
-export import mem64;        // 提供 Mem64
+export import utils.mem64;  // 提供 Mem64
 export import value.flags;  // 提供 MatchFlags
 export import value;        // 提供 Value / UserValue 等（聚合于 value 模块）
 

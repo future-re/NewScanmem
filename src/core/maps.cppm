@@ -16,9 +16,9 @@ module;
 #include <system_error>
 #include <vector>
 
-export module maps;
+export module core.maps;
 
-enum class RegionType : uint8_t { MISC, EXE, CODE, HEAP, STACK };
+export enum class RegionType : uint8_t { MISC, EXE, CODE, HEAP, STACK };
 
 /*
  * Region Type Descriptions:
@@ -38,7 +38,7 @@ constexpr std::array<std::string_view, 5> REGION_TYPE_NAMES = {
  * - HEAP_STACK_EXECUTABLE:     仅扫描堆、栈和可执行区域
  * - HEAP_STACK_EXECUTABLE_BSS: 扫描堆、栈、可执行区域以及 BSS 段
  */
-enum class RegionScanLevel : uint8_t {
+export enum class RegionScanLevel : uint8_t {
     ALL,
     ALL_RW,
     HEAP_STACK_EXECUTABLE,
@@ -53,7 +53,7 @@ enum class RegionScanLevel : uint8_t {
  * - shared:   是否为共享内存区域
  * - private_: 是否为私有内存区域
  */
-struct RegionFlags {
+export struct RegionFlags {
     bool read : 1;
     bool write : 1;
     bool exec : 1;
@@ -61,7 +61,7 @@ struct RegionFlags {
     bool exclusive : 1;
 };
 
-struct Region {
+export struct Region {
     void* start{};
     std::size_t size{};
     RegionType type{RegionType::MISC};
@@ -97,7 +97,7 @@ struct Region {
     }
 };
 
-class MapsReader {
+export class MapsReader {
    public:
     struct Error {
         std::string message;
@@ -337,7 +337,7 @@ class MapsReader {
 };
 
 // Convenience function for direct usage
-[[nodiscard]] inline auto readProcessMaps(
+export [[nodiscard]] inline auto readProcessMaps(
     pid_t pid, RegionScanLevel level = RegionScanLevel::ALL)
     -> std::expected<std::vector<Region>, MapsReader::Error> {
     return MapsReader::readProcessMaps(pid, level);

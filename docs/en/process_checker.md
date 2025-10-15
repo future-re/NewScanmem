@@ -186,3 +186,7 @@ void monitorProcess(pid_t pid) {
 - Cross-platform compatibility
 - Non-blocking process checking
 - Process permission checking
+
+## Integration with CLI
+
+The `process_checker` module is directly used in the CLI for commands like `pid`, which checks and displays the state of the target process. This ensures that users can verify process status interactively.

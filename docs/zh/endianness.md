@@ -156,3 +156,7 @@ concept SwappableIntegral = std::integral<T> &&
 
 - [值类型模块](value.md) - 值类型定义
 - [目标内存模块](target_mem.md) - 内存分析操作
+
+## 与 CLI 的集成
+
+`endianness` 模块在 CLI 中用于内存扫描操作期间的自动字节序处理。例如，`scan` 命令利用此模块确保目标值的字节序正确。

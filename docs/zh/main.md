@@ -428,3 +428,7 @@ public:
     void showMemoryMap();
 };
 ```
+
+### CLI 和 REPL 集成
+
+主应用程序现已集成命令行界面 (CLI) 和 REPL 循环。这允许用户交互式地执行内存扫描和分析命令。`main.cpp` 文件初始化 REPL 并注册了 `help`、`quit` 和 `pid` 等命令。

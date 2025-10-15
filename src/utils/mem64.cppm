@@ -12,7 +12,7 @@ module;
 #include <type_traits>
 #include <vector>
 
-export module mem64;
+export module utils.mem64;
 
 import value; // MemView, Endian helpers
 
