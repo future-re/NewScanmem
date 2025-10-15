@@ -1,0 +1,1920 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Future Re">
+      
+      
+      
+        <link rel="prev" href="../endianness/">
+      
+      
+        <link rel="next" href="../maps/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Main Application Documentation - NewScanmem Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#main-application-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../" title="NewScanmem Documentation" class="md-header__button md-logo" aria-label="NewScanmem Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NewScanmem Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Main Application Documentation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../main/" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../" title="NewScanmem Documentation" class="md-nav__button md-logo" aria-label="NewScanmem Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    NewScanmem Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome to NewScanmem Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_REFERENCE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../endianness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Endianness Module Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Main Application Documentation
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Main Application Documentation
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planned-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Planned Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Planned Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-line-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Line Interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration Points
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Execution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-roadmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Roadmap
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Development Roadmap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-basic-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 1: Basic Framework
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 2: Advanced Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 3: Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-uiux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 4: UI/UX
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-integration-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module Integration Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build Instructions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Build Instructions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Build
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Framework
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Framework">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unit-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unit Tests
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Files
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Handling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Error Handling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#future-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Error Handling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Considerations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Security
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#future-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Security
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Metrics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Target Metrics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platform-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      Platform Compatibility
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Platform Compatibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Support
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Requirements
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debugging
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debug-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debug Build
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-api-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future API Design
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Future API Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#future-api-command-line-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future API Command Line Interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmatic-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Programmatic API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      See Also
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contributing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contributing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Style
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license-and-legal" class="md-nav__link">
+    <span class="md-ellipsis">
+      License and Legal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Support
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Maps Module Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../process_checker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Process Checker Module Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sets Module Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../show_message/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Show Message Module Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../target_mem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Target Memory Module Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../value/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Value Module Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../NamingConvention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    C++ Naming Conventions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planned-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Planned Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Planned Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-line-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Line Interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration Points
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Execution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-roadmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Roadmap
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Development Roadmap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-basic-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 1: Basic Framework
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 2: Advanced Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 3: Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-uiux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 4: UI/UX
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-integration-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module Integration Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build Instructions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Build Instructions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Build
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Framework
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Framework">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unit-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unit Tests
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Files
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Handling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Error Handling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#future-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Error Handling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Considerations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Security
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#future-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Security
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Metrics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Target Metrics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platform-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      Platform Compatibility
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Platform Compatibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Support
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Requirements
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debugging
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debug-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debug Build
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-api-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future API Design
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Future API Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#future-api-command-line-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future API Command Line Interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmatic-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Programmatic API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      See Also
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contributing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contributing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Style
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license-and-legal" class="md-nav__link">
+    <span class="md-ellipsis">
+      License and Legal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Support
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="main-application-documentation">Main Application Documentation</h1>
+<h2 id="overview">Overview</h2>
+<p>The <code>main.cpp</code> file serves as the entry point for the NewScanmem application. It demonstrates basic module integration and provides a foundation for the memory scanning utility.</p>
+<h2 id="file-structure">File Structure</h2>
+<pre><code class="language-cpp">import sets;
+
+int main() {
+    Set val;
+    return 0;
+}
+</code></pre>
+<h2 id="current-implementation">Current Implementation</h2>
+<p>The current main function is minimal and serves as a placeholder for:</p>
+<ol>
+<li><strong>Module Integration Testing</strong>: Demonstrates that the <code>sets</code> module can be successfully imported and used</li>
+<li><strong>Basic Framework</strong>: Provides a starting point for application development</li>
+<li><strong>Compilation Verification</strong>: Ensures all modules compile correctly together</li>
+</ol>
+<h2 id="planned-features">Planned Features</h2>
+<h3 id="command-line-interface">Command Line Interface</h3>
+<pre><code class="language-cpp">// Future implementation
+int main(int argc, char* argv[]) {
+    // Parse command line arguments
+    // Initialize modules
+    // Start memory scanning
+    // Display results
+}
+</code></pre>
+<h3 id="integration-points">Integration Points</h3>
+<p>The main application will integrate all modules:</p>
+<ol>
+<li><strong>Process Management</strong> (process_checker)</li>
+<li>Target process selection</li>
+<li>Process state monitoring</li>
+<li>
+<p>Permission checking</p>
+</li>
+<li>
+<p><strong>Memory Analysis</strong> (targetmem)</p>
+</li>
+<li>Memory region scanning</li>
+<li>Value matching</li>
+<li>
+<p>Pattern detection</p>
+</li>
+<li>
+<p><strong>Data Types</strong> (value)</p>
+</li>
+<li>Multi-type value support</li>
+<li>Endianness handling</li>
+<li>
+<p>Byte array operations</p>
+</li>
+<li>
+<p><strong>Utilities</strong> (sets, endianness, show_message)</p>
+</li>
+<li>Set operations for results</li>
+<li>Byte order conversion</li>
+<li>User messaging and logging</li>
+</ol>
+<h2 id="usage-examples">Usage Examples</h2>
+<h3 id="basic-execution">Basic Execution</h3>
+<pre><code class="language-bash"># Current usage
+./newscanmem
+
+# Future usage examples
+./newscanmem --pid 1234 --type int32 --value 42
+./newscanmem --pid 1234 --range 0x1000-0x2000 --string &quot;hello&quot;
+./newscanmem --pid 1234 --float --tolerance 0.001
+</code></pre>
+<h2 id="development-roadmap">Development Roadmap</h2>
+<h3 id="phase-1-basic-framework">Phase 1: Basic Framework</h3>
+<ul>
+<li>[ ] Command line argument parsing</li>
+<li>[ ] Process selection and validation</li>
+<li>[ ] Basic memory scanning</li>
+<li>[ ] Result display</li>
+</ul>
+<h3 id="phase-2-advanced-features">Phase 2: Advanced Features</h3>
+<ul>
+<li>[ ] Multiple value type support</li>
+<li>[ ] Memory region filtering</li>
+<li>[ ] Pattern matching</li>
+<li>[ ] Interactive mode</li>
+</ul>
+<h3 id="phase-3-optimization">Phase 3: Optimization</h3>
+<ul>
+<li>[ ] Performance tuning</li>
+<li>[ ] Memory usage optimization</li>
+<li>[ ] Parallel processing</li>
+<li>[ ] Result caching</li>
+</ul>
+<h3 id="phase-4-uiux">Phase 4: UI/UX</h3>
+<ul>
+<li>[ ] Progress indicators</li>
+<li>[ ] Color output</li>
+<li>[ ] Export formats</li>
+<li>[ ] Configuration files</li>
+</ul>
+<h2 id="module-integration-example">Module Integration Example</h2>
+<pre><code class="language-cpp">// Future main.cpp structure
+import process_checker;
+import targetmem;
+import value;
+import show_message;
+import sets;
+import endianness;
+
+int main(int argc, char* argv[]) {
+    MessagePrinter printer;
+
+    // Parse arguments
+    if (argc &lt; 2) {
+        printer.error(&quot;Usage: {} --pid &lt;pid&gt; [...]&quot;, argv[0]);
+        return 1;
+    }
+
+    // Check process
+    pid_t pid = std::stoi(argv[2]);
+    if (ProcessChecker::is_process_dead(pid)) {
+        printer.error(&quot;Process {} is not running&quot;, pid);
+        return 1;
+    }
+
+    // Initialize scanner
+    printer.info(&quot;Scanning process {}...&quot;, pid);
+
+    // Perform scan
+    MatchesAndOldValuesArray matches(get_memory_size(pid));
+    // ... scanning logic ...
+
+    // Display results
+    printer.info(&quot;Found {} matches&quot;, get_total_matches(matches));
+
+    return 0;
+}
+</code></pre>
+<h2 id="build-instructions">Build Instructions</h2>
+<h3 id="current-build">Current Build</h3>
+<pre><code class="language-bash"># Build the project
+mkdir build &amp;&amp; cd build
+cmake ..
+make
+
+# Run the application
+./newscanmem
+</code></pre>
+<h3 id="module-dependencies">Module Dependencies</h3>
+<p>The main application depends on all modules:</p>
+<ul>
+<li><code>sets</code> - Set operations and parsing</li>
+<li><code>process_checker</code> - Process state checking  </li>
+<li><code>targetmem</code> - Memory analysis structures</li>
+<li><code>value</code> - Value type definitions</li>
+<li><code>endianness</code> - Byte order handling</li>
+<li><code>show_message</code> - Message and logging system</li>
+</ul>
+<h2 id="testing-framework">Testing Framework</h2>
+<h3 id="unit-tests">Unit Tests</h3>
+<pre><code class="language-cpp">// Test basic functionality
+void test_main_integration() {
+    Set test_set;
+    bool parse_result = parse_uintset(&quot;1,2,3&quot;, test_set, 100);
+    assert(parse_result == true);
+    assert(test_set.size() == 3);
+
+    std::cout &lt;&lt; &quot;Main integration test passed!\n&quot;;
+}
+
+int main() {
+    test_main_integration();
+    return 0;
+}
+</code></pre>
+<h2 id="configuration">Configuration</h2>
+<h3 id="environment-variables">Environment Variables</h3>
+<p>Future versions may support:</p>
+<ul>
+<li><code>SCANMEM_DEBUG</code>: Enable debug mode</li>
+<li><code>SCANMEM_BACKEND</code>: Enable backend mode</li>
+<li><code>SCANMEM_LOG_FILE</code>: Log file path</li>
+</ul>
+<h3 id="configuration-files">Configuration Files</h3>
+<pre><code class="language-ini"># ~/.scanmemrc example
+[general]
+debug=true
+backend=false
+
+[scanning]
+default_type=int32
+batch_size=1000
+timeout=30
+</code></pre>
+<h2 id="error-handling">Error Handling</h2>
+<h3 id="current-error-handling">Current Error Handling</h3>
+<p>The current implementation provides minimal error handling through:</p>
+<ul>
+<li>Module import verification</li>
+<li>Basic compilation checks</li>
+<li>Placeholder return codes</li>
+</ul>
+<h3 id="future-error-handling">Future Error Handling</h3>
+<pre><code class="language-cpp">enum class ScanError {
+    SUCCESS = 0,
+    INVALID_PID,
+    PROCESS_NOT_FOUND,
+    PERMISSION_DENIED,
+    MEMORY_ACCESS_FAILED,
+    INVALID_ARGUMENTS,
+    OUT_OF_MEMORY
+};
+
+ScanError perform_scan(const ScanConfig&amp; config);
+</code></pre>
+<h2 id="security-considerations">Security Considerations</h2>
+<h3 id="current-security">Current Security</h3>
+<ul>
+<li>No elevated privileges required</li>
+<li>Read-only memory access</li>
+<li>Process permission validation</li>
+</ul>
+<h3 id="future-security">Future Security</h3>
+<ul>
+<li>Capability checking</li>
+<li>Sandboxing considerations</li>
+<li>Secure memory access patterns</li>
+<li>Input validation</li>
+</ul>
+<h2 id="performance-metrics">Performance Metrics</h2>
+<h3 id="current-metrics">Current Metrics</h3>
+<ul>
+<li>Compilation time: ~2-3 seconds</li>
+<li>Binary size: ~50KB (minimal)</li>
+<li>Memory usage: ~1MB (minimal)</li>
+</ul>
+<h3 id="target-metrics">Target Metrics</h3>
+<ul>
+<li>Scan speed: 1GB/sec for basic types</li>
+<li>Memory usage: &lt;100MB for large processes</li>
+<li>Response time: &lt;1 second for initial results</li>
+</ul>
+<h2 id="platform-compatibility">Platform Compatibility</h2>
+<h3 id="current-support">Current Support</h3>
+<ul>
+<li><strong>Linux</strong>: Full support (primary platform)</li>
+<li><strong>macOS</strong>: Planned support</li>
+<li><strong>Windows</strong>: Not currently supported</li>
+</ul>
+<h3 id="system-requirements">System Requirements</h3>
+<ul>
+<li><strong>OS</strong>: Linux with /proc filesystem</li>
+<li><strong>Compiler</strong>: C++23 with modules support</li>
+<li><strong>Memory</strong>: 64MB minimum, 1GB recommended</li>
+<li><strong>Permissions</strong>: Read access to target process memory</li>
+</ul>
+<h2 id="debugging">Debugging</h2>
+<h3 id="debug-build">Debug Build</h3>
+<pre><code class="language-bash"># Build with debug symbols
+cmake -DCMAKE_BUILD_TYPE=Debug ..
+make
+
+# Run with debugger
+gdb ./newscanmem
+(gdb) run --pid 1234
+</code></pre>
+<h3 id="logging">Logging</h3>
+<pre><code class="language-cpp">// Enable debug logging
+MessageContext ctx{.debugMode = true};
+MessagePrinter printer(ctx);
+printer.debug(&quot;Starting scan for PID: {}&quot;, pid);
+</code></pre>
+<h2 id="future-api-design">Future API Design</h2>
+<h3 id="future-api-command-line-interface">Future API Command Line Interface</h3>
+<pre><code class="language-bash"># Basic scan
+./newscanmem --pid 1234 --int32 42
+
+# Advanced scan
+./newscanmem --pid 1234 --range 0x1000-0xFFFF --float 3.14 --tolerance 0.001
+
+# Interactive mode
+./newscanmem --interactive
+
+# Batch mode
+./newscanmem --pid 1234 --batch --output results.json
+</code></pre>
+<h3 id="programmatic-api">Programmatic API</h3>
+<pre><code class="language-cpp">// Future C++ API
+class ScanManager {
+public:
+    ScanResult scan(const ScanConfig&amp; config);
+    void set_progress_callback(ProgressCallback callback);
+    void cancel_scan();
+};
+</code></pre>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="../sets/">Sets Module</a> - Set operations and parsing</li>
+<li><a href="../process_checker/">Process Checker Module</a> - Process state checking</li>
+<li><a href="../target_mem/">Target Memory Module</a> - Memory analysis structures</li>
+<li><a href="../value/">Value Module</a> - Value type definitions</li>
+<li><a href="../endianness/">Endianness Module</a> - Byte order handling</li>
+<li><a href="../show_message/">Show Message Module</a> - Message and logging system</li>
+</ul>
+<h2 id="contributing">Contributing</h2>
+<h3 id="development-setup">Development Setup</h3>
+<pre><code class="language-bash"># Clone repository
+git clone https://github.com/your-org/newscanmem.git
+cd newscanmem
+
+# Install dependencies
+sudo apt install build-essential cmake libboost-all-dev
+
+# Build and test
+mkdir build &amp;&amp; cd build
+cmake ..
+make test
+</code></pre>
+<h3 id="code-style">Code Style</h3>
+<ul>
+<li>Use modern C++23 features</li>
+<li>Follow RAII principles</li>
+<li>Prefer compile-time checks</li>
+<li>Use modules for encapsulation</li>
+<li>Document public APIs</li>
+</ul>
+<h2 id="license-and-legal">License and Legal</h2>
+<p>This project is part of the NewScanmem memory scanning utility. See individual module documentation for specific licensing information.</p>
+<h2 id="support">Support</h2>
+<p>For issues and questions:</p>
+<ul>
+<li>Check individual module documentation</li>
+<li>Review build requirements</li>
+<li>Verify system compatibility</li>
+<li>Test with minimal examples</li>
+</ul>
+<h1 id="cli-and-repl-integration">CLI and REPL Integration</h1>
+<p>The main application now integrates a Command-Line Interface (CLI) with a REPL loop. This allows users to interactively execute commands for memory scanning and analysis. The <code>main.cpp</code> file initializes the REPL and registers commands such as <code>help</code>, <code>quit</code>, and <code>pid</code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

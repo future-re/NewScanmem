@@ -1,0 +1,7 @@
+# 欢迎来到 NewScanmem 文档
+
+欢迎访问 NewScanmem 文档站点！这里提供项目概览、使用指南以及 API 参考。
+
+## 关于 NewScanmem
+
+NewScanmem 是一个使用 C++20/23 构建的内存扫描与调试工具，专注于 Linux 平台的进程内存扫描与分析，支持多种数据类型与字节序处理。

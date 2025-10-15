@@ -1,0 +1,32 @@
+site_name: NewScanmem Documentation
+site_author: Future Re
+
+theme:
+  name: material
+  language: zh  # 默认界面语言为中文（Material 内置翻译）
+
+plugins:
+  - search
+  - i18n:
+      docs_structure: folder
+      languages:
+        - locale: zh
+          name: 中文
+          default: true
+          build: true
+        - locale: en
+          name: English
+          build: true
+
+nav:
+  - index.md
+  - API_REFERENCE.md
+  - endianness.md
+  - main.md
+  - maps.md
+  - process_checker.md
+  - sets.md
+  - show_message.md
+  - target_mem.md
+  - value.md
+  - NamingConvention.md
