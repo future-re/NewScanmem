@@ -9,6 +9,9 @@ theme:
     - content.language_select
     # 注意：navigation.instant 与多语言切换不兼容，别开。参见 i18n 文档说明。
 
+repo_url: https://github.com/future-re/NewScanmem
+repo_name: GitHub
+
 plugins:
   - search
   - i18n:
