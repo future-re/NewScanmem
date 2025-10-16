@@ -1,1621 +1,245 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Future Re" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>API Reference - NewScanmem Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "API Reference";
+        var mkdocs_page_input_path = "en/API_REFERENCE.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
 
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-      
-        <meta name="author" content="Future Re">
-      
-      
-      
-        <link rel="prev" href="../">
-      
-      
-        <link rel="next" href="../endianness/">
-      
-      
-      <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
-    
-    
-      
-        <title>API Reference - NewScanmem Documentation</title>
-      
-    
-    
-      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
-      
-      
+<body class="wy-body-for-nav" role="document">
 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../" class="icon icon-home"> NewScanmem Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
 
-    
-    
-      
-    
-    
-      
-        
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-      
-    
-    
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-    
-      
-
-    
-    
-    
-  </head>
-  
-  
-    <body dir="ltr">
-  
-    
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
-    <div data-md-component="skip">
-      
-        
-        <a href="#api-reference" class="md-skip">
-          Skip to content
-        </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-    
-      
-
-  
-
-<header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../" title="NewScanmem Documentation" class="md-header__button md-logo" aria-label="NewScanmem Documentation" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
-
-    </a>
-    <label class="md-header__button md-icon" for="__drawer">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
-    </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis">
-            NewScanmem Documentation
-          </span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
-            
-              API Reference
-            
-          </span>
-        </div>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../">Home</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">API Reference</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#module-index">Module Index</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#maps">maps</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#enum-region_type">Enum: region_type</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#enum-region_scan_level">Enum: region_scan_level</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#struct-region_flags">Struct: region_flags</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#struct-region">Struct: region</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#struct-maps_readererror">Struct: maps_reader::error</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#class-maps_reader">Class: maps_reader</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#static-methods">Static Methods</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#convenience-functions">Convenience Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#usage-examples">Usage Examples</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#endianness">endianness</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#namespace-endianness">Namespace: endianness</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#functions">Functions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#concept">Concept</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#process_checker">process_checker</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#enum-processstate">Enum: ProcessState</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#class-processchecker">Class: ProcessChecker</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#processchecker-static-methods">ProcessChecker Static Methods</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sets">sets</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#struct-set">Struct: Set</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#set-functions">Set Functions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#deprecated">Deprecated</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#show_message">show_message</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#enum-messagetype">Enum: MessageType</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#struct-messagecontext">Struct: MessageContext</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#class-messageprinter">Class: MessagePrinter</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#constructor">Constructor</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#methods">Methods</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#targetmem">targetmem</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#struct-oldvalueandmatchinfo">Struct: OldValueAndMatchInfo</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#class-matchesandoldvaluesswath">Class: MatchesAndOldValuesSwath</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#class-matchesandoldvaluesarray">Class: MatchesAndOldValuesArray</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#value">value</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#enum-matchflags">Enum: MatchFlags</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#enum-wildcard">Enum: Wildcard</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#struct-value">Struct: Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#struct-mem64">Struct: Mem64</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#struct-uservalue">Struct: UserValue</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#usage-patterns">Usage Patterns</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#common-patterns">Common Patterns</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#1-process-checking">1. Process Checking</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#2-set-parsing">2. Set Parsing</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3-message-printing">3. Message Printing</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#4-memory-analysis">4. Memory Analysis</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#5-value-handling">5. Value Handling</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#return-values">Return Values</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exceptions">Exceptions</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../endianness/">Endianness</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../main/">Main</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../maps/">Maps</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../process_checker/">Process Checker</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sets/">Sets</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../show_message/">Show Message</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../target_mem/">Target Memory</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../value/">Value</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NamingConvention/">Naming Convention</a>
+                </li>
+              </ul>
       </div>
     </div>
-    
-    
-      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
-    
-    
-      <div class="md-header__option">
-  <div class="md-select">
-    
-    <button class="md-header__button md-icon" aria-label="Select language">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
-    </button>
-    <div class="md-select__inner">
-      <ul class="md-select__list">
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../">NewScanmem Documentation</a>
         
-          <li class="md-select__item">
-            <a href="../../API_REFERENCE/" hreflang="zh" class="md-select__link">
-              中文
-            </a>
-          </li>
-        
-          <li class="md-select__item">
-            <a href="./" hreflang="en" class="md-select__link">
-              English
-            </a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</div>
-    
-    
-      
-      
-        <label class="md-header__button md-icon" for="__search">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        </label>
-        <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-        </button>
       </nav>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-      
-    
-    
-  </nav>
-  
-</header>
-    
-    <div class="md-container" data-md-component="container">
-      
-      
-        
-          
-        
-      
-      <main class="md-main" data-md-component="main">
-        <div class="md-main__inner md-grid">
-          
-            
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-
-
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href="../" title="NewScanmem Documentation" class="md-nav__button md-logo" aria-label="NewScanmem Documentation" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
-
-    </a>
-    NewScanmem Documentation
-  </label>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Home
-    
-  </span>
-  
-
-      </a>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../" class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">API Reference</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/future-re/NewScanmem/edit/master/docs/en/API_REFERENCE.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    API Reference
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    API Reference
-    
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#module-index" class="md-nav__link">
-    <span class="md-ellipsis">
-      Module Index
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#maps" class="md-nav__link">
-    <span class="md-ellipsis">
-      maps
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="maps">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#enum-region_type" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enum: region_type
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#enum-region_scan_level" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enum: region_scan_level
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#struct-region_flags" class="md-nav__link">
-    <span class="md-ellipsis">
-      Struct: region_flags
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#struct-region" class="md-nav__link">
-    <span class="md-ellipsis">
-      Struct: region
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#struct-maps_readererror" class="md-nav__link">
-    <span class="md-ellipsis">
-      Struct: maps_reader::error
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#class-maps_reader" class="md-nav__link">
-    <span class="md-ellipsis">
-      Class: maps_reader
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Class: maps_reader">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#static-methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      Static Methods
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#convenience-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Convenience Functions
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Convenience Functions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#usage-examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      Usage Examples
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#endianness" class="md-nav__link">
-    <span class="md-ellipsis">
-      endianness
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="endianness">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#namespace-endianness" class="md-nav__link">
-    <span class="md-ellipsis">
-      Namespace: endianness
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Namespace: endianness">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Functions
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#concept" class="md-nav__link">
-    <span class="md-ellipsis">
-      Concept
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#process_checker" class="md-nav__link">
-    <span class="md-ellipsis">
-      process_checker
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="process_checker">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#enum-processstate" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enum: ProcessState
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#class-processchecker" class="md-nav__link">
-    <span class="md-ellipsis">
-      Class: ProcessChecker
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Class: ProcessChecker">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#processchecker-static-methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      ProcessChecker Static Methods
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sets" class="md-nav__link">
-    <span class="md-ellipsis">
-      sets
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="sets">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#struct-set" class="md-nav__link">
-    <span class="md-ellipsis">
-      Struct: Set
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Struct: Set">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#set-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Set Functions
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deprecated" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deprecated
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#show_message" class="md-nav__link">
-    <span class="md-ellipsis">
-      show_message
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="show_message">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#enum-messagetype" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enum: MessageType
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#struct-messagecontext" class="md-nav__link">
-    <span class="md-ellipsis">
-      Struct: MessageContext
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#class-messageprinter" class="md-nav__link">
-    <span class="md-ellipsis">
-      Class: MessagePrinter
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Class: MessagePrinter">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#constructor" class="md-nav__link">
-    <span class="md-ellipsis">
-      Constructor
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      Methods
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#targetmem" class="md-nav__link">
-    <span class="md-ellipsis">
-      targetmem
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="targetmem">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#struct-oldvalueandmatchinfo" class="md-nav__link">
-    <span class="md-ellipsis">
-      Struct: OldValueAndMatchInfo
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#class-matchesandoldvaluesswath" class="md-nav__link">
-    <span class="md-ellipsis">
-      Class: MatchesAndOldValuesSwath
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#class-matchesandoldvaluesarray" class="md-nav__link">
-    <span class="md-ellipsis">
-      Class: MatchesAndOldValuesArray
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#value" class="md-nav__link">
-    <span class="md-ellipsis">
-      value
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="value">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#enum-matchflags" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enum: MatchFlags
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#enum-wildcard" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enum: Wildcard
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#struct-value" class="md-nav__link">
-    <span class="md-ellipsis">
-      Struct: Value
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#struct-mem64" class="md-nav__link">
-    <span class="md-ellipsis">
-      Struct: Mem64
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#struct-uservalue" class="md-nav__link">
-    <span class="md-ellipsis">
-      Struct: UserValue
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      Usage Patterns
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Usage Patterns">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#common-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common Patterns
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Common Patterns">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-process-checking" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Process Checking
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-set-parsing" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Set Parsing
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-message-printing" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Message Printing
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-memory-analysis" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Memory Analysis
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-value-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. Value Handling
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#error-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      Error Handling
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Error Handling">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#return-values" class="md-nav__link">
-    <span class="md-ellipsis">
-      Return Values
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#exceptions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Exceptions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../endianness/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Endianness
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../main/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Main
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../maps/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Maps
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../process_checker/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Process Checker
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../sets/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Sets
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../show_message/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Show Message
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../target_mem/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Target Memory
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../value/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Value
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../NamingConvention/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Naming Convention
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
   </ul>
-</nav>
-                  </div>
-                </div>
-              </div>
-            
-            
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#module-index" class="md-nav__link">
-    <span class="md-ellipsis">
-      Module Index
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#maps" class="md-nav__link">
-    <span class="md-ellipsis">
-      maps
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="maps">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#enum-region_type" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enum: region_type
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#enum-region_scan_level" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enum: region_scan_level
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#struct-region_flags" class="md-nav__link">
-    <span class="md-ellipsis">
-      Struct: region_flags
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#struct-region" class="md-nav__link">
-    <span class="md-ellipsis">
-      Struct: region
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#struct-maps_readererror" class="md-nav__link">
-    <span class="md-ellipsis">
-      Struct: maps_reader::error
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#class-maps_reader" class="md-nav__link">
-    <span class="md-ellipsis">
-      Class: maps_reader
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Class: maps_reader">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#static-methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      Static Methods
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#convenience-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Convenience Functions
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Convenience Functions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#usage-examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      Usage Examples
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#endianness" class="md-nav__link">
-    <span class="md-ellipsis">
-      endianness
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="endianness">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#namespace-endianness" class="md-nav__link">
-    <span class="md-ellipsis">
-      Namespace: endianness
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Namespace: endianness">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Functions
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#concept" class="md-nav__link">
-    <span class="md-ellipsis">
-      Concept
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#process_checker" class="md-nav__link">
-    <span class="md-ellipsis">
-      process_checker
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="process_checker">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#enum-processstate" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enum: ProcessState
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#class-processchecker" class="md-nav__link">
-    <span class="md-ellipsis">
-      Class: ProcessChecker
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Class: ProcessChecker">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#processchecker-static-methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      ProcessChecker Static Methods
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sets" class="md-nav__link">
-    <span class="md-ellipsis">
-      sets
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="sets">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#struct-set" class="md-nav__link">
-    <span class="md-ellipsis">
-      Struct: Set
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Struct: Set">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#set-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Set Functions
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deprecated" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deprecated
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#show_message" class="md-nav__link">
-    <span class="md-ellipsis">
-      show_message
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="show_message">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#enum-messagetype" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enum: MessageType
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#struct-messagecontext" class="md-nav__link">
-    <span class="md-ellipsis">
-      Struct: MessageContext
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#class-messageprinter" class="md-nav__link">
-    <span class="md-ellipsis">
-      Class: MessagePrinter
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Class: MessagePrinter">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#constructor" class="md-nav__link">
-    <span class="md-ellipsis">
-      Constructor
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      Methods
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#targetmem" class="md-nav__link">
-    <span class="md-ellipsis">
-      targetmem
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="targetmem">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#struct-oldvalueandmatchinfo" class="md-nav__link">
-    <span class="md-ellipsis">
-      Struct: OldValueAndMatchInfo
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#class-matchesandoldvaluesswath" class="md-nav__link">
-    <span class="md-ellipsis">
-      Class: MatchesAndOldValuesSwath
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#class-matchesandoldvaluesarray" class="md-nav__link">
-    <span class="md-ellipsis">
-      Class: MatchesAndOldValuesArray
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#value" class="md-nav__link">
-    <span class="md-ellipsis">
-      value
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="value">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#enum-matchflags" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enum: MatchFlags
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#enum-wildcard" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enum: Wildcard
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#struct-value" class="md-nav__link">
-    <span class="md-ellipsis">
-      Struct: Value
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#struct-mem64" class="md-nav__link">
-    <span class="md-ellipsis">
-      Struct: Mem64
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#struct-uservalue" class="md-nav__link">
-    <span class="md-ellipsis">
-      Struct: UserValue
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      Usage Patterns
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Usage Patterns">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#common-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      Common Patterns
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Common Patterns">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-process-checking" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Process Checking
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-set-parsing" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Set Parsing
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-message-printing" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Message Printing
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-memory-analysis" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Memory Analysis
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-value-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. Value Handling
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#error-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      Error Handling
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Error Handling">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#return-values" class="md-nav__link">
-    <span class="md-ellipsis">
-      Return Values
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#exceptions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Exceptions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
-          
-          
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
-                
-                  
-
-
-
-<h1 id="api-reference">API Reference</h1>
+                <h1 id="api-reference">API Reference</h1>
 <h2 id="module-index">Module Index</h2>
 <ul>
 <li><a href="#endianness">endianness</a></li>
@@ -1961,59 +585,55 @@ auto value = mem64.get&lt;double&gt;();
 <li><code>Mem64::get&lt;T&gt;()</code>: Throws <code>std::bad_variant_access</code> on type mismatch</li>
 <li>Format strings: Throw appropriate exceptions on format errors</li>
 </ul>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-              </article>
+              
             </div>
-          
-          
-<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
-        </div>
-        
-      </main>
-      
-        <footer class="md-footer">
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
-  
-  
-    Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
-    </a>
-  
-</div>
-      
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../" class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../endianness/" class="btn btn-neutral float-right" title="Endianness">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
   </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-      
-    </div>
-    <div class="md-dialog" data-md-component="dialog">
-      <div class="md-dialog__inner md-typeset"></div>
-    </div>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/future-re/NewScanmem" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
     
     
-    
-      
-      <script id="__config" type="application/json">{"base": "../..", "features": ["content.language", "content.language_select"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <span><a href="../" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
-      
+      <span><a href="../endianness/" style="color: #fcfcfc">Next &raquo;</a></span>
     
-  </body>
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
 </html>
