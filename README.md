@@ -29,34 +29,22 @@ NewScanmem 是一个现代化的 Linux 内存扫描工具，使用 C++20 模块�
 
 This project provides bilingual documentation in Chinese and English:
 
-- [**中文文档**](./docs/zh/README.md) - 简体中文版本
-- [**English Documentation**](./docs/en/README.md) - English version
+- [**中文文档**](./mkdocs/docs/index.md) - 简体中文版本
+- [**English Documentation**](./mkdocs/docs/en/index.md) - English version
 
-## 📚 模块文档 | Module Documentation
+提交文档命令
 
-### 核心模块 | Core Modules
+```sh
+cd mkdocs && mkdocs gh-deploy
+```
 
-| 模块名称          | 中文文档                                     | English Documentation                                  | 描述             |
-| ----------------- | -------------------------------------------- | ------------------------------------------------------ | ---------------- |
-| `endianness`      | [字节序模块](./docs/zh/endianness.md)        | [Endianness Module](./docs/en/endianness.md)           | 字节序检测与转换 |
-| `process_checker` | [进程检查模块](./docs/zh/process_checker.md) | [Process Checker Module](./docs/en/process_checker.md) | 进程状态监控     |
-| `sets`            | [集合模块](./docs/zh/sets.md)                | [Sets Module](./docs/en/sets.md)                       | 集合操作与解析   |
-| `show_message`    | [消息显示模块](./docs/zh/show_message.md)    | [Show Message Module](./docs/en/show_message.md)       | 日志与消息系统   |
-| `target_mem`      | [目标内存模块](./docs/zh/target_mem.md)      | [Target Memory Module](./docs/en/target_mem.md)        | 内存分析结构     |
-| `value`           | [值类型模块](./docs/zh/value.md)             | [Value Module](./docs/en/value.md)                     | 数值类型定义     |
+---
 
-### 应用文档 | Application Documentation
+## 🌐 在线文档 | Online Documentation
 
-| 文档名称 | 中文文档                              | English Documentation                       | 描述             |
-| -------- | ------------------------------------- | ------------------------------------------- | ---------------- |
-| 主应用   | [主应用文档](./docs/zh/main.md)       | [Main Application](./docs/en/main.md)       | 主程序入口与架构 |
-| API参考  | [API参考](./docs/zh/API_REFERENCE.md) | [API Reference](./docs/en/API_REFERENCE.md) | 完整API文档      |
+项目的完整文档已部署至 GitHub Pages，您可以通过以下链接访问：
 
-### 开发规范 | Development Guidelines
-
-| 文档名称                               | 描述            |
-| -------------------------------------- | --------------- |
-| [命名规范](./docs/NamingConvention.md) | C++代码命名规范 |
+- [NewScanmem 文档站点](https://future-re.github.io/NewScanmem/)（推荐）
 
 ---
 
@@ -96,47 +84,29 @@ ninja
 
 ## 📖 使用指南 | Usage Guide
 
-### 选择语言 | Choose Language
+### 构建项目 | Build Project
 
-- **中文用户** | Chinese users: [开始阅读](./docs/zh/README.md)
-- **English users**: [Get started](./docs/en/README.md)
+```bash
+# 克隆仓库 | Clone repository
+git clone https://github.com/future-re/NewScanmem.git
+cd NewScanmem
 
-## 🗂️ 目录结构 | Directory Structure
+# 创建构建目录 | Create build directory
+mkdir build && cd build
 
-```tree
-docs/
-├── README.md              # 本文档 | This document
-├── NamingConvention.md    # 命名规范 | Naming conventions
-├── zh/                    # 中文文档 | Chinese docs
-│   ├── README.md
-│   ├── endianness.md
-│   ├── process_checker.md
-│   ├── sets.md
-│   ├── show_message.md
-│   ├── target_mem.md
-│   ├── value.md
-│   ├── main.md
-│   └── API_REFERENCE.md
-├── en/                    # 英文文档 | English docs
-│   ├── README.md
-│   ├── endianness.md
-│   ├── process_checker.md
-│   ├── sets.md
-│   ├── show_message.md
-│   ├── target_mem.md
-│   ├── value.md
-│   ├── main.md
-│   └── API_REFERENCE.md
-└── assets/               # 资源文件 | Assets (future)
+# 配置项目 | Configure project
+cmake ..
+
+# 构建 | Build
+ninja
+
+# 运行 | Run
+./NewScanmem
 ```
 
-## 📞 支持 | Support
+### 系统要求 | System Requirements
 
-### 选择支持语言 | Choose Support Language
+- **操作系统** | OS: Linux with /proc filesystem
+- **编译器** | Compiler: C++23 with modules support (Clang19+,GCC 13+)
+- **依赖** | Dependencies: CMake, Boost, libstdc++-13-dev ninja-1.11
 
-- **中文支持** | Chinese support: [查看中文文档](./docs/zh/README.md)
-- **English support**: [View English docs](./docs/en/README.md)
-
----
-
-**立即开始 | Get Started:** [中文](./docs/zh/README.md) | [English](./docs/en/README.md)
