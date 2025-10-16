@@ -3,31 +3,48 @@ site_author: Future Re
 
 theme:
   name: material
-  language: zh  # 默认界面语言为中文（Material 内置翻译）
+  language: zh              # 站点默认界面语言；i18n 会按语言自动重配
+  features:
+    - content.language
+    - content.language_select
+    # 注意：navigation.instant 与多语言切换不兼容，别开。参见 i18n 文档说明。
 
 plugins:
   - search
   - i18n:
-      docs_structure: folder
-      default_language: zh
+      docs_structure: folder     # 我们使用 docs/ 与 docs/en/ 的“按目录”结构
+      reconfigure_material: true # 自动为 Material 配置语言切换与 alternates
       languages:
-        zh:
+        - locale: zh
           name: 中文
-          default: true
+          default: true          # 必须：默认语言（同时应 build:true）
           build: true
-        en:
+        - locale: en
           name: English
           build: true
+          # 针对“英文站点”的导航标题翻译（子选项！）
+          nav_translations:
+            首页: Home
+            API 参考: API Reference
+            大端小端: Endianness
+            主程序: Main
+            内存映射: Maps
+            进程检查器: Process Checker
+            集合: Sets
+            显示消息: Show Message
+            目标内存: Target Memory
+            值: Value
+            命名规则: Naming Convention
 
 nav:
-  - index.md
-  - API_REFERENCE.md
-  - endianness.md
-  - main.md
-  - maps.md
-  - process_checker.md
-  - sets.md
-  - show_message.md
-  - target_mem.md
-  - value.md
-  - NamingConvention.md
+  - 首页: index.md
+  - API 参考: API_REFERENCE.md
+  - 大端小端: endianness.md
+  - 主程序: main.md
+  - 内存映射: maps.md
+  - 进程检查器: process_checker.md
+  - 集合: sets.md
+  - 显示消息: show_message.md
+  - 目标内存: target_mem.md
+  - 值: value.md
+  - 命名规则: NamingConvention.md
