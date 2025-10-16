@@ -1,0 +1,1659 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Future Re">
+      
+      
+      
+        <link rel="prev" href="../sets/">
+      
+      
+        <link rel="next" href="../target_mem/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>显示消息 - NewScanmem Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="NewScanmem Documentation" class="md-header__button md-logo" aria-label="NewScanmem Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NewScanmem Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              显示消息
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../en/show_message/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="NewScanmem Documentation" class="md-nav__button md-logo" aria-label="NewScanmem Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    NewScanmem Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_REFERENCE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API 参考
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../endianness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    大端小端
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../main/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    主程序
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    内存映射
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../process_checker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    进程检查器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    集合
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    显示消息
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    显示消息
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      概述
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      模块结构
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      依赖项
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      核心功能
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心功能">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 消息类型系统
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 消息上下文
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-messageprinter" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. MessagePrinter 类
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. MessagePrinter 类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      构造函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      主要打印方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      便捷方法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用示例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本使用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用格式字符串
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      调试模式使用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      后端模式使用
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      消息类型详解
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="消息类型详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#info" class="md-nav__link">
+    <span class="md-ellipsis">
+      INFO 消息
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#warn" class="md-nav__link">
+    <span class="md-ellipsis">
+      WARN 消息
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error" class="md-nav__link">
+    <span class="md-ellipsis">
+      ERROR 消息
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      DEBUG 消息
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user" class="md-nav__link">
+    <span class="md-ellipsis">
+      USER 消息
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      格式化功能
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="格式化功能">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c20" class="md-nav__link">
+    <span class="md-ellipsis">
+      C++20 格式字符串
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      类型安全
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      上下文管理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="上下文管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      全局上下文
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      局部上下文
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      上下文继承
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      性能考虑
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="性能考虑">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      编译时优化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      运行时优化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      输出控制
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      错误处理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="错误处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      格式化错误
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      输出错误
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      扩展性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="扩展性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      自定义消息类型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      自定义输出目标
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      日志文件支持
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../target_mem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    目标内存
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../value/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    值
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../NamingConvention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    命名规则
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      概述
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      模块结构
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      依赖项
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      核心功能
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心功能">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 消息类型系统
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 消息上下文
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-messageprinter" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. MessagePrinter 类
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. MessagePrinter 类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      构造函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      主要打印方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      便捷方法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用示例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本使用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用格式字符串
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      调试模式使用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      后端模式使用
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      消息类型详解
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="消息类型详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#info" class="md-nav__link">
+    <span class="md-ellipsis">
+      INFO 消息
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#warn" class="md-nav__link">
+    <span class="md-ellipsis">
+      WARN 消息
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error" class="md-nav__link">
+    <span class="md-ellipsis">
+      ERROR 消息
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      DEBUG 消息
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user" class="md-nav__link">
+    <span class="md-ellipsis">
+      USER 消息
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      格式化功能
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="格式化功能">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c20" class="md-nav__link">
+    <span class="md-ellipsis">
+      C++20 格式字符串
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      类型安全
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      上下文管理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="上下文管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      全局上下文
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      局部上下文
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      上下文继承
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      性能考虑
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="性能考虑">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      编译时优化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      运行时优化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      输出控制
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      错误处理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="错误处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      格式化错误
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      输出错误
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      扩展性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="扩展性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      自定义消息类型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      自定义输出目标
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      日志文件支持
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">消息显示模块文档</h1>
+<h2 id="_2">概述</h2>
+<p><code>show_message</code> 模块为 NewScanmem 项目提供全面的消息打印和日志系统。它支持多种消息类型、基于调试/后端模式的条件输出，以及使用 C++20 格式字符串的格式化输出。</p>
+<h2 id="_3">模块结构</h2>
+<pre><code class="language-cpp">export module show_message;
+</code></pre>
+<h2 id="_4">依赖项</h2>
+<ul>
+<li><code>&lt;boost/process.hpp&gt;</code> - Boost 进程库</li>
+<li><code>&lt;cstdint&gt;</code> - 固定宽度整数类型</li>
+<li><code>&lt;format&gt;</code> - C++20 格式库</li>
+<li><code>&lt;iostream&gt;</code> - 标准 I/O 流</li>
+<li><code>&lt;string_view&gt;</code> - 用于高效字符串处理的字符串视图</li>
+</ul>
+<h2 id="_5">核心功能</h2>
+<h3 id="1">1. 消息类型系统</h3>
+<pre><code class="language-cpp">enum class MessageType : uint8_t {
+    INFO,    // 信息消息
+    WARN,    // 警告消息
+    ERROR,   // 错误消息
+    DEBUG,   // 调试消息（条件性）
+    USER     // 面向用户的消息（条件性）
+};
+</code></pre>
+<h3 id="2">2. 消息上下文</h3>
+<pre><code class="language-cpp">struct MessageContext {
+    bool debugMode = false;    // 启用调试输出
+    bool backendMode = false;  // 抑制用户输出
+};
+</code></pre>
+<h3 id="3-messageprinter">3. MessagePrinter 类</h3>
+<h4 id="_6">构造函数</h4>
+<pre><code class="language-cpp">MessagePrinter(MessageContext ctx = {});
+</code></pre>
+<h4 id="_7">主要打印方法</h4>
+<pre><code class="language-cpp">template&lt;typename... Args&gt;
+void print(MessageType type, std::string_view fmt, Args&amp;&amp;... args) const;
+</code></pre>
+<h4 id="_8">便捷方法</h4>
+<pre><code class="language-cpp">template&lt;typename... Args&gt;
+void info(std::string_view fmt, Args&amp;&amp;... args) const;
+
+template&lt;typename... Args&gt;
+void warn(std::string_view fmt, Args&amp;&amp;... args) const;
+
+template&lt;typename... Args&gt;
+void error(std::string_view fmt, Args&amp;&amp;... args) const;
+
+template&lt;typename... Args&gt;
+void debug(std::string_view fmt, Args&amp;&amp;... args) const;
+
+template&lt;typename... Args&gt;
+void user(std::string_view fmt, Args&amp;&amp;... args) const;
+</code></pre>
+<h2 id="_9">使用示例</h2>
+<h3 id="_10">基本使用</h3>
+<pre><code class="language-cpp">import show_message;
+
+MessagePrinter printer;
+printer.info(&quot;开始内存扫描&quot;);
+printer.warn(&quot;检测到内存不足&quot;);
+printer.error(&quot;无法打开进程&quot;);
+</code></pre>
+<h3 id="_11">使用格式字符串</h3>
+<pre><code class="language-cpp">printer.info(&quot;正在扫描 PID 为 {} 的进程&quot;, pid);
+printer.warn(&quot;发现 {} 个可疑内存区域&quot;, suspicious_count);
+printer.error(&quot;在地址 0x{:08x} 处内存读取失败&quot;, address);
+</code></pre>
+<h3 id="_12">调试模式使用</h3>
+<pre><code class="language-cpp">MessageContext ctx;
+ctx.debugMode = true;
+MessagePrinter debugPrinter(ctx);
+
+debugPrinter.debug(&quot;调试信息: 内存地址 0x{:x}&quot;, address);
+debugPrinter.debug(&quot;内部状态: {}&quot;, internal_state);
+</code></pre>
+<h3 id="_13">后端模式使用</h3>
+<pre><code class="language-cpp">MessageContext ctx;
+ctx.backendMode = true;
+MessagePrinter backendPrinter(ctx);
+
+// 用户消息将被抑制
+backendPrinter.user(&quot;这条消息不会显示&quot;);
+// 但错误消息仍然会显示
+backendPrinter.error(&quot;错误消息仍然会显示&quot;);
+</code></pre>
+<h2 id="_14">消息类型详解</h2>
+<h3 id="info">INFO 消息</h3>
+<ul>
+<li><strong>用途</strong>: 一般信息性消息</li>
+<li><strong>显示条件</strong>: 始终显示</li>
+<li><strong>示例</strong>: 程序启动、扫描完成、状态更新</li>
+</ul>
+<pre><code class="language-cpp">printer.info(&quot;内存扫描完成&quot;);
+printer.info(&quot;找到 {} 个匹配项&quot;, match_count);
+</code></pre>
+<h3 id="warn">WARN 消息</h3>
+<ul>
+<li><strong>用途</strong>: 警告信息，需要注意但不致命</li>
+<li><strong>显示条件</strong>: 始终显示</li>
+<li><strong>示例</strong>: 性能警告、配置问题、非关键错误</li>
+</ul>
+<pre><code class="language-cpp">printer.warn(&quot;内存使用率较高: {}%&quot;, memory_usage);
+printer.warn(&quot;某些区域无法访问&quot;);
+</code></pre>
+<h3 id="error">ERROR 消息</h3>
+<ul>
+<li><strong>用途</strong>: 错误信息，表示操作失败</li>
+<li><strong>显示条件</strong>: 始终显示</li>
+<li><strong>示例</strong>: 文件打开失败、权限错误、系统错误</li>
+</ul>
+<pre><code class="language-cpp">printer.error(&quot;无法打开进程: {}&quot;, error_message);
+printer.error(&quot;内存读取失败: {}&quot;, strerror(errno));
+</code></pre>
+<h3 id="debug">DEBUG 消息</h3>
+<ul>
+<li><strong>用途</strong>: 调试信息，用于开发调试</li>
+<li><strong>显示条件</strong>: 仅在 debugMode = true 时显示</li>
+<li><strong>示例</strong>: 内部状态、详细执行流程、性能数据</li>
+</ul>
+<pre><code class="language-cpp">printer.debug(&quot;内部状态: {}&quot;, internal_state);
+printer.debug(&quot;执行时间: {} ms&quot;, execution_time);
+</code></pre>
+<h3 id="user">USER 消息</h3>
+<ul>
+<li><strong>用途</strong>: 面向用户的消息</li>
+<li><strong>显示条件</strong>: 仅在 backendMode = false 时显示</li>
+<li><strong>示例</strong>: 用户提示、进度信息、交互消息</li>
+</ul>
+<pre><code class="language-cpp">printer.user(&quot;请输入目标进程 ID:&quot;);
+printer.user(&quot;扫描进度: {}%&quot;, progress);
+</code></pre>
+<h2 id="_15">格式化功能</h2>
+<h3 id="c20">C++20 格式字符串</h3>
+<p>支持完整的 C++20 格式字符串功能：</p>
+<pre><code class="language-cpp">// 整数格式化
+printer.info(&quot;进程 ID: {}&quot;, pid);
+printer.info(&quot;地址: 0x{:08x}&quot;, address);
+
+// 浮点数格式化
+printer.info(&quot;内存使用率: {:.2f}%&quot;, memory_usage);
+
+// 字符串格式化
+printer.info(&quot;文件名: {}&quot;, filename);
+
+// 复杂格式化
+printer.info(&quot;扫描结果: {} 个匹配项，耗时 {:.3f} 秒&quot;, 
+            match_count, elapsed_time);
+</code></pre>
+<h3 id="_16">类型安全</h3>
+<ul>
+<li>编译时类型检查</li>
+<li>自动类型推导</li>
+<li>防止格式化错误</li>
+</ul>
+<h2 id="_17">上下文管理</h2>
+<h3 id="_18">全局上下文</h3>
+<pre><code class="language-cpp">// 创建全局消息打印机
+MessageContext globalContext;
+globalContext.debugMode = true;
+MessagePrinter globalPrinter(globalContext);
+</code></pre>
+<h3 id="_19">局部上下文</h3>
+<pre><code class="language-cpp">void someFunction() {
+    MessageContext localContext;
+    localContext.backendMode = true;
+    MessagePrinter localPrinter(localContext);
+
+    // 使用局部打印机
+    localPrinter.info(&quot;局部消息&quot;);
+}
+</code></pre>
+<h3 id="_20">上下文继承</h3>
+<pre><code class="language-cpp">class MyClass {
+private:
+    MessagePrinter m_printer;
+
+public:
+    MyClass(MessageContext ctx) : m_printer(ctx) {}
+
+    void doSomething() {
+        m_printer.info(&quot;类内部消息&quot;);
+    }
+};
+</code></pre>
+<h2 id="_21">性能考虑</h2>
+<h3 id="_22">编译时优化</h3>
+<ul>
+<li>模板实例化优化</li>
+<li>内联函数调用</li>
+<li>条件编译</li>
+</ul>
+<h3 id="_23">运行时优化</h3>
+<ul>
+<li>字符串视图避免拷贝</li>
+<li>格式化参数完美转发</li>
+<li>最小化内存分配</li>
+</ul>
+<h3 id="_24">输出控制</h3>
+<ul>
+<li>条件输出减少 I/O 开销</li>
+<li>调试模式可完全禁用</li>
+<li>后端模式抑制用户输出</li>
+</ul>
+<h2 id="_25">错误处理</h2>
+<h3 id="_26">格式化错误</h3>
+<ul>
+<li>编译时检查格式字符串</li>
+<li>运行时验证参数类型</li>
+<li>优雅的错误处理</li>
+</ul>
+<h3 id="_27">输出错误</h3>
+<ul>
+<li>检查输出流状态</li>
+<li>处理写入失败</li>
+<li>提供错误反馈</li>
+</ul>
+<h2 id="_28">扩展性</h2>
+<h3 id="_29">自定义消息类型</h3>
+<pre><code class="language-cpp">enum class CustomMessageType : uint8_t {
+    VERBOSE,  // 详细输出
+    TRACE,    // 跟踪信息
+    // ... 其他类型
+};
+</code></pre>
+<h3 id="_30">自定义输出目标</h3>
+<pre><code class="language-cpp">class CustomPrinter : public MessagePrinter {
+public:
+    void print(MessageType type, std::string_view fmt, auto&amp;&amp;... args) const override {
+        // 自定义输出逻辑
+    }
+};
+</code></pre>
+<h3 id="_31">日志文件支持</h3>
+<pre><code class="language-cpp">class FileLogger {
+private:
+    std::ofstream m_logFile;
+    MessagePrinter m_printer;
+
+public:
+    FileLogger(const std::string&amp; filename) : m_logFile(filename) {
+        // 配置文件输出
+    }
+
+    void log(MessageType type, std::string_view fmt, auto&amp;&amp;... args) {
+        // 写入文件
+        m_printer.print(type, fmt, std::forward&lt;decltype(args)&gt;(args)...);
+    }
+};
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["content.language", "content.language_select"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

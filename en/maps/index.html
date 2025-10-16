@@ -1,0 +1,1534 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Future Re">
+      
+      
+      
+        <link rel="prev" href="../main/">
+      
+      
+        <link rel="next" href="../process_checker/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Maps - NewScanmem Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#maps-module-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../" title="NewScanmem Documentation" class="md-header__button md-logo" aria-label="NewScanmem Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NewScanmem Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Maps
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../maps/" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../" title="NewScanmem Documentation" class="md-nav__button md-logo" aria-label="NewScanmem Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    NewScanmem Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_REFERENCE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../endianness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Endianness
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../main/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Main
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Maps
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Maps
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-region-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Region Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Region Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regiontype-enum" class="md-nav__link">
+    <span class="md-ellipsis">
+      RegionType Enum
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-scan-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Scan Levels
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Scan Levels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regionscanlevel-enum" class="md-nav__link">
+    <span class="md-ellipsis">
+      RegionScanLevel Enum
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-region-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Region Metadata
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Region Metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regionflags-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      RegionFlags Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#region-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Region Structure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtered-scanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtered Scanning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Handling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-mapsreader" class="md-nav__link">
+    <span class="md-ellipsis">
+      Class: MapsReader
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Class: MapsReader">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#static-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Static Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Static Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#readprocessmaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      readProcessMaps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Handling Module
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Handling Module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mapsreadererror-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      MapsReader::Error Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-error-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Error Scenarios
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#region-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Region Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permission-checking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permission Checking
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Notes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thread-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      Thread Safety
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platform-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      Platform Compatibility
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-from-legacy-c-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migration from Legacy C Code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Migration from Legacy C Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#legacy-c-modern-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      Legacy C → Modern C++
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration with CLI
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#complete-working-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complete Working Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../process_checker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Process Checker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sets
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../show_message/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Show Message
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../target_mem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Target Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../value/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Value
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../NamingConvention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Naming Convention
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-region-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Region Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Region Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regiontype-enum" class="md-nav__link">
+    <span class="md-ellipsis">
+      RegionType Enum
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-scan-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Scan Levels
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Scan Levels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regionscanlevel-enum" class="md-nav__link">
+    <span class="md-ellipsis">
+      RegionScanLevel Enum
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-region-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Region Metadata
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Region Metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regionflags-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      RegionFlags Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#region-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Region Structure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtered-scanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtered Scanning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Handling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-mapsreader" class="md-nav__link">
+    <span class="md-ellipsis">
+      Class: MapsReader
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Class: MapsReader">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#static-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Static Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Static Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#readprocessmaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      readProcessMaps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Handling Module
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Handling Module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mapsreadererror-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      MapsReader::Error Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-error-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Error Scenarios
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#region-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Region Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permission-checking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permission Checking
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Notes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thread-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      Thread Safety
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platform-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      Platform Compatibility
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-from-legacy-c-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migration from Legacy C Code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Migration from Legacy C Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#legacy-c-modern-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      Legacy C → Modern C++
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration with CLI
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#complete-working-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complete Working Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="maps-module-documentation">Maps Module Documentation</h1>
+<h2 id="overview">Overview</h2>
+<p>The Maps module provides functionality to read and parse Linux <code>/proc/[pid]/maps</code> files, extracting memory region information for process analysis. This is a modern C++20 implementation that replaces the legacy C code with type-safe, RAII-compliant interfaces.</p>
+<h2 id="module-structure">Module Structure</h2>
+<pre><code class="language-cpp">import maps;
+</code></pre>
+<h2 id="core-components">Core Components</h2>
+<h3 id="1-region-types">1. Region Types</h3>
+<h4 id="regiontype-enum"><code>RegionType</code> Enum</h4>
+<p>Represents the classification of memory regions:</p>
+<pre><code class="language-cpp">enum class RegionType : uint8_t {
+    MISC,   // Miscellaneous memory regions
+    EXE,    // Executable binary regions
+    CODE,   // Code segments (shared libraries, etc.)
+    HEAP,   // Heap memory regions
+    STACK   // Stack memory regions
+};
+
+constexpr std::array&lt;std::string_view, 5&gt; REGION_TYPE_NAMES = {
+    &quot;misc&quot;, &quot;exe&quot;, &quot;code&quot;, &quot;heap&quot;, &quot;stack&quot;
+};
+</code></pre>
+<h3 id="2-scan-levels">2. Scan Levels</h3>
+<h4 id="regionscanlevel-enum"><code>RegionScanLevel</code> Enum</h4>
+<p>Controls which memory regions are included in scanning:</p>
+<pre><code class="language-cpp">enum class RegionScanLevel : uint8_t {
+    ALL,                       // All readable regions
+    ALL_RW,                    // All readable/writable regions
+    HEAP_STACK_EXECUTABLE,     // Heap, stack, and executable regions
+    HEAP_STACK_EXECUTABLE_BSS  // Above plus BSS segments
+};
+</code></pre>
+<h3 id="3-region-metadata">3. Region Metadata</h3>
+<h4 id="regionflags-structure"><code>RegionFlags</code> Structure</h4>
+<p>Contains permission and state flags for memory regions:</p>
+<pre><code class="language-cpp">struct RegionFlags {
+    bool read : 1;    // Read permission
+    bool write : 1;   // Write permission
+    bool exec : 1;    // Execute permission
+    bool shared : 1;  // Shared mapping
+    bool private_ : 1; // Private mapping
+};
+</code></pre>
+<h4 id="region-structure"><code>Region</code> Structure</h4>
+<p>Complete information about a memory region:</p>
+<pre><code class="language-cpp">struct Region {
+    void* start;           // Starting address
+    std::size_t size;      // Region size in bytes
+    RegionType type;       // Region classification
+    RegionFlags flags;     // Permission flags
+    void* loadAddr;        // Load address for ELF files
+    std::string filename;  // Associated file path
+    std::size_t id;        // Unique identifier
+
+    // Helper methods
+    [[nodiscard]] bool isReadable() const noexcept;
+    [[nodiscard]] bool isWritable() const noexcept;
+    [[nodiscard]] bool isExecutable() const noexcept;
+    [[nodiscard]] bool isShared() const noexcept;
+    [[nodiscard]] bool isPrivate() const noexcept;
+
+    [[nodiscard]] std::pair&lt;void*, std::size_t&gt; asSpan() const noexcept;
+    [[nodiscard]] bool contains(void* address) const noexcept;
+};
+</code></pre>
+<h2 id="usage-examples">Usage Examples</h2>
+<h3 id="basic-usage">Basic Usage</h3>
+<pre><code class="language-cpp">import maps;
+
+// Read all memory regions from process
+auto result = maps::readProcessMaps(1234);
+if (result) {
+    for (const auto&amp; region : *result) {
+        std::cout &lt;&lt; std::format(&quot;Region: {}-{} ({})\n&quot;, 
+                               region.start, 
+                               static_cast&lt;char*&gt;(region.start) + region.size,
+                               REGION_TYPE_NAMES[static_cast&lt;size_t&gt;(region.type)]);
+    }
+}
+</code></pre>
+<h3 id="filtered-scanning">Filtered Scanning</h3>
+<pre><code class="language-cpp">// Only scan heap and stack regions
+auto regions = maps::readProcessMaps(
+    pid, 
+    maps::RegionScanLevel::HEAP_STACK_EXECUTABLE
+);
+
+if (regions) {
+    for (const auto&amp; region : *regions) {
+        if (region.type == maps::RegionType::HEAP) {
+            std::cout &lt;&lt; &quot;Heap region found: &quot; &lt;&lt; region.filename &lt;&lt; &quot;\n&quot;;
+        }
+    }
+}
+</code></pre>
+<h3 id="error-handling">Error Handling</h3>
+<pre><code class="language-cpp">auto result = maps::readProcessMaps(pid);
+if (!result) {
+    std::cerr &lt;&lt; &quot;Error: &quot; &lt;&lt; result.error().message &lt;&lt; &quot;\n&quot;;
+    return;
+}
+</code></pre>
+<h2 id="class-mapsreader">Class: <code>MapsReader</code></h2>
+<h3 id="static-methods">Static Methods</h3>
+<h4 id="readprocessmaps"><code>readProcessMaps</code></h4>
+<p>Reads memory regions from a process:</p>
+<pre><code class="language-cpp">[[nodiscard]] static std::expected&lt;std::vector&lt;Region&gt;, Error&gt; 
+readProcessMaps(pid_t pid, RegionScanLevel level = RegionScanLevel::ALL);
+</code></pre>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>pid</code>: Target process ID</li>
+<li><code>level</code>: Scan level filter (default: <code>all</code>)</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>std::expected</code> containing vector of regions or error information</li>
+</ul>
+<p><strong>Error Handling:</strong></p>
+<ul>
+<li>Returns <code>std::error_code</code> with appropriate error messages</li>
+<li>Common errors: file not found, permission denied, invalid format</li>
+</ul>
+<h2 id="error-handling-module">Error Handling Module</h2>
+<h3 id="mapsreadererror-structure"><code>MapsReader::Error</code> Structure</h3>
+<pre><code class="language-cpp">struct Error {
+    std::string message;   // Human-readable error description
+    std::error_code code;  // System error code
+};
+</code></pre>
+<h3 id="common-error-scenarios">Common Error Scenarios</h3>
+<ol>
+<li><strong>Process doesn't exist</strong>: <code>no_such_file_or_directory</code></li>
+<li><strong>Permission denied</strong>: <code>permission_denied</code></li>
+<li><strong>Invalid format</strong>: <code>invalid_argument</code></li>
+</ol>
+<h2 id="advanced-features">Advanced Features</h2>
+<h3 id="region-analysis">Region Analysis</h3>
+<pre><code class="language-cpp">// Check if address is within any region
+auto regions = maps::readProcessMaps(pid);
+void* address = /* some address */;
+
+for (const auto&amp; region : *regions) {
+    if (region.contains(address)) {
+        std::cout &lt;&lt; &quot;Address found in: &quot; &lt;&lt; region.filename &lt;&lt; &quot;\n&quot;;
+        break;
+    }
+}
+</code></pre>
+<h3 id="permission-checking">Permission Checking</h3>
+<pre><code class="language-cpp">// Find writable executable regions (potential shellcode targets)
+for (const auto&amp; region : *regions) {
+    if (region.is_writable() &amp;&amp; region.is_executable()) {
+        std::cout &lt;&lt; &quot;WX region: &quot; &lt;&lt; region.filename &lt;&lt; &quot;\n&quot;;
+    }
+}
+</code></pre>
+<h2 id="performance-notes">Performance Notes</h2>
+<ul>
+<li><strong>Memory Efficient</strong>: Uses <code>std::string</code> with SSO for small filenames</li>
+<li><strong>Zero-Copy</strong>: Direct string extraction from map lines</li>
+<li><strong>Early Filtering</strong>: Regions filtered during parsing based on scan level</li>
+<li><strong>RAII</strong>: Automatic resource cleanup via <code>std::ifstream</code></li>
+</ul>
+<h2 id="thread-safety">Thread Safety</h2>
+<ul>
+<li><strong>Thread-Safe</strong>: All methods are thread-safe for concurrent access</li>
+<li><strong>No Shared State</strong>: Each call creates independent state</li>
+<li><strong>Immutable Results</strong>: Returned vectors contain immutable data</li>
+</ul>
+<h2 id="platform-compatibility">Platform Compatibility</h2>
+<ul>
+<li><strong>Linux Only</strong>: Requires <code>/proc/[pid]/maps</code> filesystem</li>
+<li><strong>C++23 Required</strong>: Uses <code>std::expected</code> and other C++23 features</li>
+<li><strong>64-bit Support</strong>: Handles both 32-bit and 64-bit address spaces</li>
+</ul>
+<h2 id="migration-from-legacy-c-code">Migration from Legacy C Code</h2>
+<h3 id="legacy-c-modern-c">Legacy C → Modern C++</h3>
+<table>
+<thead>
+<tr>
+<th>Legacy C</th>
+<th>Modern C++</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>region_t*</code></td>
+<td><code>maps::Region</code></td>
+</tr>
+<tr>
+<td><code>list_t</code></td>
+<td><code>std::vector&lt;Region&gt;</code></td>
+</tr>
+<tr>
+<td><code>bool return</code></td>
+<td><code>std::expected</code></td>
+</tr>
+<tr>
+<td><code>char*</code> filename</td>
+<td><code>std::string</code></td>
+</tr>
+<tr>
+<td>Manual memory management</td>
+<td>RAII</td>
+</tr>
+<tr>
+<td>Error codes</td>
+<td>Exception-safe error handling</td>
+</tr>
+</tbody>
+</table>
+<h2 id="integration-with-cli">Integration with CLI</h2>
+<p>The <code>maps</code> module is used in the CLI to retrieve and display memory region information for the target process. For example, the <code>list</code> command utilizes this module to parse and output <code>/proc/[pid]/maps</code> data.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="complete-working-example">Complete Working Example</h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+import maps;
+
+int main() {
+    pid_t target_pid = 1234; // Replace with actual PID
+
+    auto regions = maps::readProcessMaps(target_pid);
+    if (!regions) {
+        std::cerr &lt;&lt; &quot;Failed to read maps: &quot; &lt;&lt; regions.error().message &lt;&lt; &quot;\n&quot;;
+        return 1;
+    }
+
+    std::cout &lt;&lt; &quot;Found &quot; &lt;&lt; regions-&gt;size() &lt;&lt; &quot; memory regions:\n&quot;;
+
+    for (const auto&amp; region : *regions) {
+        std::cout &lt;&lt; std::format(
+            &quot;0x{:x}-0x{:x} {} {} {}\n&quot;,
+            reinterpret_cast&lt;uintptr_t&gt;(region.start),
+            reinterpret_cast&lt;uintptr_t&gt;(region.start) + region.size,
+            region.is_readable() ? 'r' : '-',
+            region.is_writable() ? 'w' : '-',
+            region.is_executable() ? 'x' : '-',
+            region.filename.empty() ? &quot;[anonymous]&quot; : region.filename
+        );
+    }
+
+    return 0;
+}
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.language", "content.language_select"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

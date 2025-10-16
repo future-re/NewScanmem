@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>None./</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="None"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/"/>
+    </url>
+    <url>
+        <loc>NoneAPI_REFERENCE/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneAPI_REFERENCE/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/API_REFERENCE/"/>
+    </url>
+    <url>
+        <loc>NoneNamingConvention/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneNamingConvention/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/NamingConvention/"/>
+    </url>
+    <url>
+        <loc>Noneendianness/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Noneendianness/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/endianness/"/>
+    </url>
+    <url>
+        <loc>Nonemain/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonemain/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/main/"/>
+    </url>
+    <url>
+        <loc>Nonemaps/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonemaps/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/maps/"/>
+    </url>
+    <url>
+        <loc>Noneprocess_checker/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Noneprocess_checker/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/process_checker/"/>
+    </url>
+    <url>
+        <loc>Nonesets/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonesets/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/sets/"/>
+    </url>
+    <url>
+        <loc>Noneshow_message/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Noneshow_message/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/show_message/"/>
+    </url>
+    <url>
+        <loc>Nonetarget_mem/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonetarget_mem/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/target_mem/"/>
+    </url>
+    <url>
+        <loc>Nonevalue/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonevalue/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/value/"/>
+    </url>
+    <url>
+        <loc>Noneen/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="None"/>
+    </url>
+    <url>
+        <loc>Noneen/API_REFERENCE/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/API_REFERENCE/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneAPI_REFERENCE/"/>
+    </url>
+    <url>
+        <loc>Noneen/NamingConvention/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/NamingConvention/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneNamingConvention/"/>
+    </url>
+    <url>
+        <loc>Noneen/endianness/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/endianness/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Noneendianness/"/>
+    </url>
+    <url>
+        <loc>Noneen/main/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/main/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonemain/"/>
+    </url>
+    <url>
+        <loc>Noneen/maps/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/maps/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonemaps/"/>
+    </url>
+    <url>
+        <loc>Noneen/process_checker/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/process_checker/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Noneprocess_checker/"/>
+    </url>
+    <url>
+        <loc>Noneen/sets/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/sets/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonesets/"/>
+    </url>
+    <url>
+        <loc>Noneen/show_message/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/show_message/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Noneshow_message/"/>
+    </url>
+    <url>
+        <loc>Noneen/target_mem/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/target_mem/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonetarget_mem/"/>
+    </url>
+    <url>
+        <loc>Noneen/value/</loc>
+        <lastmod>2025-10-16</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/value/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonevalue/"/>
+    </url>
+</urlset>
