@@ -56,11 +56,11 @@ class HelpCommand : public Command {
     }
 
    private:
-    auto showCommandHelp(const std::string& commandName,
-                         CommandRegistry& registry)
+    static auto showCommandHelp(const std::string& commandName,
+                                CommandRegistry& registry)
         -> std::expected<CommandResult, std::string> {
         auto* cmd = registry.findCommand(commandName);
-        if (!cmd) {
+        if (cmd == nullptr) {
             return std::unexpected("Unknown command: " + commandName);
         }
 
@@ -73,29 +73,28 @@ class HelpCommand : public Command {
         if (!aliases.empty()) {
             oss << "Aliases: ";
             for (size_t i = 0; i < aliases.size(); ++i) {
-                if (i > 0) oss << ", ";
+                if (i > 0) {
+                    oss << ", ";
+                }
                 oss << aliases[i];
             }
             oss << "\n";
         }
 
         ui::MessagePrinter::info(oss.str());
-        return CommandResult{true, ""};
+        return CommandResult{.success = true, .message = ""};
     }
 
-    auto showGeneralHelp(CommandRegistry& registry)
+    static auto showGeneralHelp(CommandRegistry& registry)
         -> std::expected<CommandResult, std::string> {
         auto commands = registry.getAllCommands();
         if (commands.empty()) {
             ui::MessagePrinter::warn("No commands registered");
-            return CommandResult{true, ""};
+            return CommandResult{.success = true, .message = ""};
         }
 
         // Sort commands by name
-        std::sort(commands.begin(), commands.end(),
-                  [](const Command* a, const Command* b) {
-                      return a->getName() < b->getName();
-                  });
+        std::ranges::sort(commands, {}, &Command::getName);
 
         std::ostringstream oss;
         oss << "\n=== Available Commands ===\n\n";
@@ -121,7 +120,7 @@ class HelpCommand : public Command {
                "command.\n";
 
         ui::MessagePrinter::info(oss.str());
-        return CommandResult{true, ""};
+        return CommandResult{.success = true, .message = ""};
     }
 };
 

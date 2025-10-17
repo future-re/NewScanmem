@@ -12,7 +12,6 @@ export namespace ui {
 
 enum class MessageType : uint8_t { INFO, WARN, ERROR, DEBUG, USER };
 
-
 struct MessageContext {
     bool debugMode = false;
     bool backendMode = false;
@@ -24,7 +23,8 @@ class MessagePrinter {
 
     template <typename... Args>
     void print(MessageType type, std::string_view fmt, Args&&... args) const {
-        std::string msg = std::vformat(fmt, std::make_format_args(args...));
+        std::string msg = std::vformat(
+            fmt, std::make_format_args(std::forward<Args>(args)...));
         switch (type) {
             case MessageType::INFO:
                 std::cerr << std::format("info: {}\n", msg);
@@ -69,7 +69,7 @@ class MessagePrinter {
     void user(std::string_view fmt, Args&&... args) const {
         print(MessageType::USER, fmt, std::forward<Args>(args)...);
     }
-    
+
     // 静态便捷函数，用于简单字符串消息
     static void info(const std::string& msg) {
         std::cerr << std::format("info: {}\n", msg);
@@ -91,4 +91,4 @@ class MessagePrinter {
     MessageContext m_ctx;
 };
 
-} // namespace ui
+}  // namespace ui

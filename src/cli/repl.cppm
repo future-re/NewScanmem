@@ -30,16 +30,16 @@ class REPL {
      * @param ui User interface for input/output
      * @param prompt Prompt string to display
      */
-    explicit REPL(std::shared_ptr<ui::UserInterface> ui,
+    explicit REPL(std::shared_ptr<ui::UserInterface> userInterface,
                   std::string_view prompt = "> ")
-        : ui_(std::move(ui)), prompt_(prompt) {}
+        : m_ui(std::move(userInterface)), m_prompt(prompt) {}
 
     /**
      * @brief Start the REPL loop
      * @return Exit code (0 for normal exit, non-zero for error)
      */
     auto run() -> int {
-        if (!ui_) {
+        if (!m_ui) {
             ui::MessagePrinter::error("No user interface provided");
             return 1;
         }
@@ -50,7 +50,7 @@ class REPL {
 
         while (true) {
             // Read command
-            auto lineResult = ui_->getLine(prompt_);
+            auto lineResult = m_ui->getLine(m_prompt);
             if (!lineResult) {
                 // EOF or error
                 break;
@@ -100,13 +100,15 @@ class REPL {
      * @brief Set the prompt string
      * @param prompt New prompt string
      */
-    auto setPrompt(std::string_view prompt) -> void { prompt_ = prompt; }
+    auto setPrompt(std::string_view prompt) -> void { m_prompt = prompt; }
 
     /**
      * @brief Get the current prompt string
      * @return Current prompt
      */
-    [[nodiscard]] auto getPrompt() const -> std::string_view { return prompt_; }
+    [[nodiscard]] auto getPrompt() const -> std::string_view {
+        return m_prompt;
+    }
 
    private:
     /**
@@ -115,14 +117,14 @@ class REPL {
      * @param args Command arguments
      * @return Expected result or error message
      */
-    auto executeCommand(const std::string& commandName,
-                        const std::vector<std::string>& args)
+    static auto executeCommand(const std::string& commandName,
+                               const std::vector<std::string>& args)
         -> std::expected<CommandResult, std::string> {
         auto& registry = CommandRegistry::instance();
 
         // Find command
         auto* cmd = registry.findCommand(commandName);
-        if (!cmd) {
+        if (cmd == nullptr) {
             return std::unexpected("Unknown command: " + commandName +
                                    ". Type 'help' for available commands.");
         }
@@ -138,8 +140,8 @@ class REPL {
         return cmd->execute(args);
     }
 
-    std::shared_ptr<ui::UserInterface> ui_;
-    std::string prompt_;
+    std::shared_ptr<ui::UserInterface> m_ui;
+    std::string m_prompt;
 };
 
 }  // namespace cli

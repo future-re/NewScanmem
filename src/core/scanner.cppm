@@ -31,7 +31,7 @@ class Scanner {
      * @brief Construct scanner for given process
      * @param pid Target process ID
      */
-    explicit Scanner(pid_t pid) : pid_(pid), matches_(0) {}
+    explicit Scanner(pid_t pid) : m_pid(pid), m_matches(0) {}
 
     /**
      * @brief Perform memory scan
@@ -42,13 +42,13 @@ class Scanner {
     [[nodiscard]] auto performScan(const ScanOptions& opts,
                                    const UserValue* value = nullptr)
         -> std::expected<ScanStats, std::string> {
-        auto result = runScan(pid_, opts, value, matches_);
+        auto result = runScan(m_pid, opts, value, m_matches);
         if (!result) {
             return std::unexpected(result.error());
         }
 
-        lastStats_ = *result;
-        return lastStats_;
+        m_lastStats = *result;
+        return m_lastStats;
     }
 
     /**
@@ -56,7 +56,7 @@ class Scanner {
      * @return Reference to matches array
      */
     [[nodiscard]] auto getMatches() const -> const MatchesAndOldValuesArray& {
-        return matches_;
+        return m_matches;
     }
 
     /**
@@ -64,7 +64,7 @@ class Scanner {
      * @return Reference to matches array
      */
     [[nodiscard]] auto getMatchesMut() -> MatchesAndOldValuesArray& {
-        return matches_;
+        return m_matches;
     }
 
     /**
@@ -72,13 +72,13 @@ class Scanner {
      * @return Last scan statistics
      */
     [[nodiscard]] auto getLastStats() const -> const ScanStats& {
-        return lastStats_;
+        return m_lastStats;
     }
 
     /**
      * @brief Clear all matches
      */
-    auto clearMatches() -> void { matches_.swaths.clear(); }
+    auto clearMatches() -> void { m_matches.swaths.clear(); }
 
     /**
      * @brief Get number of matches
@@ -86,7 +86,7 @@ class Scanner {
      */
     [[nodiscard]] auto getMatchCount() const -> std::size_t {
         std::size_t count = 0;
-        for (const auto& swath : matches_.swaths) {
+        for (const auto& swath : m_matches.swaths) {
             for (const auto& element : swath.data) {
                 if (element.matchInfo != MatchFlags::EMPTY) {
                     ++count;
@@ -108,12 +108,12 @@ class Scanner {
      * @brief Get target PID
      * @return Process ID
      */
-    [[nodiscard]] auto getPid() const -> pid_t { return pid_; }
+    [[nodiscard]] auto getPid() const -> pid_t { return m_pid; }
 
    private:
-    pid_t pid_;
-    MatchesAndOldValuesArray matches_;
-    ScanStats lastStats_{};
+    pid_t m_pid;
+    MatchesAndOldValuesArray m_matches;
+    ScanStats m_lastStats{};
 };
 
 /**

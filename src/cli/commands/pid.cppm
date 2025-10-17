@@ -26,7 +26,7 @@ export namespace cli::commands {
  */
 class PidCommand : public Command {
    public:
-    explicit PidCommand(pid_t& targetPid) : targetPid_(targetPid) {}
+    explicit PidCommand(pid_t& targetPid) : m_targetPid(targetPid) {}
 
     [[nodiscard]] auto getName() const -> std::string_view override {
         return "pid";
@@ -78,16 +78,17 @@ class PidCommand : public Command {
         }
 
         // Set target process
-        targetPid_ = pid;
+        m_targetPid = pid;
 
         ui::MessagePrinter::success("Successfully set target process to " +
                                     std::to_string(pid));
 
-        return CommandResult{true, ""};
+        return CommandResult{.success = true, .message = ""};
     }
 
    private:
-    pid_t& targetPid_;
+    // NOLINTNEXTLINE(cppcoreguidelines-avoid-const-or-ref-data-members)
+    pid_t& m_targetPid;
 };
 
 }  // namespace cli::commands

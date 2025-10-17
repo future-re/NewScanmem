@@ -8,6 +8,7 @@ module;
 #include <unistd.h>
 
 #include <expected>
+#include <span>
 #include <string>
 
 export module core.config;
@@ -61,17 +62,17 @@ class ConfigManager {
 
     /**
      * @brief Create configuration from command line arguments
-     * @param argc Argument count
-     * @param argv Argument values
+     * @param args Command line arguments as a span of const char pointers
      * @return Expected configuration or error message
      */
-    [[nodiscard]] static auto fromCommandLine(int argc, char* argv[])
+    [[nodiscard]] static auto fromCommandLine(std::span<const char*> args)
         -> std::expected<ScanMemConfig, std::string> {
         ScanMemConfig config = getDefault();
 
-        // Simple argument parsing (to be enhanced with proper parser)
-        for (int idx = 1; idx < argc; ++idx) {
-            std::string arg = argv[idx];
+        // Simplified argument parsing using std::span
+        for (const auto& rawArg : args.subspan(1)) {
+            std::string_view arg{
+                rawArg};  // Convert raw argument to string_view
 
             if (arg == "--debug" || arg == "-d") {
                 config.debugMode = true;
@@ -79,21 +80,22 @@ class ConfigManager {
                 config.backendMode = true;
             } else if (arg == "--exit-on-error" || arg == "-e") {
                 config.exitOnError = true;
+            } else if (arg.starts_with("--pid=")) {
+                try {
+                    config.targetPid = std::stoi(std::string(arg.substr(6)));
+                } catch (...) {
+                    return std::unexpected("Invalid PID value");
+                }
             } else if (arg == "--pid" || arg == "-p") {
-                if (idx + 1 < argc) {
+                if (auto next = args.subspan(&rawArg - args.data() + 1);
+                    !next.empty()) {
                     try {
-                        config.targetPid = std::stoi(argv[++idx]);
+                        config.targetPid = std::stoi(next.front());
                     } catch (...) {
                         return std::unexpected("Invalid PID value");
                     }
                 } else {
                     return std::unexpected("--pid requires a value");
-                }
-            } else if (arg.starts_with("--pid=")) {
-                try {
-                    config.targetPid = std::stoi(arg.substr(6));
-                } catch (...) {
-                    return std::unexpected("Invalid PID value");
                 }
             }
         }

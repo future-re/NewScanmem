@@ -6,7 +6,6 @@
 module;
 
 #include <expected>
-#include <functional>
 #include <memory>
 #include <string>
 #include <string_view>
@@ -112,10 +111,10 @@ class CommandRegistry {
 
         // Register aliases
         for (const auto& alias : command->getAliases()) {
-            aliases_[std::string(alias)] = name;
+            m_aliases[std::string(alias)] = name;
         }
 
-        commands_[name] = std::move(command);
+        m_commands[name] = std::move(command);
     }
 
     /**
@@ -127,13 +126,14 @@ class CommandRegistry {
         auto nameStr = std::string(name);
 
         // Check if it's an alias
-        if (auto aliasIt = aliases_.find(nameStr); aliasIt != aliases_.end()) {
+        if (auto aliasIt = m_aliases.find(nameStr);
+            aliasIt != m_aliases.end()) {
             nameStr = aliasIt->second;
         }
 
         // Find the command
-        if (auto it = commands_.find(nameStr); it != commands_.end()) {
-            return it->second.get();
+        if (auto cmdIt = m_commands.find(nameStr); cmdIt != m_commands.end()) {
+            return cmdIt->second.get();
         }
 
         return nullptr;
@@ -145,9 +145,9 @@ class CommandRegistry {
      */
     [[nodiscard]] auto getAllCommands() const -> std::vector<Command*> {
         std::vector<Command*> result;
-        result.reserve(commands_.size());
+        result.reserve(m_commands.size());
 
-        for (const auto& [name, cmd] : commands_) {
+        for (const auto& [name, cmd] : m_commands) {
             result.push_back(cmd.get());
         }
 
@@ -158,21 +158,21 @@ class CommandRegistry {
      * @brief Clear all registered commands
      */
     auto clear() -> void {
-        commands_.clear();
-        aliases_.clear();
+        m_commands.clear();
+        m_aliases.clear();
     }
 
     /**
      * @brief Get number of registered commands
      * @return Command count
      */
-    [[nodiscard]] auto size() const -> std::size_t { return commands_.size(); }
+    [[nodiscard]] auto size() const -> std::size_t { return m_commands.size(); }
 
    private:
     CommandRegistry() = default;
 
-    std::unordered_map<std::string, std::unique_ptr<Command>> commands_;
-    std::unordered_map<std::string, std::string> aliases_;
+    std::unordered_map<std::string, std::unique_ptr<Command>> m_commands;
+    std::unordered_map<std::string, std::string> m_aliases;
 };
 
 /**
@@ -189,7 +189,8 @@ class CommandRegistry {
     for (char chr : line) {
         if (chr == '"' || chr == '\'') {
             inQuotes = !inQuotes;
-        } else if (std::isspace(static_cast<unsigned char>(chr)) && !inQuotes) {
+        } else if ((std::isspace(static_cast<unsigned char>(chr)) != 0) &&
+                   !inQuotes) {
             if (!current.empty()) {
                 tokens.push_back(current);
                 current.clear();

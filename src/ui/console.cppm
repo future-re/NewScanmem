@@ -5,7 +5,6 @@
 
 module;
 
-#include <format>
 #include <iostream>
 #include <optional>
 #include <string>
@@ -30,9 +29,10 @@ class ConsoleUI : public UserInterface {
      * @param backendMode Enable backend mode (machine-readable output)
      */
     explicit ConsoleUI(bool debugMode = false, bool backendMode = false)
-        : printer_(MessageContext{debugMode, backendMode}) {
-        debugModeEnabled_ = debugMode;
-        backendMode_ = backendMode;
+        : m_printer(MessageContext{.debugMode = debugMode,
+                                   .backendMode = backendMode}) {
+        setDebugMode(debugMode);
+        setBackendMode(backendMode);
     }
 
     /**
@@ -49,7 +49,7 @@ class ConsoleUI : public UserInterface {
      * @param message Error message
      */
     auto printError(std::string_view message) -> void override {
-        printer_.error("{}", message);
+        m_printer.error("{}", message);
     }
 
     /**
@@ -57,7 +57,7 @@ class ConsoleUI : public UserInterface {
      * @param message Warning message
      */
     auto printWarning(std::string_view message) -> void override {
-        printer_.warn("{}", message);
+        m_printer.warn("{}", message);
     }
 
     /**
@@ -65,7 +65,7 @@ class ConsoleUI : public UserInterface {
      * @param message Info message
      */
     auto printInfo(std::string_view message) -> void override {
-        printer_.info("{}", message);
+        m_printer.info("{}", message);
     }
 
     /**
@@ -73,8 +73,8 @@ class ConsoleUI : public UserInterface {
      * @param message Debug message
      */
     auto printDebug(std::string_view message) -> void override {
-        if (debugModeEnabled_) {
-            printer_.debug("{}", message);
+        if (isDebugMode()) {
+            m_printer.debug("{}", message);
         }
     }
 
@@ -114,12 +114,12 @@ class ConsoleUI : public UserInterface {
 
         // Trim whitespace and convert to lowercase
         auto trimmed = response;
-        while (!trimmed.empty() &&
-               std::isspace(static_cast<unsigned char>(trimmed.front()))) {
+        while (!trimmed.empty() && (std::isspace(static_cast<unsigned char>(
+                                        trimmed.front())) != 0)) {
             trimmed.erase(trimmed.begin());
         }
-        while (!trimmed.empty() &&
-               std::isspace(static_cast<unsigned char>(trimmed.back()))) {
+        while (!trimmed.empty() && (std::isspace(static_cast<unsigned char>(
+                                        trimmed.back())) != 0)) {
             trimmed.pop_back();
         }
 
@@ -145,25 +145,26 @@ class ConsoleUI : public UserInterface {
      * @param enabled True for machine-readable output
      */
     auto setBackendMode(bool enabled) -> void {
-        backendMode_ = enabled;
-        printer_ = MessagePrinter(MessageContext{debugModeEnabled_, enabled});
+        m_backendMode = enabled;
+        m_printer = MessagePrinter(
+            MessageContext{.debugMode = isDebugMode(), .backendMode = enabled});
     }
 
     /**
      * @brief Check if backend mode is enabled
      * @return True if backend mode enabled
      */
-    [[nodiscard]] auto isBackendMode() const -> bool { return backendMode_; }
+    [[nodiscard]] auto isBackendMode() const -> bool { return m_backendMode; }
 
     /**
      * @brief Get underlying message printer
      * @return Reference to MessagePrinter
      */
-    [[nodiscard]] auto getPrinter() -> MessagePrinter& { return printer_; }
+    [[nodiscard]] auto getPrinter() -> MessagePrinter& { return m_printer; }
 
    private:
-    MessagePrinter printer_;
-    bool backendMode_ = false;
+    MessagePrinter m_printer;
+    bool m_backendMode = false;
 };
 
 /**

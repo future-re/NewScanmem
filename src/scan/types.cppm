@@ -1,7 +1,6 @@
 module;
 
 #include <cstddef>
-#include <cstdint>
 #include <functional>
 
 export module scan.types;

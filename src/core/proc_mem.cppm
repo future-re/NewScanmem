@@ -34,12 +34,13 @@ export class ProcMemIO {
         }
         int flags = O_CLOEXEC | (writable ? O_RDWR : O_RDONLY);
         std::string path = std::format("/proc/{}/mem", m_pid);
-        int fd = ::open(path.c_str(), flags);
-        if (fd < 0) {
+        // NOLINTNEXTLINE(cppcoreguidelines-pro-type-vararg)
+        int fileDesc = ::open(path.c_str(), flags);
+        if (fileDesc < 0) {
             return std::unexpected{
                 std::format("open {} failed: {}", path, std::strerror(errno))};
         }
-        m_fd = fd;
+        m_fd = fileDesc;
         return {};
     }
 

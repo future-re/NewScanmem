@@ -57,7 +57,7 @@ class StringUtils {
      */
     [[nodiscard]] static auto trim(std::string_view str) -> std::string_view {
         // Trim from start
-        auto start = std::ranges::find_if(
+        const auto* start = std::ranges::find_if(
             str, [](unsigned char chr) { return !std::isspace(chr); });
 
         if (start == str.end()) {
@@ -65,14 +65,15 @@ class StringUtils {
         }
 
         // Trim from end
-        auto end = std::ranges::find_if(
-                       str | std::views::reverse,
-                       [](unsigned char chr) { return !std::isspace(chr); })
-                       .base();
+        const auto* end = std::ranges::find_if(str | std::views::reverse,
+                                               [](unsigned char chr) {
+                                                   return !std::isspace(chr);
+                                               })
+                              .base();
 
-        const auto startIdx = std::distance(str.begin(), start);
-        const auto length = std::distance(start, end);
-        return str.substr(startIdx, length);
+        const auto START_IDX = std::distance(str.begin(), start);
+        const auto LENGTH = std::distance(start, end);
+        return str.substr(START_IDX, LENGTH);
     }
 
     /**
@@ -82,15 +83,15 @@ class StringUtils {
      */
     [[nodiscard]] static auto trimLeft(std::string_view str)
         -> std::string_view {
-        auto start = std::ranges::find_if(
+        const auto* start = std::ranges::find_if(
             str, [](unsigned char chr) { return !std::isspace(chr); });
 
         if (start == str.end()) {
             return {};
         }
 
-        const auto startIdx = std::distance(str.begin(), start);
-        return str.substr(startIdx);
+        const auto START_IDX = std::distance(str.begin(), start);
+        return str.substr(START_IDX);
     }
 
     /**
@@ -100,13 +101,14 @@ class StringUtils {
      */
     [[nodiscard]] static auto trimRight(std::string_view str)
         -> std::string_view {
-        auto end = std::ranges::find_if(
-                       str | std::views::reverse,
-                       [](unsigned char chr) { return !std::isspace(chr); })
-                       .base();
+        const auto* end = std::ranges::find_if(str | std::views::reverse,
+                                               [](unsigned char chr) {
+                                                   return !std::isspace(chr);
+                                               })
+                              .base();
 
-        const auto length = std::distance(str.begin(), end);
-        return str.substr(0, length);
+        const auto LENGTH = std::distance(str.begin(), end);
+        return str.substr(0, LENGTH);
     }
 
     /**
@@ -167,8 +169,7 @@ class StringUtils {
      */
     [[nodiscard]] static auto startsWith(std::string_view str,
                                          std::string_view prefix) -> bool {
-        return str.size() >= prefix.size() &&
-               str.substr(0, prefix.size()) == prefix;
+        return str.size() >= prefix.size() && str.starts_with(prefix);
     }
 
     /**

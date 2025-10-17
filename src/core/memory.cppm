@@ -7,6 +7,7 @@ module;
 
 #include <unistd.h>
 
+#include <bit>
 #include <cstddef>
 #include <cstdint>
 #include <expected>
@@ -51,7 +52,7 @@ class MemoryWriter {
      * @return Expected bytes written or error message
      */
     [[nodiscard]] auto writeBytes(void* addr,
-                                  std::span<const std::uint8_t> data)
+                                  std::span<const std::uint8_t> data) const
         -> std::expected<std::size_t, std::string> {
         ProcMemIO memio(pid_);
         auto openResult = memio.open(true);
@@ -75,7 +76,7 @@ class MemoryWriter {
      * @param str String to write (null-terminated)
      * @return Expected bytes written or error message
      */
-    [[nodiscard]] auto writeString(void* addr, const char* str)
+    [[nodiscard]] auto writeString(void* addr, const char* str) const
         -> std::expected<std::size_t, std::string> {
         if (str == nullptr) {
             return std::unexpected("Null string pointer");
@@ -87,7 +88,7 @@ class MemoryWriter {
         }
 
         // Include null terminator
-        const auto* data = reinterpret_cast<const std::uint8_t*>(str);
+        const auto* data = std::bit_cast<const std::uint8_t*>(str);
         return writeBytes(addr, std::span(data, length + 1));
     }
 

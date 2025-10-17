@@ -23,6 +23,7 @@ enum class MessageLevel { INFO, WARNING, ERROR, DEBUG };
  * @class UserInterface
  * @brief Abstract interface for user interaction
  */
+
 class UserInterface {
    public:
     virtual ~UserInterface() = default;
@@ -116,7 +117,7 @@ class UserInterface {
      * @param enabled True to enable debug messages
      */
     virtual auto setDebugMode(bool enabled) -> void {
-        debugModeEnabled_ = enabled;
+        m_debugModeEnabled = enabled;
     }
 
     /**
@@ -124,11 +125,11 @@ class UserInterface {
      * @return True if debug mode enabled
      */
     [[nodiscard]] virtual auto isDebugMode() const -> bool {
-        return debugModeEnabled_;
+        return m_debugModeEnabled;
     }
 
-   protected:
-    bool debugModeEnabled_ = false;
+   private:
+    bool m_debugModeEnabled = false;
 };
 
 }  // namespace ui

@@ -7,6 +7,7 @@ module;
 
 #include <unistd.h>
 
+#include <bit>
 #include <cerrno>
 #include <charconv>
 #include <cstdint>
@@ -142,7 +143,7 @@ class ValueParser {
             return std::unexpected("Extra characters after address");
         }
 
-        return reinterpret_cast<void*>(addr);
+        return std::bit_cast<void*>(addr);
     }
 
     /**

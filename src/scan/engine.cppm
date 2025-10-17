@@ -61,12 +61,13 @@ export class ProcMemReader {
             return std::unexpected{"invalid pid"};
         }
         std::string path = std::format("/proc/{}/mem", m_pid);
-        int fd = ::open(path.c_str(), O_RDONLY | O_CLOEXEC);
-        if (fd < 0) {
+        // NOLINTNEXTLINE(cppcoreguidelines-pro-type-vararg)
+        int fileDesc = ::open(path.c_str(), O_RDONLY | O_CLOEXEC);
+        if (fileDesc < 0) {
             return std::unexpected{
                 std::format("open {} failed: {}", path, std::strerror(errno))};
         }
-        m_fd = fd;
+        m_fd = fileDesc;
         return {};
     }
 
