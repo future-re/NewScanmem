@@ -87,6 +87,9 @@ void applyInvert(std::vector<size_t>& result, size_t maxSZ) {
 export auto parseUintSet(std::string_view lPtr, Set& set, size_t maxSZ)
     -> bool {
     set.clear();
+    if (lPtr.empty()) {
+        return false;
+    }
     std::vector<size_t> result;
     bool invert = false;
     std::string input(lPtr);

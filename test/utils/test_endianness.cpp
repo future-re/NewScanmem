@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-import endianness;
+import utils.endianness;
 
 class EndiannessTest : public ::testing::Test {
    protected:

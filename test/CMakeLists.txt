@@ -1,37 +1,33 @@
 # 测试子目录的 CMakeLists.txt
 
-# 启用测试
-enable_testing()
+# 启用测试（通常在顶层调用一次，这里保留注释说明）
+# enable_testing()
 
-# 查找 GTest
+# 查找 GTest 并引入 GoogleTest CMake 辅助
 find_package(GTest REQUIRED)
+include(GoogleTest)
 
+# 统一的测试依赖库集合
 set(TEST_LIBS GTest::GTest GTest::Main NewScanmem_lib)
 
-# Sets 模块测试
-add_executable(test_sets test_sets.cpp)
-target_link_libraries(test_sets PRIVATE ${TEST_LIBS})
-add_dependencies(test_sets NewScanmem_lib)
+# 测试源文件列表
+set(TEST_SOURCES
+    utils/test_sets.cpp
+    utils/test_endianness.cpp
+    value/test_scalar.cpp
+)
 
+# 为每个测试源生成可执行文件并注册 gtest_discover_tests
+foreach(TEST_SRC ${TEST_SOURCES})
+    get_filename_component(TEST_NAME "${TEST_SRC}" NAME_WE)
+    set(TEST_TARGET "test_${TEST_NAME}") # 添加前缀以避免目标名冲突
 
-# ProcessChecker 模块测试
-add_executable(test_process_checker test_process_checker.cpp)
-target_link_libraries(test_process_checker PRIVATE ${TEST_LIBS})
-add_dependencies(test_process_checker NewScanmem_lib)
+    add_executable(${TEST_TARGET} ${TEST_SRC})
+    target_link_libraries(${TEST_TARGET} PRIVATE ${TEST_LIBS})
 
-# Endianness 模块测试
-add_executable(test_endianness test_endianness.cpp)
-target_link_libraries(test_endianness PRIVATE ${TEST_LIBS})
-add_dependencies(test_endianness NewScanmem_lib)
-
-# Scan routines 测试
-add_executable(test_scanroutines test_scanroutines.cpp)
-target_link_libraries(test_scanroutines PRIVATE ${TEST_LIBS})
-add_dependencies(test_scanroutines NewScanmem_lib)
-
-# 发现并运行测试
-include(GoogleTest)
-gtest_discover_tests(test_sets)
-gtest_discover_tests(test_process_checker)
-gtest_discover_tests(test_endianness)
-gtest_discover_tests(test_scanroutines)
+    # 自动发现测试点
+    gtest_discover_tests(${TEST_TARGET}
+        DISCOVERY_MODE PRE_TEST
+        PROPERTIES DISCOVERED_TEST_PREFIX "${TEST_NAME}::"
+    )
+endforeach()

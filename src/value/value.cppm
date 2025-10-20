@@ -47,7 +47,7 @@ export struct UserValue {
     uint32_t u32 = 0, u32h = 0;
     int64_t s64 = 0, s64h = 0;
     uint64_t u64 = 0, u64h = 0;
-    float f32 = 0.0f, f32h = 0.0f;
+    float f32 = 0.0F, f32h = 0.0F;
     double f64 = 0.0, f64h = 0.0;
 
     // 字节数组/字符串与掩码

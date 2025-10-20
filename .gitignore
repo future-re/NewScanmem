@@ -1,4 +1,6 @@
 # cache
 .cache
+.idea
+cmake-build-debug-wsl/*
 build/
 mkdocs/site/

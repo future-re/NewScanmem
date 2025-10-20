@@ -12,7 +12,7 @@ export module value.view;
 import utils.endianness;
 import value.buffer;
 
-// 字节序标记（目标端序）
+// 字节序标记（源数据端序，读取时转换为主机端序）
 export enum class Endian { HOST, LITTLE, BIG };
 
 // 非拥有型视图：对已有字节的零拷贝观察（以 buffer+offset 表示）
@@ -51,10 +51,15 @@ export struct MemView {
         }
         T out;
         std::memcpy(&out, point, sizeof(T));
-        if (eType == Endian::BIG) {
-            out = endianness::networkToHost(out);
-        } else if (eType == Endian::LITTLE) {
-            out = endianness::littleEndianToHost(out);
+        // 仅对 1/2/4/8 字节的可平凡复制类型进行端序转换
+        if constexpr (std::is_trivially_copyable_v<T> &&
+                      (sizeof(T) == 1 || sizeof(T) == 2 || sizeof(T) == 4 ||
+                       sizeof(T) == 8)) {
+            if (eType == Endian::BIG) {
+                out = endianness::networkToHost(out);
+            } else if (eType == Endian::LITTLE) {
+                out = endianness::littleEndianToHost(out);
+            }
         }
         return out;
     }

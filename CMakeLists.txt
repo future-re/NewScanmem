@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.28)
 
 project(NewScanmem CXX)
 
+enable_testing()
+
 # 设置 C++ 标准和要求
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -32,4 +34,4 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 
 add_subdirectory(src)
-# add_subdirectory(test)
+add_subdirectory(test)

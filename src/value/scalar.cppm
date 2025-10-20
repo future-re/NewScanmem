@@ -1,8 +1,9 @@
 module;
 
+#include <bit>
 #include <cstddef>
 #include <cstdint>
-#include <memory>
+#include <cstring>
 #include <optional>
 #include <type_traits>
 #include <variant>
@@ -10,7 +11,7 @@ module;
 export module value.scalar;
 
 import value.view;
-import value.buffer;
+import utils.endianness;
 
 export enum class ScalarKind : uint8_t {
     U8,
@@ -103,29 +104,29 @@ struct KindOf<double> {
 
 export struct ScalarValue {
     ScalarKind kind{};
-    MemView view;
+    ScalarVariant value;  // store concrete scalar directly
 
     [[nodiscard]] constexpr auto size() const noexcept -> size_t {
         return sizeOf(kind);
     }
 
+    // Construct from concrete scalar T (<= 8 bytes)
     template <typename T>
-    static auto make(const T& val,
-                     const std::shared_ptr<ByteBuffer>& buffer) noexcept
-        -> ScalarValue {
+    static auto make(const T& val) noexcept -> ScalarValue {
         static_assert(std::is_trivially_copyable_v<T>);
-        const size_t START = buffer->appendValue<T>(val);
-        return ScalarValue{KindOf<T>::VALUE,
-                           MemView::fromBuffer(buffer, START, sizeof(T))};
+        static_assert(sizeof(T) <= 8, "ScalarValue supports up to 8 bytes");
+        ScalarValue out{KindOf<T>::VALUE};
+        out.value = val;
+        return out;
     }
 
     template <typename T>
     [[nodiscard]] auto get() const noexcept -> std::optional<T> {
         static_assert(std::is_trivially_copyable_v<T>);
-        if (KindOf<T>::VALUE != kind || view.size() < sizeof(T)) {
-            return std::nullopt;
+        if (const auto* pval = std::get_if<T>(&value)) {
+            return *pval;
         }
-        return view.tryGet<T>();
+        return std::nullopt;
     }
 
     static auto fromBytes(ScalarKind kVal, MemView memView) noexcept
@@ -134,35 +135,96 @@ export struct ScalarValue {
         if (memView.size() < N_VAL) {
             return std::nullopt;
         }
-        if (auto subview = memView.subview(0, N_VAL)) {
-            return ScalarValue{.kind = kVal, .view = *subview};
+        switch (kVal) {
+            case ScalarKind::U8: {
+                if (auto val = memView.tryGet<uint8_t>()) {
+                    return make<uint8_t>(*val);
+                }
+                break;
+            }
+            case ScalarKind::S8: {
+                if (auto val = memView.tryGet<int8_t>()) {
+                    return make<int8_t>(*val);
+                }
+                break;
+            }
+            case ScalarKind::U16: {
+                if (auto val = memView.tryGet<uint16_t>()) {
+                    return make<uint16_t>(*val);
+                }
+                break;
+            }
+            case ScalarKind::S16: {
+                if (auto val = memView.tryGet<int16_t>()) {
+                    return make<int16_t>(*val);
+                }
+                break;
+            }
+            case ScalarKind::U32: {
+                if (auto val = memView.tryGet<uint32_t>()) {
+                    return make<uint32_t>(*val);
+                }
+                break;
+            }
+            case ScalarKind::S32: {
+                if (auto val = memView.tryGet<int32_t>()) {
+                    return make<int32_t>(*val);
+                }
+                break;
+            }
+            case ScalarKind::U64: {
+                if (auto val = memView.tryGet<uint64_t>()) {
+                    return make<uint64_t>(*val);
+                }
+                break;
+            }
+            case ScalarKind::S64: {
+                if (auto val = memView.tryGet<int64_t>()) {
+                    return make<int64_t>(*val);
+                }
+                break;
+            }
+            case ScalarKind::F32: {
+                if (auto val = memView.tryGet<float>()) {
+                    return make<float>(*val);
+                }
+                break;
+            }
+            case ScalarKind::F64: {
+                if (auto val = memView.tryGet<double>()) {
+                    return make<double>(*val);
+                }
+                break;
+            }
         }
         return std::nullopt;
     }
 
-    [[nodiscard]] auto asVariant() const noexcept -> ScalarVariant {
-        switch (kind) {
-            case ScalarKind::U8:
-                return *view.tryGet<uint8_t>();
-            case ScalarKind::S8:
-                return *view.tryGet<int8_t>();
-            case ScalarKind::U16:
-                return *view.tryGet<uint16_t>();
-            case ScalarKind::S16:
-                return *view.tryGet<int16_t>();
-            case ScalarKind::U32:
-                return *view.tryGet<uint32_t>();
-            case ScalarKind::S32:
-                return *view.tryGet<int32_t>();
-            case ScalarKind::U64:
-                return *view.tryGet<uint64_t>();
-            case ScalarKind::S64:
-                return *view.tryGet<int64_t>();
-            case ScalarKind::F32:
-                return *view.tryGet<float>();
-            case ScalarKind::F64:
-                return *view.tryGet<double>();
+    template <typename T>
+    static auto readFromAddress(const void* address, Endian endian) noexcept
+        -> std::optional<ScalarValue> {
+        static_assert(std::is_trivially_copyable_v<T>,
+                      "T must be trivially copyable");
+        if (address == nullptr) {
+            return std::nullopt;  // 地址无效
         }
-        return ScalarVariant{};
+        ScalarValue sval;
+        sval.kind = KindOf<T>::VALUE;
+        T value;
+        std::memcpy(&value, address, sizeof(T));  // 从地址读取值
+
+        // 根据字节序转换值
+        if (endian == Endian::BIG) {
+            value = endianness::hostToNetwork(value);
+        } else if (endian == Endian::LITTLE) {
+            value = endianness::hostToLittleEndian(value);
+        }
+
+        sval.value = value;  // 将转换后的值存入 ScalarValue
+        return sval;
+    }
+
+    [[nodiscard]] auto asVariant() const noexcept -> ScalarVariant {
+        return value;
     }
 };
