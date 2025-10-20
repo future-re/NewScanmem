@@ -22,17 +22,20 @@ export struct MemView {
     size_t len{};
 
     MemView() = default;
+
     explicit MemView(size_t n) : buf(nullptr), len(n) {}
+
     MemView(std::shared_ptr<const ByteBuffer> buffer, size_t offset, size_t n)
         : buf(std::move(buffer)), off(offset), len(n) {}
 
     // Factory to construct a MemView from a shared_ptr to ByteBuffer
     static auto fromBuffer(std::shared_ptr<const ByteBuffer> buffer,
                            size_t offset, size_t n) noexcept -> MemView {
-        return MemView(std::move(buffer), offset, n);
+        return {std::move(buffer), offset, n};
     }
 
     [[nodiscard]] auto size() const noexcept -> size_t { return len; }
+
     [[nodiscard]] auto data() const noexcept -> const uint8_t* {
         return buf ? buf->ptr() + off : nullptr;
     }
@@ -46,7 +49,6 @@ export struct MemView {
         if (point == nullptr || len < sizeof(T)) {
             return std::nullopt;
         }
-
         T out;
         std::memcpy(&out, point, sizeof(T));
         if (eType == Endian::BIG) {
@@ -62,14 +64,6 @@ export struct MemView {
         -> std::optional<MemView> {
         if (off + len > this->len) {
             return std::nullopt;
-        }
-        return MemView{buf, this->off + off, len};
-    }
-
-    // 不安全切片（越界返回空视图）
-    [[nodiscard]] auto slice(size_t off, size_t len) const noexcept -> MemView {
-        if (off + len > this->len) {
-            return MemView{};
         }
         return MemView{buf, this->off + off, len};
     }

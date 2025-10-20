@@ -22,24 +22,29 @@ export constexpr auto operator|(MatchFlags aVal, MatchFlags bVal) noexcept
     return static_cast<MatchFlags>(static_cast<std::uint16_t>(aVal) |
                                    static_cast<std::uint16_t>(bVal));
 }
+
 export constexpr auto operator&(MatchFlags aVal, MatchFlags bVal) noexcept
     -> MatchFlags {
     return static_cast<MatchFlags>(static_cast<std::uint16_t>(aVal) &
                                    static_cast<std::uint16_t>(bVal));
 }
+
 export constexpr auto operator^(MatchFlags aVal, MatchFlags bVal) noexcept
     -> MatchFlags {
     return static_cast<MatchFlags>(static_cast<std::uint16_t>(aVal) ^
                                    static_cast<std::uint16_t>(bVal));
 }
+
 export constexpr auto operator~(MatchFlags aVal) noexcept -> MatchFlags {
     return static_cast<MatchFlags>(~static_cast<std::uint16_t>(aVal));
 }
+
 export inline auto operator|=(MatchFlags& aVal, MatchFlags bVal) noexcept
     -> MatchFlags& {
     aVal = (aVal | bVal);
     return aVal;
 }
+
 export inline auto operator&=(MatchFlags& aVal, MatchFlags bVal) noexcept
     -> MatchFlags& {
     aVal = (aVal & bVal);

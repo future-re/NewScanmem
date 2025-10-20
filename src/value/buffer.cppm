@@ -47,6 +47,7 @@ export struct ByteBuffer {
         }
         data.reserve(n);
     }
+
     void clear() {
         if (frozen) {
             throw std::logic_error("ByteBuffer is frozen");
@@ -55,11 +56,14 @@ export struct ByteBuffer {
     }
 
     [[nodiscard]] auto size() const noexcept -> size_t { return data.size(); }
+
     auto ptr() noexcept -> uint8_t* { return data.data(); }
+
     [[nodiscard]] auto ptr() const noexcept -> const uint8_t* {
         return data.data();
     }
 
     void freeze() noexcept { frozen = true; }
+    
     [[nodiscard]] auto isFrozen() const noexcept -> bool { return frozen; }
 };

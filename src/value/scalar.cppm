@@ -55,38 +55,47 @@ export template <>
 struct KindOf<uint8_t> {
     static constexpr ScalarKind VALUE = ScalarKind::U8;
 };
+
 export template <>
 struct KindOf<int8_t> {
     static constexpr ScalarKind VALUE = ScalarKind::S8;
 };
+
 export template <>
 struct KindOf<uint16_t> {
     static constexpr ScalarKind VALUE = ScalarKind::U16;
 };
+
 export template <>
 struct KindOf<int16_t> {
     static constexpr ScalarKind VALUE = ScalarKind::S16;
 };
+
 export template <>
 struct KindOf<uint32_t> {
     static constexpr ScalarKind VALUE = ScalarKind::U32;
 };
+
 export template <>
 struct KindOf<int32_t> {
     static constexpr ScalarKind VALUE = ScalarKind::S32;
 };
+
 export template <>
 struct KindOf<uint64_t> {
     static constexpr ScalarKind VALUE = ScalarKind::U64;
 };
+
 export template <>
 struct KindOf<int64_t> {
     static constexpr ScalarKind VALUE = ScalarKind::S64;
 };
+
 export template <>
 struct KindOf<float> {
     static constexpr ScalarKind VALUE = ScalarKind::F32;
 };
+
 export template <>
 struct KindOf<double> {
     static constexpr ScalarKind VALUE = ScalarKind::F64;
