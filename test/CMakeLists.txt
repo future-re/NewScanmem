@@ -15,6 +15,7 @@ set(TEST_SOURCES
     utils/test_sets.cpp
     utils/test_endianness.cpp
     value/test_scalar.cpp
+    core/test_maps.cpp
 )
 
 # 为每个测试源生成可执行文件并注册 gtest_discover_tests

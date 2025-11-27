@@ -1,5 +1,6 @@
 module;
 
+#include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
 
@@ -10,6 +11,7 @@ module;
 #include <filesystem>
 #include <format>
 #include <fstream>
+#include <istream>
 #include <optional>
 #include <string>
 #include <string_view>
@@ -159,6 +161,35 @@ export class MapsReader {
 
         return regions;
     }
+
+#if !defined(NDEBUG) || defined(ENABLE_TEST_API)
+    [[nodiscard]] static auto parseMapsFromStream(
+        std::istream& stream, const std::string& exeName,
+        RegionScanLevel level = RegionScanLevel::ALL) -> std::vector<Region> {
+        std::vector<Region> regions;
+        std::string line;
+        std::string exeNameStr;
+        if (!exeName.empty()) {
+            exeNameStr = exeName;
+        }
+        unsigned int codeRegions = 0;
+        unsigned int exeRegions = 0;
+        unsigned long prevEnd = 0;
+        unsigned long loadAddr = 0;
+        unsigned long exeLoad = 0;
+        bool isExe = false;
+        std::string binName;
+        while (std::getline(stream, line)) {
+            if (auto parsed = parseMapLine(line, exeNameStr, codeRegions,
+                                           exeRegions, prevEnd, loadAddr,
+                                           exeLoad, isExe, binName, level)) {
+                parsed->id = regions.size();
+                regions.push_back(std::move(*parsed));
+            }
+        }
+        return regions;
+    }
+#endif
 
    private:
     static void parseFilenameFromLine(const std::string& line,
