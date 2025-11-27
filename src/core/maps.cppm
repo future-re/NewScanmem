@@ -18,18 +18,18 @@ module;
 
 export module core.maps;
 
-export enum class RegionType : uint8_t { MISC, EXE, CODE, HEAP, STACK };
+export enum class RegionType : uint8_t { UNKNOW, EXE, CODE, HEAP, STACK };
 
 /*
  * Region Type Descriptions:
- * - misc:   未知
+ * - unknow:   未知
  * - exe:    主程序代码段
  * - code:   动态库或者其他代码段
  * - heap:   堆内存区域
  * - stack:  栈内存区域
  */
 constexpr std::array<std::string_view, 5> REGION_TYPE_NAMES = {
-    "misc", "exe", "code", "heap", "stack"};
+    "unknow", "exe", "code", "heap", "stack"};
 
 /*
  * RegionScanLevel Descriptions:
@@ -64,7 +64,7 @@ export struct RegionFlags {
 export struct Region {
     void* start{};
     std::size_t size{};
-    RegionType type{RegionType::MISC};
+    RegionType type{RegionType::UNKNOW};
     RegionFlags flags{};
     void* loadAddr{};
     std::string filename;
@@ -231,7 +231,7 @@ export class MapsReader {
         if (filename == "[stack]") {
             return RegionType::STACK;
         }
-        return RegionType::MISC;
+        return RegionType::UNKNOW;
     }
 
     static auto regionUsefulForLevel(RegionType type,
