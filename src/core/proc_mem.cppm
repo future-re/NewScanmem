@@ -1,3 +1,14 @@
+/**
+ * @file proc_mem.cppm
+ * @brief Process memory I/O via /proc/<pid>/mem (进程内存 I/O)
+ *
+ * Provides minimal read/write capabilities using pread/pwrite on
+ * /proc/<pid>/mem. Requirements:
+ * - Sufficient privileges (root or CAP_SYS_PTRACE)
+ * - Does NOT auto-attach/detach ptrace (caller manages debugging policy)
+ * - Single fd open/reuse + one-shot convenience functions
+ */
+
 module;
 
 #include <fcntl.h>
@@ -16,18 +27,23 @@ module;
 
 export module core.proc_mem;
 
-// 进程内存 I/O：最小可用写入能力（poke）+ 读功能
-// 说明：
-// - 采用 /proc/<pid>/mem + pread/pwrite 实现；需要足够权限（root 或
-// CAP_SYS_PTRACE）。
-// - 未自动 ptrace attach/detach（与调试器共享策略交给上层）。
-// - 单文件打开/复用 fd；也提供一次性写入的便捷函数。
-
+/**
+ * @class ProcMemIO
+ * @brief RAII wrapper for /proc/<pid>/mem file descriptor
+ *
+ * Manages a single fd for reading/writing target process memory.
+ * Caller must handle ptrace attach/detach externally if needed.
+ */
 export class ProcMemIO {
    public:
     ProcMemIO() = default;
     explicit ProcMemIO(pid_t pid) : m_pid(pid) {}
 
+    /**
+     * @brief Open /proc/<pid>/mem with specified mode
+     * @param writable If true, opens O_RDWR; otherwise O_RDONLY
+     * @return Expected void or error message
+     */
     [[nodiscard]] auto open(bool writable) -> std::expected<void, std::string> {
         if (m_pid <= 0) {
             return std::unexpected{"invalid pid"};
@@ -66,6 +82,12 @@ export class ProcMemIO {
         return *this;
     }
 
+    /**
+     * @brief Read bytes from target process memory
+     * @param addr Target address in remote process
+     * @param buf Buffer to store read data
+     * @return Expected bytes read or error message (partial reads allowed)
+     */
     [[nodiscard]] auto read(void* addr, std::span<std::uint8_t> buf) const
         -> std::expected<std::size_t, std::string> {
         if (m_fd < 0) {
@@ -92,6 +114,12 @@ export class ProcMemIO {
         return total;
     }
 
+    /**
+     * @brief Write bytes to target process memory
+     * @param addr Target address in remote process
+     * @param buf Data to write
+     * @return Expected bytes written or error message
+     */
     [[nodiscard]] auto write(void* addr,
                              std::span<const std::uint8_t> buf) const
         -> std::expected<std::size_t, std::string> {
@@ -116,6 +144,13 @@ export class ProcMemIO {
         return total;
     }
 
+    /**
+     * @brief Write scalar value to target memory
+     * @tparam T Trivially copyable type (int, float, etc.)
+     * @param addr Target address
+     * @param value Value to write
+     * @return Expected bytes written or error message
+     */
     template <typename T>
     [[nodiscard]] auto writeScalar(void* addr, const T& value)
         -> std::expected<std::size_t, std::string> {
@@ -131,7 +166,13 @@ export class ProcMemIO {
     int m_fd{-1};
 };
 
-// 便捷一次性写入：内部打开/关闭
+/**
+ * @brief One-shot write: opens, writes, and closes /proc/<pid>/mem
+ * @param pid Target process ID
+ * @param addr Target address
+ * @param buf Data to write
+ * @return Expected bytes written or error message
+ */
 export [[nodiscard]] inline auto writeBytes(pid_t pid, void* addr,
                                             std::span<const std::uint8_t> buf)
     -> std::expected<std::size_t, std::string> {
@@ -142,6 +183,14 @@ export [[nodiscard]] inline auto writeBytes(pid_t pid, void* addr,
     return memIO.write(addr, buf);
 }
 
+/**
+ * @brief One-shot write scalar value
+ * @tparam T Trivially copyable type
+ * @param pid Target process ID
+ * @param addr Target address
+ * @param value Value to write
+ * @return Expected bytes written or error message
+ */
 export template <typename T>
 [[nodiscard]] inline auto writeValue(pid_t pid, void* addr, const T& value)
     -> std::expected<std::size_t, std::string> {

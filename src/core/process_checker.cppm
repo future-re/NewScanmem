@@ -1,3 +1,8 @@
+/**
+ * @file process_checker.cppm
+ * @brief Process state checking via /proc filesystem (进程状态检查)
+ */
+
 module;
 
 #include <unistd.h>
@@ -10,27 +15,26 @@ export module core.process_checker;
 
 /**
  * @enum ProcessState
- * @brief 表示进程可能的状态。
+ * @brief Process lifecycle states (进程生命周期状态)
  *
- * 枚举进程生命周期中的各种状态。
- * - RUNNING: 进程正在运行。
- * - ERROR: 进程发生错误。
- * - DEAD: 进程已终止且不再运行。
- * - ZOMBIE: 进程已结束但仍在进程表中有条目。
+ * - RUNNING: Process is active (running/sleeping/waiting)
+ * - ERROR: Invalid PID or check failure
+ * - DEAD: Process no longer exists
+ * - ZOMBIE: Process terminated but entry still in process table
  */
 export enum class ProcessState { RUNNING, ERROR, DEAD, ZOMBIE };
 
 /**
- * @brief 检查指定进程ID（pid）的进程状态。
- *
- * 此静态函数根据传入的进程ID（pid）判断进程的状态，并返回相应的ProcessState枚举值。
- * 如果pid小于等于0，则返回ProcessState::ERROR，表示进程ID无效或发生错误。
- *
- * @param pid 要检查的进程ID。
- * @return ProcessState 进程的当前状态。
+ * @class ProcessChecker
+ * @brief Utility for checking process state via /proc filesystem
  */
 export class ProcessChecker {
    public:
+    /**
+     * @brief Check process state by reading /proc/<pid>/status
+     * @param pid Target process ID
+     * @return ProcessState enum value
+     */
     static auto checkProcess(pid_t pid) -> ProcessState {
         if (pid <= 0) {
             return ProcessState::ERROR;
@@ -62,11 +66,21 @@ export class ProcessChecker {
         return ProcessState::ERROR;
     }
 
+    /**
+     * @brief Check if process is no longer running
+     * @param pid Target process ID
+     * @return True if process is not in RUNNING state
+     */
     static auto isProcessDead(pid_t pid) -> bool {
         return checkProcess(pid) != ProcessState::RUNNING;
     }
 
    private:
+    /**
+     * @brief Parse /proc/status State field character
+     * @param state Single character from "State:" line (R/S/D/T/Z/X)
+     * @return Corresponding ProcessState
+     */
     static auto parseProcessState(char state) -> ProcessState {
         if (state < 'A' || state > 'Z') {
             return ProcessState::ERROR;

@@ -30,7 +30,7 @@ class MemoryWriter {
      * @brief Construct memory writer for given process
      * @param pid Target process ID
      */
-    explicit MemoryWriter(pid_t pid) : pid_(pid) {}
+    explicit MemoryWriter(pid_t pid) : m_pid(pid) {}
 
     /**
      * @brief Write scalar value to memory address
@@ -42,7 +42,7 @@ class MemoryWriter {
     template <typename T>
     [[nodiscard]] auto write(void* addr, const T& value)
         -> std::expected<std::size_t, std::string> {
-        return writeValue(pid_, addr, value);
+        return writeValue(m_pid, addr, value);
     }
 
     /**
@@ -54,7 +54,7 @@ class MemoryWriter {
     [[nodiscard]] auto writeBytes(void* addr,
                                   std::span<const std::uint8_t> data) const
         -> std::expected<std::size_t, std::string> {
-        ProcMemIO memio(pid_);
+        ProcMemIO memio(m_pid);
         auto openResult = memio.open(true);
         if (!openResult) {
             return std::unexpected(
@@ -96,10 +96,10 @@ class MemoryWriter {
      * @brief Get target PID
      * @return Process ID
      */
-    [[nodiscard]] auto getPid() const -> pid_t { return pid_; }
+    [[nodiscard]] auto getPid() const -> pid_t { return m_pid; }
 
    private:
-    pid_t pid_;
+    pid_t m_pid;
 };
 
 }  // namespace core

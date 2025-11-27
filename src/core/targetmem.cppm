@@ -1,3 +1,13 @@
+/**
+ * @file targetmem.cppm
+ * @brief Target memory management: match tracking and old value storage
+ * (目标内存管理：匹配追踪与历史值存储)
+ *
+ * Provides data structures for storing scan results (matches) and historical
+ * byte values from target process memory regions (swaths). Used by scanner to
+ * track matching addresses across multiple scan iterations.
+ */
+
 module;
 
 #include <algorithm>
@@ -23,16 +33,23 @@ import ui.show_message;
 
 // Interface: exported types and functions
 export {
+    /**
+     * @struct RangeMark
+     * @brief Marks a contiguous range in swath.data with match flags
+     */
     struct RangeMark {
-        // 以 swath.data 为基准的起始索引与长度
-        size_t startIndex;
-        size_t length;
-        MatchFlags flags;
+        size_t startIndex;  ///< Start index in swath.data
+        size_t length;      ///< Number of bytes in range
+        MatchFlags flags;   ///< Match flags for this range
     };
 
+    /**
+     * @struct OldValueAndMatchInfo
+     * @brief Stores one byte's historical value and its match status
+     */
     struct OldValueAndMatchInfo {
-        uint8_t oldValue;
-        MatchFlags matchInfo;
+        uint8_t oldValue;      ///< Historical byte value
+        MatchFlags matchInfo;  ///< Match flags for this byte
     };
 
     class MatchesAndOldValuesSwath {
