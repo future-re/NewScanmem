@@ -13,13 +13,11 @@ module;
 
 export module core.config;
 
-export namespace core {
-
 /**
  * @struct ScanMemConfig
  * @brief Configuration structure for scanmem application
  */
-struct ScanMemConfig {
+export struct ScanMemConfig {
     pid_t targetPid = 0;
     bool debugMode = false;
     bool exitOnError = false;
@@ -50,7 +48,7 @@ struct ScanMemConfig {
  * @class ConfigManager
  * @brief Manages application configuration
  */
-class ConfigManager {
+export class ConfigManager {
    public:
     /**
      * @brief Get default configuration
@@ -124,5 +122,3 @@ class ConfigManager {
         return getDefault();
     }
 };
-
-}  // namespace core

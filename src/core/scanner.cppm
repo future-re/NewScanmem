@@ -19,13 +19,11 @@ import core.targetmem; // MatchesAndOldValuesArray
 import value;          // UserValue
 import core.maps;      // RegionScanLevel
 
-export namespace core {
-
 /**
  * @class Scanner
  * @brief High-level scanner managing scan sessions
  */
-class Scanner {
+export class Scanner {
    public:
     /**
      * @brief Construct scanner for given process
@@ -120,7 +118,7 @@ class Scanner {
  * @brief Create default scan options
  * @return Default scan options
  */
-[[nodiscard]] inline auto getDefaultScanOptions() -> ScanOptions {
+export [[nodiscard]] inline auto getDefaultScanOptions() -> ScanOptions {
     return ScanOptions{};
 }
 
@@ -130,7 +128,7 @@ class Scanner {
  * @param matchType Match type
  * @return Configured scan options
  */
-[[nodiscard]] inline auto makeNumericScanOptions(
+export [[nodiscard]] inline auto makeNumericScanOptions(
     ScanDataType dataType,
     ScanMatchType matchType = ScanMatchType::MATCHEQUALTO) -> ScanOptions {
     ScanOptions opts;
@@ -144,7 +142,7 @@ class Scanner {
  * @param matchType Match type
  * @return Configured scan options
  */
-[[nodiscard]] inline auto makeStringScanOptions(
+export [[nodiscard]] inline auto makeStringScanOptions(
     ScanMatchType matchType = ScanMatchType::MATCHEQUALTO) -> ScanOptions {
     ScanOptions opts;
     opts.dataType = ScanDataType::STRING;
@@ -152,5 +150,3 @@ class Scanner {
     opts.step = 1;  // String search typically uses step=1
     return opts;
 }
-
-}  // namespace core
