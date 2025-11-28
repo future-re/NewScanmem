@@ -14,12 +14,12 @@ export module scan.read_helpers;
 import scan.types;
 import value.flags;
 import utils.mem64;
-import value; // 依赖项目中已有的 value 定义
+import value; // Depends on the project's existing value definitions
 
-// 本模块导出与字节读取、端序转换、TypeTraits 相关的辅助函数。
-// 目标：为 numeric/bytes/string 模块提供统一的读取与类型标记工具。
+// Helpers for byte reading, endianness conversion, and type traits
+// Goal: provide unified reading and type-tagging utilities for numeric/bytes/string modules
 
-// 端序条件交换（对整型/浮点/其他类型安全处理）
+// Conditional endianness swap (safe for integral/floating/other trivially copyable types)
 template <typename T>
 constexpr auto swapIfReverse(T value, bool reverse) noexcept -> T {
     if (!reverse) {
@@ -43,7 +43,7 @@ constexpr auto swapIfReverse(T value, bool reverse) noexcept -> T {
     }
 }
 
-// 将 C++ 基础数值类型映射为 MatchFlags（用于保存/校验类型宽度）
+// Map C++ fundamental types to MatchFlags (to record/verify bit width)
 export template <typename T>
 [[nodiscard]] constexpr auto flagForType() noexcept -> MatchFlags {
     if constexpr (std::is_same_v<T, float>) {
@@ -67,7 +67,7 @@ export template <typename T>
     }
 }
 
-// 安全读取指定类型并做端序转换
+// Safely read specified type and apply endianness conversion
 export template <typename T>
 [[nodiscard]] inline auto readTyped(const Mem64* memoryPtr, size_t memLength,
                                     bool reverseEndianness) noexcept
@@ -83,7 +83,7 @@ export template <typename T>
     return val;
 }
 
-// 从 UserValue 中按类型提取低/高值（用于范围/比较）
+// Extract low/high values from UserValue by type (for range/compare)
 export template <typename T>
 [[nodiscard]] inline auto userValueAs(const UserValue& userValue) noexcept
     -> T {
@@ -144,7 +144,7 @@ export template <typename T>
     }
 }
 
-// 尝试从 Value* 读取旧值（严格检查 flags 和长度）
+// Try to read old value from Value* (strictly checks flags and length)
 export template <typename T>
 [[nodiscard]] inline auto oldValueAs(const Value* valuePtr) noexcept
     -> std::optional<T> {
@@ -155,15 +155,15 @@ export template <typename T>
     if ((valuePtr->flags & REQUIRED) == MatchFlags::EMPTY) {
         return std::nullopt;
     }
-    if (valuePtr->view().size() < sizeof(T)) {
+    if (valuePtr->size() < sizeof(T)) {
         return std::nullopt;
     }
     T out{};
-    std::memcpy(&out, valuePtr->view().data(), sizeof(T));
+    std::memcpy(&out, valuePtr->data(), sizeof(T));
     return out;
 }
 
-// 浮点容差
+// Floating-point tolerance
 export template <typename F>
 constexpr auto relTol() -> F {
     if constexpr (std::is_same_v<F, float>) {

@@ -10,9 +10,6 @@ module;
 
 export module value.scalar;
 
-import value.view;
-import utils.endianness;
-
 export enum class ScalarKind : uint8_t {
     U8,
     S8,
@@ -129,99 +126,89 @@ export struct ScalarValue {
         return std::nullopt;
     }
 
-    static auto fromBytes(ScalarKind kVal, MemView memView) noexcept
-        -> std::optional<ScalarValue> {
+    static auto fromBytes(ScalarKind kVal, const uint8_t* data,
+                          size_t size) noexcept -> std::optional<ScalarValue> {
         const auto N_VAL = sizeOf(kVal);
-        if (memView.size() < N_VAL) {
+        if (size < N_VAL) {
             return std::nullopt;
         }
+        ScalarValue out{kVal};
         switch (kVal) {
             case ScalarKind::U8: {
-                if (auto val = memView.tryGet<uint8_t>()) {
-                    return make<uint8_t>(*val);
-                }
-                break;
+                uint8_t val;
+                std::memcpy(&val, data, sizeof(val));
+                out.value = val;
+                return out;
             }
             case ScalarKind::S8: {
-                if (auto val = memView.tryGet<int8_t>()) {
-                    return make<int8_t>(*val);
-                }
-                break;
+                int8_t val;
+                std::memcpy(&val, data, sizeof(val));
+                out.value = val;
+                return out;
             }
             case ScalarKind::U16: {
-                if (auto val = memView.tryGet<uint16_t>()) {
-                    return make<uint16_t>(*val);
-                }
-                break;
+                uint16_t val;
+                std::memcpy(&val, data, sizeof(val));
+                out.value = val;
+                return out;
             }
             case ScalarKind::S16: {
-                if (auto val = memView.tryGet<int16_t>()) {
-                    return make<int16_t>(*val);
-                }
-                break;
+                int16_t val;
+                std::memcpy(&val, data, sizeof(val));
+                out.value = val;
+                return out;
             }
             case ScalarKind::U32: {
-                if (auto val = memView.tryGet<uint32_t>()) {
-                    return make<uint32_t>(*val);
-                }
-                break;
+                uint32_t val;
+                std::memcpy(&val, data, sizeof(val));
+                out.value = val;
+                return out;
             }
             case ScalarKind::S32: {
-                if (auto val = memView.tryGet<int32_t>()) {
-                    return make<int32_t>(*val);
-                }
-                break;
+                int32_t val;
+                std::memcpy(&val, data, sizeof(val));
+                out.value = val;
+                return out;
             }
             case ScalarKind::U64: {
-                if (auto val = memView.tryGet<uint64_t>()) {
-                    return make<uint64_t>(*val);
-                }
-                break;
+                uint64_t val;
+                std::memcpy(&val, data, sizeof(val));
+                out.value = val;
+                return out;
             }
             case ScalarKind::S64: {
-                if (auto val = memView.tryGet<int64_t>()) {
-                    return make<int64_t>(*val);
-                }
-                break;
+                int64_t val;
+                std::memcpy(&val, data, sizeof(val));
+                out.value = val;
+                return out;
             }
             case ScalarKind::F32: {
-                if (auto val = memView.tryGet<float>()) {
-                    return make<float>(*val);
-                }
-                break;
+                float val;
+                std::memcpy(&val, data, sizeof(val));
+                out.value = val;
+                return out;
             }
             case ScalarKind::F64: {
-                if (auto val = memView.tryGet<double>()) {
-                    return make<double>(*val);
-                }
-                break;
+                double val;
+                std::memcpy(&val, data, sizeof(val));
+                out.value = val;
+                return out;
             }
         }
         return std::nullopt;
     }
 
     template <typename T>
-    static auto readFromAddress(const void* address, Endian endian) noexcept
+    static auto readFromAddress(const void* address) noexcept
         -> std::optional<ScalarValue> {
         static_assert(std::is_trivially_copyable_v<T>,
                       "T must be trivially copyable");
         if (address == nullptr) {
-            return std::nullopt;  // 地址无效
+            return std::nullopt;
         }
-        ScalarValue sval;
-        sval.kind = KindOf<T>::VALUE;
         T value;
-        std::memcpy(&value, address, sizeof(T));  // 从地址读取值
-
-        // 根据字节序转换值
-        if (endian == Endian::BIG) {
-            value = endianness::hostToNetwork(value);
-        } else if (endian == Endian::LITTLE) {
-            value = endianness::hostToLittleEndian(value);
-        }
-
-        sval.value = value;  // 将转换后的值存入 ScalarValue
-        return sval;
+        std::memcpy(&value, address, sizeof(T));
+        return make<T>(value);
     }
 
     [[nodiscard]] auto asVariant() const noexcept -> ScalarVariant {

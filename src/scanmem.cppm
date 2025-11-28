@@ -23,10 +23,10 @@ import core.maps;
 import ui.show_message;
 import core.proc_mem;
 
-// 全局消息打印器实例
+// Global message printer instance
 static const ui::MessagePrinter G_MSG_PRINTER;
 
-// 便捷的命名空间风格访问
+// Convenient namespace-style access
 namespace show_message {
 template <typename... Args>
 inline void info(std::string_view fmt, const Args&... args) {
@@ -211,8 +211,8 @@ class command_processor {
 
     [[nodiscard]] static auto executeSingleCommand(std::string_view /*command*/)
         -> result {
-        // 未处理的命令占位，真实命令在 interactive_session::execute_command
-        // 中处理
+        // Unhandled command placeholder; real commands in interactive_session::execute_command
+        // handled there
         return result{.success = true, .errorMessage = std::nullopt};
     }
 
@@ -279,9 +279,9 @@ class InteractiveSession {
     }
 
    private:
-    // --- 简易命令实现：pid 与 write ---
+    // --- Minimal command implementations: pid and write ---
     [[nodiscard]] auto executeCommand(std::string_view line) -> bool {
-        // 轻量分词（按空白）
+        // Lightweight tokenization (split by whitespace)
         std::vector<std::string> tokens;
         {
             std::string curr;
@@ -300,7 +300,7 @@ class InteractiveSession {
             }
         }
         if (tokens.empty()) {
-            return true;  // 空命令
+            return true;  // empty command
         }
 
         auto to_lower = [](std::string str) {
@@ -547,7 +547,7 @@ class InteractiveSession {
             return true;
         }
 
-        return false;  // 未处理
+        return false;  // unhandled
     }
     void initialize_session() {
         try {
@@ -595,7 +595,7 @@ class InteractiveSession {
                 continue;
             }
 
-            // 先尝试执行内置命令（pid, write），未处理再交给占位执行器
+            // First try built-ins (pid, write); delegate unhandled to placeholder executor
             if (executeCommand(input_line)) {
                 continue;
             }

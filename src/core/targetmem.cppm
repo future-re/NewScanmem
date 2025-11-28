@@ -1,7 +1,7 @@
 /**
  * @file targetmem.cppm
  * @brief Target memory management: match tracking and old value storage
- * (目标内存管理：匹配追踪与历史值存储)
+ * (Target memory management: match tracking and history storage)
  *
  * Provides data structures for storing scan results (matches) and historical
  * byte values from target process memory regions (swaths). Used by scanner to
@@ -28,7 +28,6 @@ module;
 export module core.targetmem;
 
 import value.flags;
-import value.view; // MemView for appendRange helper
 import ui.show_message;
 
 // Interface: exported types and functions
@@ -56,7 +55,7 @@ export {
        public:
         void* firstByteInChild = nullptr;
         std::vector<OldValueAndMatchInfo> data;
-        // 记录按区间的标记（辅助结构，便于 UI 或后处理）
+        // Record flags per range (helper structure for UI or post-processing)
         std::vector<RangeMark> rangeMarks;
 
         MatchesAndOldValuesSwath() = default;
@@ -64,9 +63,9 @@ export {
         /*
          * addElement(addr, byte, matchFlags)
          *
-         * 向 swath 追加一个“字节”的历史值与匹配标记。
-         * 约定：data 的一个元素严格对应目标进程中的 1 个字节偏移。
-         * 这样我们可通过 `firstByteInChild + index` 还原目标地址。
+         * Append one byte's history value and match flags to swath.
+         * Convention: each element in data strictly corresponds to 1 byte offset in target process.
+         * Thus we can reconstruct target address via `firstByteInChild + index`.
          *
          * - addr: 该字节在目标进程中的起始地址（字节地址）。
          * - byte: 读取到的字节值。
@@ -85,22 +84,21 @@ export {
             data.push_back({byte, matchFlags});
         }
 
-        // 从一个 MemView 批量追加字节，便于与扫描结果衔接
-        void appendRange(void* baseAddr, MemView view,
+        // Append bytes in batch
+        void appendRange(void* baseAddr, const uint8_t* bytes, size_t length,
                          MatchFlags initial = MatchFlags::EMPTY) {
-            if (view.size() == 0) {
+            if (length == 0) {
                 return;
             }
             if (data.empty()) {
                 firstByteInChild = baseAddr;
             }
-            const auto* point = view.data();
-            for (std::size_t i = 0; i < view.size(); ++i) {
-                data.push_back({point[i], initial});
+            for (std::size_t i = 0; i < length; ++i) {
+                data.push_back({bytes[i], initial});
             }
         }
 
-        // 以索引区间 [startIndex, startIndex+length) 方式批量标记
+        // Batch mark by index range [startIndex, startIndex+length)
         void markRangeByIndex(size_t startIndex, size_t length,
                               MatchFlags flags) {
             if (length == 0 || startIndex >= data.size()) {
@@ -113,7 +111,7 @@ export {
             rangeMarks.push_back({startIndex, endIndex - startIndex, flags});
         }
 
-        // 以目标地址区间 [addr, addr+length) 方式批量标记
+        // Batch mark by target address range [addr, addr+length)
         void markRangeByAddress(void* addr, size_t length, MatchFlags flags) {
             if ((firstByteInChild == nullptr) || length == 0) {
                 return;

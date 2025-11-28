@@ -1,162 +1,71 @@
-# 字节序模块文档
+# 字节序模块文档（已简化架构）
 
 ## 概述
 
-`endianness` 模块为 NewScanmem 项目提供全面的字节序处理工具。它支持编译时和运行时字节序检测、字节交换操作，以及各种数据类型的自动字节序校正。
+`utils.endianness` 提供最小且直接的字节序工具：标量字节交换、主机↔网络（大端）转换、主机↔小端转换，以及主机端序查询。
 
-## 模块结构
+不再提供字节流/结构化布局/variant 的就地转换接口。
 
-```cpp
-export module endianness;
-```
-
-## 依赖项
-
-- `<cstdint>` - 定宽整数类型
-- `<cstring>` - C字符串操作
-- `<bit>` - 位操作和字节序检测
-- `<type_traits>` - 模板元编程的类型特征
-- `<concepts>` - C++20概念
-- `value` 模块 - 值类型定义
-
-## 核心功能
-
-### 1. 字节序检测
-
-#### 编译时检测
+## 接口概览
 
 ```cpp
+// 端序查询
 constexpr bool isBigEndian() noexcept;
 constexpr bool isLittleEndian() noexcept;
-```
 
-使用 `std::endian::native` 在编译时确定主机字节序。
+// 通用字节交换（支持 1/2/4/8 字节的可平凡复制类型，含浮点）
+template <typename T>
+constexpr T swapBytes(T value) noexcept;
 
-### 2. 字节交换函数
-
-#### 基本字节交换函数
-
-```cpp
-constexpr uint8_t swapBytes(uint8_t value) noexcept;
-constexpr uint16_t swapBytes(uint16_t value) noexcept;
-constexpr uint32_t swapBytes(uint32_t value) noexcept;
-constexpr uint64_t swapBytes(uint64_t value) noexcept;
-```
-
-#### 通用字节交换函数
-
-```cpp
-template<typename T>
+// 兼容别名：仅限整数类型
+template <typename T>
 constexpr T swapBytesIntegral(T value) noexcept;
-```
 
-支持大小为1、2、4和8字节的整数类型。
-
-### 3. 值类型字节序校正函数
-
-```cpp
-void fixEndianness(Value& value, bool reverseEndianness) noexcept;
-```
-
-对 `Value` 的 `bytes` 进行就地字节序校正（根据 `flags` 推断宽度 2/4/8）。
-
-### 4. 网络字节序转换函数
-
-```cpp
-template<SwappableIntegral T>
+// 主机 ↔ 网络（大端）
+template <typename T>
 constexpr T hostToNetwork(T value) noexcept;
+template <typename T>
+constexpr T networkToHost(T value) noexcept; // 对称操作
 
-template<SwappableIntegral T>
-constexpr T networkToHost(T value) noexcept;
-```
-
-在主机和网络字节序（大端）之间转换。
-
-### 5. 小端转换函数
-
-```cpp
-template<SwappableIntegral T>
+// 主机 ↔ 小端
+template <typename T>
 constexpr T hostToLittleEndian(T value) noexcept;
-
-template<SwappableIntegral T>
-constexpr T littleEndianToHost(T value) noexcept;
+template <typename T>
+constexpr T littleEndianToHost(T value) noexcept; // 对称操作
 ```
 
 ## 使用示例
 
-### 基本字节交换
-
 ```cpp
-import endianness;
+import utils.endianness;
 
-uint32_t value = 0x12345678;
-uint32_t swapped = endianness::swapBytes(value);
-// 在小端系统上 swapped = 0x78563412
+// 字节交换
+std::uint32_t v = 0x12345678u;
+auto s = swapBytes(v); // 小端系统上 => 0x78563412
+
+// 网络序转换
+std::uint16_t port = 8080;
+auto netPort = hostToNetwork(port);
+auto hostPort = networkToHost(netPort);
+
+// 小端转换（按主机端序判断是否需要交换）
+float f = 3.14f;
+auto le = hostToLittleEndian(f);
+auto back = littleEndianToHost(le);
 ```
 
-### 字节序校正
+## 说明与约束
 
-```cpp
-import endianness;
-import value;
+- `swapBytes<T>` 与转换函数在编译期使用 `static_assert` 保证 `T` 为可平凡复制且大小为 1/2/4/8 字节。
+- 本模块不进行容器/字节流的就地转换，调用方若需处理批量字节，应自行以元素宽度步长迭代并调用标量版本。
 
-Value val = uint32_t{0x12345678};
-endianness::fixEndianness(val, true);  // 反转字节序
-```
+## 迁移提示（从旧版）
 
-### 网络通信
-
-```cpp
-uint16_t port = 8080;
-uint16_t networkPort = endianness::hostToNetwork(port);
-```
-
-## 概念和约束
-
-### SwappableIntegral 概念
-
-```cpp
-template<typename T>
-concept SwappableIntegral = std::integral<T> && 
-    (sizeof(T) == 1 || sizeof(T) == 2 || sizeof(T) == 4 || sizeof(T) == 8);
-```
-
-将字节交换操作限制为特定大小的整数类型。
-
-## 实现细节
-
-### 字节交换算法
-
-- **16位**：使用位旋转：`(value << 8) | (value >> 8)`
-- **32位**：使用位掩码和移位以获得最佳性能
-- **64位**：跨8字节使用位掩码和移位
-
-### 编译时优化
-
-所有字节交换操作都标记为 `constexpr`，以便在可能的情况下进行编译时求值。
-
-### 类型安全
-
-使用C++20概念确保类型安全，并为不支持的类型提供清晰的错误消息。
-
-## 错误处理
-
-- `swapBytesIntegral` 使用 `static_assert` 进行编译时类型检查
-- `swapBytesInPlace` 静默忽略不支持的尺寸
-- `fixEndianness` 按 `flags` 推断宽度（B16/B32/B64）对 `Value.bytes` 原地交换
-
-## 性能考虑
-
-- 所有操作都是 constexpr 用于编译时优化
-- 字节交换使用高效的位操作
-- 无动态内存分配
-- 对支持类型的最小运行时开销
+- 删除：`fixEndianness(Value&, ...)`、字节流/结构化布局/variant 的就地转换系列。
+- 保留：`swapBytesIntegral`（作为 `swapBytes` 的整数别名）。
+- 推荐：在各自模块中本地处理端序，而非集中处理 `Value`。
 
 ## 参见
 
-- [值类型模块](value.md) - 值类型定义
-- [目标内存模块](target_mem.md) - 内存分析操作
-
-## 与 CLI 的集成
-
-`endianness` 模块在 CLI 中用于内存扫描操作期间的自动字节序处理。例如，`scan` 命令利用此模块确保目标值的字节序正确。
+- [值类型模块](value.md) — `Value` 与 `UserValue`
+- [扫描辅助](scanning_guide.md) — 数值/字节匹配流程

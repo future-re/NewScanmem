@@ -48,7 +48,7 @@ class MessagePrinter {
         }
     }
 
-    // 便捷成员函数
+    // Convenience member functions
     template <typename... Args>
     void info(std::string_view fmt, Args&&... args) const {
         print(MessageType::INFO, fmt, std::forward<Args>(args)...);
@@ -70,7 +70,7 @@ class MessagePrinter {
         print(MessageType::USER, fmt, std::forward<Args>(args)...);
     }
 
-    // 静态便捷函数，用于简单字符串消息
+    // Static convenience function for simple string messages
     static void info(const std::string& msg) {
         std::cerr << std::format("info: {}\n", msg);
     }
@@ -84,7 +84,7 @@ class MessagePrinter {
         std::cerr << std::format("success: {}\n", msg);
     }
 
-    // 暴露上下文
+    // Expose context
     [[nodiscard]] auto conext() const -> const MessageContext& { return m_ctx; }
 
    private:

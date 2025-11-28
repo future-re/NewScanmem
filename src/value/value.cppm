@@ -1,46 +1,64 @@
 module;
 
 #include <cstdint>
-#include <memory>
 #include <optional>
 #include <string>
+#include <type_traits>
 #include <vector>
 
 export module value;
 
-export import value.buffer;
-export import value.view;
-export import value.cursor;
 export import value.scalar;
 export import value.flags;
 
-import value.buffer;
-import value.view;
-
-// 最小可用的 Value / UserValue 定义，满足 scan.* 与 helpers 依赖
+// Value - byte data used to store snapshots of old values
 export struct Value {
     MatchFlags flags = MatchFlags::EMPTY;
-    std::shared_ptr<ByteBuffer> buf;
+    std::vector<std::uint8_t> bytes; 
 
-    Value() : buf(std::make_shared<ByteBuffer>()) {}
+    Value() = default;
 
-    // 只读视图
-    [[nodiscard]] auto view() const noexcept -> MemView {
-        auto cptr = std::const_pointer_cast<const ByteBuffer>(buf);
-        return MemView::fromBuffer(cptr, 0, buf->size());
+    // Set byte content
+    void setBytes(const std::uint8_t* data, std::size_t len) {
+        bytes.assign(data, data + len);
     }
 
-    // 设置字节内容（便于测试或集成其它模块）
-    void setBytes(const std::uint8_t* data, std::size_t len) {
-        buf->clear();
-        buf->append(data, len);
+    void setBytes(const std::vector<std::uint8_t>& data) { bytes = data; }
+
+    // Get byte view
+    [[nodiscard]] auto data() const noexcept -> const std::uint8_t* {
+        return bytes.data();
+    }
+
+    [[nodiscard]] auto size() const noexcept -> std::size_t {
+        return bytes.size();
     }
 };
 
+// Helper function - must be declared before UserValue
+export template <typename T>
+constexpr auto flagForScalarType() -> MatchFlags {
+    if constexpr (std::is_same_v<T, int8_t> || std::is_same_v<T, uint8_t>) {
+        return MatchFlags::B8;
+    } else if constexpr (std::is_same_v<T, int16_t> ||
+                         std::is_same_v<T, uint16_t>) {
+        return MatchFlags::B16;
+    } else if constexpr (std::is_same_v<T, int32_t> ||
+                         std::is_same_v<T, uint32_t> ||
+                         std::is_same_v<T, float>) {
+        return MatchFlags::B32;
+    } else if constexpr (std::is_same_v<T, int64_t> ||
+                         std::is_same_v<T, uint64_t> ||
+                         std::is_same_v<T, double>) {
+        return MatchFlags::B64;
+    }
+    return MatchFlags::EMPTY;
+}
+
 export struct UserValue {
-    // 数值（低/高，用于 range）
-    int8_t  s8 = 0,  s8h = 0;
-    uint8_t u8 = 0,  u8h = 0;
+    // Scalar values (low/high for ranges) - backward compatible
+    int8_t s8 = 0, s8h = 0;
+    uint8_t u8 = 0, u8h = 0;
     int16_t s16 = 0, s16h = 0;
     uint16_t u16 = 0, u16h = 0;
     int32_t s32 = 0, s32h = 0;
@@ -50,11 +68,80 @@ export struct UserValue {
     float f32 = 0.0F, f32h = 0.0F;
     double f64 = 0.0, f64h = 0.0;
 
-    // 字节数组/字符串与掩码
+    // Complex types
     std::optional<std::vector<std::uint8_t>> bytearrayValue;
-    std::optional<std::vector<std::uint8_t>> byteMask;  // 0xFF=fixed, 0x00=wildcard
+    std::optional<std::vector<std::uint8_t>>
+        byteMask;  // 0xFF=fixed, 0x00=wildcard
     std::string stringValue;
 
-    // 有效标志（指示上面哪个类型/宽度有效）
+    // Valid flags
     MatchFlags flags = MatchFlags::EMPTY;
+
+    template <typename T>
+    static UserValue fromScalar(T value) {
+        UserValue userVal;
+        setScalarValue(userVal, value);
+        userVal.flags = flagForScalarType<T>();
+        return userVal;
+    }
+
+    template <typename T>
+    static UserValue fromRange(T low, T high) {
+        UserValue userVal;
+        setScalarValue(userVal, low);
+        setScalarHighValue(userVal, high);
+        userVal.flags = flagForScalarType<T>();
+        return userVal;
+    }
+
+   private:
+    template <typename T>
+    static void setScalarValue(UserValue& userVal, T value) {
+        if constexpr (std::is_same_v<T, int8_t>) {
+            userVal.s8 = value;
+        } else if constexpr (std::is_same_v<T, uint8_t>) {
+            userVal.u8 = value;
+        } else if constexpr (std::is_same_v<T, int16_t>) {
+            userVal.s16 = value;
+        } else if constexpr (std::is_same_v<T, uint16_t>) {
+            userVal.u16 = value;
+        } else if constexpr (std::is_same_v<T, int32_t>) {
+            userVal.s32 = value;
+        } else if constexpr (std::is_same_v<T, uint32_t>) {
+            userVal.u32 = value;
+        } else if constexpr (std::is_same_v<T, int64_t>) {
+            userVal.s64 = value;
+        } else if constexpr (std::is_same_v<T, uint64_t>) {
+            userVal.u64 = value;
+        } else if constexpr (std::is_same_v<T, float>) {
+            userVal.f32 = value;
+        } else if constexpr (std::is_same_v<T, double>) {
+            userVal.f64 = value;
+        }
+    }
+
+    template <typename T>
+    static void setScalarHighValue(UserValue& userVal, T value) {
+        if constexpr (std::is_same_v<T, int8_t>) {
+            userVal.s8h = value;
+        } else if constexpr (std::is_same_v<T, uint8_t>) {
+            userVal.u8h = value;
+        } else if constexpr (std::is_same_v<T, int16_t>) {
+            userVal.s16h = value;
+        } else if constexpr (std::is_same_v<T, uint16_t>) {
+            userVal.u16h = value;
+        } else if constexpr (std::is_same_v<T, int32_t>) {
+            userVal.s32h = value;
+        } else if constexpr (std::is_same_v<T, uint32_t>) {
+            userVal.u32h = value;
+        } else if constexpr (std::is_same_v<T, int64_t>) {
+            userVal.s64h = value;
+        } else if constexpr (std::is_same_v<T, uint64_t>) {
+            userVal.u64h = value;
+        } else if constexpr (std::is_same_v<T, float>) {
+            userVal.f32h = value;
+        } else if constexpr (std::is_same_v<T, double>) {
+            userVal.f64h = value;
+        }
+    }
 };

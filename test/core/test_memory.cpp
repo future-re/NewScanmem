@@ -1,11 +1,13 @@
 import core.memory;
 import core.maps;
+import core.scanner;
+import scan.types;
+import scan.engine;
 
 #include <gtest/gtest.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
-#include <atomic>
 #include <cstring>
 #include <thread>
 
@@ -18,9 +20,6 @@ import core.maps;
 class MemoryWriteTest : public ::testing::Test {
    protected:
     [[nodiscard]] auto childPid() const -> pid_t { return m_childPid; }
-    [[nodiscard]] auto isChildReady() const -> bool {
-        return m_childReady.load();
-    }
 
     void SetUp() override {
         // Fork a child process for testing
@@ -68,24 +67,55 @@ class MemoryWriteTest : public ::testing::Test {
     }
 
     /**
-     * @brief Find address of a variable in child process
+     * @brief Find address of an integer variable in child process
+     * @param expectedValue The value to search for
      * @return Address if found, nullptr otherwise
      */
     [[nodiscard]] auto findTestVariable(int expectedValue) const -> void* {
-        auto mapsResult = MapsReader::readProcessMaps(m_childPid);
-        if (!mapsResult) {
+        // Create scanner for the target process
+        Scanner scanner(m_childPid);
+
+        // Configure scan options for int32
+        ScanOptions opts;
+        opts.dataType = ScanDataType::INTEGER32;
+        opts.matchType = ScanMatchType::MATCHEQUALTO;
+        opts.step = 1;  // Check every byte
+
+        // Create user value to search for
+        UserValue userValue = UserValue::fromScalar(expectedValue);
+
+        // Perform scan
+        auto scanResult = scanner.performScan(opts, &userValue);
+        if (!scanResult) {
             return nullptr;
         }
 
-        // Search writable regions for the test value
-        // TODO: Implement memory scanning logic
-        // For now, return nullptr as placeholder
+        // Get matches
+        const auto& matches = scanner.getMatches();
+        if (matches.swaths.empty()) {
+            return nullptr;
+        }
+
+        // Find first valid match
+        for (const auto& swath : matches.swaths) {
+            for (const auto& element : swath.data) {
+                if (element.matchInfo != MatchFlags::EMPTY) {
+                    // Calculate actual address
+                    auto offset = &element - swath.data.data();
+                    // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
+                    return reinterpret_cast<void*>(
+                        // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
+                        reinterpret_cast<uintptr_t>(swath.firstByteInChild) +
+                        offset);
+                }
+            }
+        }
+
         return nullptr;
     }
 
    private:
     pid_t m_childPid = -1;
-    std::atomic<bool> m_childReady{false};
 };
 
 // Test: Write integer value

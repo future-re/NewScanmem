@@ -1,234 +1,123 @@
-# 值类型模块文档
+# 值类型模块文档（已简化架构）
 
 ## 概述
 
-`value` 模块为 NewScanmem 项目提供全面的值类型定义和匹配标志。它定义了各种数据类型表示、内存布局和实用结构，用于处理内存扫描操作中使用的不同数值类型、字节数组和通配符模式。
+`value` 模块提供两类核心实体：
+- `Value`：用于保存“旧值”的原始字节和宽度标志（匹配时参考）。
+- `UserValue`：用于表达用户输入的数值或范围（包含各标量字段与便捷构造）。
+
+并提供 `MatchFlags` 用于标注匹配宽度：`B8/B16/B32/B64`。
 
 ## 模块结构
 
 ```cpp
 export module value;
+export import value.flags;
+export import value.scalar;
 ```
 
-## 依赖项
-
-- `<cstdint>` - 固定宽度整数类型
-- `<cstring>` - 字节拷贝
-- `<optional>` - 可选类型支持
-- `<span>` - 只读/可写字节视图
-- `<string>` - 字符串操作
-- `<type_traits>` - 类型工具
-- `<vector>` - 动态数组容器
-
-## 核心功能
-
-### 1. 匹配标志枚举
+## 匹配标志（MatchFlags）
 
 ```cpp
-enum class [[gnu::packed]] MatchFlags : uint16_t {
+enum class MatchFlags : uint16_t {
     EMPTY = 0,
-
-    // 基本数值类型
-    U8B = 1 << 0,   // 无符号 8 位
-    S8B = 1 << 1,   // 有符号 8 位
-    U16B = 1 << 2,  // 无符号 16 位
-    S16B = 1 << 3,  // 有符号 16 位
-    U32B = 1 << 4,  // 无符号 32 位
-    S32B = 1 << 5,  // 有符号 32 位
-    U64B = 1 << 6,  // 无符号 64 位
-    S64B = 1 << 7,  // 有符号 64 位
-
-    // 浮点类型
-    F32B = 1 << 8,  // 32 位浮点
-    F64B = 1 << 9,  // 64 位浮点
-
-    // 复合类型
-    I8B = U8B | S8B,      // 任意 8 位整数
-    I16B = U16B | S16B,   // 任意 16 位整数
-    I32B = U32B | S32B,   // 任意 32 位整数
-    I64B = U64B | S64B,   // 任意 64 位整数
-
-    INTEGER = I8B | I16B | I32B | I64B,  // 所有整数类型
-    FLOAT = F32B | F64B,                  // 所有浮点类型
-    ALL = INTEGER | FLOAT,                // 所有支持的类型
-
-    // 基于字节的分组
-    B8 = I8B,           // 8 位块
-    B16 = I16B,         // 16 位块
-    B32 = I32B | F32B,  // 32 位块
-    B64 = I64B | F64B,  // 64 位块
-
-    MAX = 0xffffU  // 最大标志值
+    B8 = 1u << 0,
+    B16 = 1u << 1,
+    B32 = 1u << 2,
+    B64 = 1u << 3,
 };
 ```
 
-### 2. Value 结构（统一为字节存储）
+说明：仅保留与匹配宽度直接相关的最小集合，便于明确比较语义。
 
-Value 作为“历史值（旧值）”容器，底层仅存储连续字节，类型/宽度语义由 `flags` 表示。
+## 结构体：Value（旧值快照）
+
+Value 仅负责保存历史字节与宽度标志，不再承担类型推断或端序转换。
 
 ```cpp
-struct [[gnu::packed]] Value {
-    std::vector<uint8_t> bytes;    // 历史值字节
-    MatchFlags flags = MatchFlags::EMPTY; // 类型/宽度标志（严格数值路径需要）
+struct Value {
+    MatchFlags flags = MatchFlags::EMPTY;
+    std::vector<std::uint8_t> bytes;
 
-    // 复位为零状态
-    constexpr static void zero(Value& val);
+    void setBytes(const std::uint8_t* data, std::size_t len);
+    void setBytes(const std::vector<std::uint8_t>& data);
 
-    // 获取只读字节视图
-    std::span<const uint8_t> view() const noexcept;
-
-    // 按字节设置（可附带 flag）
-    void setBytes(const uint8_t* data, std::size_t len);
-    void setBytes(const std::vector<uint8_t>& val);
-    void setBytesWithFlag(const uint8_t* data, std::size_t len, MatchFlags f);
-    void setBytesWithFlag(const std::vector<uint8_t>& val, MatchFlags f);
-
-    // 按标量设置（拷贝其内存表示）；Typed 版本自动设置正确 flag
-    template <typename T> void setScalar(const T& v);
-    template <typename T> void setScalarWithFlag(const T& v, MatchFlags f);
-    template <typename T> void setScalarTyped(const T& v);
+    [[nodiscard]] const std::uint8_t* data() const noexcept;
+    [[nodiscard]] std::size_t size() const noexcept;
 };
 ```
 
 要点：
-- 数值比较路径“严格校验”：只有当 `flags` 与期望类型相符且 `bytes.size() >= sizeof(T)` 时，旧值才会被解码参与比较。
-- 字节串/字符串匹配不依赖 `flags`，不受严格策略限制。
+- 数值严格比较由上层根据 `flags` 与期望类型宽度自行校验。
+- 字节/字符串匹配直接基于 `bytes` 执行，不依赖 `flags`。
 
-### 3. Mem64 结构（当前值读取缓冲）
+## 结构体：UserValue（用户输入）
 
-Mem64 表示“当前位置读取到的字节”。
+UserValue 提供各标量的低/高端字段（用于范围），并提供便捷构造：
 
 ```cpp
-struct [[gnu::packed]] Mem64 {
-    std::vector<uint8_t> buffer;   // 当前值字节
+struct UserValue {
+    // 标量字段（low/high）
+    int8_t s8{}, s8h{}; uint8_t u8{}, u8h{};
+    int16_t s16{}, s16h{}; uint16_t u16{}, u16h{};
+    int32_t s32{}, s32h{}; uint32_t u32{}, u32h{};
+    int64_t s64{}, s64h{}; uint64_t u64{}, u64h{};
+    float f32{}, f32h{}; double f64{}, f64h{};
 
-    // 读取/写入
-    template <typename T> T get() const;  // 用 memcpy 解码 T
-    std::span<const uint8_t> bytes() const noexcept; // 只读视图
-    void setBytes(const uint8_t* data, std::size_t len);
-    void setBytes(const std::vector<uint8_t>& data);
+    std::optional<std::vector<std::uint8_t>> bytearrayValue;
+    std::optional<std::vector<std::uint8_t>> byteMask; // 0xFF=fixed, 0x00=wildcard
+    std::string stringValue;
+
+    MatchFlags flags = MatchFlags::EMPTY;
+
+    template <typename T>
+    static UserValue fromScalar(T value);
+
+    template <typename T>
+    static UserValue fromRange(T low, T high);
+};
+```
+
+辅助：`flagForScalarType<T>() -> MatchFlags` 用于根据 T 自动选择 `B8/B16/B32/B64`。
+
+## Mem64（当前值字节容器）
+
+`utils.mem64` 提供轻量的字节容器，用于读/写目标进程的“当前值”字节：
+
+```cpp
+struct Mem64 {
+    // 视图
+    [[nodiscard]] std::size_t size() const noexcept;
+    [[nodiscard]] bool empty() const noexcept;
+    [[nodiscard]] const std::uint8_t* data() const noexcept;
+    [[nodiscard]] std::uint8_t* data() noexcept;
+    [[nodiscard]] std::span<const std::uint8_t> bytes() const noexcept;
+
+    // 赋值
+    void clear();
+    void reserve(std::size_t n);
+    void setBytes(const std::uint8_t* p, std::size_t n);
+    void setBytes(std::span<const std::uint8_t> s);
+    void setBytes(const std::vector<std::uint8_t>& v);
     void setString(const std::string& s);
+
+    // 标量编解码（按主机端序）
     template <typename T> void setScalar(const T& v);
+    template <typename T> std::optional<T> tryGet() const noexcept;
+    template <typename T> T get() const; // 不足则抛出
 };
 ```
 
-端序处理：对于数值类型，通过 `swapIfReverse`（在扫描模块内）或对 `Value` 使用 `fixEndianness` 将旧值与当前值端序对齐。
-
-## 使用示例
-
-### 基本使用（数值严格 + 字节自由）
+## 示例
 
 ```cpp
-import value;
+// 创建 UserValue
+auto uv = UserValue::fromScalar(std::int32_t{42});
 
-// 保存旧值（数值，自动设置正确 flag）
-Value intValue;
-intValue.setScalarTyped<int32_t>(42);
-
-// 创建浮点类型的 Value
-Value floatValue;
-floatValue.setScalarTyped<float>(3.14159f);
-
-// 保存旧值（原始字节，不设 flag 也可）
-Value byteArrayValue;
-std::vector<uint8_t> bytes = {0x01,0x02,0x03,0x04};
-byteArrayValue.setBytes(bytes);
+// 保存旧值字节
+Value old;
+std::vector<std::uint8_t> pattern{0xDE,0xAD,0xBE,0xEF};
+old.setBytes(pattern);
 ```
 
-### 类型/标志检查
-
-```cpp
-// 检查标志
-if (intValue.flags & MatchFlags::INTEGER) {
-    std::cout << "这是一个整数类型" << std::endl;
-}
-```
-
-### 字节数组操作
-
-```cpp
-Value patternValue;
-std::vector<uint8_t> pattern = {0xDE,0xAD,0xBE,0xEF};
-patternValue.setBytes(pattern);
-for (auto b : patternValue.view()) { /* 遍历字节 */ }
-```
-
-## 匹配操作
-
-匹配逻辑在 `scanroutines` 模块中实现：
-- 数值：严格按照 `flags` 与类型匹配（解码旧值时要求类型一致）。
-- 字节串/字符串：滑动搜索；可选掩码（0xFF=精确，0x00=通配）；字符串支持 Boost.Regex。
-
-更多匹配示例（范围、掩码、正则）请参考 `scanroutines` 模块文档与实现。
-
-## 性能优化
-
-### 内存布局优化
-
-1. **紧凑存储**: 使用 packed 属性减少内存占用
-2. **缓存友好**: 连续内存访问模式
-3. **对齐优化**: 针对目标架构优化对齐
-
-### 类型检查优化
-
-1. **编译时检查**: 使用 static_assert 进行编译时验证
-2. **运行时优化**: 高效的类型检查算法
-3. **缓存结果**: 缓存频繁的类型检查结果
-
-### 转换优化
-
-1. **零拷贝**: 尽可能避免数据拷贝
-2. **内联函数**: 使用内联函数减少函数调用开销
-3. **SIMD 优化**: 对字节数组操作使用 SIMD 指令
-
-## 错误处理
-
-### 类型错误
-
-数值路径下，旧值解码时要求 `flags` 与期望类型一致且长度足够，否则上层应当放弃解码。
-
-### 范围错误
-
-上层应根据 `flags` 推断宽度并进行边界检查，`Value` 本身仅提供字节视图与标志，不直接进行范围判断。
-
-## 扩展性
-
-### 自定义类型
-
-```cpp
-// 添加自定义数据类型
-enum class CustomMatchFlags : uint16_t {
-    CUSTOM_TYPE_1 = 1 << 10,
-    CUSTOM_TYPE_2 = 1 << 11,
-};
-
-// 扩展 Value 结构
-struct ExtendedValue : public Value {
-    CustomMatchFlags customFlags = CustomMatchFlags::CUSTOM_TYPE_1;
-    std::string additionalData;
-};
-```
-
-### 插件系统
-
-```cpp
-// 值处理插件接口
-class ValueProcessor {
-public:
-    virtual bool process(Value& val) = 0;
-    virtual std::string getDescription() const = 0;
-};
-
-// 具体实现
-class CustomValueProcessor : public ValueProcessor {
-public:
-    bool process(Value& val) override {
-        // 自定义处理逻辑
-        return true;
-    }
-    
-    std::string getDescription() const override {
-        return "自定义值处理器";
-    }
-};
-```
+更多匹配与读取细节请参考 `scan/*` 与 `core/*` 中的具体实现。

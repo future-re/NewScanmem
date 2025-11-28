@@ -34,6 +34,7 @@ nav:
     - '主程序 (main)': main.md
     - '内存映射 (maps)': maps.md
     - '扫描值 (value)': value.md
+    - '扫描器 (scanner)': scanner.md
     - '目标内存 (target_mem)': target_mem.md
     - '进程检查器 (process_checker)': process_checker.md
     - '集合 (sets)': sets.md

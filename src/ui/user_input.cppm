@@ -12,10 +12,10 @@ export module ui.user_input;
 import utils.mem64;
 import value.scalar; // ScalarKind helpers
 
-// 简洁的用户输入载体：
-// - 用 Mem64 承载底层字节（数值/字节数组/字符串）
-// - 用 ScalarKind 标注数值的类型/宽度（仅在数值/范围模式下使用）
-// - 可选的 mask 用于字节匹配（ByteArray + Mask）
+// Lightweight user input carrier:
+// - Use Mem64 for underlying bytes (number/byte-array/string)
+// - Use ScalarKind to tag number type/width (only in number/range modes)
+// - Optional mask for byte matching (ByteArray + Mask)
 export struct UserInput {
     enum class Kind : std::uint8_t {
         NUMBER,
@@ -27,13 +27,13 @@ export struct UserInput {
 
     Kind kind{Kind::BYTES};
     ScalarKind numberKind{ScalarKind::U8};
-    Mem64 value;                     // 主值（数值/字节/字符串）
-    std::optional<Mem64> highValue;  // 数值范围上界（RangeNumber 使用）
-    std::optional<std::vector<std::uint8_t>> mask;  // BytesWithMask 使用
+    Mem64 value;                     // Primary value (number/bytes/string)
+    std::optional<Mem64> highValue;  // Upper bound for numeric range (RangeNumber)
+    std::optional<std::vector<std::uint8_t>> mask;  // Used by BytesWithMask
 
     UserInput() = default;
 
-    // --- 构造便捷函数（Number）---
+    // --- Convenience constructors (Number) ---
     template <typename T>
     static auto fromNumber(T val) -> UserInput {
         static_assert(std::is_trivially_copyable_v<T>,
@@ -45,7 +45,7 @@ export struct UserInput {
         return userInput;
     }
 
-    // --- 构造便捷函数（RangeNumber）---
+    // --- Convenience constructors (RangeNumber) ---
     template <typename T>
     static auto fromRange(T loVal, T hiVal) -> UserInput {
         static_assert(std::is_trivially_copyable_v<T>,
@@ -59,7 +59,7 @@ export struct UserInput {
         return userInput;
     }
 
-    // --- 构造便捷函数（Bytes）---
+    // --- Convenience constructors (Bytes) ---
     static auto fromBytes(std::span<const std::uint8_t> span) -> UserInput {
         UserInput userInput;
         userInput.kind = Kind::BYTES;
@@ -67,7 +67,7 @@ export struct UserInput {
         return userInput;
     }
 
-    // --- 构造便捷函数（BytesWithMask）---
+    // --- Convenience constructors (BytesWithMask) ---
     static auto fromBytesWithMask(std::span<const std::uint8_t> span,
                                   std::span<const std::uint8_t> mask)
         -> UserInput {

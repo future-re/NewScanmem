@@ -42,13 +42,9 @@ set(MODULE_SOURCES
     core/process_checker.cppm
     
     # Core modules
-    value/buffer.cppm
-    value/view.cppm
-    value/cursor.cppm
     value/scalar.cppm
     value/flags.cppm
     value/value.cppm
-    value/text.cppm
     scan/types.cppm
     scan/bytes.cppm
     scan/read_helpers.cppm

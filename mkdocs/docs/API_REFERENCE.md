@@ -360,39 +360,43 @@ enum class [[gnu::packed]] MatchFlags : uint16_t {
 ### 结构体: `Value`
 
 ```cpp
-struct [[gnu::packed]] Value {
-    std::vector<uint8_t> bytes;      // 历史值字节
-    MatchFlags flags = MatchFlags::EMPTY; // 类型/宽度标志
+struct Value {
+    MatchFlags flags = MatchFlags::EMPTY; // 宽度标志（B8/B16/B32/B64）
+    std::vector<std::uint8_t> bytes;      // 历史值字节
 
-    // 复位
-    constexpr static void zero(Value& val);
+    void setBytes(const std::uint8_t* data, std::size_t len);
+    void setBytes(const std::vector<std::uint8_t>& val);
 
-    // 视图与设置
-    std::span<const uint8_t> view() const noexcept;
-    void setBytes(const uint8_t* data, std::size_t len);
-    void setBytes(const std::vector<uint8_t>& val);
-    void setBytesWithFlag(const uint8_t* data, std::size_t len, MatchFlags f);
-    void setBytesWithFlag(const std::vector<uint8_t>& val, MatchFlags f);
-    template <typename T> void setScalar(const T& v);
-    template <typename T> void setScalarWithFlag(const T& v, MatchFlags f);
-    template <typename T> void setScalarTyped(const T& v);
+    [[nodiscard]] const std::uint8_t* data() const noexcept;
+    [[nodiscard]] std::size_t size() const noexcept;
 };
 ```
 
-数值严格：旧值解码时需要 `flags` 与类型匹配且字节数足够；字节串/字符串不受此限制。
+说明：`Value` 不再提供 `view()/setScalar*()` 或端序修正函数；类型/宽度校验由上层根据 `flags` 与期望类型处理。
 
 ### 结构体: `Mem64`
 
 ```cpp
-struct [[gnu::packed]] Mem64 {
-    std::vector<uint8_t> buffer;     // 当前值字节
+struct Mem64 {
+    // 视图
+    [[nodiscard]] std::size_t size() const noexcept;
+    [[nodiscard]] bool empty() const noexcept;
+    [[nodiscard]] const std::uint8_t* data() const noexcept;
+    [[nodiscard]] std::uint8_t* data() noexcept;
+    [[nodiscard]] std::span<const std::uint8_t> bytes() const noexcept;
 
-    template <typename T> T get() const;              // 以 memcpy 解码
-    std::span<const uint8_t> bytes() const noexcept;  // 只读字节视图
-    void setBytes(const uint8_t* data, std::size_t len);
-    void setBytes(const std::vector<uint8_t>& data);
+    // 赋值
+    void clear();
+    void reserve(std::size_t n);
+    void setBytes(const std::uint8_t* p, std::size_t n);
+    void setBytes(std::span<const std::uint8_t> s);
+    void setBytes(const std::vector<std::uint8_t>& v);
     void setString(const std::string& s);
+
+    // 标量编解码（按主机端序）
     template <typename T> void setScalar(const T& v);
+    template <typename T> std::optional<T> tryGet() const noexcept;
+    template <typename T> T get() const;
 };
 ```
 
@@ -402,45 +406,21 @@ struct [[gnu::packed]] Mem64 {
 
 ### endianness 模块
 
-#### `is_big_endian()`
+#### `isBigEndian()` / `isLittleEndian()`
 
-检测系统是否为大端序。
+检测主机端序。
 
-**返回值:** `true` 如果系统为大端序，否则 `false`
+#### `swapBytes<T>(T value)` / `swapBytesIntegral<T>(T value)`
 
-#### `is_little_endian()`
+交换标量的字节序。`swapBytesIntegral` 为整数别名。
 
-检测系统是否为小端序。
+#### `hostToNetwork<T>(T value)` / `networkToHost<T>(T value)`
 
-**返回值:** `true` 如果系统为小端序，否则 `false`
+主机与网络（大端）之间转换（对称操作）。
 
-#### `swap_bytes(T value)`
+#### `hostToLittleEndian<T>(T value)` / `littleEndianToHost<T>(T value)`
 
-交换指定类型值的字节序。
-
-**模板参数:** `T` - 整数类型 (uint8_t, uint16_t, uint32_t, uint64_t)
-
-**参数:** `value` - 要交换字节序的值
-
-**返回值:** 交换字节序后的值
-
-#### `swap_bytes_inplace(void* data, size_t size)`
-
-原地交换内存中数据的字节序。
-
-**参数:**
-
-- `data` - 指向数据的指针
-- `size` - 数据大小（字节）
-
-#### `fix_endianness(Value& value, bool reverse_endianness)`
-
-修正 Value 对象的字节序。
-
-**参数:**
-
-- `value` - 要修正的 Value 对象
-- `reverse_endianness` - 是否反转字节序
+主机与小端之间转换（对称操作）。
 
 ### process_checker 模块
 
@@ -608,7 +588,7 @@ searchValue.flags = MatchFlags::S32B;
 ```cpp
 // 字节序转换
 uint32_t value = 0x12345678;
-uint32_t swapped = endianness::swap_bytes(value);
+uint32_t swapped = endianness::swapBytes(value);
 
 // 进程监控循环
 while (true) {
