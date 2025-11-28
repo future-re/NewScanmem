@@ -3,4 +3,4 @@
 .idea
 cmake-build-debug-wsl/*
 build/
-mkdocs/site/
+mkdocs/site/_codeql_detected_source_root
