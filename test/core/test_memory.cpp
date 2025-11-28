@@ -1,5 +1,6 @@
 import core.memory;
 import core.maps;
+import core.proc_mem;
 
 #include <gtest/gtest.h>
 #include <sys/wait.h>
@@ -7,7 +8,9 @@ import core.maps;
 
 #include <atomic>
 #include <cstring>
+#include <span>
 #include <thread>
+#include <vector>
 
 /**
  * @brief Test fixture for memory write operations
@@ -77,9 +80,56 @@ class MemoryWriteTest : public ::testing::Test {
             return nullptr;
         }
 
+        // Create a memory reader for the child process
+        ProcMemIO reader(m_childPid);
+        if (!reader.open(false)) {  // Open read-only
+            return nullptr;
+        }
+
         // Search writable regions for the test value
-        // TODO: Implement memory scanning logic
-        // For now, return nullptr as placeholder
+        constexpr std::size_t BLOCK_SIZE = 4096;
+        std::vector<std::uint8_t> buffer(BLOCK_SIZE);
+
+        for (const auto& region : *mapsResult) {
+            // Only search writable regions (stack, heap, etc.)
+            if (!region.isWritable()) {
+                continue;
+            }
+
+            // Scan the region in blocks
+            std::size_t offset = 0;
+            while (offset < region.size) {
+                const std::size_t toRead =
+                    std::min(BLOCK_SIZE, region.size - offset);
+                auto* baseAddr =
+                    static_cast<std::uint8_t*>(region.start) + offset;
+
+                // ProcMemIO::read takes a span, so we need to create one
+                auto bytesReadResult =
+                    reader.read(baseAddr, std::span(buffer.data(), toRead));
+                if (!bytesReadResult || *bytesReadResult == 0) {
+                    offset += toRead;
+                    continue;
+                }
+
+                const std::size_t bytesRead = *bytesReadResult;
+
+                // Search for the expected integer value in the read buffer
+                // Scan with sizeof(int) alignment for int values
+                for (std::size_t i = 0;
+                     i + sizeof(int) <= bytesRead;
+                     i += sizeof(int)) {
+                    int foundValue = 0;
+                    std::memcpy(&foundValue, buffer.data() + i, sizeof(int));
+                    if (foundValue == expectedValue) {
+                        return baseAddr + i;
+                    }
+                }
+
+                offset += bytesRead;
+            }
+        }
+
         return nullptr;
     }
 
