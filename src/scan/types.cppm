@@ -5,59 +5,63 @@ module;
 
 export module scan.types;
 
-// 引入依赖模块并向外转发其符号，避免跨模块重复声明同名类型
-export import utils.mem64;  // 提供 Mem64
-export import value.flags;  // 提供 MatchFlags
-export import value;        // 提供 Value / UserValue 等（聚合于 value 模块）
+// Import dependent modules and re-export their symbols to avoid redeclaring
+// types with the same names across modules.
+export import utils.mem64;  // provides Mem64
+export import value.flags;  // provides MatchFlags
+export import value;        // provides Value / UserValue, etc. (aggregated in value)
 
-// 扫描数据类型分类
+// Classification of scan data types
 export enum class ScanDataType {
-    ANYNUMBER,   // 匹配任何数值类型（整数或浮点）
-    ANYINTEGER,  // 匹配任何整数类型（8/16/32/64 位）
-    ANYFLOAT,    // 匹配任何浮点类型（32/64 位）
-    INTEGER8,    // 8 位整数
-    INTEGER16,   // 16 位整数
-    INTEGER32,   // 32 位整数
-    INTEGER64,   // 64 位整数
-    FLOAT32,     // 32 位浮点
-    FLOAT64,     // 64 位浮点
-    BYTEARRAY,   // 字节数组
-    STRING       // 字符串
+    ANYNUMBER,   // matches any numeric type (integer or float)
+    ANYINTEGER,  // matches any integer type (8/16/32/64-bit)
+    ANYFLOAT,    // matches any float type (32/64-bit)
+    INTEGER8,    // 8-bit integer
+    INTEGER16,   // 16-bit integer
+    INTEGER32,   // 32-bit integer
+    INTEGER64,   // 64-bit integer
+    FLOAT32,     // 32-bit float
+    FLOAT64,     // 64-bit float
+    BYTEARRAY,   // byte array
+    STRING       // string
 };
 
-// 匹配方式分类
+// Classification of match types
 export enum class ScanMatchType {
-    // 快照类（不依赖用户输入数值）
-    MATCHANY,          // 匹配任何值（记录快照）
-    MATCHUPDATE,       // 与旧值相等
-    MATCHNOTCHANGED,   // 与旧值相等（与 MATCHUPDATE 等价）
-    MATCHCHANGED,      // 与旧值不等
-    MATCHINCREASED,    // 大于旧值
-    MATCHDECREASED,    // 小于旧值
-    MATCHINCREASEDBY,  // 当前值 - 旧值 == 用户值
-    MATCHDECREASEDBY,  // 旧值 - 当前值 == 用户值
+    // Snapshot types (do not rely on user-provided values)
+    MATCHANY,          // match any value (record snapshot)
+    MATCHUPDATE,       // equal to old value
+    MATCHNOTCHANGED,   // equal to old value (equivalent to MATCHUPDATE)
+    MATCHCHANGED,      // not equal to old value
+    MATCHINCREASED,    // greater than old value
+    MATCHDECREASED,    // less than old value
+    MATCHINCREASEDBY,  // current value - old value == user value
+    MATCHDECREASEDBY,  // old value - current value == user value
 
-    // 与用户提供的值比较（需提供用户值）
-    MATCHEQUALTO,      // 等于
-    MATCHNOTEQUALTO,   // 不等于
-    MATCHGREATERTHAN,  // 大于
-    MATCHLESSTHAN,     // 小于
-    MATCHRANGE,        // 范围 [low, high]
-    MATCHREGEX         // 正则（STRING 专用）
+    // Comparisons with a user-provided value (requires a user value)
+    MATCHEQUALTO,      // equal to
+    MATCHNOTEQUALTO,   // not equal to
+    MATCHGREATERTHAN,  // greater than
+    MATCHLESSTHAN,     // less than
+    MATCHRANGE,        // range [low, high]
+    MATCHREGEX         // regular expression (STRING only)
 };
 
-// 单个扫描位置的匹配函数签名。返回匹配的字节数（>=1）或 0（未匹配）。
+// Match routine signature for a single scan location. Returns the number of
+// matched bytes (>= 1) or 0 (no match).
 export using scanRoutine = std::function<unsigned int(
     const Mem64* /*memoryPtr*/, size_t /*memLength*/, const Value* /*oldValue*/,
     const UserValue* /*userValue*/, MatchFlags* /*saveFlags*/)>;
 
-// 字节模式查找结果（带偏移与长度），在 targetmem 或范围标记时有用
+// Byte pattern search result (with offset and length), useful when marking
+// target memory or ranges.
 export struct ByteMatch {
     size_t offset{};
     size_t length{};
 };
 
-// 常用的小工具（仅类型层面的便捷判定，不引入实现依赖）
+// Common utilities (type-level convenience checks that introduce no
+// implementation dependencies)
 export constexpr auto isNumericType(ScanDataType scanDataType) noexcept
     -> bool {
     switch (scanDataType) {

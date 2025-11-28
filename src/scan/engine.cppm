@@ -26,21 +26,21 @@ import value.flags;    // MatchFlags
 import utils.mem64;    // Mem64
 import value;          // Value / UserValue
 
-// 轻量扫描引擎骨架：
-// - 单线程、按块读取 /proc/<pid>/mem
-// - 每字节位点调用 scanRoutine（步长可配置）
-// - 结果存入 MatchesAndOldValuesArray（保存字节与标记）
-// 限制：
-// - 目前不跨块重叠匹配（跨边界匹配会遗漏）
-// - 尚未接入“旧值快照”逻辑（oldValue 传 nullptr）
-// - 仅实现只读扫描
+// Lightweight scan engine skeleton:
+// - Single-threaded, reads /proc/<pid>/mem in blocks
+// - Invokes a scanRoutine at each byte position (configurable step size)
+// - Results are stored into MatchesAndOldValuesArray (records bytes and flags)
+// Limitations:
+// - Currently does not match across block boundaries (overlapping matches may be missed)
+// - "oldValue" snapshot logic is not yet integrated (oldValue is passed as nullptr)
+// - Read-only scanning is implemented
 
 export struct ScanOptions {
     ScanDataType dataType{ScanDataType::ANYNUMBER};
     ScanMatchType matchType{ScanMatchType::MATCHANY};
     bool reverseEndianness{false};
-    std::size_t step{1};               // 扫描步长（按字节移动）
-    std::size_t blockSize{64 * 1024};  // 每次读取的块大小
+    std::size_t step{1};               // scan step size (moves by bytes)
+    std::size_t blockSize{64 * 1024};  // block size for each read
     RegionScanLevel regionLevel{RegionScanLevel::ALL};
 };
 
@@ -50,7 +50,7 @@ export struct ScanStats {
     std::size_t matches{0};
 };
 
-// 简单的 /proc/<pid>/mem 读取器
+// Simple /proc/<pid>/mem reader
 export class ProcMemReader {
    public:
     ProcMemReader() = default;
@@ -95,7 +95,8 @@ export class ProcMemReader {
         return *this;
     }
 
-    // 尝试读取 [addr, addr+len) 到 buf；返回成功读取的字节数（可能小于 len）
+    // Try to read [addr, addr+len) into buf; returns the number of bytes
+    // successfully read (may be less than len).
     [[nodiscard]] auto read(void* addr, std::uint8_t* buf,
                             std::size_t len) const
         -> std::expected<std::size_t, std::string> {
@@ -111,14 +112,15 @@ export class ProcMemReader {
             if (RVAL < 0) {
                 if (errno == EIO || errno == EFAULT || errno == EPERM ||
                     errno == EACCES) {
-                    // 内核通常对不可读页返回错误；终止本块读取，返回已读部分
+                    // The kernel typically returns an error for unreadable pages;
+                    // terminate reading this block and return the portion read.
                     break;
                 }
                 return std::unexpected{
                     std::format("pread error: {}", std::strerror(errno))};
             }
             if (RVAL == 0) {
-                break;  // 读到末尾
+                break;  // reached EOF
             }
             total += static_cast<std::size_t>(RVAL);
         }
@@ -130,7 +132,7 @@ export class ProcMemReader {
     int m_fd{-1};
 };
 
-// 将读取的字节数据追加到 swath
+// Append bytes read to the swath
 inline void appendBytesToSwath(MatchesAndOldValuesSwath& swath,
                                const std::uint8_t* buffer,
                                std::size_t bytesRead, void* baseAddr) {
@@ -147,7 +149,7 @@ inline void appendBytesToSwath(MatchesAndOldValuesSwath& swath,
     swath.data.insert(swath.data.end(), toInsert.begin(), toInsert.end());
 }
 
-// 对单个内存块执行扫描匹配
+// Execute scanning/matching for a single memory block
 inline void scanBlock(const std::uint8_t* buffer, std::size_t bytesRead,
                       std::size_t baseIndex, std::size_t step, auto routine,
                       const UserValue* userValue,
@@ -156,7 +158,7 @@ inline void scanBlock(const std::uint8_t* buffer, std::size_t bytesRead,
         const std::size_t MEM_LEN = bytesRead - off;
         Mem64 mem{buffer + off, MEM_LEN};
         MatchFlags saveFlags = MatchFlags::EMPTY;
-        const Value* oldValue = nullptr;  // TODO: 接入旧值快照
+        const Value* oldValue = nullptr;  // TODO: integrate old-value snapshot logic
 
         const unsigned MATCHED_LEN =
             routine(&mem, MEM_LEN, oldValue, userValue, &saveFlags);
@@ -168,7 +170,7 @@ inline void scanBlock(const std::uint8_t* buffer, std::size_t bytesRead,
     }
 }
 
-// 处理单个内存区域的扫描
+// Handle scanning for a single memory region
 inline auto scanRegion(const Region& region, ProcMemReader& reader,
                        const ScanOptions& opts, auto routine,
                        const UserValue* userValue, ScanStats& stats)
@@ -219,7 +221,7 @@ export [[nodiscard]] inline auto runScan(pid_t pid, const ScanOptions& opts,
     -> std::expected<ScanStats, std::string> {
     ScanStats stats{};
 
-    // 读取 maps
+    // Read process maps
     auto regionsExp = readProcessMaps(pid, opts.regionLevel);
     if (!regionsExp) {
         return std::unexpected{std::format("readProcessMaps failed: {}",
@@ -227,7 +229,7 @@ export [[nodiscard]] inline auto runScan(pid_t pid, const ScanOptions& opts,
     }
     auto& regions = *regionsExp;
 
-    // 准备匹配例程
+    // Prepare scan routine
     auto routine = smGetScanroutine(
         opts.dataType, opts.matchType,
         (userValue != nullptr) ? userValue->flags : MatchFlags::EMPTY,
@@ -236,13 +238,13 @@ export [[nodiscard]] inline auto runScan(pid_t pid, const ScanOptions& opts,
         return std::unexpected{"no scan routine for options"};
     }
 
-    // 打开 /proc/<pid>/mem
+    // Open /proc/<pid>/mem
     ProcMemReader reader{pid};
     if (auto err = reader.open(); !err) {
         return std::unexpected{err.error()};
     }
 
-    // 扫描所有区域
+    // Scan all regions
     for (const auto& region : regions) {
         if (auto swath =
                 scanRegion(region, reader, opts, routine, userValue, stats)) {

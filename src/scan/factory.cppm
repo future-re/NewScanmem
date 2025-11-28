@@ -10,8 +10,8 @@ import scan.bytes;
 import scan.string;
 import value;
 
-// 本模块提供统一的工厂入口：smGetScanroutine / smChooseScanroutine
-// 它将根据 ScanDataType 返回合适的 scanRoutine。
+// This module provides a unified factory entry: smGetScanroutine / smChooseScanroutine
+// It returns an appropriate scanRoutine given a ScanDataType.
 
 export [[nodiscard]] inline auto smGetScanroutine(ScanDataType dataType,
                                                   ScanMatchType matchType,

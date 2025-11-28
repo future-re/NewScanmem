@@ -14,8 +14,10 @@ import scan.read_helpers;
 import value.flags;
 import value;
 
-// 本模块实现数值类型的匹配核心与工厂函数。
-// 导出：numericMatchCore、makeNumericRoutine、makeAnyIntegerRoutine、makeAnyFloatRoutine、makeAnyNumberRoutine
+// This module implements the core numeric matching logic and factory
+// routines for numeric scan operations.
+// Exports: numericMatchCore, makeNumericRoutine, makeAnyIntegerRoutine,
+//          makeAnyFloatRoutine, makeAnyNumberRoutine
 
 export template <typename T>
 inline auto numericMatchCore(ScanMatchType matchType, T memv,

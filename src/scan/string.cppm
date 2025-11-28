@@ -17,8 +17,9 @@ import value.flags;
 import scan.bytes;
 import value;
 
-// 本模块实现字符串和正则相关例程，以及线程局部的正则缓存。
-// 导出：makeStringRoutine, getCachedRegex, findRegexPattern
+// This module implements string and regex-related routines and a
+// thread-local regex cache.
+// Exports: makeStringRoutine, getCachedRegex, findRegexPattern
 
 export inline auto getCachedRegex(const std::string& pattern) noexcept
     -> const boost::regex* {
