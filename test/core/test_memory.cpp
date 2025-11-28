@@ -115,7 +115,8 @@ class MemoryWriteTest : public ::testing::Test {
                 const std::size_t bytesRead = *bytesReadResult;
 
                 // Search for the expected integer value in the read buffer
-                // Scan with sizeof(int) alignment for int values
+                // Using sizeof(int) alignment because local variables on the
+                // stack are typically aligned to their natural alignment
                 for (std::size_t i = 0;
                      i + sizeof(int) <= bytesRead;
                      i += sizeof(int)) {
