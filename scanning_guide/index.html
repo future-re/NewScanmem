@@ -11,10 +11,10 @@
       
       
       
-        <link rel="prev" href="../maps/">
+        <link rel="prev" href="..">
       
       
-        <link rel="next" href="../target_mem/">
+        <link rel="next" href="../main/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>扫描值 (value) - NewScanmem Documentation</title>
+        <title>扫描与过滤 - NewScanmem Documentation</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#scanner" class="md-skip">
           跳转至
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              扫描值 (value)
+              扫描与过滤
             
           </span>
         </div>
@@ -246,18 +246,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -278,7 +280,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -293,10 +295,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../scanning_guide/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扫描与过滤
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -312,6 +341,165 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-scanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Scanner 类
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-scanoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. ScanOptions：扫描的“控制面板”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-scandatatype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. ScanDataType：扫描什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-scanmatchtype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. ScanMatchType：如何比较？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. ScanMatchType：如何比较？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. 用于“初次扫描”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. 用于“后续过滤扫描”
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. step：扫描步长（对齐方式）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        工作流程与示例
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="工作流程与示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        场景1：初次扫描
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        场景2：后续过滤扫描（未来功能）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -328,20 +516,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -362,7 +548,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -433,37 +619,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    扫描值 (value)
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../value/" class="md-nav__link">
         
   
   
@@ -479,298 +638,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        概述
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        模块结构
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        依赖项
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        核心功能
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="核心功能">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. 匹配标志枚举
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-value" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Value 结构（统一为字节存储）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-mem64" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Mem64 结构（当前值读取缓冲）
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        使用示例
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="使用示例">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        基本使用（数值严格 + 字节自由）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        类型/标志检查
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        字节数组操作
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        匹配操作
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        性能优化
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="性能优化">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        内存布局优化
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        类型检查优化
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        转换优化
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        错误处理
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="错误处理">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        类型错误
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        范围错误
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_18" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        扩展性
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="扩展性">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_19" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        自定义类型
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        插件系统
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1032,55 +899,122 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-scanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Scanner 类
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-scanoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. ScanOptions：扫描的“控制面板”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-scandatatype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. ScanDataType：扫描什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-scanmatchtype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. ScanMatchType：如何比较？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. ScanMatchType：如何比较？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. 用于“初次扫描”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. 用于“后续过滤扫描”
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. step：扫描步长（对齐方式）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        概述
+        工作流程与示例
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        模块结构
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        依赖项
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        核心功能
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="核心功能">
+    <nav class="md-nav" aria-label="工作流程与示例">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 匹配标志枚举
+        场景1：初次扫描
       
     </span>
   </a>
@@ -1088,210 +1022,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-value" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Value 结构（统一为字节存储）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-mem64" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Mem64 结构（当前值读取缓冲）
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        使用示例
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="使用示例">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        基本使用（数值严格 + 字节自由）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        类型/标志检查
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        字节数组操作
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        匹配操作
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        性能优化
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="性能优化">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        内存布局优化
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        类型检查优化
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        转换优化
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        错误处理
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="错误处理">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        类型错误
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        范围错误
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_18" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        扩展性
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="扩展性">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_19" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        自定义类型
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        插件系统
+        场景2：后续过滤扫描（未来功能）
       
     </span>
   </a>
@@ -1323,194 +1057,212 @@
   
 
 
-<h1 id="_1">值类型模块文档</h1>
-<h2 id="_2">概述</h2>
-<p><code>value</code> 模块为 NewScanmem 项目提供全面的值类型定义和匹配标志。它定义了各种数据类型表示、内存布局和实用结构，用于处理内存扫描操作中使用的不同数值类型、字节数组和通配符模式。</p>
-<h2 id="_3">模块结构</h2>
-<pre><code class="language-cpp">export module value;
+<h1 id="scanner">指南：使用 Scanner 进行内存扫描</h1>
+<p><code>Scanner</code> 类是 <code>NewScanmem</code> 中执行内存扫描的核心接口。本指南将引导您了解如何使用它来查找和过滤目标进程中的数据。</p>
+<h2 id="_1">核心概念</h2>
+<p>要成功进行扫描，您需要了解以下几个核心概念：</p>
+<h3 id="1-scanner">1. <code>Scanner</code> 类</h3>
+<p>这是您进行所有扫描操作的入口点。首先，您需要用目标进程的 <code>PID</code> 来实例化它。</p>
+<pre><code class="language-cpp">#include &quot;core/scanner.cppm&quot;
+
+pid_t target_pid = 12345;
+Scanner scanner(target_pid);
 </code></pre>
-<h2 id="_4">依赖项</h2>
+<h3 id="2-scanoptions">2. <code>ScanOptions</code>：扫描的“控制面板”</h3>
+<p>这是一个结构体，用于精确配置您想如何进行扫描。最重要的字段包括：</p>
 <ul>
-<li><code>&lt;cstdint&gt;</code> - 固定宽度整数类型</li>
-<li><code>&lt;cstring&gt;</code> - 字节拷贝</li>
-<li><code>&lt;optional&gt;</code> - 可选类型支持</li>
-<li><code>&lt;span&gt;</code> - 只读/可写字节视图</li>
-<li><code>&lt;string&gt;</code> - 字符串操作</li>
-<li><code>&lt;type_traits&gt;</code> - 类型工具</li>
-<li><code>&lt;vector&gt;</code> - 动态数组容器</li>
+<li><code>dataType</code>: 您想扫描什么类型的数据。</li>
+<li><code>matchType</code>: 您想如何比较这些数据。</li>
+<li><code>step</code>: 扫描时每次移动多少字节。</li>
 </ul>
-<h2 id="_5">核心功能</h2>
-<h3 id="1">1. 匹配标志枚举</h3>
-<pre><code class="language-cpp">enum class [[gnu::packed]] MatchFlags : uint16_t {
-    EMPTY = 0,
+<h3 id="3-scandatatype">3. <code>ScanDataType</code>：扫描什么？</h3>
+<p>这个枚举决定了扫描的目标数据类型和大小。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><code>ScanDataType</code></th>
+<th style="text-align: left;">大小</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>INTEGER8</code></td>
+<td style="text-align: left;">1 字节</td>
+<td style="text-align: left;">8位整数</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>INTEGER16</code></td>
+<td style="text-align: left;">2 字节</td>
+<td style="text-align: left;">16位整数</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>INTEGER32</code></td>
+<td style="text-align: left;">4 字节</td>
+<td style="text-align: left;">32位整数</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>INTEGER64</code></td>
+<td style="text-align: left;">8 字节</td>
+<td style="text-align: left;">64位整数</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>FLOAT32</code></td>
+<td style="text-align: left;">4 字节</td>
+<td style="text-align: left;">32位浮点数</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>FLOAT64</code></td>
+<td style="text-align: left;">8 字节</td>
+<td style="text-align: left;">64位浮点数</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>STRING</code></td>
+<td style="text-align: left;">可变</td>
+<td style="text-align: left;">C风格字符串</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>BYTEARRAY</code></td>
+<td style="text-align: left;">可变</td>
+<td style="text-align: left;">字节数组</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>ANYINTEGER</code></td>
+<td style="text-align: left;">可变</td>
+<td style="text-align: left;">任意整数类型</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-scanmatchtype">4. <code>ScanMatchType</code>：如何比较？</h3>
+<p>这个枚举定义了比较内存数据的方式。我们可以将其分为两大类：</p>
+<h4 id="a">A. 用于“初次扫描”</h4>
+<p>这类扫描通常需要您提供一个具体的值。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><code>ScanMatchType</code></th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>MATCHEQUALTO</code></td>
+<td style="text-align: left;">等于您提供的值</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>MATCHNOTEQUALTO</code></td>
+<td style="text-align: left;">不等于您提供的值</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>MATCHGREATERTHAN</code></td>
+<td style="text-align: left;">大于您提供的值</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>MATCHLESSTHAN</code></td>
+<td style="text-align: left;">小于您提供的值</td>
+</tr>
+</tbody>
+</table>
+<h4 id="b">B. 用于“后续过滤扫描”</h4>
+<p>这类扫描会利用前一次扫描的快照（<code>oldValue</code>），比较数值的变化情况。</p>
+<blockquote>
+<p><strong>[!] 注意</strong></p>
+<p>这是API的设计目标。目前底层引擎的过滤功能尚在开发中（标记为<code>TODO</code>），暂不可用。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><code>ScanMatchType</code></th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>MATCHCHANGED</code></td>
+<td style="text-align: left;">值已改变</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>MATCHNOTCHANGED</code></td>
+<td style="text-align: left;">值未改变</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>MATCHINCREASED</code></td>
+<td style="text-align: left;">值已增加</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>MATCHDECREASED</code></td>
+<td style="text-align: left;">值已减少</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>MATCHINCREASEDBY</code></td>
+<td style="text-align: left;">值增加了特定数值</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>MATCHDECREASEDBY</code></td>
+<td style="text-align: left;">值减少了特定数值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-step">5. <code>step</code>：扫描步长（对齐方式）</h3>
+<p><code>step</code> 参数控制扫描器在内存中移动的距离。</p>
+<ul>
+<li><strong><code>step = 1</code> (默认):</strong> 非对齐扫描。扫描器在每个字节处都进行检查。最彻底，也最慢。</li>
+<li><strong><code>step = 4</code> (对于4字节数据):</strong> 对齐扫描。扫描器只在4字节对齐的地址上检查。速度快，但可能错过未对齐的数据。</li>
+</ul>
+<hr />
+<h2 id="_2">工作流程与示例</h2>
+<h3 id="1">场景1：初次扫描</h3>
+<p>假设我们想在一个进程中查找所有值为 <code>100</code> 的4字节整数。</p>
+<pre><code class="language-cpp">#include &quot;core/scanner.cppm&quot;
+#include &quot;value/scalar.cppm&quot; // for UserValue
 
-    // 基本数值类型
-    U8B = 1 &lt;&lt; 0,   // 无符号 8 位
-    S8B = 1 &lt;&lt; 1,   // 有符号 8 位
-    U16B = 1 &lt;&lt; 2,  // 无符号 16 位
-    S16B = 1 &lt;&lt; 3,  // 有符号 16 位
-    U32B = 1 &lt;&lt; 4,  // 无符号 32 位
-    S32B = 1 &lt;&lt; 5,  // 有符号 32 位
-    U64B = 1 &lt;&lt; 6,  // 无符号 64 位
-    S64B = 1 &lt;&lt; 7,  // 有符号 64 位
+// 1. 创建 Scanner 实例
+pid_t target_pid = 12345;
+Scanner scanner(target_pid);
 
-    // 浮点类型
-    F32B = 1 &lt;&lt; 8,  // 32 位浮点
-    F64B = 1 &lt;&lt; 9,  // 64 位浮点
+// 2. 配置扫描选项
+// 使用辅助函数可以更方便地创建选项
+auto opts = makeNumericScanOptions(ScanDataType::INTEGER32, ScanMatchType::MATCHEQUALTO);
+opts.step = 4; // 假设我们知道数值是4字节对齐的，以加快速度
 
-    // 复合类型
-    I8B = U8B | S8B,      // 任意 8 位整数
-    I16B = U16B | S16B,   // 任意 16 位整数
-    I32B = U32B | S32B,   // 任意 32 位整数
-    I64B = U64B | S64B,   // 任意 64 位整数
+// 3. 准备要搜索的值
+UserValue value_to_find = UserValue::from&lt;int32_t&gt;(100);
 
-    INTEGER = I8B | I16B | I32B | I64B,  // 所有整数类型
-    FLOAT = F32B | F64B,                  // 所有浮点类型
-    ALL = INTEGER | FLOAT,                // 所有支持的类型
+// 4. 执行扫描
+auto result = scanner.performScan(opts, &amp;value_to_find);
 
-    // 基于字节的分组
-    B8 = I8B,           // 8 位块
-    B16 = I16B,         // 16 位块
-    B32 = I32B | F32B,  // 32 位块
-    B64 = I64B | F64B,  // 64 位块
-
-    MAX = 0xffffU  // 最大标志值
-};
-</code></pre>
-<h3 id="2-value">2. Value 结构（统一为字节存储）</h3>
-<p>Value 作为“历史值（旧值）”容器，底层仅存储连续字节，类型/宽度语义由 <code>flags</code> 表示。</p>
-<pre><code class="language-cpp">struct [[gnu::packed]] Value {
-    std::vector&lt;uint8_t&gt; bytes;    // 历史值字节
-    MatchFlags flags = MatchFlags::EMPTY; // 类型/宽度标志（严格数值路径需要）
-
-    // 复位为零状态
-    constexpr static void zero(Value&amp; val);
-
-    // 获取只读字节视图
-    std::span&lt;const uint8_t&gt; view() const noexcept;
-
-    // 按字节设置（可附带 flag）
-    void setBytes(const uint8_t* data, std::size_t len);
-    void setBytes(const std::vector&lt;uint8_t&gt;&amp; val);
-    void setBytesWithFlag(const uint8_t* data, std::size_t len, MatchFlags f);
-    void setBytesWithFlag(const std::vector&lt;uint8_t&gt;&amp; val, MatchFlags f);
-
-    // 按标量设置（拷贝其内存表示）；Typed 版本自动设置正确 flag
-    template &lt;typename T&gt; void setScalar(const T&amp; v);
-    template &lt;typename T&gt; void setScalarWithFlag(const T&amp; v, MatchFlags f);
-    template &lt;typename T&gt; void setScalarTyped(const T&amp; v);
-};
-</code></pre>
-<p>要点：
-- 数值比较路径“严格校验”：只有当 <code>flags</code> 与期望类型相符且 <code>bytes.size() &gt;= sizeof(T)</code> 时，旧值才会被解码参与比较。
-- 字节串/字符串匹配不依赖 <code>flags</code>，不受严格策略限制。</p>
-<h3 id="3-mem64">3. Mem64 结构（当前值读取缓冲）</h3>
-<p>Mem64 表示“当前位置读取到的字节”。</p>
-<pre><code class="language-cpp">struct [[gnu::packed]] Mem64 {
-    std::vector&lt;uint8_t&gt; buffer;   // 当前值字节
-
-    // 读取/写入
-    template &lt;typename T&gt; T get() const;  // 用 memcpy 解码 T
-    std::span&lt;const uint8_t&gt; bytes() const noexcept; // 只读视图
-    void setBytes(const uint8_t* data, std::size_t len);
-    void setBytes(const std::vector&lt;uint8_t&gt;&amp; data);
-    void setString(const std::string&amp; s);
-    template &lt;typename T&gt; void setScalar(const T&amp; v);
-};
-</code></pre>
-<p>端序处理：对于数值类型，通过 <code>swapIfReverse</code>（在扫描模块内）或对 <code>Value</code> 使用 <code>fixEndianness</code> 将旧值与当前值端序对齐。</p>
-<h2 id="_6">使用示例</h2>
-<h3 id="_7">基本使用（数值严格 + 字节自由）</h3>
-<pre><code class="language-cpp">import value;
-
-// 保存旧值（数值，自动设置正确 flag）
-Value intValue;
-intValue.setScalarTyped&lt;int32_t&gt;(42);
-
-// 创建浮点类型的 Value
-Value floatValue;
-floatValue.setScalarTyped&lt;float&gt;(3.14159f);
-
-// 保存旧值（原始字节，不设 flag 也可）
-Value byteArrayValue;
-std::vector&lt;uint8_t&gt; bytes = {0x01,0x02,0x03,0x04};
-byteArrayValue.setBytes(bytes);
-</code></pre>
-<h3 id="_8">类型/标志检查</h3>
-<pre><code class="language-cpp">// 检查标志
-if (intValue.flags &amp; MatchFlags::INTEGER) {
-    std::cout &lt;&lt; &quot;这是一个整数类型&quot; &lt;&lt; std::endl;
+// 5. 检查结果
+if (result) {
+    auto stats = *result;
+    std::cout &lt;&lt; &quot;扫描完成！&quot; &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;访问的区域数: &quot; &lt;&lt; stats.regionsVisited &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;扫描的总字节数: &quot; &lt;&lt; stats.bytesScanned &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;找到的匹配项数: &quot; &lt;&lt; scanner.getMatchCount() &lt;&lt; std::endl;
+} else {
+    std::cerr &lt;&lt; &quot;扫描失败: &quot; &lt;&lt; result.error() &lt;&lt; std::endl;
 }
 </code></pre>
-<h3 id="_9">字节数组操作</h3>
-<pre><code class="language-cpp">Value patternValue;
-std::vector&lt;uint8_t&gt; pattern = {0xDE,0xAD,0xBE,0xEF};
-patternValue.setBytes(pattern);
-for (auto b : patternValue.view()) { /* 遍历字节 */ }
-</code></pre>
-<h2 id="_10">匹配操作</h2>
-<p>匹配逻辑在 <code>scanroutines</code> 模块中实现：
-- 数值：严格按照 <code>flags</code> 与类型匹配（解码旧值时要求类型一致）。
-- 字节串/字符串：滑动搜索；可选掩码（0xFF=精确，0x00=通配）；字符串支持 Boost.Regex。</p>
-<p>更多匹配示例（范围、掩码、正则）请参考 <code>scanroutines</code> 模块文档与实现。</p>
-<h2 id="_11">性能优化</h2>
-<h3 id="_12">内存布局优化</h3>
-<ol>
-<li><strong>紧凑存储</strong>: 使用 packed 属性减少内存占用</li>
-<li><strong>缓存友好</strong>: 连续内存访问模式</li>
-<li><strong>对齐优化</strong>: 针对目标架构优化对齐</li>
-</ol>
-<h3 id="_13">类型检查优化</h3>
-<ol>
-<li><strong>编译时检查</strong>: 使用 static_assert 进行编译时验证</li>
-<li><strong>运行时优化</strong>: 高效的类型检查算法</li>
-<li><strong>缓存结果</strong>: 缓存频繁的类型检查结果</li>
-</ol>
-<h3 id="_14">转换优化</h3>
-<ol>
-<li><strong>零拷贝</strong>: 尽可能避免数据拷贝</li>
-<li><strong>内联函数</strong>: 使用内联函数减少函数调用开销</li>
-<li><strong>SIMD 优化</strong>: 对字节数组操作使用 SIMD 指令</li>
-</ol>
-<h2 id="_15">错误处理</h2>
-<h3 id="_16">类型错误</h3>
-<p>数值路径下，旧值解码时要求 <code>flags</code> 与期望类型一致且长度足够，否则上层应当放弃解码。</p>
-<h3 id="_17">范围错误</h3>
-<p>上层应根据 <code>flags</code> 推断宽度并进行边界检查，<code>Value</code> 本身仅提供字节视图与标志，不直接进行范围判断。</p>
-<h2 id="_18">扩展性</h2>
-<h3 id="_19">自定义类型</h3>
-<pre><code class="language-cpp">// 添加自定义数据类型
-enum class CustomMatchFlags : uint16_t {
-    CUSTOM_TYPE_1 = 1 &lt;&lt; 10,
-    CUSTOM_TYPE_2 = 1 &lt;&lt; 11,
-};
+<h3 id="2">场景2：后续过滤扫描（未来功能）</h3>
+<p>假设我们已经找到了所有值为 <code>100</code> 的地址。现在，我们在游戏中让角色的生命值减少，并想找出哪个地址的值发生了变化。</p>
+<blockquote>
+<p><strong>[!] 警告</strong></p>
+<p>以下为API设计功能的演示，当前版本尚不支持。</p>
+</blockquote>
+<pre><code class="language-cpp">// (续上文... 假设初次扫描已完成)
 
-// 扩展 Value 结构
-struct ExtendedValue : public Value {
-    CustomMatchFlags customFlags = CustomMatchFlags::CUSTOM_TYPE_1;
-    std::string additionalData;
-};
-</code></pre>
-<h3 id="_20">插件系统</h3>
-<pre><code class="language-cpp">// 值处理插件接口
-class ValueProcessor {
-public:
-    virtual bool process(Value&amp; val) = 0;
-    virtual std::string getDescription() const = 0;
-};
+// 1. 配置过滤扫描选项 (查找值已改变的地址)
+auto filter_opts = makeNumericScanOptions(ScanDataType::INTEGER32, ScanMatchType::MATCHCHANGED);
 
-// 具体实现
-class CustomValueProcessor : public ValueProcessor {
-public:
-    bool process(Value&amp; val) override {
-        // 自定义处理逻辑
-        return true;
-    }
+// 2. 再次执行扫描，这次不需要提供具体数值
+// 扫描器内部会使用上一次的快照进行比较
+auto filter_result = scanner.performScan(filter_opts);
 
-    std::string getDescription() const override {
-        return &quot;自定义值处理器&quot;;
-    }
-};
+// 3. 检查结果
+if (filter_result) {
+    std::cout &lt;&lt; &quot;过滤完成！&quot; &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;剩余匹配项数: &quot; &lt;&lt; scanner.getMatchCount() &lt;&lt; std::endl;
+    // 此时 scanner.getMatches() 返回的就是那些值从100变为其他值的地址列表
+}
 </code></pre>
 
 
