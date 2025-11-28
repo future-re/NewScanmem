@@ -11,10 +11,10 @@
       
       
       
-        <link rel="prev" href="../maps/">
+        <link rel="prev" href="../value/">
       
       
-        <link rel="next" href="../scanner/">
+        <link rel="next" href="../target_mem/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>扫描值 (value) - NewScanmem Documentation</title>
+        <title>扫描器 (scanner) - NewScanmem Documentation</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#corescanner-api" class="md-skip">
           跳转至
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              扫描值 (value)
+              扫描器 (scanner)
             
           </span>
         </div>
@@ -433,6 +433,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../value/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扫描值 (value)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -452,7 +480,7 @@
   <span class="md-ellipsis">
     
   
-    扫描值 (value)
+    扫描器 (scanner)
   
 
     
@@ -470,7 +498,7 @@
   <span class="md-ellipsis">
     
   
-    扫描值 (value)
+    扫描器 (scanner)
   
 
     
@@ -496,10 +524,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        必要导入
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        概述
+        主要类型与结构（快速索引）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        类：Scanner（接口与行为）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#corescanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        便捷函数（在 core.scanner 中导出）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#int32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        精确示例：查找 int32 值并解析地址（推荐代码片段）
       
     </span>
   </a>
@@ -510,7 +582,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        模块结构
+        字符串与字节数组扫描
       
     </span>
   </a>
@@ -518,43 +590,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#matchflags" class="md-nav__link">
+  <a href="#scanstats" class="md-nav__link">
     <span class="md-ellipsis">
       
-        匹配标志（MatchFlags）
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#value" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        结构体：Value（旧值快照）
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#uservalue" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        结构体：UserValue（用户输入）
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mem64" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mem64（当前值字节容器）
+        返回统计（ScanStats）字段说明
       
     </span>
   </a>
@@ -565,7 +604,18 @@
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        示例
+        错误、权限与局限
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        建议的调用流程
       
     </span>
   </a>
@@ -576,34 +626,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../scanner/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    扫描器 (scanner)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -865,10 +887,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        必要导入
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        概述
+        主要类型与结构（快速索引）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        类：Scanner（接口与行为）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#corescanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        便捷函数（在 core.scanner 中导出）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#int32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        精确示例：查找 int32 值并解析地址（推荐代码片段）
       
     </span>
   </a>
@@ -879,7 +945,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        模块结构
+        字符串与字节数组扫描
       
     </span>
   </a>
@@ -887,43 +953,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#matchflags" class="md-nav__link">
+  <a href="#scanstats" class="md-nav__link">
     <span class="md-ellipsis">
       
-        匹配标志（MatchFlags）
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#value" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        结构体：Value（旧值快照）
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#uservalue" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        结构体：UserValue（用户输入）
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mem64" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mem64（当前值字节容器）
+        返回统计（ScanStats）字段说明
       
     </span>
   </a>
@@ -934,7 +967,18 @@
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        示例
+        错误、权限与局限
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        建议的调用流程
       
     </span>
   </a>
@@ -961,101 +1005,218 @@
   
 
 
-<h1 id="_1">值类型模块文档（已简化架构）</h1>
-<h2 id="_2">概述</h2>
-<p><code>value</code> 模块提供两类核心实体：
-- <code>Value</code>：用于保存“旧值”的原始字节和宽度标志（匹配时参考）。
-- <code>UserValue</code>：用于表达用户输入的数值或范围（包含各标量字段与便捷构造）。</p>
-<p>并提供 <code>MatchFlags</code> 用于标注匹配宽度：<code>B8/B16/B32/B64</code>。</p>
-<h2 id="_3">模块结构</h2>
-<pre><code class="language-cpp">export module value;
-export import value.flags;
-export import value.scalar;
+<h1 id="corescanner-api">扫描器（core.scanner）——精确 API 文档</h1>
+<p>下面文档直接基于 <code>src/core/scanner.cppm</code> 导出的接口，逐项列出函数/方法签名、参数语义、返回值、行为、副作用以及示例代码，便于直接在代码中调用与测试。</p>
+<h2 id="_1">必要导入</h2>
+<pre><code class="language-cpp">import core.scanner;   // Scanner 及便捷函数
+import scan.types;     // ScanDataType / ScanMatchType
+import scan.engine;    // ScanOptions / ScanStats
+import core.targetmem; // MatchesAndOldValuesArray
+import value;          // UserValue
 </code></pre>
-<h2 id="matchflags">匹配标志（MatchFlags）</h2>
-<pre><code class="language-cpp">enum class MatchFlags : uint16_t {
-    EMPTY = 0,
-    B8 = 1u &lt;&lt; 0,
-    B16 = 1u &lt;&lt; 1,
-    B32 = 1u &lt;&lt; 2,
-    B64 = 1u &lt;&lt; 3,
+<hr />
+<h2 id="_2">主要类型与结构（快速索引）</h2>
+<ul>
+<li>Scanner：高层扫描会话对象，包装底层 <code>scan.engine</code>。</li>
+<li>ScanOptions：扫描配置（数据类型、匹配方式、步长、块大小、区域级别等），定义在 <code>scan.engine</code>。</li>
+<li>ScanStats：扫描统计信息（regionsVisited、bytesScanned、matches）。</li>
+<li>ScanDataType：在 <code>scan.types</code> 中定义的数据类型枚举（如 <code>INTEGER32/INTEGER64/FLOAT32/FLOAT64/BYTEARRAY/STRING</code> 等）。</li>
+<li>ScanMatchType：在 <code>scan.types</code> 中定义的匹配方式枚举（如 <code>MATCHEQUALTO/MATCHCHANGED/MATCHRANGE</code> 等）。</li>
+<li>MatchesAndOldValuesArray：扫描结果容器，由若干 <code>MatchesAndOldValuesSwath</code> 组成，每个 swath 包含：<ul>
+<li><code>void* firstByteInChild</code>：该 swath 在目标进程中的第一个字节地址。</li>
+<li><code>std::vector&lt;OldValueAndMatchInfo&gt; data</code>：每个元素对应目标内存的 1 字节；<code>OldValueAndMatchInfo</code> 包含 <code>oldValue</code>(uint8_t) 与 <code>matchInfo</code>(MatchFlags)。</li>
+<li><code>rangeMarks</code>：按区间标记的辅助信息（UI/后处理用）。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="scanner">类：Scanner（接口与行为）</h2>
+<p>签名摘要：</p>
+<pre><code class="language-cpp">export class Scanner {
+public:
+    explicit Scanner(pid_t pid);
+
+    [[nodiscard]] auto performScan(const ScanOptions&amp; opts,
+                                                                 const UserValue* value = nullptr)
+            -&gt; std::expected&lt;ScanStats, std::string&gt;;
+
+    [[nodiscard]] auto getMatches() const -&gt; const MatchesAndOldValuesArray&amp;;
+    [[nodiscard]] auto getMatchesMut() -&gt; MatchesAndOldValuesArray&amp;;
+    [[nodiscard]] auto getLastStats() const -&gt; const ScanStats&amp;;
+
+    auto clearMatches() -&gt; void;
+    [[nodiscard]] auto getMatchCount() const -&gt; std::size_t;
+    [[nodiscard]] auto hasMatches() const -&gt; bool;
+    [[nodiscard]] auto getPid() const -&gt; pid_t;
 };
 </code></pre>
-<p>说明：仅保留与匹配宽度直接相关的最小集合，便于明确比较语义。</p>
-<h2 id="value">结构体：Value（旧值快照）</h2>
-<p>Value 仅负责保存历史字节与宽度标志，不再承担类型推断或端序转换。</p>
-<pre><code class="language-cpp">struct Value {
-    MatchFlags flags = MatchFlags::EMPTY;
-    std::vector&lt;std::uint8_t&gt; bytes;
+<p>逐项说明：</p>
+<ul>
+<li>
+<p>Scanner(pid_t pid)</p>
+<ul>
+<li>说明：创建一个绑定到 <code>pid</code> 的扫描器实例。该构造函数不会自动附加 ptrace 或修改目标进程；仅用于后续 <code>performScan</code> 的上下文。</li>
+</ul>
+</li>
+<li>
+<p>performScan(const ScanOptions&amp; opts, const UserValue* value = nullptr)</p>
+<ul>
+<li>说明：启动一次完整扫描。</li>
+<li>参数：<ul>
+<li><code>opts</code>：扫描配置，关键字段包括：<ul>
+<li><code>dataType</code>（ScanDataType）：如 <code>INTEGER32</code>、<code>FLOAT32</code>、<code>STRING</code> 等；</li>
+<li><code>matchType</code>（ScanMatchType）：匹配策略（如 <code>MATCHEQUALTO</code>）；</li>
+<li><code>step</code>：扫描步长（以字节为单位）；</li>
+<li><code>blockSize</code>：每次读取的内存块大小；</li>
+<li><code>regionLevel</code>：来自 <code>core.maps</code>，用于限制扫描到哪些内存区域。</li>
+</ul>
+</li>
+<li><code>value</code>：当 <code>matchType</code> 需要用户值（例如 <code>MATCHEQUALTO/MATCHRANGE</code>）时传入，指向 <code>UserValue</code>。</li>
+</ul>
+</li>
+<li>返回：<code>std::expected&lt;ScanStats, std::string&gt;</code><ul>
+<li>成功（has_value）：返回 <code>ScanStats</code> 并且内部 <code>m_matches</code> 被更新为本次扫描结果；用户可调用 <code>getMatches()</code> 读取。</li>
+<li>失败（has_error）：返回错误字符串，例如权限或 I/O 相关错误。</li>
+</ul>
+</li>
+<li>副作用：内部 <code>m_matches</code> 被覆盖为新的扫描结果；<code>m_lastStats</code> 被更新。</li>
+</ul>
+</li>
+<li>
+<p>getMatches() / getMatchesMut()</p>
+<ul>
+<li>说明：获取上一次扫描后的匹配结果。返回的 <code>MatchesAndOldValuesArray</code> 包含若干 swath，每个 swath 的 <code>data</code> 中的元素对应目标进程中连续的字节序列。</li>
+<li>使用注意：<ul>
+<li>若要修改匹配标记或追加历史值，请使用 <code>getMatchesMut()</code> 获得可变引用。</li>
+<li>访问具体匹配地址时：<code>addr = (void*)((uintptr_t)swath.firstByteInChild + index)</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>getLastStats()</p>
+<ul>
+<li>说明：返回 <code>ScanStats</code>，包含 <code>regionsVisited</code>、<code>bytesScanned</code>、<code>matches</code>（统计值）。</li>
+</ul>
+</li>
+<li>
+<p>clearMatches()</p>
+<ul>
+<li>说明：清空内部匹配结果（等同于 <code>m_matches.swaths.clear()</code>）。</li>
+</ul>
+</li>
+<li>
+<p>getMatchCount()</p>
+<ul>
+<li>说明：遍历 <code>m_matches</code> 并统计 <code>matchInfo != MatchFlags::EMPTY</code> 的字节数量，返回该数值。</li>
+</ul>
+</li>
+<li>
+<p>hasMatches()</p>
+<ul>
+<li>说明：便捷判断，等价于 <code>getMatchCount() &gt; 0</code>。</li>
+</ul>
+</li>
+<li>
+<p>getPid()</p>
+<ul>
+<li>说明：返回构造时绑定的 <code>pid</code>。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="corescanner">便捷函数（在 <code>core.scanner</code> 中导出）</h2>
+<ul>
+<li>
+<p><code>getDefaultScanOptions()</code></p>
+<ul>
+<li>返回：一个填充了默认值的 <code>ScanOptions</code>（等价于 <code>ScanOptions{}</code>）。</li>
+</ul>
+</li>
+<li>
+<p><code>makeNumericScanOptions(ScanDataType dataType, ScanMatchType matchType = ScanMatchType::MATCHEQUALTO)</code></p>
+<ul>
+<li>用途：快速构建用于数值（整数/浮点）扫描的 <code>ScanOptions</code>。</li>
+<li>建议：对整数查找通常使用 <code>ScanDataType::INTEGER32</code> 或 <code>INTEGER64</code>，并使用 <code>MATCHEQUALTO</code> 作为 matchType 来查找确切值。</li>
+</ul>
+</li>
+<li>
+<p><code>makeStringScanOptions(ScanMatchType matchType = ScanMatchType::MATCHEQUALTO)</code></p>
+<ul>
+<li>用途：构建字符串搜索的 <code>ScanOptions</code>；函数会把 <code>dataType</code> 设为 <code>ScanDataType::STRING</code> 并把 <code>step</code> 设为 1（逐字节检查）。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="int32">精确示例：查找 int32 值并解析地址（推荐代码片段）</h2>
+<p>下列示例逐步展示如何使用 <code>Scanner</code>：</p>
+<pre><code class="language-cpp">import core.scanner;
+import scan.engine;   // ScanOptions / ScanStats
+import scan.types;    // ScanDataType / ScanMatchType
+import value;         // UserValue
+import core.targetmem;// MatchesAndOldValuesArray
 
-    void setBytes(const std::uint8_t* data, std::size_t len);
-    void setBytes(const std::vector&lt;std::uint8_t&gt;&amp; data);
+pid_t targetPid = /* child pid */;
+Scanner scanner(targetPid);
 
-    [[nodiscard]] const std::uint8_t* data() const noexcept;
-    [[nodiscard]] std::size_t size() const noexcept;
-};
+// 1) 配置扫描选项：32-bit 整数、精确匹配
+auto opts = makeNumericScanOptions(ScanDataType::INTEGER32, ScanMatchType::MATCHEQUALTO);
+opts.step = 1; // 每字节检查
+
+// 2) 用户值
+UserValue uv{};
+uv.s32 = 42; // 要查找的整数
+
+// 3) 执行扫描
+auto statsOrErr = scanner.performScan(opts, &amp;uv);
+if (!statsOrErr) {
+    // 失败处理：statsOrErr.error()
+}
+
+// 4) 解析结果：从 swath 和 data 计算地址
+const auto&amp; matches = scanner.getMatches();
+for (const auto&amp; swath : matches.swaths) {
+    for (std::size_t i = 0; i &lt; swath.data.size(); ++i) {
+        if (swath.data[i].matchInfo != MatchFlags::EMPTY) {
+            // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
+            auto addr = reinterpret_cast&lt;void*&gt;(
+                    static_cast&lt;std::uintptr_t&gt;(reinterpret_cast&lt;std::uintptr_t&gt;(swath.firstByteInChild)) + i);
+            // 使用 addr，例如读取或写入目标进程内存
+        }
+    }
+}
 </code></pre>
-<p>要点：
-- 数值严格比较由上层根据 <code>flags</code> 与期望类型宽度自行校验。
-- 字节/字符串匹配直接基于 <code>bytes</code> 执行，不依赖 <code>flags</code>。</p>
-<h2 id="uservalue">结构体：UserValue（用户输入）</h2>
-<p>UserValue 提供各标量的低/高端字段（用于范围），并提供便捷构造：</p>
-<pre><code class="language-cpp">struct UserValue {
-    // 标量字段（low/high）
-    int8_t s8{}, s8h{}; uint8_t u8{}, u8h{};
-    int16_t s16{}, s16h{}; uint16_t u16{}, u16h{};
-    int32_t s32{}, s32h{}; uint32_t u32{}, u32h{};
-    int64_t s64{}, s64h{}; uint64_t u64{}, u64h{};
-    float f32{}, f32h{}; double f64{}, f64h{};
-
-    std::optional&lt;std::vector&lt;std::uint8_t&gt;&gt; bytearrayValue;
-    std::optional&lt;std::vector&lt;std::uint8_t&gt;&gt; byteMask; // 0xFF=fixed, 0x00=wildcard
-    std::string stringValue;
-
-    MatchFlags flags = MatchFlags::EMPTY;
-
-    template &lt;typename T&gt;
-    static UserValue fromScalar(T value);
-
-    template &lt;typename T&gt;
-    static UserValue fromRange(T low, T high);
-};
-</code></pre>
-<p>辅助：<code>flagForScalarType&lt;T&gt;() -&gt; MatchFlags</code> 用于根据 T 自动选择 <code>B8/B16/B32/B64</code>。</p>
-<h2 id="mem64">Mem64（当前值字节容器）</h2>
-<p><code>utils.mem64</code> 提供轻量的字节容器，用于读/写目标进程的“当前值”字节：</p>
-<pre><code class="language-cpp">struct Mem64 {
-    // 视图
-    [[nodiscard]] std::size_t size() const noexcept;
-    [[nodiscard]] bool empty() const noexcept;
-    [[nodiscard]] const std::uint8_t* data() const noexcept;
-    [[nodiscard]] std::uint8_t* data() noexcept;
-    [[nodiscard]] std::span&lt;const std::uint8_t&gt; bytes() const noexcept;
-
-    // 赋值
-    void clear();
-    void reserve(std::size_t n);
-    void setBytes(const std::uint8_t* p, std::size_t n);
-    void setBytes(std::span&lt;const std::uint8_t&gt; s);
-    void setBytes(const std::vector&lt;std::uint8_t&gt;&amp; v);
-    void setString(const std::string&amp; s);
-
-    // 标量编解码（按主机端序）
-    template &lt;typename T&gt; void setScalar(const T&amp; v);
-    template &lt;typename T&gt; std::optional&lt;T&gt; tryGet() const noexcept;
-    template &lt;typename T&gt; T get() const; // 不足则抛出
-};
-</code></pre>
-<h2 id="_4">示例</h2>
-<pre><code class="language-cpp">// 创建 UserValue
-auto uv = UserValue::fromScalar(std::int32_t{42});
-
-// 保存旧值字节
-Value old;
-std::vector&lt;std::uint8_t&gt; pattern{0xDE,0xAD,0xBE,0xEF};
-old.setBytes(pattern);
-</code></pre>
-<p>更多匹配与读取细节请参考 <code>scan/*</code> 与 <code>core/*</code> 中的具体实现。</p>
+<p>实现提示：如果你需要把 <code>swath</code> 中的字节按 32-bit 合并并解释为整型，请确保按目标进程的字节序（以及 <code>opts.reverseEndianness</code>）正确地组合字节。</p>
+<hr />
+<h2 id="_3">字符串与字节数组扫描</h2>
+<ul>
+<li>字符串：调用 <code>makeStringScanOptions()</code> 并在 <code>UserValue::stringValue</code> 中设置目标字符串，<code>UserValue.flags</code> 可用于指示有效类型。</li>
+<li>字节数组：在 <code>UserValue::bytearrayValue</code> 中设置要匹配的字节序列；<code>byteMask</code> 可用于设置通配/掩码位。</li>
+</ul>
+<hr />
+<h2 id="scanstats">返回统计（ScanStats）字段说明</h2>
+<ul>
+<li><code>regionsVisited</code>：扫描时访问的内存映射区域数量。</li>
+<li><code>bytesScanned</code>：扫描过程中实际读取的字节总数。</li>
+<li><code>matches</code>：扫描阶段统计到的匹配总数（便于快速了解匹配规模）。</li>
+</ul>
+<hr />
+<h2 id="_4">错误、权限与局限</h2>
+<ul>
+<li>权限：读取任意进程内存需要 root 或 CAP_SYS_PTRACE 权限；<code>performScan</code> 会在权限不足时返回错误字符串。</li>
+<li>I/O/边界：读取 <code>/proc/&lt;pid&gt;/mem</code> 可能返回 <code>EIO/EACCES</code> 等 I/O 错误，需在上层捕获并记录。</li>
+<li>跨块匹配：当前引擎以块为单位读取并按步长逐字节匹配，跨块的长模式可能会被遗漏（长匹配需特殊处理）。</li>
+</ul>
+<hr />
+<h2 id="_5">建议的调用流程</h2>
+<ol>
+<li>使用 <code>makeNumericScanOptions()</code> 或 <code>getDefaultScanOptions()</code> 构建基础选项。  </li>
+<li>对可能的值进行一次宽松扫描以获得候选集合。  </li>
+<li>针对候选集合再做更严格/多次过滤以定位单个地址（或更小的集合）。  </li>
+<li>在写入或篡改内存前，用 <code>getMatchCount()</code> / <code>getMatches()</code> 验证地址准确性，并在需要时再次确认（避免误操作）。</li>
+</ol>
+<hr />
+<p>如果你希望把此文档也生成英文版、或增加“如何将 <code>swath</code> 字节解码为 int/float 的示例代码片段”，我可以接着添加。</p>
 
 
 

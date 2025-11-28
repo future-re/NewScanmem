@@ -458,6 +458,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../scanner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扫描器 (scanner)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../target_mem/" class="md-nav__link">
         
   
@@ -1261,10 +1289,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#is_big_endian" class="md-nav__link">
+  <a href="#isbigendian-islittleendian" class="md-nav__link">
     <span class="md-ellipsis">
       
-        is_big_endian()
+        isBigEndian() / isLittleEndian()
       
     </span>
   </a>
@@ -1272,10 +1300,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#is_little_endian" class="md-nav__link">
+  <a href="#swapbytestt-value-swapbytesintegraltt-value" class="md-nav__link">
     <span class="md-ellipsis">
       
-        is_little_endian()
+        swapBytes&lt;T&gt;(T value) / swapBytesIntegral&lt;T&gt;(T value)
       
     </span>
   </a>
@@ -1283,10 +1311,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#swap_bytest-value" class="md-nav__link">
+  <a href="#hosttonetworktt-value-networktohosttt-value" class="md-nav__link">
     <span class="md-ellipsis">
       
-        swap_bytes(T value)
+        hostToNetwork&lt;T&gt;(T value) / networkToHost&lt;T&gt;(T value)
       
     </span>
   </a>
@@ -1294,21 +1322,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#swap_bytes_inplacevoid-data-size_t-size" class="md-nav__link">
+  <a href="#hosttolittleendiantt-value-littleendiantohosttt-value" class="md-nav__link">
     <span class="md-ellipsis">
       
-        swap_bytes_inplace(void* data, size_t size)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fix_endiannessvalue-value-bool-reverse_endianness" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        fix_endianness(Value&amp; value, bool reverse_endianness)
+        hostToLittleEndian&lt;T&gt;(T value) / littleEndianToHost&lt;T&gt;(T value)
       
     </span>
   </a>
@@ -1879,65 +1896,52 @@ size_t size() const;
 };
 </code></pre>
 <h3 id="value_1">结构体: <code>Value</code></h3>
-<pre><code class="language-cpp">struct [[gnu::packed]] Value {
-    std::vector&lt;uint8_t&gt; bytes;      // 历史值字节
-    MatchFlags flags = MatchFlags::EMPTY; // 类型/宽度标志
+<pre><code class="language-cpp">struct Value {
+    MatchFlags flags = MatchFlags::EMPTY; // 宽度标志（B8/B16/B32/B64）
+    std::vector&lt;std::uint8_t&gt; bytes;      // 历史值字节
 
-    // 复位
-    constexpr static void zero(Value&amp; val);
+    void setBytes(const std::uint8_t* data, std::size_t len);
+    void setBytes(const std::vector&lt;std::uint8_t&gt;&amp; val);
 
-    // 视图与设置
-    std::span&lt;const uint8_t&gt; view() const noexcept;
-    void setBytes(const uint8_t* data, std::size_t len);
-    void setBytes(const std::vector&lt;uint8_t&gt;&amp; val);
-    void setBytesWithFlag(const uint8_t* data, std::size_t len, MatchFlags f);
-    void setBytesWithFlag(const std::vector&lt;uint8_t&gt;&amp; val, MatchFlags f);
-    template &lt;typename T&gt; void setScalar(const T&amp; v);
-    template &lt;typename T&gt; void setScalarWithFlag(const T&amp; v, MatchFlags f);
-    template &lt;typename T&gt; void setScalarTyped(const T&amp; v);
+    [[nodiscard]] const std::uint8_t* data() const noexcept;
+    [[nodiscard]] std::size_t size() const noexcept;
 };
 </code></pre>
-<p>数值严格：旧值解码时需要 <code>flags</code> 与类型匹配且字节数足够；字节串/字符串不受此限制。</p>
+<p>说明：<code>Value</code> 不再提供 <code>view()/setScalar*()</code> 或端序修正函数；类型/宽度校验由上层根据 <code>flags</code> 与期望类型处理。</p>
 <h3 id="mem64">结构体: <code>Mem64</code></h3>
-<pre><code class="language-cpp">struct [[gnu::packed]] Mem64 {
-    std::vector&lt;uint8_t&gt; buffer;     // 当前值字节
+<pre><code class="language-cpp">struct Mem64 {
+    // 视图
+    [[nodiscard]] std::size_t size() const noexcept;
+    [[nodiscard]] bool empty() const noexcept;
+    [[nodiscard]] const std::uint8_t* data() const noexcept;
+    [[nodiscard]] std::uint8_t* data() noexcept;
+    [[nodiscard]] std::span&lt;const std::uint8_t&gt; bytes() const noexcept;
 
-    template &lt;typename T&gt; T get() const;              // 以 memcpy 解码
-    std::span&lt;const uint8_t&gt; bytes() const noexcept;  // 只读字节视图
-    void setBytes(const uint8_t* data, std::size_t len);
-    void setBytes(const std::vector&lt;uint8_t&gt;&amp; data);
+    // 赋值
+    void clear();
+    void reserve(std::size_t n);
+    void setBytes(const std::uint8_t* p, std::size_t n);
+    void setBytes(std::span&lt;const std::uint8_t&gt; s);
+    void setBytes(const std::vector&lt;std::uint8_t&gt;&amp; v);
     void setString(const std::string&amp; s);
+
+    // 标量编解码（按主机端序）
     template &lt;typename T&gt; void setScalar(const T&amp; v);
+    template &lt;typename T&gt; std::optional&lt;T&gt; tryGet() const noexcept;
+    template &lt;typename T&gt; T get() const;
 };
 </code></pre>
 <hr />
 <h2 id="_10">详细函数说明</h2>
 <h3 id="endianness_2">endianness 模块</h3>
-<h4 id="is_big_endian"><code>is_big_endian()</code></h4>
-<p>检测系统是否为大端序。</p>
-<p><strong>返回值:</strong> <code>true</code> 如果系统为大端序，否则 <code>false</code></p>
-<h4 id="is_little_endian"><code>is_little_endian()</code></h4>
-<p>检测系统是否为小端序。</p>
-<p><strong>返回值:</strong> <code>true</code> 如果系统为小端序，否则 <code>false</code></p>
-<h4 id="swap_bytest-value"><code>swap_bytes(T value)</code></h4>
-<p>交换指定类型值的字节序。</p>
-<p><strong>模板参数:</strong> <code>T</code> - 整数类型 (uint8_t, uint16_t, uint32_t, uint64_t)</p>
-<p><strong>参数:</strong> <code>value</code> - 要交换字节序的值</p>
-<p><strong>返回值:</strong> 交换字节序后的值</p>
-<h4 id="swap_bytes_inplacevoid-data-size_t-size"><code>swap_bytes_inplace(void* data, size_t size)</code></h4>
-<p>原地交换内存中数据的字节序。</p>
-<p><strong>参数:</strong></p>
-<ul>
-<li><code>data</code> - 指向数据的指针</li>
-<li><code>size</code> - 数据大小（字节）</li>
-</ul>
-<h4 id="fix_endiannessvalue-value-bool-reverse_endianness"><code>fix_endianness(Value&amp; value, bool reverse_endianness)</code></h4>
-<p>修正 Value 对象的字节序。</p>
-<p><strong>参数:</strong></p>
-<ul>
-<li><code>value</code> - 要修正的 Value 对象</li>
-<li><code>reverse_endianness</code> - 是否反转字节序</li>
-</ul>
+<h4 id="isbigendian-islittleendian"><code>isBigEndian()</code> / <code>isLittleEndian()</code></h4>
+<p>检测主机端序。</p>
+<h4 id="swapbytestt-value-swapbytesintegraltt-value"><code>swapBytes&lt;T&gt;(T value)</code> / <code>swapBytesIntegral&lt;T&gt;(T value)</code></h4>
+<p>交换标量的字节序。<code>swapBytesIntegral</code> 为整数别名。</p>
+<h4 id="hosttonetworktt-value-networktohosttt-value"><code>hostToNetwork&lt;T&gt;(T value)</code> / <code>networkToHost&lt;T&gt;(T value)</code></h4>
+<p>主机与网络（大端）之间转换（对称操作）。</p>
+<h4 id="hosttolittleendiantt-value-littleendiantohosttt-value"><code>hostToLittleEndian&lt;T&gt;(T value)</code> / <code>littleEndianToHost&lt;T&gt;(T value)</code></h4>
+<p>主机与小端之间转换（对称操作）。</p>
 <h3 id="process_checker_1">process_checker 模块</h3>
 <h4 id="processcheckercheck_processpid_t-pid"><code>ProcessChecker::check_process(pid_t pid)</code></h4>
 <p>检查指定进程的状态。</p>
@@ -2053,7 +2057,7 @@ searchValue.flags = MatchFlags::S32B;
 <h3 id="_12">高级用法</h3>
 <pre><code class="language-cpp">// 字节序转换
 uint32_t value = 0x12345678;
-uint32_t swapped = endianness::swap_bytes(value);
+uint32_t swapped = endianness::swapBytes(value);
 
 // 进程监控循环
 while (true) {
