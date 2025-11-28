@@ -4,3 +4,4 @@
 cmake-build-debug-wsl/*
 build/
 mkdocs/site/
+_codeql_detected_source_root
