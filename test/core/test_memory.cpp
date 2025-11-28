@@ -97,11 +97,7 @@ UserValue makeRangeUserValue(T low, T high) {
 // =============================================================================
 
 TEST(NumericMatchTest, MatchEqualTo_Int32) {
-    std::array<uint8_t, 4> buffer{};
     int32_t testValue = 42;
-    std::memcpy(buffer.data(), &testValue, sizeof(testValue));
-
-    Mem64 mem{buffer.data(), buffer.size()};
     MatchFlags saveFlags = MatchFlags::EMPTY;
     UserValue userValue = makeUserValue<int32_t>(42);
 
@@ -265,7 +261,7 @@ TEST(NumericMatchTest, MatchEqualTo_UInt16) {
 }
 
 // =============================================================================
-// Numeric Routine Execution Tests  
+// Numeric Routine Execution Tests
 // =============================================================================
 
 TEST(NumericRoutineTest, MakeNumericRoutine_Int32_Match) {
