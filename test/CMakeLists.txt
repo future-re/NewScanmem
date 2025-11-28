@@ -3,12 +3,12 @@
 # 启用测试（通常在顶层调用一次，这里保留注释说明）
 # enable_testing()
 
-# 查找 GTest 并引入 GoogleTest CMake 辅助
-find_package(GTest REQUIRED)
+# GTest is already fetched and made available by the top-level CMakeLists.txt via FetchContent
+# So we just need to include the GoogleTest CMake helpers
 include(GoogleTest)
 
 # 统一的测试依赖库集合
-set(TEST_LIBS GTest::GTest GTest::Main NewScanmem_lib)
+set(TEST_LIBS gtest gtest_main NewScanmem_lib)
 
 # 测试源文件列表
 set(TEST_SOURCES
