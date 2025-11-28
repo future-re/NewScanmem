@@ -2,6 +2,11 @@
  * @file proc_mem.cppm
  * @brief Process memory I/O via /proc/<pid>/mem (进程内存 I/O)
  *
+ * @internal
+ * This is a low-level internal module intended for use by core.* modules only.
+ * External code should use core.memory (MemoryWriter) for safer, higher-level
+ * APIs.
+ *
  * Provides minimal read/write capabilities using pread/pwrite on
  * /proc/<pid>/mem. Requirements:
  * - Sufficient privileges (root or CAP_SYS_PTRACE)
