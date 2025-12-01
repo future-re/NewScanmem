@@ -19,15 +19,13 @@ import cli.commands.help;
 import cli.commands.pid;
 import cli.commands.quit;
 import cli.commands.scan;
-import cli.commands.help; // already imported above; keep ordering stable
-import cli.commands.pid;
-import cli.commands.quit;
 import cli.commands.reset;
 import cli.commands.count;
-import cli.commands.help; // duplicate safe removal later
 import cli.commands.set;
-import cli.commands.reset;
-import cli.commands.count;
+import cli.commands.snapshot;
+import cli.commands.list;
+import cli.commands.write;
+import cli.commands.watch;
 import ui.interface;
 import ui.console;
 import ui.show_message;
@@ -43,11 +41,9 @@ class Application {
     explicit Application(const AppConfig& config)
         : m_config(config),
           m_ui(std::make_shared<ui::ConsoleUI>(
-              ui::MessageContext{
-                  .debugMode = config.debugMode,
-                  .backendMode = false,
-                  .colorMode = config.colorMode
-              })) {}
+              ui::MessageContext{.debugMode = config.debugMode,
+                                 .backendMode = false,
+                                 .colorMode = config.colorMode})) {}
 
     /**
      * @brief Initialize and run the application
@@ -93,6 +89,14 @@ class Application {
             std::make_unique<commands::CountCommand>(m_session));
         registry.registerCommand(
             std::make_unique<commands::SetCommand>(m_session, m_config));
+        registry.registerCommand(
+            std::make_unique<commands::SnapshotCommand>(m_session));
+        registry.registerCommand(
+            std::make_unique<commands::ListCommand>(m_session));
+        registry.registerCommand(
+            std::make_unique<commands::WriteCommand>(m_session));
+        registry.registerCommand(
+            std::make_unique<commands::WatchCommand>(m_session));
     }
 
     auto buildPrompt() const -> std::string {

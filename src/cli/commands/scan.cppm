@@ -5,7 +5,9 @@
 
 module;
 
+#include <algorithm>
 #include <charconv>
+#include <cstdint>
 #include <expected>
 #include <format>
 #include <optional>
@@ -65,6 +67,12 @@ inline auto parseDataType(std::string_view tok) -> std::optional<ScanDataType> {
     }
     if (TO_STR == "double" || TO_STR == "float64" || TO_STR == "f64") {
         return ScanDataType::FLOAT64;
+    }
+    if (TO_STR == "string" || TO_STR == "str") {
+        return ScanDataType::STRING;
+    }
+    if (TO_STR == "bytearray" || TO_STR == "bytes") {
+        return ScanDataType::BYTEARRAY;
     }
     return std::nullopt;
 }
@@ -189,6 +197,54 @@ inline auto buildUserValue(ScanDataType dataType, ScanMatchType matchType,
                 return UserValue::fromRange<double>(*lowOpt, *highOpt);
             }
             return UserValue::fromScalar<double>(*lowOpt);
+        }
+        case ScanDataType::STRING: {
+            // 字符串扫描: 直接使用参数作为字符串
+            if (startIndex >= args.size()) {
+                return std::nullopt;
+            }
+            UserValue userVal;
+            userVal.stringValue = args[startIndex];
+            userVal.flags = MatchFlags::STRING;
+            return userVal;
+        }
+        case ScanDataType::BYTEARRAY: {
+            // 字节数组: 解析为十六进制字节序列
+            // 格式: "0x41424344" 或 "41 42 43 44" 或 "41424344"
+            if (startIndex >= args.size()) {
+                return std::nullopt;
+            }
+            std::string byteStr = args[startIndex];
+
+            // 移除 0x 前缀
+            if (byteStr.starts_with("0x") || byteStr.starts_with("0X")) {
+                byteStr = byteStr.substr(2);
+            }
+
+            // 移除空格
+            std::erase(byteStr, ' ');
+
+            // 每两个字符是一个字节
+            if (byteStr.size() % 2 != 0) {
+                return std::nullopt;  // 无效的字节长度
+            }
+
+            std::vector<std::uint8_t> bytes;
+            for (size_t i = 0; i < byteStr.size(); i += 2) {
+                std::string byteHex = byteStr.substr(i, 2);
+                std::uint8_t byte = 0;
+                auto result = std::from_chars(
+                    byteHex.data(), byteHex.data() + byteHex.size(), byte, 16);
+                if (result.ec != std::errc{}) {
+                    return std::nullopt;  // 无效的十六进制字符
+                }
+                bytes.push_back(byte);
+            }
+
+            UserValue userVal;
+            userVal.bytearrayValue = bytes;
+            userVal.flags = MatchFlags::BYTEARRAY;
+            return userVal;
         }
         default:
             return std::nullopt;

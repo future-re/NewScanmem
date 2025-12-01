@@ -30,16 +30,18 @@ class SetCommand : public Command {
     }
 
     [[nodiscard]] auto getDescription() const -> std::string_view override {
-        return "Set runtime options: pid|debug|color|exitOnError|init";
+        return "Set runtime options: "
+               "pid|debug|color|autoBaseline|exitOnError|init";
     }
 
     [[nodiscard]] auto getUsage() const -> std::string_view override {
         return "set <key> <value>\n"
-               "  pid <number>        设置目标进程\n"
-               "  debug on|off        是否启用调试输出\n"
-               "  color on|off        是否启用彩色输出\n"
-               "  exitOnError on|off  出错是否退出\n"
-               "  init <commands>     初始命令(原样保存)";
+               "  pid <number>         设置目标进程\n"
+               "  debug on|off         是否启用调试输出\n"
+               "  color on|off         是否启用彩色输出\n"
+               "  autoBaseline on|off  首次扫描时自动建立基线\n"
+               "  exitOnError on|off   出错是否退出\n"
+               "  init <commands>      初始命令(原样保存)";
     }
 
     [[nodiscard]] auto validateArgs(const std::vector<std::string>& args) const
@@ -80,6 +82,14 @@ class SetCommand : public Command {
             bool colorOn = (val == "on" || val == "1" || val == "true");
             m_config->colorMode = colorOn;
             ui::MessagePrinter{}.info("Color mode: {}", colorOn ? "ON" : "OFF");
+            return CommandResult{.success = true, .message = ""};
+        }
+        if (key == "autoBaseline") {
+            auto val = args[1];
+            bool autoOn = (val == "on" || val == "1" || val == "true");
+            m_config->autoBaseline = autoOn;
+            ui::MessagePrinter{}.info("Auto baseline: {}",
+                                      autoOn ? "ON" : "OFF");
             return CommandResult{.success = true, .message = ""};
         }
         if (key == "exitOnError") {

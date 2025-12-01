@@ -18,7 +18,8 @@ struct AppConfig {
     pid_t targetPid{0};
     bool debugMode{false};
     bool exitOnError{false};
-    bool colorMode{true};  // 默认启用彩色输出
+    bool colorMode{true};     // 默认启用彩色输出
+    bool autoBaseline{true};  // 默认自动建立基线快照
     std::optional<std::string> initialCommands;
 
     [[nodiscard]] auto isValid() const noexcept -> bool {

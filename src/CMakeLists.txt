@@ -38,6 +38,10 @@ set(MODULE_SOURCES
     cli/commands/reset.cppm
     cli/commands/count.cppm
     cli/commands/set.cppm
+    cli/commands/snapshot.cppm
+    cli/commands/list.cppm
+    cli/commands/write.cppm
+    cli/commands/watch.cppm
     
     # Core abstraction layer
     core/config.cppm

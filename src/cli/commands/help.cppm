@@ -119,7 +119,7 @@ class HelpCommand : public Command {
         oss << "\nType 'help <command>' for more info.\n";
         oss << "\nScan Types: "
                "int|int8|i8|int16|i16|int32|i32|int64|i64|float|double|any|"
-               "anyint|anyfloat\n";
+               "anyint|anyfloat|string|str|bytearray|bytes\n";
         oss << "Match Types: any, =|eq, !=|neq, gt|>, lt|<, range, changed, "
                "notchanged|update, inc|increased, dec|decreased, incby, "
                "decby\n";

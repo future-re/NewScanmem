@@ -14,6 +14,10 @@ export enum class MatchFlags : std::uint16_t {
     B16 = 1U << 1,
     B32 = 1U << 2,
     B64 = 1U << 3,
+
+    // 复杂类型标志
+    STRING = 1U << 4,
+    BYTEARRAY = 1U << 5,
 };
 
 // 按位运算符
