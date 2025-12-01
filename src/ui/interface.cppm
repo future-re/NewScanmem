@@ -26,6 +26,11 @@ enum class MessageLevel { INFO, WARNING, ERROR, DEBUG };
 
 class UserInterface {
    public:
+    UserInterface() = default;
+    UserInterface(const UserInterface&) = default;
+    auto operator=(const UserInterface&) -> UserInterface& = default;
+    UserInterface(UserInterface&&) noexcept = default;
+    auto operator=(UserInterface&&) noexcept -> UserInterface& = default;
     virtual ~UserInterface() = default;
 
     /**
