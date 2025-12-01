@@ -31,8 +31,10 @@ import value;          // Value / UserValue
 // - Invokes a scanRoutine at each byte position (configurable step size)
 // - Results are stored into MatchesAndOldValuesArray (records bytes and flags)
 // Limitations:
-// - Currently does not match across block boundaries (overlapping matches may be missed)
-// - "oldValue" snapshot logic is not yet integrated (oldValue is passed as nullptr)
+// - Currently does not match across block boundaries (overlapping matches may
+// be missed)
+// - "oldValue" snapshot logic is not yet integrated (oldValue is passed as
+// nullptr)
 // - Read-only scanning is implemented
 
 export struct ScanOptions {
@@ -41,7 +43,7 @@ export struct ScanOptions {
     bool reverseEndianness{false};
     std::size_t step{1};               // scan step size (moves by bytes)
     std::size_t blockSize{64 * 1024};  // block size for each read
-    RegionScanLevel regionLevel{RegionScanLevel::ALL};
+    RegionScanLevel regionLevel{RegionScanLevel::ALL_RW};
 };
 
 export struct ScanStats {
@@ -112,8 +114,9 @@ export class ProcMemReader {
             if (RVAL < 0) {
                 if (errno == EIO || errno == EFAULT || errno == EPERM ||
                     errno == EACCES) {
-                    // The kernel typically returns an error for unreadable pages;
-                    // terminate reading this block and return the portion read.
+                    // The kernel typically returns an error for unreadable
+                    // pages; terminate reading this block and return the
+                    // portion read.
                     break;
                 }
                 return std::unexpected{
@@ -158,7 +161,8 @@ inline void scanBlock(const std::uint8_t* buffer, std::size_t bytesRead,
         const std::size_t MEM_LEN = bytesRead - off;
         Mem64 mem{buffer + off, MEM_LEN};
         MatchFlags saveFlags = MatchFlags::EMPTY;
-        const Value* oldValue = nullptr;  // TODO: integrate old-value snapshot logic
+        const Value* oldValue =
+            nullptr;  // TODO: integrate old-value snapshot logic
 
         const unsigned MATCHED_LEN =
             routine(&mem, MEM_LEN, oldValue, userValue, &saveFlags);

@@ -78,7 +78,7 @@ export struct UserValue {
     MatchFlags flags = MatchFlags::EMPTY;
 
     template <typename T>
-    static UserValue fromScalar(T value) {
+    static auto fromScalar(T value) -> UserValue {
         UserValue userVal;
         setScalarValue(userVal, value);
         userVal.flags = flagForScalarType<T>();
@@ -86,7 +86,7 @@ export struct UserValue {
     }
 
     template <typename T>
-    static UserValue fromRange(T low, T high) {
+    static auto fromRange(T low, T high) -> UserValue {
         UserValue userVal;
         setScalarValue(userVal, low);
         setScalarHighValue(userVal, high);

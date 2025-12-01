@@ -1,6 +1,5 @@
 module;
 
-#include <bit>
 #include <cstddef>
 #include <cstdint>
 #include <cstring>
@@ -132,64 +131,64 @@ export struct ScalarValue {
         if (size < N_VAL) {
             return std::nullopt;
         }
-        ScalarValue out{kVal};
+        ScalarValue out{.kind = kVal};
         switch (kVal) {
             case ScalarKind::U8: {
-                uint8_t val;
+                uint8_t val = 0;
                 std::memcpy(&val, data, sizeof(val));
                 out.value = val;
                 return out;
             }
             case ScalarKind::S8: {
-                int8_t val;
+                int8_t val = 0;
                 std::memcpy(&val, data, sizeof(val));
                 out.value = val;
                 return out;
             }
             case ScalarKind::U16: {
-                uint16_t val;
+                uint16_t val = 0;
                 std::memcpy(&val, data, sizeof(val));
                 out.value = val;
                 return out;
             }
             case ScalarKind::S16: {
-                int16_t val;
+                int16_t val = 0;
                 std::memcpy(&val, data, sizeof(val));
                 out.value = val;
                 return out;
             }
             case ScalarKind::U32: {
-                uint32_t val;
+                uint32_t val = 0;
                 std::memcpy(&val, data, sizeof(val));
                 out.value = val;
                 return out;
             }
             case ScalarKind::S32: {
-                int32_t val;
+                int32_t val = 0;
                 std::memcpy(&val, data, sizeof(val));
                 out.value = val;
                 return out;
             }
             case ScalarKind::U64: {
-                uint64_t val;
+                uint64_t val = 0;
                 std::memcpy(&val, data, sizeof(val));
                 out.value = val;
                 return out;
             }
             case ScalarKind::S64: {
-                int64_t val;
+                int64_t val = 0;
                 std::memcpy(&val, data, sizeof(val));
                 out.value = val;
                 return out;
             }
             case ScalarKind::F32: {
-                float val;
+                float val = 0;
                 std::memcpy(&val, data, sizeof(val));
                 out.value = val;
                 return out;
             }
             case ScalarKind::F64: {
-                double val;
+                double val = 0;
                 std::memcpy(&val, data, sizeof(val));
                 out.value = val;
                 return out;

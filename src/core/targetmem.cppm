@@ -64,8 +64,9 @@ export {
          * addElement(addr, byte, matchFlags)
          *
          * Append one byte's history value and match flags to swath.
-         * Convention: each element in data strictly corresponds to 1 byte offset in target process.
-         * Thus we can reconstruct target address via `firstByteInChild + index`.
+         * Convention: each element in data strictly corresponds to 1 byte
+         * offset in target process. Thus we can reconstruct target address via
+         * `firstByteInChild + index`.
          *
          * - addr: 该字节在目标进程中的起始地址（字节地址）。
          * - byte: 读取到的字节值。
@@ -180,17 +181,15 @@ export {
      */
     class MatchesAndOldValuesArray {
        public:
-        size_t maxNeededBytes;
         std::vector<MatchesAndOldValuesSwath> swaths;
-
-        MatchesAndOldValuesArray(size_t maxBytes) : maxNeededBytes(maxBytes) {}
+        MatchesAndOldValuesArray() = default;
 
         /*
          * addSwath(swath)
          *
-         * 将一个完整的 swath 追加到数组末尾。
-         * 语义: 直接拷贝 swath（调用方可继续使用原 swath）；保持 swath
-         * 顺序即地址顺序（若 caller 保证）。
+         * Append a complete swath to the array end.
+         * Semantics: copy the swath (caller may continue using the original);
+         * keep order consistent with address order (if caller guarantees).
          */
         void addSwath(const MatchesAndOldValuesSwath& swath) {
             swaths.push_back(swath);
@@ -199,14 +198,13 @@ export {
         /*
          * nthMatch(n)
          *
-         * 返回第 n 个被标记为匹配（matchInfo != MatchFlags::EMPTY）的位置。
+         * Return the n-th position marked as matched (matchInfo != EMPTY).
          *
-         * 返回值:
-         *  - 成功: std::pair<swath_ptr, index>，其中 swath_ptr
-         指向包含该匹配的
-         *    MatchesAndOldValuesSwath，index 是 swath.data
-         中匹配元素的下标。
-         *  - 失败: std::nullopt（当 n 超过匹配总数时）。
+         * Returns:
+         *  - On success: std::pair<swath_ptr, index>, where swath_ptr points
+         *    to the MatchesAndOldValuesSwath containing the match and index is
+         *    the position within swath.data.
+         *  - On failure: std::nullopt (when n exceeds total matches).
          */
         auto nthMatch(size_t n)
             -> std::optional<std::pair<MatchesAndOldValuesSwath*, size_t>> {
@@ -225,27 +223,27 @@ export {
         }
 
         /*
-         * 删除给定地址区间 [start, end)
-         * 内的所有已记录字节（包括匹配和非匹配）。
+         * deleteInAddressRange(start, end, numMatches)
          *
-         * 参数:
-         *  - start, end: 要删除的地址区间（半开区间，包含 start 不包含
-         end）。
-         *  - numMatches: 输出参数，删除过程中遇到的匹配（matchInfo !=
-         * EMPTY）个数。
+         * Delete all recorded bytes within the address range [start, end)
+         * (inclusive of start, exclusive of end), including matches and
+         * non-matches.
          *
-         * 逻辑:
-         *  - 遍历每个 swath 的 data（按字节存储的 OldValueAndMatchInfo
-         向量）。
-         *  - 对每个元素通过索引计算其在目标进程内的实际地址：
-         *      addr = firstByteInChild + (元素在 data 中的偏移)
-         *    这里使用 &info - swath.data.data()
-         * 得到元素索引（size_t），然后加到 firstByteInChild。
-         *  - 如果 addr 落在 [start, end)
-         * 内，则将该元素视为要删除；同时如果它是一个匹配项则增加
-         numMatches。
-         *  - 使用 std::ranges::remove_if
-         * 进行“移除-擦除”操作以高效删除满足条件的元素。
+         * Parameters:
+         *  - start, end: address half-open interval to delete.
+         *  - numMatches: output parameter; number of deleted elements that were
+         *    marked as matches (matchInfo != EMPTY).
+         *
+         * Logic:
+         *  - Iterate each swath's data (vector of OldValueAndMatchInfo per
+         * byte).
+         *  - Compute each element's process address by index:
+         *      addr = firstByteInChild + index
+         *    using &info - swath.data.data() to obtain the element index.
+         *  - If addr falls within [start, end), delete the element and
+         * increment numMatches when it was a match.
+         *  - Use std::ranges::remove_if followed by erase to efficiently drop
+         *    elements.
          */
         void deleteInAddressRange(void* start, void* end,
                                   unsigned long& numMatches) {
@@ -265,8 +263,8 @@ export {
                         return false;
                     });
                 swath.data.erase(iter.begin(), swath.data.end());
-
-                // 同步清理 rangeMarks 中完全落在删除区间内的标记（保守做法）
+                // Also clear rangeMarks fully covered by deletion range
+                // (conservative)
                 auto riter = std::ranges::remove_if(
                     swath.rangeMarks, [&](const RangeMark& mark) {
                         void* rstart =
