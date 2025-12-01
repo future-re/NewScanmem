@@ -7,6 +7,7 @@ module;
 
 #include <charconv>
 #include <expected>
+#include <format>
 #include <optional>
 #include <string>
 #include <string_view>
@@ -32,6 +33,7 @@ inline auto toLower(std::string str) -> std::string {
     return str;
 }
 
+// 支持别名与更人性化的输入（加入 int / hex）
 inline auto parseDataType(std::string_view tok) -> std::optional<ScanDataType> {
     const auto TO_STR = toLower(std::string(tok));
     if (TO_STR == "any" || TO_STR == "anynumber") {
@@ -42,6 +44,9 @@ inline auto parseDataType(std::string_view tok) -> std::optional<ScanDataType> {
     }
     if (TO_STR == "anyfloat") {
         return ScanDataType::ANYFLOAT;
+    }
+    if (TO_STR == "int") {  // 常见别名：默认映射为 64 位整数
+        return ScanDataType::INTEGER64;
     }
     if (TO_STR == "int8" || TO_STR == "i8") {
         return ScanDataType::INTEGER8;
@@ -107,6 +112,17 @@ inline auto parseMatchType(std::string_view tok)
 }
 
 inline auto parseInt64(std::string_view str) -> std::optional<int64_t> {
+    // 支持十六进制 0x 前缀
+    if (str.size() > 2 && str[0] == '0' && (str[1] == 'x' || str[1] == 'X')) {
+        int64_t value{};
+        const auto* begin = str.data() + 2;
+        const auto* end = str.data() + str.size();
+        auto [ptr, ec] = std::from_chars(begin, end, value, 16);
+        if (ec == std::errc{}) {
+            return value;
+        }
+        return std::nullopt;
+    }
     int64_t value{};
     const auto* begin = str.data();
     const auto* end = str.data() + str.size();
@@ -192,11 +208,19 @@ class ScanCommand : public Command {
     }
 
     [[nodiscard]] auto getDescription() const -> std::string_view override {
-        return "Run scan: first full, then filtered by subsequent calls";
+        return "Memory scan (auto baseline + narrowing on subsequent calls)";
     }
 
     [[nodiscard]] auto getUsage() const -> std::string_view override {
-        return "scan <type> <match> [value [high]]";
+        return "scan <type> <match> [value [high]]\n"
+               "  <type>: "
+               "int|int8|i8|int16|i16|int32|i32|int64|i64|float|double|any|"
+               "anyint|anyfloat\n"
+               "  <match>: "
+               "any|=|eq|!=|neq|gt|lt|range|changed|notchanged|inc|dec|incby|"
+               "decby\n"
+               "  示例: scan int64 = 123456 / scan int range 100 200 / scan "
+               "int changed";
     }
 
     [[nodiscard]] auto validateArgs(const std::vector<std::string>& args) const
@@ -261,16 +285,41 @@ class ScanCommand : public Command {
             }
         }
 
-        auto res = scanner->scan(opts, userVal ? &*userVal : nullptr);
-        if (!res) {
-            return std::unexpected(res.error());
+        // 首次使用且用户选择了依赖旧值的匹配：自动做一次基线快照，再执行过滤
+        bool firstPass = !scanner->hasMatches();
+        bool wantsBaseline = firstPass && matchType != ScanMatchType::MATCHANY;
+        if (wantsBaseline) {
+            // 任何首次非 MATCHANY
+            // 的调用先做全量基线，再执行过滤，保证后续基于旧值的匹配语义完整
+            ScanOptions baselineOpts = opts;
+            baselineOpts.matchType = ScanMatchType::MATCHANY;
+            auto baseRes = scanner->performScan(baselineOpts, nullptr, true);
+            if (!baseRes) {
+                return std::unexpected(baseRes.error());
+            }
+            auto filteredRes = scanner->performFilteredScan(
+                opts, userVal ? &*userVal : nullptr, true);
+            if (!filteredRes) {
+                return std::unexpected(filteredRes.error());
+            }
+            ui::MessagePrinter::info("Baseline snapshot created");
+            ui::MessagePrinter::info(std::format("regions={} bytes={}",
+                                                 baseRes->regionsVisited,
+                                                 baseRes->bytesScanned));
+            ui::MessagePrinter::info(std::format(
+                "Filtered applied (matches={})", scanner->getMatchCount()));
+        } else {
+            auto res = scanner->scan(opts, userVal ? &*userVal : nullptr, true);
+            if (!res) {
+                return std::unexpected(res.error());
+            }
+            ui::MessagePrinter::info(
+                std::format("Scan completed: regions={}, bytes={} (matches={})",
+                            res->regionsVisited, res->bytesScanned,
+                            scanner->getMatchCount()));
         }
-
-        auto count = scanner->getMatchCount();
-        ui::MessagePrinter{}.info(
-            "Scan completed: regions={}, bytes={}, matches={}",
-            res->regionsVisited, res->bytesScanned, res->matches);
-        ui::MessagePrinter{}.info("Current match count: {}", count);
+        ui::MessagePrinter::info(
+            std::format("Current match count: {}", scanner->getMatchCount()));
         return CommandResult{.success = true, .message = ""};
     }
 

@@ -25,15 +25,23 @@ class ConsoleUI : public UserInterface {
    public:
     /**
      * @brief Construct console UI
+     * @param ctx Message context (debug, backend, color modes)
+     */
+    explicit ConsoleUI(MessageContext ctx = {})
+        : m_printer(ctx) {
+        setDebugMode(ctx.debugMode);
+        setBackendMode(ctx.backendMode);
+    }
+
+    /**
+     * @brief Legacy constructor for backward compatibility
      * @param debugMode Enable debug output
      * @param backendMode Enable backend mode (machine-readable output)
      */
-    explicit ConsoleUI(bool debugMode = false, bool backendMode = false)
-        : m_printer(MessageContext{.debugMode = debugMode,
-                                   .backendMode = backendMode}) {
-        setDebugMode(debugMode);
-        setBackendMode(backendMode);
-    }
+    explicit ConsoleUI(bool debugMode, bool backendMode)
+        : ConsoleUI(MessageContext{.debugMode = debugMode,
+                                   .backendMode = backendMode,
+                                   .colorMode = true}) {}
 
     /**
      * @brief Print plain message

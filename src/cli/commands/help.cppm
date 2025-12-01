@@ -116,8 +116,22 @@ class HelpCommand : public Command {
             oss << cmd->getDescription() << "\n";
         }
 
-        oss << "\nType 'help <command>' for more information about a specific "
-               "command.\n";
+        oss << "\nType 'help <command>' for more info.\n";
+        oss << "\nScan Types: "
+               "int|int8|i8|int16|i16|int32|i32|int64|i64|float|double|any|"
+               "anyint|anyfloat\n";
+        oss << "Match Types: any, =|eq, !=|neq, gt|>, lt|<, range, changed, "
+               "notchanged|update, inc|increased, dec|decreased, incby, "
+               "decby\n";
+        oss << "Examples:\n";
+        oss << "  scan int64 any               (初次快照)\n";
+        oss << "  scan int64 = 123             (按值筛选)\n";
+        oss << "  scan int changed             (自动基线+变化过滤)\n";
+        oss << "  scan int range 100 200       (范围过滤)\n";
+        oss << "  scan int64 incby 4           (按差值过滤)\n";
+        oss << "\nAuto baseline: 首次使用依赖旧值的匹配 "
+               "(changed/inc/dec/incby/decby/notchanged) 时自动做一次 'any' "
+               "快照再过滤。\n";
 
         ui::MessagePrinter::info(oss.str());
         return CommandResult{.success = true, .message = ""};

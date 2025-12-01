@@ -31,6 +31,11 @@ foreach(TEST_SRC ${TEST_SOURCES})
     # 自动发现测试点
     gtest_discover_tests(${TEST_TARGET}
         DISCOVERY_MODE PRE_TEST
-        PROPERTIES DISCOVERED_TEST_PREFIX "${TEST_NAME}::"
+        PROPERTIES
+            DISCOVERED_TEST_PREFIX "${TEST_NAME}::"
+            LABELS "unit"
     )
 endforeach()
+
+# 集成测试子目录（与单元测试分离构建与运行）
+add_subdirectory(integration)
