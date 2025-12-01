@@ -8,8 +8,10 @@ module;
 #include <sys/uio.h>
 #include <unistd.h>
 
+#include <bit>
 #include <charconv>
 #include <cstdint>
+#include <cstring>
 #include <expected>
 #include <format>
 #include <string>
@@ -62,8 +64,8 @@ class WriteCommand : public Command {
             return std::unexpected("No matches. Run a scan first.");
         }
 
-        // 解析值
-        int64_t value = 0;
+        // 解析值（统一为 64 位，按匹配宽度截断写入）
+        std::uint64_t value = 0;
         const auto& valueStr = args[0];
         if (valueStr.size() > 2 && valueStr[0] == '0' &&
             (valueStr[1] == 'x' || valueStr[1] == 'X')) {
@@ -94,47 +96,96 @@ class WriteCommand : public Command {
         auto* scanner = m_session->scanner.get();
         const auto& matches = scanner->getMatches();
 
-        size_t currentIndex = 0;
+        size_t currentIndex = 0;  // 与 list 一致：按逐字节匹配计数
         size_t writeCount = 0;
 
         for (const auto& swath : matches.swaths) {
             auto* base = static_cast<std::uint8_t*>(swath.firstByteInChild);
-            for (size_t i = 0; i < swath.data.size(); ++i) {
+            if (base == nullptr) {
+                continue;
+            }
+
+            for (std::size_t i = 0; i < swath.data.size(); ++i) {
                 const auto& cell = swath.data[i];
                 if (cell.matchInfo == MatchFlags::EMPTY) {
                     continue;
                 }
 
+                // 若用户指定了 index，则当计数未到达时仅推进计数
                 if (targetIndex && currentIndex != *targetIndex) {
                     currentIndex++;
                     continue;
                 }
 
-                auto addr = std::bit_cast<std::uintptr_t>(base + i);
+                // 计算匹配宽度（基于标志位）
+                auto flags = swath.data[i].matchInfo;
+                std::size_t width = 1;
+                if ((flags & MatchFlags::B64) == MatchFlags::B64) {
+                    width = 8;
+                } else if ((flags & MatchFlags::B32) == MatchFlags::B32) {
+                    width = 4;
+                } else if ((flags & MatchFlags::B16) == MatchFlags::B16) {
+                    width = 2;
+                } else {
+                    width = 1;
+                }
 
-                // 使用 process_vm_writev 写入内存
-                auto byte = static_cast<std::uint8_t>(value & 0xFF);
-                iovec local{.iov_base = &byte, .iov_len = 1};
+                std::uintptr_t addr = 0;
+                std::size_t writeLen = 1;
+
+                if (targetIndex) {
+                    // 回溯到段起始（同一段内每字节具有相同 flags）
+                    std::size_t s = i;
+                    while (s > 0) {
+                        const auto prevFlags = swath.data[s - 1].matchInfo;
+                        if ((prevFlags & flags) != flags) {
+                            break;
+                        }
+                        --s;
+                    }
+                    addr = std::bit_cast<std::uintptr_t>(base + s);
+                    writeLen = width;
+                } else {
+                    // 未指定 index：维持逐字节写入，避免对同一段重复覆盖
+                    addr = std::bit_cast<std::uintptr_t>(base + i);
+                    writeLen = 1;
+                }
+
+                // 小端截断缓冲
+                std::array<std::uint8_t, 8> buf{};
+                std::memcpy(buf.data(), &value, std::min(writeLen, buf.size()));
+
+                iovec local{.iov_base = buf.data(), .iov_len = writeLen};
                 iovec remote{.iov_base = std::bit_cast<void*>(addr),
-                             .iov_len = 1};
+                             .iov_len = writeLen};
 
                 ssize_t written =
                     process_vm_writev(m_session->pid, &local, 1, &remote, 1, 0);
 
-                if (written == 1) {
+                if (written == static_cast<ssize_t>(writeLen)) {
                     writeCount++;
-                    ui::MessagePrinter::info(std::format(
-                        "Written 0x{:02x} to 0x{:016x}", byte, addr));
+                    if (writeLen == 1) {
+                        ui::MessagePrinter::info(
+                            std::format("Written 0x{:02x} to 0x{:016x}",
+                                        static_cast<unsigned>(buf[0]), addr));
+                    } else {
+                        ui::MessagePrinter::info(
+                            std::format("Written {}B value 0x{:x} to 0x{:016x}",
+                                        writeLen, value, addr));
+                    }
                 } else {
-                    ui::MessagePrinter::warn(
-                        std::format("Failed to write to 0x{:016x}", addr));
+                    ui::MessagePrinter::warn(std::format(
+                        "Failed to write ({}B) to 0x{:016x}", writeLen, addr));
                 }
 
                 if (targetIndex) {
-                    break;  // 只写一个
+                    // 只写一个目标
+                    break;
                 }
+
                 currentIndex++;
             }
+
             if (targetIndex && writeCount > 0) {
                 break;
             }

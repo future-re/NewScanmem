@@ -24,6 +24,7 @@ import core.scanner;
 import scan.engine;
 import scan.types;
 import value;
+import cli.commands.list; // 为自动执行 list 引入 ListCommand
 
 namespace {
 
@@ -376,6 +377,8 @@ class ScanCommand : public Command {
         }
         ui::MessagePrinter::info(
             std::format("Current match count: {}", scanner->getMatchCount()));
+        ListCommand listCmd(*m_session);
+        (void)listCmd.execute({});
         return CommandResult{.success = true, .message = ""};
     }
 
