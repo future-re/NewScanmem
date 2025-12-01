@@ -276,5 +276,46 @@ export {
                 swath.rangeMarks.erase(riter.begin(), swath.rangeMarks.end());
             }
         }
+
+        /*
+         * getRawBytesAt(addr, len, out)
+         *
+         * Try to assemble a contiguous slice of historical bytes starting at
+         * target process address `addr` with length `len`. On success, writes
+         * bytes into `out` and returns true.
+         */
+        [[nodiscard]] auto getRawBytesAt(void* addr, size_t len,
+                                         std::vector<uint8_t>& out) const
+            -> bool {
+            if (addr == nullptr || len == 0) {
+                return false;
+            }
+            for (const auto& swath : swaths) {
+                if (swath.firstByteInChild == nullptr || swath.data.empty()) {
+                    continue;
+                }
+                const auto* base =
+                    static_cast<const char*>(swath.firstByteInChild);
+                const auto* curr = static_cast<const char*>(addr);
+                if (curr < base) {
+                    continue;
+                }
+                const size_t OFFSET = static_cast<size_t>(curr - base);
+                if (OFFSET >= swath.data.size()) {
+                    continue;
+                }
+                const size_t REMAIN = swath.data.size() - OFFSET;
+                if (REMAIN < len) {
+                    continue;
+                }
+                // Assemble bytes
+                out.resize(len);
+                for (size_t i = 0; i < len; ++i) {
+                    out[i] = swath.data[OFFSET + i].oldValue;
+                }
+                return true;
+            }
+            return false;
+        }
     };
 }

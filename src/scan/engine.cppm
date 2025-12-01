@@ -153,16 +153,64 @@ inline void appendBytesToSwath(MatchesAndOldValuesSwath& swath,
 }
 
 // Execute scanning/matching for a single memory block
+inline auto fetchOldBytes(const MatchesAndOldValuesArray& prev, void* addr,
+                          std::size_t len, std::vector<std::uint8_t>& out)
+    -> bool {
+    if (addr == nullptr || len == 0) {
+        return false;
+    }
+    for (const auto& swathPrev : prev.swaths) {
+        if (swathPrev.firstByteInChild == nullptr || swathPrev.data.empty()) {
+            continue;
+        }
+        const auto* base =
+            static_cast<const std::uint8_t*>(swathPrev.firstByteInChild);
+        const auto* curr = static_cast<const std::uint8_t*>(addr);
+        if (curr < base) {
+            continue;
+        }
+        const std::size_t OFFSET = static_cast<std::size_t>(curr - base);
+        if (OFFSET >= swathPrev.data.size()) {
+            continue;
+        }
+        const std::size_t REMAIN = swathPrev.data.size() - OFFSET;
+        if (REMAIN < len) {
+            continue;
+        }
+        out.resize(len);
+        for (std::size_t i = 0; i < len; ++i) {
+            out[i] = swathPrev.data[OFFSET + i].oldValue;
+        }
+        return true;
+    }
+    return false;
+}
+
 inline void scanBlock(const std::uint8_t* buffer, std::size_t bytesRead,
                       std::size_t baseIndex, std::size_t step, auto routine,
                       const UserValue* userValue,
-                      MatchesAndOldValuesSwath& swath, ScanStats& stats) {
+                      MatchesAndOldValuesSwath& swath, ScanStats& stats,
+                      void* regionBlockBase,
+                      const MatchesAndOldValuesArray* previousSnapshot,
+                      bool usesOld, std::size_t oldSliceLen) {
     for (std::size_t off = 0; off < bytesRead; off += step) {
         const std::size_t MEM_LEN = bytesRead - off;
         Mem64 mem{buffer + off, MEM_LEN};
         MatchFlags saveFlags = MatchFlags::EMPTY;
-        const Value* oldValue =
-            nullptr;  // TODO: integrate old-value snapshot logic
+        const Value* oldValue = nullptr;
+        Value oldHolder;
+        std::vector<std::uint8_t> oldBytes;
+        if (usesOld && previousSnapshot != nullptr) {
+            void* addr = static_cast<void*>(
+                static_cast<std::uint8_t*>(regionBlockBase) + off);
+            if (fetchOldBytes(*previousSnapshot, addr, oldSliceLen, oldBytes)) {
+                oldHolder.setBytes(oldBytes);
+                // Allow any scalar width for numeric extraction
+                oldHolder.flags = MatchFlags::B8 | MatchFlags::B16 |
+                                  MatchFlags::B32 | MatchFlags::B64;
+                oldValue = &oldHolder;
+            }
+        }
 
         const unsigned MATCHED_LEN =
             routine(&mem, MEM_LEN, oldValue, userValue, &saveFlags);
@@ -177,7 +225,9 @@ inline void scanBlock(const std::uint8_t* buffer, std::size_t bytesRead,
 // Handle scanning for a single memory region
 inline auto scanRegion(const Region& region, ProcMemReader& reader,
                        const ScanOptions& opts, auto routine,
-                       const UserValue* userValue, ScanStats& stats)
+                       const UserValue* userValue, ScanStats& stats,
+                       const MatchesAndOldValuesArray* previousSnapshot,
+                       bool usesOld, std::size_t oldSliceLen)
     -> std::optional<MatchesAndOldValuesSwath> {
     if (!region.isReadable() || region.size == 0) {
         return std::nullopt;
@@ -210,7 +260,8 @@ inline auto scanRegion(const Region& region, ProcMemReader& reader,
         const std::size_t BASE_INDEX = swath.data.size();
         appendBytesToSwath(swath, buffer.data(), BYTES_READ, baseAddr);
         scanBlock(buffer.data(), BYTES_READ, BASE_INDEX, STEP, routine,
-                  userValue, swath, stats);
+                  userValue, swath, stats, baseAddr, previousSnapshot, usesOld,
+                  oldSliceLen);
 
         stats.bytesScanned += BYTES_READ;
         regionOffset += BYTES_READ;
@@ -219,9 +270,34 @@ inline auto scanRegion(const Region& region, ProcMemReader& reader,
     return swath.data.empty() ? std::nullopt : std::make_optional(swath);
 }
 
-export [[nodiscard]] inline auto runScan(pid_t pid, const ScanOptions& opts,
-                                         const UserValue* userValue,
-                                         MatchesAndOldValuesArray& out)
+// Helper: minimal bytes needed for a type (for old-value window sizing)
+inline auto bytesNeededForType(ScanDataType dataType) -> std::size_t {
+    switch (dataType) {
+        case ScanDataType::INTEGER8:
+            return 1;
+        case ScanDataType::INTEGER16:
+            return 2;
+        case ScanDataType::INTEGER32:
+        case ScanDataType::FLOAT32:
+            return 4;
+        case ScanDataType::INTEGER64:
+        case ScanDataType::FLOAT64:
+            return 8;
+        case ScanDataType::ANYINTEGER:
+        case ScanDataType::ANYFLOAT:
+        case ScanDataType::ANYNUMBER:
+            return 8;  // max scalar width
+        case ScanDataType::BYTEARRAY:
+        case ScanDataType::STRING:
+            return 64;  // heuristic window
+    }
+    return 8;
+}
+
+inline auto runScanInternal(pid_t pid, const ScanOptions& opts,
+                            const UserValue* userValue,
+                            MatchesAndOldValuesArray& out,
+                            const MatchesAndOldValuesArray* previousSnapshot)
     -> std::expected<ScanStats, std::string> {
     ScanStats stats{};
 
@@ -248,13 +324,37 @@ export [[nodiscard]] inline auto runScan(pid_t pid, const ScanOptions& opts,
         return std::unexpected{err.error()};
     }
 
+    const bool USES_OLD = matchUsesOldValue(opts.matchType);
+    const std::size_t OLD_SLICE = bytesNeededForType(opts.dataType);
+
     // Scan all regions
     for (const auto& region : regions) {
         if (auto swath =
-                scanRegion(region, reader, opts, routine, userValue, stats)) {
+                scanRegion(region, reader, opts, routine, userValue, stats,
+                           previousSnapshot, USES_OLD, OLD_SLICE)) {
+            // If MATCH uses old value and we have previous snapshot, we will
+            // still record bytes below; matching within scanBlock already
+            // occurred with provided old value on a per-offset basis.
             out.addSwath(*swath);
         }
     }
 
     return stats;
+}
+
+// Backward compatible API: no previous snapshot
+export [[nodiscard]] inline auto runScan(pid_t pid, const ScanOptions& opts,
+                                         const UserValue* userValue,
+                                         MatchesAndOldValuesArray& out)
+    -> std::expected<ScanStats, std::string> {
+    return runScanInternal(pid, opts, userValue, out, nullptr);
+}
+
+// New API: with previous snapshot for diff-based matches
+export [[nodiscard]] inline auto runScanWithPrevious(
+    pid_t pid, const ScanOptions& opts, const UserValue* userValue,
+    MatchesAndOldValuesArray& out,
+    const MatchesAndOldValuesArray& previousSnapshot)
+    -> std::expected<ScanStats, std::string> {
+    return runScanInternal(pid, opts, userValue, out, &previousSnapshot);
 }

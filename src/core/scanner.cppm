@@ -65,7 +65,7 @@ export class Scanner {
                                    const UserValue* value = nullptr,
                                    bool saveToHistory = false)
         -> std::expected<ScanStats, std::string> {
-        // Full scan mode: clear previous active matches
+        // Full scan mode: clear previous active matches (snapshot refresh)
         m_matches.swaths.clear();
         auto result = runScan(m_pid, opts, value, m_matches);
         if (!result) {
@@ -86,6 +86,21 @@ export class Scanner {
         }
 
         return *result;
+    }
+
+    /**
+     * @brief Default workflow: first call does full scan; subsequent calls
+     *        do filtered scan on existing matches. This matches the common UX
+     *        expectation of "初次全量，后续按条件缩小"。
+     */
+    [[nodiscard]] auto scan(const ScanOptions& opts,
+                            const UserValue* value = nullptr,
+                            bool saveToHistory = false)
+        -> std::expected<ScanStats, std::string> {
+        if (!hasMatches()) {
+            return performScan(opts, value, saveToHistory);
+        }
+        return performFilteredScan(opts, value, saveToHistory);
     }
 
     /**
@@ -123,7 +138,7 @@ export class Scanner {
         std::vector<std::uint8_t> buffer(SLICE_SIZE);
         ScanStats stats{};
         for (auto& swath : m_matches.swaths) {
-            narrowSwath(swath, routine, value, reader, buffer, stats);
+            narrowSwath(swath, routine, value, reader, buffer, stats, opts);
         }
         pruneEmptySwaths();
         if (saveToHistory) {
@@ -269,8 +284,8 @@ export class Scanner {
     }
     static auto narrowSwath(MatchesAndOldValuesSwath& swath, auto& routine,
                             const UserValue* value, ProcMemReader& reader,
-                            std::vector<std::uint8_t>& buffer, ScanStats& stats)
-        -> void {
+                            std::vector<std::uint8_t>& buffer, ScanStats& stats,
+                            const ScanOptions& opts) -> void {
         auto* base = static_cast<std::uint8_t*>(swath.firstByteInChild);
         for (std::size_t i = 0; i < swath.data.size(); ++i) {
             auto& cell = swath.data[i];
@@ -286,6 +301,22 @@ export class Scanner {
             Mem64 mem{buffer.data(), *readExp};
             MatchFlags newFlags = MatchFlags::EMPTY;
             const Value* oldValuePtr = nullptr;
+            Value oldValueHolder;
+            // If this match type relies on old value, assemble old bytes from
+            // swath
+            if (matchUsesOldValue(opts.matchType)) {
+                const std::size_t NEED = bytesNeededForType(opts.dataType);
+                const std::size_t REM = swath.data.size() - i;
+                if (REM >= NEED) {
+                    oldValueHolder.bytes.resize(NEED);
+                    for (std::size_t k = 0; k < NEED; ++k) {
+                        oldValueHolder.bytes[k] = swath.data[i + k].oldValue;
+                    }
+                    oldValueHolder.flags = MatchFlags::B8 | MatchFlags::B16 |
+                                           MatchFlags::B32 | MatchFlags::B64;
+                    oldValuePtr = &oldValueHolder;
+                }
+            }
             const unsigned MATCHED_LEN =
                 routine(&mem, *readExp, oldValuePtr, value, &newFlags);
             if (MATCHED_LEN > 0) {
