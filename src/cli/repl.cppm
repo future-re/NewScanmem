@@ -6,9 +6,11 @@
 module;
 
 #include <expected>
+#include <functional>
 #include <memory>
 #include <string>
 #include <string_view>
+#include <utility>
 #include <vector>
 
 export module cli.repl;
@@ -31,8 +33,11 @@ class REPL {
      * @param prompt Prompt string to display
      */
     explicit REPL(std::shared_ptr<ui::UserInterface> userInterface,
-                  std::string_view prompt = "> ")
-        : m_ui(std::move(userInterface)), m_prompt(prompt) {}
+                  std::string prompt = "> ",
+                  std::function<std::string()> promptBuilder = {})
+        : m_ui(std::move(userInterface)),
+          m_prompt(std::move(prompt)),
+          m_promptBuilder(std::move(promptBuilder)) {}
 
     /**
      * @brief Start the REPL loop
@@ -50,7 +55,9 @@ class REPL {
 
         while (true) {
             // Read command
-            auto lineResult = m_ui->getLine(m_prompt);
+            const auto CURRENT_PROMPT =
+                m_promptBuilder ? m_promptBuilder() : m_prompt;
+            auto lineResult = m_ui->getLine(CURRENT_PROMPT);
             if (!lineResult) {
                 // EOF or error
                 break;
@@ -102,6 +109,10 @@ class REPL {
      */
     auto setPrompt(std::string_view prompt) -> void { m_prompt = prompt; }
 
+    auto setPromptBuilder(std::function<std::string()> builder) -> void {
+        m_promptBuilder = std::move(builder);
+    }
+
     /**
      * @brief Get the current prompt string
      * @return Current prompt
@@ -142,6 +153,7 @@ class REPL {
 
     std::shared_ptr<ui::UserInterface> m_ui;
     std::string m_prompt;
+    std::function<std::string()> m_promptBuilder;
 };
 
 }  // namespace cli

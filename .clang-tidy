@@ -4,12 +4,15 @@ Checks: >
   -*,
   modernize-*,
   cppcoreguidelines-*,
-  readability-*,
+  readability-*,-readability-redundant-declaration,
   readability-identifier-naming,
   -cppcoreguidelines-avoid-magic-numbers,
   -readability-magic-numbers,
   -cppcoreguidelines-pro-bounds-pointer-arithmetic,
   -llvmlibc-restrict-system-libc-headers
+
+# Only analyze project sources; exclude build outputs and third-party deps
+HeaderFilterRegex: '^(?!.*(/build/|/_deps/)).*'
 
 CheckOptions:
   - key: readability-identifier-naming.ClassCase

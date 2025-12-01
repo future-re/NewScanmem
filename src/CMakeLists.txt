@@ -28,9 +28,15 @@ set(MODULE_SOURCES
     # CLI command system
     cli/command.cppm
     cli/repl.cppm
+    cli/session.cppm
+    cli/app_config.cppm
+    cli/app.cppm
     cli/commands/help.cppm
     cli/commands/quit.cppm
     cli/commands/pid.cppm
+    cli/commands/scan.cppm
+    cli/commands/reset.cppm
+    cli/commands/count.cppm
     
     # Core abstraction layer
     core/config.cppm

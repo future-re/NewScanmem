@@ -16,6 +16,7 @@ module;
 export module cli.commands.pid;
 
 import cli.command;
+import cli.session;
 import ui.show_message;
 
 export namespace cli::commands {
@@ -26,7 +27,7 @@ export namespace cli::commands {
  */
 class PidCommand : public Command {
    public:
-    explicit PidCommand(pid_t& targetPid) : m_targetPid(targetPid) {}
+    explicit PidCommand(SessionState& session) : m_session(&session) {}
 
     [[nodiscard]] auto getName() const -> std::string_view override {
         return "pid";
@@ -77,8 +78,13 @@ class PidCommand : public Command {
                                    " does not exist");
         }
 
-        // Set target process
-        m_targetPid = pid;
+        if (m_session == nullptr) {
+            return std::unexpected("Session state unavailable");
+        }
+
+        // Set target process and reset scanner
+        m_session->pid = pid;
+        m_session->scanner.reset();
 
         ui::MessagePrinter::success("Successfully set target process to " +
                                     std::to_string(pid));
@@ -87,8 +93,7 @@ class PidCommand : public Command {
     }
 
    private:
-    // NOLINTNEXTLINE(cppcoreguidelines-avoid-const-or-ref-data-members)
-    pid_t& m_targetPid;
+    SessionState* m_session;
 };
 
 }  // namespace cli::commands

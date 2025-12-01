@@ -5,6 +5,7 @@
 
 module;
 
+#include <cctype>
 #include <expected>
 #include <memory>
 #include <string>
@@ -32,6 +33,11 @@ struct CommandResult {
  */
 class Command {
    public:
+    Command() = default;
+    Command(const Command&) = delete;
+    auto operator=(const Command&) -> Command& = delete;
+    Command(Command&&) noexcept = default;
+    auto operator=(Command&&) noexcept -> Command& = default;
     virtual ~Command() = default;
 
     /**
@@ -185,19 +191,32 @@ class CommandRegistry {
     std::vector<std::string> tokens;
     std::string current;
     bool inQuotes = false;
+    char quoteChar = '\0';
 
     for (char chr : line) {
         if (chr == '"' || chr == '\'') {
-            inQuotes = !inQuotes;
-        } else if ((std::isspace(static_cast<unsigned char>(chr)) != 0) &&
-                   !inQuotes) {
+            if (!inQuotes) {
+                inQuotes = true;
+                quoteChar = chr;
+                continue;
+            }
+
+            if (quoteChar == chr) {
+                inQuotes = false;
+                quoteChar = '\0';
+                continue;
+            }
+        }
+
+        if (!inQuotes && (std::isspace(static_cast<unsigned char>(chr)) != 0)) {
             if (!current.empty()) {
                 tokens.push_back(current);
                 current.clear();
             }
-        } else {
-            current += chr;
+            continue;
         }
+
+        current += chr;
     }
 
     if (!current.empty()) {
