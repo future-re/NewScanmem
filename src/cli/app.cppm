@@ -8,6 +8,7 @@ module;
 #include <memory>
 #include <string>
 #include <string_view>
+#include <vector>
 
 export module cli.app;
 
@@ -62,6 +63,14 @@ class Application {
 
         m_ui->printInfo("Type 'help' for available commands.");
 
+        // 设置命令补全回调
+        if (auto* consoleUI = dynamic_cast<ui::ConsoleUI*>(m_ui.get())) {
+            consoleUI->setCompletionCallback(
+                [](std::string_view prefix) -> std::vector<std::string> {
+                    return getCommandCompletions(prefix);
+                });
+        }
+
         // Execute initial commands if present
         if (m_config.initialCommands) {
             // TODO: execute initial commands via REPL or direct dispatch
@@ -73,6 +82,38 @@ class Application {
     }
 
    private:
+    /**
+     * @brief Get command completions for a given prefix
+     * @param prefix Input prefix to complete
+     * @return Vector of matching command names
+     */
+    static auto getCommandCompletions(std::string_view prefix)
+        -> std::vector<std::string> {
+        auto& registry = CommandRegistry::instance();
+        auto allCommands = registry.getAllCommands();
+
+        std::vector<std::string> candidates;
+
+        for (auto* cmd : allCommands) {
+            std::string cmdName{cmd->getName()};
+
+            // 检查命令名是否匹配前缀
+            if (cmdName.starts_with(prefix)) {
+                candidates.push_back(cmdName);
+            }
+
+            // 检查别名
+            for (auto alias : cmd->getAliases()) {
+                std::string aliasStr{alias};
+                if (aliasStr.starts_with(prefix)) {
+                    candidates.push_back(aliasStr);
+                }
+            }
+        }
+
+        return candidates;
+    }
+
     auto registerCommands() -> void {
         auto& registry = CommandRegistry::instance();
         registry.clear();

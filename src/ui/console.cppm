@@ -10,10 +10,12 @@ module;
 
 #include <array>
 #include <cstdio>
+#include <functional>
 #include <iostream>
 #include <optional>
 #include <string>
 #include <string_view>
+#include <vector>
 
 export module ui.console;
 
@@ -21,6 +23,14 @@ import ui.interface;    // UserInterface, MessageLevel
 import ui.show_message; // MessagePrinter, MessageType
 
 export namespace ui {
+
+/**
+ * @brief Completion callback function type
+ * @param prefix Current input prefix to complete
+ * @return Vector of possible completions
+ */
+using CompletionCallback =
+    std::function<std::vector<std::string>(std::string_view)>;
 
 /**
  * @class ConsoleUI
@@ -179,6 +189,14 @@ class ConsoleUI : public UserInterface {
      */
     [[nodiscard]] auto getPrinter() -> MessagePrinter& { return m_printer; }
 
+    /**
+     * @brief Set completion callback for tab completion
+     * @param callback Function to call for getting completions
+     */
+    auto setCompletionCallback(CompletionCallback callback) -> void {
+        m_completionCallback = std::move(callback);
+    }
+
    private:
     // RAII guard for terminal raw mode
     struct RawMode {
@@ -217,6 +235,7 @@ class ConsoleUI : public UserInterface {
         MOVE_RIGHT,
         EOF_SIGNAL,
         INSERT_CHAR,
+        TAB_COMPLETE,
         IGNORE
     };
 
@@ -230,26 +249,30 @@ class ConsoleUI : public UserInterface {
         ssize_t readResult = ::read(STDIN_FILENO, &byte, 1);
 
         if (readResult <= 0) {
-            return {.action=KeyAction::EOF_SIGNAL, .character=0};
+            return {.action = KeyAction::EOF_SIGNAL, .character = 0};
         }
 
         if (byte == '\n' || byte == '\r') {
-            return {.action=KeyAction::ENTER, .character=0};
+            return {.action = KeyAction::ENTER, .character = 0};
         }
         if (byte == 0x7f || byte == '\b') {
-            return {.action=KeyAction::BACKSPACE, .character=0};
+            return {.action = KeyAction::BACKSPACE, .character = 0};
+        }
+        if (byte == '\t') {  // Tab
+            return {.action = KeyAction::TAB_COMPLETE, .character = 0};
         }
         if (byte == 0x04) {  // Ctrl-D
-            return {.action=KeyAction::EOF_SIGNAL, .character=0};
+            return {.action = KeyAction::EOF_SIGNAL, .character = 0};
         }
         if (byte == '\x1b') {
             return readEscapeSequence();
         }
         if (byte >= 0x20 && byte != 0x7f) {
-            return {.action=KeyAction::INSERT_CHAR, .character=static_cast<char>(byte)};
+            return {.action = KeyAction::INSERT_CHAR,
+                    .character = static_cast<char>(byte)};
         }
 
-        return {.action=KeyAction::IGNORE, .character=0};
+        return {.action = KeyAction::IGNORE, .character = 0};
     }
 
     static auto readEscapeSequence() -> KeyEvent {
@@ -259,13 +282,13 @@ class ConsoleUI : public UserInterface {
 
         if (first == 1 && second == 1 && seq[0] == '[') {
             if (seq[1] == 'C') {
-                return {.action=KeyAction::MOVE_RIGHT, .character=0};
+                return {.action = KeyAction::MOVE_RIGHT, .character = 0};
             }
             if (seq[1] == 'D') {
-                return {.action=KeyAction::MOVE_LEFT, .character=0};
+                return {.action = KeyAction::MOVE_LEFT, .character = 0};
             }
         }
-        return {.action=KeyAction::IGNORE, .character=0};
+        return {.action = KeyAction::IGNORE, .character = 0};
     }
 
     static auto drawLine(std::string_view prompt, const std::string& buffer,
@@ -292,7 +315,36 @@ class ConsoleUI : public UserInterface {
         ++cursor;
     }
 
-    static auto readInteractive(std::string_view prompt)
+    auto handleCompletion(std::string& buffer, std::size_t& cursor,
+                          std::string_view prompt) -> void {
+        if (!m_completionCallback) {
+            return;
+        }
+
+        // 获取光标前的文本作为补全前缀
+        std::string prefix = buffer.substr(0, cursor);
+        auto candidates = m_completionCallback(prefix);
+
+        if (candidates.empty()) {
+            return;  // 无补全候选
+        }
+
+        if (candidates.size() == 1) {
+            // 单个候选：自动补全
+            buffer = candidates[0];
+            cursor = buffer.size();
+        } else {
+            // 多个候选：显示列表
+            std::cout << "\n";
+            for (const auto& candidate : candidates) {
+                std::cout << "  " << candidate << "\n";
+            }
+            // 重新绘制提示符和当前输入
+            drawLine(prompt, buffer, cursor);
+        }
+    }
+
+    auto readInteractive(std::string_view prompt)
         -> std::optional<std::string> {
         RawMode raw;
         if (!raw.enable()) {
@@ -328,6 +380,9 @@ class ConsoleUI : public UserInterface {
             if (event.action == KeyAction::INSERT_CHAR) {
                 applyInsert(buffer, cursor, event.character);
             }
+            if (event.action == KeyAction::TAB_COMPLETE) {
+                handleCompletion(buffer, cursor, prompt);
+            }
             if (event.action == KeyAction::EOF_SIGNAL) {
                 if (buffer.empty()) {
                     return std::nullopt;
@@ -341,6 +396,7 @@ class ConsoleUI : public UserInterface {
 
     MessagePrinter m_printer;
     bool m_backendMode = false;
+    CompletionCallback m_completionCallback;
 };
 
 /**
