@@ -14,9 +14,9 @@ add_test(
 )
 set_tests_properties(Integration_CLI_Help PROPERTIES LABELS "integration")
 
-# 2) 目标进程能正常运行一段时间
+# 2) 目标进程能正常运行一段时间（1秒快速测试）
 add_test(
     NAME Integration_Target_Runs
     COMMAND $<TARGET_FILE:target_fixed_int> --duration-ms 1000
 )
-set_tests_properties(Integration_Target_Runs PROPERTIES LABELS "integration" TIMEOUT 10)
+set_tests_properties(Integration_Target_Runs PROPERTIES LABELS "integration" TIMEOUT 5)

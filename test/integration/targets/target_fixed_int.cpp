@@ -21,6 +21,15 @@ auto main(int argc, char** argv) -> int {
     // 可扫描的固定值（保持稳定，便于外部扫描定位）
     static volatile std::uint64_t kMarker = 1122334455667788ULL;
 
+    // 解析运行时长参数
+    int durationMs = 5000;  // 默认5秒
+    for (int i = 1; i < argc; ++i) {
+        if (std::strcmp(argv[i], "--duration-ms") == 0 && i + 1 < argc) {
+            durationMs = std::atoi(argv[i + 1]);
+            break;
+        }
+    }
+
     // 安装信号处理，便于中断退出
     std::signal(SIGINT, HandleSignal);
     std::signal(SIGTERM, HandleSignal);
@@ -32,10 +41,13 @@ auto main(int argc, char** argv) -> int {
 #endif
     std::cout << std::hex << "MARKER: 0x" << kMarker << std::dec << "\n";
 
-    while (gRunning.load()) {
+    auto startTime = std::chrono::steady_clock::now();
+    auto endTime = startTime + std::chrono::milliseconds(durationMs);
+
+    while (gRunning.load() && std::chrono::steady_clock::now() < endTime) {
         std::cout << std::hex << "MARKER: 0x" << kMarker << std::dec
                   << std::endl;
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
 
     std::cout << "Target finished." << std::endl;
