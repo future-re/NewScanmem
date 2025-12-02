@@ -53,6 +53,7 @@ set(MODULE_SOURCES
     core/process_checker.cppm
     core/region_classifier.cppm
     core/memory_writer.cppm
+    core/match.cppm
     core/match_formatter.cppm
     
     # Core modules

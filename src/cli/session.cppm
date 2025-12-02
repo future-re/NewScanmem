@@ -12,7 +12,7 @@ module;
 export module cli.session;
 
 import core.scanner;
-
+import utils.endianness;
 using core::Scanner;
 
 export namespace cli {
@@ -20,6 +20,9 @@ export namespace cli {
 struct SessionState {
     pid_t pid{0};
     std::unique_ptr<Scanner> scanner;
+    utils::Endianness endianness{(std::endian::native == std::endian::little
+                                      ? utils::Endianness::LITTLE
+                                      : utils::Endianness::BIG)};
 
     auto ensureScanner() -> Scanner* {
         if (pid <= 0) {
@@ -35,6 +38,10 @@ struct SessionState {
         if (scanner) {
             scanner->reset();
         }
+    }
+    auto setEndianness(utils::Endianness mode) -> void {
+        endianness = mode;
+        // 端序修改后，应重新建立扫描基线，由上层命令触发
     }
 };
 

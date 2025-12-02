@@ -18,11 +18,14 @@ import cli.session;
 import cli.app_config;
 import ui.show_message;
 
+// 确保显式使用 cli 命名空间
+using cli::AppConfig;
+
 export namespace cli::commands {
 
 class SetCommand : public Command {
    public:
-    SetCommand(cli::SessionState& session, cli::AppConfig& config)
+    SetCommand(cli::SessionState& session, AppConfig& config)
         : m_session(&session), m_config(&config) {}
 
     [[nodiscard]] auto getName() const -> std::string_view override {
@@ -58,6 +61,18 @@ class SetCommand : public Command {
             return std::unexpected("Internal: session/config unavailable");
         }
         const auto& key = args[0];
+
+        // Lambda to handle boolean configuration options
+        auto handleBooleanOption =
+            [&](const std::string& value, bool& configField,
+                const std::string& optionName) -> CommandResult {
+            bool isEnabled = (value == "on" || value == "1" || value == "true");
+            configField = isEnabled;
+            ui::MessagePrinter{}.info("{}: {}", optionName,
+                                      isEnabled ? "ON" : "OFF");
+            return CommandResult{.success = true, .message = ""};
+        };
+
         if (key == "pid") {
             auto pidStr = args[1];
             auto newPid = static_cast<pid_t>(std::atoi(pidStr.c_str()));
@@ -71,34 +86,20 @@ class SetCommand : public Command {
             return CommandResult{.success = true, .message = ""};
         }
         if (key == "debug") {
-            auto val = args[1];
-            bool debugOn = (val == "on" || val == "1" || val == "true");
-            m_config->debugMode = debugOn;
-            ui::MessagePrinter{}.info("Debug mode: {}", debugOn ? "ON" : "OFF");
-            return CommandResult{.success = true, .message = ""};
+            return handleBooleanOption(args[1], m_config->debugMode,
+                                       "Debug mode");
         }
         if (key == "color") {
-            auto val = args[1];
-            bool colorOn = (val == "on" || val == "1" || val == "true");
-            m_config->colorMode = colorOn;
-            ui::MessagePrinter{}.info("Color mode: {}", colorOn ? "ON" : "OFF");
-            return CommandResult{.success = true, .message = ""};
+            return handleBooleanOption(args[1], m_config->colorMode,
+                                       "Color mode");
         }
         if (key == "autoBaseline") {
-            auto val = args[1];
-            bool autoOn = (val == "on" || val == "1" || val == "true");
-            m_config->autoBaseline = autoOn;
-            ui::MessagePrinter{}.info("Auto baseline: {}",
-                                      autoOn ? "ON" : "OFF");
-            return CommandResult{.success = true, .message = ""};
+            return handleBooleanOption(args[1], m_config->autoBaseline,
+                                       "Auto baseline");
         }
         if (key == "exitOnError") {
-            auto val = args[1];
-            bool exitOnError = (val == "on" || val == "1" || val == "true");
-            m_config->exitOnError = exitOnError;
-            ui::MessagePrinter{}.info("Exit on error: {}",
-                                      exitOnError ? "ON" : "OFF");
-            return CommandResult{.success = true, .message = ""};
+            return handleBooleanOption(args[1], m_config->exitOnError,
+                                       "Exit on error");
         }
         if (key == "init") {
             // 合并剩余参数作为初始命令串
@@ -119,7 +120,7 @@ class SetCommand : public Command {
 
    private:
     cli::SessionState* m_session;
-    cli::AppConfig* m_config;
+    AppConfig* m_config;
 };
 
 }  // namespace cli::commands

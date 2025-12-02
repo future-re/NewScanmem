@@ -1,124 +1,45 @@
 /**
  * @file match_formatter.cppm
- * @brief Match result formatting with index and region classification
+ * @brief Match result formatting and display
  */
 
 module;
 
-#include <bit>
-#include <cstdint>
-#include <expected>
 #include <format>
-#include <functional>
-#include <optional>
-#include <string>
 #include <vector>
 
 export module core.match_formatter;
 
-import core.scanner;
-import core.region_classifier;
-import value.flags;
+import core.match;
 import ui.show_message;
 
 export namespace core {
 
 /**
- * @struct MatchEntry
- * @brief Single match entry with metadata
- */
-struct MatchEntry {
-    size_t index;            // 匹配索引
-    std::uintptr_t address;  // 内存地址
-    std::uint8_t value;      // 当前值（单字节）
-    std::string region;      // 区域分类 (heap/stack/code)
-};
-
-/**
  * @struct FormatOptions
- * @brief Options for match formatting
+ * @brief Options for match formatting and display
  */
 struct FormatOptions {
-    size_t limit = 20;       // 显示的最大匹配数
-    bool showRegion = true;  // 是否显示区域信息
-    bool showIndex = true;   // 是否显示索引
+    bool showRegion = true;         // 是否显示区域信息
+    bool showIndex = true;          // 是否显示索引
+    bool bigEndianDisplay = false;  // 是否按大端显示数值（与读取端序一致）
 };
 
 /**
  * @class MatchFormatter
- * @brief Formats match results with index and region classification
+ * @brief Formats and displays match entries
  */
 class MatchFormatter {
    public:
     /**
-     * @brief Create formatter with optional region classifier
-     * @param classifier Optional region classifier for address categorization
-     */
-    explicit MatchFormatter(
-        std::optional<RegionClassifier> classifier = std::nullopt)
-        : m_classifier(std::move(classifier)) {}
-
-    /**
-     * @brief Format and display matches
-     * @param scanner Scanner with match results
+     * @brief Format and display match entries
+     * @param entries Match entries to display
+     * @param totalCount Total number of matches
      * @param options Formatting options
-     * @return Total match count
      */
-    [[nodiscard]] auto format(const Scanner& scanner,
-                              const FormatOptions& options = {}) const
-        -> size_t {
-        const auto& matches = scanner.getMatches();
-
-        size_t currentIndex = 0;
-        size_t displayCount = 0;
-        size_t totalCount = 0;
-
-        std::vector<MatchEntry> entries;
-        entries.reserve(options.limit);
-
-        // Collect match entries
-        for (const auto& swath : matches.swaths) {
-            auto* base = static_cast<std::uint8_t*>(swath.firstByteInChild);
-            if (base == nullptr) {
-                continue;
-            }
-
-            for (size_t i = 0; i < swath.data.size(); ++i) {
-                const auto& cell = swath.data[i];
-                if (cell.matchInfo == MatchFlags::EMPTY) {
-                    continue;
-                }
-
-                totalCount++;
-
-                if (displayCount < options.limit) {
-                    auto addr = std::bit_cast<std::uintptr_t>(base + i);
-                    std::string region = "unk";
-                    if (m_classifier && options.showRegion) {
-                        region = m_classifier->classify(addr);
-                    }
-
-                    entries.push_back(MatchEntry{.index = currentIndex,
-                                                 .address = addr,
-                                                 .value = cell.oldValue,
-                                                 .region = region});
-
-                    displayCount++;
-                }
-
-                currentIndex++;
-            }
-
-            if (displayCount >= options.limit) {
-                // 继续计数但不收集更多条目
-                for (size_t i = 0; i < swath.data.size(); ++i) {
-                    if (swath.data[i].matchInfo != MatchFlags::EMPTY) {
-                        totalCount++;
-                    }
-                }
-            }
-        }
-
+    static auto display(const std::vector<MatchEntry>& entries,
+                        size_t totalCount, const FormatOptions& options = {})
+        -> void {
         // Print header
         if (options.showIndex && options.showRegion) {
             ui::MessagePrinter::info(
@@ -141,38 +62,44 @@ class MatchFormatter {
             if (options.showIndex && options.showRegion) {
                 ui::MessagePrinter::info(std::format(
                     "{:<6} 0x{:016x}  0x{:02x}      {}", entry.index,
-                    entry.address, static_cast<unsigned>(entry.value),
+                    entry.address,
+                    static_cast<unsigned>(options.bigEndianDisplay
+                                              ? std::byteswap(entry.value)
+                                              : entry.value),
                     entry.region));
             } else if (options.showIndex) {
                 ui::MessagePrinter::info(std::format(
                     "{:<6} 0x{:016x}  0x{:02x}", entry.index, entry.address,
-                    static_cast<unsigned>(entry.value)));
+                    static_cast<unsigned>(options.bigEndianDisplay
+                                              ? std::byteswap(entry.value)
+                                              : entry.value)));
             } else if (options.showRegion) {
                 ui::MessagePrinter::info(std::format(
                     "0x{:016x}  0x{:02x}      {}", entry.address,
-                    static_cast<unsigned>(entry.value), entry.region));
+                    static_cast<unsigned>(options.bigEndianDisplay
+                                              ? std::byteswap(entry.value)
+                                              : entry.value),
+                    entry.region));
             } else {
-                ui::MessagePrinter::info(
-                    std::format("0x{:016x}  0x{:02x}", entry.address,
-                                static_cast<unsigned>(entry.value)));
+                ui::MessagePrinter::info(std::format(
+                    "0x{:016x}  0x{:02x}", entry.address,
+                    static_cast<unsigned>(options.bigEndianDisplay
+                                              ? std::byteswap(entry.value)
+                                              : entry.value)));
             }
         }
 
         // Print summary
-        if (totalCount > options.limit) {
+        size_t displayCount = entries.size();
+        if (totalCount > displayCount) {
             ui::MessagePrinter::info(
                 std::format("\n... and {} more matches (total: {})",
-                            totalCount - options.limit, totalCount));
+                            totalCount - displayCount, totalCount));
         }
 
         ui::MessagePrinter::info(std::format("\nShowing {} of {} matches",
                                              displayCount, totalCount));
-
-        return totalCount;
     }
-
-   private:
-    std::optional<RegionClassifier> m_classifier;
 };
 
 }  // namespace core

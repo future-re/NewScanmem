@@ -5,11 +5,8 @@
 
 module;
 
-#include <algorithm>
-#include <bit>
-#include <cstdint>
 #include <expected>
-#include <format>
+#include <optional>
 #include <string>
 #include <string_view>
 #include <vector>
@@ -21,7 +18,9 @@ import cli.session;
 import ui.show_message;
 import core.scanner;
 import core.region_classifier;
+import core.match;
 import core.match_formatter;
+import utils.endianness;
 
 export namespace cli::commands {
 
@@ -66,13 +65,20 @@ class ListCommand : public Command {
             classifier = std::move(*classifierRes);
         }
 
-        // 使用格式化器显示结果
-        core::MatchFormatter formatter{std::move(classifier)};
-        core::FormatOptions options{
-            .limit = limit, .showRegion = true, .showIndex = true};
+        // 收集匹配数据
+        core::MatchCollector collector{std::move(classifier)};
+        core::MatchCollectionOptions collectOptions{.limit = limit,
+                                                    .collectRegion = true};
 
         auto* scanner = m_session->scanner.get();
-        (void)formatter.format(*scanner, options);
+        auto [entries, totalCount] =
+            collector.collect(*scanner, collectOptions);
+
+        // 格式化显示
+        core::FormatOptions formatOptions{.showRegion = true,
+                          .showIndex = true,
+                          .bigEndianDisplay = (m_session->endianness == utils::Endianness::BIG)};
+        core::MatchFormatter::display(entries, totalCount, formatOptions);
 
         return CommandResult{.success = true, .message = ""};
     }

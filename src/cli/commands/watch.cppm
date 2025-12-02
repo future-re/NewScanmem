@@ -58,15 +58,15 @@ class WatchCommand : public Command {
         std::uintptr_t addr = 0;
 
         // 支持 0x 前缀
-        std::string_view sv = addrStr;
+        std::string_view addrStrView = addrStr;
         int base = 10;
-        if (sv.starts_with("0x") || sv.starts_with("0X")) {
-            sv.remove_prefix(2);
+        if (addrStrView.starts_with("0x") || addrStrView.starts_with("0X")) {
+            addrStrView.remove_prefix(2);
             base = 16;
         }
 
         auto result =
-            std::from_chars(sv.data(), sv.data() + sv.size(), addr, base);
+            std::from_chars(addrStrView.data(), addrStrView.data() + addrStrView.size(), addr, base);
         if (result.ec != std::errc{}) {
             return std::unexpected(std::format("Invalid address: {}", addrStr));
         }

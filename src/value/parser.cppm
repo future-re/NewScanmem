@@ -5,7 +5,6 @@
 
 module;
 
-#include <algorithm>
 #include <charconv>
 #include <cstdint>
 #include <optional>
