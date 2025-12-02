@@ -15,13 +15,12 @@ module;
 #include <functional>
 #include <optional>
 #include <string>
-#include <vector>
 
 export module core.scanner;
 
-import scan.engine;    // ScanOptions, ScanStats, runScan, ProcMemReader
+import scan.engine;    // ScanOptions, ScanStats, runScan
 import scan.types;     // ScanDataType, ScanMatchType
-import scan.factory;   // smGetScanroutine
+import scan.filter;    // filterMatches
 import core.targetmem; // MatchesAndOldValuesArray
 import value;          // UserValue
 import core.maps;      // RegionScanLevel
@@ -84,7 +83,7 @@ class Scanner {
             }
             // Copy current matches to result history
             scanResult.matches = m_matches;
-            m_results.push_back(std::move(scanResult));
+            addToHistory(std::move(scanResult));
         }
 
         return *result;
@@ -125,35 +124,23 @@ class Scanner {
             return std::unexpected(
                 "no existing matches to narrow; perform full scan first");
         }
-        auto routine = smGetScanroutine(
-            opts.dataType, opts.matchType,
-            (value != nullptr) ? value->flags : MatchFlags::EMPTY,
-            opts.reverseEndianness);
-        if (!routine) {
-            return std::unexpected("no scan routine for filtered options");
-        }
-        ProcMemReader reader{m_pid};
-        if (auto err = reader.open(); !err) {
-            return std::unexpected(err.error());
-        }
-        const std::size_t SLICE_SIZE = bytesNeededForType(opts.dataType);
-        std::vector<std::uint8_t> buffer(SLICE_SIZE);
-        ScanStats stats{};
-        for (auto& swath : m_matches.swaths) {
-            narrowSwath(swath, routine, value, reader, buffer, stats, opts);
+
+        auto statsExp = filterMatches(m_pid, opts, value, m_matches);
+        if (!statsExp) {
+            return std::unexpected(statsExp.error());
         }
         pruneEmptySwaths();
         if (saveToHistory) {
             ScanResult scanRecord;
-            scanRecord.stats = stats;
+            scanRecord.stats = *statsExp;
             scanRecord.opts = opts;
             if (value != nullptr) {
                 scanRecord.value = *value;
             }
             scanRecord.matches = m_matches;
-            m_results.push_back(std::move(scanRecord));
+            addToHistory(std::move(scanRecord));
         }
-        return stats;
+        return *statsExp;
     }
 
     /**
@@ -257,78 +244,15 @@ class Scanner {
     [[nodiscard]] auto getPid() const -> pid_t { return m_pid; }
 
    private:
+    static constexpr std::size_t MAX_HISTORY = 10;
     pid_t m_pid;
     MatchesAndOldValuesArray m_matches;  // Current/active matches
     std::deque<ScanResult> m_results;  // History of scan results (stable refs)
-    static auto bytesNeededForType(ScanDataType dataType) -> std::size_t {
-        switch (dataType) {
-            case ScanDataType::INTEGER8:
-                return 1;
-            case ScanDataType::INTEGER16:
-                return 2;
-            case ScanDataType::INTEGER32:
-            case ScanDataType::FLOAT32:
-                return 4;
-            case ScanDataType::INTEGER64:
-            case ScanDataType::FLOAT64:
-                return 8;
-            case ScanDataType::STRING:
-            case ScanDataType::BYTEARRAY:
-                return 32;
-            case ScanDataType::ANYINTEGER:
-                return 8;
-            case ScanDataType::ANYFLOAT:
-                return 8;
-            case ScanDataType::ANYNUMBER:
-                return 8;
+    auto addToHistory(ScanResult&& result) -> void {
+        if (m_results.size() >= MAX_HISTORY) {
+            m_results.pop_front();
         }
-        return 8;
-    }
-    static auto narrowSwath(MatchesAndOldValuesSwath& swath, auto& routine,
-                            const UserValue* value, ProcMemReader& reader,
-                            std::vector<std::uint8_t>& buffer, ScanStats& stats,
-                            const ScanOptions& opts) -> void {
-        auto* base = static_cast<std::uint8_t*>(swath.firstByteInChild);
-        for (std::size_t i = 0; i < swath.data.size(); ++i) {
-            auto& cell = swath.data[i];
-            if (cell.matchInfo == MatchFlags::EMPTY) {
-                continue;
-            }
-            void* addr = static_cast<void*>(base + i);
-            auto readExp = reader.read(addr, buffer.data(), buffer.size());
-            if (!readExp || *readExp == 0) {
-                cell.matchInfo = MatchFlags::EMPTY;
-                continue;
-            }
-            Mem64 mem{buffer.data(), *readExp};
-            MatchFlags newFlags = MatchFlags::EMPTY;
-            const Value* oldValuePtr = nullptr;
-            Value oldValueHolder;
-            // If this match type relies on old value, assemble old bytes from
-            // swath
-            if (matchUsesOldValue(opts.matchType)) {
-                const std::size_t NEED = bytesNeededForType(opts.dataType);
-                const std::size_t REM = swath.data.size() - i;
-                if (REM >= NEED) {
-                    oldValueHolder.bytes.resize(NEED);
-                    for (std::size_t k = 0; k < NEED; ++k) {
-                        oldValueHolder.bytes[k] = swath.data[i + k].oldValue;
-                    }
-                    oldValueHolder.flags = MatchFlags::B8 | MatchFlags::B16 |
-                                           MatchFlags::B32 | MatchFlags::B64;
-                    oldValuePtr = &oldValueHolder;
-                }
-            }
-            const unsigned MATCHED_LEN =
-                routine(&mem, *readExp, oldValuePtr, value, &newFlags);
-            if (MATCHED_LEN > 0) {
-                cell.matchInfo = newFlags;
-                stats.matches++;
-            } else {
-                cell.matchInfo = MatchFlags::EMPTY;
-            }
-            stats.bytesScanned += *readExp;
-        }
+        m_results.push_back(std::move(result));
     }
     auto pruneEmptySwaths() -> void {
         auto eraseIter = std::remove_if(

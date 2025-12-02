@@ -42,3 +42,5 @@ nav:
   - 概念:
     - '大端与小端': endianness.md
     - '命名规则': NamingConvention.md
+  - 架构设计:
+    - '并发架构分析': concurrency.md

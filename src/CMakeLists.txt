@@ -68,6 +68,7 @@ set(MODULE_SOURCES
     scan/numeric.cppm
     scan/factory.cppm
     scan/engine.cppm
+    scan/filter.cppm
     scanmem.cppm
 )
 

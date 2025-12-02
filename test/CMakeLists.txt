@@ -17,7 +17,8 @@ set(TEST_SOURCES
     value/test_scalar.cpp
     core/test_maps.cpp
     core/test_memory.cpp
-    core/test_scaner.cpp
+    core/test_scanner.cpp
+    scan/test_bytes.cpp
 )
 
 # 为每个测试源生成可执行文件并注册 gtest_discover_tests
