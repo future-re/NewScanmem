@@ -7,11 +7,25 @@ import cli.app_config;
 auto main(int argc, char* argv[]) -> int {
     cli::AppConfig config;
 
-    // 简化参数解析：只处理 -p <pid>
+    // 参数解析：支持位置参数 <pid> 以及 -p/--pid 形式
     for (int i = 1; i < argc; ++i) {
         std::string arg = argv[i];
         if ((arg == "-p" || arg == "--pid") && i + 1 < argc) {
             config.targetPid = std::atoi(argv[++i]);
+        } else if (!arg.empty() && arg[0] != '-') {
+            // 位置参数：第一个非选项参数若为数字，则认为是 pid
+            bool numeric = true;
+            for (char chDigit : arg) {
+                if (chDigit < '0' || chDigit > '9') {
+                    numeric = false;
+                    break;
+                }
+            }
+            if (numeric) {
+                config.targetPid = std::atoi(arg.c_str());
+                // 吞掉后续位置参数（若有）但继续解析其他选项
+                continue;
+            }
         } else if (arg == "-d" || arg == "--debug") {
             config.debugMode = true;
         } else if (arg == "-h" || arg == "--help") {

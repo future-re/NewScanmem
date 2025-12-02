@@ -5,6 +5,11 @@
 
 module;
 
+#include <termios.h>
+#include <unistd.h>
+
+#include <array>
+#include <cstdio>
 #include <iostream>
 #include <optional>
 #include <string>
@@ -27,8 +32,7 @@ class ConsoleUI : public UserInterface {
      * @brief Construct console UI
      * @param ctx Message context (debug, backend, color modes)
      */
-    explicit ConsoleUI(MessageContext ctx = {})
-        : m_printer(ctx) {
+    explicit ConsoleUI(MessageContext ctx = {}) : m_printer(ctx) {
         setDebugMode(ctx.debugMode);
         setBackendMode(ctx.backendMode);
     }
@@ -98,12 +102,17 @@ class ConsoleUI : public UserInterface {
             std::cout.flush();
         }
 
-        std::string line;
-        if (std::getline(std::cin, line)) {
-            return line;
+        // 非交互式终端使用标准输入
+        if (isatty(STDIN_FILENO) == 0) {
+            std::string line;
+            if (std::getline(std::cin, line)) {
+                return line;
+            }
+            return std::nullopt;
         }
 
-        return std::nullopt;  // EOF
+        // 交互式终端使用原始模式编辑
+        return readInteractive(prompt);
     }
 
     /**
@@ -171,6 +180,165 @@ class ConsoleUI : public UserInterface {
     [[nodiscard]] auto getPrinter() -> MessagePrinter& { return m_printer; }
 
    private:
+    // RAII guard for terminal raw mode
+    struct RawMode {
+        termios original{};
+        bool active{false};
+
+        RawMode() = default;
+        RawMode(const RawMode&) = delete;
+        auto operator=(const RawMode&) -> RawMode& = delete;
+        RawMode(RawMode&&) = delete;
+        auto operator=(RawMode&&) -> RawMode& = delete;
+
+        auto enable() -> bool {
+            if (tcgetattr(STDIN_FILENO, &original) == -1) {
+                return false;
+            }
+            termios raw = original;
+            raw.c_lflag &= ~(ICANON | ECHO);
+            raw.c_cc[VMIN] = 1;
+            raw.c_cc[VTIME] = 0;
+            active = (tcsetattr(STDIN_FILENO, TCSANOW, &raw) == 0);
+            return active;
+        }
+
+        ~RawMode() {
+            if (active) {
+                tcsetattr(STDIN_FILENO, TCSANOW, &original);
+            }
+        }
+    };
+
+    enum class KeyAction {
+        ENTER,
+        BACKSPACE,
+        MOVE_LEFT,
+        MOVE_RIGHT,
+        EOF_SIGNAL,
+        INSERT_CHAR,
+        IGNORE
+    };
+
+    struct KeyEvent {
+        KeyAction action{KeyAction::IGNORE};
+        char character{0};
+    };
+
+    static auto readKey() -> KeyEvent {
+        unsigned char byte = 0;
+        ssize_t readResult = ::read(STDIN_FILENO, &byte, 1);
+
+        if (readResult <= 0) {
+            return {.action=KeyAction::EOF_SIGNAL, .character=0};
+        }
+
+        if (byte == '\n' || byte == '\r') {
+            return {.action=KeyAction::ENTER, .character=0};
+        }
+        if (byte == 0x7f || byte == '\b') {
+            return {.action=KeyAction::BACKSPACE, .character=0};
+        }
+        if (byte == 0x04) {  // Ctrl-D
+            return {.action=KeyAction::EOF_SIGNAL, .character=0};
+        }
+        if (byte == '\x1b') {
+            return readEscapeSequence();
+        }
+        if (byte >= 0x20 && byte != 0x7f) {
+            return {.action=KeyAction::INSERT_CHAR, .character=static_cast<char>(byte)};
+        }
+
+        return {.action=KeyAction::IGNORE, .character=0};
+    }
+
+    static auto readEscapeSequence() -> KeyEvent {
+        std::array<unsigned char, 2> seq{0, 0};
+        ssize_t first = ::read(STDIN_FILENO, seq.data(), 1);
+        ssize_t second = ::read(STDIN_FILENO, seq.data() + 1, 1);
+
+        if (first == 1 && second == 1 && seq[0] == '[') {
+            if (seq[1] == 'C') {
+                return {.action=KeyAction::MOVE_RIGHT, .character=0};
+            }
+            if (seq[1] == 'D') {
+                return {.action=KeyAction::MOVE_LEFT, .character=0};
+            }
+        }
+        return {.action=KeyAction::IGNORE, .character=0};
+    }
+
+    static auto drawLine(std::string_view prompt, const std::string& buffer,
+                         std::size_t cursor) -> void {
+        std::cout << "\r" << prompt << buffer << "\x1b[K";
+        std::size_t backSteps = buffer.size() - cursor;
+        if (backSteps > 0) {
+            std::cout << "\x1b[" << backSteps << "D";
+        }
+        std::cout.flush();
+    }
+
+    static auto applyBackspace(std::string& buffer, std::size_t& cursor)
+        -> void {
+        if (cursor > 0) {
+            buffer.erase(cursor - 1, 1);
+            --cursor;
+        }
+    }
+
+    static auto applyInsert(std::string& buffer, std::size_t& cursor,
+                            char character) -> void {
+        buffer.insert(cursor, 1, character);
+        ++cursor;
+    }
+
+    static auto readInteractive(std::string_view prompt)
+        -> std::optional<std::string> {
+        RawMode raw;
+        if (!raw.enable()) {
+            std::string line;
+            if (std::getline(std::cin, line)) {
+                return line;
+            }
+            return std::nullopt;
+        }
+
+        std::string buffer;
+        std::size_t cursor = 0;
+        drawLine(prompt, buffer, cursor);
+
+        while (true) {
+            KeyEvent event = readKey();
+
+            if (event.action == KeyAction::ENTER) {
+                std::cout << "\r\n";
+                std::cout.flush();
+                return buffer;
+            }
+            if (event.action == KeyAction::BACKSPACE) {
+                applyBackspace(buffer, cursor);
+            }
+            if (event.action == KeyAction::MOVE_LEFT && cursor > 0) {
+                --cursor;
+            }
+            if (event.action == KeyAction::MOVE_RIGHT &&
+                cursor < buffer.size()) {
+                ++cursor;
+            }
+            if (event.action == KeyAction::INSERT_CHAR) {
+                applyInsert(buffer, cursor, event.character);
+            }
+            if (event.action == KeyAction::EOF_SIGNAL) {
+                if (buffer.empty()) {
+                    return std::nullopt;
+                }
+                return buffer;
+            }
+
+            drawLine(prompt, buffer, cursor);
+        }
+    }
+
     MessagePrinter m_printer;
     bool m_backendMode = false;
 };
