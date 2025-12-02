@@ -32,6 +32,8 @@ module;
 
 export module core.proc_mem;
 
+export namespace core {
+
 /**
  * @class ProcMemIO
  * @brief RAII wrapper for /proc/<pid>/mem file descriptor
@@ -39,7 +41,7 @@ export module core.proc_mem;
  * Manages a single fd for reading/writing target process memory.
  * Caller must handle ptrace attach/detach externally if needed.
  */
-export class ProcMemIO {
+class ProcMemIO {
    public:
     ProcMemIO() = default;
     explicit ProcMemIO(pid_t pid) : m_pid(pid) {}
@@ -178,8 +180,8 @@ export class ProcMemIO {
  * @param buf Data to write
  * @return Expected bytes written or error message
  */
-export [[nodiscard]] inline auto writeBytes(pid_t pid, void* addr,
-                                            std::span<const std::uint8_t> buf)
+[[nodiscard]] inline auto writeBytes(pid_t pid, void* addr,
+                                     std::span<const std::uint8_t> buf)
     -> std::expected<std::size_t, std::string> {
     ProcMemIO memIO{pid};
     if (auto err = memIO.open(true); !err) {
@@ -196,7 +198,7 @@ export [[nodiscard]] inline auto writeBytes(pid_t pid, void* addr,
  * @param value Value to write
  * @return Expected bytes written or error message
  */
-export template <typename T>
+template <typename T>
 [[nodiscard]] inline auto writeValue(pid_t pid, void* addr, const T& value)
     -> std::expected<std::size_t, std::string> {
     static_assert(std::is_trivially_copyable_v<T>);
@@ -206,3 +208,5 @@ export template <typename T>
     }
     return memIO.writeScalar<T>(addr, value);
 }
+
+}  // namespace core

@@ -26,6 +26,12 @@ import value.flags;    // MatchFlags
 import utils.mem64;    // Mem64
 import value;          // Value / UserValue
 
+using core::MatchesAndOldValuesArray;
+using core::MatchesAndOldValuesSwath;
+using core::OldValueAndMatchInfo;
+using core::Region;
+using core::RegionScanLevel;
+
 // Lightweight scan engine skeleton:
 // - Single-threaded, reads /proc/<pid>/mem in blocks
 // - Invokes a scanRoutine at each byte position (configurable step size)

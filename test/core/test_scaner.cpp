@@ -1,4 +1,6 @@
-import core.scanner; // Scanner
+import core.scanner;
+
+using core::Scanner; // Scanner
 import scan.engine;  // ScanOptions
 import scan.types;   // ScanDataType / ScanMatchType
 import value;        // UserValue

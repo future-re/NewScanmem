@@ -18,11 +18,13 @@ export module core.memory;
 
 import core.proc_mem;
 
+export namespace core {
+
 /**
  * @class MemoryWriter
  * @brief High-level interface for writing to process memory
  */
-export class MemoryWriter {
+class MemoryWriter {
    public:
     /**
      * @brief Construct memory writer for given process
@@ -99,3 +101,5 @@ export class MemoryWriter {
    private:
     pid_t m_pid;
 };
+
+}  // namespace core

@@ -13,6 +13,8 @@ module;
 
 export module core.process_checker;
 
+export namespace core {
+
 /**
  * @enum ProcessState
  * @brief Process lifecycle states (进程生命周期状态)
@@ -22,13 +24,13 @@ export module core.process_checker;
  * - DEAD: Process no longer exists
  * - ZOMBIE: Process terminated but entry still in process table
  */
-export enum class ProcessState { RUNNING, ERROR, DEAD, ZOMBIE };
+enum class ProcessState { RUNNING, ERROR, DEAD, ZOMBIE };
 
 /**
  * @class ProcessChecker
  * @brief Utility for checking process state via /proc filesystem
  */
-export class ProcessChecker {
+class ProcessChecker {
    public:
     /**
      * @brief Check process state by reading /proc/<pid>/status
@@ -101,3 +103,5 @@ export class ProcessChecker {
         }
     }
 };
+
+}  // namespace core

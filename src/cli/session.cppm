@@ -13,6 +13,8 @@ export module cli.session;
 
 import core.scanner;
 
+using core::Scanner;
+
 export namespace cli {
 
 struct SessionState {

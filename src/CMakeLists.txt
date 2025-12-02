@@ -51,11 +51,15 @@ set(MODULE_SOURCES
     core/targetmem.cppm
     core/maps.cppm
     core/process_checker.cppm
+    core/region_classifier.cppm
+    core/memory_writer.cppm
+    core/match_formatter.cppm
     
     # Core modules
     value/scalar.cppm
     value/flags.cppm
     value/value.cppm
+    value/parser.cppm
     scan/types.cppm
     scan/bytes.cppm
     scan/read_helpers.cppm

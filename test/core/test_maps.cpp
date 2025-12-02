@@ -1,5 +1,10 @@
 import core.maps;
 
+using core::MapsReader;
+using core::Region;
+using core::RegionScanLevel;
+using core::RegionType;
+
 #include <gtest/gtest.h>
 
 #include <filesystem>

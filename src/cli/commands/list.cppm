@@ -20,75 +20,8 @@ import cli.command;
 import cli.session;
 import ui.show_message;
 import core.scanner;
-import value.flags;
-import core.maps; // 区域读取与分类
-
-namespace {
-// 简单映射 RegionType -> 文本
-inline auto regionTypeToString(RegionType regionType) -> std::string_view {
-    switch (regionType) {
-        case RegionType::HEAP:
-            return "heap";
-        case RegionType::STACK:
-            return "stack";
-        case RegionType::EXE:
-            return "exe";
-        case RegionType::CODE:
-            return "code";
-        default:
-            return "unk";
-    }
-}
-
-struct RegionLookupEntry {
-    std::uintptr_t start;
-    std::uintptr_t end;  // half-open
-    RegionType type;
-    std::string filename;
-};
-
-inline auto buildRegionLookup(pid_t pid) -> std::vector<RegionLookupEntry> {
-    std::vector<RegionLookupEntry> out;
-    auto mapsRes = readProcessMaps(pid, RegionScanLevel::ALL);
-    if (!mapsRes) {
-        return out;
-    }
-    out.reserve(mapsRes->size());
-    for (const auto& region : *mapsRes) {
-        RegionLookupEntry entry{
-            std::bit_cast<std::uintptr_t>(region.start),
-            std::bit_cast<std::uintptr_t>(region.start) + region.size,
-            region.type, region.filename};
-        out.push_back(entry);
-    }
-    std::sort(out.begin(), out.end(),
-              [](const RegionLookupEntry& lhs, const RegionLookupEntry& rhs) {
-                  return lhs.start < rhs.start;
-              });
-    return out;
-}
-
-inline auto classifyAddress(std::uintptr_t addr,
-                            const std::vector<RegionLookupEntry>& regions)
-    -> std::string {
-    for (const auto& entry : regions) {
-        if (addr >= entry.start && addr < entry.end) {
-            auto typeStr = regionTypeToString(entry.type);
-            if ((entry.type == RegionType::EXE ||
-                 entry.type == RegionType::CODE) &&
-                !entry.filename.empty()) {
-                std::string tail = entry.filename;
-                if (tail.size() > 24) {
-                    tail = "..." + tail.substr(tail.size() - 21);
-                }
-                return std::format("{}:{}", typeStr, tail);
-            }
-            return std::string(typeStr);
-        }
-    }
-    return "unk";
-}
-}  // namespace
+import core.region_classifier;
+import core.match_formatter;
 
 export namespace cli::commands {
 
@@ -116,9 +49,7 @@ class ListCommand : public Command {
             return std::unexpected("No scanner initialized. Run a scan first.");
         }
 
-        auto* scanner = m_session->scanner.get();
-        const auto& matches = scanner->getMatches();
-
+        // 解析 limit 参数
         size_t limit = 20;
         if (!args.empty()) {
             try {
@@ -128,48 +59,20 @@ class ListCommand : public Command {
             }
         }
 
-        size_t count = 0;         // 已打印数量
-        size_t totalMatches = 0;  // 总匹配数量
-        size_t globalIndex = 0;   // 全局匹配下标
-
-        ui::MessagePrinter::info(
-            "Idx  Address             Region                Value (hex)");
-        ui::MessagePrinter::info(
-            "--------------------------------------------------------------");
-
-        // 构建区域查找结构
-        auto regionLookup = buildRegionLookup(m_session->pid);
-
-        for (const auto& swath : matches.swaths) {
-            auto* base = static_cast<std::uint8_t*>(swath.firstByteInChild);
-            for (size_t i = 0; i < swath.data.size(); ++i) {
-                const auto& cell = swath.data[i];
-                if (cell.matchInfo == MatchFlags::EMPTY) {
-                    continue;
-                }
-
-                totalMatches++;
-                auto addr = std::bit_cast<std::uintptr_t>(base + i);
-                auto regionStr = classifyAddress(addr, regionLookup);
-                if (count < limit) {
-                    ui::MessagePrinter::info(std::format(
-                        "{:4d} 0x{:016x} {:<20} 0x{:02x}",
-                        static_cast<int>(globalIndex), addr, regionStr,
-                        static_cast<unsigned>(cell.oldValue)));
-                    count++;
-                }
-                globalIndex++;
-            }
+        // 创建区域分类器（可选）
+        auto classifierRes = core::RegionClassifier::create(m_session->pid);
+        std::optional<core::RegionClassifier> classifier;
+        if (classifierRes) {
+            classifier = std::move(*classifierRes);
         }
 
-        if (totalMatches > limit) {
-            ui::MessagePrinter::info(
-                std::format("\n... and {} more matches (total: {})",
-                            totalMatches - limit, totalMatches));
-        }
+        // 使用格式化器显示结果
+        core::MatchFormatter formatter{std::move(classifier)};
+        core::FormatOptions options{
+            .limit = limit, .showRegion = true, .showIndex = true};
 
-        ui::MessagePrinter::info(
-            std::format("\nShowing {} of {} matches", count, totalMatches));
+        auto* scanner = m_session->scanner.get();
+        (void)formatter.format(*scanner, options);
 
         return CommandResult{.success = true, .message = ""};
     }

@@ -26,11 +26,13 @@ import core.targetmem; // MatchesAndOldValuesArray
 import value;          // UserValue
 import core.maps;      // RegionScanLevel
 
+export namespace core {
+
 /**
  * @struct ScanResult
  * @brief Stores the complete result of a single scan operation
  */
-export struct ScanResult {
+struct ScanResult {
     ScanStats stats;                   // Statistics from this scan
     MatchesAndOldValuesArray matches;  // Matches from this scan
     ScanOptions opts;                  // Options used for this scan
@@ -46,7 +48,7 @@ export struct ScanResult {
  * - m_matches: Current/active matches from the most recent scan
  * - m_results: History queue of all saved scan results
  */
-export class Scanner {
+class Scanner {
    public:
     /**
      * @brief Construct scanner for given process
@@ -341,3 +343,5 @@ export class Scanner {
         m_matches.swaths.erase(eraseIter, m_matches.swaths.end());
     }
 };
+
+}  // namespace core

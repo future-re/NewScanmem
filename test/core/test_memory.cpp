@@ -1,6 +1,9 @@
 import core.memory;
 import core.proc_mem; // For direct read-back verification
 
+using core::MemoryWriter;
+using core::ProcMemIO;
+
 #include <errno.h>
 #include <fcntl.h>
 #include <gtest/gtest.h>
