@@ -21,7 +21,7 @@ export module scan.engine;
 import core.maps;      // readProcessMaps, Region, RegionScanLevel
 import core.targetmem; // MatchesAndOldValuesArray, MatchesAndOldValuesSwath
 import scan.factory;   // smGetScanroutine
-import scan.types;     // ScanDataType / ScanMatchType
+import scan.types;     // ScanDataType / ScanMatchType / bytesNeededForType / matchUsesOldValue
 import value.flags;    // MatchFlags
 import utils.mem64;    // Mem64
 import value;          // Value / UserValue
@@ -274,30 +274,6 @@ inline auto scanRegion(const Region& region, ProcMemReader& reader,
     }
 
     return swath.data.empty() ? std::nullopt : std::make_optional(swath);
-}
-
-// Helper: minimal bytes needed for a type (for old-value window sizing)
-inline auto bytesNeededForType(ScanDataType dataType) -> std::size_t {
-    switch (dataType) {
-        case ScanDataType::INTEGER8:
-            return 1;
-        case ScanDataType::INTEGER16:
-            return 2;
-        case ScanDataType::INTEGER32:
-        case ScanDataType::FLOAT32:
-            return 4;
-        case ScanDataType::INTEGER64:
-        case ScanDataType::FLOAT64:
-            return 8;
-        case ScanDataType::ANYINTEGER:
-        case ScanDataType::ANYFLOAT:
-        case ScanDataType::ANYNUMBER:
-            return 8;  // max scalar width
-        case ScanDataType::BYTEARRAY:
-        case ScanDataType::STRING:
-            return 64;  // heuristic window
-    }
-    return 8;
 }
 
 inline auto runScanInternal(pid_t pid, const ScanOptions& opts,

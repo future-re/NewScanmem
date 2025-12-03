@@ -8,9 +8,9 @@ module;
 
 export module scan.filter;
 
-import scan.types;    // ScanOptions / ScanMatchType helpers
-import scan.factory;  // smGetScanroutine
-import scan.engine;   // ProcMemReader / ScanStats
+import scan.types; // ScanDataType / ScanMatchType / bytesNeededForType / matchUsesOldValue
+import scan.factory; // smGetScanroutine
+import scan.engine;  // ProcMemReader / ScanStats / ScanOptions
 import core.targetmem;
 import utils.mem64;
 import value;
@@ -18,31 +18,6 @@ import value;
 using core::MatchesAndOldValuesArray;
 using core::MatchesAndOldValuesSwath;
 using core::OldValueAndMatchInfo;
-
-// Helper: minimal bytes needed for a type (shared with filtering logic)
-[[nodiscard]] inline auto bytesNeededForType(ScanDataType dataType)
-    -> std::size_t {
-    switch (dataType) {
-        case ScanDataType::INTEGER8:
-            return 1;
-        case ScanDataType::INTEGER16:
-            return 2;
-        case ScanDataType::INTEGER32:
-        case ScanDataType::FLOAT32:
-            return 4;
-        case ScanDataType::INTEGER64:
-        case ScanDataType::FLOAT64:
-            return 8;
-        case ScanDataType::STRING:
-        case ScanDataType::BYTEARRAY:
-            return 32;
-        case ScanDataType::ANYINTEGER:
-        case ScanDataType::ANYFLOAT:
-        case ScanDataType::ANYNUMBER:
-            return 8;
-    }
-    return 8;
-}
 
 // Narrow matches for a single swath using the provided routine.
 inline void narrowSwath(MatchesAndOldValuesSwath& swath, auto& routine,
@@ -96,11 +71,12 @@ inline void narrowSwath(MatchesAndOldValuesSwath& swath, auto& routine,
 // Filter existing matches in-place using current scan options/user value.
 export [[nodiscard]] inline auto filterMatches(
     pid_t pid, const ScanOptions& opts, const UserValue* value,
-    MatchesAndOldValuesArray& matches) -> std::expected<ScanStats, std::string> {
-    auto routine = smGetScanroutine(
-        opts.dataType, opts.matchType,
-        (value != nullptr) ? value->flags : MatchFlags::EMPTY,
-        opts.reverseEndianness);
+    MatchesAndOldValuesArray& matches)
+    -> std::expected<ScanStats, std::string> {
+    auto routine =
+        smGetScanroutine(opts.dataType, opts.matchType,
+                         (value != nullptr) ? value->flags : MatchFlags::EMPTY,
+                         opts.reverseEndianness);
     if (!routine) {
         return std::unexpected("no scan routine for filtered options");
     }

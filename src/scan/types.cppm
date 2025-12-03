@@ -9,7 +9,7 @@ export module scan.types;
 // types with the same names across modules.
 export import utils.mem64;  // provides Mem64
 export import value.flags;  // provides MatchFlags
-export import value;        // provides Value / UserValue, etc. (aggregated in value)
+export import value;  // provides Value / UserValue, etc. (aggregated in value)
 
 // Classification of scan data types
 export enum class ScanDataType {
@@ -120,4 +120,30 @@ export constexpr auto matchUsesOldValue(ScanMatchType scanMatchType) noexcept
         default:
             return false;
     }
+}
+
+// Helper: minimal bytes needed for a type (shared with scanning and filtering
+// logic)
+export [[nodiscard]] constexpr auto bytesNeededForType(ScanDataType dataType)
+    -> std::size_t {
+    switch (dataType) {
+        case ScanDataType::INTEGER8:
+            return 1;
+        case ScanDataType::INTEGER16:
+            return 2;
+        case ScanDataType::INTEGER32:
+        case ScanDataType::FLOAT32:
+            return 4;
+        case ScanDataType::INTEGER64:
+        case ScanDataType::FLOAT64:
+            return 8;
+        case ScanDataType::STRING:
+        case ScanDataType::BYTEARRAY:
+            return 32;
+        case ScanDataType::ANYINTEGER:
+        case ScanDataType::ANYFLOAT:
+        case ScanDataType::ANYNUMBER:
+            return 8;
+    }
+    return 8;
 }
