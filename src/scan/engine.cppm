@@ -21,10 +21,10 @@ export module scan.engine;
 import core.maps;      // readProcessMaps, Region, RegionScanLevel
 import core.targetmem; // MatchesAndOldValuesArray, MatchesAndOldValuesSwath
 import scan.factory;   // smGetScanroutine
-import scan.types;     // ScanDataType / ScanMatchType / bytesNeededForType / matchUsesOldValue
-import value.flags;    // MatchFlags
-import utils.mem64;    // Mem64
-import value;          // Value / UserValue
+import scan.types; // ScanDataType / ScanMatchType / bytesNeededForType / matchUsesOldValue
+import value.flags; // MatchFlags
+import utils.mem64; // Mem64
+import value;       // Value / UserValue
 
 using core::MatchesAndOldValuesArray;
 using core::MatchesAndOldValuesSwath;
@@ -58,7 +58,7 @@ export struct ScanStats {
     std::size_t matches{0};
 };
 
-// Simple /proc/<pid>/mem reader
+// /proc/<pid>/mem reader
 export class ProcMemReader {
    public:
     ProcMemReader() = default;
@@ -136,7 +136,7 @@ export class ProcMemReader {
         return total;
     }
 
-   private:
+   private: 
     pid_t m_pid{-1};
     int m_fd{-1};
 };
@@ -175,7 +175,7 @@ inline auto fetchOldBytes(const MatchesAndOldValuesArray& prev, void* addr,
         if (curr < base) {
             continue;
         }
-        const std::size_t OFFSET = static_cast<std::size_t>(curr - base);
+        const auto OFFSET = static_cast<std::size_t>(curr - base);
         if (OFFSET >= swathPrev.data.size()) {
             continue;
         }
