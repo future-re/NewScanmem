@@ -18,8 +18,8 @@ auto main(int argc, char** argv) -> int {
     // 打印数组内容
     std::cout << "Array contents:" << std::endl;
     for (int i = 0; i < 10; ++i) {
-        std::cout << "  kArray[" << i << "] = " << kArray[i]
-                  << std::endl;  // NOLINT
+        // NOLINTNEXTLINE
+        std::cout << "  kArray[" << i << "] = " << kArray[i] << std::endl;
     }
     std::cout << "Monitoring kArray[" << TARGET_INDEX << "] for modification..."
               << std::endl;

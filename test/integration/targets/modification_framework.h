@@ -50,13 +50,13 @@ inline auto parseWaitTimeout(int argc, char** argv, int defaultMs = 10000)
 // 打印标记值（通用版本）
 template <typename T>
 inline void printMarker(const T& marker) {
-    std::cout << "MARKER: " << marker << "\n";
+    std::cout << "Addr:" << &marker << " MARKER: " << marker << "\n";
 }
 
 // 打印标记值（十六进制版本，用于整数）
 template <typename T>
 inline void printMarkerHex(const T& marker) {
-    std::cout << std::hex << "MARKER: 0x" << marker << std::dec << "\n";
+    std::cout << std::hex << "Addr:" << &marker << " MARKER: 0x" << marker << std::dec << "\n";
 }
 
 // 等待值被修改的核心函数

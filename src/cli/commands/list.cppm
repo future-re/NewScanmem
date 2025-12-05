@@ -75,9 +75,12 @@ class ListCommand : public Command {
             collector.collect(*scanner, collectOptions);
 
         // 格式化显示
-        core::FormatOptions formatOptions{.showRegion = true,
-                          .showIndex = true,
-                          .bigEndianDisplay = (m_session->endianness == utils::Endianness::BIG)};
+        core::FormatOptions formatOptions{
+            .showRegion = true,
+            .showIndex = true,
+            .bigEndianDisplay =
+                (m_session->endianness == utils::Endianness::BIG),
+            .dataType = scanner->getLastDataType()};
         core::MatchFormatter::display(entries, totalCount, formatOptions);
 
         return CommandResult{.success = true, .message = ""};

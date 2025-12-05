@@ -16,6 +16,7 @@ export module core.match;
 import core.scanner;
 import core.region_classifier;
 import value.flags;
+import scan.types; // for ScanDataType, bytesNeededForType
 
 export namespace core {
 
@@ -24,10 +25,10 @@ export namespace core {
  * @brief Single match entry with metadata
  */
 struct MatchEntry {
-    size_t index;            // 匹配索引
-    std::uintptr_t address;  // 内存地址
-    std::uint8_t value;      // 当前值（单字节）
-    std::string region;      // 区域分类 (heap/stack/code)
+    size_t index;                     // 匹配索引
+    std::uintptr_t address;           // 内存地址
+    std::vector<std::uint8_t> value;  // 当前值（完整字节序列）
+    std::string region;               // 区域分类 (heap/stack/code)
 };
 
 /**
@@ -64,6 +65,10 @@ class MatchCollector {
         -> std::pair<std::vector<MatchEntry>, size_t> {
         const auto& matches = scanner.getMatches();
 
+        // Get data type to determine value size
+        auto dataType = scanner.getLastDataType();
+        size_t valueSize = dataType ? bytesNeededForType(*dataType) : 1;
+
         size_t currentIndex = 0;
         size_t displayCount = 0;
         size_t totalCount = 0;
@@ -93,9 +98,16 @@ class MatchCollector {
                         region = m_classifier->classify(addr);
                     }
 
+                    // Read complete value bytes from memory
+                    std::vector<std::uint8_t> valueBytes(valueSize);
+                    for (size_t j = 0;
+                         j < valueSize && (i + j) < swath.data.size(); ++j) {
+                        valueBytes[j] = swath.data[i + j].oldValue;
+                    }
+
                     entries.push_back(MatchEntry{.index = currentIndex,
                                                  .address = addr,
-                                                 .value = cell.oldValue,
+                                                 .value = std::move(valueBytes),
                                                  .region = region});
 
                     displayCount++;
