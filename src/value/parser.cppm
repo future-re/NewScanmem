@@ -7,9 +7,11 @@ module;
 #include <algorithm>
 #include <charconv>
 #include <cstdint>
+#include <limits>
 #include <optional>
 #include <string>
 #include <string_view>
+#include <type_traits>
 #include <vector>
 
 export module value.parser;
@@ -137,30 +139,78 @@ inline auto toLower(std::string str) -> std::string {
 }
 
 /**
- * @brief Parse integer (supports hex with 0x prefix)
+ * @brief Parse integer with optional hex prefix and sign
+ * @tparam T Target integer type (int8_t, int16_t, int32_t, int64_t, etc.)
  * @param str String to parse
- * @return Optional int64_t value
+ * @return Optional value of type T with automatic range checking
  */
-[[nodiscard]] inline auto parseInt64(std::string_view str)
-    -> std::optional<int64_t> {
-    if (str.size() > 2 && str[0] == '0' && (str[1] == 'x' || str[1] == 'X')) {
-        int64_t value{};
-        const auto* begin = str.data() + 2;
-        const auto* end = str.data() + str.size();
-        auto [ptr, ec] = std::from_chars(begin, end, value, 16);
+template <typename T>
+    requires std::is_integral_v<T>
+[[nodiscard]] inline auto parseInteger(std::string_view str)
+    -> std::optional<T> {
+    if (str.empty()) {
+        return std::nullopt;
+    }
+
+    // 处理可选的符号
+    size_t offset = 0;
+    bool negative = false;
+    if (str[0] == '-') {
+        negative = true;
+        offset = 1;
+    } else if (str[0] == '+') {
+        offset = 1;
+    }
+
+    auto body = std::string_view{str.data() + offset, str.size() - offset};
+
+    // 检查 0x/0X 前缀
+    int base = 10;
+    if (body.size() > 2 && body[0] == '0' &&
+        (body[1] == 'x' || body[1] == 'X')) {
+        body = std::string_view{body.data() + 2, body.size() - 2};
+        base = 16;
+    }
+
+    if (body.empty()) {
+        return std::nullopt;
+    }
+
+    // 对于有符号类型，先解析为无符号以正确处理边界情况（如 int8 的 -128）
+    if constexpr (std::is_signed_v<T>) {
+        using UT = std::make_unsigned_t<T>;
+        UT absValue = 0;
+        auto [ptr, ec] = std::from_chars(body.data(), body.data() + body.size(),
+                                         absValue, base);
+
+        if (ec != std::errc{}) {
+            return std::nullopt;
+        }
+
+        if (negative) {
+            // 检查负数范围：-128 对 int8_t 是 abs(128)
+            constexpr UT MAX_NEG =
+                static_cast<UT>(std::numeric_limits<T>::max()) + 1U;
+            if (absValue > MAX_NEG) {
+                return std::nullopt;
+            }
+            return -static_cast<T>(absValue);
+        }
+        if (absValue > static_cast<UT>(std::numeric_limits<T>::max())) {
+            return std::nullopt;
+        }
+        return static_cast<T>(absValue);
+    } else {
+        // 无符号类型直接解析
+        T value = 0;
+        auto [ptr, ec] = std::from_chars(body.data(), body.data() + body.size(),
+                                         value, base);
+
         if (ec == std::errc{}) {
-            return value;
+            return negative ? std::nullopt : value;  // 无符号不接受负号
         }
         return std::nullopt;
     }
-    int64_t value{};
-    const auto* begin = str.data();
-    const auto* end = str.data() + str.size();
-    auto [ptr, ec] = std::from_chars(begin, end, value, 10);
-    if (ec == std::errc{}) {
-        return value;
-    }
-    return std::nullopt;
 }
 
 /**
@@ -178,6 +228,35 @@ inline auto toLower(std::string str) -> std::string {
 }
 
 /**
+ * @brief Helper: build UserValue for scalar/range of type T
+ * @tparam T Scalar type (int8_t, int16_t, int32_t, int64_t, float, double)
+ * @tparam Parser Parser function type
+ * @param needRange Whether to parse as range
+ * @param args Argument list
+ * @param startIndex Start index in args
+ * @param parser Parser function (parseInteger<T> or parseDouble)
+ * @return Optional UserValue
+ */
+template <typename T, typename Parser>
+[[nodiscard]] inline auto buildScalarOrRange(
+    bool needRange, const std::vector<std::string>& args, size_t startIndex,
+    Parser parser) -> std::optional<UserValue> {
+    auto lowOpt = parser(args[startIndex]);
+    if (!lowOpt) {
+        return std::nullopt;
+    }
+
+    if (needRange) {
+        auto highOpt = parser(args[startIndex + 1]);
+        if (!highOpt) {
+            return std::nullopt;
+        }
+        return UserValue::fromRange<T>(*lowOpt, *highOpt);
+    }
+    return UserValue::fromScalar<T>(*lowOpt);
+}
+
+/**
  * @brief Build UserValue from parsed arguments
  * @param dataType Data type of the value
  * @param matchType Match type (affects whether range is needed)
@@ -185,7 +264,6 @@ inline auto toLower(std::string str) -> std::string {
  * @param startIndex Index to start parsing from
  * @return Optional UserValue
  */
-// NOLINTNEXTLINE(readability-function-cognitive-complexity)
 [[nodiscard]] inline auto buildUserValue(ScanDataType dataType,
                                          ScanMatchType matchType,
                                          const std::vector<std::string>& args,
@@ -202,40 +280,29 @@ inline auto toLower(std::string str) -> std::string {
 
     switch (dataType) {
         case ScanDataType::INTEGER_8:
+            return buildScalarOrRange<int8_t>(needRange, args, startIndex,
+                                              parseInteger<int8_t>);
+
         case ScanDataType::INTEGER_16:
+            return buildScalarOrRange<int16_t>(needRange, args, startIndex,
+                                               parseInteger<int16_t>);
+
         case ScanDataType::INTEGER_32:
+            return buildScalarOrRange<int32_t>(needRange, args, startIndex,
+                                               parseInteger<int32_t>);
+
         case ScanDataType::INTEGER_64:
-        case ScanDataType::ANY_INTEGER: {
-            auto lowOpt = parseInt64(args[startIndex]);
-            if (!lowOpt) {
-                return std::nullopt;
-            }
-            if (needRange) {
-                auto highOpt = parseInt64(args[startIndex + 1]);
-                if (!highOpt) {
-                    return std::nullopt;
-                }
-                return UserValue::fromRange<int64_t>(*lowOpt, *highOpt);
-            }
-            return UserValue::fromScalar<int64_t>(*lowOpt);
-        }
+        case ScanDataType::ANY_INTEGER:
+            return buildScalarOrRange<int64_t>(needRange, args, startIndex,
+                                               parseInteger<int64_t>);
+
         case ScanDataType::FLOAT_32:
         case ScanDataType::FLOAT_64:
         case ScanDataType::ANY_FLOAT:
-        case ScanDataType::ANY_NUMBER: {
-            auto lowOpt = parseDouble(args[startIndex]);
-            if (!lowOpt) {
-                return std::nullopt;
-            }
-            if (needRange) {
-                auto highOpt = parseDouble(args[startIndex + 1]);
-                if (!highOpt) {
-                    return std::nullopt;
-                }
-                return UserValue::fromRange<double>(*lowOpt, *highOpt);
-            }
-            return UserValue::fromScalar<double>(*lowOpt);
-        }
+        case ScanDataType::ANY_NUMBER:
+            return buildScalarOrRange<double>(needRange, args, startIndex,
+                                              parseDouble);
+
         case ScanDataType::STRING: {
             if (startIndex >= args.size()) {
                 return std::nullopt;
@@ -245,18 +312,19 @@ inline auto toLower(std::string str) -> std::string {
             userVal.flags = MatchFlags::STRING;
             return userVal;
         }
+
         case ScanDataType::BYTE_ARRAY: {
             if (startIndex >= args.size()) {
                 return std::nullopt;
             }
             std::string byteStr = args[startIndex];
 
-            // 移除 0x 前缀
+            // 移除 0x/0X 前缀
             if (byteStr.starts_with("0x") || byteStr.starts_with("0X")) {
                 byteStr = byteStr.substr(2);
             }
 
-            // 移除空格
+            // 移除所有空格
             std::erase(byteStr, ' ');
 
             // 每两个字符是一个字节
@@ -265,22 +333,25 @@ inline auto toLower(std::string str) -> std::string {
             }
 
             std::vector<std::uint8_t> bytes;
+            bytes.reserve(byteStr.size() / 2);
+
+            // 使用 ranges 以步长 2 解析每个字节
             for (size_t i = 0; i < byteStr.size(); i += 2) {
-                std::string byteHex = byteStr.substr(i, 2);
                 std::uint8_t byte = 0;
-                auto result = std::from_chars(
-                    byteHex.data(), byteHex.data() + byteHex.size(), byte, 16);
-                if (result.ec != std::errc{}) {
+                auto [ptr, ec] = std::from_chars(
+                    byteStr.data() + i, byteStr.data() + i + 2, byte, 16);
+                if (ec != std::errc{}) {
                     return std::nullopt;
                 }
                 bytes.push_back(byte);
             }
 
             UserValue userVal;
-            userVal.bytearrayValue = bytes;
+            userVal.bytearrayValue = std::move(bytes);
             userVal.flags = MatchFlags::BYTEARRAY;
             return userVal;
         }
+
         default:
             return std::nullopt;
     }

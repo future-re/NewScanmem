@@ -52,7 +52,7 @@ class WriteCommand : public Command {
         }
         return {};
     }
-    
+
     // NOLINTNEXTLINE(readability-function-cognitive-complexity)
     [[nodiscard]] auto execute(const std::vector<std::string>& args)
         -> std::expected<CommandResult, std::string> override {
@@ -94,7 +94,7 @@ class WriteCommand : public Command {
             }
         } else {
             // 解析为整数
-            auto intOpt = value::parseInt64(valueStr);
+            auto intOpt = value::parseInteger<std::int64_t>(valueStr);
             if (!intOpt) {
                 return std::unexpected("Invalid integer value: " + valueStr);
             }
