@@ -244,7 +244,7 @@ class MemoryWriter {
      * @param targetIndex Optional specific match index
      * @return Batch write result
      */
-    // NOLINTNEXTLINE()
+    // NOLINTNEXTLINE
     [[nodiscard]] auto writeToMatchesImpl(
         const Scanner& scanner, std::uint64_t value,
         std::optional<std::size_t> targetIndex) const -> BatchWriteResult {

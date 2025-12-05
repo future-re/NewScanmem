@@ -11,10 +11,7 @@
 
 module;
 
-#include <algorithm>
-#include <bit>
 #include <cstdint>
-#include <functional>
 #include <optional>
 #include <string>
 #include <string_view>
@@ -185,7 +182,9 @@ class RegionFilter {
         std::string result = "regions: ";
         bool first = true;
         for (const auto& type : m_allowedTypes) {
-            if (!first) result += ", ";
+            if (!first) {
+                result += ", ";
+            }
             result += std::string(regionTypeToStringLocal(type));
             first = false;
         }
@@ -215,18 +214,30 @@ class RegionFilter {
             default:
                 return "unknow";
         }
-    } /**
-       * @brief Convert string to RegionType
-       * @param str Type name ("exe", "code", "heap", "stack", "unknow")
-       * @return Optional RegionType
-       */
+    }
+
+    /**
+     * @brief Convert string to RegionType
+     * @param str Type name ("exe", "code", "heap", "stack", "unknow")
+     * @return Optional RegionType
+     */
     static auto stringToRegionType(const std::string& str)
         -> std::optional<RegionType> {
-        if (str == "exe") return RegionType::EXE;
-        if (str == "code") return RegionType::CODE;
-        if (str == "heap") return RegionType::HEAP;
-        if (str == "stack") return RegionType::STACK;
-        if (str == "unknow") return RegionType::UNKNOW;
+        if (str == "exe") {
+            return RegionType::EXE;
+        }
+        if (str == "code") {
+            return RegionType::CODE;
+        }
+        if (str == "heap") {
+            return RegionType::HEAP;
+        }
+        if (str == "stack") {
+            return RegionType::STACK;
+        }
+        if (str == "unknow") {
+            return RegionType::UNKNOW;
+        }
         return std::nullopt;
     }
 
@@ -244,7 +255,9 @@ class RegionFilter {
                            ? classification.substr(0, colonPos)
                            : classification;
 
-        if (typeStr == "unk") return RegionType::UNKNOW;
+        if (typeStr == "unk") {
+            return RegionType::UNKNOW;
+        }
         return stringToRegionType(typeStr);
     }
 };

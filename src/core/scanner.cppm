@@ -9,7 +9,6 @@ module;
 
 #include <algorithm>
 #include <cstddef>
-#include <cstdint>
 #include <deque>
 #include <expected>
 #include <functional>

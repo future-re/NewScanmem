@@ -67,6 +67,7 @@ class MatchCollector {
      * the global index (position among ALL matches), not the filtered index.
      * This ensures indices remain stable regardless of filtering.
      */
+    // NOLINTNEXTLINE
     [[nodiscard]] auto collect(const Scanner& scanner,
                                const MatchCollectionOptions& options = {}) const
         -> std::pair<std::vector<MatchEntry>, size_t> {

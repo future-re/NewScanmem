@@ -1,9 +1,9 @@
 import core.scanner;
 
-using core::Scanner; // Scanner
-import scan.engine;  // ScanOptions
-import scan.types;   // ScanDataType / ScanMatchType
-import value;        // UserValue
+using core::Scanner;  // Scanner
+import scan.engine;   // ScanOptions
+import scan.types;    // ScanDataType / ScanMatchType
+import value;         // UserValue
 
 #include <gtest/gtest.h>
 #include <sys/mman.h>
@@ -11,14 +11,10 @@ import value;        // UserValue
 #include <sys/wait.h>
 #include <unistd.h>
 
-#include <array>
 #include <cerrno>
 #include <chrono>
 #include <cstdint>
 #include <cstring>
-#include <optional>
-#include <thread>
-#include <vector>
 
 // Test strategy:
 // - Create a child process with a dedicated mmap page filled with a repeating

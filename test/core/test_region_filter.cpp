@@ -66,19 +66,19 @@ TEST(RegionFilterTest, FilterRegions) {
 
     Region heapRegion;
     heapRegion.type = RegionType::HEAP;
-    heapRegion.start = reinterpret_cast<void*>(0x1000);
+    heapRegion.start = reinterpret_cast<void*>(0x1000);  // NOLINT
     heapRegion.size = 4096;
     regions.push_back(heapRegion);
 
     Region stackRegion;
     stackRegion.type = RegionType::STACK;
-    stackRegion.start = reinterpret_cast<void*>(0x2000);
+    stackRegion.start = reinterpret_cast<void*>(0x2000);  // NOLINT
     stackRegion.size = 4096;
     regions.push_back(stackRegion);
 
     Region exeRegion;
     exeRegion.type = RegionType::EXE;
-    exeRegion.start = reinterpret_cast<void*>(0x3000);
+    exeRegion.start = reinterpret_cast<void*>(0x3000);  // NOLINT
     exeRegion.size = 4096;
     regions.push_back(exeRegion);
 
