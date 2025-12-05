@@ -18,6 +18,7 @@ set(TEST_SOURCES
     core/test_maps.cpp
     core/test_memory.cpp
     core/test_scanner.cpp
+    core/test_region_filter.cpp
     scan/test_bytes.cpp
 )
 

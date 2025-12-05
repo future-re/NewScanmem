@@ -18,9 +18,10 @@ module;
 
 export module scan.engine;
 
-import core.maps;      // readProcessMaps, Region, RegionScanLevel
-import core.targetmem; // MatchesAndOldValuesArray, MatchesAndOldValuesSwath
-import scan.factory;   // smGetScanroutine
+import core.maps;          // readProcessMaps, Region, RegionScanLevel
+import core.targetmem;     // MatchesAndOldValuesArray, MatchesAndOldValuesSwath
+import core.region_filter; // RegionFilterConfig
+import scan.factory;       // smGetScanroutine
 import scan.types; // ScanDataType / ScanMatchType / bytesNeededForType / matchUsesOldValue
 import value.flags; // MatchFlags
 import utils.mem64; // Mem64
@@ -50,6 +51,7 @@ export struct ScanOptions {
     std::size_t step{1};               // scan step size (moves by bytes)
     std::size_t blockSize{64 * 1024};  // block size for each read
     RegionScanLevel regionLevel{RegionScanLevel::ALL_RW};
+    core::RegionFilterConfig regionFilter;  // Region filtering configuration
 };
 
 export struct ScanStats {
@@ -136,7 +138,7 @@ export class ProcMemReader {
         return total;
     }
 
-   private: 
+   private:
     pid_t m_pid{-1};
     int m_fd{-1};
 };
@@ -289,7 +291,13 @@ inline auto runScanInternal(pid_t pid, const ScanOptions& opts,
         return std::unexpected{std::format("readProcessMaps failed: {}",
                                            regionsExp.error().message)};
     }
-    auto& regions = *regionsExp;
+    auto regions = *regionsExp;
+
+    // Apply scan-time region filtering if enabled
+    if (opts.regionFilter.isScanTimeFilter() &&
+        opts.regionFilter.filter.isActive()) {
+        regions = opts.regionFilter.filter.filterRegions(regions);
+    }
 
     // Prepare scan routine
     auto routine = smGetScanroutine(
