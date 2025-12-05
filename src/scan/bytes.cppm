@@ -127,7 +127,7 @@ export inline auto makeBytearrayRoutine(ScanMatchType matchType)
                        const Value* /*oldValue*/, const UserValue* userValue,
                        MatchFlags* saveFlags) -> unsigned int {
         *saveFlags = MatchFlags::EMPTY;
-        if (matchType == ScanMatchType::MATCHANY) {
+        if (matchType == ScanMatchType::MATCH_ANY) {
             *saveFlags = MatchFlags::B8;
             return static_cast<unsigned int>(memLength);
         }

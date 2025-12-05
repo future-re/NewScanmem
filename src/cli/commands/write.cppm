@@ -52,7 +52,8 @@ class WriteCommand : public Command {
         }
         return {};
     }
-
+    
+    // NOLINTNEXTLINE(readability-function-cognitive-complexity)
     [[nodiscard]] auto execute(const std::vector<std::string>& args)
         -> std::expected<CommandResult, std::string> override {
         if (m_session == nullptr || m_session->pid <= 0) {
@@ -73,9 +74,9 @@ class WriteCommand : public Command {
         const auto& valueStr = args[0];
         std::uint64_t value = 0;
 
-        bool isFloatType = (*lastDataType == ScanDataType::FLOAT32 ||
-                            *lastDataType == ScanDataType::FLOAT64 ||
-                            *lastDataType == ScanDataType::ANYFLOAT);
+        bool isFloatType = (*lastDataType == ScanDataType::FLOAT_32 ||
+                            *lastDataType == ScanDataType::FLOAT_64 ||
+                            *lastDataType == ScanDataType::ANY_FLOAT);
 
         if (isFloatType) {
             // 解析为浮点数
@@ -84,7 +85,7 @@ class WriteCommand : public Command {
                 return std::unexpected("Invalid float value: " + valueStr);
             }
             // 根据类型转换为对应的浮点表示
-            if (*lastDataType == ScanDataType::FLOAT32) {
+            if (*lastDataType == ScanDataType::FLOAT_32) {
                 float floatVal = static_cast<float>(*doubleOpt);
                 std::memcpy(&value, &floatVal, sizeof(float));
             } else {

@@ -8,7 +8,7 @@
 
 示例:
     python3 test_integration.py target_fixed_int int64 1122334455667788
-    python3 test_integration.py target_fixed_double float64 12345.6789
+    python3 test_integration.py target_fixed_double FLOAT_64 12345.6789
 """
 
 import subprocess
@@ -67,7 +67,7 @@ def main():
     # 解析命令行参数
     parser = argparse.ArgumentParser(description='Integration test for NewScanmem')
     parser.add_argument('target_name', help='Target executable name (e.g., target_fixed_int)')
-    parser.add_argument('value_type', help='Value type to scan (e.g., int64, float64)')
+    parser.add_argument('value_type', help='Value type to scan (e.g., int64, FLOAT_64)')
     parser.add_argument('expected_value', help='Expected value in target process')
     parser.add_argument('modified_value', help='Value to write into target process')
     parser.add_argument('--wait-modify-ms', type=int, default=10000, 

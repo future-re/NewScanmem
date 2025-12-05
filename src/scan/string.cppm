@@ -59,7 +59,7 @@ export inline auto findRegexPattern(const Mem64* memoryPtr, size_t memLength,
 
 namespace {
 
-[[nodiscard]] inline auto handleMatchAny(size_t memLength,
+[[nodiscard]] inline auto handleMATCHANY(size_t memLength,
                                          MatchFlags* saveFlags)
     -> unsigned int {
     *saveFlags = MatchFlags::B8;
@@ -91,13 +91,13 @@ export inline auto makeStringRoutine(ScanMatchType matchType) -> scanRoutine {
                        const Value* /*oldValue*/, const UserValue* userValue,
                        MatchFlags* saveFlags) -> unsigned int {
         *saveFlags = MatchFlags::EMPTY;
-        if (matchType == ScanMatchType::MATCHANY) {
-            return handleMatchAny(memLength, saveFlags);
+        if (matchType == ScanMatchType::MATCH_ANY) {
+            return handleMATCHANY(memLength, saveFlags);
         }
         if (!userValue) {
             return 0;
         }
-        if (matchType == ScanMatchType::MATCHREGEX) {
+        if (matchType == ScanMatchType::MATCH_REGEX) {
             return runRegexMatch(memoryPtr, memLength, userValue->stringValue,
                                  saveFlags);
         }

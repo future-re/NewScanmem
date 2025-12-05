@@ -4,7 +4,7 @@
  */
 
 module;
-
+#include <algorithm>
 #include <charconv>
 #include <cstdint>
 #include <optional>
@@ -24,10 +24,9 @@ export namespace value {
  * @brief Convert string to lowercase
  */
 inline auto toLower(std::string str) -> std::string {
-    for (auto& character : str) {
-        character = static_cast<char>(
-            std::tolower(static_cast<unsigned char>(character)));
-    }
+    std::ranges::transform(str, str.begin(), [](unsigned char charVal) {
+        return static_cast<char>(std::tolower(charVal));
+    });
     return str;
 }
 
@@ -40,40 +39,52 @@ inline auto toLower(std::string str) -> std::string {
     -> std::optional<ScanDataType> {
     const auto TO_STR = toLower(std::string(tok));
     if (TO_STR == "any" || TO_STR == "anynumber") {
-        return ScanDataType::ANYNUMBER;
+        return ScanDataType::ANY_NUMBER;
     }
     if (TO_STR == "anyint" || TO_STR == "anyinteger") {
-        return ScanDataType::ANYINTEGER;
+        return ScanDataType::ANY_INTEGER;
     }
     if (TO_STR == "anyfloat") {
-        return ScanDataType::ANYFLOAT;
+        return ScanDataType::ANY_FLOAT;
     }
-    if (TO_STR == "int") {  // 常见别名：默认映射为 64 位整数
-        return ScanDataType::INTEGER64;
+    if (TO_STR == "int") {
+        switch (sizeof(int)) {
+            case 1:
+                return ScanDataType::INTEGER_8;
+            case 2:
+                return ScanDataType::INTEGER_16;
+            case 4:
+                return ScanDataType::INTEGER_32;
+            case 8:
+                return ScanDataType::INTEGER_64;
+            default:
+                // unsupported int size
+                return std::nullopt;
+        }
     }
     if (TO_STR == "int8" || TO_STR == "i8") {
-        return ScanDataType::INTEGER8;
+        return ScanDataType::INTEGER_8;
     }
     if (TO_STR == "int16" || TO_STR == "i16") {
-        return ScanDataType::INTEGER16;
+        return ScanDataType::INTEGER_16;
     }
     if (TO_STR == "int32" || TO_STR == "i32") {
-        return ScanDataType::INTEGER32;
+        return ScanDataType::INTEGER_32;
     }
     if (TO_STR == "int64" || TO_STR == "i64") {
-        return ScanDataType::INTEGER64;
+        return ScanDataType::INTEGER_64;
     }
-    if (TO_STR == "float" || TO_STR == "float32" || TO_STR == "f32") {
-        return ScanDataType::FLOAT32;
+    if (TO_STR == "float" || TO_STR == "FLOAT_32" || TO_STR == "f32") {
+        return ScanDataType::FLOAT_32;
     }
-    if (TO_STR == "double" || TO_STR == "float64" || TO_STR == "f64") {
-        return ScanDataType::FLOAT64;
+    if (TO_STR == "double" || TO_STR == "FLOAT_64" || TO_STR == "f64") {
+        return ScanDataType::FLOAT_64;
     }
     if (TO_STR == "string" || TO_STR == "str") {
         return ScanDataType::STRING;
     }
     if (TO_STR == "bytearray" || TO_STR == "bytes") {
-        return ScanDataType::BYTEARRAY;
+        return ScanDataType::BYTE_ARRAY;
     }
     return std::nullopt;
 }
@@ -87,40 +98,40 @@ inline auto toLower(std::string str) -> std::string {
     -> std::optional<ScanMatchType> {
     const auto MATCH_STR = toLower(std::string(tok));
     if (MATCH_STR == "any") {
-        return ScanMatchType::MATCHANY;
+        return ScanMatchType::MATCH_ANY;
     }
     if (MATCH_STR == "eq" || MATCH_STR == "=") {
-        return ScanMatchType::MATCHEQUALTO;
+        return ScanMatchType::MATCH_EQUAL_TO;
     }
     if (MATCH_STR == "neq" || MATCH_STR == "!=") {
-        return ScanMatchType::MATCHNOTEQUALTO;
+        return ScanMatchType::MATCH_NOT_EQUAL_TO;
     }
     if (MATCH_STR == "gt" || MATCH_STR == ">") {
-        return ScanMatchType::MATCHGREATERTHAN;
+        return ScanMatchType::MATCH_GREATER_THAN;
     }
     if (MATCH_STR == "lt" || MATCH_STR == "<") {
-        return ScanMatchType::MATCHLESSTHAN;
+        return ScanMatchType::MATCH_LESS_THAN;
     }
     if (MATCH_STR == "range") {
-        return ScanMatchType::MATCHRANGE;
+        return ScanMatchType::MATCH_RANGE;
     }
     if (MATCH_STR == "changed") {
-        return ScanMatchType::MATCHCHANGED;
+        return ScanMatchType::MATCH_CHANGED;
     }
     if (MATCH_STR == "notchanged" || MATCH_STR == "update") {
-        return ScanMatchType::MATCHNOTCHANGED;
+        return ScanMatchType::MATCH_NOT_CHANGED;
     }
     if (MATCH_STR == "inc" || MATCH_STR == "increased") {
-        return ScanMatchType::MATCHINCREASED;
+        return ScanMatchType::MATCH_INCREASED;
     }
     if (MATCH_STR == "dec" || MATCH_STR == "decreased") {
-        return ScanMatchType::MATCHDECREASED;
+        return ScanMatchType::MATCH_DECREASED;
     }
     if (MATCH_STR == "incby") {
-        return ScanMatchType::MATCHINCREASEDBY;
+        return ScanMatchType::MATCH_INCREASED_BY;
     }
     if (MATCH_STR == "decby") {
-        return ScanMatchType::MATCHDECREASEDBY;
+        return ScanMatchType::MATCH_DECREASED_BY;
     }
     return std::nullopt;
 }
@@ -174,6 +185,7 @@ inline auto toLower(std::string str) -> std::string {
  * @param startIndex Index to start parsing from
  * @return Optional UserValue
  */
+// NOLINTNEXTLINE(readability-function-cognitive-complexity)
 [[nodiscard]] inline auto buildUserValue(ScanDataType dataType,
                                          ScanMatchType matchType,
                                          const std::vector<std::string>& args,
@@ -183,17 +195,17 @@ inline auto toLower(std::string str) -> std::string {
         return UserValue{};  // empty flags indicates not used
     }
 
-    auto needRange = (matchType == ScanMatchType::MATCHRANGE);
+    auto needRange = (matchType == ScanMatchType::MATCH_RANGE);
     if (needRange && (startIndex + 1 >= args.size())) {
         return std::nullopt;
     }
 
     switch (dataType) {
-        case ScanDataType::INTEGER8:
-        case ScanDataType::INTEGER16:
-        case ScanDataType::INTEGER32:
-        case ScanDataType::INTEGER64:
-        case ScanDataType::ANYINTEGER: {
+        case ScanDataType::INTEGER_8:
+        case ScanDataType::INTEGER_16:
+        case ScanDataType::INTEGER_32:
+        case ScanDataType::INTEGER_64:
+        case ScanDataType::ANY_INTEGER: {
             auto lowOpt = parseInt64(args[startIndex]);
             if (!lowOpt) {
                 return std::nullopt;
@@ -207,10 +219,10 @@ inline auto toLower(std::string str) -> std::string {
             }
             return UserValue::fromScalar<int64_t>(*lowOpt);
         }
-        case ScanDataType::FLOAT32:
-        case ScanDataType::FLOAT64:
-        case ScanDataType::ANYFLOAT:
-        case ScanDataType::ANYNUMBER: {
+        case ScanDataType::FLOAT_32:
+        case ScanDataType::FLOAT_64:
+        case ScanDataType::ANY_FLOAT:
+        case ScanDataType::ANY_NUMBER: {
             auto lowOpt = parseDouble(args[startIndex]);
             if (!lowOpt) {
                 return std::nullopt;
@@ -233,7 +245,7 @@ inline auto toLower(std::string str) -> std::string {
             userVal.flags = MatchFlags::STRING;
             return userVal;
         }
-        case ScanDataType::BYTEARRAY: {
+        case ScanDataType::BYTE_ARRAY: {
             if (startIndex >= args.size()) {
                 return std::nullopt;
             }

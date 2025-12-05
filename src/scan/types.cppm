@@ -13,38 +13,38 @@ export import value;  // provides Value / UserValue, etc. (aggregated in value)
 
 // Classification of scan data types
 export enum class ScanDataType {
-    ANYNUMBER,   // matches any numeric type (integer or float)
-    ANYINTEGER,  // matches any integer type (8/16/32/64-bit)
-    ANYFLOAT,    // matches any float type (32/64-bit)
-    INTEGER8,    // 8-bit integer
-    INTEGER16,   // 16-bit integer
-    INTEGER32,   // 32-bit integer
-    INTEGER64,   // 64-bit integer
-    FLOAT32,     // 32-bit float
-    FLOAT64,     // 64-bit float
-    BYTEARRAY,   // byte array
-    STRING       // string
+    ANY_NUMBER,   // matches any numeric type (integer or float)
+    ANY_INTEGER,  // matches any integer type (8/16/32/64-bit)
+    ANY_FLOAT,    // matches any float type (32/64-bit)
+    INTEGER_8,    // 8-bit integer
+    INTEGER_16,   // 16-bit integer
+    INTEGER_32,   // 32-bit integer
+    INTEGER_64,   // 64-bit integer
+    FLOAT_32,     // 32-bit float
+    FLOAT_64,     // 64-bit float
+    BYTE_ARRAY,    // byte array
+    STRING        // string
 };
 
 // Classification of match types
 export enum class ScanMatchType {
     // Snapshot types (do not rely on user-provided values)
-    MATCHANY,          // match any value (record snapshot)
-    MATCHUPDATE,       // equal to old value
-    MATCHNOTCHANGED,   // equal to old value (equivalent to MATCHUPDATE)
-    MATCHCHANGED,      // not equal to old value
-    MATCHINCREASED,    // greater than old value
-    MATCHDECREASED,    // less than old value
-    MATCHINCREASEDBY,  // current value - old value == user value
-    MATCHDECREASEDBY,  // old value - current value == user value
+    MATCH_ANY,           // match any value (record snapshot)
+    MATCH_UPDATE,        // equal to old value
+    MATCH_NOT_CHANGED,   // equal to old value (equivalent to MATCH_UPDATE)
+    MATCH_CHANGED,       // not equal to old value
+    MATCH_INCREASED,     // greater than old value
+    MATCH_DECREASED,     // less than old value
+    MATCH_INCREASED_BY,  // current value - old value == user value
+    MATCH_DECREASED_BY,  // old value - current value == user value
 
     // Comparisons with a user-provided value (requires a user value)
-    MATCHEQUALTO,      // equal to
-    MATCHNOTEQUALTO,   // not equal to
-    MATCHGREATERTHAN,  // greater than
-    MATCHLESSTHAN,     // less than
-    MATCHRANGE,        // range [low, high]
-    MATCHREGEX         // regular expression (STRING only)
+    MATCH_EQUAL_TO,      // equal to
+    MATCH_NOT_EQUAL_TO,  // not equal to
+    MATCH_GREATER_THAN,  // greater than
+    MATCH_LESS_THAN,     // less than
+    MATCH_RANGE,         // range [low, high]
+    MATCH_REGEX          // regular expression (STRING only)
 };
 
 // Match routine signature for a single scan location. Returns the number of
@@ -65,17 +65,17 @@ export struct ByteMatch {
 export constexpr auto isNumericType(ScanDataType scanDataType) noexcept
     -> bool {
     switch (scanDataType) {
-        case ScanDataType::INTEGER8:
-        case ScanDataType::INTEGER16:
-        case ScanDataType::INTEGER32:
-        case ScanDataType::INTEGER64:
-        case ScanDataType::FLOAT32:
-        case ScanDataType::FLOAT64:
-        case ScanDataType::ANYINTEGER:
-        case ScanDataType::ANYFLOAT:
-        case ScanDataType::ANYNUMBER:
+        case ScanDataType::INTEGER_8:
+        case ScanDataType::INTEGER_16:
+        case ScanDataType::INTEGER_32:
+        case ScanDataType::INTEGER_64:
+        case ScanDataType::FLOAT_32:
+        case ScanDataType::FLOAT_64:
+        case ScanDataType::ANY_INTEGER:
+        case ScanDataType::ANY_FLOAT:
+        case ScanDataType::ANY_NUMBER:
             return true;
-        case ScanDataType::BYTEARRAY:
+        case ScanDataType::BYTE_ARRAY:
         case ScanDataType::STRING:
             return false;
     }
@@ -84,22 +84,22 @@ export constexpr auto isNumericType(ScanDataType scanDataType) noexcept
 
 export constexpr auto isAggregatedAny(ScanDataType scanDataType) noexcept
     -> bool {
-    return scanDataType == ScanDataType::ANYNUMBER ||
-           scanDataType == ScanDataType::ANYINTEGER ||
-           scanDataType == ScanDataType::ANYFLOAT;
+    return scanDataType == ScanDataType::ANY_NUMBER ||
+           scanDataType == ScanDataType::ANY_INTEGER ||
+           scanDataType == ScanDataType::ANY_FLOAT;
 }
 
 export constexpr auto matchNeedsUserValue(ScanMatchType scanMatchType) noexcept
     -> bool {
     switch (scanMatchType) {
-        case ScanMatchType::MATCHEQUALTO:
-        case ScanMatchType::MATCHNOTEQUALTO:
-        case ScanMatchType::MATCHGREATERTHAN:
-        case ScanMatchType::MATCHLESSTHAN:
-        case ScanMatchType::MATCHRANGE:
-        case ScanMatchType::MATCHREGEX:
-        case ScanMatchType::MATCHINCREASEDBY:
-        case ScanMatchType::MATCHDECREASEDBY:
+        case ScanMatchType::MATCH_EQUAL_TO:
+        case ScanMatchType::MATCH_NOT_EQUAL_TO:
+        case ScanMatchType::MATCH_GREATER_THAN:
+        case ScanMatchType::MATCH_LESS_THAN:
+        case ScanMatchType::MATCH_RANGE:
+        case ScanMatchType::MATCH_REGEX:
+        case ScanMatchType::MATCH_INCREASED_BY:
+        case ScanMatchType::MATCH_DECREASED_BY:
             return true;
         default:
             return false;
@@ -109,13 +109,13 @@ export constexpr auto matchNeedsUserValue(ScanMatchType scanMatchType) noexcept
 export constexpr auto matchUsesOldValue(ScanMatchType scanMatchType) noexcept
     -> bool {
     switch (scanMatchType) {
-        case ScanMatchType::MATCHUPDATE:
-        case ScanMatchType::MATCHNOTCHANGED:
-        case ScanMatchType::MATCHCHANGED:
-        case ScanMatchType::MATCHINCREASED:
-        case ScanMatchType::MATCHDECREASED:
-        case ScanMatchType::MATCHINCREASEDBY:
-        case ScanMatchType::MATCHDECREASEDBY:
+        case ScanMatchType::MATCH_UPDATE:
+        case ScanMatchType::MATCH_NOT_CHANGED:
+        case ScanMatchType::MATCH_CHANGED:
+        case ScanMatchType::MATCH_INCREASED:
+        case ScanMatchType::MATCH_DECREASED:
+        case ScanMatchType::MATCH_INCREASED_BY:
+        case ScanMatchType::MATCH_DECREASED_BY:
             return true;
         default:
             return false;
@@ -127,22 +127,22 @@ export constexpr auto matchUsesOldValue(ScanMatchType scanMatchType) noexcept
 export [[nodiscard]] constexpr auto bytesNeededForType(ScanDataType dataType)
     -> std::size_t {
     switch (dataType) {
-        case ScanDataType::INTEGER8:
+        case ScanDataType::INTEGER_8:
             return 1;
-        case ScanDataType::INTEGER16:
+        case ScanDataType::INTEGER_16:
             return 2;
-        case ScanDataType::INTEGER32:
-        case ScanDataType::FLOAT32:
+        case ScanDataType::INTEGER_32:
+        case ScanDataType::FLOAT_32:
             return 4;
-        case ScanDataType::INTEGER64:
-        case ScanDataType::FLOAT64:
+        case ScanDataType::INTEGER_64:
+        case ScanDataType::FLOAT_64:
             return 8;
         case ScanDataType::STRING:
-        case ScanDataType::BYTEARRAY:
+        case ScanDataType::BYTE_ARRAY:
             return 32;
-        case ScanDataType::ANYINTEGER:
-        case ScanDataType::ANYFLOAT:
-        case ScanDataType::ANYNUMBER:
+        case ScanDataType::ANY_INTEGER:
+        case ScanDataType::ANY_FLOAT:
+        case ScanDataType::ANY_NUMBER:
             return 8;
     }
     return 8;

@@ -20,6 +20,7 @@ import value;
 //          makeAnyFloatRoutine, makeAnyNumberRoutine
 
 export template <typename T>
+// NOLINTNEXTLINE(readability-function-cognitive-complexity)
 inline auto numericMatchCore(ScanMatchType matchType, T memv,
                              const Value* oldValue, const UserValue* userValue,
                              MatchFlags* saveFlags) noexcept -> unsigned int {
@@ -74,40 +75,40 @@ inline auto numericMatchCore(ScanMatchType matchType, T memv,
     const T USERVALUEMAIN = NEEDS_USER ? userValueAs<T>(*userValue) : T{};
 
     switch (matchType) {
-        case ScanMatchType::MATCHANY:
+        case ScanMatchType::MATCH_ANY:
             return markMatched();
-        case ScanMatchType::MATCHEQUALTO:
+        case ScanMatchType::MATCH_EQUAL_TO:
             return isEqual(memv, USERVALUEMAIN) ? markMatched() : 0;
-        case ScanMatchType::MATCHNOTEQUALTO:
+        case ScanMatchType::MATCH_NOT_EQUAL_TO:
             return isNotEqual(memv, USERVALUEMAIN) ? markMatched() : 0;
-        case ScanMatchType::MATCHGREATERTHAN:
+        case ScanMatchType::MATCH_GREATER_THAN:
             return isGreaterThan(memv, USERVALUEMAIN) ? markMatched() : 0;
-        case ScanMatchType::MATCHLESSTHAN:
+        case ScanMatchType::MATCH_LESS_THAN:
             return isLessThan(memv, USERVALUEMAIN) ? markMatched() : 0;
-        case ScanMatchType::MATCHUPDATE:
-        case ScanMatchType::MATCHNOTCHANGED:
+        case ScanMatchType::MATCH_UPDATE:
+        case ScanMatchType::MATCH_NOT_CHANGED:
             return isEqual(memv, *oldOpt) ? markMatched() : 0;
-        case ScanMatchType::MATCHCHANGED:
+        case ScanMatchType::MATCH_CHANGED:
             return isNotEqual(memv, *oldOpt) ? markMatched() : 0;
-        case ScanMatchType::MATCHINCREASED:
+        case ScanMatchType::MATCH_INCREASED:
             return isGreaterThan(memv, *oldOpt) ? markMatched() : 0;
-        case ScanMatchType::MATCHDECREASED:
+        case ScanMatchType::MATCH_DECREASED:
             return isLessThan(memv, *oldOpt) ? markMatched() : 0;
-        case ScanMatchType::MATCHINCREASEDBY: {
+        case ScanMatchType::MATCH_INCREASED_BY: {
             const T DELTA = memv - *oldOpt;
             if constexpr (std::is_floating_point_v<T>) {
                 return almostEqual<T>(DELTA, USERVALUEMAIN) ? markMatched() : 0;
             }
             return (DELTA == USERVALUEMAIN) ? markMatched() : 0;
         }
-        case ScanMatchType::MATCHDECREASEDBY: {
+        case ScanMatchType::MATCH_DECREASED_BY: {
             const T DELTA = *oldOpt - memv;
             if constexpr (std::is_floating_point_v<T>) {
                 return almostEqual<T>(DELTA, USERVALUEMAIN) ? markMatched() : 0;
             }
             return (DELTA == USERVALUEMAIN) ? markMatched() : 0;
         }
-        case ScanMatchType::MATCHRANGE: {
+        case ScanMatchType::MATCH_RANGE: {
             const T HIGHVALUE = userValueHighAs<T>(*userValue);
             auto [lowBound, highBound] = std::minmax(USERVALUEMAIN, HIGHVALUE);
             if constexpr (std::is_floating_point_v<T>) {

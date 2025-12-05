@@ -69,25 +69,25 @@ export namespace core {
         return value;
     };  // Format based on data type
     switch (*dataType) {
-        case ScanDataType::INTEGER8:
+        case ScanDataType::INTEGER_8:
             return std::format("{}", static_cast<int8_t>(valueBytes[0]));
 
-        case ScanDataType::INTEGER16:
+        case ScanDataType::INTEGER_16:
             return std::format("{}", readValue.template operator()<int16_t>());
 
-        case ScanDataType::INTEGER32:
+        case ScanDataType::INTEGER_32:
             return std::format("{}", readValue.template operator()<int32_t>());
 
-        case ScanDataType::INTEGER64:
+        case ScanDataType::INTEGER_64:
             return std::format("{}", readValue.template operator()<int64_t>());
 
-        case ScanDataType::FLOAT32: {
+        case ScanDataType::FLOAT_32: {
             float val = readValue.template operator()<float>();
             return std::format("{:.6g}", val);
         }
 
-        case ScanDataType::FLOAT64: {
-            double val = readValue.template operator()<double>();
+        case ScanDataType::FLOAT_64: {
+            auto val = readValue.template operator()<double>();
             return std::format("{:.15g}", val);
         }
 

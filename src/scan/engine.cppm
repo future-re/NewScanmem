@@ -45,8 +45,8 @@ using core::RegionScanLevel;
 // - Read-only scanning is implemented
 
 export struct ScanOptions {
-    ScanDataType dataType{ScanDataType::ANYNUMBER};
-    ScanMatchType matchType{ScanMatchType::MATCHANY};
+    ScanDataType dataType{ScanDataType::ANY_NUMBER};
+    ScanMatchType matchType{ScanMatchType::MATCH_ANY};
     bool reverseEndianness{false};
     std::size_t step{1};               // scan step size (moves by bytes)
     std::size_t blockSize{64 * 1024};  // block size for each read

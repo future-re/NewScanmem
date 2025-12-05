@@ -19,8 +19,8 @@ import value;          // UserValue
 - Scanner：高层扫描会话对象，包装底层 `scan.engine`。
 - ScanOptions：扫描配置（数据类型、匹配方式、步长、块大小、区域级别等），定义在 `scan.engine`。
 - ScanStats：扫描统计信息（regionsVisited、bytesScanned、matches）。
-- ScanDataType：在 `scan.types` 中定义的数据类型枚举（如 `INTEGER32/INTEGER64/FLOAT32/FLOAT64/BYTEARRAY/STRING` 等）。
-- ScanMatchType：在 `scan.types` 中定义的匹配方式枚举（如 `MATCHEQUALTO/MATCHCHANGED/MATCHRANGE` 等）。
+- ScanDataType：在 `scan.types` 中定义的数据类型枚举（如 `INTEGER_32/INTEGER_64/FLOAT_32/FLOAT_64/BYTEARRAY/STRING` 等）。
+- ScanMatchType：在 `scan.types` 中定义的匹配方式枚举（如 `MATCHEQUALTO/MATCHCHANGED/MATCH_RANGE` 等）。
 - MatchesAndOldValuesArray：扫描结果容器，由若干 `MatchesAndOldValuesSwath` 组成，每个 swath 包含：
 	- `void* firstByteInChild`：该 swath 在目标进程中的第一个字节地址。
 	- `std::vector<OldValueAndMatchInfo> data`：每个元素对应目标内存的 1 字节；`OldValueAndMatchInfo` 包含 `oldValue`(uint8_t) 与 `matchInfo`(MatchFlags)。
@@ -61,12 +61,12 @@ public:
 	- 说明：启动一次完整扫描。
 	- 参数：
 		- `opts`：扫描配置，关键字段包括：
-			- `dataType`（ScanDataType）：如 `INTEGER32`、`FLOAT32`、`STRING` 等；
+			- `dataType`（ScanDataType）：如 `INTEGER_32`、`FLOAT_32`、`STRING` 等；
 			- `matchType`（ScanMatchType）：匹配策略（如 `MATCHEQUALTO`）；
 			- `step`：扫描步长（以字节为单位）；
 			- `blockSize`：每次读取的内存块大小；
 			- `regionLevel`：来自 `core.maps`，用于限制扫描到哪些内存区域。
-		- `value`：当 `matchType` 需要用户值（例如 `MATCHEQUALTO/MATCHRANGE`）时传入，指向 `UserValue`。
+		- `value`：当 `matchType` 需要用户值（例如 `MATCHEQUALTO/MATCH_RANGE`）时传入，指向 `UserValue`。
 	- 返回：`std::expected<ScanStats, std::string>`
 		- 成功（has_value）：返回 `ScanStats` 并且内部 `m_matches` 被更新为本次扫描结果；用户可调用 `getMatches()` 读取。
 		- 失败（has_error）：返回错误字符串，例如权限或 I/O 相关错误。
@@ -102,7 +102,7 @@ public:
 
 - `makeNumericScanOptions(ScanDataType dataType, ScanMatchType matchType = ScanMatchType::MATCHEQUALTO)`
 	- 用途：快速构建用于数值（整数/浮点）扫描的 `ScanOptions`。
-	- 建议：对整数查找通常使用 `ScanDataType::INTEGER32` 或 `INTEGER64`，并使用 `MATCHEQUALTO` 作为 matchType 来查找确切值。
+	- 建议：对整数查找通常使用 `ScanDataType::INTEGER_32` 或 `INTEGER_64`，并使用 `MATCHEQUALTO` 作为 matchType 来查找确切值。
 
 - `makeStringScanOptions(ScanMatchType matchType = ScanMatchType::MATCHEQUALTO)`
 	- 用途：构建字符串搜索的 `ScanOptions`；函数会把 `dataType` 设为 `ScanDataType::STRING` 并把 `step` 设为 1（逐字节检查）。
@@ -124,7 +124,7 @@ pid_t targetPid = /* child pid */;
 Scanner scanner(targetPid);
 
 // 1) 配置扫描选项：32-bit 整数、精确匹配
-auto opts = makeNumericScanOptions(ScanDataType::INTEGER32, ScanMatchType::MATCHEQUALTO);
+auto opts = makeNumericScanOptions(ScanDataType::INTEGER_32, ScanMatchType::MATCHEQUALTO);
 opts.step = 1; // 每字节检查
 
 // 2) 用户值

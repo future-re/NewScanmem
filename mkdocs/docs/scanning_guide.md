@@ -31,12 +31,12 @@ Scanner scanner(target_pid);
 
 | `ScanDataType` | 大小 | 描述 |
 | :--- | :--- | :--- |
-| `INTEGER8` | 1 字节 | 8位整数 |
-| `INTEGER16` | 2 字节 | 16位整数 |
-| `INTEGER32` | 4 字节 | 32位整数 |
-| `INTEGER64` | 8 字节 | 64位整数 |
-| `FLOAT32` | 4 字节 | 32位浮点数 |
-| `FLOAT64` | 8 字节 | 64位浮点数 |
+| `INTEGER_8` | 1 字节 | 8位整数 |
+| `INTEGER_16` | 2 字节 | 16位整数 |
+| `INTEGER_32` | 4 字节 | 32位整数 |
+| `INTEGER_64` | 8 字节 | 64位整数 |
+| `FLOAT_32` | 4 字节 | 32位浮点数 |
+| `FLOAT_64` | 8 字节 | 64位浮点数 |
 | `STRING` | 可变 | C风格字符串 |
 | `BYTEARRAY`| 可变 | 字节数组 |
 | `ANYINTEGER`| 可变 | 任意整数类型 |
@@ -98,7 +98,7 @@ Scanner scanner(target_pid);
 
 // 2. 配置扫描选项
 // 使用辅助函数可以更方便地创建选项
-auto opts = makeNumericScanOptions(ScanDataType::INTEGER32, ScanMatchType::MATCHEQUALTO);
+auto opts = makeNumericScanOptions(ScanDataType::INTEGER_32, ScanMatchType::MATCHEQUALTO);
 opts.step = 4; // 假设我们知道数值是4字节对齐的，以加快速度
 
 // 3. 准备要搜索的值
@@ -131,7 +131,7 @@ if (result) {
 // (续上文... 假设初次扫描已完成)
 
 // 1. 配置过滤扫描选项 (查找值已改变的地址)
-auto filter_opts = makeNumericScanOptions(ScanDataType::INTEGER32, ScanMatchType::MATCHCHANGED);
+auto filter_opts = makeNumericScanOptions(ScanDataType::INTEGER_32, ScanMatchType::MATCHCHANGED);
 
 // 2. 再次执行扫描，这次不需要提供具体数值
 // 扫描器内部会使用上一次的快照进行比较

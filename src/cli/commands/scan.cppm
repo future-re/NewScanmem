@@ -66,7 +66,7 @@ class ScanCommand : public Command {
         const bool NEEDS_VALUE = matchNeedsUserValue(*matchType);
         size_t valueCount = 0;
         if (NEEDS_VALUE) {
-            if (*matchType == ScanMatchType::MATCHRANGE) {
+            if (*matchType == ScanMatchType::MATCH_RANGE) {
                 valueCount = 2;
             } else {
                 valueCount = 1;
@@ -115,12 +115,12 @@ class ScanCommand : public Command {
 
         // 首次使用且用户选择了依赖旧值的匹配：自动做一次基线快照，再执行过滤
         bool firstPass = !scanner->hasMatches();
-        bool wantsBaseline = firstPass && matchType != ScanMatchType::MATCHANY;
+        bool wantsBaseline = firstPass && matchType != ScanMatchType::MATCH_ANY;
         if (wantsBaseline) {
-            // 任何首次非 MATCHANY
+            // 任何首次非 MATCH_ANY
             // 的调用先做全量基线，再执行过滤，保证后续基于旧值的匹配语义完整
             ScanOptions baselineOpts = opts;
-            baselineOpts.matchType = ScanMatchType::MATCHANY;
+            baselineOpts.matchType = ScanMatchType::MATCH_ANY;
             auto baseRes = scanner->performScan(baselineOpts, nullptr, true);
             if (!baseRes) {
                 return std::unexpected(baseRes.error());

@@ -10,36 +10,35 @@ import scan.bytes;
 import scan.string;
 import value;
 
-// This module provides a unified factory entry: smGetScanroutine / smChooseScanroutine
-// It returns an appropriate scanRoutine given a ScanDataType.
+// This module provides a unified factory entry: smGetScanroutine /
+// smChooseScanroutine It returns an appropriate scanRoutine given a
+// ScanDataType.
 
-export [[nodiscard]] inline auto smGetScanroutine(ScanDataType dataType,
-                                                  ScanMatchType matchType,
-                                                  [[maybe_unused]] MatchFlags uflags,
-                                                  bool reverseEndianness)
-    -> scanRoutine {
+export [[nodiscard]] inline auto smGetScanroutine(
+    ScanDataType dataType, ScanMatchType matchType,
+    [[maybe_unused]] MatchFlags uflags, bool reverseEndianness) -> scanRoutine {
     switch (dataType) {
-        case ScanDataType::INTEGER8:
+        case ScanDataType::INTEGER_8:
             return makeNumericRoutine<int8_t>(matchType, reverseEndianness);
-        case ScanDataType::INTEGER16:
+        case ScanDataType::INTEGER_16:
             return makeNumericRoutine<int16_t>(matchType, reverseEndianness);
-        case ScanDataType::INTEGER32:
+        case ScanDataType::INTEGER_32:
             return makeNumericRoutine<int32_t>(matchType, reverseEndianness);
-        case ScanDataType::INTEGER64:
+        case ScanDataType::INTEGER_64:
             return makeNumericRoutine<int64_t>(matchType, reverseEndianness);
-        case ScanDataType::FLOAT32:
+        case ScanDataType::FLOAT_32:
             return makeNumericRoutine<float>(matchType, reverseEndianness);
-        case ScanDataType::FLOAT64:
+        case ScanDataType::FLOAT_64:
             return makeNumericRoutine<double>(matchType, reverseEndianness);
-        case ScanDataType::BYTEARRAY:
+        case ScanDataType::BYTE_ARRAY:
             return makeBytearrayRoutine(matchType);
         case ScanDataType::STRING:
             return makeStringRoutine(matchType);
-        case ScanDataType::ANYINTEGER:
+        case ScanDataType::ANY_INTEGER:
             return makeAnyIntegerRoutine(matchType, reverseEndianness);
-        case ScanDataType::ANYFLOAT:
+        case ScanDataType::ANY_FLOAT:
             return makeAnyFloatRoutine(matchType, reverseEndianness);
-        case ScanDataType::ANYNUMBER:
+        case ScanDataType::ANY_NUMBER:
             return makeAnyNumberRoutine(matchType, reverseEndianness);
         default:
             return scanRoutine{};

@@ -61,7 +61,7 @@ TEST(ScanBytesTest, BytearrayRoutineWithMaskMatches) {
     userValue.byteMask = std::vector<std::uint8_t>{0xFF, 0xF0};
     userValue.flags = MatchFlags::B8;
 
-    auto routine = makeBytearrayRoutine(ScanMatchType::MATCHEQUALTO);
+    auto routine = makeBytearrayRoutine(ScanMatchType::MATCH_EQUAL_TO);
     const std::vector<std::uint8_t> haystack{0xAA, 0xB5, 0x00};
     Mem64 mem{haystack.data(), haystack.size()};
     MatchFlags flags = MatchFlags::EMPTY;
@@ -71,10 +71,10 @@ TEST(ScanBytesTest, BytearrayRoutineWithMaskMatches) {
     EXPECT_NE(flags, MatchFlags::EMPTY);
 }
 
-TEST(ScanStringTest, MatchAnyReturnsFullLength) {
+TEST(ScanStringTest, MATCH_ANYReturnsFullLength) {
     const std::string text = "hello";
     Mem64 mem{text};
-    auto routine = makeStringRoutine(ScanMatchType::MATCHANY);
+    auto routine = makeStringRoutine(ScanMatchType::MATCH_ANY);
     MatchFlags flags = MatchFlags::EMPTY;
     const unsigned matched =
         routine(&mem, mem.size(), nullptr, nullptr, &flags);
@@ -88,7 +88,7 @@ TEST(ScanStringTest, RegexMatchUsesPattern) {
     UserValue userValue;
     userValue.stringValue = "a.c";
 
-    auto routine = makeStringRoutine(ScanMatchType::MATCHREGEX);
+    auto routine = makeStringRoutine(ScanMatchType::MATCH_REGEX);
     MatchFlags flags = MatchFlags::EMPTY;
     const unsigned matched =
         routine(&mem, mem.size(), nullptr, &userValue, &flags);

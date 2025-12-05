@@ -19,10 +19,10 @@ import value;         // UserValue
 // Test strategy:
 // - Create a child process with a dedicated mmap page filled with a repeating
 //   byte pattern that includes a target value (e.g. 0x2A == 42) multiple times.
-// - Parent performs a full scan (MATCHANY, INTEGER8) and records match count.
-// - Parent then performs a filtered scan (MATCHEQUALTO, INTEGER8, value=42)
+// - Parent performs a full scan (MATCH_ANY, INTEGER_8) and records match count.
+// - Parent then performs a filtered scan (MATCHEQUALTO, INTEGER_8, value=42)
 //   and expects the match count to reduce (or at least not increase).
-// - Parent performs another full scan (MATCHANY) and expects match count to
+// - Parent performs another full scan (MATCH_ANY) and expects match count to
 //   reset (be >= filtered count).
 // - Additional test ensures calling filtered scan first returns an error.
 //
@@ -105,7 +105,7 @@ class ScannerTest : public ::testing::Test {
 // Test: filtered scan error when no prior full scan
 TEST(ScannerStandaloneTest, FilteredScanWithoutInitialFull) {
     Scanner scanner(::getpid());  // current process
-    ScanOptions opts;             // defaults MATCHANY ANYNUMBER
+    ScanOptions opts;             // defaults MATCH_ANY ANYNUMBER
     auto filtered = scanner.performFilteredScan(opts);
     EXPECT_FALSE(filtered.has_value());
 }
@@ -117,8 +117,8 @@ TEST_F(ScannerTest, FullThenFilteredAndReset) {
 
     // Full scan (match any int8)
     ScanOptions fullOpts;
-    fullOpts.dataType = ScanDataType::INTEGER8;
-    fullOpts.matchType = ScanMatchType::MATCHANY;
+    fullOpts.dataType = ScanDataType::INTEGER_8;
+    fullOpts.matchType = ScanMatchType::MATCH_ANY;
     auto fullStatsExp = scanner.performScan(fullOpts);
     ASSERT_TRUE(fullStatsExp.has_value()) << "Full scan failed";
     auto fullCount = scanner.getMatchCount();
@@ -127,8 +127,8 @@ TEST_F(ScannerTest, FullThenFilteredAndReset) {
     // Filtered scan (only bytes equal to 42)
     UserValue val = UserValue::fromScalar<int8_t>(42);
     ScanOptions filteredOpts;
-    filteredOpts.dataType = ScanDataType::INTEGER8;
-    filteredOpts.matchType = ScanMatchType::MATCHEQUALTO;
+    filteredOpts.dataType = ScanDataType::INTEGER_8;
+    filteredOpts.matchType = ScanMatchType::MATCH_EQUAL_TO;
     auto filteredStatsExp = scanner.performFilteredScan(filteredOpts, &val);
     ASSERT_TRUE(filteredStatsExp.has_value()) << "Filtered scan failed";
     auto narrowedCount = scanner.getMatchCount();

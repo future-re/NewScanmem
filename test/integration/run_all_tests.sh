@@ -107,7 +107,7 @@ run_test "Integration_Scan_Int64" \
   target_fixed_int int64 1122334455667788 9999999999999999 --wait-modify-ms 10000
 
 run_test "Integration_Scan_Double" \
-  target_fixed_double float64 12345.6789 99999.9999 --wait-modify-ms 10000
+  target_fixed_double FLOAT_64 12345.6789 99999.9999 --wait-modify-ms 10000
 
 run_test "Integration_Scan_Struct_Field" \
   target_struct_field int32 9999 1000000 --wait-modify-ms 10000
