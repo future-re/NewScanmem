@@ -46,6 +46,9 @@ def main():
     parser.add_argument('target_name', help='Target executable name (e.g., target_fixed_int)')
     parser.add_argument('value_type', help='Value type to scan (e.g., int64, float64)')
     parser.add_argument('expected_value', help='Expected value in target process')
+    parser.add_argument('modified_value', help='Value to write into target process')
+    parser.add_argument('--wait-modify-ms', type=int, default=10000, 
+                       help='Timeout for waiting modification (default: 10000ms)')
     args = parser.parse_args()
     
     # 确定构建目录
@@ -69,11 +72,13 @@ def main():
     print(f"Scanmem executable: {scanmem_exe}")
     print(f"Value type: {args.value_type}")
     print(f"Expected value: {args.expected_value}")
+    print(f"Modified value: {args.modified_value}")
     
     # 启动目标进程
     print("\n[1] Starting target process...")
     target_proc = subprocess.Popen(
-        [str(target_exe), "--duration-ms", "30000"],  # 运行 30 秒
+        [str(target_exe), "--duration-ms", "30000", 
+         "--wait-modify-ms", str(args.wait_modify_ms)],  # 传递超时参数
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True
@@ -87,29 +92,74 @@ def main():
     print(f"Target PID: {pid}")
     
     try:
-        # TODO: 这里应该实际调用 NewScanmem 进行扫描
-        # 示例命令序列：
-        # 1. attach <pid>
-        # 2. scan <value_type> = <expected_value>
-        # 3. set <address> <new_value>
-        # 4. 验证修改成功
+        # 使用 NewScanmem 进行扫描和修改
+        print(f"\n[2] Scanning process {pid} for {args.value_type} value {args.expected_value}")
         
-        print(f"\n[2] Would scan process {pid} for {args.value_type} value {args.expected_value}")
-        print(f"    Command: {scanmem_exe} (interactive mode needed)")
+        # 准备命令序列
+        commands = [
+            f"pid {pid}",  # 附加到目标进程
+            f"scan {args.value_type} = {args.expected_value}",  # 扫描期望值
+            f"write {args.modified_value} 0",  # 写入新值到第一个匹配
+        ]
         
-        # 简单验证：目标进程还在运行
-        time.sleep(1)
-        if target_proc.poll() is None:
-            print("[3] Target process is still running - OK")
-            result = 0
-        else:
-            print("[3] Target process exited unexpectedly - FAILED", file=sys.stderr)
+        # 将命令通过 stdin 发送给 NewScanmem
+        command_input = "\n".join(commands) + "\nquit\n"
+        
+        # 执行 NewScanmem
+        print(f"[3] Executing commands:")
+        for cmd in commands:
+            print(f"    > {cmd}")
+        
+        # NewScanmem 需要 root 权限来 attach 到进程
+        scanmem_cmd = ["sudo", str(scanmem_exe)]
+        
+        scanmem_result = subprocess.run(
+            scanmem_cmd,
+            input=command_input,
+            capture_output=True,
+            text=True,
+            timeout=10
+        )
+        
+        # 检查 NewScanmem 执行结果
+        if scanmem_result.returncode != 0:
+            print(f"[4] NewScanmem failed with exit code {scanmem_result.returncode}", file=sys.stderr)
+            print(f"STDOUT:\n{scanmem_result.stdout}", file=sys.stderr)
+            print(f"STDERR:\n{scanmem_result.stderr}", file=sys.stderr)
             result = 1
+        else:
+            print("[4] NewScanmem executed successfully")
+            print(f"STDOUT:\n{scanmem_result.stdout}")
+            if scanmem_result.stderr:
+                print(f"STDERR:\n{scanmem_result.stderr}")
+            
+            # 等待目标进程结束并检查退出码
+            print(f"\n[5] Waiting for target process to validate modification...")
+            try:
+                exit_code = target_proc.wait(timeout=args.wait_modify_ms / 1000 + 5)
+                if exit_code == 0:
+                    print(f"[6] Target process exited successfully (exit code: {exit_code})")
+                    print("    ✓ Value was successfully modified and detected!")
+                    result = 0
+                else:
+                    print(f"[6] Target process exited with error (exit code: {exit_code})", file=sys.stderr)
+                    print("    ✗ Value modification was not detected within timeout", file=sys.stderr)
+                    # 打印目标进程输出以便调试
+                    stdout, stderr = target_proc.communicate()
+                    if stdout:
+                        print(f"Target stdout:\n{stdout}", file=sys.stderr)
+                    if stderr:
+                        print(f"Target stderr:\n{stderr}", file=sys.stderr)
+                    result = 1
+            except subprocess.TimeoutExpired:
+                print(f"[6] Target process did not exit within expected time", file=sys.stderr)
+                result = 1
             
     finally:
-        # 清理：终止目标进程
-        print("\n[4] Cleaning up...")
-        target_proc.terminate()
+        # 清理：确保目标进程被终止
+        print("\n[7] Cleaning up...")
+        if target_proc.poll() is None:
+            target_proc.terminate()
         try:
             target_proc.wait(timeout=2)
         except subprocess.TimeoutExpired:

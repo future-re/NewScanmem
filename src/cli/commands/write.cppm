@@ -6,6 +6,7 @@
 module;
 
 #include <cstdint>
+#include <cstring>
 #include <expected>
 #include <format>
 #include <optional>
@@ -21,6 +22,7 @@ import ui.show_message;
 import core.memory_writer;
 import utils.endianness;
 import value.parser;
+import scan.types;
 
 export namespace cli::commands {
 
@@ -60,13 +62,43 @@ class WriteCommand : public Command {
             return std::unexpected("No matches. Run a scan first.");
         }
 
-        // 解析值
-        const auto& valueStr = args[0];
-        auto valueOpt = value::parseInt64(valueStr);
-        if (!valueOpt) {
-            return std::unexpected("Invalid value: " + valueStr);
+        // 获取最后一次扫描的数据类型
+        auto lastDataType = m_session->scanner->getLastDataType();
+        if (!lastDataType) {
+            return std::unexpected(
+                "No scan data type available. Run a scan first.");
         }
-        auto value = static_cast<std::uint64_t>(*valueOpt);
+
+        // 根据数据类型解析值
+        const auto& valueStr = args[0];
+        std::uint64_t value = 0;
+
+        bool isFloatType = (*lastDataType == ScanDataType::FLOAT32 ||
+                            *lastDataType == ScanDataType::FLOAT64 ||
+                            *lastDataType == ScanDataType::ANYFLOAT);
+
+        if (isFloatType) {
+            // 解析为浮点数
+            auto doubleOpt = value::parseDouble(valueStr);
+            if (!doubleOpt) {
+                return std::unexpected("Invalid float value: " + valueStr);
+            }
+            // 根据类型转换为对应的浮点表示
+            if (*lastDataType == ScanDataType::FLOAT32) {
+                float floatVal = static_cast<float>(*doubleOpt);
+                std::memcpy(&value, &floatVal, sizeof(float));
+            } else {
+                double doubleVal = *doubleOpt;
+                std::memcpy(&value, &doubleVal, sizeof(double));
+            }
+        } else {
+            // 解析为整数
+            auto intOpt = value::parseInt64(valueStr);
+            if (!intOpt) {
+                return std::unexpected("Invalid integer value: " + valueStr);
+            }
+            value = static_cast<std::uint64_t>(*intOpt);
+        }
 
         // 解析索引（可选）
         std::optional<size_t> targetIndex;
@@ -79,10 +111,10 @@ class WriteCommand : public Command {
         }
 
         // 创建写入器并执行写入（按会话端序）
-        core::MemoryWriter writer(m_session->pid,
-                      (m_session->endianness == utils::Endianness::LITTLE
-                           ? utils::Endianness::LITTLE
-                           : utils::Endianness::BIG));
+        core::MemoryWriter writer(
+            m_session->pid, (m_session->endianness == utils::Endianness::LITTLE
+                                 ? utils::Endianness::LITTLE
+                                 : utils::Endianness::BIG));
         auto* scanner = m_session->scanner.get();
 
         if (targetIndex) {

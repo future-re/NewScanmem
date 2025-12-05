@@ -68,6 +68,7 @@ class Scanner {
         -> std::expected<ScanStats, std::string> {
         // Full scan mode: clear previous active matches (snapshot refresh)
         m_matches.swaths.clear();
+        m_lastDataType = opts.dataType;  // Record data type
         auto result = runScan(m_pid, opts, value, m_matches);
         if (!result) {
             return std::unexpected(result.error());
@@ -243,11 +244,20 @@ class Scanner {
      */
     [[nodiscard]] auto getPid() const -> pid_t { return m_pid; }
 
+    /**
+     * @brief Get last scan data type
+     * @return Optional ScanDataType
+     */
+    [[nodiscard]] auto getLastDataType() const -> std::optional<ScanDataType> {
+        return m_lastDataType;
+    }
+
    private:
     static constexpr std::size_t MAX_HISTORY = 10;
     pid_t m_pid;
     MatchesAndOldValuesArray m_matches;  // Current/active matches
     std::deque<ScanResult> m_results;  // History of scan results (stable refs)
+    std::optional<ScanDataType> m_lastDataType;  // Last scan data type
     auto addToHistory(ScanResult&& result) -> void {
         if (m_results.size() >= MAX_HISTORY) {
             m_results.pop_front();
