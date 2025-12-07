@@ -13,7 +13,7 @@ export enum class MatchFlags : std::uint16_t {
     B32 = 1U << 2,
     B64 = 1U << 3,
     STRING = 1U << 8,
-    BYTEARRAY = 1U << 9,
+    BYTE_ARRAY = 1U << 9,
 };
 
 // bit wise operators for MatchFlags

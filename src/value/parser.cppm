@@ -348,7 +348,7 @@ template <typename T, typename Parser>
 
             UserValue userVal;
             userVal.bytearrayValue = std::move(bytes);
-            userVal.flags = MatchFlags::BYTEARRAY;
+            userVal.flags = MatchFlags::BYTE_ARRAY;
             return userVal;
         }
 

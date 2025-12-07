@@ -127,72 +127,39 @@ export struct ScalarValue {
 
     static auto fromBytes(ScalarKind kVal, const uint8_t* data,
                           size_t size) noexcept -> std::optional<ScalarValue> {
-        const auto N_VAL = sizeOf(kVal);
-        if (size < N_VAL) {
+        if (size < sizeOf(kVal)) {
             return std::nullopt;
         }
-        ScalarValue out{.kind = kVal};
+
+        auto impl = [kVal, data]<typename T>() {
+            T val{};
+            std::memcpy(&val, data, sizeof(T));
+            ScalarValue out{.kind = kVal};
+            out.value = val;
+            return out;
+        };
+
         switch (kVal) {
-            case ScalarKind::U8: {
-                uint8_t val = 0;
-                std::memcpy(&val, data, sizeof(val));
-                out.value = val;
-                return out;
-            }
-            case ScalarKind::S8: {
-                int8_t val = 0;
-                std::memcpy(&val, data, sizeof(val));
-                out.value = val;
-                return out;
-            }
-            case ScalarKind::U16: {
-                uint16_t val = 0;
-                std::memcpy(&val, data, sizeof(val));
-                out.value = val;
-                return out;
-            }
-            case ScalarKind::S16: {
-                int16_t val = 0;
-                std::memcpy(&val, data, sizeof(val));
-                out.value = val;
-                return out;
-            }
-            case ScalarKind::U32: {
-                uint32_t val = 0;
-                std::memcpy(&val, data, sizeof(val));
-                out.value = val;
-                return out;
-            }
-            case ScalarKind::S32: {
-                int32_t val = 0;
-                std::memcpy(&val, data, sizeof(val));
-                out.value = val;
-                return out;
-            }
-            case ScalarKind::U64: {
-                uint64_t val = 0;
-                std::memcpy(&val, data, sizeof(val));
-                out.value = val;
-                return out;
-            }
-            case ScalarKind::S64: {
-                int64_t val = 0;
-                std::memcpy(&val, data, sizeof(val));
-                out.value = val;
-                return out;
-            }
-            case ScalarKind::F32: {
-                float val = 0;
-                std::memcpy(&val, data, sizeof(val));
-                out.value = val;
-                return out;
-            }
-            case ScalarKind::F64: {
-                double val = 0;
-                std::memcpy(&val, data, sizeof(val));
-                out.value = val;
-                return out;
-            }
+            case ScalarKind::U8:
+                return impl.template operator()<uint8_t>();
+            case ScalarKind::S8:
+                return impl.template operator()<int8_t>();
+            case ScalarKind::U16:
+                return impl.template operator()<uint16_t>();
+            case ScalarKind::S16:
+                return impl.template operator()<int16_t>();
+            case ScalarKind::U32:
+                return impl.template operator()<uint32_t>();
+            case ScalarKind::S32:
+                return impl.template operator()<int32_t>();
+            case ScalarKind::U64:
+                return impl.template operator()<uint64_t>();
+            case ScalarKind::S64:
+                return impl.template operator()<int64_t>();
+            case ScalarKind::F32:
+                return impl.template operator()<float>();
+            case ScalarKind::F64:
+                return impl.template operator()<double>();
         }
         return std::nullopt;
     }

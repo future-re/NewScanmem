@@ -55,7 +55,7 @@ enum class RegionScanLevel : uint8_t {
  * - write:    是否具有写入权限
  * - exec:     是否具有执行权限
  * - shared:   是否为共享内存区域
- * - private_: 是否为私有内存区域
+ * - exclusive:是否为私有内存区域
  */
 struct RegionFlags {
     bool read : 1;
@@ -109,7 +109,7 @@ class MapsReader {
     };
 
     [[nodiscard]] static auto readProcessMaps(
-        pid_t pid, RegionScanLevel level = RegionScanLevel::ALL)
+        pid_t pid, RegionScanLevel level = RegionScanLevel::ALL_RW)
         -> std::expected<std::vector<Region>, Error> {
         auto mapsPath =
             std::filesystem::path{"/proc"} / std::to_string(pid) / "maps";

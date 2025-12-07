@@ -14,7 +14,7 @@ export import value.flags;
 // Value - byte data used to store snapshots of old values
 export struct Value {
     MatchFlags flags = MatchFlags::EMPTY;
-    std::vector<std::uint8_t> bytes; 
+    std::vector<std::uint8_t> bytes;
 
     Value() = default;
 
@@ -51,6 +51,10 @@ constexpr auto flagForScalarType() -> MatchFlags {
                          std::is_same_v<T, uint64_t> ||
                          std::is_same_v<T, double>) {
         return MatchFlags::B64;
+    } else if constexpr (std::is_same_v<T, std::string>) {
+        return MatchFlags::STRING;
+    } else if constexpr (std::is_same_v<T, std::vector<uint8_t>>) {
+        return MatchFlags::BYTE_ARRAY;
     }
     return MatchFlags::EMPTY;
 }
@@ -91,6 +95,20 @@ export struct UserValue {
         setScalarValue(userVal, low);
         setScalarHighValue(userVal, high);
         userVal.flags = flagForScalarType<T>();
+        return userVal;
+    }
+
+    static auto fromString(std::string val) -> UserValue {
+        UserValue userVal;
+        userVal.stringValue = std::move(val);
+        userVal.flags = MatchFlags::STRING;
+        return userVal;
+    }
+
+    static auto fromByteArray(std::vector<uint8_t> val) -> UserValue {
+        UserValue userVal;
+        userVal.bytearrayValue = std::move(val);
+        userVal.flags = MatchFlags::BYTE_ARRAY;
         return userVal;
     }
 
