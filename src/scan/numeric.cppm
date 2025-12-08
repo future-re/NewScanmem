@@ -44,7 +44,7 @@ inline auto numericMatchCore(ScanMatchType matchType, T memv,
     }
 
     auto markMatched = [&]() -> unsigned int {
-        *saveFlags = flagForType<T>();
+        setFlagsIfNotNull(saveFlags, flagForType<T>());
         return sizeof(T);
     };
 
@@ -164,7 +164,7 @@ inline auto makeNumericRoutine(ScanMatchType matchType, bool reverseEndianness)
         [matchType, reverseEndianness](
             const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
             const UserValue* userValue, MatchFlags* saveFlags) -> unsigned int {
-            *saveFlags = MatchFlags::EMPTY;
+            setFlagsIfNotNull(saveFlags, MatchFlags::EMPTY);
             return detail::runNumericMatch<T>(matchType, reverseEndianness,
                                               memoryPtr, memLength, oldValue,
                                               userValue, saveFlags);
@@ -177,7 +177,7 @@ export inline auto makeAnyIntegerRoutine(ScanMatchType matchType,
     return [matchType, reverseEndianness](
                const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
                const UserValue* userValue, MatchFlags* saveFlags) -> unsigned {
-        *saveFlags = MatchFlags::EMPTY;
+        setFlagsIfNotNull(saveFlags, MatchFlags::EMPTY);
         return detail::tryNumericSequence<uint64_t, int64_t, uint32_t, int32_t,
                                           uint16_t, int16_t, uint8_t, int8_t>(
             matchType, reverseEndianness, memoryPtr, memLength, oldValue,
@@ -190,7 +190,7 @@ export inline auto makeAnyFloatRoutine(ScanMatchType matchType,
     return [matchType, reverseEndianness](
                const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
                const UserValue* userValue, MatchFlags* saveFlags) -> unsigned {
-        *saveFlags = MatchFlags::EMPTY;
+        setFlagsIfNotNull(saveFlags, MatchFlags::EMPTY);
         return detail::tryNumericSequence<double, float>(
             matchType, reverseEndianness, memoryPtr, memLength, oldValue,
             userValue, saveFlags);
@@ -202,7 +202,7 @@ export inline auto makeAnyNumberRoutine(ScanMatchType matchType,
     return [matchType, reverseEndianness](
                const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
                const UserValue* userValue, MatchFlags* saveFlags) -> unsigned {
-        *saveFlags = MatchFlags::EMPTY;
+        setFlagsIfNotNull(saveFlags, MatchFlags::EMPTY);
         if (auto resultValue = detail::tryNumericSequence<double, float>(
                 matchType, reverseEndianness, memoryPtr, memLength, oldValue,
                 userValue, saveFlags)) {

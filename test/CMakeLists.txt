@@ -22,6 +22,8 @@ set(TEST_SOURCES
     core/test_scanner.cpp
     core/test_region_filter.cpp
     scan/test_bytes.cpp
+    scan/test_numeric.cpp
+    scan/test_string.cpp
 )
 
 # 为每个测试源生成可执行文件并注册 gtest_discover_tests

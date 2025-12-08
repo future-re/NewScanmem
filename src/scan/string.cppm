@@ -61,7 +61,7 @@ namespace {
 [[nodiscard]] inline auto handleMATCHANY(size_t memLength,
                                          MatchFlags* saveFlags)
     -> unsigned int {
-    *saveFlags = MatchFlags::B8;
+    setFlagsIfNotNull(saveFlags, MatchFlags::B8);
     return static_cast<unsigned int>(memLength);
 }
 
@@ -76,7 +76,7 @@ namespace {
     if (const auto* rxVal = getCachedRegex(pattern)) {
         boost::smatch matchResult;
         if (boost::regex_search(hay, matchResult, *rxVal)) {
-            *saveFlags = MatchFlags::B8;
+            setFlagsIfNotNull(saveFlags, MatchFlags::B8);
             return static_cast<unsigned int>(matchResult.length());
         }
     }
@@ -89,7 +89,7 @@ export inline auto makeStringRoutine(ScanMatchType matchType) -> scanRoutine {
     return [matchType](const Mem64* memoryPtr, size_t memLength,
                        const Value* /*oldValue*/, const UserValue* userValue,
                        MatchFlags* saveFlags) -> unsigned int {
-        *saveFlags = MatchFlags::EMPTY;
+        setFlagsIfNotNull(saveFlags, MatchFlags::EMPTY);
         if (matchType == ScanMatchType::MATCH_ANY) {
             return handleMATCHANY(memLength, saveFlags);
         }

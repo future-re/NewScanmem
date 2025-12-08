@@ -35,7 +35,7 @@ export inline auto compareBytes(const Mem64* memoryPtr, size_t memLength,
         return 0;
     }
     if (std::equal(patternData, patternData + patternSize, hayAll.begin())) {
-        *saveFlags = MatchFlags::B8;
+        setFlagsIfNotNull(saveFlags, MatchFlags::B8);
         return static_cast<unsigned int>(patternSize);
     }
     return 0;
@@ -70,7 +70,7 @@ export inline auto compareBytesMasked(const Mem64* memoryPtr, size_t memLength,
             return 0;
         }
     }
-    *saveFlags = MatchFlags::B8;
+    setFlagsIfNotNull(saveFlags, (MatchFlags::B8 | MatchFlags::BYTE_ARRAY));
     return static_cast<unsigned int>(PATTERN_SIZE);
 }
 
@@ -97,9 +97,9 @@ export inline auto findBytePattern(const Mem64* memoryPtr, size_t memLength,
         return std::nullopt;
     }
     auto hayView = hayAll | std::views::take(LIMIT);
-    auto needleView = std::views::counted(
+    auto patternView = std::views::counted(
         patternData, static_cast<std::ptrdiff_t>(patternSize));
-    auto searchResult = std::ranges::search(hayView, needleView);
+    auto searchResult = std::ranges::search(hayView, patternView);
     if (searchResult.empty()) {
         return std::nullopt;
     }
@@ -160,9 +160,9 @@ export inline auto makeBytearrayRoutine(ScanMatchType matchType)
     return [matchType](const Mem64* memoryPtr, size_t memLength,
                        const Value* /*oldValue*/, const UserValue* userValue,
                        MatchFlags* saveFlags) -> unsigned int {
-        *saveFlags = MatchFlags::EMPTY;
+        setFlagsIfNotNull(saveFlags, MatchFlags::EMPTY);
         if (matchType == ScanMatchType::MATCH_ANY) {
-            *saveFlags = MatchFlags::B8;
+            setFlagsIfNotNull(saveFlags, MatchFlags::B8);
             return static_cast<unsigned int>(memLength);
         }
         if (!userValue || !userValue->bytearrayValue) {
@@ -171,12 +171,21 @@ export inline auto makeBytearrayRoutine(ScanMatchType matchType)
         const auto& byteArrayRef = *userValue->bytearrayValue;
         if (userValue->byteMask &&
             userValue->byteMask->size() == byteArrayRef.size()) {
-            return compareBytesMasked(memoryPtr, memLength, byteArrayRef.data(),
-                                      byteArrayRef.size(),
-                                      userValue->byteMask->data(),
-                                      userValue->byteMask->size(), saveFlags);
+            unsigned matchedLen = compareBytesMasked(
+                memoryPtr, memLength, byteArrayRef.data(), byteArrayRef.size(),
+                userValue->byteMask->data(), userValue->byteMask->size(),
+                saveFlags);
+            if (matchedLen > 0) {
+                orFlagsIfNotNull(saveFlags, MatchFlags::BYTE_ARRAY);
+            }
+            return matchedLen;
         }
-        return compareBytes(memoryPtr, memLength, byteArrayRef.data(),
-                            byteArrayRef.size(), saveFlags);
+        unsigned matchedLen =
+            compareBytes(memoryPtr, memLength, byteArrayRef.data(),
+                         byteArrayRef.size(), saveFlags);
+        if (matchedLen > 0) {
+            orFlagsIfNotNull(saveFlags, MatchFlags::BYTE_ARRAY);
+        }
+        return matchedLen;
     };
 }

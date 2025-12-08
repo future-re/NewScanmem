@@ -55,3 +55,19 @@ export inline auto operator&=(MatchFlags& aVal, MatchFlags bVal) noexcept
 export constexpr auto any(MatchFlags flag) noexcept -> bool {
     return (flag != MatchFlags::EMPTY);
 }
+
+// Null-safe flag manipulation helpers
+// These functions safely handle nullptr for optional flag output parameters
+export inline void setFlagsIfNotNull(MatchFlags* dest,
+                                     MatchFlags flags) noexcept {
+    if (dest != nullptr) {
+        *dest = flags;
+    }
+}
+
+export inline void orFlagsIfNotNull(MatchFlags* dest,
+                                    MatchFlags flags) noexcept {
+    if (dest != nullptr) {
+        *dest |= flags;
+    }
+}
