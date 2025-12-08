@@ -237,7 +237,7 @@ class MatchesAndOldValuesArray {
             if (curr < base) {
                 continue;
             }
-            const size_t OFFSET = static_cast<size_t>(curr - base);
+            const auto OFFSET = static_cast<size_t>(curr - base);
             if (OFFSET >= swath.data.size()) {
                 continue;
             }

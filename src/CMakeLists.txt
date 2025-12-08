@@ -44,7 +44,6 @@ set(MODULE_SOURCES
     cli/commands/watch.cppm
     
     # Core abstraction layer
-    core/config.cppm
     core/scanner.cppm
     core/memory.cppm
     core/proc_mem.cppm
