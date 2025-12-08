@@ -100,22 +100,22 @@ export inline auto makeStringRoutine(ScanMatchType matchType) -> scanRoutine {
             return runRegexMatch(memoryPtr, memLength, userValue->stringValue,
                                  saveFlags);
         }
-        const std::string_view NEEDLE{userValue->stringValue};
-        if (NEEDLE.empty()) {
+        const std::string_view PATTERN{userValue->stringValue};
+        if (PATTERN.empty()) {
             return 0;
         }
         const auto* const MASK_PTR =
             (userValue->byteMask &&
-             userValue->byteMask->size() == NEEDLE.size())
+             userValue->byteMask->size() == PATTERN.size())
                 ? &*userValue->byteMask
                 : nullptr;
-        const auto* bytePtr = std::bit_cast<const uint8_t*>(NEEDLE.data());
+        const auto* bytePtr = std::bit_cast<const uint8_t*>(PATTERN.data());
         if (MASK_PTR) {
             return compareBytesMasked(memoryPtr, memLength, bytePtr,
-                                      NEEDLE.size(), MASK_PTR->data(),
+                                      PATTERN.size(), MASK_PTR->data(),
                                       MASK_PTR->size(), saveFlags);
         }
-        return compareBytes(memoryPtr, memLength, bytePtr, NEEDLE.size(),
+        return compareBytes(memoryPtr, memLength, bytePtr, PATTERN.size(),
                             saveFlags);
     };
 }
