@@ -11,23 +11,25 @@
       
       
       
-        <link rel="prev" href="../NamingConvention/">
+        <link rel="prev" href="../../core/show_message/">
       
+      
+        <link rel="next" href="../../NamingConvention/">
       
       
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
     
     
       
-        <title>并发架构分析 - NewScanmem Documentation</title>
+        <title>大端与小端 - NewScanmem Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
       
       
 
@@ -46,7 +48,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -64,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#endianness" class="md-skip">
           跳转至
         </a>
       
@@ -80,7 +82,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href=".." title="NewScanmem Documentation" class="md-header__button md-logo" aria-label="NewScanmem Documentation" data-md-component="logo">
+    <a href="../.." title="NewScanmem Documentation" class="md-header__button md-logo" aria-label="NewScanmem Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -100,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              并发架构分析
+              大端与小端
             
           </span>
         </div>
@@ -190,7 +192,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="NewScanmem Documentation" class="md-nav__button md-logo" aria-label="NewScanmem Documentation" data-md-component="logo">
+    <a href="../.." title="NewScanmem Documentation" class="md-nav__button md-logo" aria-label="NewScanmem Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -220,7 +222,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -294,7 +296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../scanning_guide/" class="md-nav__link">
+      <a href="../../scanning_guide/" class="md-nav__link">
         
   
   
@@ -423,7 +425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../scan/" class="md-nav__link">
+      <a href="../../scan/" class="md-nav__link">
         
   
   
@@ -451,7 +453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../scan/bytes/" class="md-nav__link">
+      <a href="../../scan/bytes/" class="md-nav__link">
         
   
   
@@ -479,7 +481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../scan/scanner/" class="md-nav__link">
+      <a href="../../scan/scanner/" class="md-nav__link">
         
   
   
@@ -562,7 +564,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../utils/" class="md-nav__link">
+      <a href="../../utils/" class="md-nav__link">
         
   
   
@@ -590,7 +592,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../utils/maps/" class="md-nav__link">
+      <a href="../../utils/maps/" class="md-nav__link">
         
   
   
@@ -618,7 +620,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../utils/sets/" class="md-nav__link">
+      <a href="../../utils/sets/" class="md-nav__link">
         
   
   
@@ -646,7 +648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../utils/endianness/" class="md-nav__link">
+      <a href="../../utils/endianness/" class="md-nav__link">
         
   
   
@@ -729,7 +731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core/" class="md-nav__link">
+      <a href="../../core/" class="md-nav__link">
         
   
   
@@ -757,7 +759,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core/main/" class="md-nav__link">
+      <a href="../../core/main/" class="md-nav__link">
         
   
   
@@ -785,7 +787,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core/value/" class="md-nav__link">
+      <a href="../../core/value/" class="md-nav__link">
         
   
   
@@ -813,7 +815,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core/target_mem/" class="md-nav__link">
+      <a href="../../core/target_mem/" class="md-nav__link">
         
   
   
@@ -841,7 +843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core/process_checker/" class="md-nav__link">
+      <a href="../../core/process_checker/" class="md-nav__link">
         
   
   
@@ -869,7 +871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core/show_message/" class="md-nav__link">
+      <a href="../../core/show_message/" class="md-nav__link">
         
   
   
@@ -909,18 +911,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -941,7 +945,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -956,10 +960,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../concepts/endianness/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    大端与小端
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -975,6 +1006,70 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概念简介
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么端序重要？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何处理端序
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -987,7 +1082,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../NamingConvention/" class="md-nav__link">
+      <a href="../../NamingConvention/" class="md-nav__link">
         
   
   
@@ -1019,20 +1114,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -1053,7 +1146,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1068,37 +1161,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    并发架构分析
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../concurrency/" class="md-nav__link">
         
   
   
@@ -1114,143 +1180,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. 为什么目前的架构不支持并发？
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1. 为什么目前的架构不支持并发？">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#a-data-race" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        A. 数据竞争 (Data Race)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#b-resource-contention" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        B. 资源竞争 (Resource Contention)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-map-reduce" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. 解决方案：Map-Reduce 架构
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. 解决方案：Map-Reduce 架构">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        架构演进
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="架构演进">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#map" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        第一步：Map 阶段 (并行)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scan" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        第二步：Scan 阶段 (无锁)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#reduce" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        第三步：Reduce 阶段 (合并)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 实施路线图
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1290,116 +1219,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 为什么目前的架构不支持并发？
+        概念简介
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="1. 为什么目前的架构不支持并发？">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#a-data-race" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        A. 数据竞争 (Data Race)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#b-resource-contention" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        B. 资源竞争 (Resource Contention)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-map-reduce" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. 解决方案：Map-Reduce 架构
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. 解决方案：Map-Reduce 架构">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        架构演进
+        为什么端序重要？
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="架构演进">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#map" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        第一步：Map 阶段 (并行)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scan" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        第二步：Scan 阶段 (无锁)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#reduce" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        第三步：Reduce 阶段 (合并)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. 实施路线图
+        如何处理端序
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考
       
     </span>
   </a>
@@ -1426,89 +1282,30 @@
   
 
 
-<h1 id="_1">并发架构设计与分析</h1>
-<p>本文档详细分析了 NewScanmem 在引入并发扫描时面临的挑战，并提出了基于 Map-Reduce 模型的解决方案。</p>
-<h2 id="1">1. 为什么目前的架构不支持并发？</h2>
-<p>目前的 <code>Scanner</code> 和 <code>Engine</code> 设计是单线程的。如果简单地尝试在 <code>runScanInternal</code> 中开启多线程（例如使用 OpenMP），程序将面临两个致命问题：<strong>数据竞争 (Data Race)</strong> 和 <strong>资源竞争 (Resource Contention)</strong>。</p>
-<h3 id="a-data-race">A. 数据竞争 (Data Race)</h3>
-<p>这是最致命的问题。请看 <code>src/scan/engine.cppm</code> 中的核心扫描循环：</p>
-<pre><code class="language-cpp">// ❌ 伪代码：如果直接并行化
-for (const auto&amp; region : regions) {
-    // 假设这里是多线程并行执行...
-    if (auto swath = scanRegion(...)) {
-        // 💥 崩溃点！
-        // out 是一个 MatchesAndOldValuesArray，内部通常是 std::vector。
-        // 当多个线程同时调用 push_back() 时：
-        // 1. 可能会导致 vector 扩容（reallocate），旧指针失效，导致 Use-After-Free。
-        // 2. 可能会导致 size 计数器错误，数据覆盖。
-        out.addSwath(*swath); 
-    }
-}
-</code></pre>
-<p><strong>结论</strong>：<code>out</code> (即 <code>MatchesAndOldValuesArray</code>) 是一个<strong>共享的可变状态 (Shared Mutable State)</strong>。在多线程环境下，必须对其加锁保护，或者消除共享。</p>
-<h3 id="b-resource-contention">B. 资源竞争 (Resource Contention)</h3>
-<p><code>ProcMemReader</code> 类持有一个指向 <code>/proc/pid/mem</code> 的文件描述符 (<code>m_fd</code>)。</p>
+<h1 id="endianness">大端与小端（Endianness）</h1>
+<h2 id="_1">概念简介</h2>
+<p>在计算机系统中，端序（Endianness）描述了多字节数值在内存中的字节排列顺序：</p>
 <ul>
-<li><strong>文件偏移量竞争</strong>：如果底层使用 <code>lseek</code> + <code>read</code>，这是绝对线程不安全的。线程 A 刚 <code>lseek</code> 到位置 X，线程 B <code>lseek</code> 到位置 Y，紧接着线程 A 调用 <code>read</code> 就会读到 Y 的数据。</li>
-<li><strong>内核锁竞争</strong>：即使使用原子定位读 <code>pread</code>，在高并发下，多个线程争抢同一个内核文件对象锁，也会导致性能下降。</li>
+<li><strong>大端（Big-endian）</strong>：高位字节存放在低地址；例如 0x12345678 在内存中表示为 12 34 56 78。</li>
+<li><strong>小端（Little-endian）</strong>：低位字节存放在低地址；例如 0x12345678 在内存中表示为 78 56 34 12。</li>
 </ul>
-<hr />
-<h2 id="2-map-reduce">2. 解决方案：Map-Reduce 架构</h2>
-<p>为了实现高效且安全的并发，我们需要采用 <strong>Map-Reduce (映射-归约)</strong> 模式。</p>
-<p><strong>核心思想</strong>：让每个线程拥有自己的<strong>私有结果容器</strong>和<strong>私有资源</strong>，最后再合并。</p>
-<h3 id="_2">架构演进</h3>
-<h4 id="map">第一步：Map 阶段 (并行)</h4>
-<p>将扫描任务（<code>regions</code> 列表）切分给多个工作线程。每个线程拥有：
-1.  <strong>私有结果容器</strong> (<code>local_out</code>)：线程只向自己的容器写入数据，完全避免了对全局 <code>out</code> 的锁竞争。
-2.  <strong>私有 Reader</strong> (<code>local_reader</code>)：每个线程打开自己的文件描述符，避免内核层面的锁竞争和文件偏移量混乱。</p>
-<h4 id="scan">第二步：Scan 阶段 (无锁)</h4>
-<p>扫描函数保持为<strong>纯函数 (Pure Function)</strong> 风格。它不依赖也不修改任何全局状态，只根据输入产生输出。</p>
-<pre><code class="language-cpp">// ✅ 线程安全的工作函数
-auto worker = [&amp;](std::span&lt;Region&gt; my_regions) -&gt; MatchesAndOldValuesArray {
-    MatchesAndOldValuesArray local_out; // ⭐️ 线程私有变量
-    ProcMemReader local_reader(pid);    // ⭐️ 线程私有 Reader (避免 FD 竞争)
-
-    for (const auto&amp; region : my_regions) {
-        if (auto swath = scanRegion(region, local_reader, ...)) {
-            local_out.addSwath(*swath); // ✅ 安全：只写私有变量
-        }
-    }
-    return local_out;
-};
-</code></pre>
-<h4 id="reduce">第三步：Reduce 阶段 (合并)</h4>
-<p>当所有线程完成工作后，主线程负责将所有 <code>local_out</code> 合并到总的结果集中。</p>
-<pre><code class="language-cpp">MatchesAndOldValuesArray global_out;
-for (auto&amp; f : futures) {
-    auto local_result = f.get();
-    // 串行合并，或者使用细粒度锁并行合并
-    global_out.merge(local_result); 
-}
-
-// (可选) 排序：并发扫描会导致结果乱序，通常需要按地址重新排序
-global_out.sortByAddress();
-</code></pre>
-<h2 id="3">3. 实施路线图</h2>
-<p>为了平滑过渡到并发架构，我们将分阶段进行：</p>
-<ol>
-<li>
-<p><strong>Phase 1 (当前阶段)</strong>：</p>
+<p>现代 x86/x86_64 架构通常使用小端序，而某些网络协议（如网络字节序）以及少部分硬件架构使用大端序。</p>
+<h2 id="_2">为什么端序重要？</h2>
 <ul>
-<li>保持单线程执行。</li>
-<li><strong>关键目标</strong>：确保 <code>scanRegion</code> 等核心函数保持<strong>无状态 (Stateless)</strong> 和<strong>纯函数</strong>特性。</li>
-<li>完善单元测试，确保逻辑正确性。</li>
+<li>网络协议：网络字节序通常采用大端，跨主机通信需要显式转换（hton/ntoh）。</li>
+<li>文件格式：某些文件头或二进制格式指定了端序，解析时需要考虑端序。</li>
+<li>内存比较/扫描：在做内存扫描和匹配时，端序决定了如何解释字节序列与值的关系。</li>
 </ul>
-</li>
-<li>
-<p><strong>Phase 2 (未来规划)</strong>：</p>
+<h2 id="_3">如何处理端序</h2>
 <ul>
-<li>引入线程池 (<code>ThreadPool</code>) 或 <code>std::async</code>。</li>
-<li>实现 <code>MatchesAndOldValuesArray::merge()</code> 和 <code>sortByAddress()</code> 方法。</li>
-<li>重构 <code>runScanInternal</code> 为 Map-Reduce 模式。</li>
+<li>在对外协议交互或磁盘持久化时，显式使用 <code>hostToNetwork</code> / <code>networkToHost</code> 或对应的大/小端转换函数。</li>
+<li>在内存扫描时，根据目标值的实际字节序（例如原始二进制模式或整数值）进行匹配。</li>
 </ul>
-</li>
-</ol>
-<p>通过这种设计，我们可以在不破坏现有功能的前提下，为未来支持大规模内存并发扫描打下坚实基础。</p>
+<h2 id="_4">参考</h2>
+<ul>
+<li><a href="../../utils/endianness/">工具模块中的端序 API</a> （API 与转换函数）</li>
+<li><a href="../../scan/bytes/">字节比较与扫描 (scan.bytes)</a> — 使用端序进行匹配的示例</li>
+</ul>
 
 
 
@@ -1558,10 +1355,10 @@ global_out.sortByAddress();
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.language", "content.language_select"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.language", "content.language_select"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
       
     
   </body>
