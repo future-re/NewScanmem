@@ -67,5 +67,6 @@ auto back = littleEndianToHost(le);
 
 ## 参见
 
-- [值类型模块](value.md) — `Value` 与 `UserValue`
-- [扫描辅助](scanning_guide.md) — 数值/字节匹配流程
+- [概念：大端与小端](../concepts/endianness.md) — 端序的概念性说明
+- [值类型模块](../core/value.md) — `Value` 与 `UserValue`
+- [扫描辅助](../scanning_guide.md) — 数值/字节匹配流程
