@@ -16,6 +16,7 @@ set(TEST_SOURCES
     utils/test_endianness.cpp
     value/test_scalar.cpp
     value/test_value.cpp
+    value/test_parser.cpp
     core/test_maps.cpp
     core/test_memory.cpp
     core/test_scanner.cpp
