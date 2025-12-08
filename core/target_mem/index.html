@@ -11,25 +11,25 @@
       
       
       
-        <link rel="prev" href="../maps/">
+        <link rel="prev" href="../value/">
       
       
-        <link rel="next" href="../scanner/">
+        <link rel="next" href="../process_checker/">
       
       
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
     
     
       
-        <title>扫描值 (value) - NewScanmem Documentation</title>
+        <title>目标内存 (target_mem) - NewScanmem Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
       
       
 
@@ -48,7 +48,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#target_mem" class="md-skip">
           跳转至
         </a>
       
@@ -82,7 +82,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href=".." title="NewScanmem Documentation" class="md-header__button md-logo" aria-label="NewScanmem Documentation" data-md-component="logo">
+    <a href="../.." title="NewScanmem Documentation" class="md-header__button md-logo" aria-label="NewScanmem Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              扫描值 (value)
+              目标内存 (target_mem)
             
           </span>
         </div>
@@ -192,7 +192,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="NewScanmem Documentation" class="md-nav__button md-logo" aria-label="NewScanmem Documentation" data-md-component="logo">
+    <a href="../.." title="NewScanmem Documentation" class="md-nav__button md-logo" aria-label="NewScanmem Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -222,7 +222,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -296,7 +296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../scanning_guide/" class="md-nav__link">
+      <a href="../../scanning_guide/" class="md-nav__link">
         
   
   
@@ -379,6 +379,305 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扫描模块
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    扫描模块
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scan/bytes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字节比较 (scan.bytes)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scan/scanner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扫描器 (scanner)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具模块
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    工具模块
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    内存映射 (maps)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/sets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    集合 (sets)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/endianness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    大端与小端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    核心模块
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    核心模块
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../main/" class="md-nav__link">
         
@@ -408,14 +707,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../maps/" class="md-nav__link">
+      <a href="../value/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    内存映射 (maps)
+    值类型 (value)
   
 
     
@@ -452,7 +751,7 @@
   <span class="md-ellipsis">
     
   
-    扫描值 (value)
+    目标内存 (target_mem)
   
 
     
@@ -470,7 +769,7 @@
   <span class="md-ellipsis">
     
   
-    扫描值 (value)
+    目标内存 (target_mem)
   
 
     
@@ -496,76 +795,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        概述
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        模块结构
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#matchflags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        匹配标志（MatchFlags）
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#value" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        结构体：Value（旧值快照）
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#uservalue" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        结构体：UserValue（用户输入）
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mem64" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mem64（当前值字节容器）
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        示例
+        参考
       
     </span>
   </a>
@@ -576,62 +809,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../scanner/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    扫描器 (scanner)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../target_mem/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    目标内存 (target_mem)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -672,34 +849,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../sets/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    集合 (sets)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../show_message/" class="md-nav__link">
         
   
@@ -716,6 +865,14 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -782,7 +939,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../endianness/" class="md-nav__link">
+      <a href="../../utils/endianness/" class="md-nav__link">
         
   
   
@@ -810,7 +967,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../NamingConvention/" class="md-nav__link">
+      <a href="../../NamingConvention/" class="md-nav__link">
         
   
   
@@ -818,6 +975,88 @@
     
   
     命名规则
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    架构设计
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    架构设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concurrency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    并发架构分析
   
 
     
@@ -865,76 +1104,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        概述
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        模块结构
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#matchflags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        匹配标志（MatchFlags）
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#value" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        结构体：Value（旧值快照）
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#uservalue" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        结构体：UserValue（用户输入）
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mem64" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mem64（当前值字节容器）
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        示例
+        参考
       
     </span>
   </a>
@@ -961,101 +1134,12 @@
   
 
 
-<h1 id="_1">值类型模块文档（已简化架构）</h1>
-<h2 id="_2">概述</h2>
-<p><code>value</code> 模块提供两类核心实体：
-- <code>Value</code>：用于保存“旧值”的原始字节和宽度标志（匹配时参考）。
-- <code>UserValue</code>：用于表达用户输入的数值或范围（包含各标量字段与便捷构造）。</p>
-<p>并提供 <code>MatchFlags</code> 用于标注匹配宽度：<code>B8/B16/B32/B64</code>。</p>
-<h2 id="_3">模块结构</h2>
-<pre><code class="language-cpp">export module value;
-export import value.flags;
-export import value.scalar;
-</code></pre>
-<h2 id="matchflags">匹配标志（MatchFlags）</h2>
-<pre><code class="language-cpp">enum class MatchFlags : uint16_t {
-    EMPTY = 0,
-    B8 = 1u &lt;&lt; 0,
-    B16 = 1u &lt;&lt; 1,
-    B32 = 1u &lt;&lt; 2,
-    B64 = 1u &lt;&lt; 3,
-};
-</code></pre>
-<p>说明：仅保留与匹配宽度直接相关的最小集合，便于明确比较语义。</p>
-<h2 id="value">结构体：Value（旧值快照）</h2>
-<p>Value 仅负责保存历史字节与宽度标志，不再承担类型推断或端序转换。</p>
-<pre><code class="language-cpp">struct Value {
-    MatchFlags flags = MatchFlags::EMPTY;
-    std::vector&lt;std::uint8_t&gt; bytes;
-
-    void setBytes(const std::uint8_t* data, std::size_t len);
-    void setBytes(const std::vector&lt;std::uint8_t&gt;&amp; data);
-
-    [[nodiscard]] const std::uint8_t* data() const noexcept;
-    [[nodiscard]] std::size_t size() const noexcept;
-};
-</code></pre>
-<p>要点：
-- 数值严格比较由上层根据 <code>flags</code> 与期望类型宽度自行校验。
-- 字节/字符串匹配直接基于 <code>bytes</code> 执行，不依赖 <code>flags</code>。</p>
-<h2 id="uservalue">结构体：UserValue（用户输入）</h2>
-<p>UserValue 提供各标量的低/高端字段（用于范围），并提供便捷构造：</p>
-<pre><code class="language-cpp">struct UserValue {
-    // 标量字段（low/high）
-    int8_t s8{}, s8h{}; uint8_t u8{}, u8h{};
-    int16_t s16{}, s16h{}; uint16_t u16{}, u16h{};
-    int32_t s32{}, s32h{}; uint32_t u32{}, u32h{};
-    int64_t s64{}, s64h{}; uint64_t u64{}, u64h{};
-    float f32{}, f32h{}; double f64{}, f64h{};
-
-    std::optional&lt;std::vector&lt;std::uint8_t&gt;&gt; bytearrayValue;
-    std::optional&lt;std::vector&lt;std::uint8_t&gt;&gt; byteMask; // 0xFF=fixed, 0x00=wildcard
-    std::string stringValue;
-
-    MatchFlags flags = MatchFlags::EMPTY;
-
-    template &lt;typename T&gt;
-    static UserValue fromScalar(T value);
-
-    template &lt;typename T&gt;
-    static UserValue fromRange(T low, T high);
-};
-</code></pre>
-<p>辅助：<code>flagForScalarType&lt;T&gt;() -&gt; MatchFlags</code> 用于根据 T 自动选择 <code>B8/B16/B32/B64</code>。</p>
-<h2 id="mem64">Mem64（当前值字节容器）</h2>
-<p><code>utils.mem64</code> 提供轻量的字节容器，用于读/写目标进程的“当前值”字节：</p>
-<pre><code class="language-cpp">struct Mem64 {
-    // 视图
-    [[nodiscard]] std::size_t size() const noexcept;
-    [[nodiscard]] bool empty() const noexcept;
-    [[nodiscard]] const std::uint8_t* data() const noexcept;
-    [[nodiscard]] std::uint8_t* data() noexcept;
-    [[nodiscard]] std::span&lt;const std::uint8_t&gt; bytes() const noexcept;
-
-    // 赋值
-    void clear();
-    void reserve(std::size_t n);
-    void setBytes(const std::uint8_t* p, std::size_t n);
-    void setBytes(std::span&lt;const std::uint8_t&gt; s);
-    void setBytes(const std::vector&lt;std::uint8_t&gt;&amp; v);
-    void setString(const std::string&amp; s);
-
-    // 标量编解码（按主机端序）
-    template &lt;typename T&gt; void setScalar(const T&amp; v);
-    template &lt;typename T&gt; std::optional&lt;T&gt; tryGet() const noexcept;
-    template &lt;typename T&gt; T get() const; // 不足则抛出
-};
-</code></pre>
-<h2 id="_4">示例</h2>
-<pre><code class="language-cpp">// 创建 UserValue
-auto uv = UserValue::fromScalar(std::int32_t{42});
-
-// 保存旧值字节
-Value old;
-std::vector&lt;std::uint8_t&gt; pattern{0xDE,0xAD,0xBE,0xEF};
-old.setBytes(pattern);
-</code></pre>
-<p>更多匹配与读取细节请参考 <code>scan/*</code> 与 <code>core/*</code> 中的具体实现。</p>
+<h1 id="target_mem">目标内存（target_mem）</h1>
+<p>描述访问和操作目标进程内存的抽象接口。占位页。</p>
+<h2 id="_1">参考</h2>
+<ul>
+<li>源代码：<code>src/core/</code> 及 <code>src/scan</code> 中相关实现。</li>
+</ul>
 
 
 
@@ -1105,10 +1189,10 @@ old.setBytes(pattern);
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.language", "content.language_select"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.language", "content.language_select"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
       
     
   </body>
