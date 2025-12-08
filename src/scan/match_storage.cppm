@@ -1,11 +1,10 @@
 /**
- * @file targetmem.cppm
- * @brief Target memory management: match tracking and old value storage
- * (Target memory management: match tracking and history storage)
+ * @file match_storage.cppm
+ * @brief Match storage data structures for scan results
  *
- * Provides data structures for storing scan results (matches) and historical
- * byte values from target process memory regions (swaths). Used by scanner to
- * track matching addresses across multiple scan iterations.
+ * Provides fundamental data structures for storing scan results (matches) and
+ * historical byte values from target process memory regions (swaths).
+ * This is a foundation layer module used by scan engine and upper layers.
  */
 
 module;
@@ -25,12 +24,12 @@ module;
 #include <string>
 #include <vector>
 
-export module core.targetmem;
+export module scan.match_storage;
 
 import value.flags;
 import ui.show_message;
 
-export namespace core {
+export namespace scan {
 
 // Interface: exported types and functions
 
@@ -314,4 +313,5 @@ class MatchesAndOldValuesArray {
         return false;
     }
 };
-}  // namespace core
+
+}  // namespace scan

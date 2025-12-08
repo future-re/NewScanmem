@@ -17,12 +17,12 @@ module;
 
 export module core.scanner;
 
-import scan.engine;    // ScanOptions, ScanStats, runScan
-import scan.types;     // ScanDataType, ScanMatchType
-import scan.filter;    // filterMatches
-import core.targetmem; // MatchesAndOldValuesArray
-import value;          // UserValue
-import core.maps;      // RegionScanLevel
+import scan.engine;        // ScanOptions, ScanStats, runScan
+import scan.types;         // ScanDataType, ScanMatchType
+import scan.filter;        // filterMatches
+import scan.match_storage; // MatchesAndOldValuesArray
+import value;              // UserValue
+import core.maps;          // RegionScanLevel
 
 export namespace core {
 
@@ -31,10 +31,10 @@ export namespace core {
  * @brief Stores the complete result of a single scan operation
  */
 struct ScanResult {
-    ScanStats stats;                   // Statistics from this scan
-    MatchesAndOldValuesArray matches;  // Matches from this scan
-    ScanOptions opts;                  // Options used for this scan
-    std::optional<UserValue> value;    // User value used (if any)
+    ScanStats stats;                         // Statistics from this scan
+    scan::MatchesAndOldValuesArray matches;  // Matches from this scan
+    ScanOptions opts;                        // Options used for this scan
+    std::optional<UserValue> value;          // User value used (if any)
     ScanResult() : stats{}, opts{} {}
 };
 
@@ -181,7 +181,8 @@ class Scanner {
      * @brief Get current/active matches from most recent scan
      * @return Reference to matches array
      */
-    [[nodiscard]] auto getMatches() const -> const MatchesAndOldValuesArray& {
+    [[nodiscard]] auto getMatches() const
+        -> const scan::MatchesAndOldValuesArray& {
         return m_matches;
     }
 
@@ -189,7 +190,7 @@ class Scanner {
      * @brief Get mutable current/active matches
      * @return Reference to matches array
      */
-    [[nodiscard]] auto getMatches() -> MatchesAndOldValuesArray& {
+    [[nodiscard]] auto getMatches() -> scan::MatchesAndOldValuesArray& {
         return m_matches;
     }
 
@@ -254,7 +255,7 @@ class Scanner {
    private:
     static constexpr std::size_t MAX_HISTORY = 10;
     pid_t m_pid;
-    MatchesAndOldValuesArray m_matches;  // Current/active matches
+    scan::MatchesAndOldValuesArray m_matches;  // Current/active matches
     std::deque<ScanResult> m_results;  // History of scan results (stable refs)
     std::optional<ScanDataType> m_lastDataType;  // Last scan data type
     auto addToHistory(ScanResult&& result) -> void {

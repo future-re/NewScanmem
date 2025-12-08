@@ -11,13 +11,13 @@ export module scan.filter;
 import scan.types; // ScanDataType / ScanMatchType / bytesNeededForType / matchUsesOldValue
 import scan.factory; // smGetScanroutine
 import scan.engine;  // ProcMemReader / ScanStats / ScanOptions
-import core.targetmem;
+import scan.match_storage;
 import utils.mem64;
 import value;
 
-using core::MatchesAndOldValuesArray;
-using core::MatchesAndOldValuesSwath;
-using core::OldValueAndMatchInfo;
+using scan::MatchesAndOldValuesArray;
+using scan::MatchesAndOldValuesSwath;
+using scan::OldValueAndMatchInfo;
 
 // Narrow matches for a single swath using the provided routine.
 inline void narrowSwath(MatchesAndOldValuesSwath& swath, auto& routine,

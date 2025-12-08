@@ -22,9 +22,11 @@ export module core.memory_writer;
 
 import core.scanner;
 import core.match;
-import core.targetmem;
+import scan.match_storage;
 import utils.endianness;
 import value.flags;
+
+using scan::OldValueAndMatchInfo;
 
 export namespace core {
 
@@ -78,14 +80,15 @@ class MemoryWriter {
     [[nodiscard]] auto write(std::uintptr_t address, std::uint64_t value,
                              std::size_t writeLen) const
         -> std::expected<WriteResult, std::string> {
+        // NOLINTNEXTLINE(readability-magic-numbers)
         if (writeLen == 0 || writeLen > 8) {
             return std::unexpected(
                 std::format("Invalid write length: {}", writeLen));
         }
 
         // Prepare buffer in target endianness
-        std::array<std::uint8_t, 8> buf{};
-        std::uint64_t normalized =
+        std::array<std::uint8_t, 8> buf{};  // NOLINT(readability-magic-numbers)
+        auto normalized =
             utils::toTargetEndian<std::uint64_t>(value, m_endianness);
         std::memcpy(buf.data(), &normalized, std::min(writeLen, buf.size()));
 
@@ -198,15 +201,15 @@ class MemoryWriter {
         std::underlying_type_t<MatchFlags> flags) -> std::size_t {
         if ((flags & static_cast<std::underlying_type_t<MatchFlags>>(
                          MatchFlags::B64)) != 0) {
-            return 8;
+            return 8;  // NOLINT(readability-magic-numbers)
         }
         if ((flags & static_cast<std::underlying_type_t<MatchFlags>>(
                          MatchFlags::B32)) != 0) {
-            return 4;
+            return 4;  // NOLINT(readability-magic-numbers)
         }
         if ((flags & static_cast<std::underlying_type_t<MatchFlags>>(
                          MatchFlags::B16)) != 0) {
-            return 2;
+            return 2;  // NOLINT(readability-magic-numbers)
         }
         return 1;
     }

@@ -48,7 +48,6 @@ set(MODULE_SOURCES
     core/scanner.cppm
     core/memory.cppm
     core/proc_mem.cppm
-    core/targetmem.cppm
     core/maps.cppm
     core/process_checker.cppm
     core/region_classifier.cppm
@@ -63,6 +62,7 @@ set(MODULE_SOURCES
     value/value.cppm
     value/parser.cppm
     scan/types.cppm
+    scan/match_storage.cppm
     scan/bytes.cppm
     scan/read_helpers.cppm
     scan/string.cppm

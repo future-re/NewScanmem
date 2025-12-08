@@ -18,20 +18,20 @@ module;
 
 export module scan.engine;
 
-import core.maps;          // readProcessMaps, Region, RegionScanLevel
-import core.targetmem;     // MatchesAndOldValuesArray, MatchesAndOldValuesSwath
-import core.region_filter; // RegionFilterConfig
+import scan.match_storage; // MatchesAndOldValuesArray, MatchesAndOldValuesSwath
 import scan.factory;       // smGetScanroutine
 import scan.types; // ScanDataType / ScanMatchType / bytesNeededForType / matchUsesOldValue
-import value.flags; // MatchFlags
-import utils.mem64; // Mem64
-import value;       // Value / UserValue
+import value.flags;        // MatchFlags
+import utils.mem64;        // Mem64
+import value;              // Value / UserValue
+import core.maps;          // readProcessMaps, Region, RegionScanLevel
+import core.region_filter; // RegionFilterConfig
 
-using core::MatchesAndOldValuesArray;
-using core::MatchesAndOldValuesSwath;
-using core::OldValueAndMatchInfo;
 using core::Region;
 using core::RegionScanLevel;
+using scan::MatchesAndOldValuesArray;
+using scan::MatchesAndOldValuesSwath;
+using scan::OldValueAndMatchInfo;
 
 // Lightweight scan engine skeleton:
 // - Single-threaded, reads /proc/<pid>/mem in blocks
@@ -48,8 +48,10 @@ export struct ScanOptions {
     ScanDataType dataType{ScanDataType::ANY_NUMBER};
     ScanMatchType matchType{ScanMatchType::MATCH_ANY};
     bool reverseEndianness{false};
-    std::size_t step{1};               // scan step size (moves by bytes)
-    std::size_t blockSize{64 * 1024};  // block size for each read
+    std::size_t step{1};  // scan step size (moves by bytes)
+    static constexpr std::size_t BLOCK_SIZE =
+        64 * 1024;                      // Default block size in bytes
+    std::size_t blockSize{BLOCK_SIZE};  // block size for each read
     RegionScanLevel regionLevel{RegionScanLevel::ALL_RW};
     core::RegionFilterConfig regionFilter;  // Region filtering configuration
 };
@@ -195,8 +197,8 @@ inline auto fetchOldBytes(const MatchesAndOldValuesArray& prev, void* addr,
 }
 
 inline void scanBlock(const std::uint8_t* buffer, std::size_t bytesRead,
-                      std::size_t baseIndex, std::size_t step, auto routine,
-                      const UserValue* userValue,
+                      std::size_t baseIndex, std::size_t step,
+                      const auto& routine, const UserValue* userValue,
                       MatchesAndOldValuesSwath& swath, ScanStats& stats,
                       void* regionBlockBase,
                       const MatchesAndOldValuesArray* previousSnapshot,
@@ -232,7 +234,7 @@ inline void scanBlock(const std::uint8_t* buffer, std::size_t bytesRead,
 
 // Handle scanning for a single memory region
 inline auto scanRegion(const Region& region, ProcMemReader& reader,
-                       const ScanOptions& opts, auto routine,
+                       const ScanOptions& opts, const auto& routine,
                        const UserValue* userValue, ScanStats& stats,
                        const MatchesAndOldValuesArray* previousSnapshot,
                        bool usesOld, std::size_t oldSliceLen)
