@@ -37,7 +37,7 @@ struct MatchEntry {
  * @brief Options for match collection
  */
 struct MatchCollectionOptions {
-    size_t limit = 20;          // 收集的最大匹配数
+    size_t limit = 100;         // 收集的最大匹配数
     bool collectRegion = true;  // 是否收集区域信息
     RegionFilterConfig
         regionFilter;  // Region filtering for export-time filtering

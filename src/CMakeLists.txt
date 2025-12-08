@@ -9,6 +9,10 @@ find_package(ICU REQUIRED COMPONENTS uc i18n)
 target_compile_features(NewScanmem_lib PUBLIC cxx_std_23)
 
 set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-p;build")
+# 为了生成版本模块（version.cppm），在源目录创建生成目录并从模板生成
+file(MAKE_DIRECTORY ${CMAKE_SOURCE_DIR}/src/generated/utils)
+configure_file(${CMAKE_SOURCE_DIR}/src/utils/version.cppm.in ${CMAKE_SOURCE_DIR}/src/generated/utils/version.cppm @ONLY)
+
 
 # 模块源文件（不带 src/ 前缀）
 set(MODULE_SOURCES
@@ -18,6 +22,7 @@ set(MODULE_SOURCES
     utils/endianness.cppm
     utils/mem64.cppm
     utils/sets.cppm
+    generated/utils/version.cppm
     
     # UI abstraction layer
     ui/interface.cppm

@@ -1,5 +1,6 @@
 import cli.app;
 import cli.app_config;
+import utils.version;
 
 #include <cstdlib>
 #include <iostream>
@@ -10,6 +11,10 @@ auto main(int argc, char* argv[]) -> int {
     // 参数解析：支持位置参数 <pid> 以及 -p/--pid 形式
     for (int i = 1; i < argc; ++i) {
         std::string arg = argv[i];
+        if (arg == "--version") {
+            std::cout << "NewScanmem " << version::string() << "\n";
+            return 0;
+        }
         if ((arg == "-p" || arg == "--pid") && i + 1 < argc) {
             config.targetPid = std::atoi(argv[++i]);
         } else if (!arg.empty() && arg[0] != '-') {
@@ -33,6 +38,7 @@ auto main(int argc, char* argv[]) -> int {
                       << "选项:\n"
                       << "  -p, --pid <pid>   目标进程 PID\n"
                       << "  -d, --debug       调试模式\n"
+                      << "  --version         显示版本\n"
                       << "  -h, --help        显示帮助\n";
             return 0;
         }
