@@ -5,7 +5,6 @@ module;
 #include <cstdint>
 #include <memory>
 #include <optional>
-#include <span>
 #include <string>
 #include <string_view>
 #include <vector>
@@ -111,13 +110,12 @@ export inline auto makeStringRoutine(ScanMatchType matchType) -> scanRoutine {
                 ? &*userValue->byteMask
                 : nullptr;
         const auto* bytePtr = std::bit_cast<const uint8_t*>(NEEDLE.data());
-        auto needleSpan = std::span<const uint8_t>(bytePtr, NEEDLE.size());
         if (MASK_PTR) {
-            auto maskSpan =
-                std::span<const uint8_t>(MASK_PTR->data(), MASK_PTR->size());
-            return compareBytesMasked(memoryPtr, memLength, needleSpan,
-                                      maskSpan, saveFlags);
+            return compareBytesMasked(memoryPtr, memLength, bytePtr,
+                                      NEEDLE.size(), MASK_PTR->data(),
+                                      MASK_PTR->size(), saveFlags);
         }
-        return compareBytes(memoryPtr, memLength, needleSpan, saveFlags);
+        return compareBytes(memoryPtr, memLength, bytePtr, NEEDLE.size(),
+                            saveFlags);
     };
 }
