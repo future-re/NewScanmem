@@ -9,6 +9,7 @@ module;
 #include <unistd.h>
 
 #include <array>
+#include <cstdint>
 #include <cstdio>
 #include <functional>
 #include <iostream>
@@ -228,7 +229,7 @@ class ConsoleUI : public UserInterface {
         }
     };
 
-    enum class KeyAction {
+    enum class KeyAction : std::uint8_t {
         ENTER,
         BACKSPACE,
         MOVE_LEFT,
@@ -255,6 +256,7 @@ class ConsoleUI : public UserInterface {
         if (byte == '\n' || byte == '\r') {
             return {.action = KeyAction::ENTER, .character = 0};
         }
+        // NOLINTNEXTLINE(readability-magic-numbers)
         if (byte == 0x7f || byte == '\b') {
             return {.action = KeyAction::BACKSPACE, .character = 0};
         }
@@ -267,6 +269,7 @@ class ConsoleUI : public UserInterface {
         if (byte == '\x1b') {
             return readEscapeSequence();
         }
+        // NOLINTNEXTLINE(readability-magic-numbers)
         if (byte >= 0x20 && byte != 0x7f) {
             return {.action = KeyAction::INSERT_CHAR,
                     .character = static_cast<char>(byte)};

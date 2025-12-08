@@ -5,6 +5,7 @@
 
 module;
 
+#include <cstdint>
 #include <optional>
 #include <string>
 #include <string_view>
@@ -17,7 +18,7 @@ export namespace ui {
  * @enum MessageLevel
  * @brief Message importance level
  */
-enum class MessageLevel { INFO, WARNING, ERROR, DEBUG };
+enum class MessageLevel : std::uint8_t { INFO, WARNING, ERROR, DEBUG };
 
 /**
  * @class UserInterface

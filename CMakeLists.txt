@@ -28,3 +28,9 @@ FetchContent_MakeAvailable(googletest)
 
 add_subdirectory(src)
 add_subdirectory(test)
+
+# 复制 compile_commands.json 到项目根目录，方便 clangd 自动检测
+add_custom_target(copy_compile_commands ALL
+  COMMAND ${CMAKE_COMMAND} -P ${CMAKE_SOURCE_DIR}/cmake/copy_compile_commands.cmake
+  BYPRODUCTS ${CMAKE_SOURCE_DIR}/compile_commands.json
+  COMMENT "Copy compile_commands.json to project root for clangd")

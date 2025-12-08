@@ -1,6 +1,7 @@
 module;
 
 #include <cstddef>
+#include <cstdint>
 #include <functional>
 
 export module scan.types;
@@ -12,7 +13,7 @@ export import value.flags;  // provides MatchFlags
 export import value;  // provides Value / UserValue, etc. (aggregated in value)
 
 // Classification of scan data types
-export enum class ScanDataType {
+export enum class ScanDataType : std::uint8_t {
     ANY_NUMBER,   // matches any numeric type (integer or float)
     ANY_INTEGER,  // matches any integer type (8/16/32/64-bit)
     ANY_FLOAT,    // matches any float type (32/64-bit)
@@ -22,12 +23,12 @@ export enum class ScanDataType {
     INTEGER_64,   // 64-bit integer
     FLOAT_32,     // 32-bit float
     FLOAT_64,     // 64-bit float
-    BYTE_ARRAY,    // byte array
+    BYTE_ARRAY,   // byte array
     STRING        // string
 };
 
 // Classification of match types
-export enum class ScanMatchType {
+export enum class ScanMatchType : std::uint8_t {
     // Snapshot types (do not rely on user-provided values)
     MATCH_ANY,           // match any value (record snapshot)
     MATCH_UPDATE,        // equal to old value
@@ -136,14 +137,14 @@ export [[nodiscard]] constexpr auto bytesNeededForType(ScanDataType dataType)
             return 4;
         case ScanDataType::INTEGER_64:
         case ScanDataType::FLOAT_64:
-            return 8;
+            return 8;  // NOLINT(readability-magic-numbers)
         case ScanDataType::STRING:
         case ScanDataType::BYTE_ARRAY:
-            return 32;
+            return 1;
         case ScanDataType::ANY_INTEGER:
         case ScanDataType::ANY_FLOAT:
         case ScanDataType::ANY_NUMBER:
-            return 8;
+            return 8;  // NOLINT(readability-magic-numbers)
     }
-    return 8;
+    return 8;  // NOLINT(readability-magic-numbers)
 }

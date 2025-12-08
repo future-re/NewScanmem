@@ -49,7 +49,7 @@ inline void narrowSwath(MatchesAndOldValuesSwath& swath, auto& routine,
             if (REM >= NEED) {
                 oldValueHolder.bytes.resize(NEED);
                 for (std::size_t k = 0; k < NEED; ++k) {
-                    oldValueHolder.bytes[k] = swath.data[i + k].oldValue;
+                    oldValueHolder.bytes[k] = swath.data[i + k].oldByte;
                 }
                 oldValueHolder.flags = MatchFlags::B8 | MatchFlags::B16 |
                                        MatchFlags::B32 | MatchFlags::B64;

@@ -127,7 +127,7 @@ class MatchCollector {
                         for (size_t j = 0;
                              j < valueSize && (i + j) < swath.data.size();
                              ++j) {
-                            valueBytes[j] = swath.data[i + j].oldValue;
+                            valueBytes[j] = swath.data[i + j].oldByte;
                         }
 
                         // Use globalIndex to maintain stable indices

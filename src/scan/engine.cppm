@@ -156,7 +156,7 @@ inline void appendBytesToSwath(MatchesAndOldValuesSwath& swath,
     auto toInsert =
         std::views::iota(static_cast<std::size_t>(0), bytesRead) |
         std::views::transform([&](std::size_t index) {
-            return OldValueAndMatchInfo{.oldValue = buffer[index],
+            return OldValueAndMatchInfo{.oldByte = buffer[index],
                                         .matchInfo = MatchFlags::EMPTY};
         });
     swath.data.insert(swath.data.end(), toInsert.begin(), toInsert.end());
@@ -189,7 +189,7 @@ inline auto fetchOldBytes(const MatchesAndOldValuesArray& prev, void* addr,
         }
         out.resize(len);
         for (std::size_t i = 0; i < len; ++i) {
-            out[i] = swathPrev.data[OFFSET + i].oldValue;
+            out[i] = swathPrev.data[OFFSET + i].oldByte;
         }
         return true;
     }
