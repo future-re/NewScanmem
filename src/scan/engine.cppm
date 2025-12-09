@@ -62,6 +62,18 @@ export struct ScanStats {
     std::size_t matches{0};
 };
 
+/**
+ * @struct ScanResult
+ * @brief Stores the complete result of a single scan operation
+ */
+export struct ScanResult {
+    ScanStats stats;                         // Statistics from this scan
+    scan::MatchesAndOldValuesArray matches;  // Matches from this scan
+    ScanOptions opts;                        // Options used for this scan
+    std::optional<UserValue> value;          // User value used (if any)
+    ScanResult() : stats{}, opts{} {}
+};
+
 // /proc/<pid>/mem reader
 export class ProcMemReader {
    public:
@@ -233,11 +245,11 @@ inline void scanBlock(const std::uint8_t* buffer, std::size_t bytesRead,
 }
 
 // Handle scanning for a single memory region
-inline auto scanRegion(const Region& region, ProcMemReader& reader,
-                       const ScanOptions& opts, const auto& routine,
-                       const UserValue* userValue, ScanStats& stats,
-                       const MatchesAndOldValuesArray* previousSnapshot,
-                       bool usesOld, std::size_t oldSliceLen)
+export inline auto scanRegion(const Region& region, ProcMemReader& reader,
+                              const ScanOptions& opts, const auto& routine,
+                              const UserValue* userValue, ScanStats& stats,
+                              const MatchesAndOldValuesArray* previousSnapshot,
+                              bool usesOld, std::size_t oldSliceLen)
     -> std::optional<MatchesAndOldValuesSwath> {
     if (!region.isReadable() || region.size == 0) {
         return std::nullopt;
@@ -280,10 +292,10 @@ inline auto scanRegion(const Region& region, ProcMemReader& reader,
     return swath.data.empty() ? std::nullopt : std::make_optional(swath);
 }
 
-inline auto runScanInternal(pid_t pid, const ScanOptions& opts,
-                            const UserValue* userValue,
-                            MatchesAndOldValuesArray& out,
-                            const MatchesAndOldValuesArray* previousSnapshot)
+export inline auto runScanInternal(
+    pid_t pid, const ScanOptions& opts, const UserValue* userValue,
+    MatchesAndOldValuesArray& out,
+    const MatchesAndOldValuesArray* previousSnapshot)
     -> std::expected<ScanStats, std::string> {
     ScanStats stats{};
 

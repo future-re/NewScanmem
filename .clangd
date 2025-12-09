@@ -1,8 +1,0 @@
-# .clangd
-CompileFlags:
-  # 指定编译数据库位置：使用项目根目录的 compile_commands.json（由 CMake 复制）
-  CompilationDatabase: .
-
-Index:
-  # 关键设置：后台构建索引
-  Background: Build

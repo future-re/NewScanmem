@@ -17,7 +17,8 @@ module;
 
 export module core.scanner;
 
-import scan.engine;        // ScanOptions, ScanStats, runScan
+import scan.engine;        // runScan, ScanOptions, ScanStats
+import scan.co_engine;     // runScanParallel
 import scan.types;         // ScanDataType, ScanMatchType
 import scan.filter;        // filterMatches
 import scan.match_storage; // MatchesAndOldValuesArray
@@ -25,18 +26,6 @@ import value;              // UserValue
 import core.maps;          // RegionScanLevel
 
 export namespace core {
-
-/**
- * @struct ScanResult
- * @brief Stores the complete result of a single scan operation
- */
-struct ScanResult {
-    ScanStats stats;                         // Statistics from this scan
-    scan::MatchesAndOldValuesArray matches;  // Matches from this scan
-    ScanOptions opts;                        // Options used for this scan
-    std::optional<UserValue> value;          // User value used (if any)
-    ScanResult() : stats{}, opts{} {}
-};
 
 /**
  * @class Scanner
@@ -68,7 +57,8 @@ class Scanner {
         // Full scan mode: clear previous active matches (snapshot refresh)
         m_matches.swaths.clear();
         m_lastDataType = opts.dataType;  // Record data type
-        auto result = runScan(m_pid, opts, value, m_matches);
+        // auto result = runScan(m_pid, opts, value, m_matches);
+        auto result = runScanParallel(m_pid, opts, value, m_matches, nullptr);
         if (!result) {
             return std::unexpected(result.error());
         }
@@ -265,16 +255,13 @@ class Scanner {
         m_results.push_back(std::move(result));
     }
     auto pruneEmptySwaths() -> void {
-        auto eraseIter = std::remove_if(
-            m_matches.swaths.begin(), m_matches.swaths.end(),
-            [](const auto& swath) {
-                bool allEmpty = std::all_of(
-                    swath.data.begin(), swath.data.end(), [](const auto& cell) {
-                        return cell.matchInfo == MatchFlags::EMPTY;
-                    });
-                return allEmpty;
+        auto [eraseBegin, eraseEnd] =
+            std::ranges::remove_if(m_matches.swaths, [](const auto& swath) {
+                return std::ranges::all_of(swath.data, [](const auto& cell) {
+                    return cell.matchInfo == MatchFlags::EMPTY;
+                });
             });
-        m_matches.swaths.erase(eraseIter, m_matches.swaths.end());
+        m_matches.swaths.erase(eraseBegin, eraseEnd);
     }
 };
 

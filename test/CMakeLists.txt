@@ -24,6 +24,7 @@ set(TEST_SOURCES
     scan/test_bytes.cpp
     scan/test_numeric.cpp
     scan/test_string.cpp
+    scan/test_parallel.cpp
 )
 
 # 为每个测试源生成可执行文件并注册 gtest_discover_tests
