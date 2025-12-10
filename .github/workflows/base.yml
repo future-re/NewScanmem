@@ -16,6 +16,8 @@ jobs:
   build:
     name: Build and Test (${{ matrix.os }})
     runs-on: ${{ matrix.runner }}
+    container:
+      image: ghcr.io/future-re/ubuntu22.04-clang20-boost1.89-gtest1.17:0.2
     strategy:
       matrix:
         include:
@@ -54,24 +56,28 @@ jobs:
         if: matrix.os == 'ubuntu-22.04'
         run: |
           set -e
-          sudo apt-get update
-          sudo apt-get install -y gnupg wget lsb-release ca-certificates
-          # Add LLVM APT repository for clang-20 on jammy
-          wget -qO - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/llvm-snapshot.gpg
-          echo "deb [signed-by=/usr/share/keyrings/llvm-snapshot.gpg] http://apt.llvm.org/jammy/ llvm-toolchain-jammy-20 main" | sudo tee /etc/apt/sources.list.d/llvm.list
-          sudo apt-get update
-          sudo apt-get install -y \
-            llvm-20 \
-            clang-20 \
-            cmake \
-            ninja-build \
-            libicu-dev \
-            libboost-all-dev \
-            python3-venv \
-            python3-pip
-          sudo update-alternatives --install /usr/bin/llvm-cov llvm-cov /usr/bin/llvm-cov-20 100 || true
-          sudo update-alternatives --install /usr/bin/llvm-profdata llvm-profdata /usr/bin/llvm-profdata-20 100 || true
-          sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-20 100 || true
+          if command -v clang++-20 >/dev/null 2>&1; then
+            echo "clang++-20 already present in container/image; skipping toolchain install."
+          else
+            sudo apt-get update
+            sudo apt-get install -y gnupg wget lsb-release ca-certificates
+            # Add LLVM APT repository for clang-20 on jammy
+            wget -qO - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/llvm-snapshot.gpg
+            echo "deb [signed-by=/usr/share/keyrings/llvm-snapshot.gpg] http://apt.llvm.org/jammy/ llvm-toolchain-jammy-20 main" | sudo tee /etc/apt/sources.list.d/llvm.list
+            sudo apt-get update
+            sudo apt-get install -y \
+              llvm-20 \
+              clang-20 \
+              cmake \
+              ninja-build \
+              libicu-dev \
+              libboost-all-dev \
+              python3-venv \
+              python3-pip
+            sudo update-alternatives --install /usr/bin/llvm-cov llvm-cov /usr/bin/llvm-cov-20 100 || true
+            sudo update-alternatives --install /usr/bin/llvm-profdata llvm-profdata /usr/bin/llvm-profdata-20 100 || true
+            sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-20 100 || true
+          fi
 
       - name: Configure project
         env:
@@ -106,6 +112,8 @@ jobs:
   build-coverage:
     name: Coverage Build (Linux only)
     runs-on: ubuntu-22.04
+    container:
+      image: ghcr.io/future-re/ubuntu22.04-clang20-boost1.89-gtest1.17:0.2
     needs: build
     if: github.ref == 'refs/heads/main'
     steps:
@@ -115,23 +123,27 @@ jobs:
       - name: Install coverage toolchain
         run: |
           set -e
-          sudo apt-get update
-          sudo apt-get install -y gnupg wget lsb-release ca-certificates
-          wget -qO - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/llvm-snapshot.gpg
-          echo "deb [signed-by=/usr/share/keyrings/llvm-snapshot.gpg] http://apt.llvm.org/jammy/ llvm-toolchain-jammy-20 main" | sudo tee /etc/apt/sources.list.d/llvm.list
-          sudo apt-get update
-          sudo apt-get install -y \
-            llvm-20 \
-            clang-20 \
-            cmake \
-            ninja-build \
-            libicu-dev \
-            libboost-all-dev \
-            python3-venv \
-            python3-pip
-          sudo update-alternatives --install /usr/bin/llvm-cov llvm-cov /usr/bin/llvm-cov-20 100 || true
-          sudo update-alternatives --install /usr/bin/llvm-profdata llvm-profdata /usr/bin/llvm-profdata-20 100 || true
-          sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-20 100 || true
+          if command -v clang++-20 >/dev/null 2>&1; then
+            echo "clang++-20 already present in container/image; skipping coverage toolchain install."
+          else
+            sudo apt-get update
+            sudo apt-get install -y gnupg wget lsb-release ca-certificates
+            wget -qO - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/llvm-snapshot.gpg
+            echo "deb [signed-by=/usr/share/keyrings/llvm-snapshot.gpg] http://apt.llvm.org/jammy/ llvm-toolchain-jammy-20 main" | sudo tee /etc/apt/sources.list.d/llvm.list
+            sudo apt-get update
+            sudo apt-get install -y \
+              llvm-20 \
+              clang-20 \
+              cmake \
+              ninja-build \
+              libicu-dev \
+              libboost-all-dev \
+              python3-venv \
+              python3-pip
+            sudo update-alternatives --install /usr/bin/llvm-cov llvm-cov /usr/bin/llvm-cov-20 100 || true
+            sudo update-alternatives --install /usr/bin/llvm-profdata llvm-profdata /usr/bin/llvm-profdata-20 100 || true
+            sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-20 100 || true
+          fi
 
       - name: Configure CMake with Coverage
         run: |
