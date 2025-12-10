@@ -5,14 +5,13 @@ on:
     paths:
       - 'mkdocs/**'
       - 'docs/**'
+    tags:
+      - 'v*.*.*'
   pull_request:
     paths:
       - 'mkdocs/**'
       - 'docs/**'
   workflow_dispatch: {}
-  push:
-    tags:
-      - 'v*.*.*'
 
 permissions:
   contents: read
