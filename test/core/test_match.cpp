@@ -4,6 +4,7 @@
  */
 
 #include <gtest/gtest.h>
+#include <unistd.h>
 
 import core.match;
 import core.scanner;
@@ -15,12 +16,12 @@ using namespace core;
 
 class MatchCollectorTest : public ::testing::Test {
    protected:
-    void SetUp() override {
-        // Create a scanner with some test data
-        scanner = std::make_unique<Scanner>();
-    }
-
     std::unique_ptr<Scanner> scanner;
+
+    void SetUp() override {
+        // Create a scanner with some test data (use current process id)
+        scanner = std::make_unique<Scanner>(::getpid());
+    }
 };
 
 TEST_F(MatchCollectorTest, CollectWithoutClassifier) {
