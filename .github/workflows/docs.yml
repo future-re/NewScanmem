@@ -9,6 +9,7 @@ on:
     paths:
       - 'mkdocs/**'
       - 'docs/**'
+  workflow_dispatch: {}
 
 permissions:
   contents: read

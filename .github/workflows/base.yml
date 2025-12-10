@@ -53,6 +53,12 @@ jobs:
       - name: Setup Linux toolchain
         if: matrix.os == 'ubuntu-22.04'
         run: |
+          set -e
+          sudo apt-get update
+          sudo apt-get install -y gnupg wget lsb-release ca-certificates
+          # Add LLVM APT repository for clang-20 on jammy
+          wget -qO - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/llvm-snapshot.gpg
+          echo "deb [signed-by=/usr/share/keyrings/llvm-snapshot.gpg] http://apt.llvm.org/jammy/ llvm-toolchain-jammy-20 main" | sudo tee /etc/apt/sources.list.d/llvm.list
           sudo apt-get update
           sudo apt-get install -y \
             llvm-20 \
@@ -108,6 +114,11 @@ jobs:
 
       - name: Install coverage toolchain
         run: |
+          set -e
+          sudo apt-get update
+          sudo apt-get install -y gnupg wget lsb-release ca-certificates
+          wget -qO - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/llvm-snapshot.gpg
+          echo "deb [signed-by=/usr/share/keyrings/llvm-snapshot.gpg] http://apt.llvm.org/jammy/ llvm-toolchain-jammy-20 main" | sudo tee /etc/apt/sources.list.d/llvm.list
           sudo apt-get update
           sudo apt-get install -y \
             llvm-20 \

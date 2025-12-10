@@ -4,6 +4,9 @@ on:
   workflow_run:
     workflows: ["CI Workflow"]
     types: [completed]
+  push:
+    branches: [ main ]
+  workflow_dispatch: {}
 
 permissions:
   contents: read
@@ -13,6 +16,7 @@ permissions:
 jobs:
   coverage:
     name: Generate Coverage Report and Publish Docs
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-24.04
     container:
       image: ghcr.io/future-re/ubuntu22.04-clang20-boost1.89-gtest1.17:0.2
