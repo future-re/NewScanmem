@@ -101,7 +101,7 @@ cmake -S . -B build -DCMAKE_CXX_COMPILER=clang++-20 -DENABLE_COVERAGE=ON/OFF -G 
 cmake --build build
 
 # （可选）生成cov覆盖率报告
-cmake --build build --target coverage
+./generate_coverage.sh
 
 # 运行 | Run
 ./NewScanmem

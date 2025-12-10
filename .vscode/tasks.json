@@ -1,0 +1,130 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Configure with Coverage",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "-B",
+                "build",
+                "-DENABLE_COVERAGE=ON",
+                "-DCMAKE_BUILD_TYPE=Debug"
+            ],
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "配置项目并启用代码覆盖率"
+        },
+        {
+            "label": "Build with Coverage",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "build",
+                "--parallel"
+            ],
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "构建项目（覆盖率模式）",
+            "dependsOn": [
+                "Configure with Coverage"
+            ]
+        },
+        {
+            "label": "Generate Coverage Report",
+            "type": "shell",
+            "command": "${workspaceFolder}/generate_coverage.sh",
+            "args": [
+                "--all"
+            ],
+            "group": "test",
+            "problemMatcher": [],
+            "detail": "运行测试并生成覆盖率报告",
+            "dependsOn": [
+                "Build with Coverage"
+            ]
+        },
+        {
+            "label": "Generate Coverage (HTML only)",
+            "type": "shell",
+            "command": "${workspaceFolder}/generate_coverage.sh",
+            "args": [
+                "--html"
+            ],
+            "group": "test",
+            "problemMatcher": [],
+            "detail": "仅生成HTML覆盖率报告"
+        },
+        {
+            "label": "Generate Coverage (LCOV for IDE)",
+            "type": "shell",
+            "command": "${workspaceFolder}/generate_coverage.sh",
+            "args": [
+                "--lcov"
+            ],
+            "group": "test",
+            "problemMatcher": [],
+            "detail": "生成LCOV格式供IDE使用"
+        },
+        {
+            "label": "Coverage Summary",
+            "type": "shell",
+            "command": "${workspaceFolder}/generate_coverage.sh",
+            "args": [
+                "--summary"
+            ],
+            "group": "test",
+            "problemMatcher": [],
+            "detail": "显示覆盖率摘要"
+        },
+        {
+            "label": "Check Coverage Thresholds",
+            "type": "shell",
+            "command": "${workspaceFolder}/generate_coverage.sh",
+            "args": [
+                "--check"
+            ],
+            "group": "test",
+            "problemMatcher": [],
+            "detail": "检查覆盖率是否满足阈值要求"
+        },
+        {
+            "label": "Open Coverage Report",
+            "type": "shell",
+            "command": "xdg-open",
+            "args": [
+                "${workspaceFolder}/build/coverage/html/index.html"
+            ],
+            "group": "test",
+            "problemMatcher": [],
+            "detail": "在浏览器中打开覆盖率报告"
+        },
+        {
+            "label": "Full Coverage Analysis",
+            "type": "shell",
+            "command": "${workspaceFolder}/generate_coverage.sh",
+            "args": [
+                "--all",
+                "--check"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "detail": "完整的覆盖率分析流程（配置→构建→测试→报告→检查）",
+            "dependsOn": [
+                "Build with Coverage"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            }
+        }
+    ]
+}

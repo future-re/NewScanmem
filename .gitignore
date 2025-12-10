@@ -4,3 +4,4 @@
 cmake-build-debug-wsl/*
 build/
 mkdocs/site/
+cmake-4.2.1*

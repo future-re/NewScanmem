@@ -4,8 +4,10 @@
   "cmake.configureOnOpen": true,
   "clangd.path": "/usr/bin/clangd-20",
   // 告诉 clangd 编译数据库在构建目录中
-  "clangd.arguments": ["-compile-commands-dir=${workspaceFolder}/build"],
+  "clangd.arguments": [
+    "-compile-commands-dir=${workspaceFolder}/build"
+  ],
   // format
   "editor.tabSize": 4,
-  "cSpell.enabled": false
+  "cSpell.enabled": false,
 }
