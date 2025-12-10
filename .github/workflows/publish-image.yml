@@ -34,9 +34,10 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/future-re/ubuntu22.04-clang20-boost1.89-gtest1.17
+          images: ghcr.io/${{ github.repository }}
           tags: |
             type=raw,value=latest
+            type=raw,value=dev-env
             type=sha,prefix=
 
       - name: Build and push
@@ -47,5 +48,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           platforms: linux/amd64
-          cache-from: type=gha
+          cache-from: |
+            type=registry,ref=ghcr.io/${{ github.repository }}:0.2
+            type=gha
           cache-to: type=gha,mode=max
