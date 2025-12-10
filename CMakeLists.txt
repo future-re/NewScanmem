@@ -26,5 +26,19 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
+# ---- 覆盖率支持（需在添加子目录前注入编译/链接标志） ----
+option(ENABLE_COVERAGE "Enable code coverage instrumentation" OFF)
+if(ENABLE_COVERAGE)
+  message(STATUS "Coverage: ENABLED")
+  include(cmake/coverage.cmake)
+  enable_coverage_for_targets()
+else()
+  message(STATUS "Coverage: disabled (enable with -DENABLE_COVERAGE=ON)")
+endif()
+
 add_subdirectory(src)
 add_subdirectory(test)
+
+if(ENABLE_COVERAGE)
+  add_coverage_target()
+endif()

@@ -94,11 +94,14 @@ cd NewScanmem
 # 创建构建目录 | Create build directory
 mkdir build && cd build
 
-# 配置项目 | Configure project
-cmake ..
+# 配置项目 | Configure project （DENABLE_COVERAGE=ON及开启cov覆盖率生成）
+cmake -S . -B build -DCMAKE_CXX_COMPILER=clang++-20 -DENABLE_COVERAGE=ON/OFF -G Ninja
 
 # 构建 | Build
-ninja
+cmake --build build
+
+# （可选）生成cov覆盖率报告
+cmake --build build --target coverage
 
 # 运行 | Run
 ./NewScanmem
@@ -108,5 +111,5 @@ ninja
 
 - **操作系统** | OS: Linux with /proc filesystem
 - **编译器** | Compiler: C++23 with modules support (Clang19+,GCC 13+)
-- **依赖** | Dependencies: CMake, Boost, libstdc++-13-dev ninja-1.11
+- **依赖** | Dependencies: CMake, Boost, GTest, libstdc++-13-dev ninja-1.11
 

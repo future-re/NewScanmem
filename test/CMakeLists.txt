@@ -21,10 +21,17 @@ set(TEST_SOURCES
     core/test_memory.cpp
     core/test_scanner.cpp
     core/test_region_filter.cpp
+    core/test_match.cpp
+    core/test_proc_mem.cpp
+    core/test_match_formatter.cpp
     scan/test_bytes.cpp
     scan/test_numeric.cpp
     scan/test_string.cpp
     scan/test_parallel.cpp
+    scan/test_filter.cpp
+    scan/test_engine.cpp
+    scan/test_match_storage.cpp
+    scan/test_factory.cpp
 )
 
 # 为每个测试源生成可执行文件并注册 gtest_discover_tests

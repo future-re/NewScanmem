@@ -25,9 +25,12 @@ plugins:
         en:
           name: English
           build: false  # 暂不构建英文站点
+  - coverage:
+      html_report_dir: ../coverage/html/  # 指定到具体的html目录
 
 nav:
   - 首页: index.md
+  - 覆盖率报告: coverage.md
   - 使用指南:
     - '扫描与过滤': scanning_guide.md
   - API 模块参考:
