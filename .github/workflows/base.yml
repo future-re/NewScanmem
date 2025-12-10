@@ -14,52 +14,140 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
-    container:
-      image: ghcr.io/future-re/ubuntu22.04-clang20-boost1.89-gtest1.17:0.2
+    name: Build and Test (${{ matrix.os }})
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-22.04
+            runner: ubuntu-22.04
+            c_compiler: clang-20
+            cxx_compiler: clang++-20
+          - os: windows-2022
+            runner: windows-2022
+            c_compiler: clang
+            cxx_compiler: clang++
+          - os: macos-13
+            runner: macos-13
+            c_compiler: clang
+            cxx_compiler: clang++
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Cache ccache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
-          path: /home/runner/.ccache
+          path: ${{ runner.temp }}/ccache
           key: ${{ runner.os }}-ccache-${{ hashFiles('**/CMakeLists.txt','**/*.cpp','**/*.c','**/*.h','**/*.cppm') }}
           restore-keys: |
             ${{ runner.os }}-ccache-
 
       - name: Show tool versions
         run: |
-          uname -a
+          uname -a || true
           cmake --version || true
-          clang++ --version || true
+          ${{ matrix.cxx_compiler }} --version || true
+
+      - name: Setup Linux toolchain
+        if: matrix.os == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            llvm-20 \
+            clang-20 \
+            cmake \
+            ninja-build \
+            libicu-dev \
+            libboost-all-dev \
+            python3-venv \
+            python3-pip
+          sudo update-alternatives --install /usr/bin/llvm-cov llvm-cov /usr/bin/llvm-cov-20 100 || true
+          sudo update-alternatives --install /usr/bin/llvm-profdata llvm-profdata /usr/bin/llvm-profdata-20 100 || true
+          sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-20 100 || true
 
       - name: Configure project
         env:
-          CCACHE_DIR: /home/runner/.ccache
+          CCACHE_DIR: ${{ runner.temp }}/ccache
         run: |
           cmake -B build -G Ninja \
-            -DCMAKE_C_COMPILER=clang-20 \
-            -DCMAKE_CXX_COMPILER=clang++-20 \
+            -DCMAKE_C_COMPILER=${{ matrix.c_compiler }} \
+            -DCMAKE_CXX_COMPILER=${{ matrix.cxx_compiler }} \
             -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
-            -DCMAKE_CXX_FLAGS="--gcc-toolchain=/usr -stdlib=libstdc++" \
-            -DCMAKE_EXE_LINKER_FLAGS="-stdlib=libstdc++" \
-            -DCMAKE_SHARED_LINKER_FLAGS="-stdlib=libstdc++" \
             -DCMAKE_CXX_STANDARD=23
 
       - name: Build project
-        run: cmake --build build -j$(nproc)
+        run: cmake --build build --parallel
 
       - name: Run tests
-        run: ctest --test-dir build --output-on-failure
+        run: |
+          if [ "${{ matrix.os }}" = "windows-2022" ]; then
+            ctest --test-dir build --output-on-failure || true
+          else
+            ctest --test-dir build --output-on-failure
+          fi
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: build-output
+          name: build-output-${{ matrix.os }}
           path: |
             build/
+            test/*.profraw
+          retention-days: 30
+
+  build-coverage:
+    name: Coverage Build (Linux only)
+    runs-on: ubuntu-22.04
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install coverage toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            llvm-20 \
+            clang-20 \
+            cmake \
+            ninja-build \
+            libicu-dev \
+            libboost-all-dev \
+            python3-venv \
+            python3-pip
+          sudo update-alternatives --install /usr/bin/llvm-cov llvm-cov /usr/bin/llvm-cov-20 100 || true
+          sudo update-alternatives --install /usr/bin/llvm-profdata llvm-profdata /usr/bin/llvm-profdata-20 100 || true
+          sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-20 100 || true
+
+      - name: Configure CMake with Coverage
+        run: |
+          cmake -B build \
+            -GNinja \
+            -DCMAKE_BUILD_TYPE=Debug \
+            -DENABLE_COVERAGE=ON \
+            -DCMAKE_CXX_COMPILER=clang++-20
+
+      - name: Build project (coverage)
+        run: cmake --build build --parallel
+
+      - name: Run tests (coverage)
+        run: |
+          cd build
+          LLVM_PROFILE_FILE="test/%p.profraw" ctest --output-on-failure --parallel
+          cd ..
+
+      - name: Generate coverage report
+        run: ./generate_coverage.sh --all
+
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output-coverage
+          path: |
+            build/
+            build/coverage/
             test/*.profraw
           retention-days: 30

@@ -23,11 +23,19 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Download build artifact
+      - name: Try download coverage artifact
         uses: actions/download-artifact@v4
         with:
-          name: build-output
+          name: build-output-coverage
           path: build-output
+        continue-on-error: true
+
+      - name: Try download linux build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output-ubuntu-22.04
+          path: build-output
+        continue-on-error: true
 
       - name: Restore build (if present)
         run: |
@@ -36,18 +44,21 @@ jobs:
           fi
 
       - name: Ensure dependencies (only if we must build locally)
-        if: "!exists('build/coverage/summary.txt')"
         run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            llvm-20 \
-            clang-20 \
-            cmake \
-            ninja-build \
-            libicu-dev \
-            libboost-all-dev \
-            python3-venv \
-            python3-pip
+          if [ ! -f build/coverage/summary.txt ]; then
+            sudo apt-get update
+            sudo apt-get install -y \
+              llvm-20 \
+              clang-20 \
+              cmake \
+              ninja-build \
+              libicu-dev \
+              libboost-all-dev \
+              python3-venv \
+              python3-pip
+          else
+            echo "Coverage summary already present in artifact; skipping dependency install."
+          fi
 
       - name: Generate coverage report (use artifact if available)
         run: |
