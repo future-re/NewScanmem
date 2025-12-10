@@ -14,25 +14,10 @@ permissions:
 
 jobs:
   build:
-    name: Build and Test (${{ matrix.os }})
-    runs-on: ${{ matrix.runner }}
+    name: Build and Test (linux)
+    runs-on: ubuntu-22.04
     container:
       image: ghcr.io/future-re/ubuntu22.04-clang20-boost1.89-gtest1.17:0.2
-    strategy:
-      matrix:
-        include:
-          - os: ubuntu-22.04
-            runner: ubuntu-22.04
-            c_compiler: clang-20
-            cxx_compiler: clang++-20
-          - os: windows-2022
-            runner: windows-2022
-            c_compiler: clang
-            cxx_compiler: clang++
-          - os: macos-13
-            runner: macos-13
-            c_compiler: clang
-            cxx_compiler: clang++
 
     steps:
       - name: Checkout code
@@ -41,7 +26,7 @@ jobs:
       - name: Cache ccache
         uses: actions/cache@v4
         with:
-          path: ${{ runner.temp }}/ccache
+          path: /home/runner/.ccache
           key: ${{ runner.os }}-ccache-${{ hashFiles('**/CMakeLists.txt','**/*.cpp','**/*.c','**/*.h','**/*.cppm') }}
           restore-keys: |
             ${{ runner.os }}-ccache-
@@ -50,10 +35,9 @@ jobs:
         run: |
           uname -a || true
           cmake --version || true
-          ${{ matrix.cxx_compiler }} --version || true
+          clang++ --version || true
 
       - name: Setup Linux toolchain
-        if: matrix.os == 'ubuntu-22.04'
         run: |
           set -e
           if command -v clang++-20 >/dev/null 2>&1; then
@@ -81,29 +65,24 @@ jobs:
 
       - name: Configure project
         env:
-          CCACHE_DIR: ${{ runner.temp }}/ccache
+          CCACHE_DIR: /home/runner/.ccache
         run: |
           cmake -B build -G Ninja \
-            -DCMAKE_C_COMPILER=${{ matrix.c_compiler }} \
-            -DCMAKE_CXX_COMPILER=${{ matrix.cxx_compiler }} \
+            -DCMAKE_C_COMPILER=clang-20 \
+            -DCMAKE_CXX_COMPILER=clang++-20 \
             -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
             -DCMAKE_CXX_STANDARD=23
 
       - name: Build project
-        run: cmake --build build --parallel
+        run: cmake --build build -j$(nproc)
 
       - name: Run tests
-        run: |
-          if [ "${{ matrix.os }}" = "windows-2022" ]; then
-            ctest --test-dir build --output-on-failure || true
-          else
-            ctest --test-dir build --output-on-failure
-          fi
+        run: ctest --test-dir build --output-on-failure
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: build-output-${{ matrix.os }}
+          name: build-output-ubuntu-22.04
           path: |
             build/
             test/*.profraw
