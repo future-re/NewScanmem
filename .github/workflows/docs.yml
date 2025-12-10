@@ -1,6 +1,6 @@
 name: Docs
 
-on:
+"on":
   push:
     paths:
       - 'mkdocs/**'

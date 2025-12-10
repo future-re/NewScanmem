@@ -1,6 +1,6 @@
 name: Code Coverage
 
-on:
+"on":
   workflow_run:
     workflows: ["CI Workflow"]
     types: [completed]

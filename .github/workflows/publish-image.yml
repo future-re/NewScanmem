@@ -1,6 +1,6 @@
 name: Publish Docker Image
 
-on:
+"on":
   push:
     tags:
       - 'v*.*.*'        # push tag 时发布
