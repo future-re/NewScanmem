@@ -10,6 +10,9 @@ on:
       - 'mkdocs/**'
       - 'docs/**'
   workflow_dispatch: {}
+  push:
+    tags:
+      - 'v*.*.*'
 
 permissions:
   contents: read
@@ -21,6 +24,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set Docker image tag env
+        if: startsWith(github.ref, 'refs/tags/')
+        run: echo "DOCKER_IMAGE_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
 
       - name: Setup Python
         uses: actions/setup-python@v4

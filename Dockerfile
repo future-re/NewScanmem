@@ -17,9 +17,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN wget https://apt.llvm.org/llvm.sh -O /tmp/llvm.sh && chmod +x /tmp/llvm.sh && \
     /tmp/llvm.sh 20 && \
     apt-get update && apt-get install -y --no-install-recommends \
-      clang-20 clang-tidy-20 clang-tools-20 clangd-20 && \
+    llvm-20 clang-20 clang-tidy-20 clang-tools-20 clangd-20 lld-20 && \
+    # ensure llvm coverage tools (llvm-cov, llvm-profdata) are available
     update-alternatives --install /usr/bin/cc cc /usr/bin/clang-20 100 && \
     update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-20 100 && \
+    update-alternatives --install /usr/bin/llvm-cov llvm-cov /usr/bin/llvm-cov-20 100 || true && \
+    update-alternatives --install /usr/bin/llvm-profdata llvm-profdata /usr/bin/llvm-profdata-20 100 || true && \
     update-alternatives --set cc /usr/bin/clang-20 && update-alternatives --set c++ /usr/bin/clang++-20 && \
     ln -sf /usr/bin/clang-20 /usr/bin/clang && \
     ln -sf /usr/bin/clang++-20 /usr/bin/clang++ && \
