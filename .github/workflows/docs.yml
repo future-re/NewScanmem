@@ -2,34 +2,38 @@ name: Docs
 
 "on":
   push:
+    branches: [main]
     paths:
       - 'mkdocs/**'
       - 'docs/**'
-    tags:
-      - 'v*.*.*'
-  pull_request:
-    paths:
-      - 'mkdocs/**'
-      - 'docs/**'
+  workflow_run:
+    workflows: ["Code Coverage"]
+    types: [completed]
+    branches: [main]
   workflow_dispatch: {}
 
 permissions:
   contents: read
   pages: write
+  id-token: write
+  actions: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set Docker image tag env
-        if: startsWith(github.ref, 'refs/tags/')
-        run: echo "DOCKER_IMAGE_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
-
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
@@ -38,15 +42,34 @@ jobs:
           python -m pip install --upgrade pip
           pip install mkdocs mkdocs-material mkdocs-static-i18n
 
+      - name: Try download coverage HTML artifact
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          workflow: coverage.yml
+          name: coverage-report-html
+          path: mkdocs/docs/coverage
+          if_no_artifact_found: warn
+        continue-on-error: true
+
       - name: Build site
         run: |
+          # Copy coverage HTML if available
+          if [ -d mkdocs/docs/coverage ]; then
+            echo "Coverage report found, will be included in docs"
+          else
+            echo "No coverage report found, building docs without it"
+          fi
           cd mkdocs
           mkdocs build -d site
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
       - name: Upload site artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: mkdocs/site
 
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        id: deployment
+        uses: actions/deploy-pages@v4

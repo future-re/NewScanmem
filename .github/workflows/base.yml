@@ -2,22 +2,20 @@ name: CI Workflow
 
 "on":
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 permissions:
-  contents: write
+  contents: read
   packages: read
-  pages: write
-  id-token: write
 
 jobs:
   build:
-    name: Build and Test (linux)
+    name: Build (Linux)
     runs-on: ubuntu-22.04
     container:
-      image: ghcr.io/future-re/ubuntu22.04-clang20-boost1.89-gtest1.17:0.2
+      image: ghcr.io/future-re/ubuntu22.04-clang20-boost1.89-gtest1.17:latest
 
     steps:
       - name: Checkout code
@@ -26,7 +24,7 @@ jobs:
       - name: Cache ccache
         uses: actions/cache@v4
         with:
-          path: /home/runner/.ccache
+          path: /root/.ccache
           key: ${{ runner.os }}-ccache-${{ hashFiles('**/CMakeLists.txt','**/*.cpp','**/*.c','**/*.h','**/*.cppm') }}
           restore-keys: |
             ${{ runner.os }}-ccache-
@@ -37,35 +35,9 @@ jobs:
           cmake --version || true
           clang++ --version || true
 
-      - name: Setup Linux toolchain
-        run: |
-          set -e
-          if command -v clang++-20 >/dev/null 2>&1; then
-            echo "clang++-20 already present in container/image; skipping toolchain install."
-          else
-            sudo apt-get update
-            sudo apt-get install -y gnupg wget lsb-release ca-certificates
-            # Add LLVM APT repository for clang-20 on jammy
-            wget -qO - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/llvm-snapshot.gpg
-            echo "deb [signed-by=/usr/share/keyrings/llvm-snapshot.gpg] http://apt.llvm.org/jammy/ llvm-toolchain-jammy-20 main" | sudo tee /etc/apt/sources.list.d/llvm.list
-            sudo apt-get update
-            sudo apt-get install -y \
-              llvm-20 \
-              clang-20 \
-              cmake \
-              ninja-build \
-              libicu-dev \
-              libboost-all-dev \
-              python3-venv \
-              python3-pip
-            sudo update-alternatives --install /usr/bin/llvm-cov llvm-cov /usr/bin/llvm-cov-20 100 || true
-            sudo update-alternatives --install /usr/bin/llvm-profdata llvm-profdata /usr/bin/llvm-profdata-20 100 || true
-            sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-20 100 || true
-          fi
-
       - name: Configure project
         env:
-          CCACHE_DIR: /home/runner/.ccache
+          CCACHE_DIR: /root/.ccache
         run: |
           cmake -B build -G Ninja \
             -DCMAKE_C_COMPILER=clang-20 \
@@ -82,74 +54,6 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: build-output-ubuntu-22.04
-          path: |
-            build/
-            test/*.profraw
-          retention-days: 30
-
-  build-coverage:
-    name: Coverage Build (Linux only)
-    runs-on: ubuntu-22.04
-    container:
-      image: ghcr.io/future-re/ubuntu22.04-clang20-boost1.89-gtest1.17:0.2
-    needs: build
-    if: github.ref == 'refs/heads/main'
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Install coverage toolchain
-        run: |
-          set -e
-          if command -v clang++-20 >/dev/null 2>&1; then
-            echo "clang++-20 already present in container/image; skipping coverage toolchain install."
-          else
-            sudo apt-get update
-            sudo apt-get install -y gnupg wget lsb-release ca-certificates
-            wget -qO - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/llvm-snapshot.gpg
-            echo "deb [signed-by=/usr/share/keyrings/llvm-snapshot.gpg] http://apt.llvm.org/jammy/ llvm-toolchain-jammy-20 main" | sudo tee /etc/apt/sources.list.d/llvm.list
-            sudo apt-get update
-            sudo apt-get install -y \
-              llvm-20 \
-              clang-20 \
-              cmake \
-              ninja-build \
-              libicu-dev \
-              libboost-all-dev \
-              python3-venv \
-              python3-pip
-            sudo update-alternatives --install /usr/bin/llvm-cov llvm-cov /usr/bin/llvm-cov-20 100 || true
-            sudo update-alternatives --install /usr/bin/llvm-profdata llvm-profdata /usr/bin/llvm-profdata-20 100 || true
-            sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-20 100 || true
-          fi
-
-      - name: Configure CMake with Coverage
-        run: |
-          cmake -B build \
-            -GNinja \
-            -DCMAKE_BUILD_TYPE=Debug \
-            -DENABLE_COVERAGE=ON \
-            -DCMAKE_CXX_COMPILER=clang++-20
-
-      - name: Build project (coverage)
-        run: cmake --build build --parallel
-
-      - name: Run tests (coverage)
-        run: |
-          cd build
-          LLVM_PROFILE_FILE="test/%p.profraw" ctest --output-on-failure --parallel
-          cd ..
-
-      - name: Generate coverage report
-        run: ./generate_coverage.sh --all
-
-      - name: Upload coverage artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-output-coverage
-          path: |
-            build/
-            build/coverage/
-            test/*.profraw
-          retention-days: 30
+          name: build-output-linux
+          path: build/
+          retention-days: 7
