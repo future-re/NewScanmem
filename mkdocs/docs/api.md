@@ -20,12 +20,10 @@ API 文档提供了多种浏览方式：
 
 ---
 
-<div style="width:100%; height:900px; border:1px solid #ddd; border-radius:4px; overflow:hidden;">
-    <iframe src="../doxygen-output/html/index.html" style="width:100%;height:100%;border:0;" title="API Documentation"></iframe>
-</div>
+下面提供访问入口，点击后将在新标签页打开原始的 Doxygen 界面（更适合复杂的 API 浏览与搜索）。
 
-<div style="margin-top: 20px;">
-    <a href="../doxygen-output/html/index.html" target="_blank" style="display: inline-block; padding: 10px 20px; background-color: #2196F3; color: white; text-decoration: none; border-radius: 4px;">
+<div style="margin-top: 12px;">
+    <a href="../doxygen-output/html/index.html" target="_blank" rel="noopener" style="display: inline-block; padding: 10px 16px; background-color: #2196F3; color: white; text-decoration: none; border-radius: 4px;">
         🔗 在新标签页打开完整 API 文档
     </a>
 </div>
