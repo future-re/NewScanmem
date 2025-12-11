@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: ScanOptions结构体 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('structScanOptions.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="#pub-static-attribs">静态 Public 属性</a> &#124;
+<a href="structScanOptions-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">ScanOptions结构体 参考<span class="mlabels"><span class="mlabel">export</span></span><div class="ingroups">模块 <a class="el" href="module_scan_8engine.html">scan.engine</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+ScanOptions 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="structScanOptions__coll__graph.png" border="0" usemap="#aScanOptions_coll__map" alt="Collaboration graph"/></div>
+<map name="aScanOptions_coll__map" id="aScanOptions_coll__map">
+<area shape="rect" title=" " alt="" coords="77,181,179,207"/>
+<area shape="rect" title=" " alt="" coords="5,93,139,119"/>
+<area shape="poly" title=" " alt="" coords="89,129,122,179,118,182,85,132"/>
+<area shape="rect" href="structcore_1_1RegionFilterConfig.html" title="Configuration for region filtering in scans and exports" alt="" coords="163,93,341,119"/>
+<area shape="poly" title=" " alt="" coords="229,130,189,160,150,183,148,179,187,155,226,126"/>
+<area shape="rect" href="classcore_1_1RegionFilter.html" title="Manages region&#45;based filtering for memory scanning" alt="" coords="184,5,320,31"/>
+<area shape="poly" title=" " alt="" coords="255,45,255,93,249,93,249,45"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:ab5a9fac14f6486f745b09ccc06bb1b7e" id="r_ab5a9fac14f6486f745b09ccc06bb1b7e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structScanOptions.html#ab5a9fac14f6486f745b09ccc06bb1b7e">dataType</a> {<a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0a2bbddb22ddec62f03e8857aa831750bb">ScanDataType::ANY_NUMBER</a>}</td></tr>
+<tr class="separator:ab5a9fac14f6486f745b09ccc06bb1b7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8655f255aade6fb8e1a5c460ef250c5d" id="r_a8655f255aade6fb8e1a5c460ef250c5d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structScanOptions.html#a8655f255aade6fb8e1a5c460ef250c5d">matchType</a> {<a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2a0b34a50323be5afcfd559d4a25434dbe">ScanMatchType::MATCH_ANY</a>}</td></tr>
+<tr class="separator:a8655f255aade6fb8e1a5c460ef250c5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15668009ebc696507aee81ae33f728d6" id="r_a15668009ebc696507aee81ae33f728d6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structScanOptions.html#a15668009ebc696507aee81ae33f728d6">reverseEndianness</a> {false}</td></tr>
+<tr class="separator:a15668009ebc696507aee81ae33f728d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a206f549ce388cb7e2136336b6feb0949" id="r_a206f549ce388cb7e2136336b6feb0949"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structScanOptions.html#a206f549ce388cb7e2136336b6feb0949">step</a> {1}</td></tr>
+<tr class="separator:a206f549ce388cb7e2136336b6feb0949"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ccd86282331f2f57673fcd1abf6d533" id="r_a2ccd86282331f2f57673fcd1abf6d533"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structScanOptions.html#a2ccd86282331f2f57673fcd1abf6d533">blockSize</a> {<a class="el" href="structScanOptions.html#a136c0a3b59e82244a3d0a0de7f72afbd">BLOCK_SIZE</a>}</td></tr>
+<tr class="separator:a2ccd86282331f2f57673fcd1abf6d533"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a791b43d33de9728773e2ddcf40bb7328" id="r_a791b43d33de9728773e2ddcf40bb7328"><td class="memItemLeft" align="right" valign="top">RegionScanLevel&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structScanOptions.html#a791b43d33de9728773e2ddcf40bb7328">regionLevel</a> {RegionScanLevel::ALL_RW}</td></tr>
+<tr class="separator:a791b43d33de9728773e2ddcf40bb7328"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e8e10baa9e7c249927ae7a8be3681bd" id="r_a5e8e10baa9e7c249927ae7a8be3681bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcore_1_1RegionFilterConfig.html">core::RegionFilterConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structScanOptions.html#a5e8e10baa9e7c249927ae7a8be3681bd">regionFilter</a></td></tr>
+<tr class="separator:a5e8e10baa9e7c249927ae7a8be3681bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+静态 Public 属性</h2></td></tr>
+<tr class="memitem:a136c0a3b59e82244a3d0a0de7f72afbd" id="r_a136c0a3b59e82244a3d0a0de7f72afbd"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structScanOptions.html#a136c0a3b59e82244a3d0a0de7f72afbd">BLOCK_SIZE</a></td></tr>
+<tr class="separator:a136c0a3b59e82244a3d0a0de7f72afbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a136c0a3b59e82244a3d0a0de7f72afbd" name="a136c0a3b59e82244a3d0a0de7f72afbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a136c0a3b59e82244a3d0a0de7f72afbd">&#9670;&#160;</a></span>BLOCK_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::size_t ScanOptions::BLOCK_SIZE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>初始值:</b><div class="fragment"><div class="line">=</div>
+<div class="line">        64 * 1024</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a2ccd86282331f2f57673fcd1abf6d533" name="a2ccd86282331f2f57673fcd1abf6d533"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ccd86282331f2f57673fcd1abf6d533">&#9670;&#160;</a></span>blockSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t ScanOptions::blockSize {<a class="el" href="structScanOptions.html#a136c0a3b59e82244a3d0a0de7f72afbd">BLOCK_SIZE</a>}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab5a9fac14f6486f745b09ccc06bb1b7e" name="ab5a9fac14f6486f745b09ccc06bb1b7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5a9fac14f6486f745b09ccc06bb1b7e">&#9670;&#160;</a></span>dataType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> ScanOptions::dataType {<a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0a2bbddb22ddec62f03e8857aa831750bb">ScanDataType::ANY_NUMBER</a>}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8655f255aade6fb8e1a5c460ef250c5d" name="a8655f255aade6fb8e1a5c460ef250c5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8655f255aade6fb8e1a5c460ef250c5d">&#9670;&#160;</a></span>matchType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> ScanOptions::matchType {<a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2a0b34a50323be5afcfd559d4a25434dbe">ScanMatchType::MATCH_ANY</a>}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5e8e10baa9e7c249927ae7a8be3681bd" name="a5e8e10baa9e7c249927ae7a8be3681bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e8e10baa9e7c249927ae7a8be3681bd">&#9670;&#160;</a></span>regionFilter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcore_1_1RegionFilterConfig.html">core::RegionFilterConfig</a> ScanOptions::regionFilter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a791b43d33de9728773e2ddcf40bb7328" name="a791b43d33de9728773e2ddcf40bb7328"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a791b43d33de9728773e2ddcf40bb7328">&#9670;&#160;</a></span>regionLevel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RegionScanLevel ScanOptions::regionLevel {RegionScanLevel::ALL_RW}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a15668009ebc696507aee81ae33f728d6" name="a15668009ebc696507aee81ae33f728d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15668009ebc696507aee81ae33f728d6">&#9670;&#160;</a></span>reverseEndianness</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ScanOptions::reverseEndianness {false}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a206f549ce388cb7e2136336b6feb0949" name="a206f549ce388cb7e2136336b6feb0949"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a206f549ce388cb7e2136336b6feb0949">&#9670;&#160;</a></span>step</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t ScanOptions::step {1}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>该结构体的文档由以下文件生成:<ul>
+<li>src/scan/<a class="el" href="engine_8cppm.html">engine.cppm</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="structScanOptions.html">ScanOptions</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

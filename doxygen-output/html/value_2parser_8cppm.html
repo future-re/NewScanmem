@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: src/value/parser.cppm 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('value_2parser_8cppm.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">命名空间</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">parser.cppm 文件参考<div class="ingroups">模块 <a class="el" href="module_value_8parser.html">value.parser</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><a class="el" href="structValue.html">Value</a> parsing utilities for scan operations  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;charconv&gt;</code><br />
+<code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;limits&gt;</code><br />
+<code>#include &lt;optional&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;string_view&gt;</code><br />
+<code>#include &lt;type_traits&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>import <a class="el" href="flags_8cppm.html">value.flags</a>;</code><br />
+<code>import <a class="el" href="value_8cppm.html">value</a>;</code><br />
+<code>import <a class="el" href="types_8cppm.html">scan.types</a>;</code><br />
+</div><div class="textblock"><div class="dynheader">
+parser.cppm 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="value_2parser_8cppm__incl.png" border="0" usemap="#asrc_2value_2parser_8cppm" alt=""/></div>
+<map name="asrc_2value_2parser_8cppm" id="asrc_2value_2parser_8cppm">
+<area shape="rect" title="Value parsing utilities for scan operations" alt="" coords="379,5,544,31"/>
+<area shape="rect" title=" " alt="" coords="5,79,91,104"/>
+<area shape="poly" title=" " alt="" coords="388,33,105,81,104,76,387,28"/>
+<area shape="rect" title=" " alt="" coords="115,79,197,104"/>
+<area shape="poly" title=" " alt="" coords="413,33,211,80,210,75,412,28"/>
+<area shape="rect" title=" " alt="" coords="461,299,528,324"/>
+<area shape="poly" title=" " alt="" coords="379,26,331,34,289,48,274,59,264,71,259,85,263,103,285,152,310,185,342,214,386,249,420,272,455,290,453,295,417,277,382,253,339,218,306,189,280,155,257,105,254,85,259,68,270,55,287,44,329,29,378,21"/>
+<area shape="rect" title=" " alt="" coords="272,79,331,104"/>
+<area shape="poly" title=" " alt="" coords="437,33,341,75,339,71,435,28"/>
+<area shape="rect" title=" " alt="" coords="1401,299,1476,324"/>
+<area shape="poly" title=" " alt="" coords="545,21,682,33,859,56,1054,94,1153,119,1248,149,1320,178,1348,196,1382,223,1409,254,1429,285,1424,288,1404,257,1378,227,1345,200,1317,183,1246,155,1151,124,1053,99,858,61,681,38,544,26"/>
+<area shape="rect" title=" " alt="" coords="573,225,632,251"/>
+<area shape="poly" title=" " alt="" coords="497,28,534,47,552,61,567,77,586,110,597,147,605,211,600,212,592,148,581,113,563,80,549,65,531,52,495,33"/>
+<area shape="rect" title=" " alt="" coords="457,79,554,104"/>
+<area shape="poly" title=" " alt="" coords="471,30,493,66,489,68,466,32"/>
+<area shape="rect" title=" " alt="" coords="691,299,783,324"/>
+<area shape="poly" title=" " alt="" coords="454,33,424,73,392,130,381,161,377,193,381,222,395,249,414,263,441,275,516,292,601,301,678,306,678,311,601,307,515,297,440,280,411,267,391,252,376,224,371,193,376,160,387,128,419,70,449,29"/>
+<area shape="rect" title=" " alt="" coords="985,225,1047,251"/>
+<area shape="poly" title=" " alt="" coords="545,20,605,25,673,36,744,52,812,76,869,107,921,145,998,214,994,218,918,149,866,112,810,81,742,57,672,41,604,30,544,25"/>
+<area shape="rect" href="flags_8cppm.html" title=" " alt="" coords="405,225,499,251"/>
+<area shape="poly" title=" " alt="" coords="459,32,447,79,444,151,450,212,445,212,439,151,441,78,454,30"/>
+<area shape="rect" href="value_8cppm.html" title=" " alt="" coords="792,152,851,177"/>
+<area shape="poly" title=" " alt="" coords="544,23,681,42,743,57,784,76,797,90,807,106,819,138,814,140,802,108,793,93,781,81,741,62,680,47,544,29"/>
+<area shape="rect" href="types_8cppm.html" title=" " alt="" coords="678,79,770,104"/>
+<area shape="poly" title=" " alt="" coords="504,28,669,72,667,78,503,33"/>
+<area shape="poly" title=" " alt="" coords="461,250,483,286,479,288,457,252"/>
+<area shape="poly" title=" " alt="" coords="792,177,781,180,717,190,666,193,618,201,592,211,563,228,531,256,509,288,505,285,527,253,560,223,590,207,617,196,666,188,717,185,779,175,791,172"/>
+<area shape="poly" title=" " alt="" coords="842,175,917,218,974,248,1034,265,1085,275,1176,282,1270,284,1388,296,1387,301,1269,289,1176,287,1085,280,1033,270,972,253,915,223,839,180"/>
+<area shape="poly" title=" " alt="" coords="793,178,646,225,644,220,791,173"/>
+<area shape="poly" title=" " alt="" coords="803,180,777,199,754,227,744,256,740,285,735,284,739,254,750,224,773,196,800,175"/>
+<area shape="poly" title=" " alt="" coords="852,174,972,218,970,223,850,179"/>
+<area shape="poly" title=" " alt="" coords="792,177,781,180,513,229,512,223,779,175,791,172"/>
+<area shape="rect" href="scalar_8cppm.html" title=" " alt="" coords="808,225,909,251"/>
+<area shape="poly" title=" " alt="" coords="830,176,849,212,844,215,825,179"/>
+<area shape="poly" title=" " alt="" coords="808,252,542,303,541,298,807,247"/>
+<area shape="poly" title=" " alt="" coords="910,245,928,248,1056,262,1156,270,1258,278,1388,296,1387,301,1257,284,1156,275,1055,267,928,253,909,251"/>
+<area shape="poly" title=" " alt="" coords="841,253,770,294,767,289,838,248"/>
+<area shape="rect" title=" " alt="" coords="1306,299,1377,324"/>
+<area shape="poly" title=" " alt="" coords="910,245,928,248,1293,301,1292,306,928,253,909,250"/>
+<area shape="rect" title=" " alt="" coords="1067,299,1133,324"/>
+<area shape="poly" title=" " alt="" coords="898,248,1054,294,1052,299,897,253"/>
+<area shape="rect" title=" " alt="" coords="825,299,893,324"/>
+<area shape="poly" title=" " alt="" coords="861,251,861,285,856,285,856,251"/>
+<area shape="poly" title=" " alt="" coords="678,98,611,108,532,130,493,146,456,168,423,194,396,227,391,236,391,245,402,263,423,278,449,291,447,296,421,283,398,267,386,247,386,235,391,224,419,191,453,163,490,142,530,125,610,103,677,93"/>
+<area shape="poly" title=" " alt="" coords="703,107,487,221,484,217,701,102"/>
+<area shape="poly" title=" " alt="" coords="741,102,796,141,793,146,738,106"/>
+<area shape="poly" title=" " alt="" coords="771,93,941,111,1048,127,1155,149,1219,159,1271,165,1295,171,1318,182,1340,199,1361,224,1367,239,1368,256,1358,287,1353,286,1362,256,1362,240,1356,227,1336,202,1315,186,1294,176,1271,170,1218,165,1154,155,1047,132,941,116,770,99"/>
+<area shape="rect" title=" " alt="" coords="681,152,767,177"/>
+<area shape="poly" title=" " alt="" coords="727,104,727,138,721,138,721,104"/>
+<area shape="rect" href="mem64_8cppm.html" title=" " alt="" coords="1039,152,1143,177"/>
+<area shape="poly" title=" " alt="" coords="771,99,1026,148,1025,153,770,104"/>
+<area shape="poly" title=" " alt="" coords="1039,176,913,197,765,228,642,263,540,297,538,292,640,258,763,223,912,192,1038,171"/>
+<area shape="poly" title=" " alt="" coords="1143,166,1191,171,1247,182,1305,198,1360,223,1398,253,1426,286,1422,289,1394,257,1357,228,1303,203,1246,187,1190,177,1142,171"/>
+<area shape="poly" title=" " alt="" coords="1039,174,866,195,651,228,646,229,645,224,650,223,866,189,1038,169"/>
+<area shape="poly" title=" " alt="" coords="1038,168,985,171,922,180,857,198,826,211,798,227,769,256,750,287,745,285,765,252,794,223,824,206,855,193,921,175,984,166,1038,162"/>
+<area shape="poly" title=" " alt="" coords="1081,179,1040,218,1036,214,1077,175"/>
+<area shape="poly" title=" " alt="" coords="1143,169,1254,188,1304,203,1323,213,1337,224,1345,238,1349,254,1349,285,1344,285,1344,255,1340,240,1333,227,1321,217,1302,208,1253,193,1142,174"/>
+<area shape="poly" title=" " alt="" coords="1143,170,1242,190,1286,205,1314,224,1324,245,1318,264,1301,278,1276,289,1212,303,1148,310,1147,305,1211,298,1274,284,1298,274,1314,261,1318,246,1310,227,1284,209,1241,195,1142,175"/>
+<area shape="rect" title=" " alt="" coords="1071,225,1110,251"/>
+<area shape="poly" title=" " alt="" coords="1093,178,1093,212,1088,212,1088,178"/>
+<area shape="rect" title=" " alt="" coords="1135,225,1188,251"/>
+<area shape="poly" title=" " alt="" coords="1104,176,1142,214,1138,218,1100,180"/>
+<area shape="rect" title=" " alt="" coords="1213,225,1299,251"/>
+<area shape="poly" title=" " alt="" coords="1118,175,1218,217,1215,222,1116,180"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+命名空间</h2></td></tr>
+<tr class="memitem:namespacevalue" id="r_namespacevalue"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html">value</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a41cb8c4cd32ee7d88001f03556615c06" id="r_a41cb8c4cd32ee7d88001f03556615c06"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a41cb8c4cd32ee7d88001f03556615c06">value::toLower</a> (std::string str) -&gt; std::string</td></tr>
+<tr class="memdesc:a41cb8c4cd32ee7d88001f03556615c06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert string to lowercase  <br /></td></tr>
+<tr class="separator:a41cb8c4cd32ee7d88001f03556615c06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48fdf6a5fe196be8bee4cd940f2d6860" id="r_a48fdf6a5fe196be8bee4cd940f2d6860"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a48fdf6a5fe196be8bee4cd940f2d6860">value::parseDataType</a> (std::string_view tok) -&gt; std::optional&lt; <a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> &gt;</td></tr>
+<tr class="memdesc:a48fdf6a5fe196be8bee4cd940f2d6860"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse data type from string with aliases support  <br /></td></tr>
+<tr class="separator:a48fdf6a5fe196be8bee4cd940f2d6860"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a971e73366312690f43ff10fb1e988772" id="r_a971e73366312690f43ff10fb1e988772"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a971e73366312690f43ff10fb1e988772">value::parseMatchType</a> (std::string_view tok) -&gt; std::optional&lt; <a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> &gt;</td></tr>
+<tr class="memdesc:a971e73366312690f43ff10fb1e988772"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse match type from string with aliases support  <br /></td></tr>
+<tr class="separator:a971e73366312690f43ff10fb1e988772"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa91371f64f35ffc857723edfeed702aa" id="r_aa91371f64f35ffc857723edfeed702aa"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; <br />
+requires std::is_integral_v&lt;T&gt;</td></tr>
+<tr class="memitem:aa91371f64f35ffc857723edfeed702aa"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevalue.html#aa91371f64f35ffc857723edfeed702aa">value::parseInteger</a> (std::string_view str) -&gt; std::optional&lt; T &gt;</td></tr>
+<tr class="memdesc:aa91371f64f35ffc857723edfeed702aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse integer with optional hex prefix and sign  <br /></td></tr>
+<tr class="separator:aa91371f64f35ffc857723edfeed702aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e05dd530714ec79bead3ae8f245ad25" id="r_a3e05dd530714ec79bead3ae8f245ad25"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a3e05dd530714ec79bead3ae8f245ad25">value::parseDouble</a> (std::string_view str) -&gt; std::optional&lt; double &gt;</td></tr>
+<tr class="memdesc:a3e05dd530714ec79bead3ae8f245ad25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse floating point number  <br /></td></tr>
+<tr class="separator:a3e05dd530714ec79bead3ae8f245ad25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0678a14a65ac6e00a72af0c701ad097" id="r_aa0678a14a65ac6e00a72af0c701ad097"><td class="memTemplParams" colspan="2">template&lt;typename T , typename Parser &gt; </td></tr>
+<tr class="memitem:aa0678a14a65ac6e00a72af0c701ad097"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevalue.html#aa0678a14a65ac6e00a72af0c701ad097">value::buildScalarOrRange</a> (bool needRange, const std::vector&lt; std::string &gt; &amp;args, size_t startIndex, Parser parser) -&gt; std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt;</td></tr>
+<tr class="memdesc:aa0678a14a65ac6e00a72af0c701ad097"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper: build <a class="el" href="structUserValue.html">UserValue</a> for scalar/range of type T  <br /></td></tr>
+<tr class="separator:aa0678a14a65ac6e00a72af0c701ad097"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f22ce19e97134b18e84bb63f1cd9bfc" id="r_a2f22ce19e97134b18e84bb63f1cd9bfc"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a2f22ce19e97134b18e84bb63f1cd9bfc">value::buildUserValue</a> (<a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> dataType, <a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, const std::vector&lt; std::string &gt; &amp;args, size_t startIndex) -&gt; std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt;</td></tr>
+<tr class="memdesc:a2f22ce19e97134b18e84bb63f1cd9bfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build <a class="el" href="structUserValue.html">UserValue</a> from parsed arguments  <br /></td></tr>
+<tr class="separator:a2f22ce19e97134b18e84bb63f1cd9bfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p><a class="el" href="structValue.html">Value</a> parsing utilities for scan operations </p>
+</div></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_088336f4a2d2a241cbec578ac6d7556b.html">value</a></li><li class="navelem"><a class="el" href="value_2parser_8cppm.html">parser.cppm</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

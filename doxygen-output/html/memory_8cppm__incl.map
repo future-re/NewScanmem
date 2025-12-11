@@ -1,0 +1,37 @@
+<map id="src/core/memory.cppm" name="src/core/memory.cppm">
+<area shape="rect" id="Node000001" title="Memory writing interface wrapping proc.mem" alt="" coords="225,5,396,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,152,80,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="290,33,77,148,75,143,288,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="105,152,143,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="297,33,151,146,148,142,294,29"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="571,79,642,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="359,28,559,76,557,81,358,33"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="168,152,235,177"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="304,33,221,142,216,139,300,30"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="259,152,341,177"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="312,31,305,138,299,138,307,31"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="365,152,419,177"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="320,30,381,139,376,141,315,32"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="443,152,501,177"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="326,29,451,141,447,145,322,33"/>
+<area shape="rect" id="Node000009" href="$proc__mem_8cppm.html" title="Process memory I/O via /proc/&lt;pid&gt;/mem (进程内存 I/O)" alt="" coords="424,79,547,104"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="340,28,445,71,443,76,338,33"/>
+<area shape="poly" id="edge12_Node000009_Node000002" title=" " alt="" coords="424,103,278,124,94,155,93,149,277,118,423,98"/>
+<area shape="poly" id="edge13_Node000009_Node000003" title=" " alt="" coords="424,103,304,123,157,155,156,150,303,117,424,98"/>
+<area shape="poly" id="edge15_Node000009_Node000005" title=" " alt="" coords="440,107,249,154,248,149,439,101"/>
+<area shape="poly" id="edge17_Node000009_Node000006" title=" " alt="" coords="457,107,344,149,342,145,455,102"/>
+<area shape="poly" id="edge19_Node000009_Node000007" title=" " alt="" coords="472,106,420,146,416,141,469,102"/>
+<area shape="poly" id="edge20_Node000009_Node000008" title=" " alt="" coords="486,105,479,139,474,138,481,104"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="526,152,589,177"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="499,102,538,140,534,144,495,106"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="613,152,709,177"/>
+<area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="515,102,621,144,619,149,513,106"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="733,152,813,177"/>
+<area shape="poly" id="edge11_Node000009_Node000012" title=" " alt="" coords="532,101,721,148,719,153,531,107"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="838,152,901,177"/>
+<area shape="poly" id="edge14_Node000009_Node000013" title=" " alt="" coords="547,100,825,149,824,155,547,105"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="925,152,992,177"/>
+<area shape="poly" id="edge16_Node000009_Node000014" title=" " alt="" coords="547,99,560,101,735,122,813,132,912,149,911,155,812,138,734,128,560,107,546,105"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="1016,152,1083,177"/>
+<area shape="poly" id="edge18_Node000009_Node000015" title=" " alt="" coords="547,100,560,101,683,115,780,122,878,131,1003,149,1002,155,877,136,780,127,683,120,560,107,546,105"/>
+</map>

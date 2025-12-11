@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: src/cli/commands/help.cppm 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('help_8cppm.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#namespaces">命名空间</a>  </div>
+  <div class="headertitle"><div class="title">help.cppm 文件参考<div class="ingroups">模块 <a class="el" href="module_cli_8commands_8help.html">cli.commands.help</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Help command implementation  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;expected&gt;</code><br />
+<code>#include &lt;sstream&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;string_view&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>import <a class="el" href="show__message_8cppm.html">ui.show_message</a>;</code><br />
+<code>import <a class="el" href="command_8cppm.html">cli.command</a>;</code><br />
+</div><div class="textblock"><div class="dynheader">
+help.cppm 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="help_8cppm__incl.png" border="0" usemap="#asrc_2cli_2commands_2help_8cppm" alt=""/></div>
+<map name="asrc_2cli_2commands_2help_8cppm" id="asrc_2cli_2commands_2help_8cppm">
+<area shape="rect" title="Help command implementation" alt="" coords="376,5,584,31"/>
+<area shape="rect" title=" " alt="" coords="67,79,152,104"/>
+<area shape="poly" title=" " alt="" coords="418,33,166,81,165,76,417,28"/>
+<area shape="rect" title=" " alt="" coords="413,152,496,177"/>
+<area shape="poly" title=" " alt="" coords="481,32,462,139,456,138,475,31"/>
+<area shape="rect" title=" " alt="" coords="724,79,799,104"/>
+<area shape="poly" title=" " alt="" coords="526,28,711,75,710,80,525,33"/>
+<area shape="rect" title=" " alt="" coords="520,152,579,177"/>
+<area shape="poly" title=" " alt="" coords="488,30,540,138,535,141,483,32"/>
+<area shape="rect" title=" " alt="" coords="291,152,389,177"/>
+<area shape="poly" title=" " alt="" coords="470,33,363,144,359,140,467,29"/>
+<area shape="rect" title=" " alt="" coords="943,152,1006,177"/>
+<area shape="poly" title=" " alt="" coords="521,28,588,49,662,76,688,89,713,102,771,119,819,129,930,149,929,154,818,134,770,124,711,106,685,94,660,81,586,54,520,33"/>
+<area shape="rect" href="show__message_8cppm.html" title=" " alt="" coords="176,79,315,104"/>
+<area shape="poly" title=" " alt="" coords="443,33,297,77,296,72,442,28"/>
+<area shape="rect" href="command_8cppm.html" title="Command pattern base classes and registry for CLI" alt="" coords="543,79,649,104"/>
+<area shape="poly" title=" " alt="" coords="500,28,567,69,564,74,497,33"/>
+<area shape="poly" title=" " alt="" coords="262,102,315,141,312,146,259,106"/>
+<area shape="rect" title=" " alt="" coords="5,152,72,177"/>
+<area shape="poly" title=" " alt="" coords="213,107,86,150,84,145,211,101"/>
+<area shape="rect" title=" " alt="" coords="96,152,163,177"/>
+<area shape="poly" title=" " alt="" coords="228,106,161,147,159,142,225,102"/>
+<area shape="rect" title=" " alt="" coords="187,152,267,177"/>
+<area shape="poly" title=" " alt="" coords="245,105,236,140,231,138,240,104"/>
+<area shape="poly" title=" " alt="" coords="574,106,491,148,489,143,572,102"/>
+<area shape="poly" title=" " alt="" coords="591,106,567,142,562,139,586,103"/>
+<area shape="poly" title=" " alt="" coords="556,107,395,151,394,146,554,101"/>
+<area shape="poly" title=" " alt="" coords="650,99,930,149,929,154,649,104"/>
+<area shape="rect" title=" " alt="" coords="603,152,669,177"/>
+<area shape="poly" title=" " alt="" coords="605,103,625,139,620,141,600,106"/>
+<area shape="rect" title=" " alt="" coords="693,152,771,177"/>
+<area shape="poly" title=" " alt="" coords="619,102,699,143,697,148,617,106"/>
+<area shape="rect" title=" " alt="" coords="795,152,919,177"/>
+<area shape="poly" title=" " alt="" coords="639,101,802,146,801,151,637,107"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1commands_1_1HelpCommand.html">cli::commands::HelpCommand</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display help information for all commands or a specific command  <a href="classcli_1_1commands_1_1HelpCommand.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+命名空间</h2></td></tr>
+<tr class="memitem:namespacecli" id="r_namespacecli"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecli.html">cli</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacecli_1_1commands" id="r_namespacecli_1_1commands"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecli_1_1commands.html">cli::commands</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>Help command implementation </p>
+</div></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_b78fdfbbb632ce54d070469d6a721373.html">cli</a></li><li class="navelem"><a class="el" href="dir_af4cdb2a19e0803e944012ce98d9f265.html">commands</a></li><li class="navelem"><a class="el" href="help_8cppm.html">help.cppm</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

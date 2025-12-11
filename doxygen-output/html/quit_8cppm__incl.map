@@ -1,0 +1,32 @@
+<map id="src/cli/commands/quit.cppm" name="src/cli/commands/quit.cppm">
+<area shape="rect" id="Node000001" title="Quit command implementation" alt="" coords="383,5,588,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="413,152,496,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="485,32,463,139,457,138,480,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="520,152,579,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="493,30,541,138,536,141,488,32"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="291,152,389,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="475,33,363,144,360,140,472,29"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="943,152,1006,177"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="527,28,697,76,931,147,929,152,695,81,526,33"/>
+<area shape="rect" id="Node000006" href="$show__message_8cppm.html" title=" " alt="" coords="157,79,296,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="444,33,282,78,281,72,443,28"/>
+<area shape="rect" id="Node000010" href="$command_8cppm.html" title="Command pattern base classes and registry for CLI" alt="" coords="577,79,684,104"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="510,28,596,70,594,75,508,33"/>
+<area shape="poly" id="edge9_Node000006_Node000004" title=" " alt="" coords="246,102,312,142,309,147,243,106"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="5,152,72,177"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="197,107,83,149,81,144,196,102"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="96,152,163,177"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="213,106,158,146,155,141,209,102"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="187,152,267,177"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="229,104,229,138,224,138,224,104"/>
+<area shape="poly" id="edge12_Node000010_Node000002" title=" " alt="" coords="603,106,497,149,495,144,601,102"/>
+<area shape="poly" id="edge14_Node000010_Node000003" title=" " alt="" coords="619,106,575,145,571,141,616,102"/>
+<area shape="poly" id="edge15_Node000010_Node000004" title=" " alt="" coords="585,107,401,151,399,146,583,101"/>
+<area shape="poly" id="edge17_Node000010_Node000005" title=" " alt="" coords="685,100,930,149,929,154,684,105"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="603,152,669,177"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="634,104,637,138,631,139,629,105"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="693,152,771,177"/>
+<area shape="poly" id="edge13_Node000010_Node000012" title=" " alt="" coords="648,102,706,142,703,146,645,106"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="795,152,919,177"/>
+<area shape="poly" id="edge16_Node000010_Node000013" title=" " alt="" coords="668,101,808,145,807,150,666,107"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="src/ui/show_message.cppm" name="src/ui/show_message.cppm">
+<area shape="rect" id="Node000001" title=" " alt="" coords="77,5,278,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,72,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,33,75,75,72,70,154,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="96,79,163,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="172,33,147,69,142,66,167,30"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="187,79,267,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="188,29,213,66,209,69,183,33"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="291,79,389,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="205,28,302,71,300,75,202,33"/>
+</map>

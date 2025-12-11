@@ -1,0 +1,7 @@
+<map id="core::MatchCollectionOptions" name="core::MatchCollectionOptions">
+<area shape="rect" id="Node000001" title="Options for match collection" alt="" coords="5,181,219,207"/>
+<area shape="rect" id="Node000002" href="$structcore_1_1RegionFilterConfig.html" title="Configuration for region filtering in scans and exports" alt="" coords="23,93,201,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,133,115,181,109,181,109,133"/>
+<area shape="rect" id="Node000003" href="$classcore_1_1RegionFilter.html" title="Manages region&#45;based filtering for memory scanning" alt="" coords="44,5,180,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="115,45,115,93,109,93,109,45"/>
+</map>

@@ -1,0 +1,532 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: cli::Command类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classcli_1_1Command.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="classcli_1_1Command-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">cli::Command类 参考<span class="mlabels"><span class="mlabel">abstract</span><span class="mlabel">export</span></span><div class="ingroups">模块 <a class="el" href="module_cli_8command.html">cli.command</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Abstract base class for all CLI commands  
+ <a href="classcli_1_1Command.html#details">更多...</a></p>
+<div class="dynheader">
+类 cli::Command 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classcli_1_1Command__inherit__graph.png" border="0" usemap="#acli_1_1Command_inherit__map" alt="Inheritance graph"/></div>
+<map name="acli_1_1Command_inherit__map" id="acli_1_1Command_inherit__map">
+<area shape="rect" title="Abstract base class for all CLI commands" alt="" coords="5,252,117,277"/>
+<area shape="rect" href="classcli_1_1commands_1_1CountCommand.html" title=" " alt="" coords="176,5,407,31"/>
+<area shape="poly" title=" " alt="" coords="64,238,75,194,93,140,122,86,141,61,164,40,183,28,185,33,167,44,145,65,127,89,98,142,80,195,69,239"/>
+<area shape="rect" href="classcli_1_1commands_1_1HelpCommand.html" title="Display help information for all commands or a specific command" alt="" coords="180,55,403,80"/>
+<area shape="poly" title=" " alt="" coords="68,238,81,203,101,163,128,123,164,89,185,78,187,83,167,93,132,126,106,166,86,206,73,240"/>
+<area shape="rect" href="classcli_1_1commands_1_1ListCommand.html" title=" " alt="" coords="184,104,399,129"/>
+<area shape="poly" title=" " alt="" coords="74,238,110,187,135,160,164,138,189,127,191,132,167,143,138,164,114,190,78,241"/>
+<area shape="rect" href="classcli_1_1commands_1_1PidCommand.html" title="Set the target process ID for memory scanning" alt="" coords="185,153,397,179"/>
+<area shape="poly" title=" " alt="" coords="85,241,121,213,164,188,198,176,200,181,166,192,124,217,88,245"/>
+<area shape="rect" href="classcli_1_1commands_1_1QuitCommand.html" title="Exit the application" alt="" coords="182,203,401,228"/>
+<area shape="poly" title=" " alt="" coords="125,246,165,237,220,225,221,231,166,242,126,251"/>
+<area shape="rect" href="classcli_1_1commands_1_1ResetCommand.html" title=" " alt="" coords="177,252,406,277"/>
+<area shape="poly" title=" " alt="" coords="131,262,177,262,177,267,131,267"/>
+<area shape="rect" href="classcli_1_1commands_1_1ScanCommand.html" title=" " alt="" coords="180,301,403,327"/>
+<area shape="poly" title=" " alt="" coords="130,278,166,286,226,299,225,304,165,291,129,283"/>
+<area shape="rect" href="classcli_1_1commands_1_1SetCommand.html" title=" " alt="" coords="185,351,398,376"/>
+<area shape="poly" title=" " alt="" coords="89,285,124,312,166,336,204,348,203,353,164,340,121,316,86,289"/>
+<area shape="rect" href="classcli_1_1commands_1_1SnapshotCommand.html" title=" " alt="" coords="165,400,417,425"/>
+<area shape="poly" title=" " alt="" coords="78,288,114,338,139,364,167,385,195,398,192,402,164,390,135,368,110,342,74,291"/>
+<area shape="rect" href="classcli_1_1commands_1_1WatchCommand.html" title=" " alt="" coords="175,449,407,475"/>
+<area shape="poly" title=" " alt="" coords="73,289,86,323,106,363,133,402,167,435,190,447,188,452,164,439,129,406,101,366,81,325,68,291"/>
+<area shape="rect" href="classcli_1_1commands_1_1WriteCommand.html" title=" " alt="" coords="178,499,405,524"/>
+<area shape="poly" title=" " alt="" coords="70,290,80,333,98,386,127,440,145,463,167,484,188,496,185,501,164,488,141,467,122,442,93,388,75,335,64,292"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ad7ede55a5bd25c9df125fe3f51fba349" id="r_ad7ede55a5bd25c9df125fe3f51fba349"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1Command.html#ad7ede55a5bd25c9df125fe3f51fba349">Command</a> ()=default</td></tr>
+<tr class="separator:ad7ede55a5bd25c9df125fe3f51fba349"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17a7faa0e684839d146d5dbc6c99bbc1" id="r_a17a7faa0e684839d146d5dbc6c99bbc1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1Command.html#a17a7faa0e684839d146d5dbc6c99bbc1">Command</a> (const <a class="el" href="classcli_1_1Command.html">Command</a> &amp;)=delete</td></tr>
+<tr class="separator:a17a7faa0e684839d146d5dbc6c99bbc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae71c1be8e80712c7dc97bb6543a36b57" id="r_ae71c1be8e80712c7dc97bb6543a36b57"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1Command.html#ae71c1be8e80712c7dc97bb6543a36b57">operator=</a> (const <a class="el" href="classcli_1_1Command.html">Command</a> &amp;) -&gt; <a class="el" href="classcli_1_1Command.html">Command</a> &amp;=delete</td></tr>
+<tr class="separator:ae71c1be8e80712c7dc97bb6543a36b57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e3843384939b61708b1c5aa0aab9e93" id="r_a0e3843384939b61708b1c5aa0aab9e93"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1Command.html#a0e3843384939b61708b1c5aa0aab9e93">Command</a> (<a class="el" href="classcli_1_1Command.html">Command</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a0e3843384939b61708b1c5aa0aab9e93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95e5fe2f50bd18fc3ff1d6640817b8d7" id="r_a95e5fe2f50bd18fc3ff1d6640817b8d7"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1Command.html#a95e5fe2f50bd18fc3ff1d6640817b8d7">operator=</a> (<a class="el" href="classcli_1_1Command.html">Command</a> &amp;&amp;) noexcept -&gt; <a class="el" href="classcli_1_1Command.html">Command</a> &amp;=default</td></tr>
+<tr class="separator:a95e5fe2f50bd18fc3ff1d6640817b8d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe91cc57eb83ae3582685290701e61f4" id="r_afe91cc57eb83ae3582685290701e61f4"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1Command.html#afe91cc57eb83ae3582685290701e61f4">~Command</a> ()=default</td></tr>
+<tr class="separator:afe91cc57eb83ae3582685290701e61f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2694d535d0977406a831ab9d61dfbcaf" id="r_a2694d535d0977406a831ab9d61dfbcaf"><td class="memItemLeft" align="right" valign="top">virtual auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1Command.html#a2694d535d0977406a831ab9d61dfbcaf">getName</a> () const -&gt; std::string_view=0</td></tr>
+<tr class="memdesc:a2694d535d0977406a831ab9d61dfbcaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get command name  <br /></td></tr>
+<tr class="separator:a2694d535d0977406a831ab9d61dfbcaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5965cb923d5d826ac722f967d0806402" id="r_a5965cb923d5d826ac722f967d0806402"><td class="memItemLeft" align="right" valign="top">virtual auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1Command.html#a5965cb923d5d826ac722f967d0806402">getDescription</a> () const -&gt; std::string_view=0</td></tr>
+<tr class="memdesc:a5965cb923d5d826ac722f967d0806402"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get command description  <br /></td></tr>
+<tr class="separator:a5965cb923d5d826ac722f967d0806402"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab29753b945cd7278ee1c2b68a75562a1" id="r_ab29753b945cd7278ee1c2b68a75562a1"><td class="memItemLeft" align="right" valign="top">virtual auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1Command.html#ab29753b945cd7278ee1c2b68a75562a1">getUsage</a> () const -&gt; std::string_view=0</td></tr>
+<tr class="memdesc:ab29753b945cd7278ee1c2b68a75562a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get command usage information  <br /></td></tr>
+<tr class="separator:ab29753b945cd7278ee1c2b68a75562a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8218985807cd4889c2c3eeff90a097d" id="r_aa8218985807cd4889c2c3eeff90a097d"><td class="memItemLeft" align="right" valign="top">virtual auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1Command.html#aa8218985807cd4889c2c3eeff90a097d">getAliases</a> () const -&gt; std::vector&lt; std::string_view &gt;</td></tr>
+<tr class="memdesc:aa8218985807cd4889c2c3eeff90a097d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get command aliases  <br /></td></tr>
+<tr class="separator:aa8218985807cd4889c2c3eeff90a097d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa315a4ee77523bf3d1a92c977523f03f" id="r_aa315a4ee77523bf3d1a92c977523f03f"><td class="memItemLeft" align="right" valign="top">virtual auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1Command.html#aa315a4ee77523bf3d1a92c977523f03f">execute</a> (const std::vector&lt; std::string &gt; &amp;args) -&gt; std::expected&lt; <a class="el" href="structcli_1_1CommandResult.html">CommandResult</a>, std::string &gt;=0</td></tr>
+<tr class="memdesc:aa315a4ee77523bf3d1a92c977523f03f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute the command  <br /></td></tr>
+<tr class="separator:aa315a4ee77523bf3d1a92c977523f03f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8566d7e18bbe765a8aa044634043697f" id="r_a8566d7e18bbe765a8aa044634043697f"><td class="memItemLeft" align="right" valign="top">virtual auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1Command.html#a8566d7e18bbe765a8aa044634043697f">validateArgs</a> (const std::vector&lt; std::string &gt; &amp;args) const -&gt; std::expected&lt; void, std::string &gt;</td></tr>
+<tr class="memdesc:a8566d7e18bbe765a8aa044634043697f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate command arguments  <br /></td></tr>
+<tr class="separator:a8566d7e18bbe765a8aa044634043697f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>Abstract base class for all CLI commands </p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="ad7ede55a5bd25c9df125fe3f51fba349" name="ad7ede55a5bd25c9df125fe3f51fba349"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7ede55a5bd25c9df125fe3f51fba349">&#9670;&#160;</a></span>Command() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">cli::Command::Command </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">export</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a17a7faa0e684839d146d5dbc6c99bbc1" name="a17a7faa0e684839d146d5dbc6c99bbc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17a7faa0e684839d146d5dbc6c99bbc1">&#9670;&#160;</a></span>Command() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">cli::Command::Command </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classcli_1_1Command.html">Command</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">export</span><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0e3843384939b61708b1c5aa0aab9e93" name="a0e3843384939b61708b1c5aa0aab9e93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e3843384939b61708b1c5aa0aab9e93">&#9670;&#160;</a></span>Command() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">cli::Command::Command </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcli_1_1Command.html">Command</a> &amp;&amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">export</span><span class="mlabel">default</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afe91cc57eb83ae3582685290701e61f4" name="afe91cc57eb83ae3582685290701e61f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe91cc57eb83ae3582685290701e61f4">&#9670;&#160;</a></span>~Command()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual cli::Command::~Command </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">export</span><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="aa315a4ee77523bf3d1a92c977523f03f" name="aa315a4ee77523bf3d1a92c977523f03f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa315a4ee77523bf3d1a92c977523f03f">&#9670;&#160;</a></span>execute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual auto cli::Command::execute </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td> -&gt;  std::expected&lt; <a class="el" href="structcli_1_1CommandResult.html">CommandResult</a>, std::string &gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">export</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Execute the command </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">args</td><td><a class="el" href="classcli_1_1Command.html" title="Abstract base class for all CLI commands">Command</a> arguments (not including command name) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Expected result or error message </dd></dl>
+
+<p>在 <a class="el" href="classcli_1_1commands_1_1CountCommand.html#a6c03168b1fa492beeba66de754acfa4b">cli::commands::CountCommand</a>, <a class="el" href="classcli_1_1commands_1_1HelpCommand.html#a84e9fcae253ac4221b23ede1bb641aa9">cli::commands::HelpCommand</a>, <a class="el" href="classcli_1_1commands_1_1ListCommand.html#a985604acba2e1c21f068e12e998a224c">cli::commands::ListCommand</a>, <a class="el" href="classcli_1_1commands_1_1PidCommand.html#a6f67b836c78a63d41d172ad4a228b12a">cli::commands::PidCommand</a>, <a class="el" href="classcli_1_1commands_1_1QuitCommand.html#aaa1580b5aecac6463191fe582cacb041">cli::commands::QuitCommand</a>, <a class="el" href="classcli_1_1commands_1_1ResetCommand.html#ad3157bed05052bdfb29e355cf666ea90">cli::commands::ResetCommand</a>, <a class="el" href="classcli_1_1commands_1_1ScanCommand.html#a59f793055286af36131c0d585b372909">cli::commands::ScanCommand</a>, <a class="el" href="classcli_1_1commands_1_1SetCommand.html#ace4822b91178d8b770ea31ea01730ad9">cli::commands::SetCommand</a>, <a class="el" href="classcli_1_1commands_1_1SnapshotCommand.html#a3e25e6ebc7c64728e5b1471e08a7e63e">cli::commands::SnapshotCommand</a>, <a class="el" href="classcli_1_1commands_1_1WatchCommand.html#a323ad92488f63f4c37eb87b97cbec8fa">cli::commands::WatchCommand</a> , 以及 <a class="el" href="classcli_1_1commands_1_1WriteCommand.html#a9bb0bc248b72d1bdfa8f04022d05c1b3">cli::commands::WriteCommand</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="aa8218985807cd4889c2c3eeff90a097d" name="aa8218985807cd4889c2c3eeff90a097d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8218985807cd4889c2c3eeff90a097d">&#9670;&#160;</a></span>getAliases()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual auto cli::Command::getAliases </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt; std::vector&lt;std::string_view&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get command aliases </p>
+<dl class="section return"><dt>返回</dt><dd>Vector of alternative names for this command </dd></dl>
+
+<p>被 <a class="el" href="classcli_1_1commands_1_1HelpCommand.html#a034ea8ba51735ad36f3f5fc99de2a0e1">cli::commands::HelpCommand</a> , 以及 <a class="el" href="classcli_1_1commands_1_1QuitCommand.html#aba3bf8ce561572edd8f430c18f0e6daf">cli::commands::QuitCommand</a> 重载.</p>
+
+</div>
+</div>
+<a id="a5965cb923d5d826ac722f967d0806402" name="a5965cb923d5d826ac722f967d0806402"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5965cb923d5d826ac722f967d0806402">&#9670;&#160;</a></span>getDescription()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual auto cli::Command::getDescription </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt;  std::string_view</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">export</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get command description </p>
+<dl class="section return"><dt>返回</dt><dd>Short description of what the command does </dd></dl>
+
+<p>在 <a class="el" href="classcli_1_1commands_1_1CountCommand.html#abc300722003f591c023fdac83b8f43fa">cli::commands::CountCommand</a>, <a class="el" href="classcli_1_1commands_1_1HelpCommand.html#a59c84832e54f2f59fc4b6ee305792c70">cli::commands::HelpCommand</a>, <a class="el" href="classcli_1_1commands_1_1ListCommand.html#ac634d17f2c3183812a887e36b730682b">cli::commands::ListCommand</a>, <a class="el" href="classcli_1_1commands_1_1PidCommand.html#a94432ed880b56deb3fe1185aaf67b051">cli::commands::PidCommand</a>, <a class="el" href="classcli_1_1commands_1_1QuitCommand.html#a6ff0b7b19e13e112f3560242eab9fb5a">cli::commands::QuitCommand</a>, <a class="el" href="classcli_1_1commands_1_1ResetCommand.html#a9f2168aa8c244f812130213ea9027cfe">cli::commands::ResetCommand</a>, <a class="el" href="classcli_1_1commands_1_1ScanCommand.html#a19cbbfe356fe09ea903cd5787e0acc87">cli::commands::ScanCommand</a>, <a class="el" href="classcli_1_1commands_1_1SetCommand.html#a31d766fd0ee5a763fc55ffb4952650e5">cli::commands::SetCommand</a>, <a class="el" href="classcli_1_1commands_1_1SnapshotCommand.html#a9ce5843d18910e2587b66bab78289edd">cli::commands::SnapshotCommand</a>, <a class="el" href="classcli_1_1commands_1_1WatchCommand.html#aebc4dd4030707e8893a98103fbe44534">cli::commands::WatchCommand</a> , 以及 <a class="el" href="classcli_1_1commands_1_1WriteCommand.html#a42330c7ffdf7d85ce276bca8f3f491b6">cli::commands::WriteCommand</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="a2694d535d0977406a831ab9d61dfbcaf" name="a2694d535d0977406a831ab9d61dfbcaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2694d535d0977406a831ab9d61dfbcaf">&#9670;&#160;</a></span>getName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual auto cli::Command::getName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt;  std::string_view</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">export</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get command name </p>
+<dl class="section return"><dt>返回</dt><dd><a class="el" href="classcli_1_1Command.html" title="Abstract base class for all CLI commands">Command</a> name (e.g., "pid", "scan", "write") </dd></dl>
+
+<p>在 <a class="el" href="classcli_1_1commands_1_1CountCommand.html#a50f3e64f0714d6d9336ab5b86667e201">cli::commands::CountCommand</a>, <a class="el" href="classcli_1_1commands_1_1HelpCommand.html#aff7015ee4b31e6a2f12f1950fe20c4c9">cli::commands::HelpCommand</a>, <a class="el" href="classcli_1_1commands_1_1ListCommand.html#a46c4a8ac07f258bf338f35233e3b73e0">cli::commands::ListCommand</a>, <a class="el" href="classcli_1_1commands_1_1PidCommand.html#a5aaba8dfe5825639680229ddbce5815f">cli::commands::PidCommand</a>, <a class="el" href="classcli_1_1commands_1_1QuitCommand.html#ad29e934382e6842b1875e353142c1a69">cli::commands::QuitCommand</a>, <a class="el" href="classcli_1_1commands_1_1ResetCommand.html#a62bb4a73f0e4e67c4c70a6d075fef20f">cli::commands::ResetCommand</a>, <a class="el" href="classcli_1_1commands_1_1ScanCommand.html#a3e241c5315572cda79d26c585f5b16d7">cli::commands::ScanCommand</a>, <a class="el" href="classcli_1_1commands_1_1SetCommand.html#a321a268a214b277d654043dd2df6e7fc">cli::commands::SetCommand</a>, <a class="el" href="classcli_1_1commands_1_1SnapshotCommand.html#afb75c139bf202fc9d10a962a446fd8bf">cli::commands::SnapshotCommand</a>, <a class="el" href="classcli_1_1commands_1_1WatchCommand.html#a3d36383b09aed89574ea44293381138a">cli::commands::WatchCommand</a> , 以及 <a class="el" href="classcli_1_1commands_1_1WriteCommand.html#a6d228eee61236dd7a8c2b19e6c012d3e">cli::commands::WriteCommand</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="ab29753b945cd7278ee1c2b68a75562a1" name="ab29753b945cd7278ee1c2b68a75562a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab29753b945cd7278ee1c2b68a75562a1">&#9670;&#160;</a></span>getUsage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual auto cli::Command::getUsage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt;  std::string_view</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">export</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get command usage information </p>
+<dl class="section return"><dt>返回</dt><dd>Usage string (e.g., "pid &lt;process_id&gt;") </dd></dl>
+
+<p>在 <a class="el" href="classcli_1_1commands_1_1CountCommand.html#a6dc7a9287152487e55adb8901214e2f4">cli::commands::CountCommand</a>, <a class="el" href="classcli_1_1commands_1_1HelpCommand.html#afa8fdffded74f08979484e86eb3b9d6e">cli::commands::HelpCommand</a>, <a class="el" href="classcli_1_1commands_1_1ListCommand.html#ab5030ec303a53d3735e284e1c656c983">cli::commands::ListCommand</a>, <a class="el" href="classcli_1_1commands_1_1PidCommand.html#afd51223504cd4fe0d0a31caba1c0ee99">cli::commands::PidCommand</a>, <a class="el" href="classcli_1_1commands_1_1QuitCommand.html#a6263d9647708d447a2afc6b00331614e">cli::commands::QuitCommand</a>, <a class="el" href="classcli_1_1commands_1_1ResetCommand.html#af933d011eee4841e11ff92425c8ba188">cli::commands::ResetCommand</a>, <a class="el" href="classcli_1_1commands_1_1ScanCommand.html#a912f3886c9acf5203d6f9059dafb13ad">cli::commands::ScanCommand</a>, <a class="el" href="classcli_1_1commands_1_1SetCommand.html#a63dd653a15e4f692bb8b14d62fb3b481">cli::commands::SetCommand</a>, <a class="el" href="classcli_1_1commands_1_1SnapshotCommand.html#a75429c0afb5b742c6b317195acfc2f9f">cli::commands::SnapshotCommand</a>, <a class="el" href="classcli_1_1commands_1_1WatchCommand.html#a9a672768845a14d79033b2c58d6d3eeb">cli::commands::WatchCommand</a> , 以及 <a class="el" href="classcli_1_1commands_1_1WriteCommand.html#acaccd7451507afaf8cd5bbc6e451f63f">cli::commands::WriteCommand</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="a95e5fe2f50bd18fc3ff1d6640817b8d7" name="a95e5fe2f50bd18fc3ff1d6640817b8d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95e5fe2f50bd18fc3ff1d6640817b8d7">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto cli::Command::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcli_1_1Command.html">Command</a> &amp;&amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> -&gt;  <a class="el" href="classcli_1_1Command.html">Command</a> &amp;=default</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">export</span><span class="mlabel">default</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae71c1be8e80712c7dc97bb6543a36b57" name="ae71c1be8e80712c7dc97bb6543a36b57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae71c1be8e80712c7dc97bb6543a36b57">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto cli::Command::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classcli_1_1Command.html">Command</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> -&gt;  <a class="el" href="classcli_1_1Command.html">Command</a> &amp;=delete</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">export</span><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8566d7e18bbe765a8aa044634043697f" name="a8566d7e18bbe765a8aa044634043697f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8566d7e18bbe765a8aa044634043697f">&#9670;&#160;</a></span>validateArgs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual auto cli::Command::validateArgs </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td> const -&gt; std::expected&lt;void, std::string&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Validate command arguments </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">args</td><td><a class="el" href="classcli_1_1Command.html" title="Abstract base class for all CLI commands">Command</a> arguments </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>True if arguments are valid </dd></dl>
+
+<p>被 <a class="el" href="classcli_1_1commands_1_1CountCommand.html#ac72b1c2207ad3605ba423cb22781bdd1">cli::commands::CountCommand</a>, <a class="el" href="classcli_1_1commands_1_1PidCommand.html#a390eb4814160f2b17c1c4cab256132c3">cli::commands::PidCommand</a>, <a class="el" href="classcli_1_1commands_1_1QuitCommand.html#adbb0b876d4396e89028744ebadfc475c">cli::commands::QuitCommand</a>, <a class="el" href="classcli_1_1commands_1_1ResetCommand.html#a92570928d17c3fafe8df62307af85ebd">cli::commands::ResetCommand</a>, <a class="el" href="classcli_1_1commands_1_1ScanCommand.html#a93b54771c2a5178124c51bcddaf36193">cli::commands::ScanCommand</a>, <a class="el" href="classcli_1_1commands_1_1SetCommand.html#aa4d76e3a1f7232003d62490d55535f70">cli::commands::SetCommand</a>, <a class="el" href="classcli_1_1commands_1_1SnapshotCommand.html#a4ea1e5c37496448f54c64281d3193438">cli::commands::SnapshotCommand</a> , 以及 <a class="el" href="classcli_1_1commands_1_1WriteCommand.html#af9587286c102e0fb14fe57ce5f047c8b">cli::commands::WriteCommand</a> 重载.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>src/cli/<a class="el" href="command_8cppm.html">command.cppm</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacecli.html">cli</a></li><li class="navelem"><a class="el" href="classcli_1_1Command.html">Command</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

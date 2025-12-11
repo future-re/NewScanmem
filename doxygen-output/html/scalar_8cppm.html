@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: src/value/scalar.cppm 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('scalar_8cppm.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#typedef-members">类型定义</a> &#124;
+<a href="#enum-members">枚举</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">scalar.cppm 文件参考<div class="ingroups">模块 <a class="el" href="module_value_8scalar.html">value.scalar</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;cstddef&gt;</code><br />
+<code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;cstring&gt;</code><br />
+<code>#include &lt;optional&gt;</code><br />
+<code>#include &lt;type_traits&gt;</code><br />
+<code>#include &lt;variant&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+scalar.cppm 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="scalar_8cppm__incl.png" border="0" usemap="#asrc_2value_2scalar_8cppm" alt=""/></div>
+<map name="asrc_2value_2scalar_8cppm" id="asrc_2value_2scalar_8cppm">
+<area shape="rect" title=" " alt="" coords="190,5,353,31"/>
+<area shape="rect" title=" " alt="" coords="5,79,76,104"/>
+<area shape="poly" title=" " alt="" coords="235,33,90,78,88,73,233,28"/>
+<area shape="rect" title=" " alt="" coords="101,79,167,104"/>
+<area shape="poly" title=" " alt="" coords="250,33,170,75,167,70,248,28"/>
+<area shape="rect" title=" " alt="" coords="191,79,258,104"/>
+<area shape="poly" title=" " alt="" coords="266,32,242,69,238,66,261,30"/>
+<area shape="rect" title=" " alt="" coords="282,79,357,104"/>
+<area shape="poly" title=" " alt="" coords="281,30,306,66,302,69,277,33"/>
+<area shape="rect" title=" " alt="" coords="381,79,473,104"/>
+<area shape="poly" title=" " alt="" coords="297,28,390,70,388,75,295,33"/>
+<area shape="rect" title=" " alt="" coords="497,79,565,104"/>
+<area shape="poly" title=" " alt="" coords="314,28,485,75,483,80,312,33"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf_3_01uint8__t_01_4.html">KindOf&lt; uint8_t &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf_3_01int8__t_01_4.html">KindOf&lt; int8_t &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf_3_01uint16__t_01_4.html">KindOf&lt; uint16_t &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf_3_01int16__t_01_4.html">KindOf&lt; int16_t &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf_3_01uint32__t_01_4.html">KindOf&lt; uint32_t &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf_3_01int32__t_01_4.html">KindOf&lt; int32_t &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf_3_01uint64__t_01_4.html">KindOf&lt; uint64_t &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf_3_01int64__t_01_4.html">KindOf&lt; int64_t &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf_3_01float_01_4.html">KindOf&lt; float &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf_3_01double_01_4.html">KindOf&lt; double &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structScalarValue.html">ScalarValue</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:aa9d302cbcec830e42b01e164e269ea21" id="r_aa9d302cbcec830e42b01e164e269ea21"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scalar_8cppm.html#aa9d302cbcec830e42b01e164e269ea21">ScalarVariant</a> = std::variant&lt; uint8_t, int8_t, uint16_t, int16_t, uint32_t, int32_t, uint64_t, int64_t, float, double &gt;</td></tr>
+<tr class="separator:aa9d302cbcec830e42b01e164e269ea21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+枚举</h2></td></tr>
+<tr class="memitem:a5a57879dbf35ecff722c27d20b1d36d3" id="r_a5a57879dbf35ecff722c27d20b1d36d3"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3">ScalarKind</a> : uint8_t { <br />
+&#160;&#160;<a class="el" href="scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3a6669348b484e3008dca2bfa8e85e40b5">U8</a>
+, <a class="el" href="scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3aafb0fced528eaac5fe170b763cda5975">S8</a>
+, <a class="el" href="scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3aef9ef3ebca4d2b64b6ec83808bafa5f2">U16</a>
+, <a class="el" href="scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3a6e0b0886efb94aec797f6b830329b72c">S16</a>
+, <br />
+&#160;&#160;<a class="el" href="scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3ac8bd5bedff8ef192d39a962afc0e19ee">U32</a>
+, <a class="el" href="scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3aa1e28eee0339658d39a8b4d325b56e9c">S32</a>
+, <a class="el" href="scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3a31d65cccd6593e4101db93fb878abcaa">U64</a>
+, <a class="el" href="scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3a115dca124dc6423c7a400b8a8a0270cc">S64</a>
+, <br />
+&#160;&#160;<a class="el" href="scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3a44ad4ef5a76e6aa6fb3e3fa079a54fda">F32</a>
+, <a class="el" href="scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3a1ad5f6f3069070ec4cbbdc94d5e61e0e">F64</a>
+<br />
+ }</td></tr>
+<tr class="separator:a5a57879dbf35ecff722c27d20b1d36d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a06acf7a3a0b07f19af19a72851d5ec96" id="r_a06acf7a3a0b07f19af19a72851d5ec96"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scalar_8cppm.html#a06acf7a3a0b07f19af19a72851d5ec96">sizeOf</a> (<a class="el" href="scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3">ScalarKind</a> kType) noexcept -&gt; size_t</td></tr>
+<tr class="separator:a06acf7a3a0b07f19af19a72851d5ec96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">类型定义说明</h2>
+<a id="aa9d302cbcec830e42b01e164e269ea21" name="aa9d302cbcec830e42b01e164e269ea21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9d302cbcec830e42b01e164e269ea21">&#9670;&#160;</a></span>ScalarVariant</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="scalar_8cppm.html#aa9d302cbcec830e42b01e164e269ea21">ScalarVariant</a> =  std::variant&lt;uint8_t, int8_t, uint16_t, int16_t, uint32_t, int32_t, uint64_t, int64_t, float, double&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">枚举类型说明</h2>
+<a id="a5a57879dbf35ecff722c27d20b1d36d3" name="a5a57879dbf35ecff722c27d20b1d36d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a57879dbf35ecff722c27d20b1d36d3">&#9670;&#160;</a></span>ScalarKind</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3">ScalarKind</a> : uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">export</span><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="a5a57879dbf35ecff722c27d20b1d36d3a6669348b484e3008dca2bfa8e85e40b5" name="a5a57879dbf35ecff722c27d20b1d36d3a6669348b484e3008dca2bfa8e85e40b5"></a>U8&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5a57879dbf35ecff722c27d20b1d36d3aafb0fced528eaac5fe170b763cda5975" name="a5a57879dbf35ecff722c27d20b1d36d3aafb0fced528eaac5fe170b763cda5975"></a>S8&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5a57879dbf35ecff722c27d20b1d36d3aef9ef3ebca4d2b64b6ec83808bafa5f2" name="a5a57879dbf35ecff722c27d20b1d36d3aef9ef3ebca4d2b64b6ec83808bafa5f2"></a>U16&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5a57879dbf35ecff722c27d20b1d36d3a6e0b0886efb94aec797f6b830329b72c" name="a5a57879dbf35ecff722c27d20b1d36d3a6e0b0886efb94aec797f6b830329b72c"></a>S16&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5a57879dbf35ecff722c27d20b1d36d3ac8bd5bedff8ef192d39a962afc0e19ee" name="a5a57879dbf35ecff722c27d20b1d36d3ac8bd5bedff8ef192d39a962afc0e19ee"></a>U32&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5a57879dbf35ecff722c27d20b1d36d3aa1e28eee0339658d39a8b4d325b56e9c" name="a5a57879dbf35ecff722c27d20b1d36d3aa1e28eee0339658d39a8b4d325b56e9c"></a>S32&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5a57879dbf35ecff722c27d20b1d36d3a31d65cccd6593e4101db93fb878abcaa" name="a5a57879dbf35ecff722c27d20b1d36d3a31d65cccd6593e4101db93fb878abcaa"></a>U64&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5a57879dbf35ecff722c27d20b1d36d3a115dca124dc6423c7a400b8a8a0270cc" name="a5a57879dbf35ecff722c27d20b1d36d3a115dca124dc6423c7a400b8a8a0270cc"></a>S64&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5a57879dbf35ecff722c27d20b1d36d3a44ad4ef5a76e6aa6fb3e3fa079a54fda" name="a5a57879dbf35ecff722c27d20b1d36d3a44ad4ef5a76e6aa6fb3e3fa079a54fda"></a>F32&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5a57879dbf35ecff722c27d20b1d36d3a1ad5f6f3069070ec4cbbdc94d5e61e0e" name="a5a57879dbf35ecff722c27d20b1d36d3a1ad5f6f3069070ec4cbbdc94d5e61e0e"></a>F64&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="a06acf7a3a0b07f19af19a72851d5ec96" name="a06acf7a3a0b07f19af19a72851d5ec96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06acf7a3a0b07f19af19a72851d5ec96">&#9670;&#160;</a></span>sizeOf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr auto sizeOf </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3">ScalarKind</a>&#160;</td>
+          <td class="paramname"><em>kType</em></td><td>)</td>
+          <td> -&gt; size_t </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">export</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_088336f4a2d2a241cbec578ac6d7556b.html">value</a></li><li class="navelem"><a class="el" href="scalar_8cppm.html">scalar.cppm</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

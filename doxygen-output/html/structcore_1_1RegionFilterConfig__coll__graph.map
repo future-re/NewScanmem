@@ -1,0 +1,5 @@
+<map id="core::RegionFilterConfig" name="core::RegionFilterConfig">
+<area shape="rect" id="Node000001" title="Configuration for region filtering in scans and exports" alt="" coords="5,93,183,119"/>
+<area shape="rect" id="Node000002" href="$classcore_1_1RegionFilter.html" title="Manages region&#45;based filtering for memory scanning" alt="" coords="26,5,162,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,45,97,93,91,93,91,45"/>
+</map>

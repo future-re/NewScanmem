@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: src/core/region_filter.cppm 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('region__filter_8cppm.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#namespaces">命名空间</a> &#124;
+<a href="#enum-members">枚举</a>  </div>
+  <div class="headertitle"><div class="title">region_filter.cppm 文件参考<div class="ingroups">模块 <a class="el" href="module_core_8region__filter.html">core.region_filter</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Region-based filtering for memory scans and match results  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;optional&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;string_view&gt;</code><br />
+<code>#include &lt;unordered_set&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>import <a class="el" href="region__classifier_8cppm.html">core.region_classifier</a>;</code><br />
+<code>import <a class="el" href="maps_8cppm.html">core.maps</a>;</code><br />
+</div><div class="textblock"><div class="dynheader">
+region_filter.cppm 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="region__filter_8cppm__incl.png" border="0" usemap="#asrc_2core_2region__filter_8cppm" alt=""/></div>
+<map name="asrc_2core_2region__filter_8cppm" id="asrc_2core_2region__filter_8cppm">
+<area shape="rect" title="Region&#45;based filtering for memory scans and match results" alt="" coords="192,5,387,31"/>
+<area shape="rect" title=" " alt="" coords="5,225,72,251"/>
+<area shape="poly" title=" " alt="" coords="278,33,65,218,61,214,274,29"/>
+<area shape="rect" title=" " alt="" coords="301,225,376,251"/>
+<area shape="poly" title=" " alt="" coords="295,30,336,211,330,212,289,32"/>
+<area shape="rect" title=" " alt="" coords="96,225,155,251"/>
+<area shape="poly" title=" " alt="" coords="283,33,145,216,140,212,278,29"/>
+<area shape="rect" title=" " alt="" coords="179,225,277,251"/>
+<area shape="poly" title=" " alt="" coords="289,32,238,212,232,211,283,30"/>
+<area shape="rect" title=" " alt="" coords="804,79,919,104"/>
+<area shape="poly" title=" " alt="" coords="387,28,786,76,791,77,790,82,785,81,387,33"/>
+<area shape="rect" title=" " alt="" coords="491,225,554,251"/>
+<area shape="poly" title=" " alt="" coords="388,22,456,34,527,57,560,74,592,95,619,120,641,151,646,164,644,177,628,198,599,215,568,227,566,222,597,210,624,194,639,175,640,165,636,153,615,124,588,99,558,79,525,62,454,39,387,27"/>
+<area shape="rect" href="region__classifier_8cppm.html" title="Memory region classification for address categorization" alt="" coords="336,79,496,104"/>
+<area shape="poly" title=" " alt="" coords="311,28,385,69,382,74,308,33"/>
+<area shape="rect" href="maps_8cppm.html" title=" " alt="" coords="753,152,844,177"/>
+<area shape="poly" title=" " alt="" coords="387,21,481,28,582,38,673,54,709,64,736,76,753,89,768,105,790,138,785,141,764,109,750,93,733,81,707,69,671,59,581,44,481,33,387,26"/>
+<area shape="poly" title=" " alt="" coords="386,107,258,154,81,223,79,218,256,150,384,102"/>
+<area shape="poly" title=" " alt="" coords="397,106,259,180,166,222,164,217,256,175,394,102"/>
+<area shape="poly" title=" " alt="" coords="403,106,310,179,257,219,253,215,306,175,400,102"/>
+<area shape="poly" title=" " alt="" coords="424,103,443,136,469,176,503,214,499,217,465,179,438,139,419,105"/>
+<area shape="rect" title=" " alt="" coords="479,152,564,177"/>
+<area shape="poly" title=" " alt="" coords="434,102,494,142,492,147,431,106"/>
+<area shape="rect" title=" " alt="" coords="589,152,627,177"/>
+<area shape="poly" title=" " alt="" coords="448,102,577,149,575,154,446,107"/>
+<area shape="rect" title=" " alt="" coords="579,225,661,251"/>
+<area shape="poly" title=" " alt="" coords="497,101,583,120,618,134,641,150,648,166,648,183,637,214,632,212,643,182,642,167,637,154,616,139,581,125,496,106"/>
+<area shape="rect" title=" " alt="" coords="400,225,467,251"/>
+<area shape="poly" title=" " alt="" coords="419,104,425,177,431,211,426,212,420,178,414,104"/>
+<area shape="poly" title=" " alt="" coords="478,101,740,150,739,155,477,107"/>
+<area shape="poly" title=" " alt="" coords="753,172,407,199,86,228,85,223,406,193,753,167"/>
+<area shape="poly" title=" " alt="" coords="753,174,596,195,390,228,389,223,596,189,753,169"/>
+<area shape="poly" title=" " alt="" coords="753,172,466,195,300,211,168,228,168,223,299,206,465,190,753,167"/>
+<area shape="poly" title=" " alt="" coords="753,173,557,194,291,228,290,223,556,188,753,168"/>
+<area shape="poly" title=" " alt="" coords="755,180,568,228,567,223,754,175"/>
+<area shape="poly" title=" " alt="" coords="771,180,663,223,661,218,769,175"/>
+<area shape="poly" title=" " alt="" coords="753,176,634,197,481,228,480,222,633,192,752,171"/>
+<area shape="rect" title=" " alt="" coords="1299,225,1384,251"/>
+<area shape="poly" title=" " alt="" coords="845,168,1033,188,1286,223,1285,228,1032,193,844,173"/>
+<area shape="rect" title=" " alt="" coords="1408,225,1504,251"/>
+<area shape="poly" title=" " alt="" coords="844,166,1076,186,1232,202,1395,223,1394,228,1232,207,1076,191,844,172"/>
+<area shape="rect" title=" " alt="" coords="1528,225,1603,251"/>
+<area shape="poly" title=" " alt="" coords="844,165,1124,180,1316,198,1515,223,1514,228,1315,203,1123,186,844,170"/>
+<area shape="rect" title=" " alt="" coords="685,225,741,251"/>
+<area shape="poly" title=" " alt="" coords="787,179,739,219,736,214,783,175"/>
+<area shape="rect" title=" " alt="" coords="765,225,832,251"/>
+<area shape="poly" title=" " alt="" coords="801,178,801,212,796,212,796,178"/>
+<area shape="rect" title=" " alt="" coords="856,225,947,251"/>
+<area shape="poly" title=" " alt="" coords="817,175,875,215,872,219,814,180"/>
+<area shape="rect" title=" " alt="" coords="971,225,1045,251"/>
+<area shape="poly" title=" " alt="" coords="833,175,962,218,960,223,831,180"/>
+<area shape="rect" title=" " alt="" coords="1069,225,1141,251"/>
+<area shape="poly" title=" " alt="" coords="845,174,1057,222,1055,228,843,179"/>
+<area shape="rect" title=" " alt="" coords="1166,225,1274,251"/>
+<area shape="poly" title=" " alt="" coords="844,171,1153,223,1152,228,844,176"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1RegionFilter.html">core::RegionFilter</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages region-based filtering for memory scanning  <a href="classcore_1_1RegionFilter.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1RegionFilterConfig.html">core::RegionFilterConfig</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration for region filtering in scans and exports  <a href="structcore_1_1RegionFilterConfig.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+命名空间</h2></td></tr>
+<tr class="memitem:namespacecore" id="r_namespacecore"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecore.html">core</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+枚举</h2></td></tr>
+<tr class="memitem:a72a2e8d29b79f853c273543adab4dfe4" id="r_a72a2e8d29b79f853c273543adab4dfe4"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecore.html#a72a2e8d29b79f853c273543adab4dfe4">core::RegionFilterMode</a> : uint8_t { <a class="el" href="namespacecore.html#a72a2e8d29b79f853c273543adab4dfe4a055c1a591abb0e8cd86dc969727bcc0b">core::DISABLED</a>
+, <a class="el" href="namespacecore.html#a72a2e8d29b79f853c273543adab4dfe4a10858ce34d7366d0e45d3153cd0a8715">core::SCAN_TIME</a>
+, <a class="el" href="namespacecore.html#a72a2e8d29b79f853c273543adab4dfe4a3bde2629cb4717430be97eae1a0b460e">core::EXPORT_TIME</a>
+ }</td></tr>
+<tr class="memdesc:a72a2e8d29b79f853c273543adab4dfe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filtering mode selection  <a href="namespacecore.html#a72a2e8d29b79f853c273543adab4dfe4">更多...</a><br /></td></tr>
+<tr class="separator:a72a2e8d29b79f853c273543adab4dfe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>Region-based filtering for memory scans and match results </p>
+<p>Provides two filtering modes:</p><ol type="1">
+<li>Scan-time filtering: Filter regions during initial scan (reduces memory usage)</li>
+<li>Export-time filtering: Filter match results by region while preserving global indices </li>
+</ol>
+</div></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="region__filter_8cppm.html">region_filter.cppm</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

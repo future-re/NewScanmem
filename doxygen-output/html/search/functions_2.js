@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['checkprocess_0',['checkProcess',['../classcore_1_1ProcessChecker.html#a5eb55771a0eeef1f10e6d139420999d2',1,'core::ProcessChecker']]],
+  ['classify_1',['classify',['../classcore_1_1RegionClassifier.html#a2f57db0428d581e738c18b08825dd373',1,'core::RegionClassifier']]],
+  ['clear_2',['clear',['../classcli_1_1CommandRegistry.html#a54e726491de4a32cb19d6a58a76e9087',1,'cli::CommandRegistry::clear()'],['../classcore_1_1RegionFilter.html#a2e568700e8546aa31e54851e4886e897',1,'core::RegionFilter::clear()'],['../structMem64.html#a2626b95ca0ef84bbf7cd40784968b182',1,'Mem64::clear()'],['../structSet.html#ac24ef3aba54f158167ba288a3dc1080a',1,'Set::clear()']]],
+  ['clearmatches_3',['clearMatches',['../classcore_1_1Scanner.html#ab8624ad193ac828e10fd0b440508effd',1,'core::Scanner']]],
+  ['clearresulthistory_4',['clearResultHistory',['../classcore_1_1Scanner.html#ac95d7917671d1dee4650693650ea22f9',1,'core::Scanner']]],
+  ['clearscreen_5',['clearscreen',['../classui_1_1ConsoleUI.html#acc00a76b5062382ec4540faa4b369629',1,'ui::ConsoleUI::clearScreen()'],['../classui_1_1UserInterface.html#a6827fbd6a3d06f1d76d938938149d356',1,'ui::UserInterface::clearScreen()']]],
+  ['cmp_6',['cmp',['../structSet.html#a1241ec72becb02a7df69f5bafaba0177',1,'Set']]],
+  ['collect_7',['collect',['../classcore_1_1MatchCollector.html#a91cbd05f757f4df9785ae7d1ee802d8d',1,'core::MatchCollector']]],
+  ['command_8',['command',['../classcli_1_1Command.html#a0e3843384939b61708b1c5aa0aab9e93',1,'cli::Command::Command(Command &amp;&amp;) noexcept=default'],['../classcli_1_1Command.html#a17a7faa0e684839d146d5dbc6c99bbc1',1,'cli::Command::Command(const Command &amp;)=delete'],['../classcli_1_1Command.html#ad7ede55a5bd25c9df125fe3f51fba349',1,'cli::Command::Command()=default']]],
+  ['comparebytes_9',['comparebytes',['../bytes_8cppm.html#adb42eebd0abec13ec2c48549927cb77b',1,'compareBytes(const Mem64 *memoryPtr, size_t memLength, const std::uint8_t *patternData, size_t patternSize, MatchFlags *saveFlags) -&gt; unsigned int:&#160;bytes.cppm'],['../bytes_8cppm.html#a8b3f1dd38198da771753a18d7c54e336',1,'compareBytes(const Mem64 *memoryPtr, size_t memLength, const std::vector&lt; std::uint8_t &gt; &amp;pattern, MatchFlags *saveFlags) -&gt; unsigned int:&#160;bytes.cppm']]],
+  ['comparebytesmasked_10',['comparebytesmasked',['../bytes_8cppm.html#a9d1cde28d9ffca9739915f97995a681f',1,'compareBytesMasked(const Mem64 *memoryPtr, size_t memLength, const std::uint8_t *patternData, size_t patternSize, const std::uint8_t *maskData, size_t maskSize, MatchFlags *saveFlags) -&gt; unsigned int:&#160;bytes.cppm'],['../bytes_8cppm.html#ae8544bc3fb7c77113bb40ff1626c50db',1,'compareBytesMasked(const Mem64 *memoryPtr, size_t memLength, const std::vector&lt; std::uint8_t &gt; &amp;pattern, const std::vector&lt; std::uint8_t &gt; &amp;mask, MatchFlags *saveFlags) -&gt; unsigned int:&#160;bytes.cppm']]],
+  ['conext_11',['conext',['../classui_1_1MessagePrinter.html#a2354d91a79650d00650a672513bba693',1,'ui::MessagePrinter']]],
+  ['confirm_12',['confirm',['../classui_1_1ConsoleUI.html#ac4f24d35f5cb9da324e10fb27cfd837d',1,'ui::ConsoleUI::confirm()'],['../classui_1_1UserInterface.html#ab0c6bfe441b14269680f5e684a27257e',1,'ui::UserInterface::confirm()']]],
+  ['consoleui_13',['consoleui',['../classui_1_1ConsoleUI.html#af8d8caaa962d53dd1cc9f8fc29e1d260',1,'ui::ConsoleUI::ConsoleUI(MessageContext ctx={})'],['../classui_1_1ConsoleUI.html#a6c6d404fa03b8dcaf42d6d7e0fba7963',1,'ui::ConsoleUI::ConsoleUI(bool debugMode, bool backendMode)']]],
+  ['contains_14',['contains',['../structcore_1_1Region.html#a8d3047fcaf3435bad143c3dae39e2ccc',1,'core::Region::contains()'],['../classutils_1_1StringUtils.html#a4c498948b9c0e77f85ae057de27d3400',1,'utils::StringUtils::contains()']]],
+  ['countcommand_15',['CountCommand',['../classcli_1_1commands_1_1CountCommand.html#a55c152b23d674067829bd46e510ce85d',1,'cli::commands::CountCommand']]],
+  ['create_16',['create',['../classcore_1_1RegionClassifier.html#aad7073709d20968e89bfa9cddc945813',1,'core::RegionClassifier']]]
+];

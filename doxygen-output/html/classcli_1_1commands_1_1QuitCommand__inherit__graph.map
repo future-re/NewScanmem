@@ -1,0 +1,5 @@
+<map id="cli::commands::QuitCommand" name="cli::commands::QuitCommand">
+<area shape="rect" id="Node000001" title="Exit the application" alt="" coords="5,79,224,104"/>
+<area shape="rect" id="Node000002" href="$classcli_1_1Command.html" title="Abstract base class for all CLI commands" alt="" coords="59,5,171,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,44,117,79,112,79,112,44"/>
+</map>

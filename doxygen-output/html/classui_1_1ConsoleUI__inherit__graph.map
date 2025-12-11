@@ -1,0 +1,5 @@
+<map id="ui::ConsoleUI" name="ui::ConsoleUI">
+<area shape="rect" id="Node000001" title="Console&#45;based implementation of UserInterface" alt="" coords="17,79,125,104"/>
+<area shape="rect" id="Node000002" href="$classui_1_1UserInterface.html" title="Abstract interface for user interaction" alt="" coords="5,5,136,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,44,73,79,68,79,68,44"/>
+</map>

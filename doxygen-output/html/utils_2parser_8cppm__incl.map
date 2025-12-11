@@ -1,0 +1,23 @@
+<map id="src/utils/parser.cppm" name="src/utils/parser.cppm">
+<area shape="rect" id="Node000001" title="Value parsing utilities for different data types" alt="" coords="364,5,521,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,80,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="368,33,94,81,93,76,367,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="105,79,143,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="373,33,275,52,158,81,157,76,273,47,372,28"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="167,79,230,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="404,33,244,80,243,74,403,28"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="254,79,335,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="420,33,332,75,330,70,418,28"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="360,79,427,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="437,33,411,69,407,66,432,29"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="451,79,533,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="453,29,478,66,474,69,449,33"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="557,79,616,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="467,28,552,70,550,75,465,33"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="640,79,699,104"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="480,28,628,74,626,79,478,33"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="723,79,821,104"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="496,28,710,74,709,79,495,33"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="845,79,953,104"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="521,28,832,76,831,81,520,33"/>
+</map>

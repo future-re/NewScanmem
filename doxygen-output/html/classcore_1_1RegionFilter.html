@@ -1,0 +1,567 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: core::RegionFilter类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classcore_1_1RegionFilter.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="classcore_1_1RegionFilter-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">core::RegionFilter类 参考<span class="mlabels"><span class="mlabel">export</span></span><div class="ingroups">模块 <a class="el" href="module_core_8region__filter.html">core.region_filter</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Manages region-based filtering for memory scanning  
+ <a href="classcore_1_1RegionFilter.html#details">更多...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a834e04f399b0da7b90bdcf0b37408d1a" id="r_a834e04f399b0da7b90bdcf0b37408d1a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1RegionFilter.html#a834e04f399b0da7b90bdcf0b37408d1a">RegionFilter</a> (std::unordered_set&lt; <a class="el" href="namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16b">RegionType</a> &gt; allowedTypes={})</td></tr>
+<tr class="memdesc:a834e04f399b0da7b90bdcf0b37408d1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct region filter with specified types  <br /></td></tr>
+<tr class="separator:a834e04f399b0da7b90bdcf0b37408d1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f1d83a95f2bdb1a99df2563c410c41c" id="r_a1f1d83a95f2bdb1a99df2563c410c41c"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1RegionFilter.html#a1f1d83a95f2bdb1a99df2563c410c41c">isTypeAllowed</a> (<a class="el" href="namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16b">RegionType</a> type) const -&gt; bool</td></tr>
+<tr class="memdesc:a1f1d83a95f2bdb1a99df2563c410c41c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a region type is allowed by this filter  <br /></td></tr>
+<tr class="separator:a1f1d83a95f2bdb1a99df2563c410c41c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dd408ca02ca6335d0238ed9eeb2dd4e" id="r_a0dd408ca02ca6335d0238ed9eeb2dd4e"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1RegionFilter.html#a0dd408ca02ca6335d0238ed9eeb2dd4e">isRegionAllowed</a> (const <a class="el" href="structcore_1_1Region.html">Region</a> &amp;region) const -&gt; bool</td></tr>
+<tr class="memdesc:a0dd408ca02ca6335d0238ed9eeb2dd4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a region is allowed by this filter  <br /></td></tr>
+<tr class="separator:a0dd408ca02ca6335d0238ed9eeb2dd4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0db7f1c094d56ae384a46409061bf07" id="r_ac0db7f1c094d56ae384a46409061bf07"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1RegionFilter.html#ac0db7f1c094d56ae384a46409061bf07">isAddressAllowed</a> (std::uintptr_t addr, const <a class="el" href="classcore_1_1RegionClassifier.html">RegionClassifier</a> &amp;classifier) const -&gt; bool</td></tr>
+<tr class="memdesc:ac0db7f1c094d56ae384a46409061bf07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if an address is allowed by this filter  <br /></td></tr>
+<tr class="separator:ac0db7f1c094d56ae384a46409061bf07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c49178723c66fbb283838c2b5392f9e" id="r_a9c49178723c66fbb283838c2b5392f9e"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1RegionFilter.html#a9c49178723c66fbb283838c2b5392f9e">filterRegions</a> (const std::vector&lt; <a class="el" href="structcore_1_1Region.html">Region</a> &gt; &amp;regions) const -&gt; std::vector&lt; <a class="el" href="structcore_1_1Region.html">Region</a> &gt;</td></tr>
+<tr class="memdesc:a9c49178723c66fbb283838c2b5392f9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filter a vector of regions to only allowed types  <br /></td></tr>
+<tr class="separator:a9c49178723c66fbb283838c2b5392f9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5122be6ad16747a90ae8f077b8a5bd8" id="r_ac5122be6ad16747a90ae8f077b8a5bd8"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1RegionFilter.html#ac5122be6ad16747a90ae8f077b8a5bd8">getAllowedTypes</a> () const -&gt; const std::unordered_set&lt; <a class="el" href="namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16b">RegionType</a> &gt; &amp;</td></tr>
+<tr class="memdesc:ac5122be6ad16747a90ae8f077b8a5bd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get allowed region types  <br /></td></tr>
+<tr class="separator:ac5122be6ad16747a90ae8f077b8a5bd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c3def2ff93a1ba1ed9894d70fdd22ae" id="r_a6c3def2ff93a1ba1ed9894d70fdd22ae"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1RegionFilter.html#a6c3def2ff93a1ba1ed9894d70fdd22ae">isActive</a> () const -&gt; bool</td></tr>
+<tr class="memdesc:a6c3def2ff93a1ba1ed9894d70fdd22ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if filter is active (has type restrictions)  <br /></td></tr>
+<tr class="separator:a6c3def2ff93a1ba1ed9894d70fdd22ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e568700e8546aa31e54851e4886e897" id="r_a2e568700e8546aa31e54851e4886e897"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1RegionFilter.html#a2e568700e8546aa31e54851e4886e897">clear</a> () -&gt; void</td></tr>
+<tr class="memdesc:a2e568700e8546aa31e54851e4886e897"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear filter (allow all types)  <br /></td></tr>
+<tr class="separator:a2e568700e8546aa31e54851e4886e897"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a838d6e26ddeb1daaa745d44168ce2a33" id="r_a838d6e26ddeb1daaa745d44168ce2a33"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1RegionFilter.html#a838d6e26ddeb1daaa745d44168ce2a33">addType</a> (<a class="el" href="namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16b">RegionType</a> type) -&gt; void</td></tr>
+<tr class="memdesc:a838d6e26ddeb1daaa745d44168ce2a33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add allowed region type  <br /></td></tr>
+<tr class="separator:a838d6e26ddeb1daaa745d44168ce2a33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3785fa3b0bc0cbf9b64d5149779a2742" id="r_a3785fa3b0bc0cbf9b64d5149779a2742"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1RegionFilter.html#a3785fa3b0bc0cbf9b64d5149779a2742">removeType</a> (<a class="el" href="namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16b">RegionType</a> type) -&gt; void</td></tr>
+<tr class="memdesc:a3785fa3b0bc0cbf9b64d5149779a2742"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove allowed region type  <br /></td></tr>
+<tr class="separator:a3785fa3b0bc0cbf9b64d5149779a2742"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b3edd5809d4bb155e3327e705c39dc0" id="r_a9b3edd5809d4bb155e3327e705c39dc0"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1RegionFilter.html#a9b3edd5809d4bb155e3327e705c39dc0">toString</a> () const -&gt; std::string</td></tr>
+<tr class="memdesc:a9b3edd5809d4bb155e3327e705c39dc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get human-readable description of filter  <br /></td></tr>
+<tr class="separator:a9b3edd5809d4bb155e3327e705c39dc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a77865c5183024d01964421e08940b9b1" id="r_a77865c5183024d01964421e08940b9b1"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1RegionFilter.html#a77865c5183024d01964421e08940b9b1">fromTypeNames</a> (const std::vector&lt; std::string &gt; &amp;typeNames) -&gt; <a class="el" href="classcore_1_1RegionFilter.html">RegionFilter</a></td></tr>
+<tr class="memdesc:a77865c5183024d01964421e08940b9b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create filter from region type names  <br /></td></tr>
+<tr class="separator:a77865c5183024d01964421e08940b9b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>Manages region-based filtering for memory scanning </p>
+<p>Supports filtering by region types (exe, code, heap, stack) in two modes:</p><ul>
+<li>Scan-time: Filter regions before scanning (memory efficient)</li>
+<li>Export-time: Filter matches during result collection (flexible) </li>
+</ul>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a834e04f399b0da7b90bdcf0b37408d1a" name="a834e04f399b0da7b90bdcf0b37408d1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a834e04f399b0da7b90bdcf0b37408d1a">&#9670;&#160;</a></span>RegionFilter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">core::RegionFilter::RegionFilter </td>
+          <td>(</td>
+          <td class="paramtype">std::unordered_set&lt; <a class="el" href="namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16b">RegionType</a> &gt;&#160;</td>
+          <td class="paramname"><em>allowedTypes</em> = <code>{}</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Construct region filter with specified types </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">allowedTypes</td><td><a class="el" href="structSet.html">Set</a> of region types to include (empty = all types allowed) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a838d6e26ddeb1daaa745d44168ce2a33" name="a838d6e26ddeb1daaa745d44168ce2a33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a838d6e26ddeb1daaa745d44168ce2a33">&#9670;&#160;</a></span>addType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::RegionFilter::addType </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16b">RegionType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td> -&gt; void </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add allowed region type </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td><a class="el" href="structcore_1_1Region.html">Region</a> type to allow </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2e568700e8546aa31e54851e4886e897" name="a2e568700e8546aa31e54851e4886e897"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e568700e8546aa31e54851e4886e897">&#9670;&#160;</a></span>clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::RegionFilter::clear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> -&gt; void </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Clear filter (allow all types) </p>
+
+</div>
+</div>
+<a id="a9c49178723c66fbb283838c2b5392f9e" name="a9c49178723c66fbb283838c2b5392f9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c49178723c66fbb283838c2b5392f9e">&#9670;&#160;</a></span>filterRegions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::RegionFilter::filterRegions </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="structcore_1_1Region.html">Region</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>regions</em></td><td>)</td>
+          <td> const -&gt; std::vector&lt;<a class="el" href="structcore_1_1Region.html">Region</a>&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Filter a vector of regions to only allowed types </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">regions</td><td>Input regions </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Filtered vector containing only allowed regions </dd></dl>
+
+</div>
+</div>
+<a id="a77865c5183024d01964421e08940b9b1" name="a77865c5183024d01964421e08940b9b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77865c5183024d01964421e08940b9b1">&#9670;&#160;</a></span>fromTypeNames()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static auto core::RegionFilter::fromTypeNames </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>typeNames</em></td><td>)</td>
+          <td> -&gt; <a class="el" href="classcore_1_1RegionFilter.html">RegionFilter</a> </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create filter from region type names </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">typeNames</td><td>Vector of type names ("exe", "code", "heap", "stack", "unknow") </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd><a class="el" href="classcore_1_1RegionFilter.html" title="Manages region-based filtering for memory scanning">RegionFilter</a> configured with specified types </dd></dl>
+
+</div>
+</div>
+<a id="ac5122be6ad16747a90ae8f077b8a5bd8" name="ac5122be6ad16747a90ae8f077b8a5bd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5122be6ad16747a90ae8f077b8a5bd8">&#9670;&#160;</a></span>getAllowedTypes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::RegionFilter::getAllowedTypes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt; const std::unordered_set&lt;<a class="el" href="namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16b">RegionType</a>&gt;&amp; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get allowed region types </p>
+<dl class="section return"><dt>返回</dt><dd><a class="el" href="structSet.html">Set</a> of allowed region types (empty = all allowed) </dd></dl>
+
+</div>
+</div>
+<a id="a6c3def2ff93a1ba1ed9894d70fdd22ae" name="a6c3def2ff93a1ba1ed9894d70fdd22ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c3def2ff93a1ba1ed9894d70fdd22ae">&#9670;&#160;</a></span>isActive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::RegionFilter::isActive </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt; bool </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if filter is active (has type restrictions) </p>
+<dl class="section return"><dt>返回</dt><dd>True if specific types are filtered, false if all types allowed </dd></dl>
+
+</div>
+</div>
+<a id="ac0db7f1c094d56ae384a46409061bf07" name="ac0db7f1c094d56ae384a46409061bf07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0db7f1c094d56ae384a46409061bf07">&#9670;&#160;</a></span>isAddressAllowed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::RegionFilter::isAddressAllowed </td>
+          <td>(</td>
+          <td class="paramtype">std::uintptr_t&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classcore_1_1RegionClassifier.html">RegionClassifier</a> &amp;&#160;</td>
+          <td class="paramname"><em>classifier</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const -&gt; bool </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if an address is allowed by this filter </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">addr</td><td>Address to check </td></tr>
+    <tr><td class="paramname">classifier</td><td><a class="el" href="structcore_1_1Region.html">Region</a> classifier for address lookup </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>True if address is in an allowed region type </dd></dl>
+
+</div>
+</div>
+<a id="a0dd408ca02ca6335d0238ed9eeb2dd4e" name="a0dd408ca02ca6335d0238ed9eeb2dd4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dd408ca02ca6335d0238ed9eeb2dd4e">&#9670;&#160;</a></span>isRegionAllowed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::RegionFilter::isRegionAllowed </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structcore_1_1Region.html">Region</a> &amp;&#160;</td>
+          <td class="paramname"><em>region</em></td><td>)</td>
+          <td> const -&gt; bool </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if a region is allowed by this filter </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">region</td><td><a class="el" href="structcore_1_1Region.html">Region</a> to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>True if region's type is allowed </dd></dl>
+
+</div>
+</div>
+<a id="a1f1d83a95f2bdb1a99df2563c410c41c" name="a1f1d83a95f2bdb1a99df2563c410c41c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f1d83a95f2bdb1a99df2563c410c41c">&#9670;&#160;</a></span>isTypeAllowed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::RegionFilter::isTypeAllowed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16b">RegionType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td> const -&gt; bool </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if a region type is allowed by this filter </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td><a class="el" href="structcore_1_1Region.html">Region</a> type to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>True if type is allowed (or filter is disabled) </dd></dl>
+
+</div>
+</div>
+<a id="a3785fa3b0bc0cbf9b64d5149779a2742" name="a3785fa3b0bc0cbf9b64d5149779a2742"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3785fa3b0bc0cbf9b64d5149779a2742">&#9670;&#160;</a></span>removeType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::RegionFilter::removeType </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16b">RegionType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td> -&gt; void </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Remove allowed region type </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td><a class="el" href="structcore_1_1Region.html">Region</a> type to disallow </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9b3edd5809d4bb155e3327e705c39dc0" name="a9b3edd5809d4bb155e3327e705c39dc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b3edd5809d4bb155e3327e705c39dc0">&#9670;&#160;</a></span>toString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::RegionFilter::toString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt; std::string </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get human-readable description of filter </p>
+<dl class="section return"><dt>返回</dt><dd>String describing allowed types </dd></dl>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>src/core/<a class="el" href="region__filter_8cppm.html">region_filter.cppm</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacecore.html">core</a></li><li class="navelem"><a class="el" href="classcore_1_1RegionFilter.html">RegionFilter</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

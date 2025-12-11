@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: src/utils/endianness.cppm 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('endianness_8cppm.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">命名空间</a> &#124;
+<a href="#enum-members">枚举</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">endianness.cppm 文件参考<div class="ingroups">模块 <a class="el" href="module_utils_8endianness.html">utils.endianness</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;bit&gt;</code><br />
+<code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;type_traits&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+endianness.cppm 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="endianness_8cppm__incl.png" border="0" usemap="#asrc_2utils_2endianness_8cppm" alt=""/></div>
+<map name="asrc_2utils_2endianness_8cppm" id="asrc_2utils_2endianness_8cppm">
+<area shape="rect" title=" " alt="" coords="7,5,197,31"/>
+<area shape="rect" title=" " alt="" coords="5,79,44,104"/>
+<area shape="poly" title=" " alt="" coords="91,33,49,71,46,67,88,29"/>
+<area shape="rect" title=" " alt="" coords="69,79,135,104"/>
+<area shape="poly" title=" " alt="" coords="105,31,105,65,99,65,99,31"/>
+<area shape="rect" title=" " alt="" coords="160,79,252,104"/>
+<area shape="poly" title=" " alt="" coords="120,28,179,68,176,73,117,33"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+命名空间</h2></td></tr>
+<tr class="memitem:namespacedetail" id="r_namespacedetail"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedetail.html">detail</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceutils" id="r_namespaceutils"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html">utils</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+枚举</h2></td></tr>
+<tr class="memitem:a9b386dd2997f6356dc5ad20ce16003cc" id="r_a9b386dd2997f6356dc5ad20ce16003cc"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a> { <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cca1314341b466dcb5e2c880b76414c49fe">utils::LITTLE</a>
+, <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003ccaa60c6c694491d75b439073b8cb05b139">utils::BIG</a>
+ }</td></tr>
+<tr class="separator:a9b386dd2997f6356dc5ad20ce16003cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:aff190188b65e4c3776fc6744be48bf2b" id="r_aff190188b65e4c3776fc6744be48bf2b"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedetail.html#aff190188b65e4c3776fc6744be48bf2b">detail::swapBytes</a> (uint8_t value) noexcept -&gt; uint8_t</td></tr>
+<tr class="separator:aff190188b65e4c3776fc6744be48bf2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93e8c6f46325bf4cd18530ed3db59b71" id="r_a93e8c6f46325bf4cd18530ed3db59b71"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedetail.html#a93e8c6f46325bf4cd18530ed3db59b71">detail::swapBytes</a> (uint16_t value) noexcept -&gt; uint16_t</td></tr>
+<tr class="separator:a93e8c6f46325bf4cd18530ed3db59b71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15a21289437f105dab2ffef908feeaf7" id="r_a15a21289437f105dab2ffef908feeaf7"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedetail.html#a15a21289437f105dab2ffef908feeaf7">detail::swapBytes</a> (uint32_t value) noexcept -&gt; uint32_t</td></tr>
+<tr class="separator:a15a21289437f105dab2ffef908feeaf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa61f7443552eef65706ca99283eacc2d" id="r_aa61f7443552eef65706ca99283eacc2d"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedetail.html#aa61f7443552eef65706ca99283eacc2d">detail::swapBytes</a> (uint64_t value) noexcept -&gt; uint64_t</td></tr>
+<tr class="separator:aa61f7443552eef65706ca99283eacc2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1eca079a070edba567ae6920eee8eb0" id="r_ab1eca079a070edba567ae6920eee8eb0"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ab1eca079a070edba567ae6920eee8eb0"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils.html#ab1eca079a070edba567ae6920eee8eb0">utils::swapBytes</a> (T value) noexcept -&gt; T</td></tr>
+<tr class="separator:ab1eca079a070edba567ae6920eee8eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1294d3772177d832662a183da812730" id="r_ab1294d3772177d832662a183da812730"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ab1294d3772177d832662a183da812730"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils.html#ab1294d3772177d832662a183da812730">utils::hostToNetwork</a> (T value) noexcept -&gt; T</td></tr>
+<tr class="separator:ab1294d3772177d832662a183da812730"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8a17769e8020bd0dd30cd257ce21ccd" id="r_af8a17769e8020bd0dd30cd257ce21ccd"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:af8a17769e8020bd0dd30cd257ce21ccd"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils.html#af8a17769e8020bd0dd30cd257ce21ccd">utils::networkToHost</a> (T value) noexcept -&gt; T</td></tr>
+<tr class="separator:af8a17769e8020bd0dd30cd257ce21ccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97022d89a68c435e218e7d7231b23d6f" id="r_a97022d89a68c435e218e7d7231b23d6f"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a97022d89a68c435e218e7d7231b23d6f"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a97022d89a68c435e218e7d7231b23d6f">utils::hostToLittleEndian</a> (T value) noexcept -&gt; T</td></tr>
+<tr class="separator:a97022d89a68c435e218e7d7231b23d6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad29bf669b42ac7d5dc515e64e638c410" id="r_ad29bf669b42ac7d5dc515e64e638c410"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ad29bf669b42ac7d5dc515e64e638c410"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils.html#ad29bf669b42ac7d5dc515e64e638c410">utils::littleEndianToHost</a> (T value) noexcept -&gt; T</td></tr>
+<tr class="separator:ad29bf669b42ac7d5dc515e64e638c410"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a715e0f3bd35b3504e091f77a7ae1de2e" id="r_a715e0f3bd35b3504e091f77a7ae1de2e"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a715e0f3bd35b3504e091f77a7ae1de2e">utils::isBigEndian</a> () noexcept -&gt; bool</td></tr>
+<tr class="separator:a715e0f3bd35b3504e091f77a7ae1de2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a915e03ea533a95d375075d41a74e7aeb" id="r_a915e03ea533a95d375075d41a74e7aeb"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a915e03ea533a95d375075d41a74e7aeb">utils::isLittleEndian</a> () noexcept -&gt; bool</td></tr>
+<tr class="separator:a915e03ea533a95d375075d41a74e7aeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56d2b3a10b48b378dc7d308f2c8e5996" id="r_a56d2b3a10b48b378dc7d308f2c8e5996"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a56d2b3a10b48b378dc7d308f2c8e5996"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a56d2b3a10b48b378dc7d308f2c8e5996">utils::swapBytesIntegral</a> (T value) noexcept -&gt; T</td></tr>
+<tr class="separator:a56d2b3a10b48b378dc7d308f2c8e5996"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84b9cbc873018d8701ba5930643441bc" id="r_a84b9cbc873018d8701ba5930643441bc"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a84b9cbc873018d8701ba5930643441bc"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a84b9cbc873018d8701ba5930643441bc">utils::toTargetEndian</a> (T value, <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">Endianness</a> target) noexcept -&gt; T</td></tr>
+<tr class="separator:a84b9cbc873018d8701ba5930643441bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_313caf1132e152dd9b58bea13a4052ca.html">utils</a></li><li class="navelem"><a class="el" href="endianness_8cppm.html">endianness.cppm</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

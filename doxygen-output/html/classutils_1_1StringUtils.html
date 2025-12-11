@@ -1,0 +1,607 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: utils::StringUtils类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classutils_1_1StringUtils.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="classutils_1_1StringUtils-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">utils::StringUtils类 参考<span class="mlabels"><span class="mlabel">export</span></span><div class="ingroups">模块 <a class="el" href="module_utils_8string.html">utils.string</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Utility class for string manipulation operations  
+ <a href="classutils_1_1StringUtils.html#details">更多...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a137c5c70edd1139bee081a1d43e5510e" id="r_a137c5c70edd1139bee081a1d43e5510e"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1StringUtils.html#a137c5c70edd1139bee081a1d43e5510e">toLower</a> (std::string_view str) -&gt; std::string</td></tr>
+<tr class="memdesc:a137c5c70edd1139bee081a1d43e5510e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert string to lowercase  <br /></td></tr>
+<tr class="separator:a137c5c70edd1139bee081a1d43e5510e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3c3c28224fbd6751c00fd7876c3b3ab" id="r_ac3c3c28224fbd6751c00fd7876c3b3ab"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1StringUtils.html#ac3c3c28224fbd6751c00fd7876c3b3ab">toUpper</a> (std::string_view str) -&gt; std::string</td></tr>
+<tr class="memdesc:ac3c3c28224fbd6751c00fd7876c3b3ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert string to uppercase  <br /></td></tr>
+<tr class="separator:ac3c3c28224fbd6751c00fd7876c3b3ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac327c7b4e0f15461d07e934809c91b61" id="r_ac327c7b4e0f15461d07e934809c91b61"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1StringUtils.html#ac327c7b4e0f15461d07e934809c91b61">trim</a> (std::string_view str) -&gt; std::string_view</td></tr>
+<tr class="memdesc:ac327c7b4e0f15461d07e934809c91b61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trim whitespace from both ends of string  <br /></td></tr>
+<tr class="separator:ac327c7b4e0f15461d07e934809c91b61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b7d14771d79b94375247497e6c99fb9" id="r_a6b7d14771d79b94375247497e6c99fb9"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1StringUtils.html#a6b7d14771d79b94375247497e6c99fb9">trimLeft</a> (std::string_view str) -&gt; std::string_view</td></tr>
+<tr class="memdesc:a6b7d14771d79b94375247497e6c99fb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trim whitespace from start of string  <br /></td></tr>
+<tr class="separator:a6b7d14771d79b94375247497e6c99fb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d59af809e6fa964b16c93e946efdaea" id="r_a0d59af809e6fa964b16c93e946efdaea"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1StringUtils.html#a0d59af809e6fa964b16c93e946efdaea">trimRight</a> (std::string_view str) -&gt; std::string_view</td></tr>
+<tr class="memdesc:a0d59af809e6fa964b16c93e946efdaea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trim whitespace from end of string  <br /></td></tr>
+<tr class="separator:a0d59af809e6fa964b16c93e946efdaea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad73a8bbb50fc39d4ac65656013a6e112" id="r_ad73a8bbb50fc39d4ac65656013a6e112"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1StringUtils.html#ad73a8bbb50fc39d4ac65656013a6e112">split</a> (std::string_view str, char delim) -&gt; std::vector&lt; std::string &gt;</td></tr>
+<tr class="memdesc:ad73a8bbb50fc39d4ac65656013a6e112"><td class="mdescLeft">&#160;</td><td class="mdescRight">Split string by single delimiter character  <br /></td></tr>
+<tr class="separator:ad73a8bbb50fc39d4ac65656013a6e112"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d0c70efc765147ab74f8f3240a44f74" id="r_a2d0c70efc765147ab74f8f3240a44f74"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1StringUtils.html#a2d0c70efc765147ab74f8f3240a44f74">split</a> (std::string_view str, std::string_view delims) -&gt; std::vector&lt; std::string &gt;</td></tr>
+<tr class="memdesc:a2d0c70efc765147ab74f8f3240a44f74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Split string by any character in delimiter set  <br /></td></tr>
+<tr class="separator:a2d0c70efc765147ab74f8f3240a44f74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43380ad73f33145d5965ae9a971bb199" id="r_a43380ad73f33145d5965ae9a971bb199"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1StringUtils.html#a43380ad73f33145d5965ae9a971bb199">startsWith</a> (std::string_view str, std::string_view prefix) -&gt; bool</td></tr>
+<tr class="memdesc:a43380ad73f33145d5965ae9a971bb199"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if string starts with prefix  <br /></td></tr>
+<tr class="separator:a43380ad73f33145d5965ae9a971bb199"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a84920e5a6a099e9fdea7edfdfd3121" id="r_a2a84920e5a6a099e9fdea7edfdfd3121"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1StringUtils.html#a2a84920e5a6a099e9fdea7edfdfd3121">endsWith</a> (std::string_view str, std::string_view suffix) -&gt; bool</td></tr>
+<tr class="memdesc:a2a84920e5a6a099e9fdea7edfdfd3121"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if string ends with suffix  <br /></td></tr>
+<tr class="separator:a2a84920e5a6a099e9fdea7edfdfd3121"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c498948b9c0e77f85ae057de27d3400" id="r_a4c498948b9c0e77f85ae057de27d3400"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1StringUtils.html#a4c498948b9c0e77f85ae057de27d3400">contains</a> (std::string_view str, std::string_view substr) -&gt; bool</td></tr>
+<tr class="memdesc:a4c498948b9c0e77f85ae057de27d3400"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if string contains substring  <br /></td></tr>
+<tr class="separator:a4c498948b9c0e77f85ae057de27d3400"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f248e58fa93b3909d443d47499f57b7" id="r_a5f248e58fa93b3909d443d47499f57b7"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1StringUtils.html#a5f248e58fa93b3909d443d47499f57b7">join</a> (const std::vector&lt; std::string &gt; &amp;strings, std::string_view delim) -&gt; std::string</td></tr>
+<tr class="memdesc:a5f248e58fa93b3909d443d47499f57b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Join strings with delimiter  <br /></td></tr>
+<tr class="separator:a5f248e58fa93b3909d443d47499f57b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>Utility class for string manipulation operations </p>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="a4c498948b9c0e77f85ae057de27d3400" name="a4c498948b9c0e77f85ae057de27d3400"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c498948b9c0e77f85ae057de27d3400">&#9670;&#160;</a></span>contains()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static auto utils::StringUtils::contains </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>substr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; bool </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if string contains substring </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>Input string view </td></tr>
+    <tr><td class="paramname">substr</td><td>Substring to find </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>True if string contains substring </dd></dl>
+
+</div>
+</div>
+<a id="a2a84920e5a6a099e9fdea7edfdfd3121" name="a2a84920e5a6a099e9fdea7edfdfd3121"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a84920e5a6a099e9fdea7edfdfd3121">&#9670;&#160;</a></span>endsWith()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static auto utils::StringUtils::endsWith </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>suffix</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; bool </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if string ends with suffix </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>Input string view </td></tr>
+    <tr><td class="paramname">suffix</td><td>Suffix to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>True if string ends with suffix </dd></dl>
+
+</div>
+</div>
+<a id="a5f248e58fa93b3909d443d47499f57b7" name="a5f248e58fa93b3909d443d47499f57b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f248e58fa93b3909d443d47499f57b7">&#9670;&#160;</a></span>join()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static auto utils::StringUtils::join </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>strings</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>delim</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::string </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Join strings with delimiter </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">strings</td><td>Vector of strings to join </td></tr>
+    <tr><td class="paramname">delim</td><td>Delimiter string </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Joined string </dd></dl>
+
+</div>
+</div>
+<a id="ad73a8bbb50fc39d4ac65656013a6e112" name="ad73a8bbb50fc39d4ac65656013a6e112"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad73a8bbb50fc39d4ac65656013a6e112">&#9670;&#160;</a></span>split() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static auto utils::StringUtils::split </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>delim</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::vector&lt;std::string&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Split string by single delimiter character </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>Input string view </td></tr>
+    <tr><td class="paramname">delim</td><td>Delimiter character </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Vector of split strings </dd></dl>
+
+</div>
+</div>
+<a id="a2d0c70efc765147ab74f8f3240a44f74" name="a2d0c70efc765147ab74f8f3240a44f74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d0c70efc765147ab74f8f3240a44f74">&#9670;&#160;</a></span>split() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static auto utils::StringUtils::split </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>delims</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::vector&lt;std::string&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Split string by any character in delimiter set </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>Input string view </td></tr>
+    <tr><td class="paramname">delims</td><td>Delimiter characters </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Vector of split strings </dd></dl>
+
+</div>
+</div>
+<a id="a43380ad73f33145d5965ae9a971bb199" name="a43380ad73f33145d5965ae9a971bb199"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43380ad73f33145d5965ae9a971bb199">&#9670;&#160;</a></span>startsWith()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static auto utils::StringUtils::startsWith </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>prefix</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; bool </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if string starts with prefix </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>Input string view </td></tr>
+    <tr><td class="paramname">prefix</td><td>Prefix to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>True if string starts with prefix </dd></dl>
+
+</div>
+</div>
+<a id="a137c5c70edd1139bee081a1d43e5510e" name="a137c5c70edd1139bee081a1d43e5510e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a137c5c70edd1139bee081a1d43e5510e">&#9670;&#160;</a></span>toLower()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static auto utils::StringUtils::toLower </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td> -&gt; std::string </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert string to lowercase </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>Input string view </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Lowercase version of the string </dd></dl>
+
+</div>
+</div>
+<a id="ac3c3c28224fbd6751c00fd7876c3b3ab" name="ac3c3c28224fbd6751c00fd7876c3b3ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3c3c28224fbd6751c00fd7876c3b3ab">&#9670;&#160;</a></span>toUpper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static auto utils::StringUtils::toUpper </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td> -&gt; std::string </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert string to uppercase </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>Input string view </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Uppercase version of the string </dd></dl>
+
+</div>
+</div>
+<a id="ac327c7b4e0f15461d07e934809c91b61" name="ac327c7b4e0f15461d07e934809c91b61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac327c7b4e0f15461d07e934809c91b61">&#9670;&#160;</a></span>trim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static auto utils::StringUtils::trim </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td> -&gt; std::string_view </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Trim whitespace from both ends of string </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>Input string view </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Trimmed string view </dd></dl>
+
+</div>
+</div>
+<a id="a6b7d14771d79b94375247497e6c99fb9" name="a6b7d14771d79b94375247497e6c99fb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b7d14771d79b94375247497e6c99fb9">&#9670;&#160;</a></span>trimLeft()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static auto utils::StringUtils::trimLeft </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td> -&gt; std::string_view </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Trim whitespace from start of string </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>Input string view </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Left-trimmed string view </dd></dl>
+
+</div>
+</div>
+<a id="a0d59af809e6fa964b16c93e946efdaea" name="a0d59af809e6fa964b16c93e946efdaea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d59af809e6fa964b16c93e946efdaea">&#9670;&#160;</a></span>trimRight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static auto utils::StringUtils::trimRight </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td> -&gt; std::string_view </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Trim whitespace from end of string </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>Input string view </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Right-trimmed string view </dd></dl>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>src/utils/<a class="el" href="utils_2string_8cppm.html">string.cppm</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceutils.html">utils</a></li><li class="navelem"><a class="el" href="classutils_1_1StringUtils.html">StringUtils</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<map id="ScanResult" name="ScanResult">
+<area shape="rect" id="Node000001" title="Stores the complete result of a single scan operation" alt="" coords="172,284,267,309"/>
+<area shape="rect" id="Node000002" href="$structScanStats.html" title=" " alt="" coords="5,189,92,214"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,218,200,282,197,286,80,223"/>
+<area shape="rect" id="Node000003" href="$classscan_1_1MatchesAndOldValuesArray.html" title=" " alt="" coords="117,181,322,221"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="222,235,222,284,217,284,217,235"/>
+<area shape="rect" id="Node000004" href="$structScanOptions.html" title=" " alt="" coords="347,189,449,214"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="365,223,243,286,240,282,363,218"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="259,93,393,119"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="343,129,363,156,389,187,385,190,359,159,339,132"/>
+<area shape="rect" id="Node000006" href="$structcore_1_1RegionFilterConfig.html" title="Configuration for region filtering in scans and exports" alt="" coords="417,93,595,119"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="484,130,413,191,410,187,481,126"/>
+<area shape="rect" id="Node000007" href="$classcore_1_1RegionFilter.html" title="Manages region&#45;based filtering for memory scanning" alt="" coords="438,5,574,31"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="509,45,509,93,503,93,503,45"/>
+</map>

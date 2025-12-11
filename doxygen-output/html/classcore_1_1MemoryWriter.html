@@ -1,0 +1,709 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: core::MemoryWriter类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classcore_1_1MemoryWriter.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="classcore_1_1MemoryWriter-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">core::MemoryWriter类 参考<span class="mlabels"><span class="mlabel">export</span></span><div class="ingroups">模块 <a class="el" href="module_core_8memory__writer.html">core.memory_writer</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>High-level interface for writing to process memory  
+ <a href="classcore_1_1MemoryWriter.html#details">更多...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:aaf7bb0186935285bf63a4d16840f41d7" id="r_aaf7bb0186935285bf63a4d16840f41d7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#aaf7bb0186935285bf63a4d16840f41d7">MemoryWriter</a> (pid_t pid)</td></tr>
+<tr class="memdesc:aaf7bb0186935285bf63a4d16840f41d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct memory writer for given process  <br /></td></tr>
+<tr class="separator:aaf7bb0186935285bf63a4d16840f41d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42d80a675561be2b06aa0dcae792585e" id="r_a42d80a675561be2b06aa0dcae792585e"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a42d80a675561be2b06aa0dcae792585e"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#a42d80a675561be2b06aa0dcae792585e">write</a> (void *addr, const T &amp;value) -&gt; std::expected&lt; std::size_t, std::string &gt;</td></tr>
+<tr class="memdesc:a42d80a675561be2b06aa0dcae792585e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write scalar value to memory address  <br /></td></tr>
+<tr class="separator:a42d80a675561be2b06aa0dcae792585e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b78c4bc08d1a9d6c4c2947813158e15" id="r_a1b78c4bc08d1a9d6c4c2947813158e15"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#a1b78c4bc08d1a9d6c4c2947813158e15">writeBytes</a> (void *addr, std::span&lt; const std::uint8_t &gt; data) const -&gt; std::expected&lt; std::size_t, std::string &gt;</td></tr>
+<tr class="memdesc:a1b78c4bc08d1a9d6c4c2947813158e15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write byte array to memory address  <br /></td></tr>
+<tr class="separator:a1b78c4bc08d1a9d6c4c2947813158e15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa7afc84d7b4ecb90ee60bd8f6227555" id="r_afa7afc84d7b4ecb90ee60bd8f6227555"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#afa7afc84d7b4ecb90ee60bd8f6227555">writeString</a> (void *addr, const char *str) const -&gt; std::expected&lt; std::size_t, std::string &gt;</td></tr>
+<tr class="memdesc:afa7afc84d7b4ecb90ee60bd8f6227555"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write C-style string to memory address  <br /></td></tr>
+<tr class="separator:afa7afc84d7b4ecb90ee60bd8f6227555"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ebcc6fa02a36252c8e7dcedd3f9a840" id="r_a9ebcc6fa02a36252c8e7dcedd3f9a840"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#a9ebcc6fa02a36252c8e7dcedd3f9a840">getPid</a> () const -&gt; pid_t</td></tr>
+<tr class="memdesc:a9ebcc6fa02a36252c8e7dcedd3f9a840"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get target PID  <br /></td></tr>
+<tr class="separator:a9ebcc6fa02a36252c8e7dcedd3f9a840"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9aca431c8251c3e7771e1b3d45e0e7c2" id="r_a9aca431c8251c3e7771e1b3d45e0e7c2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#a9aca431c8251c3e7771e1b3d45e0e7c2">MemoryWriter</a> (pid_t pid, <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a> mode=(std::endian::native==std::endian::little ? <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cca1314341b466dcb5e2c880b76414c49fe">utils::Endianness::LITTLE</a> :<a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003ccaa60c6c694491d75b439073b8cb05b139">utils::Endianness::BIG</a>))</td></tr>
+<tr class="separator:a9aca431c8251c3e7771e1b3d45e0e7c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc6c5e190f0f3d95ba2a54e884d3d8b8" id="r_abc6c5e190f0f3d95ba2a54e884d3d8b8"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#abc6c5e190f0f3d95ba2a54e884d3d8b8">setEndianness</a> (<a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a> mode) -&gt; void</td></tr>
+<tr class="separator:abc6c5e190f0f3d95ba2a54e884d3d8b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6f0166b68b3343aeaa261ac4e352845" id="r_ad6f0166b68b3343aeaa261ac4e352845"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#ad6f0166b68b3343aeaa261ac4e352845">getEndianness</a> () const noexcept -&gt; <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a></td></tr>
+<tr class="separator:ad6f0166b68b3343aeaa261ac4e352845"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad135b0b6df15a71d44101471c011544c" id="r_ad135b0b6df15a71d44101471c011544c"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#ad135b0b6df15a71d44101471c011544c">write</a> (std::uintptr_t address, std::uint64_t value, std::size_t writeLen) const -&gt; std::expected&lt; <a class="el" href="structcore_1_1WriteResult.html">WriteResult</a>, std::string &gt;</td></tr>
+<tr class="memdesc:ad135b0b6df15a71d44101471c011544c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a value to memory at the specified address  <br /></td></tr>
+<tr class="separator:ad135b0b6df15a71d44101471c011544c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abff8f798c07dd70feb3f62701b496c05" id="r_abff8f798c07dd70feb3f62701b496c05"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#abff8f798c07dd70feb3f62701b496c05">writeByte</a> (std::uintptr_t address, std::uint8_t value) const -&gt; std::expected&lt; <a class="el" href="structcore_1_1WriteResult.html">WriteResult</a>, std::string &gt;</td></tr>
+<tr class="memdesc:abff8f798c07dd70feb3f62701b496c05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a single byte to memory  <br /></td></tr>
+<tr class="separator:abff8f798c07dd70feb3f62701b496c05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b2d81bb29747b177825bc95c94db0ac" id="r_a9b2d81bb29747b177825bc95c94db0ac"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#a9b2d81bb29747b177825bc95c94db0ac">writeBytes</a> (std::uintptr_t address, const void *data, std::size_t size) -&gt; std::expected&lt; <a class="el" href="structcore_1_1WriteResult.html">WriteResult</a>, std::string &gt;</td></tr>
+<tr class="memdesc:a9b2d81bb29747b177825bc95c94db0ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write bytes from a buffer to memory  <br /></td></tr>
+<tr class="separator:a9b2d81bb29747b177825bc95c94db0ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ed903555df4c163de0e584f7d0be610" id="r_a9ed903555df4c163de0e584f7d0be610"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#a9ed903555df4c163de0e584f7d0be610">writeToMatches</a> (const <a class="el" href="classcore_1_1Scanner.html">Scanner</a> &amp;scanner, std::uint64_t value) -&gt; <a class="el" href="structcore_1_1BatchWriteResult.html">BatchWriteResult</a></td></tr>
+<tr class="memdesc:a9ed903555df4c163de0e584f7d0be610"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write value to all matches in scanner  <br /></td></tr>
+<tr class="separator:a9ed903555df4c163de0e584f7d0be610"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59fb6d433c960fd56fe9008807b9f2bb" id="r_a59fb6d433c960fd56fe9008807b9f2bb"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#a59fb6d433c960fd56fe9008807b9f2bb">writeToMatch</a> (const <a class="el" href="classcore_1_1Scanner.html">Scanner</a> &amp;scanner, std::uint64_t value, std::size_t index) -&gt; std::expected&lt; <a class="el" href="structcore_1_1WriteResult.html">WriteResult</a>, std::string &gt;</td></tr>
+<tr class="memdesc:a59fb6d433c960fd56fe9008807b9f2bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write value to a specific match by index  <br /></td></tr>
+<tr class="separator:a59fb6d433c960fd56fe9008807b9f2bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>High-level interface for writing to process memory </p>
+<p>Handles memory writes to target process </p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="aaf7bb0186935285bf63a4d16840f41d7" name="aaf7bb0186935285bf63a4d16840f41d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf7bb0186935285bf63a4d16840f41d7">&#9670;&#160;</a></span>MemoryWriter() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">core::MemoryWriter::MemoryWriter </td>
+          <td>(</td>
+          <td class="paramtype">pid_t&#160;</td>
+          <td class="paramname"><em>pid</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Construct memory writer for given process </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pid</td><td>Target process ID </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9aca431c8251c3e7771e1b3d45e0e7c2" name="a9aca431c8251c3e7771e1b3d45e0e7c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9aca431c8251c3e7771e1b3d45e0e7c2">&#9670;&#160;</a></span>MemoryWriter() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">core::MemoryWriter::MemoryWriter </td>
+          <td>(</td>
+          <td class="paramtype">pid_t&#160;</td>
+          <td class="paramname"><em>pid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a>&#160;</td>
+          <td class="paramname"><em>mode</em> = <code>(std::endian::native&#160;==&#160;std::endian::little&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;?&#160;<a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cca1314341b466dcb5e2c880b76414c49fe">utils::Endianness::LITTLE</a>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;:&#160;<a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003ccaa60c6c694491d75b439073b8cb05b139">utils::Endianness::BIG</a>)</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="ad6f0166b68b3343aeaa261ac4e352845" name="ad6f0166b68b3343aeaa261ac4e352845"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6f0166b68b3343aeaa261ac4e352845">&#9670;&#160;</a></span>getEndianness()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::MemoryWriter::getEndianness </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt; <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a> </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9ebcc6fa02a36252c8e7dcedd3f9a840" name="a9ebcc6fa02a36252c8e7dcedd3f9a840"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ebcc6fa02a36252c8e7dcedd3f9a840">&#9670;&#160;</a></span>getPid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::MemoryWriter::getPid </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt; pid_t </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get target PID </p>
+<dl class="section return"><dt>返回</dt><dd>Process ID </dd></dl>
+
+</div>
+</div>
+<a id="abc6c5e190f0f3d95ba2a54e884d3d8b8" name="abc6c5e190f0f3d95ba2a54e884d3d8b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc6c5e190f0f3d95ba2a54e884d3d8b8">&#9670;&#160;</a></span>setEndianness()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::MemoryWriter::setEndianness </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a>&#160;</td>
+          <td class="paramname"><em>mode</em></td><td>)</td>
+          <td> -&gt; void </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad135b0b6df15a71d44101471c011544c" name="ad135b0b6df15a71d44101471c011544c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad135b0b6df15a71d44101471c011544c">&#9670;&#160;</a></span>write() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::MemoryWriter::write </td>
+          <td>(</td>
+          <td class="paramtype">std::uintptr_t&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint64_t&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>writeLen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const -&gt; std::expected&lt;<a class="el" href="structcore_1_1WriteResult.html">WriteResult</a>, std::string&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write a value to memory at the specified address </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">address</td><td>Target address in remote process </td></tr>
+    <tr><td class="paramname">value</td><td><a class="el" href="structValue.html">Value</a> to write (will be truncated to writeLen bytes) </td></tr>
+    <tr><td class="paramname">writeLen</td><td>Number of bytes to write (1, 2, 4, or 8) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Expected with <a class="el" href="structcore_1_1WriteResult.html" title="Result of a single memory write operation">WriteResult</a> or error message </dd></dl>
+
+</div>
+</div>
+<a id="a42d80a675561be2b06aa0dcae792585e" name="a42d80a675561be2b06aa0dcae792585e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42d80a675561be2b06aa0dcae792585e">&#9670;&#160;</a></span>write() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::MemoryWriter::write </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::expected&lt;std::size_t, std::string&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write scalar value to memory address </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Scalar type (int, float, etc.) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">addr</td><td>Target address </td></tr>
+    <tr><td class="paramname">value</td><td><a class="el" href="structValue.html">Value</a> to write </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Expected bytes written or error message </dd></dl>
+
+</div>
+</div>
+<a id="abff8f798c07dd70feb3f62701b496c05" name="abff8f798c07dd70feb3f62701b496c05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abff8f798c07dd70feb3f62701b496c05">&#9670;&#160;</a></span>writeByte()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::MemoryWriter::writeByte </td>
+          <td>(</td>
+          <td class="paramtype">std::uintptr_t&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint8_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const -&gt; std::expected&lt;<a class="el" href="structcore_1_1WriteResult.html">WriteResult</a>, std::string&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write a single byte to memory </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">address</td><td>Target address </td></tr>
+    <tr><td class="paramname">value</td><td>Byte value </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Expected with <a class="el" href="structcore_1_1WriteResult.html" title="Result of a single memory write operation">WriteResult</a> or error message </dd></dl>
+
+</div>
+</div>
+<a id="a9b2d81bb29747b177825bc95c94db0ac" name="a9b2d81bb29747b177825bc95c94db0ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b2d81bb29747b177825bc95c94db0ac">&#9670;&#160;</a></span>writeBytes() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::MemoryWriter::writeBytes </td>
+          <td>(</td>
+          <td class="paramtype">std::uintptr_t&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::expected&lt;<a class="el" href="structcore_1_1WriteResult.html">WriteResult</a>, std::string&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write bytes from a buffer to memory </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">address</td><td>Target address </td></tr>
+    <tr><td class="paramname">data</td><td>Pointer to data buffer </td></tr>
+    <tr><td class="paramname">size</td><td>Number of bytes to write </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Expected with <a class="el" href="structcore_1_1WriteResult.html" title="Result of a single memory write operation">WriteResult</a> or error message </dd></dl>
+
+</div>
+</div>
+<a id="a1b78c4bc08d1a9d6c4c2947813158e15" name="a1b78c4bc08d1a9d6c4c2947813158e15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b78c4bc08d1a9d6c4c2947813158e15">&#9670;&#160;</a></span>writeBytes() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::MemoryWriter::writeBytes </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::span&lt; const std::uint8_t &gt;&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const -&gt; std::expected&lt;std::size_t, std::string&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write byte array to memory address </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">addr</td><td>Target address </td></tr>
+    <tr><td class="paramname">data</td><td>Byte data to write </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Expected bytes written or error message </dd></dl>
+
+</div>
+</div>
+<a id="afa7afc84d7b4ecb90ee60bd8f6227555" name="afa7afc84d7b4ecb90ee60bd8f6227555"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa7afc84d7b4ecb90ee60bd8f6227555">&#9670;&#160;</a></span>writeString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::MemoryWriter::writeString </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>str</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const -&gt; std::expected&lt;std::size_t, std::string&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write C-style string to memory address </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">addr</td><td>Target address </td></tr>
+    <tr><td class="paramname">str</td><td>String to write (null-terminated) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Expected bytes written or error message </dd></dl>
+
+</div>
+</div>
+<a id="a59fb6d433c960fd56fe9008807b9f2bb" name="a59fb6d433c960fd56fe9008807b9f2bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59fb6d433c960fd56fe9008807b9f2bb">&#9670;&#160;</a></span>writeToMatch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::MemoryWriter::writeToMatch </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classcore_1_1Scanner.html">Scanner</a> &amp;&#160;</td>
+          <td class="paramname"><em>scanner</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint64_t&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::expected&lt;<a class="el" href="structcore_1_1WriteResult.html">WriteResult</a>, std::string&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write value to a specific match by index </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scanner</td><td><a class="el" href="classcore_1_1Scanner.html" title="High-level scanner managing scan sessions">Scanner</a> with match results </td></tr>
+    <tr><td class="paramname">value</td><td><a class="el" href="structValue.html">Value</a> to write </td></tr>
+    <tr><td class="paramname">index</td><td>Target match index </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Expected with <a class="el" href="structcore_1_1WriteResult.html" title="Result of a single memory write operation">WriteResult</a> or error message </dd></dl>
+
+</div>
+</div>
+<a id="a9ed903555df4c163de0e584f7d0be610" name="a9ed903555df4c163de0e584f7d0be610"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ed903555df4c163de0e584f7d0be610">&#9670;&#160;</a></span>writeToMatches()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::MemoryWriter::writeToMatches </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classcore_1_1Scanner.html">Scanner</a> &amp;&#160;</td>
+          <td class="paramname"><em>scanner</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint64_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; <a class="el" href="structcore_1_1BatchWriteResult.html">BatchWriteResult</a> </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write value to all matches in scanner </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scanner</td><td><a class="el" href="classcore_1_1Scanner.html" title="High-level scanner managing scan sessions">Scanner</a> with match results </td></tr>
+    <tr><td class="paramname">value</td><td><a class="el" href="structValue.html">Value</a> to write </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Batch write result </dd></dl>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>src/core/<a class="el" href="memory_8cppm.html">memory.cppm</a></li>
+<li>src/core/<a class="el" href="memory__writer_8cppm.html">memory_writer.cppm</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacecore.html">core</a></li><li class="navelem"><a class="el" href="classcore_1_1MemoryWriter.html">MemoryWriter</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

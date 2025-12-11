@@ -1,0 +1,27 @@
+var structUserValue =
+[
+    [ "bytearrayValue", "structUserValue.html#a9f72b681be735c23964acb9c25a401a5", null ],
+    [ "byteMask", "structUserValue.html#a056f41e90861ba52474a794a31a31cd1", null ],
+    [ "f32", "structUserValue.html#a33bcc2a052a4355d44cc3e2faa1607ee", null ],
+    [ "f32h", "structUserValue.html#a06a2863c14d45915b037234a2d8f8e08", null ],
+    [ "f64", "structUserValue.html#a504aa34a7a87b3a857bd594a5c94d1b0", null ],
+    [ "f64h", "structUserValue.html#a2a857a6432d2b0bff02397e1f05be70b", null ],
+    [ "flags", "structUserValue.html#ae0b8c902793ffab73d80b4b7d9e77ec7", null ],
+    [ "s16", "structUserValue.html#af99d15455b3cfec2e8ef6ff326984a30", null ],
+    [ "s16h", "structUserValue.html#ac71d5bfc909ebbf0404fb8d61a0fda51", null ],
+    [ "s32", "structUserValue.html#a55e6e68a53ee7b14ee3d80b430876a90", null ],
+    [ "s32h", "structUserValue.html#a8c7713dc614aa76c428f6454a66ccadb", null ],
+    [ "s64", "structUserValue.html#a4c4f3bcb808dae844f301a02037390fb", null ],
+    [ "s64h", "structUserValue.html#a443c5afb1d5cab0ef7868dfb67454426", null ],
+    [ "s8", "structUserValue.html#a41c15c62c8a66489beff17942fa54fd6", null ],
+    [ "s8h", "structUserValue.html#a44d28d3a424e0626129e7fab557b0e91", null ],
+    [ "stringValue", "structUserValue.html#a10ae1ef266185df9e859b5ebae20d1b1", null ],
+    [ "u16", "structUserValue.html#a7a2069cc69a6b07b539085809846dde0", null ],
+    [ "u16h", "structUserValue.html#a761214e0d7a748bf92ae5d3efdaa6f7f", null ],
+    [ "u32", "structUserValue.html#a26050cf60d7235e28275418d58de0ec4", null ],
+    [ "u32h", "structUserValue.html#a174b2c7655c9e6eac68290f83aa71870", null ],
+    [ "u64", "structUserValue.html#a232e0eaee6daea2303dc78aede7358c7", null ],
+    [ "u64h", "structUserValue.html#a8e8de6025a48ee797e3ec0b8a98b9d9b", null ],
+    [ "u8", "structUserValue.html#a4e4de4fe9479ce3621749a834bcb5c60", null ],
+    [ "u8h", "structUserValue.html#a3601f2799cf66cb575682b419ee7fe21", null ]
+];
