@@ -3,7 +3,30 @@ set -uo pipefail
 
 # 说明：以 sudo 方式运行此脚本，逐个执行集成测试
 # 用法：
-#   sudo bash test/integration/run_all_tests.sh
+#   sudo bash test/integration/run_all_tests.sh [--no-color]
+
+# ===============================================================================
+# 命令行参数解析
+# ===============================================================================
+
+USE_COLORS=1
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --no-color)
+      USE_COLORS=0
+      shift
+      ;;
+    *)
+      echo "Unknown option: $1" >&2
+      echo "Usage: $0 [--no-color]" >&2
+      exit 1
+      ;;
+  esac
+done
+
+# ===============================================================================
+# 路径和变量定义
+# ===============================================================================
 
 ROOT_DIR="$(cd "$(dirname "$0")"/../.. && pwd)"
 BUILD_DIR="$ROOT_DIR/build"
@@ -12,7 +35,10 @@ PY_SCRIPT="$SCRIPT_DIR/test_integration.py"
 REPORT_DIR="$SCRIPT_DIR"
 REPORT_FILE="$REPORT_DIR/integration-report-$(date +%Y%m%d-%H%M%S).txt"
 
+# ===============================================================================
 # 颜色定义
+# ===============================================================================
+
 COLOR_RESET='\033[0m'
 COLOR_BOLD='\033[1m'
 COLOR_GREEN='\033[0;32m'
@@ -21,7 +47,26 @@ COLOR_YELLOW='\033[0;33m'
 COLOR_BLUE='\033[0;34m'
 COLOR_CYAN='\033[0;36m'
 
-# 美化打印函数
+# 如果未通过参数启用颜色，检测终端是否支持颜色
+if [[ "$USE_COLORS" -eq 1 && ( ! -t 1 || -z "${TERM:-}" || "${TERM}" == "dumb" ) ]]; then
+  USE_COLORS=0
+fi
+
+# 如果不支持颜色，禁用所有颜色变量
+if [[ "$USE_COLORS" -eq 0 ]]; then
+  COLOR_RESET=''
+  COLOR_BOLD=''
+  COLOR_GREEN=''
+  COLOR_RED=''
+  COLOR_YELLOW=''
+  COLOR_BLUE=''
+  COLOR_CYAN=''
+fi
+
+# ===============================================================================
+# 打印函数
+# ===============================================================================
+
 print_header() {
   echo -e "\n${COLOR_BOLD}${COLOR_CYAN}╔═══════════════════════════════════════════════════════════════╗${COLOR_RESET}"
   echo -e "${COLOR_BOLD}${COLOR_CYAN}║  $1${COLOR_RESET}"
@@ -47,37 +92,16 @@ print_summary() {
   echo -e "${COLOR_BOLD}${COLOR_CYAN}╚═══════════════════════════════════════════════════════════════╝${COLOR_RESET}"
 }
 
-# 检查构建目录
-if [[ ! -d "$BUILD_DIR" ]]; then
-  echo "[ERROR] Build directory not found: $BUILD_DIR" >&2
-  exit 1
-fi
-
-# 检查 Python 测试脚本
-if [[ ! -f "$PY_SCRIPT" ]]; then
-  echo "[ERROR] Integration python script not found: $PY_SCRIPT" >&2
-  exit 1
-fi
-
-results=()
-passes=0
-failures=0
-
-# 初始化报告文件
-{
-  echo "╔═══════════════════════════════════════════════════════════════╗"
-  echo "║  Integration Test Report                                      ║"
-  echo "╚═══════════════════════════════════════════════════════════════╝"
-  echo ""
-  echo "Generated at: $(date -Iseconds)"
-  echo "Workspace: $ROOT_DIR"
-  echo "Build Dir: $BUILD_DIR"
-  echo "Script: $PY_SCRIPT"
-  echo ""
-} > "$REPORT_FILE"
-
-print_header "NewScanmem Integration Tests"
-echo -e "${COLOR_YELLOW}Report will be saved to:${COLOR_RESET} $REPORT_FILE"
+print_results() {
+  for i in "${!results[@]}"; do
+    name="${results[$i]}"
+    if [ $i -lt $passes ]; then
+      echo "✓ PASS: $name"
+    else
+      echo "✗ FAIL: $name"
+    fi
+  done
+}
 
 run_test() {
   local name="$1"; shift
@@ -102,12 +126,58 @@ run_test() {
   echo -e "${COLOR_BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${COLOR_RESET}"
 }
 
-# 测试列表
+# ===============================================================================
+# 前置检查
+# ===============================================================================
+
+# 检查构建目录
+if [[ ! -d "$BUILD_DIR" ]]; then
+  echo "[ERROR] Build directory not found: $BUILD_DIR" >&2
+  exit 1
+fi
+
+# 检查 Python 测试脚本
+if [[ ! -f "$PY_SCRIPT" ]]; then
+  echo "[ERROR] Integration python script not found: $PY_SCRIPT" >&2
+  exit 1
+fi
+
+# ===============================================================================
+# 初始化
+# ===============================================================================
+
+results=()
+passes=0
+failures=0
+
+# 初始化报告文件
+{
+  echo "╔═══════════════════════════════════════════════════════════════╗"
+  echo "║  Integration Test Report                                      ║"
+  echo "╚═══════════════════════════════════════════════════════════════╝"
+  echo ""
+  echo "Generated at: $(date -Iseconds)"
+  echo "Workspace: $ROOT_DIR"
+  echo "Build Dir: $BUILD_DIR"
+  echo "Script: $PY_SCRIPT"
+  echo ""
+} > "$REPORT_FILE"
+
+print_header "NewScanmem Integration Tests"
+echo -e "${COLOR_YELLOW}Report will be saved to:${COLOR_RESET} $REPORT_FILE"
+
+# ===============================================================================
+# 测试列表：在这里添加或修改集成测试用例
+# ===============================================================================
+
+run_test "target_array_element" \
+  target_array_element int32 500 9999 --wait-modify-ms 10000
+
 run_test "Integration_Scan_Int64" \
   target_fixed_int int64 1122334455667788 9999999999999999 --wait-modify-ms 10000
 
 run_test "Integration_Scan_Double" \
-  target_fixed_double FLOAT_64 12345.6789 99999.9999 --wait-modify-ms 10000
+  target_fixed_double double 12345.6789 99999.9999 --wait-modify-ms 10000
 
 run_test "Integration_Scan_Struct_Field" \
   target_struct_field int32 9999 1000000 --wait-modify-ms 10000
@@ -115,18 +185,15 @@ run_test "Integration_Scan_Struct_Field" \
 # 可选：运行一个手动值观察目标，不做修改验证，仅便于手工实验
 # sudo "$BUILD_DIR/test/integration/target_multiple_values" --wait-modify-ms 15000 || true
 
+# ===============================================================================
+# 打印摘要报告
+# ===============================================================================
+
 print_summary
 
 total=$((passes+failures))
 echo ""
-for i in "${!results[@]}"; do
-  local name="${results[$i]}"
-  if [ $i -lt $passes ]; then
-    print_pass "$name"
-  else
-    print_fail "$name"
-  fi
-done
+print_results
 
 echo ""
 echo -e "${COLOR_BOLD}Total:${COLOR_RESET} $total tests"
@@ -142,14 +209,7 @@ echo -e "${COLOR_RED}${COLOR_BOLD}Failed:${COLOR_RESET} $failures"
   echo ""
   echo "Total: $total | PASS: $passes | FAIL: $failures"
   echo ""
-  for i in "${!results[@]}"; do
-    local name="${results[$i]}"
-    if [ $i -lt $passes ]; then
-      echo "✓ PASS: $name"
-    else
-      echo "✗ FAIL: $name"
-    fi
-  done
+  print_results
 } >> "$REPORT_FILE"
 
 echo ""

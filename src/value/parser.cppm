@@ -76,10 +76,15 @@ inline auto toLower(std::string str) -> std::string {
     if (TO_STR == "int64" || TO_STR == "i64") {
         return ScanDataType::INTEGER_64;
     }
-    if (TO_STR == "float" || TO_STR == "FLOAT_32" || TO_STR == "f32") {
+    // 注意：这里已对输入做过 toLower，因此常量需使用小写
+    // 兼容别名：float, f32, float_32, float32
+    if (TO_STR == "float" || TO_STR == "f32" || TO_STR == "float_32" ||
+        TO_STR == "float32") {
         return ScanDataType::FLOAT_32;
     }
-    if (TO_STR == "double" || TO_STR == "FLOAT_64" || TO_STR == "f64") {
+    // 兼容别名：double, f64, float_64, float64
+    if (TO_STR == "double" || TO_STR == "f64" || TO_STR == "float_64" ||
+        TO_STR == "float64") {
         return ScanDataType::FLOAT_64;
     }
     if (TO_STR == "string" || TO_STR == "str") {
