@@ -1,11 +1,6 @@
 name: Docs
 
 "on":
-  push:
-    branches: [main]
-    paths:
-      - 'mkdocs/**'
-      - 'docs/**'
   workflow_run:
     workflows: ["Code Coverage"]
     types: [completed]

@@ -13,7 +13,7 @@ jobs:
   build-and-publish:
     runs-on: ubuntu-24.04
     container:
-      image: ghcr.io/future-re/ubuntu22.04-clang20-boost1.89-gtest1.17:latest
+      image: ghcr.io/future-re/newscanmem:latest
 
     steps:
       - name: Checkout

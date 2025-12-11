@@ -18,11 +18,11 @@ plugins:
   # The i18n plugin supports default_language and languages mappings.
   # Removed unrecognized options: docs_structure, reconfigure_material
       languages:
-        zh:
+        - code: zh
           name: 中文
           default: true
           build: true
-        en:
+        - code: en
           name: English
           build: false  # 暂不构建英文站点
 
