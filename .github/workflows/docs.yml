@@ -21,6 +21,9 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-24.04
 
+    environment:
+      name: github-pages
+
     steps:
       - uses: actions/checkout@v4
 
