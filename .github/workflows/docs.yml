@@ -38,20 +38,25 @@ jobs:
         with:
           workflow: coverage.yml
           name: coverage-report-html
-          path: mkdocs/docs/coverage
+          path: coverage-html-temp
           if_no_artifact_found: warn
         continue-on-error: true
 
       - name: Build site
         run: |
-          # Copy coverage HTML if available
-          if [ -d mkdocs/docs/coverage ]; then
-            echo "Coverage report found, will be included in docs"
-          else
-            echo "No coverage report found, building docs without it"
-          fi
           cd mkdocs
           mkdocs build -d site
+          
+      - name: Copy coverage HTML to site
+        run: |
+          # Copy coverage HTML if downloaded
+          if [ -d coverage-html-temp ]; then
+            echo "Copying coverage report to site/coverage/"
+            mkdir -p mkdocs/site/coverage
+            cp -r coverage-html-temp/* mkdocs/site/coverage/
+          else
+            echo "No coverage report found, skipping"
+          fi
 
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v3
