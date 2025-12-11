@@ -1,7 +1,8 @@
 # find_boost.cmake — 如果系统未提供 Boost，则下载源码并用本机编译器构建（stage），创建导入目标
 
-# 优先尝试系统安装的 Boost（会创建 Boost::filesystem / Boost::regex 导入目标）
-find_package(Boost 1.89.0 QUIET COMPONENTS filesystem regex)
+# 优先尝试系统安装的 Boost（优先使用 Boost 提供的 Config 包，创建 Boost::filesystem / Boost::regex 导入目标）
+# 使用 CONFIG 模式以配合 CMP0167=NEW 策略（若系统未安装 Config 包，则回退到源码 FetchContent 构建）
+find_package(Boost 1.89.0 CONFIG QUIET COMPONENTS filesystem regex)
 
 if(NOT Boost_FOUND)
     message(STATUS "System Boost not found. Will fetch and build Boost 1.89 from source (cached).")

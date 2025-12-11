@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.28)
 
 project(NewScanmem VERSION 0.1.0 LANGUAGES CXX)
 
+# 当使用新的查找/配置行为时，显式设置 CMP0167 为 NEW，强制使用包的 Config 模式
+if(POLICY CMP0167)
+  cmake_policy(SET CMP0167 NEW)
+endif()
+
 enable_testing()
 
 # 设置 C++ 标准和要求
