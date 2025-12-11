@@ -44,6 +44,8 @@ jobs:
 
       - name: Build site
         run: |
+          # 清理可能存在的旧覆盖率目录
+          rm -rf mkdocs/docs/coverage
           cd mkdocs
           mkdocs build -d site
           

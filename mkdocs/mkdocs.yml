@@ -11,6 +11,10 @@ theme:
 repo_url: https://github.com/future-re/NewScanmem
 repo_name: GitHub
 
+# 排除目录，防止覆盖率HTML被MkDocs处理
+exclude_docs: |
+  coverage/
+
 plugins:
   - search
   - i18n:
