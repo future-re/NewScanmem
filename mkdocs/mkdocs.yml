@@ -11,7 +11,7 @@ theme:
 repo_url: https://github.com/future-re/NewScanmem
 repo_name: GitHub
 
-# 排除目录，防止覆盖率HTML被MkDocs处理
+# 排除目录，防止覆盖率HTML被MkDocs处理（但保留doxygen-output以便复制）
 exclude_docs: |
   coverage/
 
@@ -33,6 +33,7 @@ plugins:
 nav:
   - 首页: index.md
   - 覆盖率报告: coverage.md
+  - API 文档: api.md
   - 使用指南:
     - '扫描与过滤': scanning_guide.md
   - API 模块参考:

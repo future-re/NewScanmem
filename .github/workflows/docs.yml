@@ -33,6 +33,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install mkdocs mkdocs-material mkdocs-i18n
 
+      - name: Install Doxygen
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y doxygen graphviz
+
       - name: Try download coverage HTML artifact
         uses: dawidd6/action-download-artifact@v6
         with:
@@ -46,6 +51,11 @@ jobs:
         run: |
           # 清理可能存在的旧覆盖率目录
           rm -rf mkdocs/docs/coverage
+          
+          # 清理并生成 API 文档（仅在 CI 中生成，不提交到 git）
+          rm -rf mkdocs/docs/doxygen-output
+          ./generate_api_docs.sh
+          
           cd mkdocs
           mkdocs build -d site
           

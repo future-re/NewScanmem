@@ -8,7 +8,7 @@
 下面嵌入了完整的 HTML 覆盖率报告。您可以：
 
 - 📑 在下方 iframe 中直接浏览
-- 🔗 <a href="/coverage/index.html" target="_blank">在新标签页打开完整报告</a>
+- 🔗 <a href="../coverage/index.html" target="_blank">在新标签页打开完整报告</a>
 
 !!! tip "使用提示"
     - 点击文件名可查看详细的行覆盖率
@@ -18,5 +18,5 @@
 ---
 
 <div style="width:100%; height:900px; border:1px solid #ddd; border-radius:4px; overflow:hidden;">
-    <iframe src="/coverage/index.html" style="width:100%;height:100%;border:0;" title="Coverage Report"></iframe>
+    <iframe src="../coverage/index.html" style="width:100%;height:100%;border:0;" title="Coverage Report"></iframe>
 </div>
