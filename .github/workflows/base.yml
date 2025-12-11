@@ -16,7 +16,7 @@ jobs:
     name: Build (Linux)
     runs-on: ubuntu-22.04
     container:
-      image: ${{ github.repository }}:latest
+      image: ${{ toLower(github.repository) }}:latest
 
     steps:
       - name: Checkout code
