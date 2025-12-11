@@ -24,6 +24,8 @@ set(TEST_SOURCES
     core/test_match.cpp
     core/test_proc_mem.cpp
     core/test_match_formatter.cpp
+    core/test_region_classifier.cpp
+    core/test_match_collect.cpp
     scan/test_bytes.cpp
     scan/test_numeric.cpp
     scan/test_string.cpp
@@ -32,6 +34,7 @@ set(TEST_SOURCES
     scan/test_engine.cpp
     scan/test_match_storage.cpp
     scan/test_factory.cpp
+    ui/test_show_message.cpp
 )
 
 # 为每个测试源生成可执行文件并注册 gtest_discover_tests

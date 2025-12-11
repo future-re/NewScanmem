@@ -6,3 +6,4 @@ build/
 mkdocs/site/
 cmake-4.2.1*
 mkdocs/docs/doxygen-output/
+mkdocs/docs/coverage_html/
