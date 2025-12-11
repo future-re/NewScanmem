@@ -21,8 +21,8 @@ class StreamCapture {
         std::cout.rdbuf(oldCout);
         std::cerr.rdbuf(oldCerr);
     }
-    [[nodiscard]] std::string out() const { return coutBuf.str(); }
-    [[nodiscard]] std::string err() const { return cerrBuf.str(); }
+    [[nodiscard]] auto out() const -> std::string { return coutBuf.str(); }
+    [[nodiscard]] auto err() const -> std::string { return cerrBuf.str(); }
 
    private:
     std::stringstream coutBuf;

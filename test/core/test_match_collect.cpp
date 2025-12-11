@@ -54,17 +54,17 @@ TEST(MatchCollectorTest, ExportTimeFilterStackAllowed) {
 
     auto [entries, total] = collector.collect(scanner, opts);
     // Only even indices were marked as matches; half of 8 => 4
-    EXPECT_EQ(total, 4u);
-    ASSERT_EQ(entries.size(), 4u);
+    EXPECT_EQ(total, 4U);
+    ASSERT_EQ(entries.size(), 4U);
     // Verify indices are global across matched cells (0..3)
-    EXPECT_EQ(entries[0].index, 0u);
-    EXPECT_EQ(entries[1].index, 1u);
-    EXPECT_EQ(entries[2].index, 2u);
-    EXPECT_EQ(entries[3].index, 3u);
+    EXPECT_EQ(entries[0].index, 0U);
+    EXPECT_EQ(entries[1].index, 1U);
+    EXPECT_EQ(entries[2].index, 2U);
+    EXPECT_EQ(entries[3].index, 3U);
     // Region string should start with "stack" for stack addresses
     for (const auto& e : entries) {
         EXPECT_NE(e.region.find("stack"), std::string::npos);
-        EXPECT_EQ(e.value.size(), 1u);
+        EXPECT_EQ(e.value.size(), 1U);
     }
 }
 
@@ -96,6 +96,6 @@ TEST(MatchCollectorTest, ExportTimeFilterHeapOnlyDropsStack) {
 
     auto [entries, total] = collector.collect(scanner, opts);
     // All addresses are on stack; heap-only filter should drop them
-    EXPECT_EQ(total, 0u);
+    EXPECT_EQ(total, 0U);
     EXPECT_TRUE(entries.empty());
 }
