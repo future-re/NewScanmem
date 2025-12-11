@@ -8,6 +8,7 @@ set(INTEGRATION_TARGETS
     target_array_element
     target_struct_field
     target_multiple_values
+    target_fixed_str
 )
 
 foreach(target ${INTEGRATION_TARGETS})

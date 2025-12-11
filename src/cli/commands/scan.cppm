@@ -41,13 +41,13 @@ class ScanCommand : public Command {
     [[nodiscard]] auto getUsage() const -> std::string_view override {
         return "scan <type> <match> [value [high]]\n"
                "  <type>: "
-               "int|int8|i8|int16|i16|int32|i32|int64|i64|float|double|any|"
-               "anyint|anyfloat\n"
+               "int|int8|i8|int16|i16|int32|i32|int64|i64|float|double|"
+               "string|str|bytearray|bytes|any|anyint|anyfloat\n"
                "  <match>: "
                "any|=|eq|!=|neq|gt|lt|range|changed|notchanged|inc|dec|incby|"
                "decby\n"
                "  示例: scan int64 = 123456 / scan int range 100 200 / scan "
-               "int changed";
+               "int changed / scan string = \"Hello\"";
     }
 
     [[nodiscard]] auto validateArgs(const std::vector<std::string>& args) const

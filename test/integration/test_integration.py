@@ -128,7 +128,7 @@ def main():
         # 执行 NewScanmem 获取匹配列表
         print(f"[3] Executing scan commands...")
         
-        scanmem_cmd = ["sudo", str(scanmem_exe)]
+        scanmem_cmd = [str(scanmem_exe)]
         
         # 设置环境变量，禁用 ANSI 颜色输出
         env = os.environ.copy()

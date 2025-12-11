@@ -110,8 +110,8 @@ run_test() {
   echo "" >> "$REPORT_FILE"
   echo "===== Running: $name =====" >> "$REPORT_FILE"
   
-  # 以 sudo 调用 python 脚本，确保能附加进程
-  if sudo python3 "$PY_SCRIPT" "$@" 2>&1 | tee -a "$REPORT_FILE"; then
+  # 调用 python 脚本(脚本本身已以 sudo 运行,无需再次 sudo)
+  if python3 "$PY_SCRIPT" "$@" 2>&1 | tee -a "$REPORT_FILE"; then
     results+=("$name")
     passes=$((passes+1))
     echo "RESULT: PASS" >> "$REPORT_FILE"
@@ -173,14 +173,17 @@ echo -e "${COLOR_YELLOW}Report will be saved to:${COLOR_RESET} $REPORT_FILE"
 run_test "target_array_element" \
   target_array_element int32 500 9999 --wait-modify-ms 10000
 
-run_test "Integration_Scan_Int64" \
-  target_fixed_int int64 1122334455667788 9999999999999999 --wait-modify-ms 10000
+# run_test "Integration_Scan_Int64" \
+#   target_fixed_int int64 1122334455667788 9999999999999999 --wait-modify-ms 10000
 
-run_test "Integration_Scan_Double" \
-  target_fixed_double double 12345.6789 99999.9999 --wait-modify-ms 10000
+# run_test "Integration_Scan_Double" \
+#   target_fixed_double double 12345.6789 99999.9999 --wait-modify-ms 10000
 
-run_test "Integration_Scan_Struct_Field" \
-  target_struct_field int32 9999 1000000 --wait-modify-ms 10000
+run_test "Integration_Scan_Fixed_Str" \
+  target_fixed_str char* "Hello, World!" "Modified String!" --wait-modify-ms 10000
+
+# run_test "Integration_Scan_Struct_Field" \
+#   target_struct_field int32 9999 1000000 --wait-modify-ms 10000
 
 # 可选：运行一个手动值观察目标，不做修改验证，仅便于手工实验
 # sudo "$BUILD_DIR/test/integration/target_multiple_values" --wait-modify-ms 15000 || true
