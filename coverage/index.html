@@ -1170,28 +1170,17 @@
                   
 
 
+  
+  
+
 
 <h1 id="_1">覆盖率报告</h1>
-<p><iframe
-    id="coviframe"
-    src="covindex.html"
-    frameborder="0"
-    scrolling="no"
-    onload="resizeIframe();"
-    width="100%">
-</iframe>
-</p>
-<script>
-var coviframe = document.getElementById("coviframe");
+<p>下面页面嵌入了生成的 HTML 覆盖率报告（<code>coverage_html/index.html</code>）。如果浏览器或环境不支持嵌入，点击下方链接可在新窗口打开完整报告。</p>
+<iframe src="/coverage_html/index.html" style="width:100%;height:900px;border:0;" title="Coverage Report"></iframe>
 
-function resizeIframe() {
-    coviframe.style.height = coviframe.contentWindow.document.documentElement.offsetHeight + 'px';
-}
-
-coviframe.contentWindow.document.body.onclick = function() {
-    coviframe.contentWindow.location.reload();
-}
-</script>
+<ul>
+<li><a href="/coverage_html/index.html">在新窗口打开完整报告</a></li>
+</ul>
 
 
 
