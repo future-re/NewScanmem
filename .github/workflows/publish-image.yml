@@ -49,6 +49,6 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           platforms: linux/amd64
           cache-from: |
-            type=registry,ref=ghcr.io/${{ github.repository }}:0.2
+            type=registry,ref=ghcr.io/${{ github.repository }}:latest
             type=gha
           cache-to: type=gha,mode=max

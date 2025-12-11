@@ -9,13 +9,14 @@ name: CI Workflow
 permissions:
   contents: read
   packages: read
+  actions: read
 
 jobs:
   build:
     name: Build (Linux)
     runs-on: ubuntu-22.04
     container:
-      image: ghcr.io/future-re/ubuntu22.04-clang20-boost1.89-gtest1.17:latest
+      image: ${{ github.repository }}:latest
 
     steps:
       - name: Checkout code
