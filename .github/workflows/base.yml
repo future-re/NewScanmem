@@ -16,7 +16,7 @@ jobs:
     name: Build (Linux)
     runs-on: ubuntu-22.04
     container:
-      image: ${{ toLower(github.repository) }}:latest
+      image: future-re/newscanmem:latest
 
     steps:
       - name: Checkout code
