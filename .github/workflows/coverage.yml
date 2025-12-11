@@ -20,28 +20,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Restore ccache
-        uses: actions/cache@v4
-        with:
-          path: ~/.ccache
-          key: ${{ runner.os }}-ccache-${{ hashFiles('**/*') }}
-          restore-keys: |
-            ${{ runner.os }}-ccache-
-
-      - name: Restore build cache
-        uses: actions/cache@v4
-        with:
-          path: build
-          key: ${{ runner.os }}-build-${{ hashFiles('**/*') }}
-          restore-keys: |
-            ${{ runner.os }}-build-
-
-      - name: Ensure ccache available
-        run: |
-          if ! command -v ccache >/dev/null 2>&1; then
-            sudo apt-get update && sudo apt-get install -y ccache || true
-          fi
-
       - name: Configure CMake with Coverage (if no artifact)
         if: ${{ !hashFiles('build/CMakeCache.txt') }}
         run: |
@@ -49,8 +27,7 @@ jobs:
             -GNinja \
             -DCMAKE_BUILD_TYPE=Debug \
             -DENABLE_COVERAGE=ON \
-            -DCMAKE_CXX_COMPILER=clang++-20 \
-            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+            -DCMAKE_CXX_COMPILER=clang++-20
 
       - name: Rebuild with coverage flags (if needed)
         run: |
@@ -60,8 +37,7 @@ jobs:
               -GNinja \
               -DCMAKE_BUILD_TYPE=Debug \
               -DENABLE_COVERAGE=ON \
-              -DCMAKE_CXX_COMPILER=clang++-20 \
-              -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+              -DCMAKE_CXX_COMPILER=clang++-20
           fi
           cmake --build build --parallel
 
