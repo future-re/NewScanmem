@@ -1,10 +1,9 @@
 name: Code Coverage
 
-"on":
-  workflow_run:
-    workflows: ["CI Workflow"]
-    types: [completed]
+on:
+  push:
     branches: [main]
+  workflow_dispatch: {}
 
 permissions:
   contents: read
@@ -13,7 +12,6 @@ permissions:
 jobs:
   coverage:
     name: Generate Coverage Report
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-22.04
     container:
       image: ghcr.io/future-re/newscanmem:latest
@@ -21,26 +19,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.workflow_run.head_sha }}
-
-      - name: Download build artifact from triggering workflow
-        uses: dawidd6/action-download-artifact@v6
-        with:
-          workflow: base.yml
-          run_id: ${{ github.event.workflow_run.id }}
-          name: build-output-linux
-          path: build-artifact
-        continue-on-error: true
-
-      - name: Restore build (if present)
-        run: |
-          if [ -d build-artifact ]; then
-            mv build-artifact build
-            echo "Restored build from artifact"
-          else
-            echo "No artifact found, will build locally"
-          fi
 
       - name: Configure CMake with Coverage (if no artifact)
         if: ${{ !hashFiles('build/CMakeCache.txt') }}
