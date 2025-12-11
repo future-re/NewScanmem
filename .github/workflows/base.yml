@@ -16,7 +16,7 @@ jobs:
     name: Build (Linux)
     runs-on: ubuntu-22.04
     container:
-      image: future-re/newscanmem:latest
+      image: ghcr.io/future-re/newscanmem:latest
 
     steps:
       - name: Checkout code
