@@ -102,6 +102,7 @@ class ScanCommand : public Command {
         ScanOptions opts;
         opts.dataType = dataType;
         opts.matchType = matchType;
+        opts.regionLevel = m_session->regionLevel;
 
         std::optional<UserValue> userVal;
         size_t startIdx = 2;

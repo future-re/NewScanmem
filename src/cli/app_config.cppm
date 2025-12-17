@@ -12,6 +12,8 @@ module;
 
 export module cli.app_config;
 
+import core.maps;
+
 export namespace cli {
 
 struct AppConfig {
@@ -20,6 +22,7 @@ struct AppConfig {
     bool exitOnError{false};
     bool colorMode{true};     // 默认启用彩色输出
     bool autoBaseline{true};  // 默认自动建立基线快照
+    core::RegionScanLevel regionLevel{core::RegionScanLevel::ALL_RW};
     std::optional<std::string> initialCommands;
 
     [[nodiscard]] auto isValid() const noexcept -> bool {

@@ -17,6 +17,7 @@ import cli.command;
 import cli.session;
 import cli.app_config;
 import ui.show_message;
+import core.maps;
 
 // 确保显式使用 cli 命名空间
 using cli::AppConfig;
@@ -44,6 +45,9 @@ class SetCommand : public Command {
                "  color on|off         是否启用彩色输出\n"
                "  autoBaseline on|off  首次扫描时自动建立基线\n"
                "  exitOnError on|off   出错是否退出\n"
+               "  regionLevel "
+               "ALL|ALL_RW|HEAP_STACK_EXECUTABLE|HEAP_STACK_EXECUTABLE_BSS "
+               "设置扫描区域\n"
                "  init <commands>      初始命令(原样保存)";
     }
 
@@ -100,6 +104,27 @@ class SetCommand : public Command {
         if (key == "exitOnError") {
             return handleBooleanOption(args[1], m_config->exitOnError,
                                        "Exit on error");
+        }
+        if (key == "regionLevel") {
+            const auto& levelStr = args[1];
+            core::RegionScanLevel level = core::RegionScanLevel::ALL_RW;
+            if (levelStr == "ALL") {
+                level = core::RegionScanLevel::ALL;
+            } else if (levelStr == "ALL_RW") {
+                level = core::RegionScanLevel::ALL_RW;
+            } else if (levelStr == "HEAP_STACK_EXECUTABLE") {
+                level = core::RegionScanLevel::HEAP_STACK_EXECUTABLE;
+            } else if (levelStr == "HEAP_STACK_EXECUTABLE_BSS") {
+                level = core::RegionScanLevel::HEAP_STACK_EXECUTABLE_BSS;
+            } else {
+                return std::unexpected(
+                    "Invalid regionLevel: " + levelStr +
+                    ". Valid values: ALL, ALL_RW, HEAP_STACK_EXECUTABLE, "
+                    "HEAP_STACK_EXECUTABLE_BSS");
+            }
+            m_config->regionLevel = level;
+            ui::MessagePrinter{}.info("Region level: {}", levelStr);
+            return CommandResult{.success = true, .message = ""};
         }
         if (key == "init") {
             // 合并剩余参数作为初始命令串

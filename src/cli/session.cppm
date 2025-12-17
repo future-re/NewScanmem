@@ -11,6 +11,7 @@ module;
 
 export module cli.session;
 
+import core.maps;
 import core.scanner;
 import utils.endianness;
 using core::Scanner;
@@ -20,6 +21,7 @@ export namespace cli {
 struct SessionState {
     pid_t pid{0};
     std::unique_ptr<Scanner> scanner;
+    core::RegionScanLevel regionLevel{core::RegionScanLevel::ALL_RW};
     utils::Endianness endianness{(std::endian::native == std::endian::little
                                       ? utils::Endianness::LITTLE
                                       : utils::Endianness::BIG)};
