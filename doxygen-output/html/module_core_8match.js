@@ -12,6 +12,7 @@ var module_core_8match =
     [ "core::MatchEntry::address", "module_core_8match.html#ae82202523386a88397860b46b16ef4a1", null ],
     [ "core::MatchEntry::value", "module_core_8match.html#a0155ce4883020265a256164cde2d85f7", null ],
     [ "core::MatchEntry::region", "module_core_8match.html#a98bbe3de3a8d1c7ce058fc31cddd48f9", null ],
+    [ "core::MatchEntry::writable", "module_core_8match.html#a5e5eb979caa28734cdd208031b7a964f", null ],
     [ "core::MatchCollectionOptions::limit", "module_core_8match.html#aa19aa7b2946f235c0ca8c89e9c1ce322", null ],
     [ "core::MatchCollectionOptions::collectRegion", "module_core_8match.html#a387c0330cf47b6b2406a97a63300d655", null ],
     [ "core::MatchCollectionOptions::regionFilter", "module_core_8match.html#a7bac7028617559e1e4b53b7cbb192031", null ]

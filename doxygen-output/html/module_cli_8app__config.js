@@ -7,5 +7,6 @@ var module_cli_8app__config =
     [ "cli::AppConfig::exitOnError", "module_cli_8app__config.html#aaf6a213d086af3adfe8222e60eccf39e", null ],
     [ "cli::AppConfig::colorMode", "module_cli_8app__config.html#a36fc07a1a782cda15bd20c7087769870", null ],
     [ "cli::AppConfig::autoBaseline", "module_cli_8app__config.html#a96b0080f81fb47a23c569e3b3bc39e61", null ],
+    [ "cli::AppConfig::regionLevel", "module_cli_8app__config.html#afd2f6c5f178ef433b67dfff0f7e4a24f", null ],
     [ "cli::AppConfig::initialCommands", "module_cli_8app__config.html#a1de020f742ba62c651e3f794fb8d34ef", null ]
 ];

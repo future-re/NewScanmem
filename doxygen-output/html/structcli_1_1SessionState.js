@@ -5,5 +5,6 @@ var structcli_1_1SessionState =
     [ "setEndianness", "structcli_1_1SessionState.html#abc1e06e63d66c65b40de226f1b8d5364", null ],
     [ "endianness", "structcli_1_1SessionState.html#a506fc2d66259b36a862a481bdb15e975", null ],
     [ "pid", "structcli_1_1SessionState.html#a5973fc6feb4cab4d1ad424cae7172e9a", null ],
+    [ "regionLevel", "structcli_1_1SessionState.html#a508356ef675833f5fbd7948e36a06add", null ],
     [ "scanner", "structcli_1_1SessionState.html#a3d7d552777b6a2388ee1c93fc69ac7b9", null ]
 ];

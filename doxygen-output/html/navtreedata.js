@@ -76,12 +76,12 @@ var NAVTREEINDEX =
 "classcli_1_1commands_1_1QuitCommand.html#a6263d9647708d447a2afc6b00331614e",
 "classcore_1_1ProcMemIO.html",
 "classui_1_1ConsoleUI.html#a2719a3dc63bedf00a1995107f472ecf2",
-"functions_c.html",
-"module_core_8match__formatter.html#a6853322d8c9011695ce0c48de76ea396",
-"modulemembers_g.html",
-"structByteMatch.html#aa02fcc654bc8ef25719c3c6f37f70bdd",
-"structcli_1_1CommandResult.html#affa318d121f655743c92bfd95adfbbc9",
-"types_8cppm.html#a3bc1410dd0463324cb09b5ee2130c8ee"
+"functions_b.html",
+"module_core_8match.html#adf919bc14d0bfa57f1a5c4426b0a4d3a",
+"modulemembers_func_t.html",
+"snapshot_8cppm.html",
+"structcli_1_1CommandResult.html#adf4f9154fed11db9c7254e767f7056c3",
+"structscan_1_1OldValueAndMatchInfo.html#adb6466011e3792193e69389cf1a6e8ec"
 ];
 
 var SYNCONMSG = '点击 关闭 面板同步';

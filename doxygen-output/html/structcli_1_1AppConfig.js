@@ -6,5 +6,6 @@ var structcli_1_1AppConfig =
     [ "debugMode", "structcli_1_1AppConfig.html#a1465e8d937c6844081e56630bf7a8d43", null ],
     [ "exitOnError", "structcli_1_1AppConfig.html#aaf6a213d086af3adfe8222e60eccf39e", null ],
     [ "initialCommands", "structcli_1_1AppConfig.html#a1de020f742ba62c651e3f794fb8d34ef", null ],
+    [ "regionLevel", "structcli_1_1AppConfig.html#afd2f6c5f178ef433b67dfff0f7e4a24f", null ],
     [ "targetPid", "structcli_1_1AppConfig.html#a5be85714320e85fd849c6890e7cc18db", null ]
 ];
