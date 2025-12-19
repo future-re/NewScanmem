@@ -10,6 +10,5 @@ var engine_8cppm =
     [ "runScanInternal", "engine_8cppm.html#aed4276ac57a143cffb03627a953c5154", null ],
     [ "runScanWithPrevious", "engine_8cppm.html#a931fb06ed6e0c1b8c2cbdf9f36dce8b5", null ],
     [ "scanBlock", "engine_8cppm.html#aff8e5999fd5b84729d7f79755ea8d31c", null ],
-    [ "scanBlockForString", "engine_8cppm.html#a6576bd676c16791315cd736f94fd3ea1", null ],
     [ "scanRegion", "engine_8cppm.html#ab87b81d49e26f6ba5cb0773ce5a1ce4c", null ]
 ];

@@ -330,8 +330,6 @@ engine.cppm 的引用(Include)关系图:</div>
 <tr class="separator:acd4ab87128e7c0509a3b75a88ddc71da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8feacb556107d4fe4741e471c4868f86" id="r_a8feacb556107d4fe4741e471c4868f86"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="engine_8cppm.html#a8feacb556107d4fe4741e471c4868f86">fetchOldBytes</a> (const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;prev, void *addr, std::size_t len, std::vector&lt; std::uint8_t &gt; &amp;out) -&gt; bool</td></tr>
 <tr class="separator:a8feacb556107d4fe4741e471c4868f86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6576bd676c16791315cd736f94fd3ea1" id="r_a6576bd676c16791315cd736f94fd3ea1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="engine_8cppm.html#a6576bd676c16791315cd736f94fd3ea1">scanBlockForString</a> (const std::uint8_t *buffer, std::size_t bytesRead, std::size_t baseIndex, const std::uint8_t *pattern, std::size_t patternSize, <a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html">MatchesAndOldValuesSwath</a> &amp;swath, <a class="el" href="structScanStats.html">ScanStats</a> &amp;stats, <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> matchFlags)</td></tr>
-<tr class="separator:a6576bd676c16791315cd736f94fd3ea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff8e5999fd5b84729d7f79755ea8d31c" id="r_aff8e5999fd5b84729d7f79755ea8d31c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="engine_8cppm.html#aff8e5999fd5b84729d7f79755ea8d31c">scanBlock</a> (const std::uint8_t *buffer, std::size_t bytesRead, std::size_t baseIndex, std::size_t step, const auto &amp;routine, const <a class="el" href="structUserValue.html">UserValue</a> *userValue, <a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html">MatchesAndOldValuesSwath</a> &amp;swath, <a class="el" href="structScanStats.html">ScanStats</a> &amp;stats, void *regionBlockBase, const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> *previousSnapshot, bool usesOld, std::size_t oldSliceLen)</td></tr>
 <tr class="separator:aff8e5999fd5b84729d7f79755ea8d31c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab87b81d49e26f6ba5cb0773ce5a1ce4c" id="r_ab87b81d49e26f6ba5cb0773ce5a1ce4c"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="engine_8cppm.html#ab87b81d49e26f6ba5cb0773ce5a1ce4c">scanRegion</a> (const <a class="el" href="structcore_1_1Region.html">Region</a> &amp;region, <a class="el" href="classProcMemReader.html">ProcMemReader</a> &amp;reader, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const auto &amp;routine, const <a class="el" href="structUserValue.html">UserValue</a> *userValue, <a class="el" href="structScanStats.html">ScanStats</a> &amp;stats, const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> *previousSnapshot, bool usesOld, std::size_t oldSliceLen) -&gt; std::optional&lt; <a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html">MatchesAndOldValuesSwath</a> &gt;</td></tr>
@@ -676,78 +674,6 @@ engine.cppm 的引用(Include)关系图:</div>
           <td></td>
           <td class="paramtype">std::size_t&#160;</td>
           <td class="paramname"><em>oldSliceLen</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a6576bd676c16791315cd736f94fd3ea1" name="a6576bd676c16791315cd736f94fd3ea1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6576bd676c16791315cd736f94fd3ea1">&#9670;&#160;</a></span>scanBlockForString()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void scanBlockForString </td>
-          <td>(</td>
-          <td class="paramtype">const std::uint8_t *&#160;</td>
-          <td class="paramname"><em>buffer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>bytesRead</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>baseIndex</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::uint8_t *&#160;</td>
-          <td class="paramname"><em>pattern</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>patternSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html">MatchesAndOldValuesSwath</a> &amp;&#160;</td>
-          <td class="paramname"><em>swath</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structScanStats.html">ScanStats</a> &amp;&#160;</td>
-          <td class="paramname"><em>stats</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a>&#160;</td>
-          <td class="paramname"><em>matchFlags</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
