@@ -28,7 +28,7 @@ export namespace core {
  * @param bigEndian Whether to display as big endian
  * @return Formatted string
  */
-// NOLINTNEXTLINE
+// NOLINTNEXTLINE(readability-function-cognitive-complexity)
 [[nodiscard]] inline auto formatValueByType(
     const std::vector<std::uint8_t>& valueBytes,
     std::optional<ScanDataType> dataType, bool bigEndian) -> std::string {
@@ -82,13 +82,18 @@ export namespace core {
             return std::format("{}", readValue.template operator()<int64_t>());
 
         case ScanDataType::FLOAT_32: {
-            float val = readValue.template operator()<float>();
+            auto val = readValue.template operator()<float>();
             return std::format("{:.6g}", val);
         }
 
         case ScanDataType::FLOAT_64: {
             auto val = readValue.template operator()<double>();
             return std::format("{:.15g}", val);
+        }
+
+        case ScanDataType::STRING: {
+            // Interpret bytes as ASCII string
+            return std::string(valueBytes.begin(), valueBytes.end());
         }
 
         default:

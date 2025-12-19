@@ -35,6 +35,7 @@ set(TEST_SOURCES
     scan/test_match_storage.cpp
     scan/test_factory.cpp
     ui/test_show_message.cpp
+    ui/test_list_message.cpp
 )
 
 # 为每个测试源生成可执行文件并注册 gtest_discover_tests
