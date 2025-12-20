@@ -23,6 +23,7 @@ import scan.types;
 import value;
 import value.parser;
 import cli.commands.list;
+import utils.logging;
 
 export namespace cli::commands {
 
@@ -88,17 +89,22 @@ class ScanCommand : public Command {
 
     [[nodiscard]] auto execute(const std::vector<std::string>& args)
         -> std::expected<CommandResult, std::string> override {
+        utils::Logger::info("Executing scan command...");
         if (m_session == nullptr || m_session->pid <= 0) {
+            utils::Logger::error("Target PID not set.");
             return std::unexpected("Set target pid first: pid <pid>");
         }
         auto* scanner = m_session->ensureScanner();
         if (scanner == nullptr) {
+            utils::Logger::error("Failed to initialize scanner.");
             return std::unexpected("Failed to initialize scanner");
         }
 
         auto dataType = *value::parseDataType(args[0]);
+        utils::Logger::debug("Parsed DataType: {}", static_cast<int>(dataType));
         auto matchType = *value::parseMatchType(args[1]);
-
+        utils::Logger::debug("Parsed MatchType: {}",
+                             static_cast<int>(matchType));
         ScanOptions opts;
         opts.dataType = dataType;
         opts.matchType = matchType;
@@ -110,45 +116,25 @@ class ScanCommand : public Command {
             userVal =
                 value::buildUserValue(dataType, matchType, args, startIdx);
             if (!userVal) {
+                utils::Logger::error("Invalid or missing value(s).");
                 return std::unexpected("Invalid or missing value(s)");
             }
         }
 
-        // 首次使用且用户选择了依赖旧值的匹配：自动做一次基线快照，再执行过滤
-        bool firstPass = !scanner->hasMatches();
-        bool wantsBaseline = firstPass && matchType != ScanMatchType::MATCH_ANY;
-        if (wantsBaseline) {
-            // 任何首次非 MATCH_ANY
-            // 的调用先做全量基线，再执行过滤，保证后续基于旧值的匹配语义完整
-            ScanOptions baselineOpts = opts;
-            baselineOpts.matchType = ScanMatchType::MATCH_ANY;
-            auto baseRes = scanner->performScan(baselineOpts, nullptr, true);
-            if (!baseRes) {
-                return std::unexpected(baseRes.error());
-            }
-            auto filteredRes = scanner->performFilteredScan(
-                opts, userVal ? &*userVal : nullptr, true);
-            if (!filteredRes) {
-                return std::unexpected(filteredRes.error());
-            }
-            ui::MessagePrinter::info("Baseline snapshot created");
-            ui::MessagePrinter::info(std::format("regions={} bytes={}",
-                                                 baseRes->regionsVisited,
-                                                 baseRes->bytesScanned));
-            ui::MessagePrinter::info(std::format(
-                "Filtered applied (matches={})", scanner->getMatchCount()));
+        if (userVal) {
+            utils::Logger::debug("UserValue: {}", userVal->stringValue);
         } else {
-            auto res = scanner->scan(opts, userVal ? &*userVal : nullptr, true);
-            if (!res) {
-                return std::unexpected(res.error());
-            }
-            ui::MessagePrinter::info(
-                std::format("Scan completed: regions={}, bytes={} (matches={})",
-                            res->regionsVisited, res->bytesScanned,
-                            scanner->getMatchCount()));
+            utils::Logger::debug("UserValue: <none>");
+        }
+        auto res = userVal.has_value() ? scanner->scan(opts, *userVal, true)
+                                       : scanner->scan(opts, true);
+        if (!res) {
+            utils::Logger::error("Scan failed: {}", res.error());
+            return std::unexpected(std::format("Scan failed: {}", res.error()));
         }
         ui::MessagePrinter::info(
             std::format("Current match count: {}", scanner->getMatchCount()));
+        utils::Logger::info("Scan command finished.");
         ListCommand listCmd(*m_session);
         (void)listCmd.execute({});
         return CommandResult{.success = true, .message = ""};

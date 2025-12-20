@@ -22,6 +22,7 @@ set(MODULE_SOURCES
     utils/endianness.cppm
     utils/mem64.cppm
     utils/sets.cppm
+    utils/logging.cppm
     generated/utils/version.cppm
     
     # UI abstraction layer

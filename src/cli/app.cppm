@@ -29,6 +29,8 @@ import cli.commands.write;
 import cli.commands.watch;
 import ui.interface;
 import ui.console;
+import utils.logging;
+
 import ui.show_message;
 
 export namespace cli {
@@ -52,7 +54,9 @@ class Application {
      */
     auto run() -> int {
         registerCommands();
-
+        utils::Logger::instance().init(
+            "/log/scanmem.log",
+            utils::LogLevel::DEBUG);  // Always log debug info to file in dev
         if (m_config.targetPid != 0) {
             m_session.pid = m_config.targetPid;
             ui::MessagePrinter{}.info("Target PID: {}", m_config.targetPid);

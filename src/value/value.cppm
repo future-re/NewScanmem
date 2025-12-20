@@ -1,6 +1,7 @@
 module;
 
 #include <cstdint>
+#include <format>
 #include <optional>
 #include <string>
 #include <type_traits>
@@ -163,3 +164,50 @@ export struct UserValue {
         }
     }
 };
+
+// Specialization of std::formatter for UserValue in std namespace
+namespace std {
+template <>
+struct formatter<UserValue> {
+    constexpr auto parse(format_parse_context& ctx) { return ctx.begin(); }
+
+    auto format(const UserValue& val, format_context& ctx) const {
+        // Format based on flags
+        if (val.flags == MatchFlags::EMPTY) {
+            return format_to(ctx.out(), "<empty>");
+        }
+        if (val.flags == MatchFlags::STRING) {
+            return format_to(ctx.out(), "\"{}\"", val.stringValue);
+        }
+        if (val.flags == MatchFlags::BYTE_ARRAY) {
+            if (val.bytearrayValue) {
+                format_to(ctx.out(), "[");
+                bool first = true;
+                for (auto byte : *val.bytearrayValue) {
+                    if (!first) {
+                        format_to(ctx.out(), " ");
+                    }
+                    format_to(ctx.out(), "{:02x}", byte);
+                    first = false;
+                }
+                return format_to(ctx.out(), "]");
+            }
+            return format_to(ctx.out(), "<empty byte array>");
+        }
+        // Scalar types
+        if (val.flags == MatchFlags::B8) {
+            return format_to(ctx.out(), "{}", val.s8);
+        }
+        if (val.flags == MatchFlags::B16) {
+            return format_to(ctx.out(), "{}", val.s16);
+        }
+        if (val.flags == MatchFlags::B32) {
+            return format_to(ctx.out(), "{}", val.s32);
+        }
+        if (val.flags == MatchFlags::B64) {
+            return format_to(ctx.out(), "{}", val.s64);
+        }
+        return format_to(ctx.out(), "<unknown type>");
+    }
+};
+}  // namespace std

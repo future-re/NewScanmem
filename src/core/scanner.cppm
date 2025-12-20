@@ -11,9 +11,11 @@ module;
 #include <cstddef>
 #include <deque>
 #include <expected>
-#include <functional>
+#include <iostream>
+#include <mutex>
 #include <optional>
 #include <string>
+#include <thread>
 
 export module core.scanner;
 
@@ -24,6 +26,7 @@ import scan.filter;        // filterMatches
 import scan.match_storage; // MatchesAndOldValuesArray
 import value;              // UserValue
 import core.maps;          // RegionScanLevel
+import utils.logging;      // Logger
 
 export namespace core {
 
@@ -44,21 +47,20 @@ class Scanner {
     explicit Scanner(pid_t pid) : m_pid(pid) {}
 
     /**
-     * @brief Perform memory scan
+     * @brief Perform memory scan with specific value
      * @param opts Scan options
-     * @param value Value to search for (nullptr for any)
+     * @param value Value to search for
      * @param saveToHistory If true, save scan results to history queue
      * @return Expected scan statistics or error message
      */
     [[nodiscard]] auto performScan(const ScanOptions& opts,
-                                   const UserValue* value = nullptr,
+                                   const UserValue& value,
                                    bool saveToHistory = false)
         -> std::expected<ScanStats, std::string> {
         // Full scan mode: clear previous active matches (snapshot refresh)
         m_matches.swaths.clear();
         m_lastDataType = opts.dataType;  // Record data type
-        // auto result = runScan(m_pid, opts, value, m_matches);
-        auto result = runScanParallel(m_pid, opts, value, m_matches, nullptr);
+        auto result = runScanParallel(m_pid, opts, &value, m_matches, nullptr);
         if (!result) {
             return std::unexpected(result.error());
         }
@@ -68,9 +70,7 @@ class Scanner {
             ScanResult scanResult;
             scanResult.stats = *result;
             scanResult.opts = opts;
-            if (value != nullptr) {
-                scanResult.value = *value;
-            }
+            scanResult.value = value;
             // Copy current matches to result history
             scanResult.matches = m_matches;
             addToHistory(std::move(scanResult));
@@ -80,12 +80,40 @@ class Scanner {
     }
 
     /**
-     * @brief Default workflow: first call does full scan; subsequent calls
-     *        do filtered scan on existing matches. This matches the common UX
-     *        expectation of "初次全量，后续按条件缩小"。
+     * @brief Perform memory scan without specific value (e.g., MATCHANY)
+     * @param opts Scan options
+     * @param saveToHistory If true, save scan results to history queue
+     * @return Expected scan statistics or error message
      */
-    [[nodiscard]] auto scan(const ScanOptions& opts,
-                            const UserValue* value = nullptr,
+    [[nodiscard]] auto performScan(const ScanOptions& opts,
+                                   bool saveToHistory = false)
+        -> std::expected<ScanStats, std::string> {
+        // Full scan mode: clear previous active matches (snapshot refresh)
+        m_matches.swaths.clear();
+        m_lastDataType = opts.dataType;  // Record data type
+        auto result = runScanParallel(m_pid, opts, nullptr, m_matches, nullptr);
+        if (!result) {
+            return std::unexpected(result.error());
+        }
+
+        if (saveToHistory) {
+            // Initialize history item; contents are copied from current matches
+            ScanResult scanResult;
+            scanResult.stats = *result;
+            scanResult.opts = opts;
+            // Copy current matches to result history
+            scanResult.matches = m_matches;
+            addToHistory(std::move(scanResult));
+        }
+
+        return *result;
+    }
+
+    /**
+     * @brief Default workflow with specific value: first call does full scan;
+     *        subsequent calls do filtered scan on existing matches.
+     */
+    [[nodiscard]] auto scan(const ScanOptions& opts, const UserValue& value,
                             bool saveToHistory = false)
         -> std::expected<ScanStats, std::string> {
         if (!hasMatches()) {
@@ -95,19 +123,26 @@ class Scanner {
     }
 
     /**
-     * @brief Perform a filtered (incremental) scan only on previously matched
-     * addresses Narrows existing matches according to new scan options/value
-     * without rescanning all regions. Logic: For every byte previously marked
-     * as matched, re-read memory at that address and apply the selected scan
-     * routine. Bytes failing the new criterion are cleared. Empty swaths are
-     * pruned.
+     * @brief Default workflow without specific value: first call does full
+     * scan; subsequent calls do filtered scan on existing matches.
+     */
+    [[nodiscard]] auto scan(const ScanOptions& opts, bool saveToHistory = false)
+        -> std::expected<ScanStats, std::string> {
+        if (!hasMatches()) {
+            return performScan(opts, saveToHistory);
+        }
+        return performFilteredScan(opts, saveToHistory);
+    }
+
+    /**
+     * @brief Perform a filtered (incremental) scan with specific value
      * @param opts New scan options (dataType/matchType/etc.)
-     * @param value New user value (optional)
+     * @param value New user value
      * @param saveToHistory If true, snapshot the narrowed result into history
      * @return Expected updated stats or error string
      */
     [[nodiscard]] auto performFilteredScan(const ScanOptions& opts,
-                                           const UserValue* value = nullptr,
+                                           const UserValue& value,
                                            bool saveToHistory = false)
         -> std::expected<ScanStats, std::string> {
         if (!hasMatches()) {
@@ -115,7 +150,7 @@ class Scanner {
                 "no existing matches to narrow; perform full scan first");
         }
 
-        auto statsExp = filterMatches(m_pid, opts, value, m_matches);
+        auto statsExp = filterMatches(m_pid, opts, &value, m_matches);
         if (!statsExp) {
             return std::unexpected(statsExp.error());
         }
@@ -124,9 +159,36 @@ class Scanner {
             ScanResult scanRecord;
             scanRecord.stats = *statsExp;
             scanRecord.opts = opts;
-            if (value != nullptr) {
-                scanRecord.value = *value;
-            }
+            scanRecord.value = value;
+            scanRecord.matches = m_matches;
+            addToHistory(std::move(scanRecord));
+        }
+        return *statsExp;
+    }
+
+    /**
+     * @brief Perform a filtered (incremental) scan without specific value
+     * @param opts New scan options (dataType/matchType/etc.)
+     * @param saveToHistory If true, snapshot the narrowed result into history
+     * @return Expected updated stats or error string
+     */
+    [[nodiscard]] auto performFilteredScan(const ScanOptions& opts,
+                                           bool saveToHistory = false)
+        -> std::expected<ScanStats, std::string> {
+        if (!hasMatches()) {
+            return std::unexpected(
+                "no existing matches to narrow; perform full scan first");
+        }
+
+        auto statsExp = filterMatches(m_pid, opts, nullptr, m_matches);
+        if (!statsExp) {
+            return std::unexpected(statsExp.error());
+        }
+        pruneEmptySwaths();
+        if (saveToHistory) {
+            ScanResult scanRecord;
+            scanRecord.stats = *statsExp;
+            scanRecord.opts = opts;
             scanRecord.matches = m_matches;
             addToHistory(std::move(scanRecord));
         }
@@ -146,12 +208,11 @@ class Scanner {
      * @param index Index into results history (0 = oldest)
      * @return Pointer to result, or nullptr if index out of range
      */
-    [[nodiscard]] auto getResult(std::size_t index) const
-        -> std::optional<std::reference_wrapper<const ScanResult>> {
+    [[nodiscard]] auto getResult(std::size_t index) const -> const ScanResult* {
         if (index >= m_results.size()) {
-            return std::nullopt;
+            return nullptr;
         }
-        return std::cref(m_results[index]);
+        return &m_results[index];
     }
 
     /**

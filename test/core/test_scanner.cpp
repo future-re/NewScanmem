@@ -129,7 +129,7 @@ TEST_F(ScannerTest, FullThenFilteredAndReset) {
     ScanOptions filteredOpts;
     filteredOpts.dataType = ScanDataType::INTEGER_8;
     filteredOpts.matchType = ScanMatchType::MATCH_EQUAL_TO;
-    auto filteredStatsExp = scanner.performFilteredScan(filteredOpts, &val);
+    auto filteredStatsExp = scanner.performFilteredScan(filteredOpts, val, true);
     ASSERT_TRUE(filteredStatsExp.has_value()) << "Filtered scan failed";
     auto narrowedCount = scanner.getMatchCount();
     EXPECT_GT(narrowedCount, 0U) << "Should retain some matches for value 42";
