@@ -32,6 +32,7 @@ var hierarchy =
     [ "KindOf< uint32_t >", "structKindOf_3_01uint32__t_01_4.html", null ],
     [ "KindOf< uint64_t >", "structKindOf_3_01uint64__t_01_4.html", null ],
     [ "KindOf< uint8_t >", "structKindOf_3_01uint8__t_01_4.html", null ],
+    [ "utils::Logger", "classutils_1_1Logger.html", null ],
     [ "core::MapsReader", "classcore_1_1MapsReader.html", null ],
     [ "core::MatchCollectionOptions", "structcore_1_1MatchCollectionOptions.html", null ],
     [ "core::MatchCollector", "classcore_1_1MatchCollector.html", null ],

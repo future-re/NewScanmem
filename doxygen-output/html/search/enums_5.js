@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['scalarkind_0',['ScalarKind',['../scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3',1,'scalar.cppm']]],
-  ['scandatatype_1',['ScanDataType',['../types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0',1,'types.cppm']]],
-  ['scanmatchtype_2',['ScanMatchType',['../types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2',1,'types.cppm']]]
+  ['regionfiltermode_0',['RegionFilterMode',['../namespacecore.html#a72a2e8d29b79f853c273543adab4dfe4',1,'core']]],
+  ['regionscanlevel_1',['RegionScanLevel',['../namespacecore.html#a4f0a0af961035f2bb7659bd168afc3ee',1,'core']]],
+  ['regiontype_2',['RegionType',['../namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16b',1,'core']]]
 ];

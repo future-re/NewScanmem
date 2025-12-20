@@ -7,5 +7,9 @@ var searchData=
   ['little_4',['LITTLE',['../namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cca1314341b466dcb5e2c880b76414c49fe',1,'utils']]],
   ['littleendiantohost_5',['littleEndianToHost',['../namespaceutils.html#ad29bf669b42ac7d5dc515e64e638c410',1,'utils']]],
   ['loadaddr_6',['loadAddr',['../structcore_1_1Region.html#ae788f67862f749decc719bc7413b8059',1,'core::Region']]],
-  ['localscanresult_7',['LocalScanResult',['../namespacescan.html#aab361dbf017c43b4b03370cd0a407851',1,'scan']]]
+  ['localscanresult_7',['LocalScanResult',['../namespacescan.html#aab361dbf017c43b4b03370cd0a407851',1,'scan']]],
+  ['log_8',['log',['../classutils_1_1Logger.html#a507160bcbb80a8245a1a155ece5ea903',1,'utils::Logger']]],
+  ['logger_9',['logger',['../classutils_1_1Logger.html',1,'utils::Logger'],['../classutils_1_1Logger.html#ae336927bfdd8dc5ecc1fdb2eb092b98a',1,'utils::Logger::Logger(const Logger &amp;)=delete'],['../classutils_1_1Logger.html#a037c358405f126564e41b5381ff683ab',1,'utils::Logger::Logger(Logger &amp;&amp;)=delete']]],
+  ['logging_2ecppm_10',['logging.cppm',['../logging_8cppm.html',1,'']]],
+  ['loglevel_11',['LogLevel',['../namespaceutils.html#a6b50893705cf2a59daf6b680304017dd',1,'utils']]]
 ];

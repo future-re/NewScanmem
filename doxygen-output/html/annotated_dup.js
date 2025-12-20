@@ -54,6 +54,7 @@ var annotated_dup =
       [ "UserInterface", "classui_1_1UserInterface.html", "classui_1_1UserInterface" ]
     ] ],
     [ "utils", "namespaceutils.html", [
+      [ "Logger", "classutils_1_1Logger.html", "classutils_1_1Logger" ],
       [ "StringUtils", "classutils_1_1StringUtils.html", null ],
       [ "ValueParser", "classutils_1_1ValueParser.html", null ]
     ] ],

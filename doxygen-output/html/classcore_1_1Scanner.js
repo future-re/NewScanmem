@@ -8,12 +8,15 @@ var classcore_1_1Scanner =
     [ "getMatches", "classcore_1_1Scanner.html#a2b61a5746026a14265a1acd5ba8bba21", null ],
     [ "getMatches", "classcore_1_1Scanner.html#ada591eaa59a48c7c70cafa98258f33a3", null ],
     [ "getPid", "classcore_1_1Scanner.html#a4e4921aced4be4fa13828c2b160ad7aa", null ],
-    [ "getResult", "classcore_1_1Scanner.html#a92560f7a973642521e3b4138bea2e837", null ],
+    [ "getResult", "classcore_1_1Scanner.html#a66666d7b77ed25b3e9aa1c5729051827", null ],
     [ "getResultCount", "classcore_1_1Scanner.html#a92a349d999a0233c6f3a08b747402a7b", null ],
     [ "getResults", "classcore_1_1Scanner.html#a1f74522eabddecea11fc4a2b54472860", null ],
     [ "hasMatches", "classcore_1_1Scanner.html#aa4e7c5e1c6475faecbc92452b1a511a6", null ],
-    [ "performFilteredScan", "classcore_1_1Scanner.html#a78cd6eef3c4f77554d161a05167f5ab7", null ],
-    [ "performScan", "classcore_1_1Scanner.html#a04304ba90d819cc9095791bc07287bfb", null ],
+    [ "performFilteredScan", "classcore_1_1Scanner.html#a8db0525f0b38c2b2b7858c2a1a49a7ea", null ],
+    [ "performFilteredScan", "classcore_1_1Scanner.html#a724ef01d995b4d85cd42dfcb35ea2a76", null ],
+    [ "performScan", "classcore_1_1Scanner.html#a1e27cd9428113e29a0ad15c06f952723", null ],
+    [ "performScan", "classcore_1_1Scanner.html#a29b139e20acad2875ab8143f9833036b", null ],
     [ "reset", "classcore_1_1Scanner.html#aa833ee1e069e430aca2d983a206c11ce", null ],
-    [ "scan", "classcore_1_1Scanner.html#a0fbdae4ec2b5c67a8d584e731be6bb95", null ]
+    [ "scan", "classcore_1_1Scanner.html#a8b6e8afad903155ed679b2657d692fb3", null ],
+    [ "scan", "classcore_1_1Scanner.html#a29468a60039dfac26a7f8f5c84000a60", null ]
 ];

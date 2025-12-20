@@ -26,7 +26,7 @@ var searchData=
   ['bytearrayvalue_23',['bytearrayValue',['../structUserValue.html#a9f72b681be735c23964acb9c25a401a5',1,'UserValue']]],
   ['bytemask_24',['byteMask',['../structUserValue.html#a056f41e90861ba52474a794a31a31cd1',1,'UserValue']]],
   ['bytematch_25',['ByteMatch',['../structByteMatch.html',1,'']]],
-  ['bytes_26',['bytes',['../structUserInput.html#acadf5093b12dae1f769c966c3019ada2a9f1908a641ea399fd2e76f0905c88fcf',1,'UserInput::BYTES'],['../structMem64.html#a902fad10a51b8a0ec15e26f4f790eda9',1,'Mem64::bytes()'],['../structValue.html#a5f5173398304cef519d17570ea8f2573',1,'Value::bytes']]],
+  ['bytes_26',['bytes',['../structMem64.html#a902fad10a51b8a0ec15e26f4f790eda9',1,'Mem64::bytes()'],['../structValue.html#a5f5173398304cef519d17570ea8f2573',1,'Value::bytes'],['../structUserInput.html#acadf5093b12dae1f769c966c3019ada2a9f1908a641ea399fd2e76f0905c88fcf',1,'UserInput::BYTES']]],
   ['bytes_2ecppm_27',['bytes.cppm',['../bytes_8cppm.html',1,'']]],
   ['bytes_5fwith_5fmask_28',['BYTES_WITH_MASK',['../structUserInput.html#acadf5093b12dae1f769c966c3019ada2a4a65974b4d88b1438f60e70eb0817d6a',1,'UserInput']]],
   ['bytesneededfortype_29',['bytesNeededForType',['../types_8cppm.html#aa76ce477d8694cc6cd4f0530cc7a7cd8',1,'types.cppm']]],

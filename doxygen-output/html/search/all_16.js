@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['warn_0',['warn',['../namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a32bd8a1db2275458673903bdb84cb277',1,'ui::WARN'],['../classui_1_1MessagePrinter.html#a6457f0a02e190766c2d7d1ea41042e77',1,'ui::MessagePrinter::warn(std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const'],['../classui_1_1MessagePrinter.html#ac090a82ddbd5ca6356d068919ffdeada',1,'ui::MessagePrinter::warn(std::string_view msg)']]],
+  ['warn_0',['warn',['../namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a32bd8a1db2275458673903bdb84cb277',1,'ui::WARN'],['../namespaceutils.html#a6b50893705cf2a59daf6b680304017dda32bd8a1db2275458673903bdb84cb277',1,'utils::WARN'],['../classui_1_1MessagePrinter.html#a6457f0a02e190766c2d7d1ea41042e77',1,'ui::MessagePrinter::warn(std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const'],['../classui_1_1MessagePrinter.html#ac090a82ddbd5ca6356d068919ffdeada',1,'ui::MessagePrinter::warn(std::string_view msg)'],['../classutils_1_1Logger.html#a88765dffafbc4d950cad36fccb670064',1,'utils::Logger::warn()']]],
   ['warning_1',['WARNING',['../namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2a059e9861e0400dfbe05c98a841f3f96b',1,'ui']]],
   ['watch_2ecppm_2',['watch.cppm',['../watch_8cppm.html',1,'']]],
   ['watchcommand_3',['watchcommand',['../classcli_1_1commands_1_1WatchCommand.html',1,'cli::commands::WatchCommand'],['../classcli_1_1commands_1_1WatchCommand.html#ae2e6191be5ce0be306d7f71db7852094',1,'cli::commands::WatchCommand::WatchCommand()']]],

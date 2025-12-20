@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['scan_0',['scan',['../classcore_1_1Scanner.html#a0fbdae4ec2b5c67a8d584e731be6bb95',1,'core::Scanner']]],
+  ['scan_0',['scan',['../classcore_1_1Scanner.html#a8b6e8afad903155ed679b2657d692fb3',1,'core::Scanner::scan(const ScanOptions &amp;opts, bool saveToHistory=false) -&gt; std::expected&lt; ScanStats, std::string &gt;'],['../classcore_1_1Scanner.html#a29468a60039dfac26a7f8f5c84000a60',1,'core::Scanner::scan(const ScanOptions &amp;opts, const UserValue &amp;value, bool saveToHistory=false) -&gt; std::expected&lt; ScanStats, std::string &gt;']]],
   ['scanblock_1',['scanBlock',['../engine_8cppm.html#aff8e5999fd5b84729d7f79755ea8d31c',1,'engine.cppm']]],
   ['scancommand_2',['ScanCommand',['../classcli_1_1commands_1_1ScanCommand.html#ab64b46330dcceb6bd93d6ce11f1fbaac',1,'cli::commands::ScanCommand']]],
   ['scanner_3',['Scanner',['../classcore_1_1Scanner.html#aa4f39c860299a9b19799409dbf2a8cb2',1,'core::Scanner']]],
@@ -11,7 +11,7 @@ var searchData=
   ['setcommand_8',['SetCommand',['../classcli_1_1commands_1_1SetCommand.html#a863afa8032fe612be6bafc1dee67393b',1,'cli::commands::SetCommand']]],
   ['setcompletioncallback_9',['setCompletionCallback',['../classui_1_1ConsoleUI.html#a008d0c2db242c5f237837caf1c493599',1,'ui::ConsoleUI']]],
   ['setdebugmode_10',['setDebugMode',['../classui_1_1UserInterface.html#a6ffed1ac62121f3254fca8e1e2b33c37',1,'ui::UserInterface']]],
-  ['setendianness_11',['setendianness',['../structcli_1_1SessionState.html#abc1e06e63d66c65b40de226f1b8d5364',1,'cli::SessionState::setEndianness()'],['../classcore_1_1MemoryWriter.html#abc6c5e190f0f3d95ba2a54e884d3d8b8',1,'core::MemoryWriter::setEndianness()']]],
+  ['setendianness_11',['setendianness',['../classcore_1_1MemoryWriter.html#abc6c5e190f0f3d95ba2a54e884d3d8b8',1,'core::MemoryWriter::setEndianness()'],['../structcli_1_1SessionState.html#abc1e06e63d66c65b40de226f1b8d5364',1,'cli::SessionState::setEndianness()']]],
   ['setflagsifnotnull_12',['setFlagsIfNotNull',['../flags_8cppm.html#ae86b30c64142ec32a5396e8c0c8028dc',1,'flags.cppm']]],
   ['setprompt_13',['setPrompt',['../classcli_1_1REPL.html#a036f7d363265f39bfa9d1bd1efe1cbb9',1,'cli::REPL']]],
   ['setpromptbuilder_14',['setPromptBuilder',['../classcli_1_1REPL.html#a7884f6c3e4eda983eba7c79bd39022dd',1,'cli::REPL']]],

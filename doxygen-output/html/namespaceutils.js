@@ -1,10 +1,17 @@
 var namespaceutils =
 [
+    [ "Logger", "classutils_1_1Logger.html", "classutils_1_1Logger" ],
     [ "StringUtils", "classutils_1_1StringUtils.html", null ],
     [ "ValueParser", "classutils_1_1ValueParser.html", null ],
     [ "Endianness", "namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc", [
       [ "LITTLE", "namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cca1314341b466dcb5e2c880b76414c49fe", null ],
       [ "BIG", "namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003ccaa60c6c694491d75b439073b8cb05b139", null ]
+    ] ],
+    [ "LogLevel", "namespaceutils.html#a6b50893705cf2a59daf6b680304017dd", [
+      [ "DEBUG", "namespaceutils.html#a6b50893705cf2a59daf6b680304017ddadc30ec20708ef7b0f641ef78b7880a15", null ],
+      [ "INFO", "namespaceutils.html#a6b50893705cf2a59daf6b680304017dda551b723eafd6a31d444fcb2f5920fbd3", null ],
+      [ "WARN", "namespaceutils.html#a6b50893705cf2a59daf6b680304017dda32bd8a1db2275458673903bdb84cb277", null ],
+      [ "ERROR", "namespaceutils.html#a6b50893705cf2a59daf6b680304017ddabb1ca97ec761fc37101737ba0aa2e7c5", null ]
     ] ],
     [ "hostToLittleEndian", "namespaceutils.html#a97022d89a68c435e218e7d7231b23d6f", null ],
     [ "hostToNetwork", "namespaceutils.html#ab1294d3772177d832662a183da812730", null ],

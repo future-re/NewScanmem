@@ -93,11 +93,13 @@ $(document).ready(function(){initNavTree('value_8cppm.html',''); initResizable()
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">类</a> &#124;
+<a href="#namespaces">命名空间</a> &#124;
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle"><div class="title">value.cppm 文件参考<div class="ingroups">模块 <a class="el" href="module_value.html">value</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;format&gt;</code><br />
 <code>#include &lt;optional&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
@@ -109,31 +111,33 @@ value.cppm 的引用(Include)关系图:</div>
 <div class="dyncontent">
 <div class="center"><img src="value_8cppm__incl.png" border="0" usemap="#asrc_2value_2value_8cppm" alt=""/></div>
 <map name="asrc_2value_2value_8cppm" id="asrc_2value_2value_8cppm">
-<area shape="rect" title=" " alt="" coords="157,5,318,31"/>
-<area shape="rect" title=" " alt="" coords="39,152,105,177"/>
-<area shape="poly" title=" " alt="" coords="226,33,97,145,94,141,222,29"/>
-<area shape="rect" title=" " alt="" coords="129,152,204,177"/>
-<area shape="poly" title=" " alt="" coords="234,32,181,141,176,138,229,30"/>
-<area shape="rect" title=" " alt="" coords="400,79,459,104"/>
-<area shape="poly" title=" " alt="" coords="269,28,388,72,386,77,267,33"/>
-<area shape="rect" title=" " alt="" coords="229,152,321,177"/>
-<area shape="poly" title=" " alt="" coords="243,30,271,138,266,139,238,32"/>
-<area shape="rect" title=" " alt="" coords="483,79,546,104"/>
-<area shape="poly" title=" " alt="" coords="283,28,470,76,469,81,281,33"/>
-<area shape="rect" href="flags_8cppm.html" title=" " alt="" coords="5,79,99,104"/>
-<area shape="poly" title=" " alt="" coords="209,33,96,76,94,71,207,28"/>
-<area shape="rect" href="scalar_8cppm.html" title=" " alt="" coords="275,79,376,104"/>
-<area shape="poly" title=" " alt="" coords="253,29,302,68,299,72,250,33"/>
-<area shape="poly" title=" " alt="" coords="58,104,68,138,63,140,53,105"/>
-<area shape="poly" title=" " alt="" coords="285,107,120,153,118,148,284,101"/>
-<area shape="poly" title=" " alt="" coords="301,106,206,149,204,144,299,102"/>
-<area shape="poly" title=" " alt="" coords="319,106,293,142,289,139,315,103"/>
-<area shape="rect" title=" " alt="" coords="345,152,415,177"/>
-<area shape="poly" title=" " alt="" coords="336,103,365,140,361,143,332,106"/>
-<area shape="rect" title=" " alt="" coords="440,152,507,177"/>
-<area shape="poly" title=" " alt="" coords="350,102,438,144,436,148,348,106"/>
-<area shape="rect" title=" " alt="" coords="531,152,599,177"/>
-<area shape="poly" title=" " alt="" coords="365,101,519,147,517,152,363,107"/>
+<area shape="rect" title=" " alt="" coords="177,5,338,31"/>
+<area shape="rect" title=" " alt="" coords="5,152,72,177"/>
+<area shape="poly" title=" " alt="" coords="177,31,83,50,45,64,22,80,16,94,16,108,26,139,21,140,11,109,11,92,18,77,43,59,82,45,176,26"/>
+<area shape="rect" title=" " alt="" coords="376,79,443,104"/>
+<area shape="poly" title=" " alt="" coords="283,28,373,70,371,75,281,33"/>
+<area shape="rect" title=" " alt="" coords="96,152,171,177"/>
+<area shape="poly" title=" " alt="" coords="249,33,154,143,150,140,245,29"/>
+<area shape="rect" title=" " alt="" coords="467,79,525,104"/>
+<area shape="poly" title=" " alt="" coords="296,28,454,75,453,80,295,33"/>
+<area shape="rect" title=" " alt="" coords="195,152,287,177"/>
+<area shape="poly" title=" " alt="" coords="255,32,241,79,239,109,241,138,235,138,234,109,236,78,250,30"/>
+<area shape="rect" title=" " alt="" coords="550,79,613,104"/>
+<area shape="poly" title=" " alt="" coords="315,28,537,76,536,81,314,33"/>
+<area shape="rect" href="flags_8cppm.html" title=" " alt="" coords="32,79,125,104"/>
+<area shape="poly" title=" " alt="" coords="230,33,121,76,119,71,228,28"/>
+<area shape="rect" href="scalar_8cppm.html" title=" " alt="" coords="251,79,352,104"/>
+<area shape="poly" title=" " alt="" coords="267,30,289,66,285,68,262,32"/>
+<area shape="poly" title=" " alt="" coords="74,106,54,141,50,139,70,103"/>
+<area shape="poly" title=" " alt="" coords="260,107,86,153,84,148,258,101"/>
+<area shape="poly" title=" " alt="" coords="275,106,174,149,172,144,273,102"/>
+<area shape="poly" title=" " alt="" coords="293,106,262,143,258,140,289,103"/>
+<area shape="rect" title=" " alt="" coords="311,152,382,177"/>
+<area shape="poly" title=" " alt="" coords="311,103,334,139,330,142,307,106"/>
+<area shape="rect" title=" " alt="" coords="407,152,473,177"/>
+<area shape="poly" title=" " alt="" coords="325,102,406,143,404,148,322,106"/>
+<area shape="rect" title=" " alt="" coords="498,152,566,177"/>
+<area shape="poly" title=" " alt="" coords="339,101,486,146,484,151,338,107"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -142,6 +146,11 @@ value.cppm 的引用(Include)关系图:</div>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structValue.html">Value</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserValue.html">UserValue</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+命名空间</h2></td></tr>
+<tr class="memitem:namespacestd" id="r_namespacestd"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacestd.html">std</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
