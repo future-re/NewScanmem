@@ -122,10 +122,22 @@ class MatchCollector {
                             region = m_classifier->classify(addr);
                         }
 
+                        // Determine value size based on data type and match
+                        // length
+                        size_t actualValueSize = valueSize;
+                        // For string/bytearray, use matchLength if available
+                        if (dataType &&
+                            (*dataType == ScanDataType::STRING ||
+                             *dataType == ScanDataType::BYTE_ARRAY)) {
+                            if (cell.matchLength > 0) {
+                                actualValueSize = cell.matchLength;
+                            }
+                        }
+
                         // Read complete value bytes from memory
-                        std::vector<std::uint8_t> valueBytes(valueSize);
+                        std::vector<std::uint8_t> valueBytes(actualValueSize);
                         for (size_t j = 0;
-                             j < valueSize && (i + j) < swath.data.size();
+                             j < actualValueSize && (i + j) < swath.data.size();
                              ++j) {
                             valueBytes[j] = swath.data[i + j].oldByte;
                         }

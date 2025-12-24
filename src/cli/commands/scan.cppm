@@ -115,22 +115,15 @@ class ScanCommand : public Command {
         if (matchNeedsUserValue(matchType)) {
             userVal =
                 value::buildUserValue(dataType, matchType, args, startIdx);
-            if (!userVal) {
-                utils::Logger::error("Invalid or missing value(s).");
-                return std::unexpected("Invalid or missing value(s)");
-            }
         }
-
         if (userVal) {
             utils::Logger::debug("UserValue: {}", userVal->stringValue);
-        } else {
-            utils::Logger::debug("UserValue: <none>");
         }
         auto res = userVal.has_value() ? scanner->scan(opts, *userVal, true)
                                        : scanner->scan(opts, true);
         if (!res) {
             utils::Logger::error("Scan failed: {}", res.error());
-            return std::unexpected(std::format("Scan failed: {}", res.error()));
+            return std::unexpected(res.error());
         }
         ui::MessagePrinter::info(
             std::format("Current match count: {}", scanner->getMatchCount()));

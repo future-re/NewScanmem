@@ -32,6 +32,8 @@ export namespace scan {
 struct OldValueAndMatchInfo {
     uint8_t oldByte;       ///< Historical byte value (single byte)
     MatchFlags matchInfo;  ///< Match flags for this byte
+    uint16_t
+        matchLength;  ///< Match length (only valid at match start position)
 };
 
 class MatchesAndOldValuesSwath {
@@ -65,15 +67,14 @@ class MatchesAndOldValuesSwath {
         }
     }
 
-    // Mark a contiguous index range with flags
+    // Mark only the start position with flags and length
     void markRangeByIndex(size_t startIndex, size_t length, MatchFlags flags) {
         if (length == 0 || startIndex >= data.size()) {
             return;
         }
-        size_t endIndex = std::min(startIndex + length, data.size());
-        for (size_t i = startIndex; i < endIndex; ++i) {
-            data[i].matchInfo = data[i].matchInfo | flags;
-        }
+        // Only mark the start position with the match length
+        data[startIndex].matchInfo = data[startIndex].matchInfo | flags;
+        data[startIndex].matchLength = static_cast<uint16_t>(length);
     }
 
     // Mark a target address range with flags
