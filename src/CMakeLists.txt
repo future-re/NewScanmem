@@ -8,7 +8,8 @@ find_package(ICU REQUIRED COMPONENTS uc i18n)
 
 target_compile_features(NewScanmem_lib PUBLIC cxx_std_23)
 
-set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-p;build")
+# Temporarily disabled: clang-tidy 20.1 crashes on C++23 modules
+# set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-p;build")
 # 为了生成版本模块（version.cppm），在源目录创建生成目录并从模板生成
 file(MAKE_DIRECTORY ${CMAKE_SOURCE_DIR}/src/generated/utils)
 configure_file(${CMAKE_SOURCE_DIR}/src/utils/version.cppm.in ${CMAKE_SOURCE_DIR}/src/generated/utils/version.cppm @ONLY)

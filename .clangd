@@ -1,0 +1,10 @@
+# .clangd configuration
+# clangd will automatically read .clang-tidy from project root
+
+CompileFlags:
+  CompilationDatabase: build  # 指向 compile_commands.json 所在目录
+
+Diagnostics:
+  ClangTidy:
+    FastCheckFilter: None  # 运行所有 clang-tidy 检查（包括慢速检查）
+    # clangd 会自动从 .clang-tidy 读取 Checks 和 CheckOptions
