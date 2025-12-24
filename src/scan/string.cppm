@@ -97,10 +97,10 @@ export inline auto makeStringRoutine(ScanMatchType matchType) -> scanRoutine {
             return 0;
         }
         if (matchType == ScanMatchType::MATCH_REGEX) {
-            return runRegexMatch(memoryPtr, memLength, userValue->stringValue,
+            return runRegexMatch(memoryPtr, memLength, userValue->stringValue(),
                                  saveFlags);
         }
-        const std::string_view PATTERN{userValue->stringValue};
+        const std::string_view PATTERN{userValue->stringValue()};
         if (PATTERN.empty()) {
             return 0;
         }

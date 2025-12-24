@@ -17,9 +17,11 @@ import utils.mem64;
 import value; // Depends on the project's existing value definitions
 
 // Helpers for byte reading, endianness conversion, and type traits
-// Goal: provide unified reading and type-tagging utilities for numeric/bytes/string modules
+// Goal: provide unified reading and type-tagging utilities for
+// numeric/bytes/string modules
 
-// Conditional endianness swap (safe for integral/floating/other trivially copyable types)
+// Conditional endianness swap (safe for integral/floating/other trivially
+// copyable types)
 template <typename T>
 constexpr auto swapIfReverse(T value, bool reverse) noexcept -> T {
     if (!reverse) {
@@ -81,67 +83,6 @@ export template <typename T>
     }
     T val = swapIfReverse<T>(*currentOpt, reverseEndianness);
     return val;
-}
-
-// Extract low/high values from UserValue by type (for range/compare)
-export template <typename T>
-[[nodiscard]] inline auto userValueAs(const UserValue& userValue) noexcept
-    -> T {
-    if constexpr (std::is_same_v<T, int8_t>) {
-        return userValue.s8;
-    } else if constexpr (std::is_same_v<T, uint8_t>) {
-        return userValue.u8;
-    } else if constexpr (std::is_same_v<T, int16_t>) {
-        return userValue.s16;
-    } else if constexpr (std::is_same_v<T, uint16_t>) {
-        return userValue.u16;
-    } else if constexpr (std::is_same_v<T, int32_t>) {
-        return userValue.s32;
-    } else if constexpr (std::is_same_v<T, uint32_t>) {
-        return userValue.u32;
-    } else if constexpr (std::is_same_v<T, int64_t>) {
-        return userValue.s64;
-    } else if constexpr (std::is_same_v<T, uint64_t>) {
-        return userValue.u64;
-    } else if constexpr (std::is_same_v<T, float>) {
-        return userValue.f32;
-    } else if constexpr (std::is_same_v<T, double>) {
-        return userValue.f64;
-    } else {
-        static_assert(std::is_trivially_copyable_v<T>,
-                      "Unsupported type for userValueAs<T>");
-        return T{};
-    }
-}
-
-export template <typename T>
-[[nodiscard]] inline auto userValueHighAs(const UserValue& userValue) noexcept
-    -> T {
-    if constexpr (std::is_same_v<T, int8_t>) {
-        return userValue.s8h;
-    } else if constexpr (std::is_same_v<T, uint8_t>) {
-        return userValue.u8h;
-    } else if constexpr (std::is_same_v<T, int16_t>) {
-        return userValue.s16h;
-    } else if constexpr (std::is_same_v<T, uint16_t>) {
-        return userValue.u16h;
-    } else if constexpr (std::is_same_v<T, int32_t>) {
-        return userValue.s32h;
-    } else if constexpr (std::is_same_v<T, uint32_t>) {
-        return userValue.u32h;
-    } else if constexpr (std::is_same_v<T, int64_t>) {
-        return userValue.s64h;
-    } else if constexpr (std::is_same_v<T, uint64_t>) {
-        return userValue.u64h;
-    } else if constexpr (std::is_same_v<T, float>) {
-        return userValue.f32h;
-    } else if constexpr (std::is_same_v<T, double>) {
-        return userValue.f64h;
-    } else {
-        static_assert(std::is_trivially_copyable_v<T>,
-                      "Unsupported type for userValueHighAs<T>");
-        return T{};
-    }
 }
 
 // Try to read old value from Value* (strictly checks flags and length)

@@ -42,8 +42,8 @@ TEST(ParserTests, BuildUserValue_IntegerScalar) {
     auto result = value::buildUserValue(ScanDataType::INTEGER_32,
                                         ScanMatchType::MATCH_EQUAL_TO, args, 0);
     ASSERT_TRUE(result.has_value());
-    EXPECT_EQ(result->flags, MatchFlags::B32);
-    EXPECT_EQ(result->s32, 42);
+    EXPECT_EQ(result->flag(), MatchFlags::B32);
+    EXPECT_EQ(result->value<int>(), 42);
 }
 
 TEST(ParserTests, BuildUserValue_IntegerRange) {
@@ -51,9 +51,9 @@ TEST(ParserTests, BuildUserValue_IntegerRange) {
     auto result = value::buildUserValue(ScanDataType::INTEGER_32,
                                         ScanMatchType::MATCH_RANGE, args, 0);
     ASSERT_TRUE(result.has_value());
-    EXPECT_EQ(result->flags, MatchFlags::B32);
-    EXPECT_EQ(result->s32, 10);
-    EXPECT_EQ(result->s32h, 20);
+    EXPECT_EQ(result->flag(), MatchFlags::B32);
+    EXPECT_EQ(result->value<int>(), 10);
+    EXPECT_EQ(result->valueHigh<int>(), 20);
 }
 
 TEST(ParserTests, BuildUserValue_ByteArray) {
@@ -61,9 +61,9 @@ TEST(ParserTests, BuildUserValue_ByteArray) {
     auto result = value::buildUserValue(ScanDataType::BYTE_ARRAY,
                                         ScanMatchType::MATCH_EQUAL_TO, args, 0);
     ASSERT_TRUE(result.has_value());
-    EXPECT_EQ(result->flags, MatchFlags::BYTE_ARRAY);
-    ASSERT_TRUE(result->bytearrayValue.has_value());
-    const auto& bytes = result->bytearrayValue.value();
+    EXPECT_EQ(result->flag(), MatchFlags::BYTE_ARRAY);
+    ASSERT_TRUE(result->byteMask.has_value());
+    const auto& bytes = result->byteArrayValue();
     ASSERT_EQ(bytes.size(), 4);
     EXPECT_EQ(bytes[0], 0xDE);
     EXPECT_EQ(bytes[1], 0xAD);
@@ -76,5 +76,5 @@ TEST(ParserTests, BuildUserValue_String) {
     auto result = value::buildUserValue(ScanDataType::STRING,
                                         ScanMatchType::MATCH_EQUAL_TO, args, 0);
     ASSERT_TRUE(result.has_value());
-    EXPECT_EQ(result->stringValue, "test_string");
+    EXPECT_EQ(result->stringValue(), "test_string");
 }

@@ -116,4 +116,11 @@ constexpr auto toTargetEndian(T value, Endianness target) noexcept -> T {
     }
 }
 
+auto getHost() -> Endianness {
+    if (isLittleEndian()) {
+        return Endianness::LITTLE;
+    }
+    return Endianness::BIG;
+}
+
 }  // namespace utils

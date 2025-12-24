@@ -1,6 +1,8 @@
 module;
-
+#include <algorithm>
+#include <array>
 #include <cstdint>
+#include <cstring>  // For std::memcpy
 #include <format>
 #include <optional>
 #include <string>
@@ -11,8 +13,7 @@ export module value;
 
 export import value.scalar;
 export import value.flags;
-
-// Value - byte data used to store snapshots of old values
+import utils.endianness;
 export struct Value {
     MatchFlags flags = MatchFlags::EMPTY;
     std::vector<std::uint8_t> bytes;
@@ -60,154 +61,210 @@ constexpr auto flagForScalarType() -> MatchFlags {
     return MatchFlags::EMPTY;
 }
 
+export template <typename T>
+auto packScalarBytes(T val, utils::Endianness endianness = utils::getHost())
+    -> std::vector<uint8_t> {
+    std::vector<uint8_t> buf(sizeof(T));
+    std::memcpy(buf.data(), &val, sizeof(T));
+    if (endianness != utils::getHost()) {
+        std::ranges::reverse(buf);
+    }
+    return buf;
+}
+
+template <typename T>
+[[nodiscard]]
+auto toScalarVal(Value val, utils::Endianness endianness = utils::getHost())
+    -> T {
+    T temp{};
+    if (endianness != utils::getHost()) {
+        std::vector<std::uint8_t> revData(val.size());
+        std::reverse_copy(val.data(), val.data() + val.size(), revData.data());
+        std::memcpy(&temp, revData.data(), sizeof(T));
+        return temp;
+    }
+    std::memcpy(&temp, val.data(), sizeof(T));
+    return temp;
+}
+
 export struct UserValue {
-    // Scalar values (low/high for ranges) - backward compatible
-    int8_t s8 = 0, s8h = 0;
-    uint8_t u8 = 0, u8h = 0;
-    int16_t s16 = 0, s16h = 0;
-    uint16_t u16 = 0, u16h = 0;
-    int32_t s32 = 0, s32h = 0;
-    uint32_t u32 = 0, u32h = 0;
-    int64_t s64 = 0, s64h = 0;
-    uint64_t u64 = 0, u64h = 0;
-    float f32 = 0.0F, f32h = 0.0F;
-    double f64 = 0.0, f64h = 0.0;
-
-    // Complex types
-    std::optional<std::vector<std::uint8_t>> bytearrayValue;
+    Value raw;
+    std::optional<Value> rangeHigh;  // 用于范围扫描
     std::optional<std::vector<std::uint8_t>>
-        byteMask;  // 0xFF=fixed, 0x00=wildcard
-    std::string stringValue;
+        byteMask;  // 0xFF=fixed, 0x00=wildcard（仅用于字节数组）
 
-    // Valid flags
-    MatchFlags flags = MatchFlags::EMPTY;
+    // 访问器
+    [[nodiscard]] auto flags() const noexcept -> MatchFlags {
+        return raw.flags;
+    }
+    [[nodiscard]] auto data() const noexcept -> const std::uint8_t* {
+        return raw.data();
+    }
+    [[nodiscard]] auto size() const noexcept -> std::size_t {
+        return raw.size();
+    }
 
+    // 构造器
     template <typename T>
-    static auto fromScalar(T value) -> UserValue {
-        UserValue userVal;
-        setScalarValue(userVal, value);
-        userVal.flags = flagForScalarType<T>();
-        return userVal;
+    static auto fromScalar(T value,
+                           utils::Endianness endianness = utils::getHost())
+        -> UserValue {
+        UserValue userValue;
+        userValue.raw.flags = flagForScalarType<T>();
+        userValue.raw.bytes = packScalarBytes<T>(value, endianness);
+        return userValue;
     }
 
     template <typename T>
-    static auto fromRange(T low, T high) -> UserValue {
-        UserValue userVal;
-        setScalarValue(userVal, low);
-        setScalarHighValue(userVal, high);
-        userVal.flags = flagForScalarType<T>();
-        return userVal;
+    static auto fromScalarRange(T lowValue, T highValue,
+                                utils::Endianness endianness = utils::getHost())
+        -> UserValue {
+        UserValue userValue;
+        userValue.raw.flags = flagForScalarType<T>();
+        userValue.raw.bytes = packScalarBytes<T>(lowValue, endianness);
+        userValue.rangeHigh = Value{};
+        userValue.rangeHigh->flags = flagForScalarType<T>();
+        userValue.rangeHigh->bytes = packScalarBytes<T>(highValue, endianness);
+        return userValue;
     }
 
     static auto fromString(std::string val) -> UserValue {
-        UserValue userVal;
-        userVal.stringValue = std::move(val);
-        userVal.flags = MatchFlags::STRING;
-        return userVal;
+        UserValue userValue;
+        userValue.raw.flags = MatchFlags::STRING;
+        userValue.raw.bytes.assign(val.begin(), val.end());
+        return userValue;
     }
 
-    static auto fromByteArray(std::vector<uint8_t> val) -> UserValue {
-        UserValue userVal;
-        userVal.bytearrayValue = std::move(val);
-        userVal.flags = MatchFlags::BYTE_ARRAY;
-        return userVal;
+    static auto fromByteArray(
+        std::vector<uint8_t> val,
+        std::optional<std::vector<uint8_t>> mask = std::nullopt) -> UserValue {
+        UserValue userValue;
+        userValue.raw.flags = MatchFlags::BYTE_ARRAY;
+        userValue.raw.bytes = std::move(val);
+        userValue.byteMask = std::move(mask);
+        return userValue;
     }
 
-   private:
-    template <typename T>
-    static void setScalarValue(UserValue& userVal, T value) {
-        if constexpr (std::is_same_v<T, int8_t>) {
-            userVal.s8 = value;
-        } else if constexpr (std::is_same_v<T, uint8_t>) {
-            userVal.u8 = value;
-        } else if constexpr (std::is_same_v<T, int16_t>) {
-            userVal.s16 = value;
-        } else if constexpr (std::is_same_v<T, uint16_t>) {
-            userVal.u16 = value;
-        } else if constexpr (std::is_same_v<T, int32_t>) {
-            userVal.s32 = value;
-        } else if constexpr (std::is_same_v<T, uint32_t>) {
-            userVal.u32 = value;
-        } else if constexpr (std::is_same_v<T, int64_t>) {
-            userVal.s64 = value;
-        } else if constexpr (std::is_same_v<T, uint64_t>) {
-            userVal.u64 = value;
-        } else if constexpr (std::is_same_v<T, float>) {
-            userVal.f32 = value;
-        } else if constexpr (std::is_same_v<T, double>) {
-            userVal.f64 = value;
+    [[nodiscard]] auto flag() const -> MatchFlags { return raw.flags; }
+
+    // 设置标志位的接口
+    void setFlag(MatchFlags newFlag) {
+        raw.flags = newFlag;
+        if( rangeHigh) {
+            rangeHigh->flags = newFlag;
         }
     }
 
-    template <typename T>
-    static void setScalarHighValue(UserValue& userVal, T value) {
-        if constexpr (std::is_same_v<T, int8_t>) {
-            userVal.s8h = value;
-        } else if constexpr (std::is_same_v<T, uint8_t>) {
-            userVal.u8h = value;
-        } else if constexpr (std::is_same_v<T, int16_t>) {
-            userVal.s16h = value;
-        } else if constexpr (std::is_same_v<T, uint16_t>) {
-            userVal.u16h = value;
-        } else if constexpr (std::is_same_v<T, int32_t>) {
-            userVal.s32h = value;
-        } else if constexpr (std::is_same_v<T, uint32_t>) {
-            userVal.u32h = value;
-        } else if constexpr (std::is_same_v<T, int64_t>) {
-            userVal.s64h = value;
-        } else if constexpr (std::is_same_v<T, uint64_t>) {
-            userVal.u64h = value;
-        } else if constexpr (std::is_same_v<T, float>) {
-            userVal.f32h = value;
-        } else if constexpr (std::is_same_v<T, double>) {
-            userVal.f64h = value;
+    [[nodiscard]] auto byteData() const -> const std::vector<uint8_t>& {
+        return raw.bytes;
+    }
+    [[nodiscard]] auto byteDataHigh() const
+        -> std::optional<std::vector<uint8_t>> {
+        if (rangeHigh) {
+            return rangeHigh->bytes;
         }
+        return std::nullopt;
+    }
+
+    template <typename T>
+    [[nodiscard]] auto value() -> T {
+        return toScalarVal<T>(raw);
+    }
+
+    template <typename T>
+    [[nodiscard]] auto valueHigh() -> std::optional<T> {
+        if (rangeHigh) {
+            return toScalarVal<T>(*rangeHigh);
+        }
+        return std::nullopt;
+    }
+
+    [[nodiscard]] auto byteArrayValue() const -> std::vector<uint8_t> {
+        if (raw.flags != MatchFlags::BYTE_ARRAY) {
+            return std::vector<uint8_t>{};
+        }
+        return raw.bytes;
+    }
+
+    [[nodiscard]] auto stringValue() const -> std::string {
+        if (raw.flags != MatchFlags::STRING) {
+            return std::string{};
+        }
+        return std::string(
+            static_cast<const char*>(static_cast<const void*>(raw.data())),
+            raw.size());
     }
 };
 
-// Specialization of std::formatter for UserValue in std namespace
+namespace value_detail {
+template <typename T>
+[[nodiscard]] inline auto unpackScalar(const Value& source) noexcept
+    -> std::optional<T> {
+    static_assert(std::is_trivially_copyable_v<T>,
+                  "userValue conversions require trivially copyable types");
+    const auto REQUIRED = flagForScalarType<T>();
+    if ((source.flags & REQUIRED) == MatchFlags::EMPTY) {
+        return std::nullopt;
+    }
+    if (source.size() < sizeof(T)) {
+        return std::nullopt;
+    }
+
+    std::array<std::uint8_t, sizeof(T)> buffer{};
+    std::memcpy(buffer.data(), source.data(), sizeof(T));
+    if (utils::getHost() == utils::Endianness::BIG) {
+        std::ranges::reverse(buffer);
+    }
+
+    T out{};
+    std::memcpy(&out, buffer.data(), sizeof(T));
+    return out;
+}
+}  // namespace value_detail
+
+export template <typename T>
+[[nodiscard]] inline auto userValueAs(const UserValue& userValue) noexcept
+    -> std::optional<T> {
+    return value_detail::unpackScalar<T>(userValue.raw);
+}
+
+export template <typename T>
+[[nodiscard]] inline auto userValueHighAs(const UserValue& userValue) noexcept
+    -> std::optional<T> {
+    if (userValue.rangeHigh) {
+        if (auto scalarOpt =
+                value_detail::unpackScalar<T>(*userValue.rangeHigh)) {
+            return scalarOpt;
+        }
+    }
+    return userValueAs<T>(userValue);
+}
+
 namespace std {
 template <>
 struct formatter<UserValue> {
-    constexpr auto parse(format_parse_context& ctx) { return ctx.begin(); }
+    static constexpr auto parse(format_parse_context& ctx) {
+        return ctx.begin();
+    }
 
-    auto format(const UserValue& val, format_context& ctx) const {
-        // Format based on flags
-        if (val.flags == MatchFlags::EMPTY) {
+    static auto format(const UserValue& userValue, format_context& ctx) {
+        if (userValue.flags() == MatchFlags::EMPTY) {
             return format_to(ctx.out(), "<empty>");
         }
-        if (val.flags == MatchFlags::STRING) {
-            return format_to(ctx.out(), "\"{}\"", val.stringValue);
+        if (userValue.flags() == MatchFlags::STRING) {
+            std::string str(static_cast<const char*>(
+                                static_cast<const void*>(userValue.data())),
+                            userValue.size());
+            return format_to(ctx.out(), "\"{}\"", str);
         }
-        if (val.flags == MatchFlags::BYTE_ARRAY) {
-            if (val.bytearrayValue) {
-                format_to(ctx.out(), "[");
-                bool first = true;
-                for (auto byte : *val.bytearrayValue) {
-                    if (!first) {
-                        format_to(ctx.out(), " ");
-                    }
-                    format_to(ctx.out(), "{:02x}", byte);
-                    first = false;
-                }
-                return format_to(ctx.out(), "]");
+        format_to(ctx.out(), "[");
+        for (size_t index = 0; index < userValue.size(); ++index) {
+            if (index != 0U) {
+                format_to(ctx.out(), " ");
             }
-            return format_to(ctx.out(), "<empty byte array>");
+            format_to(ctx.out(), "{:02x}", userValue.data()[index]);
         }
-        // Scalar types
-        if (val.flags == MatchFlags::B8) {
-            return format_to(ctx.out(), "{}", val.s8);
-        }
-        if (val.flags == MatchFlags::B16) {
-            return format_to(ctx.out(), "{}", val.s16);
-        }
-        if (val.flags == MatchFlags::B32) {
-            return format_to(ctx.out(), "{}", val.s32);
-        }
-        if (val.flags == MatchFlags::B64) {
-            return format_to(ctx.out(), "{}", val.s64);
-        }
-        return format_to(ctx.out(), "<unknown type>");
+        return format_to(ctx.out(), "]");
     }
 };
 }  // namespace std

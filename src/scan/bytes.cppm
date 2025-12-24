@@ -165,10 +165,10 @@ export inline auto makeBytearrayRoutine(ScanMatchType matchType)
             setFlagsIfNotNull(saveFlags, MatchFlags::B8);
             return static_cast<unsigned int>(memLength);
         }
-        if (!userValue || !userValue->bytearrayValue) {
+        if (userValue->flag() != MatchFlags::BYTE_ARRAY) {
             return 0;
         }
-        const auto& byteArrayRef = *userValue->bytearrayValue;
+        const auto& byteArrayRef = userValue->byteArrayValue();
         if (userValue->byteMask &&
             userValue->byteMask->size() == byteArrayRef.size()) {
             unsigned matchedLen = compareBytesMasked(

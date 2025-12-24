@@ -83,8 +83,7 @@ TEST(ScanFactoryTest, GetRoutineAnyNumber) {
 }
 
 TEST(ScanFactoryTest, ChooseScanRoutineValid) {
-    UserValue uv;
-    uv.flags = MatchFlags::B32;
+    UserValue uv = UserValue::fromScalar(1);
 
     bool result = smChooseScanroutine(ScanDataType::INTEGER_32,
                                       ScanMatchType::MATCH_ANY, uv, false);

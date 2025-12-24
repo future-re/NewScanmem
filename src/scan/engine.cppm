@@ -316,7 +316,7 @@ export inline auto runScanInternal(
     // Prepare scan routine
     auto routine = smGetScanroutine(
         opts.dataType, opts.matchType,
-        (userValue != nullptr) ? userValue->flags : MatchFlags::EMPTY,
+        (userValue != nullptr) ? userValue->flag() : MatchFlags::EMPTY,
         opts.reverseEndianness);
     if (!routine) {
         return std::unexpected{"no scan routine for options"};

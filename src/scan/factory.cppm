@@ -49,7 +49,7 @@ export inline auto smChooseScanroutine(ScanDataType dataType,
                                        ScanMatchType matchType,
                                        UserValue& userValue,
                                        bool reverseEndianness) -> bool {
-    auto routine = smGetScanroutine(dataType, matchType, userValue.flags,
+    auto routine = smGetScanroutine(dataType, matchType, userValue.flag(),
                                     reverseEndianness);
     return static_cast<bool>(routine);
 }

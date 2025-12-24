@@ -2,22 +2,24 @@
  * @file parser.cppm
  * @brief Value parsing utilities for scan operations
  */
-
 module;
 #include <algorithm>
 #include <charconv>
+#include <cstddef>
 #include <cstdint>
 #include <limits>
 #include <optional>
 #include <string>
 #include <string_view>
 #include <type_traits>
+#include <utility>
 #include <vector>
 
 export module value.parser;
 
 import scan.types;
 import value;
+import utils.endianness;
 import value.flags;
 
 export namespace value {
@@ -253,7 +255,7 @@ template <typename T, typename Parser>
         if (!highOpt) {
             return std::nullopt;
         }
-        return UserValue::fromRange<T>(*lowOpt, *highOpt);
+        return UserValue::fromScalarRange<T>(*lowOpt, *highOpt);
     }
     return UserValue::fromScalar<T>(*lowOpt);
 }
@@ -272,7 +274,7 @@ template <typename T, typename Parser>
                                          size_t startIndex)
     -> std::optional<UserValue> {
     if (!matchNeedsUserValue(matchType)) {
-        return UserValue{};  // empty flags indicates not used
+        return std::nullopt;
     }
 
     auto needRange = (matchType == ScanMatchType::MATCH_RANGE);
@@ -309,10 +311,8 @@ template <typename T, typename Parser>
             if (startIndex >= args.size()) {
                 return std::nullopt;
             }
-            UserValue userVal;
-            userVal.stringValue = args[startIndex];
-            userVal.flags = MatchFlags::STRING;
-            return userVal;
+            auto first = UserValue::fromString(args[startIndex]);
+            return std::make_optional(first);
         }
 
         case ScanDataType::BYTE_ARRAY: {
@@ -348,10 +348,8 @@ template <typename T, typename Parser>
                 bytes.push_back(byte);
             }
 
-            UserValue userVal;
-            userVal.bytearrayValue = std::move(bytes);
-            userVal.flags = MatchFlags::BYTE_ARRAY;
-            return userVal;
+            auto first = UserValue::fromByteArray(std::move(bytes));
+            return std::make_optional(first);
         }
 
         default:

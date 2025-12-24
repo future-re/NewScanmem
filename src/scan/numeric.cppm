@@ -30,7 +30,7 @@ inline auto numericMatchCore(ScanMatchType matchType, T memv,
     }
     if (NEEDS_USER && userValue != nullptr) {
         const auto REQUIRED = flagForType<T>();
-        if ((userValue->flags & REQUIRED) == MatchFlags::EMPTY) {
+        if ((userValue->flags() & REQUIRED) == MatchFlags::EMPTY) {
             return 0;
         }
     }
@@ -72,7 +72,15 @@ inline auto numericMatchCore(ScanMatchType matchType, T memv,
         return firstValue < secondValue;
     };
 
-    const T USERVALUEMAIN = NEEDS_USER ? userValueAs<T>(*userValue) : T{};
+    std::optional<T> userLowOpt;
+    if (NEEDS_USER) {
+        userLowOpt = userValueAs<T>(*userValue);
+        if (!userLowOpt) {
+            return 0;
+        }
+    }
+
+    const T USERVALUEMAIN = userLowOpt.value_or(T{});
 
     switch (matchType) {
         case ScanMatchType::MATCH_ANY:
@@ -109,8 +117,12 @@ inline auto numericMatchCore(ScanMatchType matchType, T memv,
             return (DELTA == USERVALUEMAIN) ? markMatched() : 0;
         }
         case ScanMatchType::MATCH_RANGE: {
-            const T HIGHVALUE = userValueHighAs<T>(*userValue);
-            auto [lowBound, highBound] = std::minmax(USERVALUEMAIN, HIGHVALUE);
+            auto highOpt = userValueHighAs<T>(*userValue);
+            if (!highOpt || !userLowOpt) {
+                return 0;
+            }
+            const T HIGHVALUE = *highOpt;
+            auto [lowBound, highBound] = std::minmax(*userLowOpt, HIGHVALUE);
             if constexpr (std::is_floating_point_v<T>) {
                 const T ABS_TOLERANCE = absTol<T>();
                 const bool IN_RANGE = (memv >= lowBound - ABS_TOLERANCE &&

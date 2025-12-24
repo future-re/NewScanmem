@@ -137,10 +137,9 @@ TEST(ScanBytesTest, FindBytePatternMaskedIgnoresMaskedBits) {
 }
 
 TEST(ScanBytesTest, BytearrayRoutineWithMaskMatches) {
-    UserValue userValue;
-    userValue.bytearrayValue = std::vector<std::uint8_t>{0xAA, 0xBB};
+    UserValue userValue =
+        UserValue::fromByteArray(std::vector<uint8_t>{0xAA, 0xBB});
     userValue.byteMask = std::vector<std::uint8_t>{0xFF, 0xF0};
-    userValue.flags = MatchFlags::B8;
 
     auto routine = makeBytearrayRoutine(ScanMatchType::MATCH_EQUAL_TO);
     const std::vector<std::uint8_t> HAY_STACK{0xAA, 0xB5, 0x00};
@@ -153,10 +152,9 @@ TEST(ScanBytesTest, BytearrayRoutineWithMaskMatches) {
 }
 
 TEST(ScanBytesTest, MakeBytearrayRoutineAddsBYTE_ARRAYFlag) {
-    UserValue userValue;
-    userValue.bytearrayValue = std::vector<std::uint8_t>{0xAA, 0xBB};
+    UserValue userValue =
+        UserValue::fromByteArray(std::vector<uint8_t>{0xAA, 0xBB});
     userValue.byteMask = std::vector<std::uint8_t>{0xFF, 0xF0};
-    userValue.flags = MatchFlags::B8;
 
     auto routine = makeBytearrayRoutine(ScanMatchType::MATCH_EQUAL_TO);
     const std::vector<std::uint8_t> HAY_STACK{0xAA, 0xB5, 0x00};
@@ -182,8 +180,7 @@ TEST(ScanStringTest, MATCH_ANYReturnsFullLength) {
 TEST(ScanStringTest, RegexMatchUsesPattern) {
     const std::string TEXT = "zzabczz";
     Mem64 mem{TEXT};
-    UserValue userValue;
-    userValue.stringValue = "a.c";
+    UserValue userValue = UserValue::fromString("a.c");
 
     auto routine = makeStringRoutine(ScanMatchType::MATCH_REGEX);
     MatchFlags flags = MatchFlags::EMPTY;

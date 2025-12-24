@@ -129,7 +129,7 @@ export auto runScanParallel(pid_t pid, const ScanOptions& opts,
     // 3. 准备扫描例程（串行，快速）
     auto routine = smGetScanroutine(
         opts.dataType, opts.matchType,
-        (userValue != nullptr) ? userValue->flags : MatchFlags::EMPTY,
+        (userValue != nullptr) ? userValue->flag() : MatchFlags::EMPTY,
         opts.reverseEndianness);
     if (!routine) {
         return std::unexpected{"no scan routine for options"};

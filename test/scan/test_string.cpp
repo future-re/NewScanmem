@@ -39,9 +39,7 @@ TEST_F(ScanStringTest,
                                  'W', 'o', 'r', 'l', 'd'};
     m_mem = Mem64(data);
 
-    UserValue userValue;
-    userValue.stringValue = "Hello";
-    userValue.flags = MatchFlags::STRING;
+    UserValue userValue = UserValue::fromString("Hello");
 
     auto routine = makeStringRoutine(ScanMatchType::MATCH_EQUAL_TO);
 
@@ -57,9 +55,7 @@ TEST_F(ScanStringTest, RegexMatchWithNullSaveFlagsDoesNotCrash) {
     std::vector<uint8_t> data = {'t', 'e', 's', 't', '1', '2', '3'};
     m_mem = Mem64(data);
 
-    UserValue userValue;
-    userValue.stringValue = "[0-9]+";
-    userValue.flags = MatchFlags::STRING;
+    UserValue userValue = UserValue::fromString("[0-9]+");
 
     auto routine = makeStringRoutine(ScanMatchType::MATCH_REGEX);
 

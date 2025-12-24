@@ -75,7 +75,7 @@ export [[nodiscard]] inline auto filterMatches(
     -> std::expected<ScanStats, std::string> {
     auto routine =
         smGetScanroutine(opts.dataType, opts.matchType,
-                         (value != nullptr) ? value->flags : MatchFlags::EMPTY,
+                         (value != nullptr) ? value->flag() : MatchFlags::EMPTY,
                          opts.reverseEndianness);
     if (!routine) {
         return std::unexpected("no scan routine for filtered options");

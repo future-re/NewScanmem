@@ -23,6 +23,7 @@ import core.memory_writer;
 import utils.endianness;
 import value.parser;
 import scan.types;
+import utils.logging;
 
 export namespace cli::commands {
 
@@ -72,36 +73,42 @@ class WriteCommand : public Command {
 
         // 根据数据类型解析值
         const auto& valueStr = args[0];
-        std::uint64_t value = 0;
 
-        bool isFloatType = (*lastDataType == ScanDataType::FLOAT_32 ||
-                            *lastDataType == ScanDataType::FLOAT_64 ||
-                            *lastDataType == ScanDataType::ANY_FLOAT);
+        utils::Logger::debug("Parsing write value: {}", valueStr);
 
-        if (isFloatType) {
-            // 解析为浮点数
-            auto doubleOpt = value::parseDouble(valueStr);
-            if (!doubleOpt) {
+        std::vector<uint8_t> valueData;
+
+        if (bool isFloatType = (*lastDataType == ScanDataType::FLOAT_32 ||
+                                *lastDataType == ScanDataType::FLOAT_64 ||
+                                *lastDataType == ScanDataType::ANY_FLOAT)) {
+            auto tempParseValue = value::parseDouble(valueStr);
+            if (!tempParseValue) {
                 return std::unexpected("Invalid float value: " + valueStr);
             }
-            // 根据类型转换为对应的浮点表示
-            if (*lastDataType == ScanDataType::FLOAT_32) {
-                float floatVal = static_cast<float>(*doubleOpt);
-                std::memcpy(&value, &floatVal, sizeof(float));
-            } else {
-                double doubleVal = *doubleOpt;
-                std::memcpy(&value, &doubleVal, sizeof(double));
-            }
-        } else {
-            // 解析为整数
-            auto intOpt = value::parseInteger<std::int64_t>(valueStr);
-            if (!intOpt) {
+            memcpy(valueData.data(), &(*tempParseValue),
+                   sizeof(*tempParseValue));
+        } else if (bool isIntegerType =
+                       (*lastDataType == ScanDataType::INTEGER_8 ||
+                        *lastDataType == ScanDataType::INTEGER_16 ||
+                        *lastDataType == ScanDataType::INTEGER_32 ||
+                        *lastDataType == ScanDataType::INTEGER_64 ||
+                        *lastDataType == ScanDataType::ANY_INTEGER)) {
+            auto tempParseValue = value::parseInteger<std::int64_t>(valueStr);
+            if (!tempParseValue) {
                 return std::unexpected("Invalid integer value: " + valueStr);
             }
-            value = static_cast<std::uint64_t>(*intOpt);
+            memcpy(valueData.data(), &(*tempParseValue),
+                   sizeof(*tempParseValue));
+        } else if (bool isString = (*lastDataType == ScanDataType::STRING)) {
+            memcpy(valueData.data(), valueStr.data(), valueStr.size());
+        } else if (bool isByteArray =
+                       (*lastDataType == ScanDataType::BYTE_ARRAY)) {
+            memcpy(valueData.data(), valueStr.data(), valueStr.size());
         }
 
-        // 解析索引（可选）
+        UserValue value;
+
+        // 解析索引
         std::optional<size_t> targetIndex;
         if (args.size() > 1) {
             try {
@@ -111,53 +118,55 @@ class WriteCommand : public Command {
             }
         }
 
-        // 创建写入器并执行写入（按会话端序）
-        core::MemoryWriter writer(
-            m_session->pid, (m_session->endianness == utils::Endianness::LITTLE
-                                 ? utils::Endianness::LITTLE
-                                 : utils::Endianness::BIG));
-        auto* scanner = m_session->scanner.get();
+        // // 创建写入器并执行写入（按会话端序）
+        // core::MemoryWriter writer(
+        //     m_session->pid, (m_session->endianness ==
+        //     utils::Endianness::LITTLE
+        //                          ? utils::Endianness::LITTLE
+        //                          : utils::Endianness::BIG));
+        // auto* scanner = m_session->scanner.get();
 
-        if (targetIndex) {
-            // 写入单个匹配
-            auto result = writer.writeToMatch(*scanner, value, *targetIndex);
-            if (!result) {
-                return std::unexpected("Write failed: " + result.error());
-            }
-            ui::MessagePrinter::success(std::format(
-                "Successfully wrote value to match #{}", *targetIndex));
-        } else {
-            // 批量写入所有匹配
-            auto result = writer.writeToMatches(*scanner, value);
+        // if (targetIndex) {
+        //     // 写入单个匹配
+        //     auto result = writer.writeToMatch(*scanner, value, *targetIndex);
+        //     if (!result) {
+        //         return std::unexpected("Write failed: " + result.error());
+        //     }
+        //     ui::MessagePrinter::success(std::format(
+        //         "Successfully wrote value to match #{}", *targetIndex));
+        // } else {
+        //     // 批量写入所有匹配
+        //     auto result = writer.writeToMatches(*scanner, value);
 
-            if (result.successCount == 0) {
-                if (!result.errors.empty()) {
-                    return std::unexpected("All writes failed. First error: " +
-                                           result.errors[0]);
-                }
-                return std::unexpected("No values written");
-            }
+        //     if (result.successCount == 0) {
+        //         if (!result.errors.empty()) {
+        //             return std::unexpected("All writes failed. First error: "
+        //             +
+        //                                    result.errors[0]);
+        //         }
+        //         return std::unexpected("No values written");
+        //     }
 
-            // 显示结果摘要
-            ui::MessagePrinter::success(std::format(
-                "Successfully wrote {} value(s)", result.successCount));
+        //     // 显示结果摘要
+        //     ui::MessagePrinter::success(std::format(
+        //         "Successfully wrote {} value(s)", result.successCount));
 
-            if (result.failedCount > 0) {
-                ui::MessagePrinter::warn(
-                    std::format("{} write(s) failed", result.failedCount));
+        //     if (result.failedCount > 0) {
+        //         ui::MessagePrinter::warn(
+        //             std::format("{} write(s) failed", result.failedCount));
 
-                // 显示前几个错误
-                size_t errorLimit = std::min(result.errors.size(), size_t{3});
-                for (size_t i = 0; i < errorLimit; ++i) {
-                    ui::MessagePrinter::warn("  " + result.errors[i]);
-                }
-                if (result.errors.size() > errorLimit) {
-                    ui::MessagePrinter::warn(
-                        std::format("  ... and {} more errors",
-                                    result.errors.size() - errorLimit));
-                }
-            }
-        }
+        //         // 显示前几个错误
+        //         size_t errorLimit = std::min(result.errors.size(),
+        //         size_t{3}); for (size_t i = 0; i < errorLimit; ++i) {
+        //             ui::MessagePrinter::warn("  " + result.errors[i]);
+        //         }
+        //         if (result.errors.size() > errorLimit) {
+        //             ui::MessagePrinter::warn(
+        //                 std::format("  ... and {} more errors",
+        //                             result.errors.size() - errorLimit));
+        //         }
+        //     }
+        // }
 
         return CommandResult{.success = true, .message = ""};
     }

@@ -117,7 +117,7 @@ class ScanCommand : public Command {
                 value::buildUserValue(dataType, matchType, args, startIdx);
         }
         if (userVal) {
-            utils::Logger::debug("UserValue: {}", userVal->stringValue);
+            utils::Logger::debug("UserValue: {}", userVal->stringValue());
         }
         auto res = userVal.has_value() ? scanner->scan(opts, *userVal, true)
                                        : scanner->scan(opts, true);
