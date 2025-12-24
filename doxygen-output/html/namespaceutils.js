@@ -13,6 +13,7 @@ var namespaceutils =
       [ "WARN", "namespaceutils.html#a6b50893705cf2a59daf6b680304017dda32bd8a1db2275458673903bdb84cb277", null ],
       [ "ERROR", "namespaceutils.html#a6b50893705cf2a59daf6b680304017ddabb1ca97ec761fc37101737ba0aa2e7c5", null ]
     ] ],
+    [ "getHost", "namespaceutils.html#a30b4b3e4177bc7f02df665fa43350c35", null ],
     [ "hostToLittleEndian", "namespaceutils.html#a97022d89a68c435e218e7d7231b23d6f", null ],
     [ "hostToNetwork", "namespaceutils.html#ab1294d3772177d832662a183da812730", null ],
     [ "isBigEndian", "namespaceutils.html#a715e0f3bd35b3504e091f77a7ae1de2e", null ],

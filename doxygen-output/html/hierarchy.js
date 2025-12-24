@@ -21,6 +21,7 @@ var hierarchy =
     [ "cli::CommandResult", "structcli_1_1CommandResult.html", null ],
     [ "core::MapsReader::Error", "structcore_1_1MapsReader_1_1Error.html", null ],
     [ "core::FormatOptions", "structcore_1_1FormatOptions.html", null ],
+    [ "std::formatter< UserValue >", "structstd_1_1formatter_3_01UserValue_01_4.html", null ],
     [ "KindOf< T >", "structKindOf.html", null ],
     [ "KindOf< double >", "structKindOf_3_01double_01_4.html", null ],
     [ "KindOf< float >", "structKindOf_3_01float_01_4.html", null ],

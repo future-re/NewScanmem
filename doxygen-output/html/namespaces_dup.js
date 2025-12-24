@@ -14,7 +14,7 @@ var namespaces_dup =
     [ "scanmem", "namespacescanmem.html", [
       [ "run", "namespacescanmem.html#a8da63e0867106fb20c71af418faf793a", null ]
     ] ],
-    [ "std", "namespacestd.html", null ],
+    [ "std", "namespacestd.html", "namespacestd" ],
     [ "ui", "namespaceui.html", "namespaceui" ],
     [ "utils", "namespaceutils.html", "namespaceutils" ],
     [ "value", "namespacevalue.html", [
@@ -25,6 +25,9 @@ var namespaces_dup =
       [ "parseInteger", "namespacevalue.html#aa91371f64f35ffc857723edfeed702aa", null ],
       [ "parseMatchType", "namespacevalue.html#a971e73366312690f43ff10fb1e988772", null ],
       [ "toLower", "namespacevalue.html#a41cb8c4cd32ee7d88001f03556615c06", null ]
+    ] ],
+    [ "value_detail", "namespacevalue__detail.html", [
+      [ "unpackScalar", "namespacevalue__detail.html#ac92b0271b023842d5b4bec174cb27ef5", null ]
     ] ],
     [ "version", "namespaceversion.html", [
       [ "string", "namespaceversion.html#a084406eb889bec8f73943a26b7d68f7d", null ],

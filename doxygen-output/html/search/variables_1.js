@@ -14,9 +14,8 @@ var searchData=
   ['bright_5fred_11',['BRIGHT_RED',['../namespaceui_1_1color.html#a7ff0fd024f2ec84e39725a3f3eb1ba6e',1,'ui::color']]],
   ['bright_5fyellow_12',['BRIGHT_YELLOW',['../namespaceui_1_1color.html#a6829b4fa3cb9211b4ac106c73ba19be6',1,'ui::color']]],
   ['buf_13',['buf',['../structSet.html#aca4f5344d37d109c3df35a3db5f35e3b',1,'Set']]],
-  ['bytearrayvalue_14',['bytearrayValue',['../structUserValue.html#a9f72b681be735c23964acb9c25a401a5',1,'UserValue']]],
-  ['bytemask_15',['byteMask',['../structUserValue.html#a056f41e90861ba52474a794a31a31cd1',1,'UserValue']]],
-  ['bytes_16',['bytes',['../structValue.html#a5f5173398304cef519d17570ea8f2573',1,'Value']]],
-  ['bytesscanned_17',['bytesScanned',['../structScanStats.html#a461e6128a9e036aac2b00bd0b76eae5b',1,'ScanStats']]],
-  ['byteswritten_18',['bytesWritten',['../structcore_1_1WriteResult.html#a2ea1570de193e565533cef8bd423ac05',1,'core::WriteResult']]]
+  ['bytemask_14',['byteMask',['../structUserValue.html#a056f41e90861ba52474a794a31a31cd1',1,'UserValue']]],
+  ['bytes_15',['bytes',['../structValue.html#a5f5173398304cef519d17570ea8f2573',1,'Value']]],
+  ['bytesscanned_16',['bytesScanned',['../structScanStats.html#a461e6128a9e036aac2b00bd0b76eae5b',1,'ScanStats']]],
+  ['byteswritten_17',['bytesWritten',['../structcore_1_1WriteResult.html#a2ea1570de193e565533cef8bd423ac05',1,'core::WriteResult']]]
 ];

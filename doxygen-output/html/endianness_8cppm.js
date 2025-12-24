@@ -4,6 +4,7 @@ var endianness_8cppm =
       [ "LITTLE", "endianness_8cppm.html#a9b386dd2997f6356dc5ad20ce16003cca1314341b466dcb5e2c880b76414c49fe", null ],
       [ "BIG", "endianness_8cppm.html#a9b386dd2997f6356dc5ad20ce16003ccaa60c6c694491d75b439073b8cb05b139", null ]
     ] ],
+    [ "getHost", "endianness_8cppm.html#a30b4b3e4177bc7f02df665fa43350c35", null ],
     [ "hostToLittleEndian", "endianness_8cppm.html#a97022d89a68c435e218e7d7231b23d6f", null ],
     [ "hostToNetwork", "endianness_8cppm.html#ab1294d3772177d832662a183da812730", null ],
     [ "isBigEndian", "endianness_8cppm.html#a715e0f3bd35b3504e091f77a7ae1de2e", null ],

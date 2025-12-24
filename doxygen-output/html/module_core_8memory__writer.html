@@ -129,21 +129,9 @@ $(document).ready(function(){initNavTree('module_core_8memory__writer.html','');
 <tr class="separator:abc6c5e190f0f3d95ba2a54e884d3d8b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6f0166b68b3343aeaa261ac4e352845" id="r_ad6f0166b68b3343aeaa261ac4e352845"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#ad6f0166b68b3343aeaa261ac4e352845">getEndianness</a> () const noexcept -&gt; <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a></td></tr>
 <tr class="separator:ad6f0166b68b3343aeaa261ac4e352845"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad135b0b6df15a71d44101471c011544c" id="r_ad135b0b6df15a71d44101471c011544c"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#ad135b0b6df15a71d44101471c011544c">write</a> (std::uintptr_t address, std::uint64_t value, std::size_t writeLen) const -&gt; std::expected&lt; WriteResult, std::string &gt;</td></tr>
-<tr class="memdesc:ad135b0b6df15a71d44101471c011544c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a value to memory at the specified address  <br /></td></tr>
-<tr class="separator:ad135b0b6df15a71d44101471c011544c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abff8f798c07dd70feb3f62701b496c05" id="r_abff8f798c07dd70feb3f62701b496c05"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#abff8f798c07dd70feb3f62701b496c05">writeByte</a> (std::uintptr_t address, std::uint8_t value) const -&gt; std::expected&lt; WriteResult, std::string &gt;</td></tr>
-<tr class="memdesc:abff8f798c07dd70feb3f62701b496c05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a single byte to memory  <br /></td></tr>
-<tr class="separator:abff8f798c07dd70feb3f62701b496c05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b2d81bb29747b177825bc95c94db0ac" id="r_a9b2d81bb29747b177825bc95c94db0ac"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#a9b2d81bb29747b177825bc95c94db0ac">writeBytes</a> (std::uintptr_t address, const void *data, std::size_t size) -&gt; std::expected&lt; WriteResult, std::string &gt;</td></tr>
-<tr class="memdesc:a9b2d81bb29747b177825bc95c94db0ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write bytes from a buffer to memory  <br /></td></tr>
-<tr class="separator:a9b2d81bb29747b177825bc95c94db0ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ed903555df4c163de0e584f7d0be610" id="r_a9ed903555df4c163de0e584f7d0be610"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#a9ed903555df4c163de0e584f7d0be610">writeToMatches</a> (const Scanner &amp;scanner, std::uint64_t value) -&gt; BatchWriteResult</td></tr>
-<tr class="memdesc:a9ed903555df4c163de0e584f7d0be610"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write value to all matches in scanner  <br /></td></tr>
-<tr class="separator:a9ed903555df4c163de0e584f7d0be610"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59fb6d433c960fd56fe9008807b9f2bb" id="r_a59fb6d433c960fd56fe9008807b9f2bb"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#a59fb6d433c960fd56fe9008807b9f2bb">writeToMatch</a> (const Scanner &amp;scanner, std::uint64_t value, std::size_t index) -&gt; std::expected&lt; WriteResult, std::string &gt;</td></tr>
-<tr class="memdesc:a59fb6d433c960fd56fe9008807b9f2bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write value to a specific match by index  <br /></td></tr>
-<tr class="separator:a59fb6d433c960fd56fe9008807b9f2bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa42670193b23b8791e465ac16cf9f47f" id="r_aa42670193b23b8791e465ac16cf9f47f"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#aa42670193b23b8791e465ac16cf9f47f">writeToMatch</a> (const Scanner &amp;scanner, <a class="el" href="structUserValue.html">UserValue</a> &amp;value, std::vector&lt; size_t &gt; matchIndex) -&gt; std::expected&lt; WriteResult, std::string &gt;</td></tr>
+<tr class="memdesc:aa42670193b23b8791e465ac16cf9f47f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write value to a single matched address  <br /></td></tr>
+<tr class="separator:aa42670193b23b8791e465ac16cf9f47f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 变量</h2></td></tr>
@@ -157,6 +145,8 @@ $(document).ready(function(){initNavTree('module_core_8memory__writer.html','');
 <tr class="separator:a5ba6b3f6f648bc77ad4f6e54cd6e5f26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff5c27543f6aa64abbe1f50876d8d67c" id="r_aff5c27543f6aa64abbe1f50876d8d67c"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1BatchWriteResult.html#aff5c27543f6aa64abbe1f50876d8d67c">failedCount</a></td></tr>
 <tr class="separator:aff5c27543f6aa64abbe1f50876d8d67c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a235d2685ff02a80aa4d9102eb6fd5349" id="r_a235d2685ff02a80aa4d9102eb6fd5349"><td class="memItemLeft" align="right" valign="top">std::vector&lt; WriteResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1BatchWriteResult.html#a235d2685ff02a80aa4d9102eb6fd5349">results</a></td></tr>
+<tr class="separator:a235d2685ff02a80aa4d9102eb6fd5349"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbb05ea11c2e4ed044ab225276f9e25e" id="r_acbb05ea11c2e4ed044ab225276f9e25e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1BatchWriteResult.html#acbb05ea11c2e4ed044ab225276f9e25e">errors</a></td></tr>
 <tr class="separator:acbb05ea11c2e4ed044ab225276f9e25e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>

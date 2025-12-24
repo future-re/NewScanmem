@@ -47,6 +47,9 @@ var annotated_dup =
       [ "MatchesAndOldValuesSwath", "classscan_1_1MatchesAndOldValuesSwath.html", "classscan_1_1MatchesAndOldValuesSwath" ],
       [ "OldValueAndMatchInfo", "structscan_1_1OldValueAndMatchInfo.html", "structscan_1_1OldValueAndMatchInfo" ]
     ] ],
+    [ "std", "namespacestd.html", [
+      [ "formatter< UserValue >", "structstd_1_1formatter_3_01UserValue_01_4.html", null ]
+    ] ],
     [ "ui", "namespaceui.html", [
       [ "ConsoleUI", "classui_1_1ConsoleUI.html", "classui_1_1ConsoleUI" ],
       [ "MessageContext", "structui_1_1MessageContext.html", "structui_1_1MessageContext" ],

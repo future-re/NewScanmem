@@ -12,5 +12,6 @@ var module_utils_8endianness =
     [ "utils::isBigEndian", "module_utils_8endianness.html#a715e0f3bd35b3504e091f77a7ae1de2e", null ],
     [ "utils::isLittleEndian", "module_utils_8endianness.html#a915e03ea533a95d375075d41a74e7aeb", null ],
     [ "utils::swapBytesIntegral", "module_utils_8endianness.html#a56d2b3a10b48b378dc7d308f2c8e5996", null ],
-    [ "utils::toTargetEndian", "module_utils_8endianness.html#a84b9cbc873018d8701ba5930643441bc", null ]
+    [ "utils::toTargetEndian", "module_utils_8endianness.html#a84b9cbc873018d8701ba5930643441bc", null ],
+    [ "utils::getHost", "module_utils_8endianness.html#a30b4b3e4177bc7f02df665fa43350c35", null ]
 ];
