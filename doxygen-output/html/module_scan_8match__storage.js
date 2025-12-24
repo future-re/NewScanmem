@@ -17,6 +17,7 @@ var module_scan_8match__storage =
     [ "scan::MatchesAndOldValuesArray::getRawBytesAt", "module_scan_8match__storage.html#a1f06d9a0997c69f911313c561e00b27e", null ],
     [ "scan::OldValueAndMatchInfo::oldByte", "module_scan_8match__storage.html#adb6466011e3792193e69389cf1a6e8ec", null ],
     [ "scan::OldValueAndMatchInfo::matchInfo", "module_scan_8match__storage.html#ae2f389af24189d0c897c3ea1178b4d19", null ],
+    [ "scan::OldValueAndMatchInfo::matchLength", "module_scan_8match__storage.html#aa478a24ba8b133896ed816d25f3e0ba0", null ],
     [ "scan::MatchesAndOldValuesSwath::firstByteInChild", "module_scan_8match__storage.html#a6586552cbe98579ab57f08b974d8e355", null ],
     [ "scan::MatchesAndOldValuesSwath::data", "module_scan_8match__storage.html#a598f7450c4c42c0ebe1557bfe09c3ebc", null ],
     [ "scan::MatchesAndOldValuesArray::swaths", "module_scan_8match__storage.html#a708a9a57a212c889e8cc5674205c4efc", null ]
