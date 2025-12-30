@@ -18,9 +18,7 @@ module;
 export module value.parser;
 
 import scan.types;
-import value.scalar;
-import utils.endianness;
-import value.flags;
+import value;
 
 export namespace value {
 
