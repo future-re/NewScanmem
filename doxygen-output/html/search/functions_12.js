@@ -1,9 +1,15 @@
 var searchData=
 [
-  ['unpackscalar_0',['unpackScalar',['../namespacevalue__detail.html#ac92b0271b023842d5b4bec174cb27ef5',1,'value_detail']]],
-  ['user_1',['user',['../classui_1_1MessagePrinter.html#abac2f918314d58d36cc044d447f6672e',1,'ui::MessagePrinter']]],
-  ['userinput_2',['UserInput',['../structUserInput.html#ace219b17c2e355536141cda8a241e6f9',1,'UserInput']]],
-  ['userinterface_3',['userinterface',['../classui_1_1UserInterface.html#a76436bf07917b7c63363d893e07a9ee8',1,'ui::UserInterface::UserInterface()=default'],['../classui_1_1UserInterface.html#a079b8c35ea12bb50db9e6b4dc23647d5',1,'ui::UserInterface::UserInterface(const UserInterface &amp;)=default'],['../classui_1_1UserInterface.html#aced6e9954e710d009a8903020c4489b5',1,'ui::UserInterface::UserInterface(UserInterface &amp;&amp;) noexcept=default']]],
-  ['uservalueas_4',['userValueAs',['../value_8cppm.html#ab6cbefad399912006b1f2c578d08d5a0',1,'value.cppm']]],
-  ['uservaluehighas_5',['userValueHighAs',['../value_8cppm.html#a2e01b11417fc5b7132488e935beed7a2',1,'value.cppm']]]
+  ['tobytearraytext_0',['toByteArrayText',['../classscan_1_1MatchesAndOldValuesSwath.html#a1d3614a2d6bc45ebc56152d2a12f2de5',1,'scan::MatchesAndOldValuesSwath']]],
+  ['tolower_1',['tolower',['../classutils_1_1StringUtils.html#a137c5c70edd1139bee081a1d43e5510e',1,'utils::StringUtils::toLower()'],['../namespacevalue.html#a41cb8c4cd32ee7d88001f03556615c06',1,'value::toLower()']]],
+  ['tomatchflags_2',['tomatchflags',['../structScalarValue.html#aad4213baa467beaddf96b7be4a4ac1f4',1,'ScalarValue::toMatchFlags()'],['../scalar_8cppm.html#a95b3ca0ed04926c00795b53cc0c141e0',1,'toMatchFlags():&#160;scalar.cppm']]],
+  ['toprintablestring_3',['toPrintableString',['../classscan_1_1MatchesAndOldValuesSwath.html#a8761c91f23136f817cdfb82e99a5f010',1,'scan::MatchesAndOldValuesSwath']]],
+  ['tostring_4',['toString',['../classcore_1_1RegionFilter.html#a9b3edd5809d4bb155e3327e705c39dc0',1,'core::RegionFilter']]],
+  ['totargetendian_5',['toTargetEndian',['../namespaceutils.html#a84b9cbc873018d8701ba5930643441bc',1,'utils']]],
+  ['toupper_6',['toUpper',['../classutils_1_1StringUtils.html#ac3c3c28224fbd6751c00fd7876c3b3ab',1,'utils::StringUtils']]],
+  ['trim_7',['trim',['../classutils_1_1StringUtils.html#ac327c7b4e0f15461d07e934809c91b61',1,'utils::StringUtils']]],
+  ['trimleft_8',['trimLeft',['../classutils_1_1StringUtils.html#a6b7d14771d79b94375247497e6c99fb9',1,'utils::StringUtils']]],
+  ['trimright_9',['trimRight',['../classutils_1_1StringUtils.html#a0d59af809e6fa964b16c93e946efdaea',1,'utils::StringUtils']]],
+  ['tryget_10',['tryGet',['../structMem64.html#a60dc57b0cb763ccee8109d377639f4f4',1,'Mem64']]],
+  ['trynumericsequence_11',['tryNumericSequence',['../namespacedetail.html#afdfe8c55d9ebfa61684e71fd8bc3ed9c',1,'detail']]]
 ];

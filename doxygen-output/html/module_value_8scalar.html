@@ -100,6 +100,13 @@ $(document).ready(function(){initNavTree('module_value_8scalar.html',''); initRe
   <div class="headertitle"><div class="title">value.scalar 模块参考手册</div></div>
 </div><!--header-->
 <div class="contents">
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="exports" name="exports"></a>
+Exported Modules</h2></td></tr>
+<tr class="memitem:value" id="r_value"><td class="memItemLeft" align="right" valign="top">模块 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="module_value.html">value</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:utils.endianness" id="r_utils.endianness"><td class="memItemLeft" align="right" valign="top">模块 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="module_utils_8endianness.html">utils.endianness</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 类</h2></td></tr>
@@ -126,6 +133,8 @@ $(document).ready(function(){initNavTree('module_value_8scalar.html',''); initRe
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf_3_01double_01_4.html">KindOf&lt; double &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structScalarValue.html">ScalarValue</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserValue.html">UserValue</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -156,6 +165,27 @@ $(document).ready(function(){initNavTree('module_value_8scalar.html',''); initRe
 函数</h2></td></tr>
 <tr class="memitem:a06acf7a3a0b07f19af19a72851d5ec96" id="r_a06acf7a3a0b07f19af19a72851d5ec96"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scalar_8cppm.html#a06acf7a3a0b07f19af19a72851d5ec96">sizeOf</a> (<a class="el" href="scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3">ScalarKind</a> kType) noexcept -&gt; size_t</td></tr>
 <tr class="separator:a06acf7a3a0b07f19af19a72851d5ec96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13b07493d9808df08e09d6ded4174e88" id="r_a13b07493d9808df08e09d6ded4174e88"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scalar_8cppm.html#a13b07493d9808df08e09d6ded4174e88">isSigned</a> (<a class="el" href="scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3">ScalarKind</a> kType) noexcept -&gt; bool</td></tr>
+<tr class="separator:a13b07493d9808df08e09d6ded4174e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a168717c19ba5f1ea027c5e61ff68a92d" id="r_a168717c19ba5f1ea027c5e61ff68a92d"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scalar_8cppm.html#a168717c19ba5f1ea027c5e61ff68a92d">isFloatingPoint</a> (<a class="el" href="scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3">ScalarKind</a> kType) noexcept -&gt; bool</td></tr>
+<tr class="separator:a168717c19ba5f1ea027c5e61ff68a92d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95b3ca0ed04926c00795b53cc0c141e0" id="r_a95b3ca0ed04926c00795b53cc0c141e0"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scalar_8cppm.html#a95b3ca0ed04926c00795b53cc0c141e0">toMatchFlags</a> (<a class="el" href="scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3">ScalarKind</a> kType) noexcept -&gt; <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a></td></tr>
+<tr class="separator:a95b3ca0ed04926c00795b53cc0c141e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c8ab9091db0c27df1ee5d883548689b" id="r_a2c8ab9091db0c27df1ee5d883548689b"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a2c8ab9091db0c27df1ee5d883548689b"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="scalar_8cppm.html#a2c8ab9091db0c27df1ee5d883548689b">kindOf</a> () noexcept -&gt; <a class="el" href="scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3">ScalarKind</a></td></tr>
+<tr class="separator:a2c8ab9091db0c27df1ee5d883548689b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57b31c8838a66645b154d8868ffe4203" id="r_a57b31c8838a66645b154d8868ffe4203"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a57b31c8838a66645b154d8868ffe4203"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="scalar_8cppm.html#a57b31c8838a66645b154d8868ffe4203">packScalarBytes</a> (T val, <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a> endianness=<a class="el" href="namespaceutils.html#a30b4b3e4177bc7f02df665fa43350c35">utils::getHost</a>()) -&gt; std::vector&lt; uint8_t &gt;</td></tr>
+<tr class="separator:a57b31c8838a66645b154d8868ffe4203"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dfd35f750b42e143e6503280eac43f2" id="r_a1dfd35f750b42e143e6503280eac43f2"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a1dfd35f750b42e143e6503280eac43f2"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="scalar_8cppm.html#a1dfd35f750b42e143e6503280eac43f2">unpackScalarBytes</a> (const uint8_t *data, size_t len, <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a> endianness=<a class="el" href="namespaceutils.html#a30b4b3e4177bc7f02df665fa43350c35">utils::getHost</a>()) -&gt; std::optional&lt; T &gt;</td></tr>
+<tr class="separator:a1dfd35f750b42e143e6503280eac43f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada5302b19bf80dc5a6bb98ac8d7fba1a" id="r_ada5302b19bf80dc5a6bb98ac8d7fba1a"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ada5302b19bf80dc5a6bb98ac8d7fba1a"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="scalar_8cppm.html#ada5302b19bf80dc5a6bb98ac8d7fba1a">userValueAs</a> (const <a class="el" href="structUserValue.html">UserValue</a> &amp;uv) noexcept -&gt; std::optional&lt; T &gt;</td></tr>
+<tr class="separator:ada5302b19bf80dc5a6bb98ac8d7fba1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0978f8c52f9594f35aeac86e731c136" id="r_ae0978f8c52f9594f35aeac86e731c136"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ae0978f8c52f9594f35aeac86e731c136"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="scalar_8cppm.html#ae0978f8c52f9594f35aeac86e731c136">userValueHighAs</a> (const <a class="el" href="structUserValue.html">UserValue</a> &amp;uv) noexcept -&gt; std::optional&lt; T &gt;</td></tr>
+<tr class="separator:ae0978f8c52f9594f35aeac86e731c136"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="files" name="files"></a>

@@ -12,6 +12,7 @@ var module_value_8scalar =
     [ "KindOf< float >", "structKindOf_3_01float_01_4.html", null ],
     [ "KindOf< double >", "structKindOf_3_01double_01_4.html", null ],
     [ "ScalarValue", "structScalarValue.html", "structScalarValue" ],
+    [ "UserValue", "structUserValue.html", "structUserValue" ],
     [ "ScalarKind", "scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3", [
       [ "U8", "scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3a6669348b484e3008dca2bfa8e85e40b5", null ],
       [ "S8", "scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3aafb0fced528eaac5fe170b763cda5975", null ],
@@ -25,5 +26,13 @@ var module_value_8scalar =
       [ "F64", "scalar_8cppm.html#a5a57879dbf35ecff722c27d20b1d36d3a1ad5f6f3069070ec4cbbdc94d5e61e0e", null ]
     ] ],
     [ "ScalarVariant", "scalar_8cppm.html#aa9d302cbcec830e42b01e164e269ea21", null ],
-    [ "sizeOf", "scalar_8cppm.html#a06acf7a3a0b07f19af19a72851d5ec96", null ]
+    [ "sizeOf", "scalar_8cppm.html#a06acf7a3a0b07f19af19a72851d5ec96", null ],
+    [ "isSigned", "scalar_8cppm.html#a13b07493d9808df08e09d6ded4174e88", null ],
+    [ "isFloatingPoint", "scalar_8cppm.html#a168717c19ba5f1ea027c5e61ff68a92d", null ],
+    [ "toMatchFlags", "scalar_8cppm.html#a95b3ca0ed04926c00795b53cc0c141e0", null ],
+    [ "kindOf", "scalar_8cppm.html#a2c8ab9091db0c27df1ee5d883548689b", null ],
+    [ "packScalarBytes", "scalar_8cppm.html#a57b31c8838a66645b154d8868ffe4203", null ],
+    [ "unpackScalarBytes", "scalar_8cppm.html#a1dfd35f750b42e143e6503280eac43f2", null ],
+    [ "userValueAs", "scalar_8cppm.html#ada5302b19bf80dc5a6bb98ac8d7fba1a", null ],
+    [ "userValueHighAs", "scalar_8cppm.html#ae0978f8c52f9594f35aeac86e731c136", null ]
 ];

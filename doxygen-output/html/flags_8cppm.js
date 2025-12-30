@@ -10,6 +10,7 @@ var flags_8cppm =
       [ "BYTE_ARRAY", "flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552ad0db1b5ac322ccae21a1299c0cce02ed", null ]
     ] ],
     [ "any", "flags_8cppm.html#a1ffc4152d9ead4614527aa4286c9eb2f", null ],
+    [ "flagForType", "flags_8cppm.html#ac163f1a02efc35bab6ebaf3ca994771e", null ],
     [ "operator&", "flags_8cppm.html#a6d6aa1a46cc3df43bc750a300555d1f8", null ],
     [ "operator&=", "flags_8cppm.html#adb7daf98f747dc16ae71f906197b8228", null ],
     [ "operator^", "flags_8cppm.html#a0180ae0a7085d8867ff57e6b01956e68", null ],

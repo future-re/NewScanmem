@@ -17,5 +17,6 @@ var module_value_8flags =
     [ "operator&=", "flags_8cppm.html#adb7daf98f747dc16ae71f906197b8228", null ],
     [ "any", "flags_8cppm.html#a1ffc4152d9ead4614527aa4286c9eb2f", null ],
     [ "setFlagsIfNotNull", "flags_8cppm.html#ae86b30c64142ec32a5396e8c0c8028dc", null ],
-    [ "orFlagsIfNotNull", "flags_8cppm.html#a7e605c864f4832134b5158fc27483766", null ]
+    [ "orFlagsIfNotNull", "flags_8cppm.html#a7e605c864f4832134b5158fc27483766", null ],
+    [ "flagForType", "flags_8cppm.html#ac163f1a02efc35bab6ebaf3ca994771e", null ]
 ];

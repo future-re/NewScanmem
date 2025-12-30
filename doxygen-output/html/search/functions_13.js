@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['validateargs_0',['validateargs',['../classcli_1_1Command.html#a8566d7e18bbe765a8aa044634043697f',1,'cli::Command::validateArgs()'],['../classcli_1_1commands_1_1CountCommand.html#ac72b1c2207ad3605ba423cb22781bdd1',1,'cli::commands::CountCommand::validateArgs()'],['../classcli_1_1commands_1_1PidCommand.html#a390eb4814160f2b17c1c4cab256132c3',1,'cli::commands::PidCommand::validateArgs()'],['../classcli_1_1commands_1_1QuitCommand.html#adbb0b876d4396e89028744ebadfc475c',1,'cli::commands::QuitCommand::validateArgs()'],['../classcli_1_1commands_1_1ResetCommand.html#a92570928d17c3fafe8df62307af85ebd',1,'cli::commands::ResetCommand::validateArgs()'],['../classcli_1_1commands_1_1ScanCommand.html#a93b54771c2a5178124c51bcddaf36193',1,'cli::commands::ScanCommand::validateArgs()'],['../classcli_1_1commands_1_1SetCommand.html#aa4d76e3a1f7232003d62490d55535f70',1,'cli::commands::SetCommand::validateArgs()'],['../classcli_1_1commands_1_1SnapshotCommand.html#a4ea1e5c37496448f54c64281d3193438',1,'cli::commands::SnapshotCommand::validateArgs()'],['../classcli_1_1commands_1_1WriteCommand.html#af9587286c102e0fb14fe57ce5f047c8b',1,'cli::commands::WriteCommand::validateArgs()']]],
-  ['value_1',['value',['../structUserValue.html#ad4c9070fcc7f7f466b9f8cd2a5473154',1,'UserValue::value()'],['../structValue.html#aaa69c4878b9f1ab0326c0f0c845e6774',1,'Value::Value()']]],
-  ['valuehigh_2',['valueHigh',['../structUserValue.html#a543b05fe18c1294271d3735092f242fd',1,'UserValue']]]
+  ['unpackfromvalue_0',['unpackFromValue',['../namespacescalar__detail.html#ae9029bc8caa9ce3bbd52186b60a468b7',1,'scalar_detail']]],
+  ['unpackscalarbytes_1',['unpackScalarBytes',['../scalar_8cppm.html#a1dfd35f750b42e143e6503280eac43f2',1,'scalar.cppm']]],
+  ['user_2',['user',['../classui_1_1MessagePrinter.html#abac2f918314d58d36cc044d447f6672e',1,'ui::MessagePrinter']]],
+  ['userinput_3',['UserInput',['../structUserInput.html#ace219b17c2e355536141cda8a241e6f9',1,'UserInput']]],
+  ['userinterface_4',['userinterface',['../classui_1_1UserInterface.html#a76436bf07917b7c63363d893e07a9ee8',1,'ui::UserInterface::UserInterface()=default'],['../classui_1_1UserInterface.html#a079b8c35ea12bb50db9e6b4dc23647d5',1,'ui::UserInterface::UserInterface(const UserInterface &amp;)=default'],['../classui_1_1UserInterface.html#aced6e9954e710d009a8903020c4489b5',1,'ui::UserInterface::UserInterface(UserInterface &amp;&amp;) noexcept=default']]],
+  ['uservalueas_5',['userValueAs',['../scalar_8cppm.html#ada5302b19bf80dc5a6bb98ac8d7fba1a',1,'scalar.cppm']]],
+  ['uservaluehighas_6',['userValueHighAs',['../scalar_8cppm.html#ae0978f8c52f9594f35aeac86e731c136',1,'scalar.cppm']]]
 ];

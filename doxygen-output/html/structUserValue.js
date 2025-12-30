@@ -9,8 +9,8 @@ var structUserValue =
     [ "setFlag", "structUserValue.html#a2d93b25f84a809a4329c3df3f70b15d9", null ],
     [ "size", "structUserValue.html#ace7509d122f848f7c338401cef3fcf19", null ],
     [ "stringValue", "structUserValue.html#abef1d86443c98971db7bac5843950c75", null ],
-    [ "value", "structUserValue.html#ad4c9070fcc7f7f466b9f8cd2a5473154", null ],
-    [ "valueHigh", "structUserValue.html#a543b05fe18c1294271d3735092f242fd", null ],
+    [ "value", "structUserValue.html#a24176bab072cee8a8048982ea936bee8", null ],
+    [ "valueHigh", "structUserValue.html#a80b6cc61ba4e0dc23ffa3ef54938256a", null ],
     [ "byteMask", "structUserValue.html#a056f41e90861ba52474a794a31a31cd1", null ],
     [ "rangeHigh", "structUserValue.html#aa1a6b32f24a3c711ec80b55236d1447d", null ],
     [ "raw", "structUserValue.html#a51563de9860e136ddb03d61e2e096956", null ]
