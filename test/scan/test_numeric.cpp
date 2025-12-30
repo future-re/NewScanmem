@@ -3,7 +3,7 @@
 import scan.numeric;
 import scan.types;
 import utils.mem64;
-import value.scalar;
+import value;
 import value.flags;
 
 #include <gtest/gtest.h>

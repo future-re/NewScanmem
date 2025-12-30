@@ -14,7 +14,7 @@ export module scan.read_helpers;
 import scan.types;
 import value.flags;
 import utils.mem64;
-import value.scalar; // Depends on the project's existing value definitions
+import value;
 
 // Helpers for byte reading, endianness conversion, and type traits
 // Goal: provide unified reading and type-tagging utilities for

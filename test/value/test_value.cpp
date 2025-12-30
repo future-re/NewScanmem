@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-import value.scalar;
+import value;
 import value.flags;
 
 TEST(ValueTest, StringSupport) {

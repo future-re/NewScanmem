@@ -12,7 +12,7 @@ export module scan.numeric;
 import scan.types;
 import scan.read_helpers;
 import value.flags;
-import value.scalar;
+import value;
 
 // This module implements the core numeric matching logic and factory
 // routines for numeric scan operations.

@@ -10,25 +10,18 @@ module;
 export module ui.user_input;
 
 import utils.mem64;
-import value.scalar; // ScalarKind helpers
+import value;
+import value.flags;
 
 // Lightweight user input carrier:
 // - Use Mem64 for underlying bytes (number/byte-array/string)
 // - Use ScalarKind to tag number type/width (only in number/range modes)
 // - Optional mask for byte matching (ByteArray + Mask)
 export struct UserInput {
-    enum class Kind : std::uint8_t {
-        NUMBER,
-        BYTES,
-        STRING,
-        RANGE_NUMBER,
-        BYTES_WITH_MASK
-    };
-
-    Kind kind{Kind::BYTES};
-    ScalarKind numberKind{ScalarKind::U8};
-    Mem64 value;                     // Primary value (number/bytes/string)
-    std::optional<Mem64> highValue;  // Upper bound for numeric range (RangeNumber)
+    ValueType valueType{MatchFlags::EMPTY};
+    Mem64 value;  // Primary value (number/bytes/string)
+    std::optional<Mem64>
+        highValue;  // Upper bound for numeric range (RangeNumber)
     std::optional<std::vector<std::uint8_t>> mask;  // Used by BytesWithMask
 
     UserInput() = default;
@@ -39,8 +32,7 @@ export struct UserInput {
         static_assert(std::is_trivially_copyable_v<T>,
                       "fromNumber requires trivially copyable T");
         UserInput userInput;
-        userInput.kind = Kind::NUMBER;
-        userInput.numberKind = KindOf<T>::VALUE;
+        userInput.valueType = flagForType<T>();
         userInput.value.setScalar<T>(val);
         return userInput;
     }
@@ -51,8 +43,8 @@ export struct UserInput {
         static_assert(std::is_trivially_copyable_v<T>,
                       "fromRange requires trivially copyable T");
         UserInput userInput;
-        userInput.kind = Kind::RANGE_NUMBER;
-        userInput.numberKind = KindOf<T>::VALUE;
+
+        userInput.valueType = flagForType<T>();
         userInput.value.setScalar<T>(loVal);
         userInput.highValue.emplace();
         userInput.highValue->setScalar<T>(hiVal);
@@ -62,7 +54,7 @@ export struct UserInput {
     // --- Convenience constructors (Bytes) ---
     static auto fromBytes(std::span<const std::uint8_t> span) -> UserInput {
         UserInput userInput;
-        userInput.kind = Kind::BYTES;
+        userInput.valueType = MatchFlags::BYTE_ARRAY;
         userInput.value = Mem64{span};
         return userInput;
     }
@@ -72,7 +64,7 @@ export struct UserInput {
                                   std::span<const std::uint8_t> mask)
         -> UserInput {
         UserInput userInput;
-        userInput.kind = Kind::BYTES_WITH_MASK;
+        userInput.valueType = MatchFlags::BYTE_ARRAY;
         userInput.value = Mem64{span};
         userInput.mask = std::vector<std::uint8_t>(mask.begin(), mask.end());
         return userInput;
@@ -81,7 +73,7 @@ export struct UserInput {
     // --- 构造便捷函数（String）---
     static auto fromString(const std::string& stringInput) -> UserInput {
         UserInput userInput;
-        userInput.kind = Kind::STRING;
+        userInput.valueType = MatchFlags::STRING;
         userInput.value.setString(stringInput);
         return userInput;
     }

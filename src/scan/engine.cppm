@@ -23,7 +23,7 @@ import scan.factory;       // smGetScanroutine
 import scan.types; // ScanDataType / ScanMatchType / bytesNeededForType / matchUsesOldValue
 import value.flags;        // MatchFlags
 import utils.mem64;        // Mem64
-import value.scalar;       // Value / UserValue
+import value;       // Value / UserValue
 import core.maps;          // readProcessMaps, Region, RegionScanLevel
 import core.region_filter; // RegionFilterConfig
 

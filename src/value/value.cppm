@@ -16,8 +16,6 @@ export module value;
 export import value.flags;
 import utils.endianness;
 
-// Value: 底层字节容器，只负责存储原始字节数据
-// 不包含任何标量类型解析逻辑，那些由 value.scalar 模块处理
 export struct Value {
     MatchFlags flags = MatchFlags::EMPTY;
     std::vector<std::uint8_t> bytes;
@@ -44,17 +42,13 @@ export struct Value {
         return bytes.data();
     }
 
-    [[nodiscard]] auto data() noexcept -> std::uint8_t* {
-        return bytes.data();
-    }
+    [[nodiscard]] auto data() noexcept -> std::uint8_t* { return bytes.data(); }
 
     [[nodiscard]] auto size() const noexcept -> std::size_t {
         return bytes.size();
     }
 
-    [[nodiscard]] auto empty() const noexcept -> bool {
-        return bytes.empty();
-    }
+    [[nodiscard]] auto empty() const noexcept -> bool { return bytes.empty(); }
 
     // 清空
     void clear() {
@@ -79,9 +73,9 @@ auto packScalarBytes(T val, utils::Endianness endianness = utils::getHost())
 }
 
 export template <typename T>
-[[nodiscard]] auto unpackScalarBytes(const std::uint8_t* data, std::size_t len,
-                                     utils::Endianness endianness = utils::getHost())
-    -> std::optional<T> {
+[[nodiscard]] auto unpackScalarBytes(
+    const std::uint8_t* data, std::size_t len,
+    utils::Endianness endianness = utils::getHost()) -> std::optional<T> {
     static_assert(std::is_trivially_copyable_v<T>);
     if (len < sizeof(T)) {
         return std::nullopt;
@@ -98,238 +92,6 @@ export template <typename T>
 }
 
 // ============================================================================
-// ScalarKind: 精确的标量类型标识
-// ============================================================================
-export enum class ScalarKind : std::uint8_t {
-    U8,
-    S8,
-    U16,
-    S16,
-    U32,
-    S32,
-    U64,
-    S64,
-    F32,
-    F64
-};
-
-export using ScalarVariant =
-    std::variant<std::uint8_t, std::int8_t, std::uint16_t, std::int16_t,
-                 std::uint32_t, std::int32_t, std::uint64_t, std::int64_t, float,
-                 double>;
-
-// ============================================================================
-// ScalarKind 辅助函数
-// ============================================================================
-export constexpr auto sizeOf(ScalarKind kType) noexcept -> std::size_t {
-    switch (kType) {
-        case ScalarKind::U8:
-        case ScalarKind::S8:
-            return 1;
-        case ScalarKind::U16:
-        case ScalarKind::S16:
-            return 2;
-        case ScalarKind::U32:
-        case ScalarKind::S32:
-        case ScalarKind::F32:
-            return 4;
-        case ScalarKind::U64:
-        case ScalarKind::S64:
-        case ScalarKind::F64:
-            return 8;
-    }
-    return 0;
-}
-
-export constexpr auto isSigned(ScalarKind kType) noexcept -> bool {
-    switch (kType) {
-        case ScalarKind::S8:
-        case ScalarKind::S16:
-        case ScalarKind::S32:
-        case ScalarKind::S64:
-            return true;
-        default:
-            return false;
-    }
-}
-
-export constexpr auto isFloatingPoint(ScalarKind kType) noexcept -> bool {
-    return kType == ScalarKind::F32 || kType == ScalarKind::F64;
-}
-
-// ScalarKind -> MatchFlags 转换
-export constexpr auto toMatchFlags(ScalarKind kType) noexcept -> MatchFlags {
-    switch (kType) {
-        case ScalarKind::U8:
-        case ScalarKind::S8:
-            return MatchFlags::B8;
-        case ScalarKind::U16:
-        case ScalarKind::S16:
-            return MatchFlags::B16;
-        case ScalarKind::U32:
-        case ScalarKind::S32:
-        case ScalarKind::F32:
-            return MatchFlags::B32;
-        case ScalarKind::U64:
-        case ScalarKind::S64:
-        case ScalarKind::F64:
-            return MatchFlags::B64;
-    }
-    return MatchFlags::EMPTY;
-}
-
-// ============================================================================
-// KindOf<T>: 类型到 ScalarKind 的编译期映射
-// ============================================================================
-export template <typename T>
-struct KindOf;
-
-export template <>
-struct KindOf<std::uint8_t> {
-    static constexpr ScalarKind VALUE = ScalarKind::U8;
-};
-
-export template <>
-struct KindOf<std::int8_t> {
-    static constexpr ScalarKind VALUE = ScalarKind::S8;
-};
-
-export template <>
-struct KindOf<std::uint16_t> {
-    static constexpr ScalarKind VALUE = ScalarKind::U16;
-};
-
-export template <>
-struct KindOf<std::int16_t> {
-    static constexpr ScalarKind VALUE = ScalarKind::S16;
-};
-
-export template <>
-struct KindOf<std::uint32_t> {
-    static constexpr ScalarKind VALUE = ScalarKind::U32;
-};
-
-export template <>
-struct KindOf<std::int32_t> {
-    static constexpr ScalarKind VALUE = ScalarKind::S32;
-};
-
-export template <>
-struct KindOf<std::uint64_t> {
-    static constexpr ScalarKind VALUE = ScalarKind::U64;
-};
-
-export template <>
-struct KindOf<std::int64_t> {
-    static constexpr ScalarKind VALUE = ScalarKind::S64;
-};
-
-export template <>
-struct KindOf<float> {
-    static constexpr ScalarKind VALUE = ScalarKind::F32;
-};
-
-export template <>
-struct KindOf<double> {
-    static constexpr ScalarKind VALUE = ScalarKind::F64;
-};
-
-// 便捷函数
-export template <typename T>
-constexpr auto kindOf() noexcept -> ScalarKind {
-    return KindOf<T>::VALUE;
-}
-
-// ============================================================================
-// ScalarValue: 带类型标记的标量值
-// ============================================================================
-export struct ScalarValue {
-    ScalarKind kind{};
-    ScalarVariant value;
-
-    [[nodiscard]] constexpr auto size() const noexcept -> std::size_t {
-        return sizeOf(kind);
-    }
-
-    // 从具体类型构造
-    template <typename T>
-    static auto make(const T& val) noexcept -> ScalarValue {
-        static_assert(std::is_trivially_copyable_v<T>);
-        static_assert(sizeof(T) <= 8, "ScalarValue supports up to 8 bytes");
-        ScalarValue out{KindOf<T>::VALUE};
-        out.value = val;
-        return out;
-    }
-
-    template <typename T>
-    [[nodiscard]] auto get() const noexcept -> std::optional<T> {
-        static_assert(std::is_trivially_copyable_v<T>);
-        if (const auto* pval = std::get_if<T>(&value)) {
-            return *pval;
-        }
-        return std::nullopt;
-    }
-
-    static auto fromBytes(ScalarKind kVal, const std::uint8_t* data,
-                          std::size_t len) noexcept -> std::optional<ScalarValue> {
-        if (len < sizeOf(kVal)) {
-            return std::nullopt;
-        }
-
-        auto impl = [kVal, data]<typename T>() {
-            T val{};
-            std::memcpy(&val, data, sizeof(T));
-            ScalarValue out{.kind = kVal};
-            out.value = val;
-            return out;
-        };
-
-        switch (kVal) {
-            case ScalarKind::U8:
-                return impl.template operator()<std::uint8_t>();
-            case ScalarKind::S8:
-                return impl.template operator()<std::int8_t>();
-            case ScalarKind::U16:
-                return impl.template operator()<std::uint16_t>();
-            case ScalarKind::S16:
-                return impl.template operator()<std::int16_t>();
-            case ScalarKind::U32:
-                return impl.template operator()<std::uint32_t>();
-            case ScalarKind::S32:
-                return impl.template operator()<std::int32_t>();
-            case ScalarKind::U64:
-                return impl.template operator()<std::uint64_t>();
-            case ScalarKind::S64:
-                return impl.template operator()<std::int64_t>();
-            case ScalarKind::F32:
-                return impl.template operator()<float>();
-            case ScalarKind::F64:
-                return impl.template operator()<double>();
-        }
-        return std::nullopt;
-    }
-
-    template <typename T>
-    static auto readFromAddress(const void* address) noexcept
-        -> std::optional<ScalarValue> {
-        static_assert(std::is_trivially_copyable_v<T>,
-                      "T must be trivially copyable");
-        if (address == nullptr) {
-            return std::nullopt;
-        }
-        T val;
-        std::memcpy(&val, address, sizeof(T));
-        return make<T>(val);
-    }
-
-    [[nodiscard]] auto asVariant() const noexcept -> ScalarVariant { return value; }
-
-    [[nodiscard]] auto toMatchFlags() const noexcept -> MatchFlags {
-        return ::toMatchFlags(kind);
-    }
-};
-
-// ============================================================================
 // UserValue: 用户输入的值（用于扫描匹配）
 // ============================================================================
 export struct UserValue {
@@ -339,16 +101,21 @@ export struct UserValue {
         byteMask;  // 0xFF=fixed, 0x00=wildcard（仅用于字节数组）
 
     // 访问器
-    [[nodiscard]] auto flags() const noexcept -> MatchFlags { return raw.flags; }
+    [[nodiscard]] auto flags() const noexcept -> MatchFlags {
+        return raw.flags;
+    }
     [[nodiscard]] auto data() const noexcept -> const std::uint8_t* {
         return raw.data();
     }
-    [[nodiscard]] auto size() const noexcept -> std::size_t { return raw.size(); }
+    [[nodiscard]] auto size() const noexcept -> std::size_t {
+        return raw.size();
+    }
 
     // --- 标量构造器 ---
     template <typename T>
     static auto fromScalar(T value,
-                           utils::Endianness endianness = utils::getHost()) -> UserValue {
+                           utils::Endianness endianness = utils::getHost())
+        -> UserValue {
         static_assert(std::is_trivially_copyable_v<T>);
         UserValue uv;
         uv.raw.flags = flagForType<T>();
@@ -380,8 +147,8 @@ export struct UserValue {
 
     // --- 字节数组构造器 ---
     static auto fromByteArray(std::vector<std::uint8_t> val,
-                              std::optional<std::vector<std::uint8_t>> mask = std::nullopt)
-        -> UserValue {
+                              std::optional<std::vector<std::uint8_t>> mask =
+                                  std::nullopt) -> UserValue {
         UserValue uv;
         uv.raw.flags = MatchFlags::BYTE_ARRAY;
         uv.raw.bytes = std::move(val);
@@ -402,7 +169,8 @@ export struct UserValue {
         return raw.bytes;
     }
 
-    [[nodiscard]] auto byteDataHigh() const -> std::optional<std::vector<std::uint8_t>> {
+    [[nodiscard]] auto byteDataHigh() const
+        -> std::optional<std::vector<std::uint8_t>> {
         if (rangeHigh) {
             return rangeHigh->bytes;
         }
@@ -411,16 +179,18 @@ export struct UserValue {
 
     // --- 标量值提取 ---
     template <typename T>
-    [[nodiscard]] auto value(utils::Endianness endianness = utils::getHost()) const
-        -> std::optional<T> {
+    [[nodiscard]] auto value(utils::Endianness endianness =
+                                 utils::getHost()) const -> std::optional<T> {
         return unpackScalarBytes<T>(raw.data(), raw.size(), endianness);
     }
 
     template <typename T>
-    [[nodiscard]] auto valueHigh(utils::Endianness endianness = utils::getHost()) const
+    [[nodiscard]] auto valueHigh(
+        utils::Endianness endianness = utils::getHost()) const
         -> std::optional<T> {
         if (rangeHigh) {
-            return unpackScalarBytes<T>(rangeHigh->data(), rangeHigh->size(), endianness);
+            return unpackScalarBytes<T>(rangeHigh->data(), rangeHigh->size(),
+                                        endianness);
         }
         return std::nullopt;
     }
@@ -479,7 +249,9 @@ export template <typename T>
 namespace std {
 template <>
 struct formatter<UserValue> {
-    static constexpr auto parse(format_parse_context& ctx) { return ctx.begin(); }
+    static constexpr auto parse(format_parse_context& ctx) {
+        return ctx.begin();
+    }
 
     static auto format(const UserValue& uv, format_context& ctx) {
         if (uv.flags() == MatchFlags::EMPTY) {

@@ -13,7 +13,7 @@ import scan.factory; // smGetScanroutine
 import scan.engine;  // ProcMemReader / ScanStats / ScanOptions
 import scan.match_storage;
 import utils.mem64;
-import value.scalar;
+import value;
 
 using scan::MatchesAndOldValuesArray;
 using scan::MatchesAndOldValuesSwath;

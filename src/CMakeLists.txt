@@ -65,7 +65,6 @@ set(MODULE_SOURCES
     # Value 模块 - 按依赖顺序排列
     value/flags.cppm      # 最底层
     value/value.cppm      # 依赖 flags
-    value/scalar.cppm     # 依赖 value
     
     # Scan 模块
     scan/types.cppm       # 依赖 value.scalar

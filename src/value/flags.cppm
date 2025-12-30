@@ -101,3 +101,5 @@ export template <typename T>
         return MatchFlags::EMPTY;
     }
 }
+
+export using ValueType = MatchFlags;

@@ -8,7 +8,7 @@ import scan.types;
 import scan.numeric;
 import scan.bytes;
 import scan.string;
-import value.scalar;
+import value;
 
 // This module provides a unified factory entry: smGetScanroutine /
 // smChooseScanroutine It returns an appropriate scanRoutine given a

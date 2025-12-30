@@ -14,7 +14,6 @@ set(TEST_LIBS GTest::GTest GTest::Main NewScanmem_lib)
 set(TEST_SOURCES
     utils/test_sets.cpp
     utils/test_endianness.cpp
-    value/test_scalar.cpp
     value/test_value.cpp
     value/test_parser.cpp
     core/test_maps.cpp

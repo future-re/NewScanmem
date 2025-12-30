@@ -9,7 +9,7 @@
 import core.match;
 import core.scanner;
 import core.region_classifier;
-import value.scalar;
+import value;
 import scan.types;
 
 using namespace core;
