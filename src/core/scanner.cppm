@@ -24,7 +24,7 @@ import scan.co_engine;     // runScanParallel
 import scan.types;         // ScanDataType, ScanMatchType
 import scan.filter;        // filterMatches
 import scan.match_storage; // MatchesAndOldValuesArray
-import value;              // UserValue
+import value.scalar;       // UserValue
 import core.maps;          // RegionScanLevel
 import utils.logging;      // Logger
 

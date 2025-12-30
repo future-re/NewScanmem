@@ -14,7 +14,7 @@ export module scan.read_helpers;
 import scan.types;
 import value.flags;
 import utils.mem64;
-import value; // Depends on the project's existing value definitions
+import value.scalar; // Depends on the project's existing value definitions
 
 // Helpers for byte reading, endianness conversion, and type traits
 // Goal: provide unified reading and type-tagging utilities for
@@ -42,30 +42,6 @@ constexpr auto swapIfReverse(T value, bool reverse) noexcept -> T {
                      "endianness conversion performed!"
                   << std::endl;
         return value;
-    }
-}
-
-// Map C++ fundamental types to MatchFlags (to record/verify bit width)
-export template <typename T>
-[[nodiscard]] constexpr auto flagForType() noexcept -> MatchFlags {
-    if constexpr (std::is_same_v<T, float>) {
-        return MatchFlags::B32;
-    } else if constexpr (std::is_same_v<T, double>) {
-        return MatchFlags::B64;
-    } else if constexpr (std::is_integral_v<T>) {
-        if constexpr (sizeof(T) == 1) {
-            return MatchFlags::B8;
-        } else if constexpr (sizeof(T) == 2) {
-            return MatchFlags::B16;
-        } else if constexpr (sizeof(T) == 4) {
-            return MatchFlags::B32;
-        } else if constexpr (sizeof(T) == 8) {
-            return MatchFlags::B64;
-        } else {
-            return MatchFlags::EMPTY;
-        }
-    } else {
-        return MatchFlags::EMPTY;
     }
 }
 

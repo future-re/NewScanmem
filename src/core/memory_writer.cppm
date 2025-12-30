@@ -22,7 +22,7 @@ module;
 
 export module core.memory_writer;
 
-import value;
+import value.scalar;
 
 import core.scanner;
 import core.match;

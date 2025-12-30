@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-import value;
+import value.scalar;
 import value.flags;
 
 TEST(ValueTest, StringSupport) {
@@ -11,8 +11,8 @@ TEST(ValueTest, StringSupport) {
     EXPECT_EQ(val.flag(), MatchFlags::STRING);
     EXPECT_EQ(val.stringValue(), "hello");
 
-    // Test flagForScalarType
-    EXPECT_EQ(flagForScalarType<std::string>(), MatchFlags::STRING);
+    // Test flagForType
+    EXPECT_EQ(flagForType<std::string>(), MatchFlags::STRING);
 }
 
 TEST(ValueTest, ByteArraySupport) {
@@ -21,7 +21,7 @@ TEST(ValueTest, ByteArraySupport) {
     EXPECT_EQ(val.flag(), MatchFlags::BYTE_ARRAY);
     EXPECT_EQ(val.byteArrayValue(), bytes);
 
-    // Test flagForScalarType
-    EXPECT_EQ(flagForScalarType<std::vector<uint8_t>>(),
+    // Test flagForType
+    EXPECT_EQ(flagForType<std::vector<uint8_t>>(),
               MatchFlags::BYTE_ARRAY);
 }

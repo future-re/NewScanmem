@@ -1,6 +1,9 @@
 module;
 
 #include <cstdint>
+#include <string>
+#include <type_traits>
+#include <vector>
 
 export module value.flags;
 
@@ -69,5 +72,32 @@ export inline void orFlagsIfNotNull(MatchFlags* dest,
                                     MatchFlags flags) noexcept {
     if (dest != nullptr) {
         *dest |= flags;
+    }
+}
+
+export template <typename T>
+[[nodiscard]] constexpr auto flagForType() noexcept -> MatchFlags {
+    if constexpr (std::is_same_v<T, std::string>) {
+        return MatchFlags::STRING;
+    } else if constexpr (std::is_same_v<T, std::vector<std::uint8_t>>) {
+        return MatchFlags::BYTE_ARRAY;
+    } else if constexpr (std::is_same_v<T, float>) {
+        return MatchFlags::B32;
+    } else if constexpr (std::is_same_v<T, double>) {
+        return MatchFlags::B64;
+    } else if constexpr (std::is_integral_v<T>) {
+        if constexpr (sizeof(T) == 1) {
+            return MatchFlags::B8;
+        } else if constexpr (sizeof(T) == 2) {
+            return MatchFlags::B16;
+        } else if constexpr (sizeof(T) == 4) {
+            return MatchFlags::B32;
+        } else if constexpr (sizeof(T) == 8) {
+            return MatchFlags::B64;
+        } else {
+            return MatchFlags::EMPTY;
+        }
+    } else {
+        return MatchFlags::EMPTY;
     }
 }

@@ -2,7 +2,7 @@ import scan.bytes;
 import scan.string;
 import scan.types;
 import utils.mem64;
-import value;
+import value.scalar;
 
 #include <gtest/gtest.h>
 

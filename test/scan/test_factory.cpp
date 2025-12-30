@@ -3,7 +3,7 @@
 
 import scan.factory;
 import scan.types;
-import value;
+import value.scalar;
 
 TEST(ScanFactoryTest, GetRoutineInteger8) {
     auto routine =

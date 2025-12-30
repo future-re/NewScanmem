@@ -8,9 +8,9 @@ export module scan.types;
 
 // Import dependent modules and re-export their symbols to avoid redeclaring
 // types with the same names across modules.
-export import utils.mem64;  // provides Mem64
-export import value.flags;  // provides MatchFlags
-export import value;  // provides Value / UserValue, etc. (aggregated in value)
+export import utils.mem64;   // provides Mem64
+export import value.flags;   // provides MatchFlags
+export import value.scalar;  // provides Value / UserValue / ScalarKind, etc.
 
 // Classification of scan data types
 export enum class ScanDataType : std::uint8_t {

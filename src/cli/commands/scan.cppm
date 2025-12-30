@@ -20,7 +20,7 @@ import ui.show_message;
 import core.scanner;
 import scan.engine;
 import scan.types;
-import value;
+import value.scalar;
 import value.parser;
 import cli.commands.list;
 import utils.logging;

@@ -62,12 +62,13 @@ set(MODULE_SOURCES
     core/match.cppm
     core/match_formatter.cppm
     
-    # Core modules
-    value/scalar.cppm
-    value/flags.cppm
-    value/value.cppm
-    value/parser.cppm
-    scan/types.cppm
+    # Value 模块 - 按依赖顺序排列
+    value/flags.cppm      # 最底层
+    value/value.cppm      # 依赖 flags
+    value/scalar.cppm     # 依赖 value
+    
+    # Scan 模块
+    scan/types.cppm       # 依赖 value.scalar
     scan/match_storage.cppm
     scan/bytes.cppm
     scan/read_helpers.cppm
@@ -77,6 +78,10 @@ set(MODULE_SOURCES
     scan/engine.cppm
     scan/co_engine.cppm
     scan/filter.cppm
+    
+    # Value parser - 依赖 scan.types
+    value/parser.cppm
+    
     scanmem.cppm
 )
 

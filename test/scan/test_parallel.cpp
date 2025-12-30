@@ -4,7 +4,7 @@ import scan.engine;        // runScan, ScanOptions, ScanStats
 import scan.co_engine;     // runScanParallel
 import scan.match_storage; // MatchesAndOldValuesArray
 import scan.types;         // ScanDataType, ScanMatchType
-import value;              // UserValue
+import value.scalar;       // UserValue
 import value.flags;        // MatchFlags
 import core.maps;          // RegionScanLevel
 
@@ -123,7 +123,7 @@ TEST(ScanParallel, ConsistencyWithValueEquals) {
     // Search for a specific numeric value; use 0 which is common in memory
     UserValue val = UserValue::fromScalar<std::uint64_t>(0);
     val.setFlag(MatchFlags::B8 | MatchFlags::B16 | MatchFlags::B32 |
-                 MatchFlags::B64);
+                MatchFlags::B64);
 
     ScanOptions opts;
     opts.dataType = ScanDataType::ANY_NUMBER;
@@ -158,7 +158,7 @@ TEST(ScanParallel, StrictEqualityDeepCompare) {
     // 测试使用一个常见值匹配，并设定固定步长与块大小
     UserValue val = UserValue::fromScalar<std::uint64_t>(0);
     val.setFlag(MatchFlags::B8 | MatchFlags::B16 | MatchFlags::B32 |
-                 MatchFlags::B64);
+                MatchFlags::B64);
 
     ScanOptions opts;
     opts.dataType = ScanDataType::ANY_NUMBER;

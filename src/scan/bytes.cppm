@@ -13,7 +13,7 @@ export module scan.bytes;
 import scan.types;
 import value.flags;
 
-import value;
+import value.scalar;
 
 // Byte compare & search helpers used by the scanning engine.
 // Public utilities:
