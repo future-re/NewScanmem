@@ -10,9 +10,6 @@ var namespaces_dup =
       [ "swapBytes", "namespacedetail.html#aff190188b65e4c3776fc6744be48bf2b", null ],
       [ "tryNumericSequence", "namespacedetail.html#afdfe8c55d9ebfa61684e71fd8bc3ed9c", null ]
     ] ],
-    [ "scalar_detail", "namespacescalar__detail.html", [
-      [ "unpackFromValue", "namespacescalar__detail.html#ae9029bc8caa9ce3bbd52186b60a468b7", null ]
-    ] ],
     [ "scan", "namespacescan.html", "namespacescan" ],
     [ "scanmem", "namespacescanmem.html", [
       [ "run", "namespacescanmem.html#a8da63e0867106fb20c71af418faf793a", null ]
@@ -28,6 +25,9 @@ var namespaces_dup =
       [ "parseInteger", "namespacevalue.html#aa91371f64f35ffc857723edfeed702aa", null ],
       [ "parseMatchType", "namespacevalue.html#a971e73366312690f43ff10fb1e988772", null ],
       [ "toLower", "namespacevalue.html#a41cb8c4cd32ee7d88001f03556615c06", null ]
+    ] ],
+    [ "value_detail", "namespacevalue__detail.html", [
+      [ "unpackFromValue", "namespacevalue__detail.html#a81a517709def44d27547af6ad84850b3", null ]
     ] ],
     [ "version", "namespaceversion.html", [
       [ "string", "namespaceversion.html#a084406eb889bec8f73943a26b7d68f7d", null ],

@@ -93,6 +93,9 @@ $(document).ready(function(){initNavTree('module_value.html',''); initResizable(
 <div class="header">
   <div class="summary">
 <a href="#classes">类</a> &#124;
+<a href="#enum-members">枚举</a> &#124;
+<a href="#typedef-members">类型定义</a> &#124;
+<a href="#func-members">函数</a> &#124;
 <a href="#files">文件</a>  </div>
   <div class="headertitle"><div class="title">value 模块参考手册</div></div>
 </div><!--header-->
@@ -102,11 +105,89 @@ $(document).ready(function(){initNavTree('module_value.html',''); initResizable(
 Exported Modules</h2></td></tr>
 <tr class="memitem:value.flags" id="r_value.flags"><td class="memItemLeft" align="right" valign="top">模块 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="module_value_8flags.html">value.flags</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:utils.endianness" id="r_utils.endianness"><td class="memItemLeft" align="right" valign="top">模块 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="module_utils_8endianness.html">utils.endianness</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 类</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structValue.html">Value</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf.html">KindOf&lt; T &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf_3_01std_1_1uint8__t_01_4.html">KindOf&lt; std::uint8_t &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf_3_01std_1_1int8__t_01_4.html">KindOf&lt; std::int8_t &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf_3_01std_1_1uint16__t_01_4.html">KindOf&lt; std::uint16_t &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf_3_01std_1_1int16__t_01_4.html">KindOf&lt; std::int16_t &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf_3_01std_1_1uint32__t_01_4.html">KindOf&lt; std::uint32_t &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf_3_01std_1_1int32__t_01_4.html">KindOf&lt; std::int32_t &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf_3_01std_1_1uint64__t_01_4.html">KindOf&lt; std::uint64_t &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf_3_01std_1_1int64__t_01_4.html">KindOf&lt; std::int64_t &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf_3_01float_01_4.html">KindOf&lt; float &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structKindOf_3_01double_01_4.html">KindOf&lt; double &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structScalarValue.html">ScalarValue</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserValue.html">UserValue</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+枚举</h2></td></tr>
+<tr class="memitem:a00f9ae4f99e356748d07af144af06301" id="r_a00f9ae4f99e356748d07af144af06301"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="value_8cppm.html#a00f9ae4f99e356748d07af144af06301">ScalarKind</a> : std::uint8_t { <br />
+&#160;&#160;<a class="el" href="value_8cppm.html#a00f9ae4f99e356748d07af144af06301a6669348b484e3008dca2bfa8e85e40b5">U8</a>
+, <a class="el" href="value_8cppm.html#a00f9ae4f99e356748d07af144af06301aafb0fced528eaac5fe170b763cda5975">S8</a>
+, <a class="el" href="value_8cppm.html#a00f9ae4f99e356748d07af144af06301aef9ef3ebca4d2b64b6ec83808bafa5f2">U16</a>
+, <a class="el" href="value_8cppm.html#a00f9ae4f99e356748d07af144af06301a6e0b0886efb94aec797f6b830329b72c">S16</a>
+, <br />
+&#160;&#160;<a class="el" href="value_8cppm.html#a00f9ae4f99e356748d07af144af06301ac8bd5bedff8ef192d39a962afc0e19ee">U32</a>
+, <a class="el" href="value_8cppm.html#a00f9ae4f99e356748d07af144af06301aa1e28eee0339658d39a8b4d325b56e9c">S32</a>
+, <a class="el" href="value_8cppm.html#a00f9ae4f99e356748d07af144af06301a31d65cccd6593e4101db93fb878abcaa">U64</a>
+, <a class="el" href="value_8cppm.html#a00f9ae4f99e356748d07af144af06301a115dca124dc6423c7a400b8a8a0270cc">S64</a>
+, <br />
+&#160;&#160;<a class="el" href="value_8cppm.html#a00f9ae4f99e356748d07af144af06301a44ad4ef5a76e6aa6fb3e3fa079a54fda">F32</a>
+, <a class="el" href="value_8cppm.html#a00f9ae4f99e356748d07af144af06301a1ad5f6f3069070ec4cbbdc94d5e61e0e">F64</a>
+<br />
+ }</td></tr>
+<tr class="separator:a00f9ae4f99e356748d07af144af06301"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:aca0b97e896875ed890fb83fdb11da7c9" id="r_aca0b97e896875ed890fb83fdb11da7c9"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="value_8cppm.html#aca0b97e896875ed890fb83fdb11da7c9">ScalarVariant</a> = std::variant&lt; std::uint8_t, std::int8_t, std::uint16_t, std::int16_t, std::uint32_t, std::int32_t, std::uint64_t, std::int64_t, float, double &gt;</td></tr>
+<tr class="separator:aca0b97e896875ed890fb83fdb11da7c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a46c0f261f2c08593d6c1bfb3b48d4f17" id="r_a46c0f261f2c08593d6c1bfb3b48d4f17"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a46c0f261f2c08593d6c1bfb3b48d4f17"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="value_8cppm.html#a46c0f261f2c08593d6c1bfb3b48d4f17">packScalarBytes</a> (T val, <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a> endianness=<a class="el" href="namespaceutils.html#a30b4b3e4177bc7f02df665fa43350c35">utils::getHost</a>()) -&gt; std::vector&lt; std::uint8_t &gt;</td></tr>
+<tr class="separator:a46c0f261f2c08593d6c1bfb3b48d4f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa89afca4a367131b44e08d53339ad32e" id="r_aa89afca4a367131b44e08d53339ad32e"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:aa89afca4a367131b44e08d53339ad32e"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="value_8cppm.html#aa89afca4a367131b44e08d53339ad32e">unpackScalarBytes</a> (const std::uint8_t *data, std::size_t len, <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a> endianness=<a class="el" href="namespaceutils.html#a30b4b3e4177bc7f02df665fa43350c35">utils::getHost</a>()) -&gt; std::optional&lt; T &gt;</td></tr>
+<tr class="separator:aa89afca4a367131b44e08d53339ad32e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc428d5a720badf3e33fb7fda1bddc93" id="r_adc428d5a720badf3e33fb7fda1bddc93"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="value_8cppm.html#adc428d5a720badf3e33fb7fda1bddc93">sizeOf</a> (<a class="el" href="value_8cppm.html#a00f9ae4f99e356748d07af144af06301">ScalarKind</a> kType) noexcept -&gt; std::size_t</td></tr>
+<tr class="separator:adc428d5a720badf3e33fb7fda1bddc93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13b07493d9808df08e09d6ded4174e88" id="r_a13b07493d9808df08e09d6ded4174e88"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="value_8cppm.html#a13b07493d9808df08e09d6ded4174e88">isSigned</a> (<a class="el" href="value_8cppm.html#a00f9ae4f99e356748d07af144af06301">ScalarKind</a> kType) noexcept -&gt; bool</td></tr>
+<tr class="separator:a13b07493d9808df08e09d6ded4174e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a168717c19ba5f1ea027c5e61ff68a92d" id="r_a168717c19ba5f1ea027c5e61ff68a92d"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="value_8cppm.html#a168717c19ba5f1ea027c5e61ff68a92d">isFloatingPoint</a> (<a class="el" href="value_8cppm.html#a00f9ae4f99e356748d07af144af06301">ScalarKind</a> kType) noexcept -&gt; bool</td></tr>
+<tr class="separator:a168717c19ba5f1ea027c5e61ff68a92d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95b3ca0ed04926c00795b53cc0c141e0" id="r_a95b3ca0ed04926c00795b53cc0c141e0"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="value_8cppm.html#a95b3ca0ed04926c00795b53cc0c141e0">toMatchFlags</a> (<a class="el" href="value_8cppm.html#a00f9ae4f99e356748d07af144af06301">ScalarKind</a> kType) noexcept -&gt; <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a></td></tr>
+<tr class="separator:a95b3ca0ed04926c00795b53cc0c141e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c8ab9091db0c27df1ee5d883548689b" id="r_a2c8ab9091db0c27df1ee5d883548689b"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a2c8ab9091db0c27df1ee5d883548689b"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="value_8cppm.html#a2c8ab9091db0c27df1ee5d883548689b">kindOf</a> () noexcept -&gt; <a class="el" href="value_8cppm.html#a00f9ae4f99e356748d07af144af06301">ScalarKind</a></td></tr>
+<tr class="separator:a2c8ab9091db0c27df1ee5d883548689b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada5302b19bf80dc5a6bb98ac8d7fba1a" id="r_ada5302b19bf80dc5a6bb98ac8d7fba1a"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ada5302b19bf80dc5a6bb98ac8d7fba1a"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="value_8cppm.html#ada5302b19bf80dc5a6bb98ac8d7fba1a">userValueAs</a> (const <a class="el" href="structUserValue.html">UserValue</a> &amp;uv) noexcept -&gt; std::optional&lt; T &gt;</td></tr>
+<tr class="separator:ada5302b19bf80dc5a6bb98ac8d7fba1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0978f8c52f9594f35aeac86e731c136" id="r_ae0978f8c52f9594f35aeac86e731c136"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ae0978f8c52f9594f35aeac86e731c136"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="value_8cppm.html#ae0978f8c52f9594f35aeac86e731c136">userValueHighAs</a> (const <a class="el" href="structUserValue.html">UserValue</a> &amp;uv) noexcept -&gt; std::optional&lt; T &gt;</td></tr>
+<tr class="separator:ae0978f8c52f9594f35aeac86e731c136"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="files" name="files"></a>

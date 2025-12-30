@@ -2,7 +2,7 @@ var searchData=
 [
   ['tobytearraytext_0',['toByteArrayText',['../classscan_1_1MatchesAndOldValuesSwath.html#a1d3614a2d6bc45ebc56152d2a12f2de5',1,'scan::MatchesAndOldValuesSwath']]],
   ['tolower_1',['tolower',['../classutils_1_1StringUtils.html#a137c5c70edd1139bee081a1d43e5510e',1,'utils::StringUtils::toLower()'],['../namespacevalue.html#a41cb8c4cd32ee7d88001f03556615c06',1,'value::toLower()']]],
-  ['tomatchflags_2',['tomatchflags',['../structScalarValue.html#aad4213baa467beaddf96b7be4a4ac1f4',1,'ScalarValue::toMatchFlags()'],['../scalar_8cppm.html#a95b3ca0ed04926c00795b53cc0c141e0',1,'toMatchFlags():&#160;scalar.cppm']]],
+  ['tomatchflags_2',['tomatchflags',['../structScalarValue.html#aad4213baa467beaddf96b7be4a4ac1f4',1,'ScalarValue::toMatchFlags()'],['../value_8cppm.html#a95b3ca0ed04926c00795b53cc0c141e0',1,'toMatchFlags():&#160;value.cppm']]],
   ['toprintablestring_3',['toPrintableString',['../classscan_1_1MatchesAndOldValuesSwath.html#a8761c91f23136f817cdfb82e99a5f010',1,'scan::MatchesAndOldValuesSwath']]],
   ['tostring_4',['toString',['../classcore_1_1RegionFilter.html#a9b3edd5809d4bb155e3327e705c39dc0',1,'core::RegionFilter']]],
   ['totargetendian_5',['toTargetEndian',['../namespaceutils.html#a84b9cbc873018d8701ba5930643441bc',1,'utils']]],

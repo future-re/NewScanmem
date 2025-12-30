@@ -1,8 +1,8 @@
 var structUserValue =
 [
-    [ "byteArrayValue", "structUserValue.html#a8ea4f27b7a6561ae12582e3cd1f22ee7", null ],
-    [ "byteData", "structUserValue.html#a38f78b8953f4fb6286e6687b4f99dc65", null ],
-    [ "byteDataHigh", "structUserValue.html#aa44ed4b6cc6ba0de001a0c5c2daf4ad3", null ],
+    [ "byteArrayValue", "structUserValue.html#a34bbfa4370e7304de66cc328b247a9ff", null ],
+    [ "byteData", "structUserValue.html#a9c58035e0c2bfb795be763ca4bca7e83", null ],
+    [ "byteDataHigh", "structUserValue.html#ab74ad53bebf3cff0a0f6c5b8fcf0f56c", null ],
     [ "data", "structUserValue.html#ab64a875c9e6f0963059c7f9fe93e7afe", null ],
     [ "flag", "structUserValue.html#a49b792dc211190661047a6d275102563", null ],
     [ "flags", "structUserValue.html#a0eb1cce387370228eafec204da44af4f", null ],
