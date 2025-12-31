@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kind_0',['Kind',['../structUserInput.html#acadf5093b12dae1f769c966c3019ada2',1,'UserInput']]]
+  ['loglevel_0',['LogLevel',['../namespaceutils.html#a6b50893705cf2a59daf6b680304017dd',1,'utils']]]
 ];

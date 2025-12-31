@@ -9,6 +9,5 @@ var searchData=
   ['appendbytestoswath_6',['appendBytesToSwath',['../engine_8cppm.html#acd4ab87128e7c0509a3b75a88ddc71da',1,'engine.cppm']]],
   ['appendrange_7',['appendRange',['../classscan_1_1MatchesAndOldValuesSwath.html#a2d75740077358246210e676ca71d4d00',1,'scan::MatchesAndOldValuesSwath']]],
   ['application_8',['Application',['../classcli_1_1Application.html#acc6583cfc6748cf350119214c79966d8',1,'cli::Application']]],
-  ['asspan_9',['asSpan',['../structcore_1_1Region.html#abb0a122c3549bc47e4d48fa3514dbde6',1,'core::Region']]],
-  ['asvariant_10',['asVariant',['../structScalarValue.html#a2e45c297906897ed4aa27a042d9476a3',1,'ScalarValue']]]
+  ['asspan_9',['asSpan',['../structcore_1_1Region.html#abb0a122c3549bc47e4d48fa3514dbde6',1,'core::Region']]]
 ];

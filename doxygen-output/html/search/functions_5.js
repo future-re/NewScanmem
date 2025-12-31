@@ -13,7 +13,7 @@ var searchData=
   ['format_10',['format',['../structstd_1_1formatter_3_01UserValue_01_4.html#ab6f74db5075cd1b953248ec63d9e4489',1,'std::formatter&lt; UserValue &gt;']]],
   ['formatvaluebytype_11',['formatValueByType',['../namespacecore.html#a8fc2c70ddd2ac4ab5bcbd567bae58e1b',1,'core']]],
   ['frombytearray_12',['fromByteArray',['../structUserValue.html#a5d308a4ac5e03a3c9be42f7ae784a8b1',1,'UserValue']]],
-  ['frombytes_13',['frombytes',['../structScalarValue.html#a755cb3b5ac1804b2c020a1b99f9b2a07',1,'ScalarValue::fromBytes()'],['../structUserInput.html#a06a86b884e1d4bd734caedaa0b54a266',1,'UserInput::fromBytes(std::span&lt; const std::uint8_t &gt; span) -&gt; UserInput']]],
+  ['frombytes_13',['fromBytes',['../structUserInput.html#a06a86b884e1d4bd734caedaa0b54a266',1,'UserInput']]],
   ['frombyteswithmask_14',['fromBytesWithMask',['../structUserInput.html#a2504c02db8a3b6d41eb7190bc5f4030a',1,'UserInput']]],
   ['fromnumber_15',['fromNumber',['../structUserInput.html#adb9379c35d95bf355c49a230889fec4d',1,'UserInput']]],
   ['fromrange_16',['fromRange',['../structUserInput.html#a034094d4736d9cad00ac20b29ad2a115',1,'UserInput']]],

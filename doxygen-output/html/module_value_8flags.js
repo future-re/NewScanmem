@@ -9,6 +9,7 @@ var module_value_8flags =
       [ "STRING", "flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552a63b588d5559f64f89a416e656880b949", null ],
       [ "BYTE_ARRAY", "flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552ad0db1b5ac322ccae21a1299c0cce02ed", null ]
     ] ],
+    [ "ValueType", "flags_8cppm.html#ab6d525f0a5a2799ff592b83d7b606be0", null ],
     [ "operator|", "flags_8cppm.html#a2ee4e3bdeb4d19d985d58273d8001e6c", null ],
     [ "operator&", "flags_8cppm.html#a6d6aa1a46cc3df43bc750a300555d1f8", null ],
     [ "operator^", "flags_8cppm.html#a0180ae0a7085d8867ff57e6b01956e68", null ],

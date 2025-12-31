@@ -10,7 +10,6 @@ var modulemembers_dup =
     [ "h", "modulemembers_h.html", null ],
     [ "i", "modulemembers_i.html", null ],
     [ "j", "modulemembers_j.html", null ],
-    [ "k", "modulemembers_k.html", null ],
     [ "l", "modulemembers_l.html", null ],
     [ "m", "modulemembers_m.html", null ],
     [ "n", "modulemembers_n.html", null ],

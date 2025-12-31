@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['u16_0',['U16',['../value_8cppm.html#a00f9ae4f99e356748d07af144af06301aef9ef3ebca4d2b64b6ec83808bafa5f2',1,'value.cppm']]],
-  ['u32_1',['U32',['../value_8cppm.html#a00f9ae4f99e356748d07af144af06301ac8bd5bedff8ef192d39a962afc0e19ee',1,'value.cppm']]],
-  ['u64_2',['U64',['../value_8cppm.html#a00f9ae4f99e356748d07af144af06301a31d65cccd6593e4101db93fb878abcaa',1,'value.cppm']]],
-  ['u8_3',['U8',['../value_8cppm.html#a00f9ae4f99e356748d07af144af06301a6669348b484e3008dca2bfa8e85e40b5',1,'value.cppm']]],
-  ['unknow_4',['UNKNOW',['../namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16ba4de97a9981203bdf3d1f9c51b0ba341f',1,'core']]],
-  ['user_5',['USER',['../namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a2e40ad879e955201df4dedbf8d479a12',1,'ui']]]
+  ['warn_0',['warn',['../namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a32bd8a1db2275458673903bdb84cb277',1,'ui::WARN'],['../namespaceutils.html#a6b50893705cf2a59daf6b680304017dda32bd8a1db2275458673903bdb84cb277',1,'utils::WARN']]],
+  ['warning_1',['WARNING',['../namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2a059e9861e0400dfbe05c98a841f3f96b',1,'ui']]]
 ];

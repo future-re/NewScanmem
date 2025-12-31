@@ -50,6 +50,5 @@ var modules_dup =
     [ "utils.string", "module_utils_8string.html", "module_utils_8string" ],
     [ "value.flags", "module_value_8flags.html", "module_value_8flags" ],
     [ "value.parser", "module_value_8parser.html", "module_value_8parser" ],
-    [ "value.scalar", "module_value_8scalar.html", null ],
     [ "value", "module_value.html", "module_value" ]
 ];

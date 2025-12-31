@@ -1,5 +1,6 @@
 var flags_8cppm =
 [
+    [ "ValueType", "flags_8cppm.html#ab6d525f0a5a2799ff592b83d7b606be0", null ],
     [ "MatchFlags", "flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552", [
       [ "EMPTY", "flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552aba2b45bdc11e2a4a6e86aab2ac693cbb", null ],
       [ "B8", "flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552ac897976b22b91e2937555adb85d779fc", null ],

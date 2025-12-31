@@ -1,10 +1,5 @@
 var searchData=
 [
-  ['s16_0',['S16',['../value_8cppm.html#a00f9ae4f99e356748d07af144af06301a6e0b0886efb94aec797f6b830329b72c',1,'value.cppm']]],
-  ['s32_1',['S32',['../value_8cppm.html#a00f9ae4f99e356748d07af144af06301aa1e28eee0339658d39a8b4d325b56e9c',1,'value.cppm']]],
-  ['s64_2',['S64',['../value_8cppm.html#a00f9ae4f99e356748d07af144af06301a115dca124dc6423c7a400b8a8a0270cc',1,'value.cppm']]],
-  ['s8_3',['S8',['../value_8cppm.html#a00f9ae4f99e356748d07af144af06301aafb0fced528eaac5fe170b763cda5975',1,'value.cppm']]],
-  ['scan_5ftime_4',['SCAN_TIME',['../namespacecore.html#a72a2e8d29b79f853c273543adab4dfe4a10858ce34d7366d0e45d3153cd0a8715',1,'core']]],
-  ['stack_5',['STACK',['../namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16ba0fac686d86aba414411b58f6bce53a76',1,'core']]],
-  ['string_6',['string',['../structUserInput.html#acadf5093b12dae1f769c966c3019ada2a63b588d5559f64f89a416e656880b949',1,'UserInput::STRING'],['../types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0a63b588d5559f64f89a416e656880b949',1,'STRING:&#160;types.cppm'],['../flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552a63b588d5559f64f89a416e656880b949',1,'STRING:&#160;flags.cppm']]]
+  ['unknow_0',['UNKNOW',['../namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16ba4de97a9981203bdf3d1f9c51b0ba341f',1,'core']]],
+  ['user_1',['USER',['../namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a2e40ad879e955201df4dedbf8d479a12',1,'ui']]]
 ];

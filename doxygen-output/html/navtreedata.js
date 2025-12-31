@@ -53,8 +53,7 @@ var NAVTREE =
       [ "类成员", "functions.html", [
         [ "全部", "functions.html", "functions_dup" ],
         [ "函数", "functions_func.html", "functions_func" ],
-        [ "变量", "functions_vars.html", null ],
-        [ "枚举", "functions_enum.html", null ]
+        [ "变量", "functions_vars.html", null ]
       ] ]
     ] ],
     [ "文件", "files.html", [
@@ -79,9 +78,9 @@ var NAVTREEINDEX =
 "flags_8cppm.html#aaf65058d0fce5c6e22e21eb5b532c5b0",
 "module_core_8maps.html#aacacfdd7e88e6bde49beae649054c7cd",
 "module_value_8parser.html#aa0678a14a65ac6e00a72af0c701ad097",
-"show__message_8cppm.html#acfa0fd6f7a65d361860225f8900a2a51",
-"structcli_1_1CommandResult.html#adf4f9154fed11db9c7254e767f7056c3",
-"structscan_1_1OldValueAndMatchInfo.html#adb6466011e3792193e69389cf1a6e8ec"
+"show__message_8cppm.html#ae03871e05f14eaa77840d3eb1aad56a0",
+"structcore_1_1BatchWriteResult.html#aff5c27543f6aa64abbe1f50876d8d67c",
+"types_8cppm.html#a5b431006c1134ee7608c264ac38966cc"
 ];
 
 var SYNCONMSG = '点击 关闭 面板同步';
