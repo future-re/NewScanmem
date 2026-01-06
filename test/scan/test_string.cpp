@@ -1,33 +1,32 @@
 // Unit tests for scan.string module - focus on nullptr safety
 
-import scan.string;
-import scan.types;
-import utils.mem64;
-import value;
-import value.flags;
-
 #include <gtest/gtest.h>
 
 #include <cstdint>
 #include <string>
 #include <vector>
 
+import scan.string;
+import scan.types;
+import value;
+import value.flags;
+
 class ScanStringTest : public ::testing::Test {
    protected:
-    Mem64 m_mem;
+    Value m_mem;
 };
 
 // Test makeStringRoutine MATCH_ANY with nullptr saveFlags
 TEST_F(ScanStringTest,
        MakeStringRoutineMATCH_ANYWithNullSaveFlagsDoesNotCrash) {
     std::vector<uint8_t> data = {'H', 'e', 'l', 'l', 'o'};
-    m_mem = Mem64(data);
+    m_mem = Value(data);
 
     auto routine = makeStringRoutine(ScanMatchType::MATCH_ANY);
 
     // Should not crash with nullptr saveFlags
     unsigned int result =
-        routine(&m_mem, m_mem.bytes().size(), nullptr, nullptr, nullptr);
+        routine(&m_mem, m_mem.bytes.size(), nullptr, nullptr, nullptr);
 
     EXPECT_EQ(result, static_cast<unsigned int>(data.size()));
 }
@@ -37,7 +36,7 @@ TEST_F(ScanStringTest,
        MakeStringRoutineStringMatchWithNullSaveFlagsDoesNotCrash) {
     std::vector<uint8_t> data = {'H', 'e', 'l', 'l', 'o', ' ',
                                  'W', 'o', 'r', 'l', 'd'};
-    m_mem = Mem64(data);
+    m_mem = Value(data);
 
     UserValue userValue = UserValue::fromString("Hello");
 
@@ -45,7 +44,7 @@ TEST_F(ScanStringTest,
 
     // Should not crash with nullptr saveFlags
     unsigned int result =
-        routine(&m_mem, m_mem.bytes().size(), nullptr, &userValue, nullptr);
+        routine(&m_mem, m_mem.bytes.size(), nullptr, &userValue, nullptr);
 
     EXPECT_EQ(result, 5U);  // "Hello" is 5 bytes
 }
@@ -53,7 +52,7 @@ TEST_F(ScanStringTest,
 // Test regex match with nullptr saveFlags
 TEST_F(ScanStringTest, RegexMatchWithNullSaveFlagsDoesNotCrash) {
     std::vector<uint8_t> data = {'t', 'e', 's', 't', '1', '2', '3'};
-    m_mem = Mem64(data);
+    m_mem = Value(data);
 
     UserValue userValue = UserValue::fromString("[0-9]+");
 
@@ -61,7 +60,7 @@ TEST_F(ScanStringTest, RegexMatchWithNullSaveFlagsDoesNotCrash) {
 
     // Should not crash with nullptr saveFlags
     unsigned int result =
-        routine(&m_mem, m_mem.bytes().size(), nullptr, &userValue, nullptr);
+        routine(&m_mem, m_mem.bytes.size(), nullptr, &userValue, nullptr);
 
     EXPECT_EQ(result, 3U);  // "123" matches the regex
 }
@@ -69,13 +68,13 @@ TEST_F(ScanStringTest, RegexMatchWithNullSaveFlagsDoesNotCrash) {
 // Verify that when saveFlags is provided, it's correctly set
 TEST_F(ScanStringTest, StringRoutineSetsFlags) {
     std::vector<uint8_t> data = {'T', 'e', 's', 't'};
-    m_mem = Mem64(data);
+    m_mem = Value(data);
 
     auto routine = makeStringRoutine(ScanMatchType::MATCH_ANY);
     MatchFlags flags = MatchFlags::EMPTY;
 
     unsigned int result =
-        routine(&m_mem, m_mem.bytes().size(), nullptr, nullptr, &flags);
+        routine(&m_mem, m_mem.bytes.size(), nullptr, nullptr, &flags);
 
     EXPECT_EQ(result, static_cast<unsigned int>(data.size()));
     EXPECT_EQ(flags, MatchFlags::B8);
@@ -84,9 +83,9 @@ TEST_F(ScanStringTest, StringRoutineSetsFlags) {
 // Test findRegexPattern directly
 TEST_F(ScanStringTest, FindRegexPatternReturnsMatch) {
     std::vector<uint8_t> data = {'a', 'b', 'c', '1', '2', '3', 'x', 'y', 'z'};
-    m_mem = Mem64(data);
+    m_mem = Value(data);
 
-    auto match = findRegexPattern(&m_mem, m_mem.bytes().size(), "[0-9]+");
+    auto match = findRegexPattern(&m_mem, m_mem.bytes.size(), "[0-9]+");
 
     ASSERT_TRUE(match.has_value());
     EXPECT_EQ(match->offset, 3U);  // "123" starts at offset 3

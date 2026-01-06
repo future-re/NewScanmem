@@ -17,7 +17,6 @@ import scan.match_storage;
 import scan.factory;
 import scan.types;
 import value.flags;
-import utils.mem64;
 import value;
 import core.maps;
 import core.region_filter;

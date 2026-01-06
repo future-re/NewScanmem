@@ -10,9 +10,10 @@ module;
 export module scan.numeric;
 
 import scan.types;
-import scan.read_helpers;
+import utils.read_helpers;
 import value.flags;
 import value;
+import value.parser; // for almostEqual, absTol
 
 // This module implements the core numeric matching logic and factory
 // routines for numeric scan operations.
@@ -50,7 +51,7 @@ inline auto numericMatchCore(ScanMatchType matchType, T memv,
 
     auto isEqual = [&](T firstValue, T secondValue) {
         if constexpr (std::is_floating_point_v<T>) {
-            return almostEqual<T>(firstValue, secondValue);
+            return value::almostEqual<T>(firstValue, secondValue);
         }
         return firstValue == secondValue;
     };
@@ -105,14 +106,18 @@ inline auto numericMatchCore(ScanMatchType matchType, T memv,
         case ScanMatchType::MATCH_INCREASED_BY: {
             const T DELTA = memv - *oldOpt;
             if constexpr (std::is_floating_point_v<T>) {
-                return almostEqual<T>(DELTA, USERVALUEMAIN) ? markMatched() : 0;
+                return value::almostEqual<T>(DELTA, USERVALUEMAIN)
+                           ? markMatched()
+                           : 0;
             }
             return (DELTA == USERVALUEMAIN) ? markMatched() : 0;
         }
         case ScanMatchType::MATCH_DECREASED_BY: {
             const T DELTA = *oldOpt - memv;
             if constexpr (std::is_floating_point_v<T>) {
-                return almostEqual<T>(DELTA, USERVALUEMAIN) ? markMatched() : 0;
+                return value::almostEqual<T>(DELTA, USERVALUEMAIN)
+                           ? markMatched()
+                           : 0;
             }
             return (DELTA == USERVALUEMAIN) ? markMatched() : 0;
         }
@@ -124,7 +129,7 @@ inline auto numericMatchCore(ScanMatchType matchType, T memv,
             const T HIGHVALUE = *highOpt;
             auto [lowBound, highBound] = std::minmax(*userLowOpt, HIGHVALUE);
             if constexpr (std::is_floating_point_v<T>) {
-                const T ABS_TOLERANCE = absTol<T>();
+                const T ABS_TOLERANCE = value::absTol<T>();
                 const bool IN_RANGE = (memv >= lowBound - ABS_TOLERANCE &&
                                        memv <= highBound + ABS_TOLERANCE);
                 return IN_RANGE ? markMatched() : 0;
@@ -141,7 +146,7 @@ namespace detail {
 
 template <typename T>
 inline auto runNumericMatch(ScanMatchType matchType, bool reverseEndianness,
-                            const Mem64* memoryPtr, size_t memLength,
+                            const Value* memoryPtr, size_t memLength,
                             const Value* oldValue, const UserValue* userValue,
                             MatchFlags* saveFlags) noexcept -> unsigned int {
     auto memOpt = readTyped<T>(memoryPtr, memLength, reverseEndianness);
@@ -154,7 +159,7 @@ inline auto runNumericMatch(ScanMatchType matchType, bool reverseEndianness,
 
 template <typename... Ts>
 inline auto tryNumericSequence(ScanMatchType matchType, bool reverseEndianness,
-                               const Mem64* memoryPtr, size_t memLength,
+                               const Value* memoryPtr, size_t memLength,
                                const Value* oldValue,
                                const UserValue* userValue,
                                MatchFlags* saveFlags) noexcept -> unsigned int {
@@ -174,7 +179,7 @@ inline auto makeNumericRoutine(ScanMatchType matchType, bool reverseEndianness)
     -> scanRoutine {
     return
         [matchType, reverseEndianness](
-            const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
+            const Value* memoryPtr, size_t memLength, const Value* oldValue,
             const UserValue* userValue, MatchFlags* saveFlags) -> unsigned int {
             setFlagsIfNotNull(saveFlags, MatchFlags::EMPTY);
             return detail::runNumericMatch<T>(matchType, reverseEndianness,
@@ -187,7 +192,7 @@ export inline auto makeAnyIntegerRoutine(ScanMatchType matchType,
                                          bool reverseEndianness)
     -> scanRoutine {
     return [matchType, reverseEndianness](
-               const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
+               const Value* memoryPtr, size_t memLength, const Value* oldValue,
                const UserValue* userValue, MatchFlags* saveFlags) -> unsigned {
         setFlagsIfNotNull(saveFlags, MatchFlags::EMPTY);
         return detail::tryNumericSequence<uint64_t, int64_t, uint32_t, int32_t,
@@ -200,7 +205,7 @@ export inline auto makeAnyIntegerRoutine(ScanMatchType matchType,
 export inline auto makeAnyFloatRoutine(ScanMatchType matchType,
                                        bool reverseEndianness) -> scanRoutine {
     return [matchType, reverseEndianness](
-               const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
+               const Value* memoryPtr, size_t memLength, const Value* oldValue,
                const UserValue* userValue, MatchFlags* saveFlags) -> unsigned {
         setFlagsIfNotNull(saveFlags, MatchFlags::EMPTY);
         return detail::tryNumericSequence<double, float>(
@@ -212,7 +217,7 @@ export inline auto makeAnyFloatRoutine(ScanMatchType matchType,
 export inline auto makeAnyNumberRoutine(ScanMatchType matchType,
                                         bool reverseEndianness) -> scanRoutine {
     return [matchType, reverseEndianness](
-               const Mem64* memoryPtr, size_t memLength, const Value* oldValue,
+               const Value* memoryPtr, size_t memLength, const Value* oldValue,
                const UserValue* userValue, MatchFlags* saveFlags) -> unsigned {
         setFlagsIfNotNull(saveFlags, MatchFlags::EMPTY);
         if (auto resultValue = detail::tryNumericSequence<double, float>(

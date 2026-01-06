@@ -9,11 +9,10 @@ module;
 #include <optional>
 #include <type_traits>
 
-export module scan.read_helpers;
+export module utils.read_helpers;
 
 import scan.types;
 import value.flags;
-import utils.mem64;
 import value;
 
 // Helpers for byte reading, endianness conversion, and type traits
@@ -47,18 +46,16 @@ constexpr auto swapIfReverse(T value, bool reverse) noexcept -> T {
 
 // Safely read specified type and apply endianness conversion
 export template <typename T>
-[[nodiscard]] inline auto readTyped(const Mem64* memoryPtr, size_t memLength,
+[[nodiscard]] inline auto readTyped(const Value* memoryPtr, size_t memLength,
                                     bool reverseEndianness) noexcept
     -> std::optional<T> {
-    if (memLength < sizeof(T)) {
+    if (memoryPtr == nullptr || memLength < sizeof(T) ||
+        memoryPtr->size() < sizeof(T)) {
         return std::nullopt;
     }
-    auto currentOpt = memoryPtr->tryGet<T>();
-    if (!currentOpt) {
-        return std::nullopt;
-    }
-    T val = swapIfReverse<T>(*currentOpt, reverseEndianness);
-    return val;
+    T val{};
+    std::memcpy(&val, memoryPtr->data(), sizeof(T));
+    return swapIfReverse<T>(val, reverseEndianness);
 }
 
 // Try to read old value from Value* (strictly checks flags and length)
@@ -78,32 +75,4 @@ export template <typename T>
     T out{};
     std::memcpy(&out, valuePtr->data(), sizeof(T));
     return out;
-}
-
-// Floating-point tolerance
-export template <typename F>
-constexpr auto relTol() -> F {
-    if constexpr (std::is_same_v<F, float>) {
-        return static_cast<F>(1E-5F);
-    } else {
-        return static_cast<F>(1E-12);
-    }
-}
-export template <typename F>
-constexpr auto absTol() -> F {
-    if constexpr (std::is_same_v<F, float>) {
-        return static_cast<F>(1E-6F);
-    } else {
-        return static_cast<F>(1E-12);
-    }
-}
-
-export template <typename F>
-[[nodiscard]] inline auto almostEqual(F firstValue, F secondValue) noexcept
-    -> bool {
-    using std::fabs;
-    const F DIFFERENCE_VALUE = fabs(firstValue - secondValue);
-    const F SCALE_VALUE =
-        std::max(F(1), std::max(fabs(firstValue), fabs(secondValue)));
-    return DIFFERENCE_VALUE <= std::max(absTol<F>(), relTol<F>() * SCALE_VALUE);
 }

@@ -19,9 +19,7 @@ configure_file(${CMAKE_SOURCE_DIR}/src/utils/version.cppm.in ${CMAKE_SOURCE_DIR}
 set(MODULE_SOURCES
     # Utilities
     utils/string.cppm
-    utils/parser.cppm
     utils/endianness.cppm
-    utils/mem64.cppm
     utils/sets.cppm
     utils/logging.cppm
     generated/utils/version.cppm
@@ -70,7 +68,7 @@ set(MODULE_SOURCES
     scan/types.cppm       # 依赖 value.scalar
     scan/match_storage.cppm
     scan/bytes.cppm
-    scan/read_helpers.cppm
+    utils/read_helpers.cppm
     scan/string.cppm
     scan/numeric.cppm
     scan/factory.cppm

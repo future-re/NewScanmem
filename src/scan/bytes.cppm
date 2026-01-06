@@ -22,14 +22,14 @@ import value;
 // - findBytePattern / findBytePatternMasked: search for the first occurrence.
 // - makeBytearrayRoutine: build a scan routine for byte array matches.
 
-export inline auto compareBytes(const Mem64* memoryPtr, size_t memLength,
+export inline auto compareBytes(const Value* memoryPtr, size_t memLength,
                                 const std::uint8_t* patternData,
                                 size_t patternSize, MatchFlags* saveFlags)
     -> unsigned int {
-    if (patternData == nullptr || patternSize == 0) {
+    if (patternData == nullptr || patternSize == 0 || memoryPtr == nullptr) {
         return 0;
     }
-    auto hayAll = memoryPtr->bytes();
+    const auto& hayAll = memoryPtr->bytes;
     size_t limitSize = std::min(hayAll.size(), memLength);
     if (limitSize < patternSize) {
         return 0;
@@ -42,24 +42,24 @@ export inline auto compareBytes(const Mem64* memoryPtr, size_t memLength,
 }
 
 // Convenience overload for vector
-export inline auto compareBytes(const Mem64* memoryPtr, size_t memLength,
+export inline auto compareBytes(const Value* memoryPtr, size_t memLength,
                                 const std::vector<std::uint8_t>& pattern,
                                 MatchFlags* saveFlags) -> unsigned int {
     return compareBytes(memoryPtr, memLength, pattern.data(), pattern.size(),
                         saveFlags);
 }
 
-export inline auto compareBytesMasked(const Mem64* memoryPtr, size_t memLength,
+export inline auto compareBytesMasked(const Value* memoryPtr, size_t memLength,
                                       const std::uint8_t* patternData,
                                       size_t patternSize,
                                       const std::uint8_t* maskData,
                                       size_t maskSize, MatchFlags* saveFlags)
     -> unsigned int {
     if (patternData == nullptr || maskData == nullptr || patternSize == 0 ||
-        maskSize != patternSize) {
+        maskSize != patternSize || memoryPtr == nullptr) {
         return 0;
     }
-    auto hayAll = memoryPtr->bytes();
+    const auto& hayAll = memoryPtr->bytes;
     size_t limitSize = std::min(hayAll.size(), memLength);
     if (limitSize < patternSize) {
         return 0;
@@ -75,7 +75,7 @@ export inline auto compareBytesMasked(const Mem64* memoryPtr, size_t memLength,
 }
 
 // Convenience overload for vectors
-export inline auto compareBytesMasked(const Mem64* memoryPtr, size_t memLength,
+export inline auto compareBytesMasked(const Value* memoryPtr, size_t memLength,
                                       const std::vector<std::uint8_t>& pattern,
                                       const std::vector<std::uint8_t>& mask,
                                       MatchFlags* saveFlags) -> unsigned int {
@@ -84,14 +84,14 @@ export inline auto compareBytesMasked(const Mem64* memoryPtr, size_t memLength,
                               saveFlags);
 }
 
-export inline auto findBytePattern(const Mem64* memoryPtr, size_t memLength,
+export inline auto findBytePattern(const Value* memoryPtr, size_t memLength,
                                    const std::uint8_t* patternData,
                                    size_t patternSize)
     -> std::optional<ByteMatch> {
-    if (patternData == nullptr || patternSize == 0) {
+    if (patternData == nullptr || patternSize == 0 || memoryPtr == nullptr) {
         return std::nullopt;
     }
-    auto hayAll = memoryPtr->bytes();
+    const auto& hayAll = memoryPtr->bytes;
     const size_t LIMIT = std::min(hayAll.size(), memLength);
     if (LIMIT < patternSize) {
         return std::nullopt;
@@ -109,7 +109,7 @@ export inline auto findBytePattern(const Mem64* memoryPtr, size_t memLength,
 }
 
 // Convenience overload for vector
-export inline auto findBytePattern(const Mem64* memoryPtr, size_t memLength,
+export inline auto findBytePattern(const Value* memoryPtr, size_t memLength,
                                    const std::vector<std::uint8_t>& pattern)
     -> std::optional<ByteMatch> {
     return findBytePattern(memoryPtr, memLength, pattern.data(),
@@ -117,14 +117,14 @@ export inline auto findBytePattern(const Mem64* memoryPtr, size_t memLength,
 }
 
 export inline auto findBytePatternMasked(
-    const Mem64* memoryPtr, size_t memLength, const std::uint8_t* patternData,
+    const Value* memoryPtr, size_t memLength, const std::uint8_t* patternData,
     size_t patternSize, const std::uint8_t* maskData, size_t maskSize)
     -> std::optional<ByteMatch> {
     if (patternData == nullptr || maskData == nullptr || patternSize == 0 ||
-        maskSize != patternSize) {
+        maskSize != patternSize || memoryPtr == nullptr) {
         return std::nullopt;
     }
-    auto hayAll = memoryPtr->bytes();
+    const auto& hayAll = memoryPtr->bytes;
     const size_t LIMIT = std::min(hayAll.size(), memLength);
     if (LIMIT < patternSize) {
         return std::nullopt;
@@ -148,7 +148,7 @@ export inline auto findBytePatternMasked(
 
 // Convenience overload for vectors
 export inline auto findBytePatternMasked(
-    const Mem64* memoryPtr, size_t memLength,
+    const Value* memoryPtr, size_t memLength,
     const std::vector<std::uint8_t>& pattern,
     const std::vector<std::uint8_t>& mask) -> std::optional<ByteMatch> {
     return findBytePatternMasked(memoryPtr, memLength, pattern.data(),
@@ -157,7 +157,7 @@ export inline auto findBytePatternMasked(
 
 export inline auto makeBytearrayRoutine(ScanMatchType matchType)
     -> scanRoutine {
-    return [matchType](const Mem64* memoryPtr, size_t memLength,
+    return [matchType](const Value* memoryPtr, size_t memLength,
                        const Value* /*oldValue*/, const UserValue* userValue,
                        MatchFlags* saveFlags) -> unsigned int {
         setFlagsIfNotNull(saveFlags, MatchFlags::EMPTY);

@@ -3,8 +3,13 @@
  * @brief Value parsing utilities for scan operations
  */
 module;
+#include <unistd.h>
+
 #include <algorithm>
+#include <bit>
+#include <cctype>
 #include <charconv>
+#include <cmath>
 #include <cstddef>
 #include <cstdint>
 #include <limits>
@@ -215,11 +220,6 @@ template <typename T>
     }
 }
 
-/**
- * @brief Parse floating point number
- * @param str String to parse
- * @return Optional double value
- */
 [[nodiscard]] inline auto parseDouble(std::string_view str)
     -> std::optional<double> {
     try {
@@ -227,6 +227,109 @@ template <typename T>
     } catch (...) {
         return std::nullopt;
     }
+}
+
+/**
+ * @brief Parse hexadecimal address string to pointer
+ * @param str Address string (with or without 0x prefix)
+ * @return Optional containing parsed address
+ */
+[[nodiscard]] inline auto parseAddress(std::string_view str)
+    -> std::optional<void*> {
+    if (str.empty()) {
+        return std::nullopt;
+    }
+
+    // Remove 0x/0X prefix if present
+    if (str.starts_with("0x") || str.starts_with("0X")) {
+        str.remove_prefix(2);
+    }
+
+    if (str.empty()) {
+        return std::nullopt;
+    }
+
+    uintptr_t addr = 0;
+    auto [ptr, ec] =
+        std::from_chars(str.data(), str.data() + str.size(), addr, 16);
+
+    if (ec != std::errc{} || ptr != str.data() + str.size()) {
+        return std::nullopt;
+    }
+
+    return std::bit_cast<void*>(addr);
+}
+
+/**
+ * @brief Parse PID (process ID) with validation
+ * @param str String to parse
+ * @return Optional containing parsed PID
+ */
+[[nodiscard]] inline auto parsePid(std::string_view str)
+    -> std::optional<pid_t> {
+    auto result = parseInteger<int64_t>(str);
+    if (!result) {
+        return std::nullopt;
+    }
+
+    if (*result <= 0 || *result > std::numeric_limits<pid_t>::max()) {
+        return std::nullopt;
+    }
+
+    return static_cast<pid_t>(*result);
+}
+
+/**
+ * @brief Parse boolean value
+ * @param str String to parse (true/false, yes/no, 1/0, on/off)
+ * @return Optional containing parsed boolean
+ */
+[[nodiscard]] inline auto parseBoolean(std::string_view str)
+    -> std::optional<bool> {
+    if (str.empty()) {
+        return std::nullopt;
+    }
+
+    auto lowerStr = toLower(std::string(str));
+
+    if (lowerStr == "true" || lowerStr == "yes" || lowerStr == "1" ||
+        lowerStr == "on") {
+        return true;
+    }
+    if (lowerStr == "false" || lowerStr == "no" || lowerStr == "0" ||
+        lowerStr == "off") {
+        return false;
+    }
+
+    return std::nullopt;
+}
+
+template <typename F>
+constexpr auto relTol() -> F {
+    if constexpr (std::is_same_v<F, float>) {
+        return static_cast<F>(1E-5F);
+    } else {
+        return static_cast<F>(1E-12);
+    }
+}
+
+template <typename F>
+constexpr auto absTol() -> F {
+    if constexpr (std::is_same_v<F, float>) {
+        return static_cast<F>(1E-6F);
+    } else {
+        return static_cast<F>(1E-12);
+    }
+}
+
+template <typename F>
+[[nodiscard]] inline auto almostEqual(F firstValue, F secondValue) noexcept
+    -> bool {
+    using std::fabs;
+    const F DIFFERENCE_VALUE = fabs(firstValue - secondValue);
+    const F SCALE_VALUE =
+        std::max(F(1), std::max(fabs(firstValue), fabs(secondValue)));
+    return DIFFERENCE_VALUE <= std::max(absTol<F>(), relTol<F>() * SCALE_VALUE);
 }
 
 /**

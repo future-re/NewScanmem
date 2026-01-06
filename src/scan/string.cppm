@@ -36,10 +36,13 @@ export inline auto getCachedRegex(const std::string& pattern) noexcept
     return cachedRegex.get();
 }
 
-export inline auto findRegexPattern(const Mem64* memoryPtr, size_t memLength,
+export inline auto findRegexPattern(const Value* memoryPtr, size_t memLength,
                                     const std::string& pattern)
     -> std::optional<ByteMatch> {
-    auto hayAll = memoryPtr->bytes();
+    if (memoryPtr == nullptr) {
+        return std::nullopt;
+    }
+    const auto& hayAll = memoryPtr->bytes;
     size_t limitSize = std::min(hayAll.size(), memLength);
     std::string hay(hayAll.begin(),
                     hayAll.begin() + static_cast<std::ptrdiff_t>(limitSize));
@@ -65,11 +68,14 @@ namespace {
     return static_cast<unsigned int>(memLength);
 }
 
-[[nodiscard]] inline auto runRegexMatch(const Mem64* memoryPtr,
+[[nodiscard]] inline auto runRegexMatch(const Value* memoryPtr,
                                         size_t memLength,
                                         const std::string& pattern,
                                         MatchFlags* saveFlags) -> unsigned int {
-    auto hayAll = memoryPtr->bytes();
+    if (memoryPtr == nullptr) {
+        return 0;
+    }
+    const auto& hayAll = memoryPtr->bytes;
     size_t limitSize = std::min(hayAll.size(), memLength);
     std::string hay(hayAll.begin(),
                     hayAll.begin() + static_cast<std::ptrdiff_t>(limitSize));
@@ -86,7 +92,7 @@ namespace {
 }  // namespace
 
 export inline auto makeStringRoutine(ScanMatchType matchType) -> scanRoutine {
-    return [matchType](const Mem64* memoryPtr, size_t memLength,
+    return [matchType](const Value* memoryPtr, size_t memLength,
                        const Value* /*oldValue*/, const UserValue* userValue,
                        MatchFlags* saveFlags) -> unsigned int {
         setFlagsIfNotNull(saveFlags, MatchFlags::EMPTY);

@@ -12,7 +12,6 @@ import scan.types; // ScanDataType / ScanMatchType / bytesNeededForType / matchU
 import scan.factory; // smGetScanroutine
 import scan.engine;  // ProcMemReader / ScanStats / ScanOptions
 import scan.match_storage;
-import utils.mem64;
 import value;
 
 using scan::MatchesAndOldValuesArray;
@@ -39,7 +38,7 @@ inline void narrowSwath(MatchesAndOldValuesSwath& swath, auto& routine,
             cell.matchInfo = MatchFlags::EMPTY;
             continue;
         }
-        Mem64 mem{buffer.data(), *readExp};
+        Value mem{buffer.data(), *readExp};
         MatchFlags newFlags = MatchFlags::EMPTY;
         const Value* oldValuePtr = nullptr;
         Value oldValueHolder;

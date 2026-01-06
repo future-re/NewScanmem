@@ -22,8 +22,7 @@ import scan.match_storage; // MatchesAndOldValuesArray, MatchesAndOldValuesSwath
 import scan.factory;       // smGetScanroutine
 import scan.types; // ScanDataType / ScanMatchType / bytesNeededForType / matchUsesOldValue
 import value.flags;        // MatchFlags
-import utils.mem64;        // Mem64
-import value;       // Value / UserValue
+import value;              // Value / UserValue
 import core.maps;          // readProcessMaps, Region, RegionScanLevel
 import core.region_filter; // RegionFilterConfig
 
@@ -217,7 +216,7 @@ inline void scanBlock(const std::uint8_t* buffer, std::size_t bytesRead,
                       bool usesOld, std::size_t oldSliceLen) {
     for (std::size_t off = 0; off < bytesRead; off += step) {
         const std::size_t MEM_LEN = bytesRead - off;
-        Mem64 mem{buffer + off, MEM_LEN};
+        Value mem{buffer + off, MEM_LEN};
         MatchFlags saveFlags = MatchFlags::EMPTY;
         const Value* oldValue = nullptr;
         Value oldHolder;

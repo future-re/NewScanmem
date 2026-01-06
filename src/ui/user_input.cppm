@@ -9,7 +9,6 @@ module;
 
 export module ui.user_input;
 
-import utils.mem64;
 import value;
 import value.flags;
 
@@ -19,62 +18,41 @@ import value.flags;
 // - Optional mask for byte matching (ByteArray + Mask)
 export struct UserInput {
     ValueType valueType{MatchFlags::EMPTY};
-    Mem64 value;  // Primary value (number/bytes/string)
-    std::optional<Mem64>
-        highValue;  // Upper bound for numeric range (RangeNumber)
-    std::optional<std::vector<std::uint8_t>> mask;  // Used by BytesWithMask
+    UserValue value;  // Primary value (number/bytes/string)
 
     UserInput() = default;
 
     // --- Convenience constructors (Number) ---
     template <typename T>
     static auto fromNumber(T val) -> UserInput {
-        static_assert(std::is_trivially_copyable_v<T>,
-                      "fromNumber requires trivially copyable T");
-        UserInput userInput;
-        userInput.valueType = flagForType<T>();
-        userInput.value.setScalar<T>(val);
-        return userInput;
+        // TODO
+        return UserInput{};
     }
 
     // --- Convenience constructors (RangeNumber) ---
     template <typename T>
     static auto fromRange(T loVal, T hiVal) -> UserInput {
-        static_assert(std::is_trivially_copyable_v<T>,
-                      "fromRange requires trivially copyable T");
-        UserInput userInput;
-
-        userInput.valueType = flagForType<T>();
-        userInput.value.setScalar<T>(loVal);
-        userInput.highValue.emplace();
-        userInput.highValue->setScalar<T>(hiVal);
-        return userInput;
+        // TODO
+        return UserInput{};
     }
 
     // --- Convenience constructors (Bytes) ---
     static auto fromBytes(std::span<const std::uint8_t> span) -> UserInput {
-        UserInput userInput;
-        userInput.valueType = MatchFlags::BYTE_ARRAY;
-        userInput.value = Mem64{span};
-        return userInput;
+        // TODO
+        return UserInput{};
     }
 
     // --- Convenience constructors (BytesWithMask) ---
     static auto fromBytesWithMask(std::span<const std::uint8_t> span,
                                   std::span<const std::uint8_t> mask)
         -> UserInput {
-        UserInput userInput;
-        userInput.valueType = MatchFlags::BYTE_ARRAY;
-        userInput.value = Mem64{span};
-        userInput.mask = std::vector<std::uint8_t>(mask.begin(), mask.end());
-        return userInput;
+        // TODO
+        return UserInput{};
     }
 
     // --- 构造便捷函数（String）---
     static auto fromString(const std::string& stringInput) -> UserInput {
-        UserInput userInput;
-        userInput.valueType = MatchFlags::STRING;
-        userInput.value.setString(stringInput);
-        return userInput;
+        // TODO
+        return UserInput{};
     }
 };

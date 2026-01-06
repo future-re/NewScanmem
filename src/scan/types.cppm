@@ -8,7 +8,6 @@ export module scan.types;
 
 // Import dependent modules and re-export their symbols to avoid redeclaring
 // types with the same names across modules.
-export import utils.mem64;  // provides Mem64
 export import value.flags;  // provides MatchFlags
 export import value;        // provides Value, UserValue
 
@@ -51,7 +50,7 @@ export enum class ScanMatchType : std::uint8_t {
 // Match routine signature for a single scan location. Returns the number of
 // matched bytes (>= 1) or 0 (no match).
 export using scanRoutine = std::function<unsigned int(
-    const Mem64* /*memoryPtr*/, size_t /*memLength*/, const Value* /*oldValue*/,
+    const Value* /*memoryPtr*/, size_t /*memLength*/, const Value* /*oldValue*/,
     const UserValue* /*userValue*/, MatchFlags* /*saveFlags*/)>;
 
 // Byte pattern search result (with offset and length), useful when marking

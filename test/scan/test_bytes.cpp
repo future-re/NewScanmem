@@ -1,19 +1,18 @@
-import scan.bytes;
-import scan.string;
-import scan.types;
-import utils.mem64;
-import value;
-
 #include <gtest/gtest.h>
 
 #include <string>
 #include <vector>
 
+import scan.bytes;
+import scan.string;
+import scan.types;
+import value;
+
 namespace {
 
 TEST(ScanBytesTest, CompareBytesMatchesPrefix) {
     const std::vector<std::uint8_t> HAY_STACK{1, 2, 3, 4};
-    Mem64 mem{HAY_STACK.data(), HAY_STACK.size()};
+    Value mem{HAY_STACK.data(), HAY_STACK.size()};
     const std::vector<std::uint8_t> PATTERN{1, 2};
     MatchFlags flags = MatchFlags::EMPTY;
     const unsigned MATCHED = compareBytes(
@@ -24,7 +23,7 @@ TEST(ScanBytesTest, CompareBytesMatchesPrefix) {
 
 TEST(ScanBytesTest, CompareBytesMaskedAllowsMaskedBits) {
     const std::vector<std::uint8_t> HAY_STACK{0xAA, 0xB5};
-    Mem64 mem{HAY_STACK.data(), HAY_STACK.size()};
+    Value mem{HAY_STACK.data(), HAY_STACK.size()};
     const std::vector<std::uint8_t> PATTERN{0xAA, 0xBB};
     const std::vector<std::uint8_t> MASK{0xFF, 0xF0};  // low nibble ignored
     MatchFlags flags = MatchFlags::EMPTY;
@@ -37,7 +36,7 @@ TEST(ScanBytesTest, CompareBytesMaskedAllowsMaskedBits) {
 
 TEST(ScanBytesTest, CompareBytesEmptyPatternReturnsZero) {
     const std::vector<std::uint8_t> HAY_STACK{1, 2, 3};
-    Mem64 mem{HAY_STACK.data(), HAY_STACK.size()};
+    Value mem{HAY_STACK.data(), HAY_STACK.size()};
     const std::vector<std::uint8_t> PATTERN{};
     MatchFlags flags = MatchFlags::EMPTY;
     const unsigned MATCHED = compareBytes(
@@ -48,7 +47,7 @@ TEST(ScanBytesTest, CompareBytesEmptyPatternReturnsZero) {
 
 TEST(ScanBytesTest, CompareBytesPatternLongerThanHaystack) {
     const std::vector<std::uint8_t> HAY_STACK{1, 2};
-    Mem64 mem{HAY_STACK.data(), HAY_STACK.size()};
+    Value mem{HAY_STACK.data(), HAY_STACK.size()};
     const std::vector<std::uint8_t> PATTERN{1, 2, 3};
     MatchFlags flags = MatchFlags::EMPTY;
     const unsigned MATCHED = compareBytes(
@@ -59,7 +58,7 @@ TEST(ScanBytesTest, CompareBytesPatternLongerThanHaystack) {
 
 TEST(ScanBytesTest, CompareBytesVectorOverloadMatches) {
     const std::vector<std::uint8_t> HAY_STACK{5, 6, 7, 8};
-    Mem64 mem{HAY_STACK.data(), HAY_STACK.size()};
+    Value mem{HAY_STACK.data(), HAY_STACK.size()};
     const std::vector<std::uint8_t> PATTERN{5, 6};
     MatchFlags flags = MatchFlags::EMPTY;
     const unsigned MATCHED =
@@ -70,7 +69,7 @@ TEST(ScanBytesTest, CompareBytesVectorOverloadMatches) {
 
 TEST(ScanBytesTest, CompareBytesMaskedWildcardMaskMatches) {
     const std::vector<std::uint8_t> HAY_STACK{0xAA, 0x55};
-    Mem64 mem{HAY_STACK.data(), HAY_STACK.size()};
+    Value mem{HAY_STACK.data(), HAY_STACK.size()};
     const std::vector<std::uint8_t> PATTERN{0x00, 0x00};
     const std::vector<std::uint8_t> MASK{0x00, 0x00};  // wildcard everything
     MatchFlags flags = MatchFlags::EMPTY;
@@ -84,7 +83,7 @@ TEST(ScanBytesTest, CompareBytesMaskedWildcardMaskMatches) {
 
 TEST(ScanBytesTest, CompareBytesWithNullSaveFlagsDoesNotCrash) {
     const std::vector<std::uint8_t> HAY_STACK{1, 2, 3};
-    Mem64 mem{HAY_STACK.data(), HAY_STACK.size()};
+    Value mem{HAY_STACK.data(), HAY_STACK.size()};
     const std::vector<std::uint8_t> PATTERN{1, 2};
     const unsigned MATCHED = compareBytes(
         &mem, HAY_STACK.size(), PATTERN.data(), PATTERN.size(), nullptr);
@@ -93,7 +92,7 @@ TEST(ScanBytesTest, CompareBytesWithNullSaveFlagsDoesNotCrash) {
 
 TEST(ScanBytesTest, CompareBytesMaskedWithNullSaveFlagsDoesNotCrash) {
     const std::vector<std::uint8_t> HAY_STACK{0xAA, 0xB5};
-    Mem64 mem{HAY_STACK.data(), HAY_STACK.size()};
+    Value mem{HAY_STACK.data(), HAY_STACK.size()};
     const std::vector<std::uint8_t> PATTERN{0xAA, 0xBB};
     const std::vector<std::uint8_t> MASK{0xFF, 0xF0};
     const unsigned MATCHED =
@@ -104,7 +103,7 @@ TEST(ScanBytesTest, CompareBytesMaskedWithNullSaveFlagsDoesNotCrash) {
 
 TEST(ScanBytesTest, CompareBytesMaskedMaskSizeMismatchReturnsZero) {
     const std::vector<std::uint8_t> HAY_STACK{0xAA, 0x55};
-    Mem64 mem{HAY_STACK.data(), HAY_STACK.size()};
+    Value mem{HAY_STACK.data(), HAY_STACK.size()};
     const std::vector<std::uint8_t> PATTERN{0xAA, 0x55};
     const std::vector<std::uint8_t> MASK{0xFF};
     MatchFlags flags = MatchFlags::EMPTY;
@@ -117,7 +116,7 @@ TEST(ScanBytesTest, CompareBytesMaskedMaskSizeMismatchReturnsZero) {
 
 TEST(ScanBytesTest, FindBytePatternReturnsOffset) {
     const std::string TEXT = "abcxabcd";
-    Mem64 mem{TEXT};
+    Value mem{reinterpret_cast<const std::uint8_t*>(TEXT.data()), TEXT.size()};
     const std::vector<std::uint8_t> PATTERN{'a', 'b', 'c', 'd'};
     auto match = findBytePattern(&mem, mem.size(), PATTERN);
     ASSERT_TRUE(match.has_value());
@@ -127,7 +126,7 @@ TEST(ScanBytesTest, FindBytePatternReturnsOffset) {
 
 TEST(ScanBytesTest, FindBytePatternMaskedIgnoresMaskedBits) {
     const std::vector<std::uint8_t> HAY_STACK{0x10, 0x20, 0x30};
-    Mem64 mem{HAY_STACK.data(), HAY_STACK.size()};
+    Value mem{HAY_STACK.data(), HAY_STACK.size()};
     const std::vector<std::uint8_t> PATTERN{0x00, 0x20};
     const std::vector<std::uint8_t> MASK{0x00, 0xFF};  // first byte wildcard
     auto match = findBytePatternMasked(&mem, mem.size(), PATTERN, MASK);
@@ -143,7 +142,7 @@ TEST(ScanBytesTest, BytearrayRoutineWithMaskMatches) {
 
     auto routine = makeBytearrayRoutine(ScanMatchType::MATCH_EQUAL_TO);
     const std::vector<std::uint8_t> HAY_STACK{0xAA, 0xB5, 0x00};
-    Mem64 mem{HAY_STACK.data(), HAY_STACK.size()};
+    Value mem{HAY_STACK.data(), HAY_STACK.size()};
     MatchFlags flags = MatchFlags::EMPTY;
     const unsigned MATCHED =
         routine(&mem, HAY_STACK.size(), nullptr, &userValue, &flags);
@@ -158,7 +157,7 @@ TEST(ScanBytesTest, MakeBytearrayRoutineAddsBYTE_ARRAYFlag) {
 
     auto routine = makeBytearrayRoutine(ScanMatchType::MATCH_EQUAL_TO);
     const std::vector<std::uint8_t> HAY_STACK{0xAA, 0xB5, 0x00};
-    Mem64 mem{HAY_STACK.data(), HAY_STACK.size()};
+    Value mem{HAY_STACK.data(), HAY_STACK.size()};
     MatchFlags flags = MatchFlags::EMPTY;
     const unsigned MATCHED =
         routine(&mem, HAY_STACK.size(), nullptr, &userValue, &flags);
@@ -168,7 +167,7 @@ TEST(ScanBytesTest, MakeBytearrayRoutineAddsBYTE_ARRAYFlag) {
 
 TEST(ScanStringTest, MATCH_ANYReturnsFullLength) {
     const std::string TEXT = "hello";
-    Mem64 mem{TEXT};
+    Value mem{reinterpret_cast<const std::uint8_t*>(TEXT.data()), TEXT.size()};
     auto routine = makeStringRoutine(ScanMatchType::MATCH_ANY);
     MatchFlags flags = MatchFlags::EMPTY;
     const unsigned MATCHED =
@@ -179,7 +178,7 @@ TEST(ScanStringTest, MATCH_ANYReturnsFullLength) {
 
 TEST(ScanStringTest, RegexMatchUsesPattern) {
     const std::string TEXT = "zzabczz";
-    Mem64 mem{TEXT};
+    Value mem{reinterpret_cast<const std::uint8_t*>(TEXT.data()), TEXT.size()};
     UserValue userValue = UserValue::fromString("a.c");
 
     auto routine = makeStringRoutine(ScanMatchType::MATCH_REGEX);

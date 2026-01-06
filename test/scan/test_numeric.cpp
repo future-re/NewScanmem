@@ -1,25 +1,24 @@
 // Unit tests for scan.numeric module - focus on nullptr safety
 
-import scan.numeric;
-import scan.types;
-import utils.mem64;
-import value;
-import value.flags;
-
 #include <gtest/gtest.h>
 
 #include <cstdint>
 #include <vector>
 
+import scan.numeric;
+import scan.types;
+import value;
+import value.flags;
+
 class ScanNumericTest : public ::testing::Test {
    protected:
-    Mem64 m_mem;
+    Value m_mem;
 };
 
 // Test numericMatchCore with nullptr saveFlags
 TEST_F(ScanNumericTest, NumericMatchCoreWithNullSaveFlagsDoesNotCrash) {
     std::vector<uint8_t> data = {42, 0, 0, 0};  // int32 = 42
-    m_mem = Mem64(data);
+    m_mem = Value(data);
 
     UserValue userValue = UserValue::fromScalar<int32_t>(42);
 
@@ -33,13 +32,13 @@ TEST_F(ScanNumericTest, NumericMatchCoreWithNullSaveFlagsDoesNotCrash) {
 // Test makeNumericRoutine with nullptr saveFlags
 TEST_F(ScanNumericTest, MakeNumericRoutineWithNullSaveFlagsDoesNotCrash) {
     std::vector<uint8_t> data = {100, 0, 0, 0, 0, 0, 0, 0};  // int64 = 100
-    m_mem = Mem64(data);
+    m_mem = Value(data);
 
     auto routine = makeNumericRoutine<int64_t>(ScanMatchType::MATCH_ANY, false);
 
     // Should not crash with nullptr saveFlags
     unsigned int result =
-        routine(&m_mem, m_mem.bytes().size(), nullptr, nullptr, nullptr);
+        routine(&m_mem, m_mem.bytes.size(), nullptr, nullptr, nullptr);
 
     EXPECT_EQ(result, sizeof(int64_t));
 }
@@ -47,13 +46,13 @@ TEST_F(ScanNumericTest, MakeNumericRoutineWithNullSaveFlagsDoesNotCrash) {
 // Test makeAnyIntegerRoutine with nullptr saveFlags
 TEST_F(ScanNumericTest, MakeAnyIntegerRoutineWithNullSaveFlagsDoesNotCrash) {
     std::vector<uint8_t> data = {0xFF, 0x00};  // uint16 = 255
-    m_mem = Mem64(data);
+    m_mem = Value(data);
 
     auto routine = makeAnyIntegerRoutine(ScanMatchType::MATCH_ANY, false);
 
     // Should not crash with nullptr saveFlags
     unsigned int result =
-        routine(&m_mem, m_mem.bytes().size(), nullptr, nullptr, nullptr);
+        routine(&m_mem, m_mem.bytes.size(), nullptr, nullptr, nullptr);
 
     // Should match at least as uint8_t or larger
     EXPECT_GT(result, 0U);
@@ -62,13 +61,13 @@ TEST_F(ScanNumericTest, MakeAnyIntegerRoutineWithNullSaveFlagsDoesNotCrash) {
 // Test makeAnyFloatRoutine with nullptr saveFlags
 TEST_F(ScanNumericTest, MakeAnyFloatRoutineWithNullSaveFlagsDoesNotCrash) {
     std::vector<uint8_t> data = {0, 0, 0x80, 0x3F};  // float = 1.0
-    m_mem = Mem64(data);
+    m_mem = Value(data);
 
     auto routine = makeAnyFloatRoutine(ScanMatchType::MATCH_ANY, false);
 
     // Should not crash with nullptr saveFlags
     unsigned int result =
-        routine(&m_mem, m_mem.bytes().size(), nullptr, nullptr, nullptr);
+        routine(&m_mem, m_mem.bytes.size(), nullptr, nullptr, nullptr);
 
     EXPECT_EQ(result, sizeof(float));
 }
@@ -76,13 +75,13 @@ TEST_F(ScanNumericTest, MakeAnyFloatRoutineWithNullSaveFlagsDoesNotCrash) {
 // Test makeAnyNumberRoutine with nullptr saveFlags
 TEST_F(ScanNumericTest, MakeAnyNumberRoutineWithNullSaveFlagsDoesNotCrash) {
     std::vector<uint8_t> data = {42};  // uint8 = 42
-    m_mem = Mem64(data);
+    m_mem = Value(data);
 
     auto routine = makeAnyNumberRoutine(ScanMatchType::MATCH_ANY, false);
 
     // Should not crash with nullptr saveFlags
     unsigned int result =
-        routine(&m_mem, m_mem.bytes().size(), nullptr, nullptr, nullptr);
+        routine(&m_mem, m_mem.bytes.size(), nullptr, nullptr, nullptr);
 
     EXPECT_GT(result, 0U);
 }
@@ -90,14 +89,14 @@ TEST_F(ScanNumericTest, MakeAnyNumberRoutineWithNullSaveFlagsDoesNotCrash) {
 // Verify that when saveFlags is provided, it's correctly set
 TEST_F(ScanNumericTest, NumericRoutineSetsFlags) {
     std::vector<uint8_t> data = {42, 0};  // uint16 = 42
-    m_mem = Mem64(data);
+    m_mem = Value(data);
 
     auto routine =
         makeNumericRoutine<uint16_t>(ScanMatchType::MATCH_ANY, false);
     MatchFlags flags = MatchFlags::EMPTY;
 
     unsigned int result =
-        routine(&m_mem, m_mem.bytes().size(), nullptr, nullptr, &flags);
+        routine(&m_mem, m_mem.bytes.size(), nullptr, nullptr, &flags);
 
     EXPECT_EQ(result, sizeof(uint16_t));
     EXPECT_EQ(flags, MatchFlags::B16);
