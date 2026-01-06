@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['targetpid_0',['targetPid',['../structcli_1_1AppConfig.html#a5be85714320e85fd849c6890e7cc18db',1,'cli::AppConfig']]],
-  ['type_1',['type',['../structcore_1_1Region.html#a061e9836e64e27513695d8f9a2a28c2e',1,'core::Region::type'],['../structcore_1_1RegionLookupEntry.html#af4e08ad903a65ce07ffdb8e9103c5f15',1,'core::RegionLookupEntry::type']]]
+  ['value_0',['value',['../structcore_1_1MatchEntry.html#a0155ce4883020265a256164cde2d85f7',1,'core::MatchEntry::value'],['../structScanResult.html#a983d8c471f8a0bdba8110b4400a097bb',1,'ScanResult::value'],['../structUserInput.html#a9b20373870c401312ac11a0827fc342c',1,'UserInput::value']]],
+  ['valuetype_1',['valueType',['../structUserInput.html#aed23398e823f7b7989187b1de237be86',1,'UserInput']]]
 ];

@@ -104,9 +104,11 @@ UserInput 的协作图:</div>
 <div class="dyncontent">
 <div class="center"><img src="structUserInput__coll__graph.png" border="0" usemap="#aUserInput_coll__map" alt="Collaboration graph"/></div>
 <map name="aUserInput_coll__map" id="aUserInput_coll__map">
-<area shape="rect" title=" " alt="" coords="5,93,91,119"/>
-<area shape="rect" href="structMem64.html" title=" " alt="" coords="13,5,83,31"/>
-<area shape="poly" title=" " alt="" coords="51,45,51,93,45,93,45,45"/>
+<area shape="rect" title=" " alt="" coords="7,181,92,207"/>
+<area shape="rect" href="structUserValue.html" title=" " alt="" coords="5,93,93,119"/>
+<area shape="poly" title=" " alt="" coords="52,133,52,181,47,181,47,133"/>
+<area shape="rect" href="structValue.html" title=" " alt="" coords="20,5,79,31"/>
+<area shape="poly" title=" " alt="" coords="52,45,52,93,47,93,47,45"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">图例</a>]</span></center></div>
 <table class="memberdecls">
@@ -125,7 +127,7 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:a034094d4736d9cad00ac20b29ad2a115"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06a86b884e1d4bd734caedaa0b54a266" id="r_a06a86b884e1d4bd734caedaa0b54a266"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserInput.html#a06a86b884e1d4bd734caedaa0b54a266">fromBytes</a> (std::span&lt; const std::uint8_t &gt; span) -&gt; <a class="el" href="structUserInput.html">UserInput</a></td></tr>
 <tr class="separator:a06a86b884e1d4bd734caedaa0b54a266"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2504c02db8a3b6d41eb7190bc5f4030a" id="r_a2504c02db8a3b6d41eb7190bc5f4030a"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserInput.html#a2504c02db8a3b6d41eb7190bc5f4030a">fromBytesWithMask</a> (std::span&lt; const std::uint8_t &gt; span, std::span&lt; const std::uint8_t &gt; <a class="el" href="structUserInput.html#a6b13c9cd9b8e1cb8e37b3aac00b7bccd">mask</a>) -&gt; <a class="el" href="structUserInput.html">UserInput</a></td></tr>
+<tr class="memitem:a2504c02db8a3b6d41eb7190bc5f4030a" id="r_a2504c02db8a3b6d41eb7190bc5f4030a"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserInput.html#a2504c02db8a3b6d41eb7190bc5f4030a">fromBytesWithMask</a> (std::span&lt; const std::uint8_t &gt; span, std::span&lt; const std::uint8_t &gt; mask) -&gt; <a class="el" href="structUserInput.html">UserInput</a></td></tr>
 <tr class="separator:a2504c02db8a3b6d41eb7190bc5f4030a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03ad1a1b8db938ff300f66e73d075912" id="r_a03ad1a1b8db938ff300f66e73d075912"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserInput.html#a03ad1a1b8db938ff300f66e73d075912">fromString</a> (const std::string &amp;stringInput) -&gt; <a class="el" href="structUserInput.html">UserInput</a></td></tr>
 <tr class="separator:a03ad1a1b8db938ff300f66e73d075912"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -134,12 +136,8 @@ Public 成员函数</h2></td></tr>
 Public 属性</h2></td></tr>
 <tr class="memitem:aed23398e823f7b7989187b1de237be86" id="r_aed23398e823f7b7989187b1de237be86"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">ValueType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserInput.html#aed23398e823f7b7989187b1de237be86">valueType</a> {<a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552aba2b45bdc11e2a4a6e86aab2ac693cbb">MatchFlags::EMPTY</a>}</td></tr>
 <tr class="separator:aed23398e823f7b7989187b1de237be86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a185968c5eb075216bd48e574f5fdea8c" id="r_a185968c5eb075216bd48e574f5fdea8c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structMem64.html">Mem64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserInput.html#a185968c5eb075216bd48e574f5fdea8c">value</a></td></tr>
-<tr class="separator:a185968c5eb075216bd48e574f5fdea8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcf771e268d6eb0f0a9c418442f62db7" id="r_abcf771e268d6eb0f0a9c418442f62db7"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="structMem64.html">Mem64</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserInput.html#abcf771e268d6eb0f0a9c418442f62db7">highValue</a></td></tr>
-<tr class="separator:abcf771e268d6eb0f0a9c418442f62db7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b13c9cd9b8e1cb8e37b3aac00b7bccd" id="r_a6b13c9cd9b8e1cb8e37b3aac00b7bccd"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::vector&lt; std::uint8_t &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserInput.html#a6b13c9cd9b8e1cb8e37b3aac00b7bccd">mask</a></td></tr>
-<tr class="separator:a6b13c9cd9b8e1cb8e37b3aac00b7bccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b20373870c401312ac11a0827fc342c" id="r_a9b20373870c401312ac11a0827fc342c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structUserValue.html">UserValue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserInput.html#a9b20373870c401312ac11a0827fc342c">value</a></td></tr>
+<tr class="separator:a9b20373870c401312ac11a0827fc342c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">构造及析构函数说明</h2>
 <a id="ace219b17c2e355536141cda8a241e6f9" name="ace219b17c2e355536141cda8a241e6f9"></a>
@@ -323,42 +321,14 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">类成员变量说明</h2>
-<a id="abcf771e268d6eb0f0a9c418442f62db7" name="abcf771e268d6eb0f0a9c418442f62db7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abcf771e268d6eb0f0a9c418442f62db7">&#9670;&#160;</a></span>highValue</h2>
+<a id="a9b20373870c401312ac11a0827fc342c" name="a9b20373870c401312ac11a0827fc342c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b20373870c401312ac11a0827fc342c">&#9670;&#160;</a></span>value</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;<a class="el" href="structMem64.html">Mem64</a>&gt; UserInput::highValue</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a6b13c9cd9b8e1cb8e37b3aac00b7bccd" name="a6b13c9cd9b8e1cb8e37b3aac00b7bccd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b13c9cd9b8e1cb8e37b3aac00b7bccd">&#9670;&#160;</a></span>mask</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::optional&lt;std::vector&lt;std::uint8_t&gt; &gt; UserInput::mask</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a185968c5eb075216bd48e574f5fdea8c" name="a185968c5eb075216bd48e574f5fdea8c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a185968c5eb075216bd48e574f5fdea8c">&#9670;&#160;</a></span>value</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structMem64.html">Mem64</a> UserInput::value</td>
+          <td class="memname"><a class="el" href="structUserValue.html">UserValue</a> UserInput::value</td>
         </tr>
       </table>
 </div><div class="memdoc">

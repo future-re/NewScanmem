@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['empty_0',['empty',['../structValue.html#aa6094e146c422363e9ecdf02d52160b3',1,'Value::empty()'],['../structMem64.html#a2bae7af1fa83767e33ae4fc415e7f85d',1,'Mem64::empty()']]],
+  ['empty_0',['empty',['../structValue.html#aa6094e146c422363e9ecdf02d52160b3',1,'Value']]],
   ['endswith_1',['endsWith',['../classutils_1_1StringUtils.html#a2a84920e5a6a099e9fdea7edfdfd3121',1,'utils::StringUtils']]],
   ['ensurescanner_2',['ensureScanner',['../structcli_1_1SessionState.html#a23cf5ad9431e13abde0b239de57d0201',1,'cli::SessionState']]],
   ['error_3',['error',['../classui_1_1MessagePrinter.html#ad09c33fdf5ec0710b52cfcc68959b804',1,'ui::MessagePrinter::error(std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const'],['../classui_1_1MessagePrinter.html#abf5edf4676d43e702e87ea3001493ca0',1,'ui::MessagePrinter::error(std::string_view msg)'],['../classutils_1_1Logger.html#abc6b16a3e4f199dfc2aa79efc9e76c79',1,'utils::Logger::error()']]],

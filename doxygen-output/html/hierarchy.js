@@ -30,7 +30,6 @@ var hierarchy =
     [ "scan::MatchesAndOldValuesArray", "classscan_1_1MatchesAndOldValuesArray.html", null ],
     [ "scan::MatchesAndOldValuesSwath", "classscan_1_1MatchesAndOldValuesSwath.html", null ],
     [ "core::MatchFormatter", "classcore_1_1MatchFormatter.html", null ],
-    [ "Mem64", "structMem64.html", null ],
     [ "core::MemoryWriter", "classcore_1_1MemoryWriter.html", null ],
     [ "ui::MessageContext", "structui_1_1MessageContext.html", null ],
     [ "ui::MessagePrinter", "classui_1_1MessagePrinter.html", null ],
@@ -58,6 +57,5 @@ var hierarchy =
     ] ],
     [ "UserValue", "structUserValue.html", null ],
     [ "Value", "structValue.html", null ],
-    [ "utils::ValueParser", "classutils_1_1ValueParser.html", null ],
     [ "core::WriteResult", "structcore_1_1WriteResult.html", null ]
 ];

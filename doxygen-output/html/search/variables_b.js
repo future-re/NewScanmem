@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['offset_0',['offset',['../structByteMatch.html#a4befe851e66dbc034a757e4f5234069c',1,'ByteMatch']]],
-  ['oldbyte_1',['oldByte',['../structscan_1_1OldValueAndMatchInfo.html#adb6466011e3792193e69389cf1a6e8ec',1,'scan::OldValueAndMatchInfo']]],
-  ['opts_2',['opts',['../structScanResult.html#a67452fbdf5da112d80553e031354df2b',1,'ScanResult']]]
+  ['patch_5fv_0',['PATCH_V',['../namespaceversion.html#a973c32a5119386defd09be29281311f1',1,'version']]],
+  ['pid_1',['pid',['../structcli_1_1SessionState.html#a5973fc6feb4cab4d1ad424cae7172e9a',1,'cli::SessionState']]]
 ];

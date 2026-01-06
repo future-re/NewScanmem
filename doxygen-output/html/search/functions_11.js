@@ -9,6 +9,5 @@ var searchData=
   ['trim_6',['trim',['../classutils_1_1StringUtils.html#ac327c7b4e0f15461d07e934809c91b61',1,'utils::StringUtils']]],
   ['trimleft_7',['trimLeft',['../classutils_1_1StringUtils.html#a6b7d14771d79b94375247497e6c99fb9',1,'utils::StringUtils']]],
   ['trimright_8',['trimRight',['../classutils_1_1StringUtils.html#a0d59af809e6fa964b16c93e946efdaea',1,'utils::StringUtils']]],
-  ['tryget_9',['tryGet',['../structMem64.html#a60dc57b0cb763ccee8109d377639f4f4',1,'Mem64']]],
-  ['trynumericsequence_10',['tryNumericSequence',['../namespacedetail.html#afdfe8c55d9ebfa61684e71fd8bc3ed9c',1,'detail']]]
+  ['trynumericsequence_9',['tryNumericSequence',['../namespacedetail.html#aca568eae0b3707cce9c067bf16b37b9f',1,'detail']]]
 ];

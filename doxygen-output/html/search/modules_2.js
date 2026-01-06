@@ -6,9 +6,8 @@ var searchData=
   ['ui_2euser_5finput_3',['ui.user_input',['../module_ui_8user__input.html',1,'']]],
   ['utils_2eendianness_4',['utils.endianness',['../module_utils_8endianness.html',1,'']]],
   ['utils_2elogging_5',['utils.logging',['../module_utils_8logging.html',1,'']]],
-  ['utils_2emem64_6',['utils.mem64',['../module_utils_8mem64.html',1,'']]],
-  ['utils_2eparser_7',['utils.parser',['../module_utils_8parser.html',1,'']]],
-  ['utils_2esets_8',['utils.sets',['../module_utils_8sets.html',1,'']]],
-  ['utils_2estring_9',['utils.string',['../module_utils_8string.html',1,'']]],
-  ['utils_2eversion_10',['utils.version',['../module_utils_8version.html',1,'']]]
+  ['utils_2eread_5fhelpers_6',['utils.read_helpers',['../module_utils_8read__helpers.html',1,'']]],
+  ['utils_2esets_7',['utils.sets',['../module_utils_8sets.html',1,'']]],
+  ['utils_2estring_8',['utils.string',['../module_utils_8string.html',1,'']]],
+  ['utils_2eversion_9',['utils.version',['../module_utils_8version.html',1,'']]]
 ];

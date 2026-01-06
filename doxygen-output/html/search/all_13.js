@@ -12,16 +12,15 @@ var searchData=
   ['user_9',['user',['../classui_1_1MessagePrinter.html#abac2f918314d58d36cc044d447f6672e',1,'ui::MessagePrinter::user()'],['../namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a2e40ad879e955201df4dedbf8d479a12',1,'ui::USER']]],
   ['user_5finput_2ecppm_10',['user_input.cppm',['../user__input_8cppm.html',1,'']]],
   ['userinput_11',['userinput',['../structUserInput.html#ace219b17c2e355536141cda8a241e6f9',1,'UserInput::UserInput()'],['../structUserInput.html',1,'UserInput']]],
-  ['userinterface_12',['userinterface',['../classui_1_1UserInterface.html#a76436bf07917b7c63363d893e07a9ee8',1,'ui::UserInterface::UserInterface()=default'],['../classui_1_1UserInterface.html#a079b8c35ea12bb50db9e6b4dc23647d5',1,'ui::UserInterface::UserInterface(const UserInterface &amp;)=default'],['../classui_1_1UserInterface.html#aced6e9954e710d009a8903020c4489b5',1,'ui::UserInterface::UserInterface(UserInterface &amp;&amp;) noexcept=default'],['../classui_1_1UserInterface.html',1,'ui::UserInterface']]],
+  ['userinterface_12',['userinterface',['../classui_1_1UserInterface.html#a079b8c35ea12bb50db9e6b4dc23647d5',1,'ui::UserInterface::UserInterface(const UserInterface &amp;)=default'],['../classui_1_1UserInterface.html#a76436bf07917b7c63363d893e07a9ee8',1,'ui::UserInterface::UserInterface()=default'],['../classui_1_1UserInterface.html#aced6e9954e710d009a8903020c4489b5',1,'ui::UserInterface::UserInterface(UserInterface &amp;&amp;) noexcept=default'],['../classui_1_1UserInterface.html',1,'ui::UserInterface']]],
   ['uservalue_13',['UserValue',['../structUserValue.html',1,'']]],
   ['uservalueas_14',['userValueAs',['../value_8cppm.html#ada5302b19bf80dc5a6bb98ac8d7fba1a',1,'value.cppm']]],
   ['uservaluehighas_15',['userValueHighAs',['../value_8cppm.html#ae0978f8c52f9594f35aeac86e731c136',1,'value.cppm']]],
   ['utils_16',['utils',['../namespaceutils.html',1,'']]],
   ['utils_2eendianness_17',['utils.endianness',['../module_utils_8endianness.html',1,'']]],
   ['utils_2elogging_18',['utils.logging',['../module_utils_8logging.html',1,'']]],
-  ['utils_2emem64_19',['utils.mem64',['../module_utils_8mem64.html',1,'']]],
-  ['utils_2eparser_20',['utils.parser',['../module_utils_8parser.html',1,'']]],
-  ['utils_2esets_21',['utils.sets',['../module_utils_8sets.html',1,'']]],
-  ['utils_2estring_22',['utils.string',['../module_utils_8string.html',1,'']]],
-  ['utils_2eversion_23',['utils.version',['../module_utils_8version.html',1,'']]]
+  ['utils_2eread_5fhelpers_19',['utils.read_helpers',['../module_utils_8read__helpers.html',1,'']]],
+  ['utils_2esets_20',['utils.sets',['../module_utils_8sets.html',1,'']]],
+  ['utils_2estring_21',['utils.string',['../module_utils_8string.html',1,'']]],
+  ['utils_2eversion_22',['utils.version',['../module_utils_8version.html',1,'']]]
 ];

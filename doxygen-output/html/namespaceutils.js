@@ -2,7 +2,6 @@ var namespaceutils =
 [
     [ "Logger", "classutils_1_1Logger.html", "classutils_1_1Logger" ],
     [ "StringUtils", "classutils_1_1StringUtils.html", null ],
-    [ "ValueParser", "classutils_1_1ValueParser.html", null ],
     [ "Endianness", "namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc", [
       [ "LITTLE", "namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cca1314341b466dcb5e2c880b76414c49fe", null ],
       [ "BIG", "namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003ccaa60c6c694491d75b439073b8cb05b139", null ]

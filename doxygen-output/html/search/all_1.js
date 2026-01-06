@@ -28,7 +28,7 @@ var searchData=
   ['bytedatahigh_25',['byteDataHigh',['../structUserValue.html#ab74ad53bebf3cff0a0f6c5b8fcf0f56c',1,'UserValue']]],
   ['bytemask_26',['byteMask',['../structUserValue.html#a056f41e90861ba52474a794a31a31cd1',1,'UserValue']]],
   ['bytematch_27',['ByteMatch',['../structByteMatch.html',1,'']]],
-  ['bytes_28',['bytes',['../structMem64.html#a902fad10a51b8a0ec15e26f4f790eda9',1,'Mem64::bytes()'],['../structValue.html#a5f5173398304cef519d17570ea8f2573',1,'Value::bytes']]],
+  ['bytes_28',['bytes',['../structValue.html#a5f5173398304cef519d17570ea8f2573',1,'Value']]],
   ['bytes_2ecppm_29',['bytes.cppm',['../bytes_8cppm.html',1,'']]],
   ['bytesneededfortype_30',['bytesNeededForType',['../types_8cppm.html#aa76ce477d8694cc6cd4f0530cc7a7cd8',1,'types.cppm']]],
   ['bytesscanned_31',['bytesScanned',['../structScanStats.html#a461e6128a9e036aac2b00bd0b76eae5b',1,'ScanStats']]],

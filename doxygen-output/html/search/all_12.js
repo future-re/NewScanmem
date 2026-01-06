@@ -10,8 +10,7 @@ var searchData=
   ['trim_7',['trim',['../classutils_1_1StringUtils.html#ac327c7b4e0f15461d07e934809c91b61',1,'utils::StringUtils']]],
   ['trimleft_8',['trimLeft',['../classutils_1_1StringUtils.html#a6b7d14771d79b94375247497e6c99fb9',1,'utils::StringUtils']]],
   ['trimright_9',['trimRight',['../classutils_1_1StringUtils.html#a0d59af809e6fa964b16c93e946efdaea',1,'utils::StringUtils']]],
-  ['tryget_10',['tryGet',['../structMem64.html#a60dc57b0cb763ccee8109d377639f4f4',1,'Mem64']]],
-  ['trynumericsequence_11',['tryNumericSequence',['../namespacedetail.html#afdfe8c55d9ebfa61684e71fd8bc3ed9c',1,'detail']]],
-  ['type_12',['type',['../structcore_1_1Region.html#a061e9836e64e27513695d8f9a2a28c2e',1,'core::Region::type'],['../structcore_1_1RegionLookupEntry.html#af4e08ad903a65ce07ffdb8e9103c5f15',1,'core::RegionLookupEntry::type']]],
-  ['types_2ecppm_13',['types.cppm',['../types_8cppm.html',1,'']]]
+  ['trynumericsequence_10',['tryNumericSequence',['../namespacedetail.html#aca568eae0b3707cce9c067bf16b37b9f',1,'detail']]],
+  ['type_11',['type',['../structcore_1_1Region.html#a061e9836e64e27513695d8f9a2a28c2e',1,'core::Region::type'],['../structcore_1_1RegionLookupEntry.html#af4e08ad903a65ce07ffdb8e9103c5f15',1,'core::RegionLookupEntry::type']]],
+  ['types_2ecppm_12',['types.cppm',['../types_8cppm.html',1,'']]]
 ];

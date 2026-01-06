@@ -58,11 +58,9 @@ var annotated_dup =
     ] ],
     [ "utils", "namespaceutils.html", [
       [ "Logger", "classutils_1_1Logger.html", "classutils_1_1Logger" ],
-      [ "StringUtils", "classutils_1_1StringUtils.html", null ],
-      [ "ValueParser", "classutils_1_1ValueParser.html", null ]
+      [ "StringUtils", "classutils_1_1StringUtils.html", null ]
     ] ],
     [ "ByteMatch", "structByteMatch.html", "structByteMatch" ],
-    [ "Mem64", "structMem64.html", "structMem64" ],
     [ "ProcMemReader", "classProcMemReader.html", "classProcMemReader" ],
     [ "ScanOptions", "structScanOptions.html", "structScanOptions" ],
     [ "ScanResult", "structScanResult.html", "structScanResult" ],
