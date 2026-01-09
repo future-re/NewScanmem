@@ -37,6 +37,12 @@ TEST(ParserTests, ParseDouble_InvalidInput) {
     EXPECT_FALSE(result.has_value());
 }
 
+TEST(ParserTests, ParseMatchType_RegexAlias) {
+    auto result = value::parseMatchType("regex");
+    ASSERT_TRUE(result.has_value());
+    EXPECT_EQ(result.value(), ScanMatchType::MATCH_REGEX);
+}
+
 TEST(ParserTests, BuildUserValue_IntegerScalar) {
     std::vector<std::string> args = {"42"};
     auto result = value::buildUserValue(ScanDataType::INTEGER_32,
@@ -63,7 +69,9 @@ TEST(ParserTests, BuildUserValue_ByteArray) {
     ASSERT_TRUE(result.has_value());
     EXPECT_EQ(result->flag(), MatchFlags::BYTE_ARRAY);
     ASSERT_TRUE(result->byteMask.has_value());
-    const auto& bytes = result->byteArrayValue();
+    auto bytesOpt = result->byteArrayValue();
+    ASSERT_TRUE(bytesOpt.has_value());
+    const auto& bytes = *bytesOpt;
     ASSERT_EQ(bytes.size(), 4);
     EXPECT_EQ(bytes[0], 0xDE);
     EXPECT_EQ(bytes[1], 0xAD);
@@ -76,5 +84,17 @@ TEST(ParserTests, BuildUserValue_String) {
     auto result = value::buildUserValue(ScanDataType::STRING,
                                         ScanMatchType::MATCH_EQUAL_TO, args, 0);
     ASSERT_TRUE(result.has_value());
-    EXPECT_EQ(result->stringValue(), "test_string");
+    auto text = result->stringValue();
+    ASSERT_TRUE(text.has_value());
+    EXPECT_EQ(*text, "test_string");
+}
+
+TEST(ParserTests, BuildUserValue_AnyNumber_Integer) {
+    std::vector<std::string> args = {"9999999999999999"};
+    auto result = value::buildUserValue(ScanDataType::ANY_NUMBER,
+                                        ScanMatchType::MATCH_EQUAL_TO, args, 0);
+    ASSERT_TRUE(result.has_value());
+    auto val = result->value<int64_t>();
+    ASSERT_TRUE(val.has_value());
+    EXPECT_EQ(*val, 9999999999999999LL);
 }

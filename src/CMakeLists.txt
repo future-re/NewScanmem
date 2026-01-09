@@ -65,7 +65,8 @@ set(MODULE_SOURCES
     value/value.cppm      # 依赖 flags
     
     # Scan 模块
-    scan/types.cppm       # 依赖 value.scalar
+    scan/types.cppm
+    scan/routine.cppm
     scan/match_storage.cppm
     scan/bytes.cppm
     utils/read_helpers.cppm

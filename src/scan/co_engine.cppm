@@ -16,6 +16,7 @@ export module scan.co_engine;
 import scan.match_storage;
 import scan.factory;
 import scan.types;
+import scan.routine;
 import value.flags;
 import value;
 import core.maps;
@@ -26,7 +27,7 @@ namespace scan {
 
 using LocalScanResult = ScanResult;
 
-// 工作线程：从共享队列抢占 region 进行扫描
+// WORKER Thread: From shared queue, grab regions to scan
 static void scanRegionsWorker(
     pid_t pid, std::span<const core::Region> regions,
     std::atomic_size_t& nextIndex, const ScanOptions& opts,
@@ -57,12 +58,12 @@ static void scanRegionsWorker(
     workDone.count_down();
 }
 
-// 合并所有线程的扫描结果到输出数组
+// Combine all thread scan results into output array
 static void mergeThreadResults(
     std::vector<std::vector<std::pair<std::size_t, MatchesAndOldValuesSwath>>>&
         threadSwaths,
     std::span<const core::Region> regions, MatchesAndOldValuesArray& out) {
-    // 收集所有线程的 (region.id, swath)
+    // Collect all (region.id, swath) from all threads
     std::vector<std::pair<std::size_t, MatchesAndOldValuesSwath>> allSwaths;
     size_t totalPairs = 0;
     for (const auto& threadVec : threadSwaths) {
@@ -75,12 +76,12 @@ static void mergeThreadResults(
                          std::make_move_iterator(threadVec.end()));
     }
 
-    // 按 region.id 排序，确保输出顺序与顺序扫描一致
+    // Sort by region.id to ensure output order matches sequential scan
     std::ranges::sort(allSwaths, [](const auto& lhs, const auto& rhs) {
         return lhs.first < rhs.first;
     });
 
-    // 去重保护：避免同一 region 的 swath 被重复合并
+    // Deduplication guard: avoid merging swaths from the same region multiple times
     std::vector<bool> seen;
     if (!regions.empty()) {
         std::size_t maxRegionId = 0;
@@ -107,7 +108,7 @@ export auto runScanParallel(pid_t pid, const ScanOptions& opts,
                             MatchesAndOldValuesArray& out,
                             const MatchesAndOldValuesArray* previousSnapshot)
     -> std::expected<ScanStats, std::string> {
-    // 1. 读取所有 Region（串行，快速）
+    // 1. Read all Regions (serial, fast)
     auto regionsExp = readProcessMaps(pid, opts.regionLevel);
     if (!regionsExp) {
         return std::unexpected{std::format("readProcessMaps failed: {}",
@@ -115,7 +116,7 @@ export auto runScanParallel(pid_t pid, const ScanOptions& opts,
     }
     auto regions = *regionsExp;
 
-    // 2. 应用过滤（串行，快速）
+    // 2. Apply filtering (serial, fast)
     if (opts.regionFilter.isScanTimeFilter() &&
         opts.regionFilter.filter.isActive()) {
         regions = opts.regionFilter.filter.filterRegions(regions);
@@ -125,7 +126,7 @@ export auto runScanParallel(pid_t pid, const ScanOptions& opts,
         return ScanStats{};
     }
 
-    // 3. 准备扫描例程（串行，快速）
+    // 3. Prepare scan routine (serial, fast)
     auto routine = smGetScanroutine(
         opts.dataType, opts.matchType,
         (userValue != nullptr) ? userValue->flag() : MatchFlags::EMPTY,
@@ -137,28 +138,28 @@ export auto runScanParallel(pid_t pid, const ScanOptions& opts,
     const bool USES_OLD = matchUsesOldValue(opts.matchType);
     const std::size_t OLD_SLICE = bytesNeededForType(opts.dataType);
 
-    // 4. 确定线程数量
+    // 4. Determine number of threads
     const size_t NUM_THREADS =
         std::min((unsigned long)std::thread::hardware_concurrency(),
-                 regions.size()  // 线程数不超过 region 数量
+                 regions.size()  // Number of threads should not exceed number of regions
         );
 
     if (NUM_THREADS <= 1) {
-        // 单线程回退到原始实现
+        // Single thread fallback to original implementation
         return runScanInternal(pid, opts, userValue, out, previousSnapshot);
     }
 
-    // 5. 动态调度：每线程按原始顺序抢占下一个 region（O(1) 调度）
-    // 说明：相比每次在 k 个 chunk 上取最小（O(k)）或堆（O(log k)），
-    //       直接使用原始 regions + 原子索引进行工作分配，简单且均衡。
+    // 5. Dynamic scheduling: each thread grabs the next region in original order (O(1) scheduling)
+    // Note: Compared to taking the minimum among k chunks each time (O(k)) or using a heap (O(log k)),
+    //       directly using the original regions + atomic index for work distribution is simple and balanced.
 
-    // 6. 准备线程本地存储
+    // 6. Prepare thread-local storage
     std::vector<LocalScanResult> results(NUM_THREADS);
     std::vector<std::vector<std::pair<std::size_t, MatchesAndOldValuesSwath>>>
         threadSwaths(NUM_THREADS);
     std::latch workDone{static_cast<ptrdiff_t>(NUM_THREADS)};
 
-    // 7. Map 阶段：启动并发扫描（动态分配 region）
+    // 7. Map phase: start concurrent scanning (dynamic region allocation)
     std::vector<std::jthread> threads;
     threads.reserve(NUM_THREADS);
 
@@ -171,13 +172,13 @@ export auto runScanParallel(pid_t pid, const ScanOptions& opts,
         });
     }
 
-    // 8. 等待所有线程完成
+    // 8. wait for all workers to finish
     workDone.wait();
 
-    // 9. Reduce 阶段：合并结果
+    // 9. Reduce phase: merge results
     mergeThreadResults(threadSwaths, regions, out);
 
-    // 累加统计信息
+    // Accumulate statistics
     ScanStats totalStats{};
     for (auto& result : results) {
         totalStats.regionsVisited += result.stats.regionsVisited;

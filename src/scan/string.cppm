@@ -12,6 +12,7 @@ module;
 export module scan.string;
 
 import scan.types;
+import scan.routine;
 import value.flags;
 import scan.bytes;
 import value;
@@ -102,11 +103,15 @@ export inline auto makeStringRoutine(ScanMatchType matchType) -> scanRoutine {
         if (!userValue) {
             return 0;
         }
-        if (matchType == ScanMatchType::MATCH_REGEX) {
-            return runRegexMatch(memoryPtr, memLength, userValue->stringValue(),
-                                 saveFlags);
+        const auto PATTERN_OPT = userValue->stringValue();
+        if (!PATTERN_OPT) {
+            return 0;
         }
-        const std::string_view PATTERN{userValue->stringValue()};
+        if (matchType == ScanMatchType::MATCH_REGEX) {
+            return runRegexMatch(
+                memoryPtr, memLength, std::string(*PATTERN_OPT), saveFlags);
+        }
+        const std::string_view PATTERN{*PATTERN_OPT};
         if (PATTERN.empty()) {
             return 0;
         }

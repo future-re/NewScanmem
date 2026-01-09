@@ -17,6 +17,7 @@ set(TEST_SOURCES
     value/test_value.cpp
     value/test_parser.cpp
     core/test_maps.cpp
+    core/test_memory_writer.cpp
     core/test_memory.cpp
     core/test_scanner.cpp
     core/test_region_filter.cpp

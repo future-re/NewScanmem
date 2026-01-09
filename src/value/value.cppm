@@ -6,9 +6,10 @@ module;
 #include <cstring>
 #include <format>
 #include <optional>
+#include <span>
 #include <string>
+#include <string_view>
 #include <type_traits>
-#include <variant>
 #include <vector>
 
 export module value;
@@ -22,13 +23,13 @@ export struct Value {
 
     Value() = default;
 
-    // 从原始数据构造
+    // Construct from raw data
     explicit Value(const std::uint8_t* data, std::size_t len)
         : bytes(data, data + len) {}
 
     explicit Value(std::vector<std::uint8_t> data) : bytes(std::move(data)) {}
 
-    // 设置字节内容
+    // set bytes
     void setBytes(const std::uint8_t* data, std::size_t len) {
         bytes.assign(data, data + len);
     }
@@ -37,7 +38,7 @@ export struct Value {
 
     void setBytes(std::vector<std::uint8_t>&& data) { bytes = std::move(data); }
 
-    // 获取字节视图
+    // Get byte view
     [[nodiscard]] auto data() const noexcept -> const std::uint8_t* {
         return bytes.data();
     }
@@ -50,7 +51,6 @@ export struct Value {
 
     [[nodiscard]] auto empty() const noexcept -> bool { return bytes.empty(); }
 
-    // 清空
     void clear() {
         bytes.clear();
         flags = MatchFlags::EMPTY;
@@ -58,7 +58,7 @@ export struct Value {
 };
 
 // ============================================================================
-// 标量字节打包/解包工具
+// Scalar byte packing/unpacking utilities
 // ============================================================================
 export template <typename T>
 auto packScalarBytes(T val, utils::Endianness endianness = utils::getHost())
@@ -92,15 +92,15 @@ export template <typename T>
 }
 
 // ============================================================================
-// UserValue: 用户输入的值（用于扫描匹配）
+// UserValue: User input value (for scan matching)
 // ============================================================================
 export struct UserValue {
     Value raw;
-    std::optional<Value> rangeHigh;  // 用于范围扫描
+    std::optional<Value> rangeHigh;  // For range scanning
     std::optional<std::vector<std::uint8_t>>
-        byteMask;  // 0xFF=fixed, 0x00=wildcard（仅用于字节数组）
+        byteMask;  // 0xFF=fixed, 0x00=wildcard (only for byte arrays)
 
-    // 访问器
+    // Accessors
     [[nodiscard]] auto flags() const noexcept -> MatchFlags {
         return raw.flags;
     }
@@ -111,16 +111,15 @@ export struct UserValue {
         return raw.size();
     }
 
-    // --- 标量构造器 ---
     template <typename T>
     static auto fromScalar(T value,
                            utils::Endianness endianness = utils::getHost())
         -> UserValue {
         static_assert(std::is_trivially_copyable_v<T>);
-        UserValue uv;
-        uv.raw.flags = flagForType<T>();
-        uv.raw.bytes = packScalarBytes<T>(value, endianness);
-        return uv;
+        UserValue userValue;
+        userValue.raw.flags = flagForType<T>();
+        userValue.raw.bytes = packScalarBytes<T>(value, endianness);
+        return userValue;
     }
 
     template <typename T>
@@ -128,32 +127,30 @@ export struct UserValue {
                                 utils::Endianness endianness = utils::getHost())
         -> UserValue {
         static_assert(std::is_trivially_copyable_v<T>);
-        UserValue uv;
-        uv.raw.flags = flagForType<T>();
-        uv.raw.bytes = packScalarBytes<T>(lowValue, endianness);
-        uv.rangeHigh = Value{};
-        uv.rangeHigh->flags = flagForType<T>();
-        uv.rangeHigh->bytes = packScalarBytes<T>(highValue, endianness);
-        return uv;
+        UserValue userValue;
+        userValue.raw.flags = flagForType<T>();
+        userValue.raw.bytes = packScalarBytes<T>(lowValue, endianness);
+        userValue.rangeHigh = Value{};
+        userValue.rangeHigh->flags = flagForType<T>();
+        userValue.rangeHigh->bytes = packScalarBytes<T>(highValue, endianness);
+        return userValue;
     }
 
-    // --- 字符串构造器 ---
     static auto fromString(std::string val) -> UserValue {
-        UserValue uv;
-        uv.raw.flags = MatchFlags::STRING;
-        uv.raw.bytes.assign(val.begin(), val.end());
-        return uv;
+        UserValue userValue;
+        userValue.raw.flags = MatchFlags::STRING;
+        userValue.raw.bytes.assign(val.begin(), val.end());
+        return userValue;
     }
 
-    // --- 字节数组构造器 ---
     static auto fromByteArray(std::vector<std::uint8_t> val,
                               std::optional<std::vector<std::uint8_t>> mask =
                                   std::nullopt) -> UserValue {
-        UserValue uv;
-        uv.raw.flags = MatchFlags::BYTE_ARRAY;
-        uv.raw.bytes = std::move(val);
-        uv.byteMask = std::move(mask);
-        return uv;
+        UserValue userValue;
+        userValue.raw.flags = MatchFlags::BYTE_ARRAY;
+        userValue.raw.bytes = std::move(val);
+        userValue.byteMask = std::move(mask);
+        return userValue;
     }
 
     [[nodiscard]] auto flag() const -> MatchFlags { return raw.flags; }
@@ -177,7 +174,6 @@ export struct UserValue {
         return std::nullopt;
     }
 
-    // --- 标量值提取 ---
     template <typename T>
     [[nodiscard]] auto value(utils::Endianness endianness =
                                  utils::getHost()) const -> std::optional<T> {
@@ -195,31 +191,36 @@ export struct UserValue {
         return std::nullopt;
     }
 
-    [[nodiscard]] auto byteArrayValue() const -> std::vector<std::uint8_t> {
+    [[nodiscard]] auto byteArrayValue() const noexcept
+        -> std::optional<std::span<const std::uint8_t>> {
         if (raw.flags != MatchFlags::BYTE_ARRAY) {
-            return {};
+            return std::nullopt;
         }
-        return raw.bytes;
+        return std::span<const std::uint8_t>(raw.bytes.data(),
+                                             raw.bytes.size());
     }
 
-    [[nodiscard]] auto stringValue() const -> std::string {
+    [[nodiscard]] auto stringValue() const noexcept
+        -> std::optional<std::string_view> {
         if (raw.flags != MatchFlags::STRING) {
-            return {};
+            return std::nullopt;
         }
-        return {reinterpret_cast<const char*>(raw.data()), raw.size()};
+        // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
+        return std::string_view{reinterpret_cast<const char*>(raw.data()),
+                                raw.size()};
     }
 };
 
 // ============================================================================
-// UserValue 辅助函数
+// UserValue helpers
 // ============================================================================
 namespace value_detail {
 template <typename T>
 [[nodiscard]] inline auto unpackFromValue(const Value& source) noexcept
     -> std::optional<T> {
     static_assert(std::is_trivially_copyable_v<T>);
-    const auto required = flagForType<T>();
-    if ((source.flags & required) == MatchFlags::EMPTY) {
+    const auto REQUIRED = flagForType<T>();
+    if ((source.flags & REQUIRED) == MatchFlags::EMPTY) {
         return std::nullopt;
     }
     return unpackScalarBytes<T>(source.data(), source.size());
@@ -227,24 +228,24 @@ template <typename T>
 }  // namespace value_detail
 
 export template <typename T>
-[[nodiscard]] inline auto userValueAs(const UserValue& uv) noexcept
+[[nodiscard]] inline auto userValueAs(const UserValue& userValue) noexcept
     -> std::optional<T> {
-    return value_detail::unpackFromValue<T>(uv.raw);
+    return value_detail::unpackFromValue<T>(userValue.raw);
 }
 
 export template <typename T>
-[[nodiscard]] inline auto userValueHighAs(const UserValue& uv) noexcept
+[[nodiscard]] inline auto userValueHighAs(const UserValue& userValue) noexcept
     -> std::optional<T> {
-    if (uv.rangeHigh) {
-        if (auto val = value_detail::unpackFromValue<T>(*uv.rangeHigh)) {
+    if (userValue.rangeHigh) {
+        if (auto val = value_detail::unpackFromValue<T>(*userValue.rangeHigh)) {
             return val;
         }
     }
-    return userValueAs<T>(uv);
+    return userValueAs<T>(userValue);
 }
 
 // ============================================================================
-// std::formatter 特化
+// std::formatter for UserValue
 // ============================================================================
 namespace std {
 template <>
@@ -253,19 +254,22 @@ struct formatter<UserValue> {
         return ctx.begin();
     }
 
-    static auto format(const UserValue& uv, format_context& ctx) {
-        if (uv.flags() == MatchFlags::EMPTY) {
+    static auto format(const UserValue& userValue, format_context& ctx) {
+        if (userValue.flags() == MatchFlags::EMPTY) {
             return format_to(ctx.out(), "<empty>");
         }
-        if (uv.flags() == MatchFlags::STRING) {
-            return format_to(ctx.out(), "\"{}\"", uv.stringValue());
+        if (userValue.flags() == MatchFlags::STRING) {
+            if (auto text = userValue.stringValue()) {
+                return format_to(ctx.out(), "\"{}\"", *text);
+            }
+            return format_to(ctx.out(), "\"\"");
         }
         format_to(ctx.out(), "[");
-        for (std::size_t i = 0; i < uv.size(); ++i) {
+        for (std::size_t i = 0; i < userValue.size(); ++i) {
             if (i != 0U) {
                 format_to(ctx.out(), " ");
             }
-            format_to(ctx.out(), "{:02x}", uv.data()[i]);
+            format_to(ctx.out(), "{:02x}", userValue.data()[i]);
         }
         return format_to(ctx.out(), "]");
     }

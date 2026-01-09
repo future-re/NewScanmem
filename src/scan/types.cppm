@@ -2,14 +2,8 @@ module;
 
 #include <cstddef>
 #include <cstdint>
-#include <functional>
 
 export module scan.types;
-
-// Import dependent modules and re-export their symbols to avoid redeclaring
-// types with the same names across modules.
-export import value.flags;  // provides MatchFlags
-export import value;        // provides Value, UserValue
 
 // Classification of scan data types
 export enum class ScanDataType : std::uint8_t {
@@ -46,12 +40,6 @@ export enum class ScanMatchType : std::uint8_t {
     MATCH_RANGE,         // range [low, high]
     MATCH_REGEX          // regular expression (STRING only)
 };
-
-// Match routine signature for a single scan location. Returns the number of
-// matched bytes (>= 1) or 0 (no match).
-export using scanRoutine = std::function<unsigned int(
-    const Value* /*memoryPtr*/, size_t /*memLength*/, const Value* /*oldValue*/,
-    const UserValue* /*userValue*/, MatchFlags* /*saveFlags*/)>;
 
 // Byte pattern search result (with offset and length), useful when marking
 // target memory or ranges.

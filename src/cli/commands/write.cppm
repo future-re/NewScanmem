@@ -22,6 +22,7 @@ import ui.show_message;
 import core.memory_writer;
 import utils.endianness;
 import value.parser;
+import value;
 import scan.types;
 import utils.logging;
 

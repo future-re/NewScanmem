@@ -5,6 +5,7 @@ module;
 export module scan.factory;
 
 import scan.types;
+import scan.routine;
 import scan.numeric;
 import scan.bytes;
 import scan.string;

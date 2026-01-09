@@ -10,6 +10,7 @@ module;
 export module scan.numeric;
 
 import scan.types;
+import scan.routine;
 import utils.read_helpers;
 import value.flags;
 import value;
@@ -26,9 +27,11 @@ inline auto numericMatchCore(ScanMatchType matchType, T memv,
                              const Value* oldValue, const UserValue* userValue,
                              MatchFlags* saveFlags) noexcept -> unsigned int {
     const bool NEEDS_USER = matchNeedsUserValue(matchType);
+
     if (NEEDS_USER && userValue == nullptr) {
         return 0;
     }
+
     if (NEEDS_USER && userValue != nullptr) {
         const auto REQUIRED = flagForType<T>();
         if ((userValue->flags() & REQUIRED) == MatchFlags::EMPTY) {
@@ -55,9 +58,11 @@ inline auto numericMatchCore(ScanMatchType matchType, T memv,
         }
         return firstValue == secondValue;
     };
+
     auto isNotEqual = [&](T firstValue, T secondValue) {
         return !isEqual(firstValue, secondValue);
     };
+
     auto isGreaterThan = [&](T firstValue, T secondValue) {
         if constexpr (std::is_floating_point_v<T>) {
             return firstValue > secondValue &&
@@ -65,6 +70,7 @@ inline auto numericMatchCore(ScanMatchType matchType, T memv,
         }
         return firstValue > secondValue;
     };
+    
     auto isLessThan = [&](T firstValue, T secondValue) {
         if constexpr (std::is_floating_point_v<T>) {
             return firstValue < secondValue &&

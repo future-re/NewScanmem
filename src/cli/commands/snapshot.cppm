@@ -19,6 +19,7 @@ import ui.show_message;
 import core.scanner;
 import scan.engine;
 import scan.types;
+import value.parser;
 
 export namespace cli::commands {
 
@@ -59,30 +60,14 @@ class SnapshotCommand : public Command {
             return std::unexpected("Failed to initialize scanner");
         }
 
-        // 默认使用 ANYNUMBER 类型
+        // 默认使用 ANY_NUMBER 类型
         ScanDataType dataType = ScanDataType::ANY_NUMBER;
         if (!args.empty()) {
-            auto typeStr = args[0];
-            // 简化的类型解析
-            if (typeStr == "int" || typeStr == "int64" || typeStr == "i64") {
-                dataType = ScanDataType::INTEGER_64;
-            } else if (typeStr == "int32" || typeStr == "i32") {
-                dataType = ScanDataType::INTEGER_32;
-            } else if (typeStr == "int16" || typeStr == "i16") {
-                dataType = ScanDataType::INTEGER_16;
-            } else if (typeStr == "int8" || typeStr == "i8") {
-                dataType = ScanDataType::INTEGER_8;
-            } else if (typeStr == "float" || typeStr == "FLOAT_32" ||
-                       typeStr == "f32") {
-                dataType = ScanDataType::FLOAT_32;
-            } else if (typeStr == "double" || typeStr == "FLOAT_64" ||
-                       typeStr == "f64") {
-                dataType = ScanDataType::FLOAT_64;
-            } else if (typeStr == "any") {
-                dataType = ScanDataType::ANY_NUMBER;
-            } else {
-                return std::unexpected("Unknown type: " + typeStr);
+            auto typeOpt = value::parseDataType(args[0]);
+            if (!typeOpt) {
+                return std::unexpected("Unknown type: " + args[0]);
             }
+            dataType = *typeOpt;
         }
 
         ScanOptions opts;

@@ -11,6 +11,7 @@ module;
 export module scan.bytes;
 
 import scan.types;
+import scan.routine;
 import value.flags;
 
 import value;
@@ -168,7 +169,11 @@ export inline auto makeBytearrayRoutine(ScanMatchType matchType)
         if (userValue->flag() != MatchFlags::BYTE_ARRAY) {
             return 0;
         }
-        const auto& byteArrayRef = userValue->byteArrayValue();
+        const auto BYTE_ARRAY_OPT = userValue->byteArrayValue();
+        if (!BYTE_ARRAY_OPT) {
+            return 0;
+        }
+        const auto& byteArrayRef = *BYTE_ARRAY_OPT;
         if (userValue->byteMask &&
             userValue->byteMask->size() == byteArrayRef.size()) {
             unsigned matchedLen = compareBytesMasked(
