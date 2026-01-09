@@ -1,6 +1,5 @@
 var namespacecore =
 [
-    [ "BatchWriteResult", "structcore_1_1BatchWriteResult.html", "structcore_1_1BatchWriteResult" ],
     [ "FormatOptions", "structcore_1_1FormatOptions.html", "structcore_1_1FormatOptions" ],
     [ "MapsReader", "classcore_1_1MapsReader.html", "classcore_1_1MapsReader" ],
     [ "MatchCollectionOptions", "structcore_1_1MatchCollectionOptions.html", "structcore_1_1MatchCollectionOptions" ],
@@ -17,6 +16,7 @@ var namespacecore =
     [ "RegionFlags", "structcore_1_1RegionFlags.html", "structcore_1_1RegionFlags" ],
     [ "RegionLookupEntry", "structcore_1_1RegionLookupEntry.html", "structcore_1_1RegionLookupEntry" ],
     [ "Scanner", "classcore_1_1Scanner.html", "classcore_1_1Scanner" ],
+    [ "VecWriteResult", "structcore_1_1VecWriteResult.html", "structcore_1_1VecWriteResult" ],
     [ "WriteResult", "structcore_1_1WriteResult.html", "structcore_1_1WriteResult" ],
     [ "ProcessState", "namespacecore.html#a7c631f2329b573f9f3e97ac102e1bfb3", [
       [ "RUNNING", "namespacecore.html#a7c631f2329b573f9f3e97ac102e1bfb3a43491564ebcfd38568918efbd6e840fd", null ],

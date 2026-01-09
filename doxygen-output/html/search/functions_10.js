@@ -23,7 +23,7 @@ var searchData=
   ['split_20',['split',['../classutils_1_1StringUtils.html#ad73a8bbb50fc39d4ac65656013a6e112',1,'utils::StringUtils::split(std::string_view str, char delim) -&gt; std::vector&lt; std::string &gt;'],['../classutils_1_1StringUtils.html#a2d0c70efc765147ab74f8f3240a44f74',1,'utils::StringUtils::split(std::string_view str, std::string_view delims) -&gt; std::vector&lt; std::string &gt;']]],
   ['startswith_21',['startsWith',['../classutils_1_1StringUtils.html#a43380ad73f33145d5965ae9a971bb199',1,'utils::StringUtils']]],
   ['string_22',['string',['../namespaceversion.html#a084406eb889bec8f73943a26b7d68f7d',1,'version']]],
-  ['stringvalue_23',['stringValue',['../structUserValue.html#abef1d86443c98971db7bac5843950c75',1,'UserValue']]],
+  ['stringvalue_23',['stringValue',['../structUserValue.html#a8eaf81fa1fb44183a1e6293bf3336d7e',1,'UserValue']]],
   ['success_24',['success',['../classui_1_1MessagePrinter.html#a989a9e794bff81caa37ccc8fb3859515',1,'ui::MessagePrinter']]],
   ['swapbytes_25',['swapbytes',['../namespacedetail.html#aff190188b65e4c3776fc6744be48bf2b',1,'detail::swapBytes(uint8_t value) noexcept -&gt; uint8_t'],['../namespacedetail.html#a93e8c6f46325bf4cd18530ed3db59b71',1,'detail::swapBytes(uint16_t value) noexcept -&gt; uint16_t'],['../namespacedetail.html#a15a21289437f105dab2ffef908feeaf7',1,'detail::swapBytes(uint32_t value) noexcept -&gt; uint32_t'],['../namespacedetail.html#aa61f7443552eef65706ca99283eacc2d',1,'detail::swapBytes(uint64_t value) noexcept -&gt; uint64_t'],['../namespaceutils.html#ab1eca079a070edba567ae6920eee8eb0',1,'utils::swapBytes(T value) noexcept -&gt; T']]],
   ['swapbytesintegral_26',['swapBytesIntegral',['../namespaceutils.html#a56d2b3a10b48b378dc7d308f2c8e5996',1,'utils']]],

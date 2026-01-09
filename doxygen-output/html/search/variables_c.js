@@ -10,6 +10,6 @@ var searchData=
   ['regionlevel_7',['regionlevel',['../structcli_1_1AppConfig.html#afd2f6c5f178ef433b67dfff0f7e4a24f',1,'cli::AppConfig::regionLevel'],['../structcli_1_1SessionState.html#a508356ef675833f5fbd7948e36a06add',1,'cli::SessionState::regionLevel'],['../structScanOptions.html#a791b43d33de9728773e2ddcf40bb7328',1,'ScanOptions::regionLevel']]],
   ['regionsvisited_8',['regionsVisited',['../structScanStats.html#a588f9fa573bb993a2561d351b47eeb0c',1,'ScanStats']]],
   ['reset_9',['RESET',['../namespaceui_1_1color.html#ad819c282c1897eaf1d54ba8078109470',1,'ui::color']]],
-  ['results_10',['results',['../structcore_1_1BatchWriteResult.html#a235d2685ff02a80aa4d9102eb6fd5349',1,'core::BatchWriteResult']]],
+  ['results_10',['results',['../structcore_1_1VecWriteResult.html#a9384f22e0c6e15d46d52ad62c39c93cb',1,'core::VecWriteResult']]],
   ['reverseendianness_11',['reverseEndianness',['../structScanOptions.html#a15668009ebc696507aee81ae33f728d6',1,'ScanOptions']]]
 ];

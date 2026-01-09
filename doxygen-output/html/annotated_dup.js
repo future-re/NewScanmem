@@ -23,7 +23,6 @@ var annotated_dup =
       [ "SessionState", "structcli_1_1SessionState.html", "structcli_1_1SessionState" ]
     ] ],
     [ "core", "namespacecore.html", [
-      [ "BatchWriteResult", "structcore_1_1BatchWriteResult.html", "structcore_1_1BatchWriteResult" ],
       [ "FormatOptions", "structcore_1_1FormatOptions.html", "structcore_1_1FormatOptions" ],
       [ "MapsReader", "classcore_1_1MapsReader.html", "classcore_1_1MapsReader" ],
       [ "MatchCollectionOptions", "structcore_1_1MatchCollectionOptions.html", "structcore_1_1MatchCollectionOptions" ],
@@ -40,6 +39,7 @@ var annotated_dup =
       [ "RegionFlags", "structcore_1_1RegionFlags.html", "structcore_1_1RegionFlags" ],
       [ "RegionLookupEntry", "structcore_1_1RegionLookupEntry.html", "structcore_1_1RegionLookupEntry" ],
       [ "Scanner", "classcore_1_1Scanner.html", "classcore_1_1Scanner" ],
+      [ "VecWriteResult", "structcore_1_1VecWriteResult.html", "structcore_1_1VecWriteResult" ],
       [ "WriteResult", "structcore_1_1WriteResult.html", "structcore_1_1WriteResult" ]
     ] ],
     [ "scan", "namespacescan.html", [

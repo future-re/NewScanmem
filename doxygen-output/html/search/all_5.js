@@ -1,7 +1,7 @@
 var searchData=
 [
   ['factory_2ecppm_0',['factory.cppm',['../factory_8cppm.html',1,'']]],
-  ['failedcount_1',['failedCount',['../structcore_1_1BatchWriteResult.html#aff5c27543f6aa64abbe1f50876d8d67c',1,'core::BatchWriteResult']]],
+  ['failedcount_1',['failedCount',['../structcore_1_1VecWriteResult.html#ad07bcded104424e81916963425a249ac',1,'core::VecWriteResult']]],
   ['fetcholdbytes_2',['fetchOldBytes',['../engine_8cppm.html#a8feacb556107d4fe4741e471c4868f86',1,'engine.cppm']]],
   ['filename_3',['filename',['../structcore_1_1Region.html#a57f739ffab0712092d7721e2e20ff174',1,'core::Region::filename'],['../structcore_1_1RegionLookupEntry.html#a9aff6774e8b5e2c821a94ebf89eeb24f',1,'core::RegionLookupEntry::filename']]],
   ['filter_4',['filter',['../structcore_1_1RegionFilterConfig.html#a9e546e92f394fea52f3c0d0b30849501',1,'core::RegionFilterConfig']]],
@@ -19,7 +19,7 @@ var searchData=
   ['flags_2ecppm_16',['flags.cppm',['../flags_8cppm.html',1,'']]],
   ['float_5f32_17',['FLOAT_32',['../types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0a34429544f281bc1e40ec5525cff2a060',1,'types.cppm']]],
   ['float_5f64_18',['FLOAT_64',['../types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0a4e11132e1caaf937a1ad0a02e0595b18',1,'types.cppm']]],
-  ['format_19',['format',['../structstd_1_1formatter_3_01UserValue_01_4.html#ab6f74db5075cd1b953248ec63d9e4489',1,'std::formatter&lt; UserValue &gt;']]],
+  ['format_19',['format',['../structstd_1_1formatter_3_01UserValue_01_4.html#a28a9db55856d16cec11e22bf6ba2d277',1,'std::formatter&lt; UserValue &gt;']]],
   ['formatoptions_20',['FormatOptions',['../structcore_1_1FormatOptions.html',1,'core']]],
   ['formatter_3c_20uservalue_20_3e_21',['formatter&lt; UserValue &gt;',['../structstd_1_1formatter_3_01UserValue_01_4.html',1,'std']]],
   ['formatvaluebytype_22',['formatValueByType',['../namespacecore.html#a8fc2c70ddd2ac4ab5bcbd567bae58e1b',1,'core']]],

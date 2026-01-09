@@ -2,7 +2,6 @@ var hierarchy =
 [
     [ "cli::AppConfig", "structcli_1_1AppConfig.html", null ],
     [ "cli::Application", "classcli_1_1Application.html", null ],
-    [ "core::BatchWriteResult", "structcore_1_1BatchWriteResult.html", null ],
     [ "ByteMatch", "structByteMatch.html", null ],
     [ "cli::Command", "classcli_1_1Command.html", [
       [ "cli::commands::CountCommand", "classcli_1_1commands_1_1CountCommand.html", null ],
@@ -57,5 +56,6 @@ var hierarchy =
     ] ],
     [ "UserValue", "structUserValue.html", null ],
     [ "Value", "structValue.html", null ],
+    [ "core::VecWriteResult", "structcore_1_1VecWriteResult.html", null ],
     [ "core::WriteResult", "structcore_1_1WriteResult.html", null ]
 ];

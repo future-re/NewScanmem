@@ -1,7 +1,6 @@
 var types_8cppm =
 [
     [ "ByteMatch", "structByteMatch.html", "structByteMatch" ],
-    [ "scanRoutine", "types_8cppm.html#aff96e3e9f60125b052dd05157b210931", null ],
     [ "ScanDataType", "types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0", [
       [ "ANY_NUMBER", "types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0a2bbddb22ddec62f03e8857aa831750bb", null ],
       [ "ANY_INTEGER", "types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0ae36c2b34118fa54eee2914c440d2d66a", null ],

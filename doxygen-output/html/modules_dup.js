@@ -34,6 +34,7 @@ var modules_dup =
     [ "scan.filter", "module_scan_8filter.html", "module_scan_8filter" ],
     [ "scan.match_storage", "module_scan_8match__storage.html", "module_scan_8match__storage" ],
     [ "scan.numeric", "module_scan_8numeric.html", "module_scan_8numeric" ],
+    [ "scan.routine", "module_scan_8routine.html", "module_scan_8routine" ],
     [ "scan.string", "module_scan_8string.html", "module_scan_8string" ],
     [ "scan.types", "module_scan_8types.html", "module_scan_8types" ],
     [ "scanmem", "module_scanmem.html", "module_scanmem" ],

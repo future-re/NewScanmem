@@ -10,7 +10,7 @@ var searchData=
   ['flag_7',['flag',['../structUserValue.html#a49b792dc211190661047a6d275102563',1,'UserValue']]],
   ['flagfortype_8',['flagForType',['../flags_8cppm.html#ac163f1a02efc35bab6ebaf3ca994771e',1,'flags.cppm']]],
   ['flags_9',['flags',['../structUserValue.html#a0eb1cce387370228eafec204da44af4f',1,'UserValue']]],
-  ['format_10',['format',['../structstd_1_1formatter_3_01UserValue_01_4.html#ab6f74db5075cd1b953248ec63d9e4489',1,'std::formatter&lt; UserValue &gt;']]],
+  ['format_10',['format',['../structstd_1_1formatter_3_01UserValue_01_4.html#a28a9db55856d16cec11e22bf6ba2d277',1,'std::formatter&lt; UserValue &gt;']]],
   ['formatvaluebytype_11',['formatValueByType',['../namespacecore.html#a8fc2c70ddd2ac4ab5bcbd567bae58e1b',1,'core']]],
   ['frombytearray_12',['fromByteArray',['../structUserValue.html#a5d308a4ac5e03a3c9be42f7ae784a8b1',1,'UserValue']]],
   ['frombytes_13',['fromBytes',['../structUserInput.html#a06a86b884e1d4bd734caedaa0b54a266',1,'UserInput']]],

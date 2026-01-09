@@ -8,7 +8,7 @@ var searchData=
   ['engine_2ecppm_5',['engine.cppm',['../engine_8cppm.html',1,'']]],
   ['ensurescanner_6',['ensureScanner',['../structcli_1_1SessionState.html#a23cf5ad9431e13abde0b239de57d0201',1,'cli::SessionState']]],
   ['error_7',['error',['../namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2abb1ca97ec761fc37101737ba0aa2e7c5',1,'ui::ERROR'],['../structcore_1_1MapsReader_1_1Error.html',1,'core::MapsReader::Error'],['../namespaceui.html#a44e6b543cec37673f5eaa69b80960a99abb1ca97ec761fc37101737ba0aa2e7c5',1,'ui::ERROR'],['../namespaceutils.html#a6b50893705cf2a59daf6b680304017ddabb1ca97ec761fc37101737ba0aa2e7c5',1,'utils::ERROR'],['../namespacecore.html#a7c631f2329b573f9f3e97ac102e1bfb3abb1ca97ec761fc37101737ba0aa2e7c5',1,'core::ERROR'],['../classutils_1_1Logger.html#abc6b16a3e4f199dfc2aa79efc9e76c79',1,'utils::Logger::error()'],['../classui_1_1MessagePrinter.html#abf5edf4676d43e702e87ea3001493ca0',1,'ui::MessagePrinter::error(std::string_view msg)'],['../classui_1_1MessagePrinter.html#ad09c33fdf5ec0710b52cfcc68959b804',1,'ui::MessagePrinter::error(std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const']]],
-  ['errors_8',['errors',['../structcore_1_1BatchWriteResult.html#acbb05ea11c2e4ed044ab225276f9e25e',1,'core::BatchWriteResult']]],
+  ['errors_8',['errors',['../structcore_1_1VecWriteResult.html#a5583fe74b1fe747397d805f88c946438',1,'core::VecWriteResult']]],
   ['exclusive_9',['exclusive',['../structcore_1_1RegionFlags.html#aacacfdd7e88e6bde49beae649054c7cd',1,'core::RegionFlags']]],
   ['exe_10',['EXE',['../namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16ba5c6e4f44044eb1d3591aaa440ed6f3ad',1,'core']]],
   ['exec_11',['exec',['../structcore_1_1RegionFlags.html#a3b4e03ada1358b72bcf1486c34c5e317',1,'core::RegionFlags']]],

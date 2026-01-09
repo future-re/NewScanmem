@@ -6,6 +6,6 @@ var value_8cppm =
     [ "packScalarBytes", "value_8cppm.html#a46c0f261f2c08593d6c1bfb3b48d4f17", null ],
     [ "unpackFromValue", "value_8cppm.html#a81a517709def44d27547af6ad84850b3", null ],
     [ "unpackScalarBytes", "value_8cppm.html#aa89afca4a367131b44e08d53339ad32e", null ],
-    [ "userValueAs", "value_8cppm.html#ada5302b19bf80dc5a6bb98ac8d7fba1a", null ],
-    [ "userValueHighAs", "value_8cppm.html#ae0978f8c52f9594f35aeac86e731c136", null ]
+    [ "userValueAs", "value_8cppm.html#ab6cbefad399912006b1f2c578d08d5a0", null ],
+    [ "userValueHighAs", "value_8cppm.html#a2e01b11417fc5b7132488e935beed7a2", null ]
 ];

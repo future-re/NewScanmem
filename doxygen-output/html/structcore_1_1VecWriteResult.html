@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NewScanmem: core::BatchWriteResult结构体 参考</title>
+<title>NewScanmem: core::VecWriteResult结构体 参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -65,7 +65,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('structcore_1_1BatchWriteResult.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('structcore_1_1VecWriteResult.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -93,112 +93,80 @@ $(document).ready(function(){initNavTree('structcore_1_1BatchWriteResult.html','
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Public 属性</a> &#124;
-<a href="structcore_1_1BatchWriteResult-members.html">所有成员列表</a>  </div>
-  <div class="headertitle"><div class="title">core::BatchWriteResult结构体 参考<span class="mlabels"><span class="mlabel">export</span></span><div class="ingroups">模块 <a class="el" href="module_core_8memory__writer.html">core.memory_writer</a></div></div></div>
+<a href="structcore_1_1VecWriteResult-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">core::VecWriteResult结构体 参考<span class="mlabels"><span class="mlabel">export</span></span><div class="ingroups">模块 <a class="el" href="module_core_8memory__writer.html">core.memory_writer</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Result of batch write operations  
- <a href="structcore_1_1BatchWriteResult.html#details">更多...</a></p>
+<p>Result of vector write operations  
+ <a href="structcore_1_1VecWriteResult.html#details">更多...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public 属性</h2></td></tr>
-<tr class="memitem:a5ba6b3f6f648bc77ad4f6e54cd6e5f26" id="r_a5ba6b3f6f648bc77ad4f6e54cd6e5f26"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1BatchWriteResult.html#a5ba6b3f6f648bc77ad4f6e54cd6e5f26">successCount</a></td></tr>
-<tr class="separator:a5ba6b3f6f648bc77ad4f6e54cd6e5f26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff5c27543f6aa64abbe1f50876d8d67c" id="r_aff5c27543f6aa64abbe1f50876d8d67c"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1BatchWriteResult.html#aff5c27543f6aa64abbe1f50876d8d67c">failedCount</a></td></tr>
-<tr class="separator:aff5c27543f6aa64abbe1f50876d8d67c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a235d2685ff02a80aa4d9102eb6fd5349" id="r_a235d2685ff02a80aa4d9102eb6fd5349"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structcore_1_1WriteResult.html">WriteResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1BatchWriteResult.html#a235d2685ff02a80aa4d9102eb6fd5349">results</a></td></tr>
-<tr class="separator:a235d2685ff02a80aa4d9102eb6fd5349"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbb05ea11c2e4ed044ab225276f9e25e" id="r_acbb05ea11c2e4ed044ab225276f9e25e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1BatchWriteResult.html#acbb05ea11c2e4ed044ab225276f9e25e">errors</a></td></tr>
-<tr class="separator:acbb05ea11c2e4ed044ab225276f9e25e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaea834a300f2be9e82f5c2e380f6411" id="r_abaea834a300f2be9e82f5c2e380f6411"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1VecWriteResult.html#abaea834a300f2be9e82f5c2e380f6411">successCount</a></td></tr>
+<tr class="separator:abaea834a300f2be9e82f5c2e380f6411"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad07bcded104424e81916963425a249ac" id="r_ad07bcded104424e81916963425a249ac"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1VecWriteResult.html#ad07bcded104424e81916963425a249ac">failedCount</a></td></tr>
+<tr class="separator:ad07bcded104424e81916963425a249ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9384f22e0c6e15d46d52ad62c39c93cb" id="r_a9384f22e0c6e15d46d52ad62c39c93cb"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structcore_1_1WriteResult.html">WriteResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1VecWriteResult.html#a9384f22e0c6e15d46d52ad62c39c93cb">results</a></td></tr>
+<tr class="separator:a9384f22e0c6e15d46d52ad62c39c93cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5583fe74b1fe747397d805f88c946438" id="r_a5583fe74b1fe747397d805f88c946438"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1VecWriteResult.html#a5583fe74b1fe747397d805f88c946438">errors</a></td></tr>
+<tr class="separator:a5583fe74b1fe747397d805f88c946438"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock"><p>Result of batch write operations </p>
+<div class="textblock"><p>Result of vector write operations </p>
 </div><h2 class="groupheader">类成员变量说明</h2>
-<a id="acbb05ea11c2e4ed044ab225276f9e25e" name="acbb05ea11c2e4ed044ab225276f9e25e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acbb05ea11c2e4ed044ab225276f9e25e">&#9670;&#160;</a></span>errors</h2>
+<a id="a5583fe74b1fe747397d805f88c946438" name="a5583fe74b1fe747397d805f88c946438"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5583fe74b1fe747397d805f88c946438">&#9670;&#160;</a></span>errors</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;std::string&gt; core::BatchWriteResult::errors</td>
+          <td class="memname">std::vector&lt;std::string&gt; core::VecWriteResult::errors</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="aff5c27543f6aa64abbe1f50876d8d67c" name="aff5c27543f6aa64abbe1f50876d8d67c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff5c27543f6aa64abbe1f50876d8d67c">&#9670;&#160;</a></span>failedCount</h2>
+<a id="ad07bcded104424e81916963425a249ac" name="ad07bcded104424e81916963425a249ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad07bcded104424e81916963425a249ac">&#9670;&#160;</a></span>failedCount</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::size_t core::BatchWriteResult::failedCount</td>
+          <td class="memname">std::size_t core::VecWriteResult::failedCount</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a235d2685ff02a80aa4d9102eb6fd5349" name="a235d2685ff02a80aa4d9102eb6fd5349"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a235d2685ff02a80aa4d9102eb6fd5349">&#9670;&#160;</a></span>results</h2>
+<a id="a9384f22e0c6e15d46d52ad62c39c93cb" name="a9384f22e0c6e15d46d52ad62c39c93cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9384f22e0c6e15d46d52ad62c39c93cb">&#9670;&#160;</a></span>results</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="structcore_1_1WriteResult.html">WriteResult</a>&gt; core::BatchWriteResult::results</td>
+          <td class="memname">std::vector&lt;<a class="el" href="structcore_1_1WriteResult.html">WriteResult</a>&gt; core::VecWriteResult::results</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a5ba6b3f6f648bc77ad4f6e54cd6e5f26" name="a5ba6b3f6f648bc77ad4f6e54cd6e5f26"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ba6b3f6f648bc77ad4f6e54cd6e5f26">&#9670;&#160;</a></span>successCount</h2>
+<a id="abaea834a300f2be9e82f5c2e380f6411" name="abaea834a300f2be9e82f5c2e380f6411"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abaea834a300f2be9e82f5c2e380f6411">&#9670;&#160;</a></span>successCount</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::size_t core::BatchWriteResult::successCount</td>
+          <td class="memname">std::size_t core::VecWriteResult::successCount</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -211,7 +179,7 @@ Public 属性</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="namespacecore.html">core</a></li><li class="navelem"><a class="el" href="structcore_1_1BatchWriteResult.html">BatchWriteResult</a></li>
+    <li class="navelem"><a class="el" href="namespacecore.html">core</a></li><li class="navelem"><a class="el" href="structcore_1_1VecWriteResult.html">VecWriteResult</a></li>
     <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

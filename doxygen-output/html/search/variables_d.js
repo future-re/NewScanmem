@@ -10,6 +10,6 @@ var searchData=
   ['stats_7',['stats',['../structScanResult.html#ac2d355c3d81de92c7b9c832635b5d113',1,'ScanResult']]],
   ['step_8',['step',['../structScanOptions.html#a206f549ce388cb7e2136336b6feb0949',1,'ScanOptions']]],
   ['success_9',['success',['../structcli_1_1CommandResult.html#adf4f9154fed11db9c7254e767f7056c3',1,'cli::CommandResult::success'],['../structcore_1_1WriteResult.html#a038a4946a91840162a604fd5d60f5115',1,'core::WriteResult::success']]],
-  ['successcount_10',['successCount',['../structcore_1_1BatchWriteResult.html#a5ba6b3f6f648bc77ad4f6e54cd6e5f26',1,'core::BatchWriteResult']]],
+  ['successcount_10',['successCount',['../structcore_1_1VecWriteResult.html#abaea834a300f2be9e82f5c2e380f6411',1,'core::VecWriteResult']]],
   ['swaths_11',['swaths',['../classscan_1_1MatchesAndOldValuesArray.html#a708a9a57a212c889e8cc5674205c4efc',1,'scan::MatchesAndOldValuesArray']]]
 ];

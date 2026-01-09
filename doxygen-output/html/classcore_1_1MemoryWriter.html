@@ -125,9 +125,9 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:abc6c5e190f0f3d95ba2a54e884d3d8b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6f0166b68b3343aeaa261ac4e352845" id="r_ad6f0166b68b3343aeaa261ac4e352845"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#ad6f0166b68b3343aeaa261ac4e352845">getEndianness</a> () const noexcept -&gt; <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a></td></tr>
 <tr class="separator:ad6f0166b68b3343aeaa261ac4e352845"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa42670193b23b8791e465ac16cf9f47f" id="r_aa42670193b23b8791e465ac16cf9f47f"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#aa42670193b23b8791e465ac16cf9f47f">writeToMatch</a> (const <a class="el" href="classcore_1_1Scanner.html">Scanner</a> &amp;scanner, <a class="el" href="structUserValue.html">UserValue</a> &amp;value, std::vector&lt; size_t &gt; matchIndex) -&gt; std::expected&lt; <a class="el" href="structcore_1_1WriteResult.html">WriteResult</a>, std::string &gt;</td></tr>
-<tr class="memdesc:aa42670193b23b8791e465ac16cf9f47f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write value to a single matched address  <br /></td></tr>
-<tr class="separator:aa42670193b23b8791e465ac16cf9f47f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc72b6eac67e62b20850323752cf9025" id="r_acc72b6eac67e62b20850323752cf9025"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html#acc72b6eac67e62b20850323752cf9025">writeToMatch</a> (const <a class="el" href="classcore_1_1Scanner.html">Scanner</a> &amp;scanner, <a class="el" href="structUserValue.html">UserValue</a> &amp;value, std::vector&lt; size_t &gt; matchIndex) -&gt; std::expected&lt; <a class="el" href="structcore_1_1VecWriteResult.html">VecWriteResult</a>, std::string &gt;</td></tr>
+<tr class="memdesc:acc72b6eac67e62b20850323752cf9025"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write value to a single matched address  <br /></td></tr>
+<tr class="separator:acc72b6eac67e62b20850323752cf9025"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>High-level interface for writing to process memory </p>
@@ -196,7 +196,7 @@ Public 成员函数</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span><span class="mlabel">export</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -222,7 +222,7 @@ Public 成员函数</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -276,7 +276,7 @@ Public 成员函数</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -429,8 +429,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="aa42670193b23b8791e465ac16cf9f47f" name="aa42670193b23b8791e465ac16cf9f47f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa42670193b23b8791e465ac16cf9f47f">&#9670;&#160;</a></span>writeToMatch()</h2>
+<a id="acc72b6eac67e62b20850323752cf9025" name="acc72b6eac67e62b20850323752cf9025"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc72b6eac67e62b20850323752cf9025">&#9670;&#160;</a></span>writeToMatch()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -459,12 +459,12 @@ template&lt;typename T &gt; </div>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; std::expected&lt;<a class="el" href="structcore_1_1WriteResult.html">WriteResult</a>, std::string&gt; </td>
+          <td></td><td> -&gt; std::expected&lt;<a class="el" href="structcore_1_1VecWriteResult.html">VecWriteResult</a>, std::string&gt; </td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -474,7 +474,7 @@ template&lt;typename T &gt; </div>
   <table class="params">
     <tr><td class="paramname">scanner</td><td><a class="el" href="classcore_1_1Scanner.html" title="High-level scanner managing scan sessions">Scanner</a> instance with matches </td></tr>
     <tr><td class="paramname">value</td><td><a class="el" href="structValue.html">Value</a> to write </td></tr>
-    <tr><td class="paramname">matchIndex</td><td>Index of the match to write to </td></tr>
+    <tr><td class="paramname">matchIndex</td><td>Vector: Index of the match to write to </td></tr>
   </table>
   </dd>
 </dl>
