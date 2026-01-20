@@ -21,10 +21,10 @@ import cli.session;
 import ui.show_message;
 import core.memory_writer;
 import utils.endianness;
-import value.parser;
 import value;
 import scan.types;
 import utils.logging;
+import utils.parserStr;
 
 export namespace cli::commands {
 
@@ -82,7 +82,7 @@ class WriteCommand : public Command {
         if (bool isFloatType = (*lastDataType == ScanDataType::FLOAT_32 ||
                                 *lastDataType == ScanDataType::FLOAT_64 ||
                                 *lastDataType == ScanDataType::ANY_FLOAT)) {
-            auto tempParseValue = value::parseDouble(valueStr);
+            auto tempParseValue = utils::parseDouble(valueStr);
             if (!tempParseValue) {
                 return std::unexpected("Invalid float value: " + valueStr);
             }
@@ -94,7 +94,7 @@ class WriteCommand : public Command {
                         *lastDataType == ScanDataType::INTEGER_32 ||
                         *lastDataType == ScanDataType::INTEGER_64 ||
                         *lastDataType == ScanDataType::ANY_INTEGER)) {
-            auto tempParseValue = value::parseInteger<std::int64_t>(valueStr);
+            auto tempParseValue = utils::parseInteger<std::int64_t>(valueStr);
             if (!tempParseValue) {
                 return std::unexpected("Invalid integer value: " + valueStr);
             }

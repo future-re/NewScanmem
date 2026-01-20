@@ -19,6 +19,7 @@ configure_file(${CMAKE_SOURCE_DIR}/src/utils/version.cppm.in ${CMAKE_SOURCE_DIR}
 set(MODULE_SOURCES
     # Utilities
     utils/string.cppm
+    utils/parserStr.cppm
     utils/endianness.cppm
     utils/sets.cppm
     utils/logging.cppm
@@ -62,7 +63,10 @@ set(MODULE_SOURCES
     
     # Value 模块 - 按依赖顺序排列
     value/flags.cppm      # 最底层
-    value/value.cppm      # 依赖 flags
+    value/core.cppm
+    value/parser.cppm
+    value/view.cppm       # view
+    value/value.cppm      # export all value 
     
     # Scan 模块
     scan/types.cppm

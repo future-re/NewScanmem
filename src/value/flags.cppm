@@ -1,11 +1,33 @@
 module;
 
+#include <concepts>
 #include <cstdint>
 #include <string>
 #include <type_traits>
 #include <vector>
 
 export module value.flags;
+
+export template <typename T>
+concept NumericType = std::integral<T> || std::floating_point<T>;
+
+export template <typename T>
+concept StringType = std::is_same_v<T, std::string>;
+
+export template <typename T>
+concept ByteArrayType = std::is_same_v<T, std::vector<std::uint8_t>>;
+
+export template <typename T>
+concept ValueTypeConcept = ByteArrayType<T> || StringType<T> || NumericType<T>;
+
+export using UserValueByteArray = std::vector<std::uint8_t>;
+
+export using ValueByteArray = UserValueByteArray;
+
+export using ValueString = std::string;
+
+export using UserValueString = ValueString;
+
 
 // base Flags for matching types
 export enum class MatchFlags : std::uint16_t {
@@ -19,21 +41,23 @@ export enum class MatchFlags : std::uint16_t {
     BYTE_ARRAY = 1U << 9,
 };
 
+export using ValueType = MatchFlags;
+
 // bit wise operators for MatchFlags
-export constexpr auto operator|(MatchFlags aVal, MatchFlags bVal) noexcept
-    -> MatchFlags {
+export constexpr auto operator|(MatchFlags aVal,
+                                MatchFlags bVal) noexcept -> MatchFlags {
     return static_cast<MatchFlags>(static_cast<std::uint16_t>(aVal) |
                                    static_cast<std::uint16_t>(bVal));
 }
 
-export constexpr auto operator&(MatchFlags aVal, MatchFlags bVal) noexcept
-    -> MatchFlags {
+export constexpr auto operator&(MatchFlags aVal,
+                                MatchFlags bVal) noexcept -> MatchFlags {
     return static_cast<MatchFlags>(static_cast<std::uint16_t>(aVal) &
                                    static_cast<std::uint16_t>(bVal));
 }
 
-export constexpr auto operator^(MatchFlags aVal, MatchFlags bVal) noexcept
-    -> MatchFlags {
+export constexpr auto operator^(MatchFlags aVal,
+                                MatchFlags bVal) noexcept -> MatchFlags {
     return static_cast<MatchFlags>(static_cast<std::uint16_t>(aVal) ^
                                    static_cast<std::uint16_t>(bVal));
 }
@@ -42,14 +66,14 @@ export constexpr auto operator~(MatchFlags aVal) noexcept -> MatchFlags {
     return static_cast<MatchFlags>(~static_cast<std::uint16_t>(aVal));
 }
 
-export inline auto operator|=(MatchFlags& aVal, MatchFlags bVal) noexcept
-    -> MatchFlags& {
+export inline auto operator|=(MatchFlags& aVal,
+                              MatchFlags bVal) noexcept -> MatchFlags& {
     aVal = (aVal | bVal);
     return aVal;
 }
 
-export inline auto operator&=(MatchFlags& aVal, MatchFlags bVal) noexcept
-    -> MatchFlags& {
+export inline auto operator&=(MatchFlags& aVal,
+                              MatchFlags bVal) noexcept -> MatchFlags& {
     aVal = (aVal & bVal);
     return aVal;
 }
@@ -101,5 +125,3 @@ export template <typename T>
         return MatchFlags::EMPTY;
     }
 }
-
-export using ValueType = MatchFlags;

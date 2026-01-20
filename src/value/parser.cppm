@@ -3,15 +3,11 @@
  * @brief Value parsing utilities for scan operations
  */
 module;
-#include <unistd.h>
-
 #include <algorithm>
 #include <cctype>
-#include <charconv>
 #include <cmath>
 #include <cstddef>
 #include <cstdint>
-#include <limits>
 #include <optional>
 #include <string>
 #include <string_view>
@@ -22,35 +18,110 @@ module;
 export module value.parser;
 
 import scan.types;
-import value;
+import utils.parserStr;
+import utils.string;
+import value.flags;
+import value.core;
 
 export namespace value {
 
-/**
- * @brief Convert string to lowercase
- */
-inline auto toLower(std::string str) -> std::string {
-    std::ranges::transform(str, str.begin(), [](unsigned char charVal) {
-        return static_cast<char>(std::tolower(charVal));
-    });
-    return str;
+// Forward declarations
+template <typename T, typename Parser>
+[[nodiscard]] inline auto buildScalar(const std::vector<std::string>& args,
+                                      size_t startIndex, Parser parser)
+    -> std::optional<UserValue>;
+
+namespace detail {
+[[nodiscard]] inline auto parseStringValue(const std::vector<std::string>& args,
+                                           size_t startIndex)
+    -> std::optional<UserValue> {
+    if (startIndex >= args.size()) {
+        return std::nullopt;
+    }
+    return UserValue::fromValue<std::string>(args[startIndex]);
 }
 
-[[nodiscard]] inline auto isFloatToken(std::string_view str) -> bool {
-    if (str.empty()) {
-        return false;
+[[nodiscard]] inline auto parseByteArrayValue(
+    const std::vector<std::string>& args,
+    size_t startIndex) -> std::optional<UserValue> {
+    if (startIndex >= args.size()) {
+        return std::nullopt;
     }
-    for (char ch : str) {
-        if (ch == '.' || ch == 'e' || ch == 'E') {
+    std::string byteStr = args[startIndex];
+
+    // Strip 0x/0X prefix.
+    if (byteStr.starts_with("0x") || byteStr.starts_with("0X")) {
+        byteStr = byteStr.substr(2);
+    }
+
+    // Remove all spaces.
+    std::erase(byteStr, ' ');
+
+    // Two chars per byte.
+    if (byteStr.size() % 2 != 0) {
+        return std::nullopt;
+    }
+
+    std::vector<std::uint8_t> bytes;
+    std::vector<std::uint8_t> mask;
+    bytes.reserve(byteStr.size() / 2);
+    mask.reserve(byteStr.size() / 2);
+
+    auto parseNibble = [](char chStr, std::uint8_t& value,
+                          std::uint8_t& maskValue) -> bool {
+        if (chStr == '?' || chStr == '*') {
+            value = 0;
+            maskValue = 0;
             return true;
         }
+        if (chStr >= '0' && chStr <= '9') {
+            value = static_cast<std::uint8_t>(chStr - '0');
+            maskValue = 0x0F;
+            return true;
+        }
+        if (chStr >= 'a' && chStr <= 'f') {
+            value = static_cast<std::uint8_t>(chStr - 'a' + 10);
+            maskValue = 0x0F;
+            return true;
+        }
+        if (chStr >= 'A' && chStr <= 'F') {
+            value = static_cast<std::uint8_t>(chStr - 'A' + 10);
+            maskValue = 0x0F;
+            return true;
+        }
+        return false;
+    };
+
+    for (size_t i = 0; i < byteStr.size(); i += 2) {
+        std::uint8_t hiVal = 0;
+        std::uint8_t loVal = 0;
+        std::uint8_t hiMask = 0;
+        std::uint8_t loMask = 0;
+        if (!parseNibble(byteStr[i], hiVal, hiMask) ||
+            !parseNibble(byteStr[i + 1], loVal, loMask)) {
+            return std::nullopt;
+        }
+        bytes.push_back(static_cast<std::uint8_t>((hiVal << 4) | loVal));
+        mask.push_back(static_cast<std::uint8_t>((hiMask << 4) | loMask));
     }
-    const auto lowered = toLower(std::string(str));
-    return lowered == "nan" || lowered == "+nan" || lowered == "-nan" ||
-           lowered == "inf" || lowered == "+inf" || lowered == "-inf" ||
-           lowered == "infinity" || lowered == "+infinity" ||
-           lowered == "-infinity";
+
+    return UserValue::fromValue<std::vector<std::uint8_t>>(std::move(bytes),
+                                                           std::move(mask));
 }
+
+[[nodiscard]] inline auto parseAnyNumberValue(
+    const std::vector<std::string>& args,
+    size_t startIndex) -> std::optional<UserValue> {
+    if (startIndex >= args.size()) {
+        return std::nullopt;
+    }
+    bool floatInput = utils::isFloatToken(args[startIndex]);
+    if (floatInput) {
+        return buildScalar<double>(args, startIndex, utils::parseDouble);
+    }
+    return buildScalar<int64_t>(args, startIndex, utils::parseInteger<int64_t>);
+}
+}  // namespace detail
 
 /**
  * @brief Parse data type from string with aliases support
@@ -59,7 +130,7 @@ inline auto toLower(std::string str) -> std::string {
  */
 [[nodiscard]] inline auto parseDataType(std::string_view tok)
     -> std::optional<ScanDataType> {
-    const auto TO_STR = toLower(std::string(tok));
+    const auto TO_STR = utils::StringUtils::toLower(tok);
     if (TO_STR == "any" || TO_STR == "anynumber") {
         return ScanDataType::ANY_NUMBER;
     }
@@ -108,7 +179,7 @@ inline auto toLower(std::string str) -> std::string {
  */
 [[nodiscard]] inline auto parseMatchType(std::string_view tok)
     -> std::optional<ScanMatchType> {
-    const auto MATCH_STR = toLower(std::string(tok));
+    const auto MATCH_STR = utils::StringUtils::toLower(tok);
     if (MATCH_STR == "any") {
         return ScanMatchType::MATCH_ANY;
     }
@@ -151,177 +222,6 @@ inline auto toLower(std::string str) -> std::string {
     return std::nullopt;
 }
 
-/**
- * @brief Parse integer with optional hex prefix and sign
- * @tparam T Target integer type (int8_t, int16_t, int32_t, int64_t, etc.)
- * @param str String to parse
- * @return Optional value of type T with automatic range checking
- */
-template <typename T>
-    requires std::is_integral_v<T>
-[[nodiscard]] inline auto parseInteger(std::string_view str)
-    -> std::optional<T> {
-    if (str.empty()) {
-        return std::nullopt;
-    }
-
-    // 处理可选的符号
-    size_t offset = 0;
-    bool negative = false;
-    if (str[0] == '-') {
-        negative = true;
-        offset = 1;
-    } else if (str[0] == '+') {
-        offset = 1;
-    }
-
-    auto body = std::string_view{str.data() + offset, str.size() - offset};
-
-    // 检查 0x/0X 前缀
-    int base = 10;
-    if (body.size() > 2 && body[0] == '0' &&
-        (body[1] == 'x' || body[1] == 'X')) {
-        body = std::string_view{body.data() + 2, body.size() - 2};
-        base = 16;
-    }
-
-    if (body.empty()) {
-        return std::nullopt;
-    }
-
-    // 对于有符号类型，先解析为无符号以正确处理边界情况（如 int8 的 -128）
-    if constexpr (std::is_signed_v<T>) {
-        using UT = std::make_unsigned_t<T>;
-        UT absValue = 0;
-        const auto* end = body.data() + body.size();
-        auto [ptr, ec] =
-            std::from_chars(body.data(), end, absValue, base);
-
-        if (ec != std::errc{} || ptr != end) {
-            return std::nullopt;
-        }
-
-        if (negative) {
-            // 检查负数范围：-128 对 int8_t 是 abs(128)
-            constexpr UT MAX_NEG =
-                static_cast<UT>(std::numeric_limits<T>::max()) + 1U;
-            if (absValue > MAX_NEG) {
-                return std::nullopt;
-            }
-            if (absValue == MAX_NEG) {
-                return std::numeric_limits<T>::min();
-            }
-            return -static_cast<T>(absValue);
-        }
-        if (absValue > static_cast<UT>(std::numeric_limits<T>::max())) {
-            return std::nullopt;
-        }
-        return static_cast<T>(absValue);
-    } else {
-        if (negative) {
-            return std::nullopt;
-        }
-        // 无符号类型直接解析
-        T value = 0;
-        const auto* end = body.data() + body.size();
-        auto [ptr, ec] = std::from_chars(body.data(), end, value, base);
-
-        if (ec == std::errc{} && ptr == end) {
-            return value;  // 无符号不接受负号
-        }
-        return std::nullopt;
-    }
-}
-
-[[nodiscard]] inline auto parseDouble(std::string_view str)
-    -> std::optional<double> {
-    if (str.empty()) {
-        return std::nullopt;
-    }
-    double value = 0.0;
-    const auto* end = str.data() + str.size();
-    auto [ptr, ec] = std::from_chars(str.data(), end, value);
-    if (ec != std::errc{} || ptr != end) {
-        return std::nullopt;
-    }
-    return value;
-}
-
-/**
- * @brief Parse hexadecimal address string to an integer address value
- * @param str Address string (with or without 0x prefix)
- * @return Optional containing parsed address value
- */
-[[nodiscard]] inline auto parseAddress(std::string_view str)
-    -> std::optional<std::uintptr_t> {
-    if (str.empty()) {
-        return std::nullopt;
-    }
-
-    // Remove 0x/0X prefix if present
-    if (str.starts_with("0x") || str.starts_with("0X")) {
-        str.remove_prefix(2);
-    }
-
-    if (str.empty()) {
-        return std::nullopt;
-    }
-
-    std::uintptr_t addr = 0;
-    auto [ptr, ec] =
-        std::from_chars(str.data(), str.data() + str.size(), addr, 16);
-
-    if (ec != std::errc{} || ptr != str.data() + str.size()) {
-        return std::nullopt;
-    }
-
-    return addr;
-}
-
-/**
- * @brief Parse PID (process ID) with validation
- * @param str String to parse
- * @return Optional containing parsed PID
- */
-[[nodiscard]] inline auto parsePid(std::string_view str)
-    -> std::optional<pid_t> {
-    auto result = parseInteger<int64_t>(str);
-    if (!result) {
-        return std::nullopt;
-    }
-
-    if (*result <= 0 || *result > std::numeric_limits<pid_t>::max()) {
-        return std::nullopt;
-    }
-
-    return static_cast<pid_t>(*result);
-}
-
-/**
- * @brief Parse boolean value
- * @param str String to parse (true/false, yes/no, 1/0, on/off)
- * @return Optional containing parsed boolean
- */
-[[nodiscard]] inline auto parseBoolean(std::string_view str)
-    -> std::optional<bool> {
-    if (str.empty()) {
-        return std::nullopt;
-    }
-
-    auto lowerStr = toLower(std::string(str));
-
-    if (lowerStr == "true" || lowerStr == "yes" || lowerStr == "1" ||
-        lowerStr == "on") {
-        return true;
-    }
-    if (lowerStr == "false" || lowerStr == "no" || lowerStr == "0" ||
-        lowerStr == "off") {
-        return false;
-    }
-
-    return std::nullopt;
-}
-
 template <typename F>
 constexpr auto relTol() -> F {
     if constexpr (std::is_same_v<F, float>) {
@@ -341,8 +241,8 @@ constexpr auto absTol() -> F {
 }
 
 template <typename F>
-[[nodiscard]] inline auto almostEqual(F firstValue, F secondValue) noexcept
-    -> bool {
+[[nodiscard]] inline auto almostEqual(F firstValue,
+                                      F secondValue) noexcept -> bool {
     using std::fabs;
     const F DIFFERENCE_VALUE = fabs(firstValue - secondValue);
     const F SCALE_VALUE =
@@ -351,32 +251,49 @@ template <typename F>
 }
 
 /**
- * @brief Helper: build UserValue for scalar/range of type T
+ * @brief Helper: build UserValue for scalar of type T
  * @tparam T Scalar type (int8_t, int16_t, int32_t, int64_t, float, double)
  * @tparam Parser Parser function type
- * @param needRange Whether to parse as range
  * @param args Argument list
  * @param startIndex Start index in args
  * @param parser Parser function (parseInteger<T> or parseDouble)
  * @return Optional UserValue
  */
 template <typename T, typename Parser>
-[[nodiscard]] inline auto buildScalarOrRange(
-    bool needRange, const std::vector<std::string>& args, size_t startIndex,
-    Parser parser) -> std::optional<UserValue> {
-    auto lowOpt = parser(args[startIndex]);
-    if (!lowOpt) {
+[[nodiscard]] inline auto buildScalar(const std::vector<std::string>& args,
+                                      size_t startIndex, Parser parser)
+    -> std::optional<UserValue> {
+    auto valueOpt = parser(args[startIndex]);
+    if (!valueOpt) {
         return std::nullopt;
     }
 
-    if (needRange) {
-        auto highOpt = parser(args[startIndex + 1]);
-        if (!highOpt) {
-            return std::nullopt;
-        }
-        return UserValue::fromScalarRange<T>(*lowOpt, *highOpt);
+    return UserValue::fromValue<T>(*valueOpt);
+}
+
+/**
+ * @brief Helper: build UserValue for scalar range of type T
+ * @tparam T Scalar type (int8_t, int16_t, int32_t, int64_t, float, double)
+ * @tparam Parser Parser function type
+ * @param args Argument list
+ * @param startIndex Start index in args
+ * @param parser Parser function (parseInteger<T> or parseDouble)
+ * @return Optional UserValueRange
+ */
+template <typename T, typename Parser>
+[[nodiscard]] inline auto buildScalarRange(const std::vector<std::string>& args,
+                                           size_t startIndex, Parser parser)
+    -> std::optional<UserValueRange> {
+    auto valueLOpt = parser(args[startIndex]);
+    if (!valueLOpt) {
+        return std::nullopt;
     }
-    return UserValue::fromScalar<T>(*lowOpt);
+    auto valueROpt = parser(args[startIndex + 1]);
+    if (!valueROpt) {
+        return std::nullopt;
+    }
+    return UserValueRange{UserValue::fromValue<T>(*valueLOpt),
+                          UserValue::fromValue<T>(*valueROpt)};
 }
 
 /**
@@ -387,11 +304,10 @@ template <typename T, typename Parser>
  * @param startIndex Index to start parsing from
  * @return Optional UserValue
  */
-[[nodiscard]] inline auto buildUserValue(ScanDataType dataType,
-                                         ScanMatchType matchType,
-                                         const std::vector<std::string>& args,
-                                         size_t startIndex)
-    -> std::optional<UserValue> {
+[[nodiscard]] inline auto buildUserValue(
+    ScanDataType dataType, ScanMatchType matchType,
+    const std::vector<std::string>& args,
+    size_t startIndex) -> std::optional<UserValue> {
     if (!matchNeedsUserValue(matchType)) {
         return std::nullopt;
     }
@@ -403,123 +319,94 @@ template <typename T, typename Parser>
 
     switch (dataType) {
         case ScanDataType::INTEGER_8:
-            return buildScalarOrRange<int8_t>(needRange, args, startIndex,
-                                              parseInteger<int8_t>);
+            return buildScalar<int8_t>(args, startIndex,
+                                       utils::parseInteger<int8_t>);
 
         case ScanDataType::INTEGER_16:
-            return buildScalarOrRange<int16_t>(needRange, args, startIndex,
-                                               parseInteger<int16_t>);
+            return buildScalar<int16_t>(args, startIndex,
+                                        utils::parseInteger<int16_t>);
 
         case ScanDataType::INTEGER_32:
-            return buildScalarOrRange<int32_t>(needRange, args, startIndex,
-                                               parseInteger<int32_t>);
+            return buildScalar<int32_t>(args, startIndex,
+                                        utils::parseInteger<int32_t>);
 
         case ScanDataType::INTEGER_64:
         case ScanDataType::ANY_INTEGER:
-            return buildScalarOrRange<int64_t>(needRange, args, startIndex,
-                                               parseInteger<int64_t>);
+            return buildScalar<int64_t>(args, startIndex,
+                                        utils::parseInteger<int64_t>);
 
         case ScanDataType::FLOAT_32:
         case ScanDataType::FLOAT_64:
         case ScanDataType::ANY_FLOAT:
-            return buildScalarOrRange<double>(needRange, args, startIndex,
-                                              parseDouble);
+            return buildScalar<double>(args, startIndex, utils::parseDouble);
+
+        case ScanDataType::ANY_NUMBER:
+            return detail::parseAnyNumberValue(args, startIndex);
+
+        case ScanDataType::STRING:
+            return detail::parseStringValue(args, startIndex);
+
+        case ScanDataType::BYTE_ARRAY:
+            return detail::parseByteArrayValue(args, startIndex);
+
+        default:
+            return std::nullopt;
+    }
+}
+
+/**
+ * @brief Build UserValueRange from parsed arguments for range matching
+ * @param dataType Data type of the values
+ * @param args Argument list
+ * @param startIndex Index to start parsing from
+ * @return Optional UserValueRange (pair of two UserValues)
+ */
+[[nodiscard]] inline auto buildUserValueRange(
+    ScanDataType dataType, const std::vector<std::string>& args,
+    size_t startIndex) -> std::optional<UserValueRange> {
+    if (startIndex + 1 >= args.size()) {
+        return std::nullopt;
+    }
+
+    switch (dataType) {
+        case ScanDataType::INTEGER_8:
+            return buildScalarRange<int8_t>(args, startIndex,
+                                            utils::parseInteger<int8_t>);
+
+        case ScanDataType::INTEGER_16:
+            return buildScalarRange<int16_t>(args, startIndex,
+                                             utils::parseInteger<int16_t>);
+
+        case ScanDataType::INTEGER_32:
+            return buildScalarRange<int32_t>(args, startIndex,
+                                             utils::parseInteger<int32_t>);
+
+        case ScanDataType::INTEGER_64:
+        case ScanDataType::ANY_INTEGER:
+            return buildScalarRange<int64_t>(args, startIndex,
+                                             utils::parseInteger<int64_t>);
+
+        case ScanDataType::FLOAT_32:
+        case ScanDataType::FLOAT_64:
+        case ScanDataType::ANY_FLOAT:
+            return buildScalarRange<double>(args, startIndex,
+                                            utils::parseDouble);
 
         case ScanDataType::ANY_NUMBER: {
             if (startIndex >= args.size()) {
                 return std::nullopt;
             }
-            bool floatInput = isFloatToken(args[startIndex]);
-            if (needRange) {
-                if (startIndex + 1 >= args.size()) {
-                    return std::nullopt;
-                }
-                floatInput = floatInput || isFloatToken(args[startIndex + 1]);
+            bool floatInput = utils::isFloatToken(args[startIndex]);
+            if (startIndex + 1 < args.size()) {
+                floatInput =
+                    floatInput || utils::isFloatToken(args[startIndex + 1]);
             }
             if (floatInput) {
-                return buildScalarOrRange<double>(needRange, args, startIndex,
-                                                  parseDouble);
+                return buildScalarRange<double>(args, startIndex,
+                                                utils::parseDouble);
             }
-            return buildScalarOrRange<int64_t>(needRange, args, startIndex,
-                                               parseInteger<int64_t>);
-        }
-
-        case ScanDataType::STRING: {
-            if (startIndex >= args.size()) {
-                return std::nullopt;
-            }
-            auto first = UserValue::fromString(args[startIndex]);
-            return std::make_optional(first);
-        }
-
-        case ScanDataType::BYTE_ARRAY: {
-            if (startIndex >= args.size()) {
-                return std::nullopt;
-            }
-            std::string byteStr = args[startIndex];
-
-            // 移除 0x/0X 前缀
-            if (byteStr.starts_with("0x") || byteStr.starts_with("0X")) {
-                byteStr = byteStr.substr(2);
-            }
-
-            // 移除所有空格
-            std::erase(byteStr, ' ');
-
-            // 每两个字符是一个字节
-            if (byteStr.size() % 2 != 0) {
-                return std::nullopt;
-            }
-
-            std::vector<std::uint8_t> bytes;
-            std::vector<std::uint8_t> mask;
-            bytes.reserve(byteStr.size() / 2);
-            mask.reserve(byteStr.size() / 2);
-
-            auto parseNibble = [](char ch, std::uint8_t& value,
-                                  std::uint8_t& maskValue) -> bool {
-                if (ch == '?' || ch == '*') {
-                    value = 0;
-                    maskValue = 0;
-                    return true;
-                }
-                if (ch >= '0' && ch <= '9') {
-                    value = static_cast<std::uint8_t>(ch - '0');
-                    maskValue = 0x0F;
-                    return true;
-                }
-                if (ch >= 'a' && ch <= 'f') {
-                    value = static_cast<std::uint8_t>(ch - 'a' + 10);
-                    maskValue = 0x0F;
-                    return true;
-                }
-                if (ch >= 'A' && ch <= 'F') {
-                    value = static_cast<std::uint8_t>(ch - 'A' + 10);
-                    maskValue = 0x0F;
-                    return true;
-                }
-                return false;
-            };
-
-            // 使用 ranges 以步长 2 解析每个字节
-            for (size_t i = 0; i < byteStr.size(); i += 2) {
-                std::uint8_t hiVal = 0;
-                std::uint8_t loVal = 0;
-                std::uint8_t hiMask = 0;
-                std::uint8_t loMask = 0;
-                if (!parseNibble(byteStr[i], hiVal, hiMask) ||
-                    !parseNibble(byteStr[i + 1], loVal, loMask)) {
-                    return std::nullopt;
-                }
-                bytes.push_back(
-                    static_cast<std::uint8_t>((hiVal << 4) | loVal));
-                mask.push_back(
-                    static_cast<std::uint8_t>((hiMask << 4) | loMask));
-            }
-
-            auto first =
-                UserValue::fromByteArray(std::move(bytes), std::move(mask));
-            return std::make_optional(first);
+            return buildScalarRange<int64_t>(args, startIndex,
+                                             utils::parseInteger<int64_t>);
         }
 
         default:
