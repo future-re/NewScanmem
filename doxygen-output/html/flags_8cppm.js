@@ -1,5 +1,13 @@
 var flags_8cppm =
 [
+    [ "NumericType", "conceptNumericType.html", null ],
+    [ "StringType", "conceptStringType.html", null ],
+    [ "ByteArrayType", "conceptByteArrayType.html", null ],
+    [ "ValueTypeConcept", "conceptValueTypeConcept.html", null ],
+    [ "UserValueByteArray", "flags_8cppm.html#a1d41f7d77622c203545689588af412cf", null ],
+    [ "UserValueString", "flags_8cppm.html#aab0b8804e9279ef15d5677d4eff5cdb5", null ],
+    [ "ValueByteArray", "flags_8cppm.html#a6ba04f5efa8fc4c288182cd88b201176", null ],
+    [ "ValueString", "flags_8cppm.html#a03cc25adb31ace4b1d946a03ae4bbe98", null ],
     [ "ValueType", "flags_8cppm.html#ab6d525f0a5a2799ff592b83d7b606be0", null ],
     [ "MatchFlags", "flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552", [
       [ "EMPTY", "flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552aba2b45bdc11e2a4a6e86aab2ac693cbb", null ],

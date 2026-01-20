@@ -14,7 +14,8 @@ var searchData=
   ['matchesandoldvaluesarray_11',['MatchesAndOldValuesArray',['../classscan_1_1MatchesAndOldValuesArray.html#a01599067a4216eec2eb48cb3b7666101',1,'scan::MatchesAndOldValuesArray']]],
   ['matchesandoldvaluesswath_12',['MatchesAndOldValuesSwath',['../classscan_1_1MatchesAndOldValuesSwath.html#aab9f1745000429693cb749328237a167',1,'scan::MatchesAndOldValuesSwath']]],
   ['matchneedsuservalue_13',['matchNeedsUserValue',['../types_8cppm.html#a3bc1410dd0463324cb09b5ee2130c8ee',1,'types.cppm']]],
-  ['matchusesoldvalue_14',['matchUsesOldValue',['../types_8cppm.html#a6afe1a8713ed8327d1bffe2d79dd49b0',1,'types.cppm']]],
-  ['memorywriter_15',['memorywriter',['../classcore_1_1MemoryWriter.html#a9aca431c8251c3e7771e1b3d45e0e7c2',1,'core::MemoryWriter::MemoryWriter(pid_t pid, utils::Endianness mode=(std::endian::native==std::endian::little ? utils::Endianness::LITTLE :utils::Endianness::BIG))'],['../classcore_1_1MemoryWriter.html#aaf7bb0186935285bf63a4d16840f41d7',1,'core::MemoryWriter::MemoryWriter(pid_t pid)']]],
-  ['messageprinter_16',['MessagePrinter',['../classui_1_1MessagePrinter.html#a27845176ed405bf65aae002bc395ed2c',1,'ui::MessagePrinter']]]
+  ['matchtype_14',['matchType',['../structvalue_1_1ParserView.html#aff6f936a1dd70ce26e395db77bf20b07',1,'value::ParserView']]],
+  ['matchusesoldvalue_15',['matchUsesOldValue',['../types_8cppm.html#a6afe1a8713ed8327d1bffe2d79dd49b0',1,'types.cppm']]],
+  ['memorywriter_16',['memorywriter',['../classcore_1_1MemoryWriter.html#a9aca431c8251c3e7771e1b3d45e0e7c2',1,'core::MemoryWriter::MemoryWriter(pid_t pid, utils::Endianness mode=(std::endian::native==std::endian::little ? utils::Endianness::LITTLE :utils::Endianness::BIG))'],['../classcore_1_1MemoryWriter.html#aaf7bb0186935285bf63a4d16840f41d7',1,'core::MemoryWriter::MemoryWriter(pid_t pid)']]],
+  ['messageprinter_17',['MessagePrinter',['../classui_1_1MessagePrinter.html#a27845176ed405bf65aae002bc395ed2c',1,'ui::MessagePrinter']]]
 ];

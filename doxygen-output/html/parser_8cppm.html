@@ -100,90 +100,106 @@ $(document).ready(function(){initNavTree('parser_8cppm.html',''); initResizable(
 
 <p><a class="el" href="structValue.html">Value</a> parsing utilities for scan operations  
 <a href="#details">更多...</a></p>
-<div class="textblock"><code>#include &lt;unistd.h&gt;</code><br />
-<code>#include &lt;algorithm&gt;</code><br />
+<div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;cctype&gt;</code><br />
-<code>#include &lt;charconv&gt;</code><br />
 <code>#include &lt;cmath&gt;</code><br />
 <code>#include &lt;cstddef&gt;</code><br />
 <code>#include &lt;cstdint&gt;</code><br />
-<code>#include &lt;limits&gt;</code><br />
 <code>#include &lt;optional&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;string_view&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
 <code>#include &lt;utility&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
-<code>import <a class="el" href="value_8cppm.html">value</a>;</code><br />
+<code>import <a class="el" href="flags_8cppm.html">value.flags</a>;</code><br />
+<code>import <a class="el" href="core_8cppm.html">value.core</a>;</code><br />
+<code>import <a class="el" href="utils_2string_8cppm.html">utils.string</a>;</code><br />
+<code>import <a class="el" href="parserStr_8cppm.html">utils.parserStr</a>;</code><br />
 <code>import <a class="el" href="types_8cppm.html">scan.types</a>;</code><br />
 </div><div class="textblock"><div class="dynheader">
 parser.cppm 的引用(Include)关系图:</div>
 <div class="dyncontent">
 <div class="center"><img src="parser_8cppm__incl.png" border="0" usemap="#asrc_2value_2parser_8cppm" alt=""/></div>
 <map name="asrc_2value_2parser_8cppm" id="asrc_2value_2parser_8cppm">
-<area shape="rect" title="Value parsing utilities for scan operations" alt="" coords="1281,5,1447,31"/>
-<area shape="rect" title=" " alt="" coords="5,79,80,104"/>
-<area shape="poly" title=" " alt="" coords="1281,22,1073,23,780,31,442,49,269,63,99,81,95,82,94,77,98,76,268,58,442,43,780,25,1073,18,1281,16"/>
-<area shape="rect" title=" " alt="" coords="301,152,387,177"/>
-<area shape="poly" title=" " alt="" coords="1281,22,1151,26,983,35,796,52,609,81,547,96,486,114,386,150,384,145,484,109,545,91,607,76,795,47,982,29,1150,20,1281,17"/>
-<area shape="rect" title=" " alt="" coords="1595,79,1661,104"/>
-<area shape="poly" title=" " alt="" coords="1407,28,1583,75,1581,80,1406,33"/>
-<area shape="rect" title=" " alt="" coords="1685,79,1766,104"/>
-<area shape="poly" title=" " alt="" coords="1426,28,1672,76,1671,81,1425,33"/>
-<area shape="rect" title=" " alt="" coords="1790,79,1853,104"/>
-<area shape="poly" title=" " alt="" coords="1447,26,1597,45,1777,76,1776,81,1596,50,1446,31"/>
-<area shape="rect" title=" " alt="" coords="206,152,277,177"/>
-<area shape="poly" title=" " alt="" coords="1281,21,1135,23,942,31,726,49,616,63,509,81,446,96,385,114,283,149,282,144,383,109,445,91,507,76,615,58,725,44,942,26,1135,18,1281,16"/>
-<area shape="rect" title=" " alt="" coords="391,225,457,251"/>
-<area shape="poly" title=" " alt="" coords="1281,23,1004,28,648,39,334,56,230,68,199,74,184,81,169,104,164,127,169,151,185,176,197,186,215,195,266,211,378,229,377,235,264,216,213,200,194,190,181,179,165,153,159,127,164,102,181,77,198,69,230,62,333,51,648,33,1004,23,1281,18"/>
-<area shape="rect" title=" " alt="" coords="1877,79,1936,104"/>
-<area shape="poly" title=" " alt="" coords="1447,23,1634,41,1748,56,1864,76,1863,81,1747,62,1634,47,1447,28"/>
-<area shape="rect" title=" " alt="" coords="1272,152,1347,177"/>
-<area shape="poly" title=" " alt="" coords="1362,32,1321,140,1316,138,1357,30"/>
-<area shape="rect" title=" " alt="" coords="1205,225,1264,251"/>
-<area shape="poly" title=" " alt="" coords="1448,28,1492,45,1511,59,1527,77,1542,104,1548,129,1543,154,1527,179,1510,193,1485,204,1418,221,1343,231,1278,237,1278,232,1343,226,1417,215,1483,199,1507,188,1523,176,1538,152,1542,129,1537,105,1523,80,1508,63,1489,50,1446,32"/>
-<area shape="rect" title=" " alt="" coords="1371,152,1469,177"/>
-<area shape="poly" title=" " alt="" coords="1371,30,1413,138,1408,140,1366,32"/>
-<area shape="rect" title=" " alt="" coords="606,225,698,251"/>
-<area shape="poly" title=" " alt="" coords="1281,27,1097,44,989,60,882,81,819,92,769,100,746,106,724,116,702,132,678,154,662,182,656,212,650,211,657,180,674,150,698,127,721,112,744,101,768,95,818,87,881,76,988,55,1096,39,1281,21"/>
-<area shape="rect" title=" " alt="" coords="1961,79,2021,104"/>
-<area shape="poly" title=" " alt="" coords="1447,21,1669,39,1807,55,1948,76,1947,82,1806,60,1669,44,1447,26"/>
-<area shape="rect" title=" " alt="" coords="891,225,954,251"/>
-<area shape="poly" title=" " alt="" coords="1386,29,1426,56,1469,93,1485,114,1494,136,1495,158,1483,179,1456,193,1405,204,1260,222,1097,232,968,238,968,233,1097,227,1259,216,1404,199,1454,188,1479,175,1490,157,1489,137,1480,117,1465,97,1423,60,1383,33"/>
-<area shape="rect" href="value_8cppm.html" title=" " alt="" coords="893,79,952,104"/>
-<area shape="poly" title=" " alt="" coords="1294,33,966,86,965,80,1293,28"/>
-<area shape="rect" href="types_8cppm.html" title=" " alt="" coords="195,79,287,104"/>
-<area shape="poly" title=" " alt="" coords="1281,26,883,47,358,81,301,86,301,81,357,76,883,41,1281,20"/>
-<area shape="poly" title=" " alt="" coords="893,98,689,119,406,155,401,155,400,150,405,149,688,113,893,93"/>
-<area shape="poly" title=" " alt="" coords="893,97,648,113,473,130,290,155,290,150,473,125,648,108,893,91"/>
-<area shape="poly" title=" " alt="" coords="893,95,794,96,662,103,595,111,535,121,485,136,451,154,441,166,434,181,427,212,422,211,429,179,436,163,448,150,483,131,533,116,594,105,661,98,794,91,893,90"/>
-<area shape="poly" title=" " alt="" coords="953,95,1254,149,1258,150,1257,155,1253,155,952,100"/>
-<area shape="poly" title=" " alt="" coords="953,92,1092,110,1163,127,1191,138,1211,150,1222,164,1229,179,1236,211,1231,212,1224,181,1218,166,1208,154,1189,142,1162,132,1091,115,952,98"/>
-<area shape="poly" title=" " alt="" coords="953,94,1121,115,1358,149,1357,155,1120,120,952,99"/>
-<area shape="poly" title=" " alt="" coords="894,96,853,101,803,110,752,127,704,154,679,182,663,214,658,211,675,179,701,150,749,122,802,105,852,95,893,91"/>
-<area shape="poly" title=" " alt="" coords="925,104,925,212,920,212,920,104"/>
-<area shape="rect" title=" " alt="" coords="960,152,1016,177"/>
-<area shape="poly" title=" " alt="" coords="935,103,970,140,966,144,931,106"/>
-<area shape="rect" title=" " alt="" coords="1040,152,1107,177"/>
-<area shape="poly" title=" " alt="" coords="948,102,1037,144,1035,148,946,106"/>
-<area shape="rect" title=" " alt="" coords="1131,152,1197,177"/>
-<area shape="poly" title=" " alt="" coords="953,99,1118,147,1117,152,952,104"/>
-<area shape="rect" title=" " alt="" coords="832,152,885,177"/>
-<area shape="poly" title=" " alt="" coords="914,106,880,144,876,140,910,103"/>
-<area shape="rect" href="endianness_8cppm.html" title=" " alt="" coords="461,152,589,177"/>
-<area shape="poly" title=" " alt="" coords="893,101,603,152,602,147,892,95"/>
-<area shape="rect" href="flags_8cppm.html" title=" " alt="" coords="715,152,808,177"/>
-<area shape="poly" title=" " alt="" coords="898,106,801,149,799,144,896,102"/>
-<area shape="poly" title=" " alt="" coords="511,180,453,219,450,215,508,175"/>
-<area shape="poly" title=" " alt="" coords="547,175,621,216,618,221,544,180"/>
-<area shape="rect" title=" " alt="" coords="506,225,545,251"/>
-<area shape="poly" title=" " alt="" coords="528,178,528,212,523,212,523,178"/>
-<area shape="poly" title=" " alt="" coords="715,178,472,229,471,224,714,173"/>
-<area shape="poly" title=" " alt="" coords="809,173,820,175,1028,206,1192,229,1191,234,1028,212,820,180,808,178"/>
-<area shape="poly" title=" " alt="" coords="745,180,683,220,680,215,742,175"/>
-<area shape="poly" title=" " alt="" coords="788,175,885,217,883,222,786,180"/>
-<area shape="poly" title=" " alt="" coords="244,104,244,138,239,138,239,104"/>
-<area shape="poly" title=" " alt="" coords="228,106,212,121,198,139,190,159,191,167,195,176,207,185,224,194,271,210,377,229,376,234,270,215,222,199,204,190,191,179,186,169,185,158,193,137,208,118,224,102"/>
+<area shape="rect" title="Value parsing utilities for scan operations" alt="" coords="963,5,1128,31"/>
+<area shape="rect" title=" " alt="" coords="580,225,666,251"/>
+<area shape="poly" title=" " alt="" coords="963,23,791,31,688,39,583,51,483,68,394,90,323,118,296,135,277,154,272,165,277,176,296,190,324,202,401,219,489,229,566,233,566,238,488,234,401,224,323,207,293,194,273,179,267,165,273,150,293,131,320,114,392,85,482,62,582,45,688,33,791,25,963,18"/>
+<area shape="rect" title=" " alt="" coords="1037,225,1102,251"/>
+<area shape="poly" title=" " alt="" coords="1049,31,1062,177,1067,211,1062,212,1056,178,1044,31"/>
+<area shape="rect" title=" " alt="" coords="1928,79,1990,104"/>
+<area shape="poly" title=" " alt="" coords="1129,18,1276,23,1470,33,1689,50,1909,76,1915,77,1914,82,1908,81,1688,55,1470,38,1276,28,1129,24"/>
+<area shape="rect" title=" " alt="" coords="90,152,161,177"/>
+<area shape="poly" title=" " alt="" coords="963,24,767,30,527,41,312,58,236,69,192,81,176,93,161,108,139,140,135,138,157,105,172,89,190,76,235,64,311,53,526,36,767,25,963,19"/>
+<area shape="rect" title=" " alt="" coords="228,225,295,251"/>
+<area shape="poly" title=" " alt="" coords="963,24,719,30,412,42,145,59,57,69,31,75,18,81,10,92,8,104,10,116,16,128,37,153,65,175,101,197,141,213,216,229,215,235,139,218,99,202,62,180,34,156,12,131,5,118,3,104,6,90,15,77,29,70,56,64,144,53,412,36,719,25,963,18"/>
+<area shape="rect" title=" " alt="" coords="1071,152,1146,177"/>
+<area shape="poly" title=" " alt="" coords="1053,30,1100,138,1095,140,1048,32"/>
+<area shape="rect" title=" " alt="" coords="1258,225,1316,251"/>
+<area shape="poly" title=" " alt="" coords="1115,28,1170,43,1228,67,1282,102,1306,125,1325,151,1331,168,1328,185,1310,216,1305,213,1323,183,1325,168,1321,153,1302,128,1279,107,1226,72,1168,48,1114,33"/>
+<area shape="rect" title=" " alt="" coords="1790,225,1888,251"/>
+<area shape="poly" title=" " alt="" coords="1129,20,1422,38,1572,54,1633,64,1680,76,1717,90,1745,103,1771,122,1799,150,1819,180,1833,211,1828,213,1815,183,1794,154,1767,126,1743,108,1715,95,1678,81,1632,69,1571,59,1422,43,1129,25"/>
+<area shape="rect" title=" " alt="" coords="1362,225,1454,251"/>
+<area shape="poly" title=" " alt="" coords="1129,19,1290,27,1386,36,1483,49,1576,65,1658,88,1723,115,1747,132,1765,151,1771,165,1765,179,1745,195,1715,207,1636,224,1547,234,1468,238,1468,233,1547,229,1635,219,1713,202,1742,190,1761,176,1766,165,1761,153,1744,136,1720,120,1656,93,1574,71,1482,54,1385,41,1290,33,1129,24"/>
+<area shape="rect" title=" " alt="" coords="2014,79,2074,104"/>
+<area shape="poly" title=" " alt="" coords="1129,16,1289,18,1504,26,1750,44,1876,58,2001,76,2000,81,1876,63,1749,49,1503,31,1289,23,1129,21"/>
+<area shape="rect" title=" " alt="" coords="784,225,846,251"/>
+<area shape="poly" title=" " alt="" coords="1015,33,975,51,928,77,881,111,843,153,828,183,821,213,816,211,823,181,838,151,878,107,925,72,973,46,1013,28"/>
+<area shape="rect" href="flags_8cppm.html" title=" " alt="" coords="852,152,946,177"/>
+<area shape="poly" title=" " alt="" coords="1029,33,998,54,966,81,939,112,916,142,912,139,935,108,963,77,995,50,1026,29"/>
+<area shape="rect" href="core_8cppm.html" title=" " alt="" coords="612,79,703,104"/>
+<area shape="poly" title=" " alt="" coords="984,33,717,82,716,77,983,28"/>
+<area shape="rect" href="utils_2string_8cppm.html" title="String utility functions for common string operations" alt="" coords="1220,152,1311,177"/>
+<area shape="poly" title=" " alt="" coords="1065,29,1238,142,1235,147,1062,33"/>
+<area shape="rect" href="parserStr_8cppm.html" title="String parsing utilities for numeric and boolean values" alt="" coords="1390,79,1504,104"/>
+<area shape="poly" title=" " alt="" coords="1111,28,1377,75,1376,80,1110,33"/>
+<area shape="rect" href="types_8cppm.html" title=" " alt="" coords="29,79,121,104"/>
+<area shape="poly" title=" " alt="" coords="963,24,605,41,374,58,141,81,136,82,135,77,140,76,373,53,604,36,962,19"/>
+<area shape="poly" title=" " alt="" coords="853,172,623,192,472,208,320,228,309,230,308,224,319,223,471,203,622,186,852,167"/>
+<area shape="poly" title=" " alt="" coords="946,170,1077,190,1245,223,1244,228,1076,196,946,175"/>
+<area shape="poly" title=" " alt="" coords="947,170,1329,223,1349,226,1349,231,1328,228,946,175"/>
+<area shape="poly" title=" " alt="" coords="887,179,841,218,838,214,884,175"/>
+<area shape="rect" title=" " alt="" coords="871,225,951,251"/>
+<area shape="poly" title=" " alt="" coords="904,177,910,211,904,212,898,178"/>
+<area shape="poly" title=" " alt="" coords="658,105,632,213,626,211,652,104"/>
+<area shape="poly" title=" " alt="" coords="613,101,175,159,175,154,612,96"/>
+<area shape="poly" title=" " alt="" coords="612,96,528,99,427,109,335,126,300,139,277,154,268,166,263,181,261,212,256,211,258,180,264,164,273,150,298,134,334,121,427,103,528,94,612,91"/>
+<area shape="poly" title=" " alt="" coords="704,96,859,118,1053,149,1057,150,1056,155,1052,155,858,123,703,101"/>
+<area shape="poly" title=" " alt="" coords="704,98,958,149,1245,223,1244,228,957,155,703,103"/>
+<area shape="poly" title=" " alt="" coords="678,102,741,150,799,213,795,216,737,154,674,107"/>
+<area shape="poly" title=" " alt="" coords="697,101,847,145,846,151,696,107"/>
+<area shape="rect" title=" " alt="" coords="439,152,495,177"/>
+<area shape="poly" title=" " alt="" coords="628,107,509,151,507,146,626,102"/>
+<area shape="rect" title=" " alt="" coords="519,152,586,177"/>
+<area shape="poly" title=" " alt="" coords="642,106,582,147,579,142,639,102"/>
+<area shape="rect" title=" " alt="" coords="660,152,727,177"/>
+<area shape="poly" title=" " alt="" coords="666,103,684,138,679,141,661,106"/>
+<area shape="rect" href="endianness_8cppm.html" title=" " alt="" coords="287,152,415,177"/>
+<area shape="poly" title=" " alt="" coords="612,106,414,152,413,146,611,101"/>
+<area shape="poly" title=" " alt="" coords="338,179,289,219,286,214,335,175"/>
+<area shape="poly" title=" " alt="" coords="416,173,427,175,680,194,878,199,1075,204,1329,223,1349,225,1349,230,1328,228,1075,210,878,205,680,199,427,180,415,179"/>
+<area shape="rect" title=" " alt="" coords="332,225,370,251"/>
+<area shape="poly" title=" " alt="" coords="354,178,354,212,348,212,348,178"/>
+<area shape="poly" title=" " alt="" coords="1221,177,1202,180,909,214,680,235,680,230,908,209,1201,175,1220,172"/>
+<area shape="poly" title=" " alt="" coords="1235,180,1116,223,1114,218,1233,175"/>
+<area shape="poly" title=" " alt="" coords="1272,177,1282,211,1277,213,1267,178"/>
+<area shape="poly" title=" " alt="" coords="1312,169,1777,226,1777,232,1311,174"/>
+<area shape="poly" title=" " alt="" coords="1221,177,1202,180,1033,202,957,211,860,228,859,223,956,206,1032,196,1201,175,1220,172"/>
+<area shape="rect" title=" " alt="" coords="1167,225,1234,251"/>
+<area shape="poly" title=" " alt="" coords="1257,179,1222,217,1218,213,1253,176"/>
+<area shape="poly" title=" " alt="" coords="1391,106,1304,125,1209,154,1185,168,1159,180,1034,208,927,221,832,225,742,222,556,214,447,216,319,228,309,229,308,224,319,223,447,211,556,209,742,217,832,220,926,216,1033,202,1157,175,1182,163,1207,150,1303,120,1390,101"/>
+<area shape="poly" title=" " alt="" coords="1393,107,1160,155,1158,150,1392,101"/>
+<area shape="poly" title=" " alt="" coords="1439,106,1409,140,1369,179,1317,220,1314,215,1365,175,1405,136,1435,102"/>
+<area shape="poly" title=" " alt="" coords="1504,90,1561,94,1628,103,1698,121,1765,150,1801,179,1827,212,1823,215,1797,183,1762,154,1696,126,1627,108,1561,99,1504,95"/>
+<area shape="poly" title=" " alt="" coords="1447,105,1418,213,1412,211,1441,104"/>
+<area shape="poly" title=" " alt="" coords="1419,107,1309,149,1307,144,1417,102"/>
+<area shape="rect" title=" " alt="" coords="1487,152,1562,177"/>
+<area shape="poly" title=" " alt="" coords="1461,102,1503,141,1500,144,1458,106"/>
+<area shape="rect" title=" " alt="" coords="1586,152,1668,177"/>
+<area shape="poly" title=" " alt="" coords="1477,102,1586,144,1584,149,1475,107"/>
+<area shape="rect" title=" " alt="" coords="1692,152,1751,177"/>
+<area shape="poly" title=" " alt="" coords="1493,101,1680,149,1679,154,1492,107"/>
+<area shape="poly" title=" " alt="" coords="86,103,112,139,107,142,81,106"/>
+<area shape="poly" title=" " alt="" coords="74,105,70,140,72,159,80,176,108,202,143,219,180,229,215,233,215,238,179,234,141,224,105,206,76,179,67,160,64,140,69,104"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -191,36 +207,27 @@ parser.cppm 的引用(Include)关系图:</div>
 命名空间</h2></td></tr>
 <tr class="memitem:namespacevalue" id="r_namespacevalue"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html">value</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacevalue_1_1detail" id="r_namespacevalue_1_1detail"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue_1_1detail.html">value::detail</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:a41cb8c4cd32ee7d88001f03556615c06" id="r_a41cb8c4cd32ee7d88001f03556615c06"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a41cb8c4cd32ee7d88001f03556615c06">value::toLower</a> (std::string str) -&gt; std::string</td></tr>
-<tr class="memdesc:a41cb8c4cd32ee7d88001f03556615c06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert string to lowercase  <br /></td></tr>
-<tr class="separator:a41cb8c4cd32ee7d88001f03556615c06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a752d1f42f3cda81a6028e3321aae3f9a" id="r_a752d1f42f3cda81a6028e3321aae3f9a"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a752d1f42f3cda81a6028e3321aae3f9a">value::isFloatToken</a> (std::string_view str) -&gt; bool</td></tr>
-<tr class="separator:a752d1f42f3cda81a6028e3321aae3f9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0dfa655ec7dceec2aeedfbbdb67f6ef" id="r_af0dfa655ec7dceec2aeedfbbdb67f6ef"><td class="memTemplParams" colspan="2">template&lt;typename T , typename Parser &gt; </td></tr>
+<tr class="memitem:af0dfa655ec7dceec2aeedfbbdb67f6ef"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevalue.html#af0dfa655ec7dceec2aeedfbbdb67f6ef">value::buildScalar</a> (const std::vector&lt; std::string &gt; &amp;args, size_t startIndex, Parser parser) -&gt; std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt;</td></tr>
+<tr class="memdesc:af0dfa655ec7dceec2aeedfbbdb67f6ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper: build <a class="el" href="structUserValue.html">UserValue</a> for scalar of type T  <br /></td></tr>
+<tr class="separator:af0dfa655ec7dceec2aeedfbbdb67f6ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a798b216b4b582955fc13debf9ea88e76" id="r_a798b216b4b582955fc13debf9ea88e76"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue_1_1detail.html#a798b216b4b582955fc13debf9ea88e76">value::detail::parseStringValue</a> (const std::vector&lt; std::string &gt; &amp;args, size_t startIndex) -&gt; std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt;</td></tr>
+<tr class="separator:a798b216b4b582955fc13debf9ea88e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9044054b3b00dda28f4d806220809d3c" id="r_a9044054b3b00dda28f4d806220809d3c"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue_1_1detail.html#a9044054b3b00dda28f4d806220809d3c">value::detail::parseByteArrayValue</a> (const std::vector&lt; std::string &gt; &amp;args, size_t startIndex) -&gt; std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt;</td></tr>
+<tr class="separator:a9044054b3b00dda28f4d806220809d3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28ae15c8c39828415fcb2ad464af7e5f" id="r_a28ae15c8c39828415fcb2ad464af7e5f"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue_1_1detail.html#a28ae15c8c39828415fcb2ad464af7e5f">value::detail::parseAnyNumberValue</a> (const std::vector&lt; std::string &gt; &amp;args, size_t startIndex) -&gt; std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt;</td></tr>
+<tr class="separator:a28ae15c8c39828415fcb2ad464af7e5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48fdf6a5fe196be8bee4cd940f2d6860" id="r_a48fdf6a5fe196be8bee4cd940f2d6860"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a48fdf6a5fe196be8bee4cd940f2d6860">value::parseDataType</a> (std::string_view tok) -&gt; std::optional&lt; <a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> &gt;</td></tr>
 <tr class="memdesc:a48fdf6a5fe196be8bee4cd940f2d6860"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse data type from string with aliases support  <br /></td></tr>
 <tr class="separator:a48fdf6a5fe196be8bee4cd940f2d6860"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a971e73366312690f43ff10fb1e988772" id="r_a971e73366312690f43ff10fb1e988772"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a971e73366312690f43ff10fb1e988772">value::parseMatchType</a> (std::string_view tok) -&gt; std::optional&lt; <a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> &gt;</td></tr>
 <tr class="memdesc:a971e73366312690f43ff10fb1e988772"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse match type from string with aliases support  <br /></td></tr>
 <tr class="separator:a971e73366312690f43ff10fb1e988772"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa91371f64f35ffc857723edfeed702aa" id="r_aa91371f64f35ffc857723edfeed702aa"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; <br />
-requires std::is_integral_v&lt;T&gt;</td></tr>
-<tr class="memitem:aa91371f64f35ffc857723edfeed702aa"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevalue.html#aa91371f64f35ffc857723edfeed702aa">value::parseInteger</a> (std::string_view str) -&gt; std::optional&lt; T &gt;</td></tr>
-<tr class="memdesc:aa91371f64f35ffc857723edfeed702aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse integer with optional hex prefix and sign  <br /></td></tr>
-<tr class="separator:aa91371f64f35ffc857723edfeed702aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e05dd530714ec79bead3ae8f245ad25" id="r_a3e05dd530714ec79bead3ae8f245ad25"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a3e05dd530714ec79bead3ae8f245ad25">value::parseDouble</a> (std::string_view str) -&gt; std::optional&lt; double &gt;</td></tr>
-<tr class="separator:a3e05dd530714ec79bead3ae8f245ad25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c87ccdd4fa0a1392361dd3b882034c2" id="r_a6c87ccdd4fa0a1392361dd3b882034c2"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a6c87ccdd4fa0a1392361dd3b882034c2">value::parseAddress</a> (std::string_view str) -&gt; std::optional&lt; std::uintptr_t &gt;</td></tr>
-<tr class="memdesc:a6c87ccdd4fa0a1392361dd3b882034c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse hexadecimal address string to an integer address value  <br /></td></tr>
-<tr class="separator:a6c87ccdd4fa0a1392361dd3b882034c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ee83301b38778ae05480242fc1b4690" id="r_a7ee83301b38778ae05480242fc1b4690"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a7ee83301b38778ae05480242fc1b4690">value::parsePid</a> (std::string_view str) -&gt; std::optional&lt; pid_t &gt;</td></tr>
-<tr class="memdesc:a7ee83301b38778ae05480242fc1b4690"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse PID (process ID) with validation  <br /></td></tr>
-<tr class="separator:a7ee83301b38778ae05480242fc1b4690"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a512afac4bf1d9bbad5eea0b9963de148" id="r_a512afac4bf1d9bbad5eea0b9963de148"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a512afac4bf1d9bbad5eea0b9963de148">value::parseBoolean</a> (std::string_view str) -&gt; std::optional&lt; bool &gt;</td></tr>
-<tr class="memdesc:a512afac4bf1d9bbad5eea0b9963de148"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse boolean value  <br /></td></tr>
-<tr class="separator:a512afac4bf1d9bbad5eea0b9963de148"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a855151450ace674b7a842613a58e0122" id="r_a855151450ace674b7a842613a58e0122"><td class="memTemplParams" colspan="2">template&lt;typename F &gt; </td></tr>
 <tr class="memitem:a855151450ace674b7a842613a58e0122"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a855151450ace674b7a842613a58e0122">value::relTol</a> () -&gt; F</td></tr>
 <tr class="separator:a855151450ace674b7a842613a58e0122"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -230,13 +237,16 @@ requires std::is_integral_v&lt;T&gt;</td></tr>
 <tr class="memitem:a5e78503416b5d524bc083f40110460b9" id="r_a5e78503416b5d524bc083f40110460b9"><td class="memTemplParams" colspan="2">template&lt;typename F &gt; </td></tr>
 <tr class="memitem:a5e78503416b5d524bc083f40110460b9"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a5e78503416b5d524bc083f40110460b9">value::almostEqual</a> (F firstValue, F secondValue) noexcept -&gt; bool</td></tr>
 <tr class="separator:a5e78503416b5d524bc083f40110460b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0678a14a65ac6e00a72af0c701ad097" id="r_aa0678a14a65ac6e00a72af0c701ad097"><td class="memTemplParams" colspan="2">template&lt;typename T , typename Parser &gt; </td></tr>
-<tr class="memitem:aa0678a14a65ac6e00a72af0c701ad097"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevalue.html#aa0678a14a65ac6e00a72af0c701ad097">value::buildScalarOrRange</a> (bool needRange, const std::vector&lt; std::string &gt; &amp;args, size_t startIndex, Parser parser) -&gt; std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt;</td></tr>
-<tr class="memdesc:aa0678a14a65ac6e00a72af0c701ad097"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper: build <a class="el" href="structUserValue.html">UserValue</a> for scalar/range of type T  <br /></td></tr>
-<tr class="separator:aa0678a14a65ac6e00a72af0c701ad097"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae28438fbb59121fdb73047773e075203" id="r_ae28438fbb59121fdb73047773e075203"><td class="memTemplParams" colspan="2">template&lt;typename T , typename Parser &gt; </td></tr>
+<tr class="memitem:ae28438fbb59121fdb73047773e075203"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevalue.html#ae28438fbb59121fdb73047773e075203">value::buildScalarRange</a> (const std::vector&lt; std::string &gt; &amp;args, size_t startIndex, Parser parser) -&gt; std::optional&lt; <a class="el" href="core_8cppm.html#a1bd4a9d0e06aae509377546df72a7528">UserValueRange</a> &gt;</td></tr>
+<tr class="memdesc:ae28438fbb59121fdb73047773e075203"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper: build <a class="el" href="structUserValue.html">UserValue</a> for scalar range of type T  <br /></td></tr>
+<tr class="separator:ae28438fbb59121fdb73047773e075203"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f22ce19e97134b18e84bb63f1cd9bfc" id="r_a2f22ce19e97134b18e84bb63f1cd9bfc"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a2f22ce19e97134b18e84bb63f1cd9bfc">value::buildUserValue</a> (<a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> dataType, <a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, const std::vector&lt; std::string &gt; &amp;args, size_t startIndex) -&gt; std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt;</td></tr>
 <tr class="memdesc:a2f22ce19e97134b18e84bb63f1cd9bfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build <a class="el" href="structUserValue.html">UserValue</a> from parsed arguments  <br /></td></tr>
 <tr class="separator:a2f22ce19e97134b18e84bb63f1cd9bfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f9e8f3e0c06a093169364d5d9f2a306" id="r_a2f9e8f3e0c06a093169364d5d9f2a306"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a2f9e8f3e0c06a093169364d5d9f2a306">value::buildUserValueRange</a> (<a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> dataType, const std::vector&lt; std::string &gt; &amp;args, size_t startIndex) -&gt; std::optional&lt; <a class="el" href="core_8cppm.html#a1bd4a9d0e06aae509377546df72a7528">UserValueRange</a> &gt;</td></tr>
+<tr class="memdesc:a2f9e8f3e0c06a093169364d5d9f2a306"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build UserValueRange from parsed arguments for range matching  <br /></td></tr>
+<tr class="separator:a2f9e8f3e0c06a093169364d5d9f2a306"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p><a class="el" href="structValue.html">Value</a> parsing utilities for scan operations </p>

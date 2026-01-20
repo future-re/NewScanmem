@@ -4,5 +4,6 @@ var searchData=
   ['networktohost_1',['networkToHost',['../namespaceutils.html#af8a17769e8020bd0dd30cd257ce21ccd',1,'utils']]],
   ['nthmatch_2',['nthMatch',['../classscan_1_1MatchesAndOldValuesArray.html#ac0da64d5bfb6142deabf5c41f1a89313',1,'scan::MatchesAndOldValuesArray']]],
   ['numeric_2ecppm_3',['numeric.cppm',['../numeric_8cppm.html',1,'']]],
-  ['numericmatchcore_4',['numericMatchCore',['../numeric_8cppm.html#abf10ceef7e7529ecdec4723721593e4b',1,'numeric.cppm']]]
+  ['numericmatchcore_4',['numericMatchCore',['../numeric_8cppm.html#abf10ceef7e7529ecdec4723721593e4b',1,'numeric.cppm']]],
+  ['numerictype_5',['NumericType',['../conceptNumericType.html',1,'']]]
 ];

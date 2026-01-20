@@ -1,5 +1,9 @@
 var module_value_8flags =
 [
+    [ "NumericType", "conceptNumericType.html", null ],
+    [ "StringType", "conceptStringType.html", null ],
+    [ "ByteArrayType", "conceptByteArrayType.html", null ],
+    [ "ValueTypeConcept", "conceptValueTypeConcept.html", null ],
     [ "MatchFlags", "flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552", [
       [ "EMPTY", "flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552aba2b45bdc11e2a4a6e86aab2ac693cbb", null ],
       [ "B8", "flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552ac897976b22b91e2937555adb85d779fc", null ],
@@ -9,6 +13,10 @@ var module_value_8flags =
       [ "STRING", "flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552a63b588d5559f64f89a416e656880b949", null ],
       [ "BYTE_ARRAY", "flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552ad0db1b5ac322ccae21a1299c0cce02ed", null ]
     ] ],
+    [ "UserValueByteArray", "flags_8cppm.html#a1d41f7d77622c203545689588af412cf", null ],
+    [ "ValueByteArray", "flags_8cppm.html#a6ba04f5efa8fc4c288182cd88b201176", null ],
+    [ "ValueString", "flags_8cppm.html#a03cc25adb31ace4b1d946a03ae4bbe98", null ],
+    [ "UserValueString", "flags_8cppm.html#aab0b8804e9279ef15d5677d4eff5cdb5", null ],
     [ "ValueType", "flags_8cppm.html#ab6d525f0a5a2799ff592b83d7b606be0", null ],
     [ "operator|", "flags_8cppm.html#a2ee4e3bdeb4d19d985d58273d8001e6c", null ],
     [ "operator&", "flags_8cppm.html#a6d6aa1a46cc3df43bc750a300555d1f8", null ],

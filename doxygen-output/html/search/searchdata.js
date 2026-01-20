@@ -6,11 +6,12 @@ var indexSectionsWithContent =
   3: "abcefhilmnpqrstuvw",
   4: "abcdefghijlmnoprstuvw~",
   5: "abcdefgilmoprstvwy",
-  6: "clsv",
+  6: "clsuv",
   7: "elmprs",
   8: "abcdefhilmrsuwz",
   9: "弃",
-  10: "csuv"
+  10: "bnsv",
+  11: "csuv"
 };
 
 var indexSectionNames =
@@ -25,7 +26,8 @@ var indexSectionNames =
   7: "enums",
   8: "enumvalues",
   9: "pages",
-  10: "modules"
+  10: "concepts",
+  11: "modules"
 };
 
 var indexSectionLabels =
@@ -40,6 +42,7 @@ var indexSectionLabels =
   7: "枚举",
   8: "枚举值",
   9: "页",
-  10: "模块"
+  10: "概念",
+  11: "模块"
 };
 

@@ -17,25 +17,7 @@ var namespaces_dup =
     [ "std", "namespacestd.html", "namespacestd" ],
     [ "ui", "namespaceui.html", "namespaceui" ],
     [ "utils", "namespaceutils.html", "namespaceutils" ],
-    [ "value", "namespacevalue.html", [
-      [ "absTol", "namespacevalue.html#a57bdd35a4b3e6623835851aa01eb0183", null ],
-      [ "almostEqual", "namespacevalue.html#a5e78503416b5d524bc083f40110460b9", null ],
-      [ "buildScalarOrRange", "namespacevalue.html#aa0678a14a65ac6e00a72af0c701ad097", null ],
-      [ "buildUserValue", "namespacevalue.html#a2f22ce19e97134b18e84bb63f1cd9bfc", null ],
-      [ "isFloatToken", "namespacevalue.html#a752d1f42f3cda81a6028e3321aae3f9a", null ],
-      [ "parseAddress", "namespacevalue.html#a6c87ccdd4fa0a1392361dd3b882034c2", null ],
-      [ "parseBoolean", "namespacevalue.html#a512afac4bf1d9bbad5eea0b9963de148", null ],
-      [ "parseDataType", "namespacevalue.html#a48fdf6a5fe196be8bee4cd940f2d6860", null ],
-      [ "parseDouble", "namespacevalue.html#a3e05dd530714ec79bead3ae8f245ad25", null ],
-      [ "parseInteger", "namespacevalue.html#aa91371f64f35ffc857723edfeed702aa", null ],
-      [ "parseMatchType", "namespacevalue.html#a971e73366312690f43ff10fb1e988772", null ],
-      [ "parsePid", "namespacevalue.html#a7ee83301b38778ae05480242fc1b4690", null ],
-      [ "relTol", "namespacevalue.html#a855151450ace674b7a842613a58e0122", null ],
-      [ "toLower", "namespacevalue.html#a41cb8c4cd32ee7d88001f03556615c06", null ]
-    ] ],
-    [ "value_detail", "namespacevalue__detail.html", [
-      [ "unpackFromValue", "namespacevalue__detail.html#a81a517709def44d27547af6ad84850b3", null ]
-    ] ],
+    [ "value", "namespacevalue.html", "namespacevalue" ],
     [ "version", "namespaceversion.html", [
       [ "string", "namespaceversion.html#a084406eb889bec8f73943a26b7d68f7d", null ],
       [ "MAJOR_V", "namespaceversion.html#a38c8c20aa98ac2e15188a9902685f797", null ],

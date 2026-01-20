@@ -17,5 +17,6 @@ var searchData=
   ['bytemask_14',['byteMask',['../structUserValue.html#a056f41e90861ba52474a794a31a31cd1',1,'UserValue']]],
   ['bytes_15',['bytes',['../structValue.html#a5f5173398304cef519d17570ea8f2573',1,'Value']]],
   ['bytesscanned_16',['bytesScanned',['../structScanStats.html#a461e6128a9e036aac2b00bd0b76eae5b',1,'ScanStats']]],
-  ['byteswritten_17',['bytesWritten',['../structcore_1_1WriteResult.html#a2ea1570de193e565533cef8bd423ac05',1,'core::WriteResult']]]
+  ['byteswritten_17',['bytesWritten',['../structcore_1_1WriteResult.html#a2ea1570de193e565533cef8bd423ac05',1,'core::WriteResult']]],
+  ['bytevalue_18',['byteValue',['../structUserValue.html#aa3f685b0afcb215071a21fcfad4b1d5f',1,'UserValue']]]
 ];

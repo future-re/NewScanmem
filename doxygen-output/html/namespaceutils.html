@@ -149,6 +149,24 @@ $(document).ready(function(){initNavTree('namespaceutils.html',''); initResizabl
 <tr class="separator:a84b9cbc873018d8701ba5930643441bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30b4b3e4177bc7f02df665fa43350c35" id="r_a30b4b3e4177bc7f02df665fa43350c35"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a30b4b3e4177bc7f02df665fa43350c35">utils::getHost</a> () -&gt; <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">Endianness</a></td></tr>
 <tr class="separator:a30b4b3e4177bc7f02df665fa43350c35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bde04e891cfaa4510840a4f66c82641" id="r_a6bde04e891cfaa4510840a4f66c82641"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a6bde04e891cfaa4510840a4f66c82641">utils::isFloatToken</a> (std::string_view str) -&gt; bool</td></tr>
+<tr class="separator:a6bde04e891cfaa4510840a4f66c82641"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a456b88d65a3364c7e5d38550ca3c6555" id="r_a456b88d65a3364c7e5d38550ca3c6555"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; <br />
+requires std::is_integral_v&lt;T&gt;</td></tr>
+<tr class="memitem:a456b88d65a3364c7e5d38550ca3c6555"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a456b88d65a3364c7e5d38550ca3c6555">utils::parseInteger</a> (std::string_view str) -&gt; std::optional&lt; T &gt;</td></tr>
+<tr class="memdesc:a456b88d65a3364c7e5d38550ca3c6555"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse integer with optional hex prefix and sign  <br /></td></tr>
+<tr class="separator:a456b88d65a3364c7e5d38550ca3c6555"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab99675aa2755259ac19f280602273888" id="r_ab99675aa2755259ac19f280602273888"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#ab99675aa2755259ac19f280602273888">utils::parseDouble</a> (std::string_view str) -&gt; std::optional&lt; double &gt;</td></tr>
+<tr class="separator:ab99675aa2755259ac19f280602273888"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42e78d2f253bb07ff306a891e1f79996" id="r_a42e78d2f253bb07ff306a891e1f79996"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a42e78d2f253bb07ff306a891e1f79996">utils::parseAddress</a> (std::string_view str) -&gt; std::optional&lt; std::uintptr_t &gt;</td></tr>
+<tr class="memdesc:a42e78d2f253bb07ff306a891e1f79996"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse hexadecimal address string to an integer address value  <br /></td></tr>
+<tr class="separator:a42e78d2f253bb07ff306a891e1f79996"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3622e3f60f96cc13336b16fe233998af" id="r_a3622e3f60f96cc13336b16fe233998af"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a3622e3f60f96cc13336b16fe233998af">utils::parsePid</a> (std::string_view str) -&gt; std::optional&lt; pid_t &gt;</td></tr>
+<tr class="memdesc:a3622e3f60f96cc13336b16fe233998af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse PID (process ID) with validation  <br /></td></tr>
+<tr class="separator:a3622e3f60f96cc13336b16fe233998af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f16168672fafe56238f1ba592351a70" id="r_a5f16168672fafe56238f1ba592351a70"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a5f16168672fafe56238f1ba592351a70">utils::parseBoolean</a> (std::string_view str) -&gt; std::optional&lt; bool &gt;</td></tr>
+<tr class="memdesc:a5f16168672fafe56238f1ba592351a70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse boolean value  <br /></td></tr>
+<tr class="separator:a5f16168672fafe56238f1ba592351a70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">枚举类型说明</h2>
 <a id="a9b386dd2997f6356dc5ad20ce16003cc" name="a9b386dd2997f6356dc5ad20ce16003cc"></a>
@@ -312,6 +330,32 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
+<a id="a6bde04e891cfaa4510840a4f66c82641" name="a6bde04e891cfaa4510840a4f66c82641"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bde04e891cfaa4510840a4f66c82641">&#9670;&#160;</a></span>isFloatToken()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto utils::isFloatToken </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td> -&gt; bool </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a915e03ea533a95d375075d41a74e7aeb" name="a915e03ea533a95d375075d41a74e7aeb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a915e03ea533a95d375075d41a74e7aeb">&#9670;&#160;</a></span>isLittleEndian()</h2>
 
@@ -390,6 +434,181 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a42e78d2f253bb07ff306a891e1f79996" name="a42e78d2f253bb07ff306a891e1f79996"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42e78d2f253bb07ff306a891e1f79996">&#9670;&#160;</a></span>parseAddress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto utils::parseAddress </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td> -&gt; std::optional&lt;std::uintptr_t&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Parse hexadecimal address string to an integer address value </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>Address string (with or without 0x prefix) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Optional containing parsed address value </dd></dl>
+
+</div>
+</div>
+<a id="a5f16168672fafe56238f1ba592351a70" name="a5f16168672fafe56238f1ba592351a70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f16168672fafe56238f1ba592351a70">&#9670;&#160;</a></span>parseBoolean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto utils::parseBoolean </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td> -&gt; std::optional&lt;bool&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Parse boolean value </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>String to parse (true/false, yes/no, 1/0, on/off) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Optional containing parsed boolean </dd></dl>
+
+</div>
+</div>
+<a id="ab99675aa2755259ac19f280602273888" name="ab99675aa2755259ac19f280602273888"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab99675aa2755259ac19f280602273888">&#9670;&#160;</a></span>parseDouble()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto utils::parseDouble </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td> -&gt; std::optional&lt;double&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a456b88d65a3364c7e5d38550ca3c6555" name="a456b88d65a3364c7e5d38550ca3c6555"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a456b88d65a3364c7e5d38550ca3c6555">&#9670;&#160;</a></span>parseInteger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; <br />
+requires std::is_integral_v&lt;T&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto utils::parseInteger </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td> -&gt; std::optional&lt;T&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Parse integer with optional hex prefix and sign </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Target integer type (int8_t, int16_t, int32_t, int64_t, etc.) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>String to parse </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Optional value of type T with automatic range checking </dd></dl>
+
+</div>
+</div>
+<a id="a3622e3f60f96cc13336b16fe233998af" name="a3622e3f60f96cc13336b16fe233998af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3622e3f60f96cc13336b16fe233998af">&#9670;&#160;</a></span>parsePid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto utils::parsePid </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td> -&gt; std::optional&lt;pid_t&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Parse PID (process ID) with validation </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>String to parse </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Optional containing parsed PID </dd></dl>
 
 </div>
 </div>

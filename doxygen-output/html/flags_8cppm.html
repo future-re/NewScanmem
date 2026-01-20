@@ -92,13 +92,15 @@ $(document).ready(function(){initNavTree('flags_8cppm.html',''); initResizable()
 
 <div class="header">
   <div class="summary">
+<a href="#concepts">概念</a> &#124;
 <a href="#typedef-members">类型定义</a> &#124;
 <a href="#enum-members">枚举</a> &#124;
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle"><div class="title">flags.cppm 文件参考<div class="ingroups">模块 <a class="el" href="module_value_8flags.html">value.flags</a></div></div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
+<div class="textblock"><code>#include &lt;concepts&gt;</code><br />
+<code>#include &lt;cstdint&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
@@ -107,20 +109,41 @@ flags.cppm 的引用(Include)关系图:</div>
 <div class="dyncontent">
 <div class="center"><img src="flags_8cppm__incl.png" border="0" usemap="#asrc_2value_2flags_8cppm" alt=""/></div>
 <map name="asrc_2value_2flags_8cppm" id="asrc_2value_2flags_8cppm">
-<area shape="rect" title=" " alt="" coords="97,5,253,31"/>
-<area shape="rect" title=" " alt="" coords="5,79,72,104"/>
-<area shape="poly" title=" " alt="" coords="154,33,74,75,72,70,152,28"/>
-<area shape="rect" title=" " alt="" coords="96,79,155,104"/>
-<area shape="poly" title=" " alt="" coords="169,33,143,69,139,66,164,29"/>
-<area shape="rect" title=" " alt="" coords="179,79,271,104"/>
-<area shape="poly" title=" " alt="" coords="185,29,211,66,207,69,181,33"/>
-<area shape="rect" title=" " alt="" coords="295,79,358,104"/>
-<area shape="poly" title=" " alt="" coords="200,28,291,70,289,75,198,33"/>
+<area shape="rect" title=" " alt="" coords="151,5,307,31"/>
+<area shape="rect" title=" " alt="" coords="5,79,85,104"/>
+<area shape="poly" title=" " alt="" coords="201,33,89,76,87,71,199,28"/>
+<area shape="rect" title=" " alt="" coords="109,79,176,104"/>
+<area shape="poly" title=" " alt="" coords="217,33,169,72,166,68,214,29"/>
+<area shape="rect" title=" " alt="" coords="200,79,259,104"/>
+<area shape="poly" title=" " alt="" coords="232,31,232,65,227,65,227,31"/>
+<area shape="rect" title=" " alt="" coords="283,79,375,104"/>
+<area shape="poly" title=" " alt="" coords="247,29,303,68,300,73,244,33"/>
+<area shape="rect" title=" " alt="" coords="399,79,462,104"/>
+<area shape="poly" title=" " alt="" coords="263,28,387,72,386,77,261,33"/>
 </map>
 </div>
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="concepts" name="concepts"></a>
+概念</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptNumericType.html">NumericType</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptStringType.html">StringType</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptByteArrayType.html">ByteArrayType</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptValueTypeConcept.html">ValueTypeConcept</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 类型定义</h2></td></tr>
+<tr class="memitem:a1d41f7d77622c203545689588af412cf" id="r_a1d41f7d77622c203545689588af412cf"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="flags_8cppm.html#a1d41f7d77622c203545689588af412cf">UserValueByteArray</a> = std::vector&lt; std::uint8_t &gt;</td></tr>
+<tr class="separator:a1d41f7d77622c203545689588af412cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ba04f5efa8fc4c288182cd88b201176" id="r_a6ba04f5efa8fc4c288182cd88b201176"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="flags_8cppm.html#a6ba04f5efa8fc4c288182cd88b201176">ValueByteArray</a> = <a class="el" href="flags_8cppm.html#a1d41f7d77622c203545689588af412cf">UserValueByteArray</a></td></tr>
+<tr class="separator:a6ba04f5efa8fc4c288182cd88b201176"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03cc25adb31ace4b1d946a03ae4bbe98" id="r_a03cc25adb31ace4b1d946a03ae4bbe98"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="flags_8cppm.html#a03cc25adb31ace4b1d946a03ae4bbe98">ValueString</a> = std::string</td></tr>
+<tr class="separator:a03cc25adb31ace4b1d946a03ae4bbe98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab0b8804e9279ef15d5677d4eff5cdb5" id="r_aab0b8804e9279ef15d5677d4eff5cdb5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="flags_8cppm.html#aab0b8804e9279ef15d5677d4eff5cdb5">UserValueString</a> = <a class="el" href="flags_8cppm.html#a03cc25adb31ace4b1d946a03ae4bbe98">ValueString</a></td></tr>
+<tr class="separator:aab0b8804e9279ef15d5677d4eff5cdb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6d525f0a5a2799ff592b83d7b606be0" id="r_ab6d525f0a5a2799ff592b83d7b606be0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="flags_8cppm.html#ab6d525f0a5a2799ff592b83d7b606be0">ValueType</a> = <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a></td></tr>
 <tr class="separator:ab6d525f0a5a2799ff592b83d7b606be0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -164,6 +187,94 @@ flags.cppm 的引用(Include)关系图:</div>
 <tr class="separator:ac163f1a02efc35bab6ebaf3ca994771e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">类型定义说明</h2>
+<a id="a1d41f7d77622c203545689588af412cf" name="a1d41f7d77622c203545689588af412cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d41f7d77622c203545689588af412cf">&#9670;&#160;</a></span>UserValueByteArray</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="flags_8cppm.html#a1d41f7d77622c203545689588af412cf">UserValueByteArray</a> =  std::vector&lt;std::uint8_t&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aab0b8804e9279ef15d5677d4eff5cdb5" name="aab0b8804e9279ef15d5677d4eff5cdb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab0b8804e9279ef15d5677d4eff5cdb5">&#9670;&#160;</a></span>UserValueString</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="flags_8cppm.html#aab0b8804e9279ef15d5677d4eff5cdb5">UserValueString</a> =  <a class="el" href="flags_8cppm.html#a03cc25adb31ace4b1d946a03ae4bbe98">ValueString</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6ba04f5efa8fc4c288182cd88b201176" name="a6ba04f5efa8fc4c288182cd88b201176"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ba04f5efa8fc4c288182cd88b201176">&#9670;&#160;</a></span>ValueByteArray</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="flags_8cppm.html#a6ba04f5efa8fc4c288182cd88b201176">ValueByteArray</a> =  <a class="el" href="flags_8cppm.html#a1d41f7d77622c203545689588af412cf">UserValueByteArray</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a03cc25adb31ace4b1d946a03ae4bbe98" name="a03cc25adb31ace4b1d946a03ae4bbe98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03cc25adb31ace4b1d946a03ae4bbe98">&#9670;&#160;</a></span>ValueString</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="flags_8cppm.html#a03cc25adb31ace4b1d946a03ae4bbe98">ValueString</a> =  std::string</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ab6d525f0a5a2799ff592b83d7b606be0" name="ab6d525f0a5a2799ff592b83d7b606be0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab6d525f0a5a2799ff592b83d7b606be0">&#9670;&#160;</a></span>ValueType</h2>
 

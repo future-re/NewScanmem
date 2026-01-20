@@ -43,7 +43,7 @@ var searchData=
   ['matchinfo_40',['matchInfo',['../structscan_1_1OldValueAndMatchInfo.html#ae2f389af24189d0c897c3ea1178b4d19',1,'scan::OldValueAndMatchInfo']]],
   ['matchlength_41',['matchLength',['../structscan_1_1OldValueAndMatchInfo.html#aa478a24ba8b133896ed816d25f3e0ba0',1,'scan::OldValueAndMatchInfo']]],
   ['matchneedsuservalue_42',['matchNeedsUserValue',['../types_8cppm.html#a3bc1410dd0463324cb09b5ee2130c8ee',1,'types.cppm']]],
-  ['matchtype_43',['matchType',['../structScanOptions.html#a8655f255aade6fb8e1a5c460ef250c5d',1,'ScanOptions']]],
+  ['matchtype_43',['matchtype',['../structvalue_1_1ParserView.html#aff6f936a1dd70ce26e395db77bf20b07',1,'value::ParserView::matchType()'],['../structScanOptions.html#a8655f255aade6fb8e1a5c460ef250c5d',1,'ScanOptions::matchType']]],
   ['matchusesoldvalue_44',['matchUsesOldValue',['../types_8cppm.html#a6afe1a8713ed8327d1bffe2d79dd49b0',1,'types.cppm']]],
   ['memory_2ecppm_45',['memory.cppm',['../memory_8cppm.html',1,'']]],
   ['memory_5fwriter_2ecppm_46',['memory_writer.cppm',['../memory__writer_8cppm.html',1,'']]],

@@ -96,7 +96,7 @@ $(document).ready(function(){initNavTree('structUserValue.html',''); initResizab
 <a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
 <a href="#pub-attribs">Public 属性</a> &#124;
 <a href="structUserValue-members.html">所有成员列表</a>  </div>
-  <div class="headertitle"><div class="title">UserValue结构体 参考<span class="mlabels"><span class="mlabel">export</span></span><div class="ingroups">模块 <a class="el" href="module_value.html">value</a></div></div></div>
+  <div class="headertitle"><div class="title">UserValue结构体 参考<span class="mlabels"><span class="mlabel">export</span></span><div class="ingroups">模块 <a class="el" href="module_value_8core.html">value.core</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 <div class="dynheader">
@@ -118,73 +118,42 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:ab64a875c9e6f0963059c7f9fe93e7afe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace7509d122f848f7c338401cef3fcf19" id="r_ace7509d122f848f7c338401cef3fcf19"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserValue.html#ace7509d122f848f7c338401cef3fcf19">size</a> () const noexcept -&gt; std::size_t</td></tr>
 <tr class="separator:ace7509d122f848f7c338401cef3fcf19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abece110bbc0545aabfbac3fa2d6a9e6c" id="r_abece110bbc0545aabfbac3fa2d6a9e6c"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptNumericType.html">NumericType</a> T&gt; </td></tr>
+<tr class="memitem:abece110bbc0545aabfbac3fa2d6a9e6c"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structUserValue.html#abece110bbc0545aabfbac3fa2d6a9e6c">getValue</a> () const -&gt; std::optional&lt; T &gt;</td></tr>
+<tr class="separator:abece110bbc0545aabfbac3fa2d6a9e6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab77aa05dc211b939abf566fc380e30b2" id="r_ab77aa05dc211b939abf566fc380e30b2"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptStringType.html">StringType</a> T&gt; </td></tr>
+<tr class="memitem:ab77aa05dc211b939abf566fc380e30b2"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structUserValue.html#ab77aa05dc211b939abf566fc380e30b2">getValue</a> () const -&gt; std::optional&lt; std::string &gt;</td></tr>
+<tr class="separator:ab77aa05dc211b939abf566fc380e30b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50d4f54bedba455dd34ad3109965b683" id="r_a50d4f54bedba455dd34ad3109965b683"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptByteArrayType.html">ByteArrayType</a> T&gt; </td></tr>
+<tr class="memitem:a50d4f54bedba455dd34ad3109965b683"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structUserValue.html#a50d4f54bedba455dd34ad3109965b683">getValue</a> () const -&gt; std::optional&lt; std::vector&lt; std::uint8_t &gt; &gt;</td></tr>
+<tr class="separator:a50d4f54bedba455dd34ad3109965b683"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49b792dc211190661047a6d275102563" id="r_a49b792dc211190661047a6d275102563"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserValue.html#a49b792dc211190661047a6d275102563">flag</a> () const -&gt; <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a></td></tr>
 <tr class="separator:a49b792dc211190661047a6d275102563"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d93b25f84a809a4329c3df3f70b15d9" id="r_a2d93b25f84a809a4329c3df3f70b15d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserValue.html#a2d93b25f84a809a4329c3df3f70b15d9">setFlag</a> (<a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> newFlag)</td></tr>
 <tr class="separator:a2d93b25f84a809a4329c3df3f70b15d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c58035e0c2bfb795be763ca4bca7e83" id="r_a9c58035e0c2bfb795be763ca4bca7e83"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserValue.html#a9c58035e0c2bfb795be763ca4bca7e83">byteData</a> () const -&gt; const std::vector&lt; std::uint8_t &gt; &amp;</td></tr>
 <tr class="separator:a9c58035e0c2bfb795be763ca4bca7e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab74ad53bebf3cff0a0f6c5b8fcf0f56c" id="r_ab74ad53bebf3cff0a0f6c5b8fcf0f56c"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserValue.html#ab74ad53bebf3cff0a0f6c5b8fcf0f56c">byteDataHigh</a> () const -&gt; std::optional&lt; std::vector&lt; std::uint8_t &gt; &gt;</td></tr>
-<tr class="separator:ab74ad53bebf3cff0a0f6c5b8fcf0f56c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24176bab072cee8a8048982ea936bee8" id="r_a24176bab072cee8a8048982ea936bee8"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a24176bab072cee8a8048982ea936bee8"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structUserValue.html#a24176bab072cee8a8048982ea936bee8">value</a> (<a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a> endianness=<a class="el" href="namespaceutils.html#a30b4b3e4177bc7f02df665fa43350c35">utils::getHost</a>()) const -&gt; std::optional&lt; T &gt;</td></tr>
-<tr class="separator:a24176bab072cee8a8048982ea936bee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80b6cc61ba4e0dc23ffa3ef54938256a" id="r_a80b6cc61ba4e0dc23ffa3ef54938256a"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a80b6cc61ba4e0dc23ffa3ef54938256a"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structUserValue.html#a80b6cc61ba4e0dc23ffa3ef54938256a">valueHigh</a> (<a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a> endianness=<a class="el" href="namespaceutils.html#a30b4b3e4177bc7f02df665fa43350c35">utils::getHost</a>()) const -&gt; std::optional&lt; T &gt;</td></tr>
-<tr class="separator:a80b6cc61ba4e0dc23ffa3ef54938256a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ff761555e9738a97a91122369c6851b" id="r_a3ff761555e9738a97a91122369c6851b"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserValue.html#a3ff761555e9738a97a91122369c6851b">byteArrayValue</a> () const noexcept -&gt; std::optional&lt; std::span&lt; const std::uint8_t &gt; &gt;</td></tr>
-<tr class="separator:a3ff761555e9738a97a91122369c6851b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8eaf81fa1fb44183a1e6293bf3336d7e" id="r_a8eaf81fa1fb44183a1e6293bf3336d7e"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserValue.html#a8eaf81fa1fb44183a1e6293bf3336d7e">stringValue</a> () const noexcept -&gt; std::optional&lt; std::string_view &gt;</td></tr>
-<tr class="separator:a8eaf81fa1fb44183a1e6293bf3336d7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
-<tr class="memitem:a96536e4cd526d00a54011d82a6b51754" id="r_a96536e4cd526d00a54011d82a6b51754"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a96536e4cd526d00a54011d82a6b51754"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structUserValue.html#a96536e4cd526d00a54011d82a6b51754">fromScalar</a> (T <a class="el" href="structUserValue.html#a24176bab072cee8a8048982ea936bee8">value</a>, <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a> endianness=<a class="el" href="namespaceutils.html#a30b4b3e4177bc7f02df665fa43350c35">utils::getHost</a>()) -&gt; <a class="el" href="structUserValue.html">UserValue</a></td></tr>
-<tr class="separator:a96536e4cd526d00a54011d82a6b51754"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afea5eee5e8247fe025755fa7a50ace9c" id="r_afea5eee5e8247fe025755fa7a50ace9c"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:afea5eee5e8247fe025755fa7a50ace9c"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structUserValue.html#afea5eee5e8247fe025755fa7a50ace9c">fromScalarRange</a> (T lowValue, T highValue, <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a> endianness=<a class="el" href="namespaceutils.html#a30b4b3e4177bc7f02df665fa43350c35">utils::getHost</a>()) -&gt; <a class="el" href="structUserValue.html">UserValue</a></td></tr>
-<tr class="separator:afea5eee5e8247fe025755fa7a50ace9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a00a79584b98d52454abec754395424" id="r_a1a00a79584b98d52454abec754395424"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserValue.html#a1a00a79584b98d52454abec754395424">fromString</a> (std::string val) -&gt; <a class="el" href="structUserValue.html">UserValue</a></td></tr>
-<tr class="separator:a1a00a79584b98d52454abec754395424"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d308a4ac5e03a3c9be42f7ae784a8b1" id="r_a5d308a4ac5e03a3c9be42f7ae784a8b1"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserValue.html#a5d308a4ac5e03a3c9be42f7ae784a8b1">fromByteArray</a> (std::vector&lt; std::uint8_t &gt; val, std::optional&lt; std::vector&lt; std::uint8_t &gt; &gt; mask=std::nullopt) -&gt; <a class="el" href="structUserValue.html">UserValue</a></td></tr>
-<tr class="separator:a5d308a4ac5e03a3c9be42f7ae784a8b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f446a5eb3f94bdb27ded57de4099173" id="r_a0f446a5eb3f94bdb27ded57de4099173"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptNumericType.html">NumericType</a> T&gt; </td></tr>
+<tr class="memitem:a0f446a5eb3f94bdb27ded57de4099173"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structUserValue.html#a0f446a5eb3f94bdb27ded57de4099173">fromValue</a> (T value) -&gt; <a class="el" href="structUserValue.html">UserValue</a></td></tr>
+<tr class="separator:a0f446a5eb3f94bdb27ded57de4099173"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b624b23eb4c35a25efa0f78a6189398" id="r_a7b624b23eb4c35a25efa0f78a6189398"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptStringType.html">StringType</a> T&gt; </td></tr>
+<tr class="memitem:a7b624b23eb4c35a25efa0f78a6189398"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structUserValue.html#a7b624b23eb4c35a25efa0f78a6189398">fromValue</a> (std::string val) -&gt; <a class="el" href="structUserValue.html">UserValue</a></td></tr>
+<tr class="separator:a7b624b23eb4c35a25efa0f78a6189398"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a756f90d3607a1c5ac0fe9873d5b9ab93" id="r_a756f90d3607a1c5ac0fe9873d5b9ab93"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptByteArrayType.html">ByteArrayType</a> T&gt; </td></tr>
+<tr class="memitem:a756f90d3607a1c5ac0fe9873d5b9ab93"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structUserValue.html#a756f90d3607a1c5ac0fe9873d5b9ab93">fromValue</a> (std::vector&lt; std::uint8_t &gt; val, std::optional&lt; std::vector&lt; std::uint8_t &gt; &gt; mask=std::nullopt) -&gt; <a class="el" href="structUserValue.html">UserValue</a></td></tr>
+<tr class="separator:a756f90d3607a1c5ac0fe9873d5b9ab93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public 属性</h2></td></tr>
-<tr class="memitem:a51563de9860e136ddb03d61e2e096956" id="r_a51563de9860e136ddb03d61e2e096956"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structValue.html">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserValue.html#a51563de9860e136ddb03d61e2e096956">raw</a></td></tr>
-<tr class="separator:a51563de9860e136ddb03d61e2e096956"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1a6b32f24a3c711ec80b55236d1447d" id="r_aa1a6b32f24a3c711ec80b55236d1447d"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="structValue.html">Value</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserValue.html#aa1a6b32f24a3c711ec80b55236d1447d">rangeHigh</a></td></tr>
-<tr class="separator:aa1a6b32f24a3c711ec80b55236d1447d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3f685b0afcb215071a21fcfad4b1d5f" id="r_aa3f685b0afcb215071a21fcfad4b1d5f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structValue.html">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserValue.html#aa3f685b0afcb215071a21fcfad4b1d5f">byteValue</a></td></tr>
+<tr class="separator:aa3f685b0afcb215071a21fcfad4b1d5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a056f41e90861ba52474a794a31a31cd1" id="r_a056f41e90861ba52474a794a31a31cd1"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::vector&lt; std::uint8_t &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserValue.html#a056f41e90861ba52474a794a31a31cd1">byteMask</a></td></tr>
 <tr class="separator:a056f41e90861ba52474a794a31a31cd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">成员函数说明</h2>
-<a id="a3ff761555e9738a97a91122369c6851b" name="a3ff761555e9738a97a91122369c6851b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ff761555e9738a97a91122369c6851b">&#9670;&#160;</a></span>byteArrayValue()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto UserValue::byteArrayValue </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const -&gt; std::optional&lt;std::span&lt;const std::uint8_t&gt;&gt; </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a9c58035e0c2bfb795be763ca4bca7e83" name="a9c58035e0c2bfb795be763ca4bca7e83"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9c58035e0c2bfb795be763ca4bca7e83">&#9670;&#160;</a></span>byteData()</h2>
 
@@ -199,31 +168,6 @@ Public 属性</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const -&gt; const std::vector&lt;std::uint8_t&gt;&amp; </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ab74ad53bebf3cff0a0f6c5b8fcf0f56c" name="ab74ad53bebf3cff0a0f6c5b8fcf0f56c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab74ad53bebf3cff0a0f6c5b8fcf0f56c">&#9670;&#160;</a></span>byteDataHigh()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto UserValue::byteDataHigh </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const -&gt; std::optional&lt;std::vector&lt;std::uint8_t&gt;&gt; </td>
         </tr>
       </table>
   </td>
@@ -310,17 +254,47 @@ Public 属性</h2></td></tr>
 
 </div>
 </div>
-<a id="a5d308a4ac5e03a3c9be42f7ae784a8b1" name="a5d308a4ac5e03a3c9be42f7ae784a8b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5d308a4ac5e03a3c9be42f7ae784a8b1">&#9670;&#160;</a></span>fromByteArray()</h2>
+<a id="a7b624b23eb4c35a25efa0f78a6189398" name="a7b624b23eb4c35a25efa0f78a6189398"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b624b23eb4c35a25efa0f78a6189398">&#9670;&#160;</a></span>fromValue() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="conceptStringType.html">StringType</a> T&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static auto UserValue::fromByteArray </td>
+          <td class="memname">static auto UserValue::fromValue </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>val</em></td><td>)</td>
+          <td> -&gt; <a class="el" href="structUserValue.html">UserValue</a> </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a756f90d3607a1c5ac0fe9873d5b9ab93" name="a756f90d3607a1c5ac0fe9873d5b9ab93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a756f90d3607a1c5ac0fe9873d5b9ab93">&#9670;&#160;</a></span>fromValue() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="conceptByteArrayType.html">ByteArrayType</a> T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static auto UserValue::fromValue </td>
           <td>(</td>
           <td class="paramtype">std::vector&lt; std::uint8_t &gt;&#160;</td>
           <td class="paramname"><em>val</em>, </td>
@@ -346,108 +320,109 @@ Public 属性</h2></td></tr>
 
 </div>
 </div>
-<a id="a96536e4cd526d00a54011d82a6b51754" name="a96536e4cd526d00a54011d82a6b51754"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a96536e4cd526d00a54011d82a6b51754">&#9670;&#160;</a></span>fromScalar()</h2>
+<a id="a0f446a5eb3f94bdb27ded57de4099173" name="a0f446a5eb3f94bdb27ded57de4099173"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f446a5eb3f94bdb27ded57de4099173">&#9670;&#160;</a></span>fromValue() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T &gt; </div>
+template&lt;<a class="el" href="conceptNumericType.html">NumericType</a> T&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static auto UserValue::fromScalar </td>
+          <td class="memname">static auto UserValue::fromValue </td>
           <td>(</td>
           <td class="paramtype">T&#160;</td>
-          <td class="paramname"><em>value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a>&#160;</td>
-          <td class="paramname"><em>endianness</em> = <code><a class="el" href="namespaceutils.html#a30b4b3e4177bc7f02df665fa43350c35">utils::getHost</a>()</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; <a class="el" href="structUserValue.html">UserValue</a> </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="afea5eee5e8247fe025755fa7a50ace9c" name="afea5eee5e8247fe025755fa7a50ace9c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afea5eee5e8247fe025755fa7a50ace9c">&#9670;&#160;</a></span>fromScalarRange()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static auto UserValue::fromScalarRange </td>
-          <td>(</td>
-          <td class="paramtype">T&#160;</td>
-          <td class="paramname"><em>lowValue</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">T&#160;</td>
-          <td class="paramname"><em>highValue</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a>&#160;</td>
-          <td class="paramname"><em>endianness</em> = <code><a class="el" href="namespaceutils.html#a30b4b3e4177bc7f02df665fa43350c35">utils::getHost</a>()</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; <a class="el" href="structUserValue.html">UserValue</a> </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a1a00a79584b98d52454abec754395424" name="a1a00a79584b98d52454abec754395424"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a00a79584b98d52454abec754395424">&#9670;&#160;</a></span>fromString()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static auto UserValue::fromString </td>
-          <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>val</em></td><td>)</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
           <td> -&gt; <a class="el" href="structUserValue.html">UserValue</a> </td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab77aa05dc211b939abf566fc380e30b2" name="ab77aa05dc211b939abf566fc380e30b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab77aa05dc211b939abf566fc380e30b2">&#9670;&#160;</a></span>getValue() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="conceptStringType.html">StringType</a> T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto UserValue::getValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt; std::optional&lt;std::string&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a50d4f54bedba455dd34ad3109965b683" name="a50d4f54bedba455dd34ad3109965b683"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50d4f54bedba455dd34ad3109965b683">&#9670;&#160;</a></span>getValue() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="conceptByteArrayType.html">ByteArrayType</a> T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto UserValue::getValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt; std::optional&lt;std::vector&lt;std::uint8_t&gt;&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abece110bbc0545aabfbac3fa2d6a9e6c" name="abece110bbc0545aabfbac3fa2d6a9e6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abece110bbc0545aabfbac3fa2d6a9e6c">&#9670;&#160;</a></span>getValue() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="conceptNumericType.html">NumericType</a> T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto UserValue::getValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt; std::optional&lt;T&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -505,87 +480,6 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a8eaf81fa1fb44183a1e6293bf3336d7e" name="a8eaf81fa1fb44183a1e6293bf3336d7e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8eaf81fa1fb44183a1e6293bf3336d7e">&#9670;&#160;</a></span>stringValue()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto UserValue::stringValue </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const -&gt; std::optional&lt;std::string_view&gt; </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a24176bab072cee8a8048982ea936bee8" name="a24176bab072cee8a8048982ea936bee8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a24176bab072cee8a8048982ea936bee8">&#9670;&#160;</a></span>value()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto UserValue::value </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a>&#160;</td>
-          <td class="paramname"><em>endianness</em> = <code><a class="el" href="namespaceutils.html#a30b4b3e4177bc7f02df665fa43350c35">utils::getHost</a>()</code></td><td>)</td>
-          <td> const -&gt; std::optional&lt;T&gt; </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a80b6cc61ba4e0dc23ffa3ef54938256a" name="a80b6cc61ba4e0dc23ffa3ef54938256a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80b6cc61ba4e0dc23ffa3ef54938256a">&#9670;&#160;</a></span>valueHigh()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto UserValue::valueHigh </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a>&#160;</td>
-          <td class="paramname"><em>endianness</em> = <code><a class="el" href="namespaceutils.html#a30b4b3e4177bc7f02df665fa43350c35">utils::getHost</a>()</code></td><td>)</td>
-          <td> const -&gt; std::optional&lt;T&gt; </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">类成员变量说明</h2>
 <a id="a056f41e90861ba52474a794a31a31cd1" name="a056f41e90861ba52474a794a31a31cd1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a056f41e90861ba52474a794a31a31cd1">&#9670;&#160;</a></span>byteMask</h2>
@@ -601,28 +495,14 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="aa1a6b32f24a3c711ec80b55236d1447d" name="aa1a6b32f24a3c711ec80b55236d1447d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1a6b32f24a3c711ec80b55236d1447d">&#9670;&#160;</a></span>rangeHigh</h2>
+<a id="aa3f685b0afcb215071a21fcfad4b1d5f" name="aa3f685b0afcb215071a21fcfad4b1d5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3f685b0afcb215071a21fcfad4b1d5f">&#9670;&#160;</a></span>byteValue</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;<a class="el" href="structValue.html">Value</a>&gt; UserValue::rangeHigh</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a51563de9860e136ddb03d61e2e096956" name="a51563de9860e136ddb03d61e2e096956"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51563de9860e136ddb03d61e2e096956">&#9670;&#160;</a></span>raw</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structValue.html">Value</a> UserValue::raw</td>
+          <td class="memname"><a class="el" href="structValue.html">Value</a> UserValue::byteValue</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -630,7 +510,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <hr/>该结构体的文档由以下文件生成:<ul>
-<li>src/value/<a class="el" href="value_8cppm.html">value.cppm</a></li>
+<li>src/value/<a class="el" href="core_8cppm.html">core.cppm</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

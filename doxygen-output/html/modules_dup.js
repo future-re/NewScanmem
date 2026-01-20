@@ -44,10 +44,13 @@ var modules_dup =
     [ "ui.user_input", "module_ui_8user__input.html", "module_ui_8user__input" ],
     [ "utils.endianness", "module_utils_8endianness.html", "module_utils_8endianness" ],
     [ "utils.logging", "module_utils_8logging.html", "module_utils_8logging" ],
+    [ "utils.parserStr", "module_utils_8parserStr.html", "module_utils_8parserStr" ],
     [ "utils.read_helpers", "module_utils_8read__helpers.html", "module_utils_8read__helpers" ],
     [ "utils.sets", "module_utils_8sets.html", "module_utils_8sets" ],
     [ "utils.string", "module_utils_8string.html", "module_utils_8string" ],
+    [ "value.core", "module_value_8core.html", "module_value_8core" ],
     [ "value.flags", "module_value_8flags.html", "module_value_8flags" ],
     [ "value.parser", "module_value_8parser.html", "module_value_8parser" ],
-    [ "value", "module_value.html", "module_value" ]
+    [ "value", "module_value.html", null ],
+    [ "value.view", "module_value_8view.html", "module_value_8view" ]
 ];

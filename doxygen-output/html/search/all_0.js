@@ -18,6 +18,7 @@ var searchData=
   ['appendbytestoswath_15',['appendBytesToSwath',['../engine_8cppm.html#acd4ab87128e7c0509a3b75a88ddc71da',1,'engine.cppm']]],
   ['appendrange_16',['appendRange',['../classscan_1_1MatchesAndOldValuesSwath.html#a2d75740077358246210e676ca71d4d00',1,'scan::MatchesAndOldValuesSwath']]],
   ['application_17',['application',['../classcli_1_1Application.html',1,'cli::Application'],['../classcli_1_1Application.html#acc6583cfc6748cf350119214c79966d8',1,'cli::Application::Application()']]],
-  ['asspan_18',['asSpan',['../structcore_1_1Region.html#abb0a122c3549bc47e4d48fa3514dbde6',1,'core::Region']]],
-  ['autobaseline_19',['autoBaseline',['../structcli_1_1AppConfig.html#a96b0080f81fb47a23c569e3b3bc39e61',1,'cli::AppConfig']]]
+  ['as_18',['as',['../classvalue_1_1ValueViewBase.html#aa7e2bdd68fc83ca16567fed3b8602d73',1,'value::ValueViewBase']]],
+  ['asspan_19',['asSpan',['../structcore_1_1Region.html#abb0a122c3549bc47e4d48fa3514dbde6',1,'core::Region']]],
+  ['autobaseline_20',['autoBaseline',['../structcli_1_1AppConfig.html#a96b0080f81fb47a23c569e3b3bc39e61',1,'cli::AppConfig']]]
 ];
