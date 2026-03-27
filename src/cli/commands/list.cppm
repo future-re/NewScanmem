@@ -13,14 +13,9 @@ module;
 
 export module cli.commands.list;
 
+import app.result_service;
 import cli.command;
 import cli.session;
-import ui.show_message;
-import core.scanner;
-import core.region_classifier;
-import core.match;
-import core.match_formatter;
-import utils.endianness;
 
 export namespace cli::commands {
 
@@ -57,31 +52,16 @@ class ListCommand : public Command {
                 return std::unexpected("Invalid limit: " + args[0]);
             }
         }
-
-        // 创建区域分类器（可选）
-        auto classifierRes = core::RegionClassifier::create(m_session->pid);
-        std::optional<core::RegionClassifier> classifier;
-        if (classifierRes) {
-            classifier = std::move(*classifierRes);
+        auto result = app::ResultService::showCurrentMatches(
+            {.scanner = m_session->scanner.get(),
+             .pid = m_session->pid,
+             .limit = limit,
+             .showRegion = true,
+             .showIndex = true,
+             .endianness = m_session->endianness});
+        if (!result) {
+            return std::unexpected(result.error());
         }
-
-        // 收集匹配数据
-        core::MatchCollector collector{std::move(classifier)};
-        core::MatchCollectionOptions collectOptions{.limit = limit,
-                                                    .collectRegion = true};
-
-        auto* scanner = m_session->scanner.get();
-        auto [entries, totalCount] =
-            collector.collect(*scanner, collectOptions);
-
-        // 格式化显示
-        core::FormatOptions formatOptions{
-            .showRegion = true,
-            .showIndex = true,
-            .bigEndianDisplay =
-                (m_session->endianness == utils::Endianness::BIG),
-            .dataType = scanner->getLastDataType()};
-        core::MatchFormatter::display(entries, totalCount, formatOptions);
 
         return CommandResult{.success = true, .message = ""};
     }

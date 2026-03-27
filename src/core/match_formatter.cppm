@@ -156,11 +156,13 @@ class MatchFormatter {
         for (const auto& entry : entries) {
             auto formattedValue = formatValueByType(
                 entry.value, options.dataType, options.bigEndianDisplay);
+            const auto formattedRegion = std::format("[{}]", entry.region);
 
             if (options.showIndex && options.showRegion) {
                 ui::MessagePrinter::info(
                     std::format("{:<6} 0x{:016x}  {:<12} {}", entry.index,
-                                entry.address, formattedValue, entry.region));
+                                entry.address, formattedValue,
+                                formattedRegion));
             } else if (options.showIndex) {
                 ui::MessagePrinter::info(std::format("{:<6} 0x{:016x}  {}",
                                                      entry.index, entry.address,
@@ -168,7 +170,7 @@ class MatchFormatter {
             } else if (options.showRegion) {
                 ui::MessagePrinter::info(
                     std::format("0x{:016x}  {:<12} {}", entry.address,
-                                formattedValue, entry.region));
+                                formattedValue, formattedRegion));
             } else {
                 ui::MessagePrinter::info(std::format(
                     "0x{:016x}  {}", entry.address, formattedValue));

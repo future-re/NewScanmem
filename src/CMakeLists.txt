@@ -30,6 +30,10 @@ set(MODULE_SOURCES
     ui/console.cppm
     ui/show_message.cppm
     ui/user_input.cppm
+
+    # Application services
+    app/scan_service.cppm
+    app/result_service.cppm
     
     # CLI command system
     cli/command.cppm
@@ -80,10 +84,7 @@ set(MODULE_SOURCES
     scan/engine.cppm
     scan/co_engine.cppm
     scan/filter.cppm
-    
-    # Value parser - 依赖 scan.types
-    value/parser.cppm
-    
+
     scanmem.cppm
 )
 

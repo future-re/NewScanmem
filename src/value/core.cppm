@@ -1,6 +1,7 @@
 module;
 #include <algorithm>
 #include <array>
+#include <bit>
 #include <cstddef>
 #include <cstdint>
 #include <cstring>
@@ -59,6 +60,7 @@ export struct Value {
 // ============================================================================
 export struct UserValue {
     Value byteValue;  // Underlying byte value
+    std::optional<Value> secondaryByteValue;  // Optional high value for ranges
     std::optional<std::vector<std::uint8_t>>
         byteMask;  // 0xFF=fixed, 0x00=wildcard (only for byte arrays)
 
@@ -82,12 +84,21 @@ export struct UserValue {
         return userValue;
     }
 
+    template <NumericType T>
+    static auto fromScalar(T value) -> UserValue {
+        return fromValue<T>(value);
+    }
+
     template <StringType T>
     static auto fromValue(std::string val) -> UserValue {
         UserValue userValue;
         userValue.byteValue.flags = MatchFlags::STRING;
         userValue.byteValue.bytes.assign(val.begin(), val.end());
         return userValue;
+    }
+
+    static auto fromString(std::string val) -> UserValue {
+        return fromValue<std::string>(std::move(val));
     }
 
     template <ByteArrayType T>
@@ -99,6 +110,14 @@ export struct UserValue {
         userValue.byteValue.bytes = std::move(val);
         userValue.byteMask = std::move(mask);
         return userValue;
+    }
+
+    static auto fromByteArray(
+        std::vector<std::uint8_t> val,
+        std::optional<std::vector<std::uint8_t>> mask = std::nullopt)
+        -> UserValue {
+        return fromValue<std::vector<std::uint8_t>>(std::move(val),
+                                                    std::move(mask));
     }
 
     template <NumericType T>
@@ -138,6 +157,15 @@ export struct UserValue {
     [[nodiscard]] auto byteData() const -> const std::vector<std::uint8_t>& {
         return byteValue.bytes;
     }
+
+    [[nodiscard]] auto stringValue() const -> std::optional<std::string> {
+        return getValue<std::string>();
+    }
+
+    [[nodiscard]] auto byteArrayValue() const
+        -> std::optional<std::vector<std::uint8_t>> {
+        return getValue<std::vector<std::uint8_t>>();
+    }
 };
 
 // ============================================================================
@@ -173,3 +201,29 @@ struct formatter<UserValue> {
 }  // namespace std
 
 export using UserValueRange = std::pair<UserValue, UserValue>;
+
+export template <NumericType T>
+[[nodiscard]] inline auto userValueAs(const UserValue& value)
+    -> std::optional<T> {
+    return value.getValue<T>();
+}
+
+export template <NumericType T>
+[[nodiscard]] inline auto userValueHighAs(const UserValue& value)
+    -> std::optional<T> {
+    if (!value.secondaryByteValue.has_value()) {
+        return std::nullopt;
+    }
+    const auto REQUIRED = flagForType<T>();
+    if ((value.secondaryByteValue->flags & REQUIRED) == MatchFlags::EMPTY) {
+        return std::nullopt;
+    }
+    if (value.secondaryByteValue->size() != sizeof(T)) {
+        return std::nullopt;
+    }
+
+    T resultValue{};
+    std::copy_n(value.secondaryByteValue->data(), sizeof(T),
+                reinterpret_cast<std::uint8_t*>(&resultValue));
+    return resultValue;
+}

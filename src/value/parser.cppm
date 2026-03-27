@@ -31,6 +31,10 @@ template <typename T, typename Parser>
                                       size_t startIndex, Parser parser)
     -> std::optional<UserValue>;
 
+[[nodiscard]] inline auto buildUserValueRange(
+    ScanDataType dataType, const std::vector<std::string>& args,
+    size_t startIndex) -> std::optional<UserValueRange>;
+
 namespace detail {
 [[nodiscard]] inline auto parseStringValue(const std::vector<std::string>& args,
                                            size_t startIndex)
@@ -315,6 +319,17 @@ template <typename T, typename Parser>
     auto needRange = (matchType == ScanMatchType::MATCH_RANGE);
     if (needRange && (startIndex + 1 >= args.size())) {
         return std::nullopt;
+    }
+
+    if (needRange) {
+        auto rangeValue = buildUserValueRange(dataType, args, startIndex);
+        if (!rangeValue) {
+            return std::nullopt;
+        }
+
+        auto result = std::move(rangeValue->first);
+        result.secondaryByteValue = std::move(rangeValue->second.byteValue);
+        return result;
     }
 
     switch (dataType) {

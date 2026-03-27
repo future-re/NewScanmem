@@ -14,15 +14,14 @@ module;
 
 export module cli.commands.scan;
 
+import app.result_service;
+import app.scan_service;
 import cli.command;
 import cli.session;
-import ui.show_message;
-import core.scanner;
-import scan.engine;
 import scan.types;
 import value;
 import value.parser;
-import cli.commands.list;
+import ui.show_message;
 import utils.logging;
 
 export namespace cli::commands {
@@ -105,11 +104,6 @@ class ScanCommand : public Command {
         auto matchType = *value::parseMatchType(args[1]);
         utils::Logger::debug("Parsed MatchType: {}",
                              static_cast<int>(matchType));
-        ScanOptions opts;
-        opts.dataType = dataType;
-        opts.matchType = matchType;
-        opts.regionLevel = m_session->regionLevel;
-
         std::optional<UserValue> userVal;
         size_t startIdx = 2;
         if (matchNeedsUserValue(matchType)) {
@@ -124,17 +118,34 @@ class ScanCommand : public Command {
                                      userVal->size());
             }
         }
-        auto res = userVal.has_value() ? scanner->scan(opts, *userVal, true)
-                                       : scanner->scan(opts, true);
-        if (!res) {
-            utils::Logger::error("Scan failed: {}", res.error());
-            return std::unexpected(res.error());
+
+        app::ScanRequest request{.scanner = scanner,
+                                 .regionLevel = m_session->regionLevel,
+                                 .dataType = dataType,
+                                 .matchType = matchType,
+                                 .userValue = userVal,
+                                 .saveToHistory = true};
+        auto result = app::ScanService::run(request);
+        if (!result) {
+            utils::Logger::error("Scan failed: {}", result.error());
+            return std::unexpected(result.error());
         }
-        ui::MessagePrinter::info(
-            std::format("Current match count: {}", scanner->getMatchCount()));
+
+        ui::MessagePrinter::info(std::format("Current match count: {}",
+                                             result->matchCount));
         utils::Logger::info("Scan command finished.");
-        ListCommand listCmd(*m_session);
-        (void)listCmd.execute({});
+
+        auto previewResult = app::ResultService::showCurrentMatches(
+            {.scanner = scanner,
+             .pid = m_session->pid,
+             .limit = 20,
+             .showRegion = true,
+             .showIndex = true,
+             .endianness = m_session->endianness});
+        if (!previewResult) {
+            return std::unexpected(previewResult.error());
+        }
+
         return CommandResult{.success = true, .message = ""};
     }
 
