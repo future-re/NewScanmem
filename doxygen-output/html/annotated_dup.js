@@ -1,5 +1,12 @@
 var annotated_dup =
 [
+    [ "app", "namespaceapp.html", [
+      [ "CurrentMatchListRequest", "structapp_1_1CurrentMatchListRequest.html", "structapp_1_1CurrentMatchListRequest" ],
+      [ "ResultService", "classapp_1_1ResultService.html", null ],
+      [ "ScanExecutionResult", "structapp_1_1ScanExecutionResult.html", "structapp_1_1ScanExecutionResult" ],
+      [ "ScanRequest", "structapp_1_1ScanRequest.html", "structapp_1_1ScanRequest" ],
+      [ "ScanService", "classapp_1_1ScanService.html", null ]
+    ] ],
     [ "cli", "namespacecli.html", [
       [ "commands", "namespacecli_1_1commands.html", [
         [ "CountCommand", "classcli_1_1commands_1_1CountCommand.html", "classcli_1_1commands_1_1CountCommand" ],

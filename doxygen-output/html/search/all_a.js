@@ -1,7 +1,7 @@
 var searchData=
 [
   ['length_0',['length',['../structByteMatch.html#aa02fcc654bc8ef25719c3c6f37f70bdd',1,'ByteMatch']]],
-  ['limit_1',['limit',['../structcore_1_1MatchCollectionOptions.html#aa19aa7b2946f235c0ca8c89e9c1ce322',1,'core::MatchCollectionOptions']]],
+  ['limit_1',['limit',['../structapp_1_1CurrentMatchListRequest.html#a06345baa9adc762a6ed4d6f943d7d41c',1,'app::CurrentMatchListRequest::limit'],['../structcore_1_1MatchCollectionOptions.html#aa19aa7b2946f235c0ca8c89e9c1ce322',1,'core::MatchCollectionOptions::limit']]],
   ['list_2ecppm_2',['list.cppm',['../list_8cppm.html',1,'']]],
   ['listcommand_3',['listcommand',['../classcli_1_1commands_1_1ListCommand.html',1,'cli::commands::ListCommand'],['../classcli_1_1commands_1_1ListCommand.html#a7f5abf3884ffdf9cba8ce41debb783a8',1,'cli::commands::ListCommand::ListCommand()']]],
   ['little_4',['LITTLE',['../namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cca1314341b466dcb5e2c880b76414c49fe',1,'utils']]],

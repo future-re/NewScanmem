@@ -1,5 +1,7 @@
 var modules_dup =
 [
+    [ "app.result_service", "module_app_8result__service.html", "module_app_8result__service" ],
+    [ "app.scan_service", "module_app_8scan__service.html", "module_app_8scan__service" ],
     [ "cli.app", "module_cli_8app.html", "module_cli_8app" ],
     [ "cli.app_config", "module_cli_8app__config.html", "module_cli_8app__config" ],
     [ "cli.command", "module_cli_8command.html", "module_cli_8command" ],

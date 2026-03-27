@@ -1,5 +1,6 @@
 var namespaces_dup =
 [
+    [ "app", "namespaceapp.html", "namespaceapp" ],
     [ "cli", "namespacecli.html", "namespacecli" ],
     [ "core", "namespacecore.html", "namespacecore" ],
     [ "detail", "namespacedetail.html", [

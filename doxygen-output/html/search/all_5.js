@@ -23,11 +23,13 @@ var searchData=
   ['formatoptions_20',['FormatOptions',['../structcore_1_1FormatOptions.html',1,'core']]],
   ['formatter_3c_20uservalue_20_3e_21',['formatter&lt; UserValue &gt;',['../structstd_1_1formatter_3_01UserValue_01_4.html',1,'std']]],
   ['formatvaluebytype_22',['formatValueByType',['../namespacecore.html#a8fc2c70ddd2ac4ab5bcbd567bae58e1b',1,'core']]],
-  ['frombytes_23',['fromBytes',['../structUserInput.html#a06a86b884e1d4bd734caedaa0b54a266',1,'UserInput']]],
-  ['frombyteswithmask_24',['fromBytesWithMask',['../structUserInput.html#a2504c02db8a3b6d41eb7190bc5f4030a',1,'UserInput']]],
-  ['fromnumber_25',['fromNumber',['../structUserInput.html#adb9379c35d95bf355c49a230889fec4d',1,'UserInput']]],
-  ['fromrange_26',['fromRange',['../structUserInput.html#a034094d4736d9cad00ac20b29ad2a115',1,'UserInput']]],
-  ['fromstring_27',['fromString',['../structUserInput.html#a03ad1a1b8db938ff300f66e73d075912',1,'UserInput']]],
-  ['fromtypenames_28',['fromTypeNames',['../classcore_1_1RegionFilter.html#a77865c5183024d01964421e08940b9b1',1,'core::RegionFilter']]],
-  ['fromvalue_29',['fromvalue',['../structUserValue.html#a756f90d3607a1c5ac0fe9873d5b9ab93',1,'UserValue::fromValue(std::vector&lt; std::uint8_t &gt; val, std::optional&lt; std::vector&lt; std::uint8_t &gt; &gt; mask=std::nullopt) -&gt; UserValue'],['../structUserValue.html#a7b624b23eb4c35a25efa0f78a6189398',1,'UserValue::fromValue(std::string val) -&gt; UserValue'],['../structUserValue.html#a0f446a5eb3f94bdb27ded57de4099173',1,'UserValue::fromValue(T value) -&gt; UserValue']]]
+  ['frombytearray_23',['fromByteArray',['../structUserValue.html#a5d308a4ac5e03a3c9be42f7ae784a8b1',1,'UserValue']]],
+  ['frombytes_24',['fromBytes',['../structUserInput.html#a06a86b884e1d4bd734caedaa0b54a266',1,'UserInput']]],
+  ['frombyteswithmask_25',['fromBytesWithMask',['../structUserInput.html#a2504c02db8a3b6d41eb7190bc5f4030a',1,'UserInput']]],
+  ['fromnumber_26',['fromNumber',['../structUserInput.html#adb9379c35d95bf355c49a230889fec4d',1,'UserInput']]],
+  ['fromrange_27',['fromRange',['../structUserInput.html#a034094d4736d9cad00ac20b29ad2a115',1,'UserInput']]],
+  ['fromscalar_28',['fromScalar',['../structUserValue.html#ab14038c252ffa266dc4ceaeba51ab3f6',1,'UserValue']]],
+  ['fromstring_29',['fromstring',['../structUserValue.html#a1a00a79584b98d52454abec754395424',1,'UserValue::fromString()'],['../structUserInput.html#a03ad1a1b8db938ff300f66e73d075912',1,'UserInput::fromString()']]],
+  ['fromtypenames_30',['fromTypeNames',['../classcore_1_1RegionFilter.html#a77865c5183024d01964421e08940b9b1',1,'core::RegionFilter']]],
+  ['fromvalue_31',['fromvalue',['../structUserValue.html#a756f90d3607a1c5ac0fe9873d5b9ab93',1,'UserValue::fromValue(std::vector&lt; std::uint8_t &gt; val, std::optional&lt; std::vector&lt; std::uint8_t &gt; &gt; mask=std::nullopt) -&gt; UserValue'],['../structUserValue.html#a7b624b23eb4c35a25efa0f78a6189398',1,'UserValue::fromValue(std::string val) -&gt; UserValue'],['../structUserValue.html#a0f446a5eb3f94bdb27ded57de4099173',1,'UserValue::fromValue(T value) -&gt; UserValue']]]
 ];

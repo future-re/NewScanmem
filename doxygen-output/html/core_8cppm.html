@@ -94,12 +94,14 @@ $(document).ready(function(){initNavTree('core_8cppm.html',''); initResizable();
   <div class="summary">
 <a href="#nested-classes">类</a> &#124;
 <a href="#namespaces">命名空间</a> &#124;
-<a href="#typedef-members">类型定义</a>  </div>
+<a href="#typedef-members">类型定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
   <div class="headertitle"><div class="title">core.cppm 文件参考<div class="ingroups">模块 <a class="el" href="module_value_8core.html">value.core</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;array&gt;</code><br />
+<code>#include &lt;bit&gt;</code><br />
 <code>#include &lt;cstddef&gt;</code><br />
 <code>#include &lt;cstdint&gt;</code><br />
 <code>#include &lt;cstring&gt;</code><br />
@@ -114,40 +116,41 @@ core.cppm 的引用(Include)关系图:</div>
 <div class="dyncontent">
 <div class="center"><img src="core_8cppm__incl.png" border="0" usemap="#asrc_2value_2core_8cppm" alt=""/></div>
 <map name="asrc_2value_2core_8cppm" id="asrc_2value_2core_8cppm">
-<area shape="rect" title=" " alt="" coords="463,5,617,31"/>
+<area shape="rect" title=" " alt="" coords="459,5,613,31"/>
 <area shape="rect" title=" " alt="" coords="5,79,91,104"/>
-<area shape="poly" title=" " alt="" coords="463,31,302,51,105,81,104,76,302,46,463,25"/>
+<area shape="poly" title=" " alt="" coords="459,31,300,51,104,81,104,76,299,46,459,26"/>
 <area shape="rect" title=" " alt="" coords="115,79,171,104"/>
-<area shape="poly" title=" " alt="" coords="464,32,337,52,185,81,184,76,336,47,463,27"/>
-<area shape="rect" title=" " alt="" coords="195,79,266,104"/>
-<area shape="poly" title=" " alt="" coords="490,33,280,81,279,76,489,28"/>
-<area shape="rect" title=" " alt="" coords="409,152,476,177"/>
-<area shape="poly" title=" " alt="" coords="528,33,506,54,484,80,466,111,454,140,449,138,461,108,479,77,502,50,524,29"/>
-<area shape="rect" title=" " alt="" coords="712,79,779,104"/>
-<area shape="poly" title=" " alt="" coords="574,28,700,72,698,77,572,33"/>
-<area shape="rect" title=" " alt="" coords="803,79,869,104"/>
-<area shape="poly" title=" " alt="" coords="590,28,790,76,788,81,588,33"/>
-<area shape="rect" title=" " alt="" coords="893,79,968,104"/>
-<area shape="poly" title=" " alt="" coords="613,28,880,76,879,81,612,33"/>
-<area shape="rect" title=" " alt="" coords="604,152,663,177"/>
-<area shape="poly" title=" " alt="" coords="556,29,579,50,601,77,617,108,629,138,624,140,612,110,596,80,575,54,552,33"/>
-<area shape="rect" title=" " alt="" coords="687,152,750,177"/>
-<area shape="poly" title=" " alt="" coords="558,29,624,77,698,141,695,145,621,81,555,33"/>
-<area shape="rect" href="endianness_8cppm.html" title=" " alt="" coords="291,79,419,104"/>
-<area shape="poly" title=" " alt="" coords="511,33,398,76,397,71,509,28"/>
-<area shape="rect" href="flags_8cppm.html" title=" " alt="" coords="493,79,587,104"/>
-<area shape="poly" title=" " alt="" coords="543,31,543,65,537,65,537,31"/>
-<area shape="poly" title=" " alt="" coords="370,102,419,141,416,145,367,106"/>
-<area shape="rect" title=" " alt="" coords="230,152,269,177"/>
-<area shape="poly" title=" " alt="" coords="339,106,279,147,276,142,336,102"/>
-<area shape="rect" title=" " alt="" coords="293,152,385,177"/>
-<area shape="poly" title=" " alt="" coords="355,105,347,139,342,138,349,104"/>
-<area shape="poly" title=" " alt="" coords="526,106,471,146,468,141,523,102"/>
-<area shape="poly" title=" " alt="" coords="557,102,609,141,606,146,553,106"/>
-<area shape="poly" title=" " alt="" coords="570,102,678,144,676,149,568,107"/>
-<area shape="poly" title=" " alt="" coords="509,107,385,150,383,145,507,102"/>
-<area shape="rect" title=" " alt="" coords="500,152,580,177"/>
-<area shape="poly" title=" " alt="" coords="543,104,543,138,537,138,537,104"/>
+<area shape="poly" title=" " alt="" coords="461,33,334,54,190,81,185,82,184,77,189,76,333,49,460,28"/>
+<area shape="rect" title=" " alt="" coords="178,152,217,177"/>
+<area shape="poly" title=" " alt="" coords="459,26,414,32,365,42,315,58,269,81,236,110,213,142,208,139,233,106,267,76,313,53,363,37,413,27,459,21"/>
+<area shape="rect" title=" " alt="" coords="667,79,738,104"/>
+<area shape="poly" title=" " alt="" coords="564,28,664,71,662,76,562,33"/>
+<area shape="rect" title=" " alt="" coords="241,152,308,177"/>
+<area shape="poly" title=" " alt="" coords="459,30,356,49,313,63,286,81,278,93,274,108,273,139,268,138,269,107,273,91,282,77,311,59,355,44,458,25"/>
+<area shape="rect" title=" " alt="" coords="763,79,829,104"/>
+<area shape="poly" title=" " alt="" coords="578,28,750,75,749,80,577,33"/>
+<area shape="rect" title=" " alt="" coords="853,79,920,104"/>
+<area shape="poly" title=" " alt="" coords="600,28,840,76,839,81,599,33"/>
+<area shape="rect" title=" " alt="" coords="944,79,1019,104"/>
+<area shape="poly" title=" " alt="" coords="613,26,757,47,931,76,930,81,756,52,613,32"/>
+<area shape="rect" title=" " alt="" coords="553,152,612,177"/>
+<area shape="poly" title=" " alt="" coords="542,30,577,138,572,140,537,32"/>
+<area shape="rect" title=" " alt="" coords="637,152,699,177"/>
+<area shape="poly" title=" " alt="" coords="549,29,650,140,646,143,545,33"/>
+<area shape="rect" href="endianness_8cppm.html" title=" " alt="" coords="296,79,424,104"/>
+<area shape="poly" title=" " alt="" coords="509,33,403,76,401,71,507,28"/>
+<area shape="rect" href="flags_8cppm.html" title=" " alt="" coords="448,79,541,104"/>
+<area shape="poly" title=" " alt="" coords="531,32,511,68,506,65,527,30"/>
+<area shape="poly" title=" " alt="" coords="335,106,230,152,228,147,333,102"/>
+<area shape="poly" title=" " alt="" coords="348,106,301,145,297,141,345,102"/>
+<area shape="rect" title=" " alt="" coords="333,152,425,177"/>
+<area shape="poly" title=" " alt="" coords="366,104,375,138,370,140,361,105"/>
+<area shape="poly" title=" " alt="" coords="460,107,322,151,320,146,459,101"/>
+<area shape="poly" title=" " alt="" coords="510,102,559,141,556,145,507,106"/>
+<area shape="poly" title=" " alt="" coords="524,102,628,144,626,149,522,106"/>
+<area shape="poly" title=" " alt="" coords="477,106,411,147,408,142,475,102"/>
+<area shape="rect" title=" " alt="" coords="449,152,529,177"/>
+<area shape="poly" title=" " alt="" coords="496,105,494,139,489,138,491,104"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -169,6 +172,15 @@ core.cppm 的引用(Include)关系图:</div>
 类型定义</h2></td></tr>
 <tr class="memitem:a1bd4a9d0e06aae509377546df72a7528" id="r_a1bd4a9d0e06aae509377546df72a7528"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core_8cppm.html#a1bd4a9d0e06aae509377546df72a7528">UserValueRange</a> = std::pair&lt; <a class="el" href="structUserValue.html">UserValue</a>, <a class="el" href="structUserValue.html">UserValue</a> &gt;</td></tr>
 <tr class="separator:a1bd4a9d0e06aae509377546df72a7528"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ae22b16bf445bb0ad1154680a026e49f3" id="r_ae22b16bf445bb0ad1154680a026e49f3"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptNumericType.html">NumericType</a> T&gt; </td></tr>
+<tr class="memitem:ae22b16bf445bb0ad1154680a026e49f3"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8cppm.html#ae22b16bf445bb0ad1154680a026e49f3">userValueAs</a> (const <a class="el" href="structUserValue.html">UserValue</a> &amp;value) -&gt; std::optional&lt; T &gt;</td></tr>
+<tr class="separator:ae22b16bf445bb0ad1154680a026e49f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2e3c9521d996fe8070bfd4e4bc0cb8d" id="r_ae2e3c9521d996fe8070bfd4e4bc0cb8d"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptNumericType.html">NumericType</a> T&gt; </td></tr>
+<tr class="memitem:ae2e3c9521d996fe8070bfd4e4bc0cb8d"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8cppm.html#ae2e3c9521d996fe8070bfd4e4bc0cb8d">userValueHighAs</a> (const <a class="el" href="structUserValue.html">UserValue</a> &amp;value) -&gt; std::optional&lt; T &gt;</td></tr>
+<tr class="separator:ae2e3c9521d996fe8070bfd4e4bc0cb8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">类型定义说明</h2>
 <a id="a1bd4a9d0e06aae509377546df72a7528" name="a1bd4a9d0e06aae509377546df72a7528"></a>
@@ -187,6 +199,63 @@ core.cppm 的引用(Include)关系图:</div>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="ae22b16bf445bb0ad1154680a026e49f3" name="ae22b16bf445bb0ad1154680a026e49f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae22b16bf445bb0ad1154680a026e49f3">&#9670;&#160;</a></span>userValueAs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="conceptNumericType.html">NumericType</a> T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto userValueAs </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> &amp;&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td> -&gt; std::optional&lt;T&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae2e3c9521d996fe8070bfd4e4bc0cb8d" name="ae2e3c9521d996fe8070bfd4e4bc0cb8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2e3c9521d996fe8070bfd4e4bc0cb8d">&#9670;&#160;</a></span>userValueHighAs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="conceptNumericType.html">NumericType</a> T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto userValueHighAs </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> &amp;&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td> -&gt; std::optional&lt;T&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

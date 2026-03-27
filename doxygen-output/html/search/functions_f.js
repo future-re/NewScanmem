@@ -12,7 +12,7 @@ var searchData=
   ['reset_9',['reset',['../classcore_1_1Scanner.html#aa833ee1e069e430aca2d983a206c11ce',1,'core::Scanner']]],
   ['resetcommand_10',['ResetCommand',['../classcli_1_1commands_1_1ResetCommand.html#a3eb041be9ca546d1e9a9653a473af49c',1,'cli::commands::ResetCommand']]],
   ['resetscanner_11',['resetScanner',['../structcli_1_1SessionState.html#a02497d9c987f16604dd3cdb5dcdc701f',1,'cli::SessionState']]],
-  ['run_12',['run',['../classcli_1_1Application.html#a938d20efb9d2651466f1981027af7cc1',1,'cli::Application::run()'],['../namespacescanmem.html#a8da63e0867106fb20c71af418faf793a',1,'scanmem::run()'],['../classcli_1_1REPL.html#abe1d1a08f88d4e6d5ef4eb466b98861e',1,'cli::REPL::run()']]],
+  ['run_12',['run',['../classapp_1_1ScanService.html#a555e1d3bebfbaa892a531bd47de27085',1,'app::ScanService::run()'],['../namespacescanmem.html#a8da63e0867106fb20c71af418faf793a',1,'scanmem::run()'],['../classcli_1_1REPL.html#abe1d1a08f88d4e6d5ef4eb466b98861e',1,'cli::REPL::run()'],['../classcli_1_1Application.html#a938d20efb9d2651466f1981027af7cc1',1,'cli::Application::run()']]],
   ['runnumericmatch_13',['runNumericMatch',['../namespacedetail.html#ab4623a5f258f349a4847883c887b8450',1,'detail']]],
   ['runscan_14',['runScan',['../engine_8cppm.html#a233b8d4dd456fd5bf3e2c9ebbadefcc8',1,'engine.cppm']]],
   ['runscaninternal_15',['runScanInternal',['../engine_8cppm.html#aed4276ac57a143cffb03627a953c5154',1,'engine.cppm']]],

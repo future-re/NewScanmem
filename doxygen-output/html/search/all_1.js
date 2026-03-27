@@ -25,13 +25,14 @@ var searchData=
   ['builduservaluerange_22',['buildUserValueRange',['../namespacevalue.html#a2f9e8f3e0c06a093169364d5d9f2a306',1,'value']]],
   ['byte_5farray_23',['byte_array',['../types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0ad0db1b5ac322ccae21a1299c0cce02ed',1,'BYTE_ARRAY:&#160;types.cppm'],['../flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552ad0db1b5ac322ccae21a1299c0cce02ed',1,'BYTE_ARRAY:&#160;flags.cppm']]],
   ['bytearraytype_24',['ByteArrayType',['../conceptByteArrayType.html',1,'']]],
-  ['bytedata_25',['byteData',['../structUserValue.html#a9c58035e0c2bfb795be763ca4bca7e83',1,'UserValue']]],
-  ['bytemask_26',['byteMask',['../structUserValue.html#a056f41e90861ba52474a794a31a31cd1',1,'UserValue']]],
-  ['bytematch_27',['ByteMatch',['../structByteMatch.html',1,'']]],
-  ['bytes_28',['bytes',['../structValue.html#a5f5173398304cef519d17570ea8f2573',1,'Value']]],
-  ['bytes_2ecppm_29',['bytes.cppm',['../bytes_8cppm.html',1,'']]],
-  ['bytesneededfortype_30',['bytesNeededForType',['../types_8cppm.html#aa76ce477d8694cc6cd4f0530cc7a7cd8',1,'types.cppm']]],
-  ['bytesscanned_31',['bytesScanned',['../structScanStats.html#a461e6128a9e036aac2b00bd0b76eae5b',1,'ScanStats']]],
-  ['byteswritten_32',['bytesWritten',['../structcore_1_1WriteResult.html#a2ea1570de193e565533cef8bd423ac05',1,'core::WriteResult']]],
-  ['bytevalue_33',['byteValue',['../structUserValue.html#aa3f685b0afcb215071a21fcfad4b1d5f',1,'UserValue']]]
+  ['bytearrayvalue_25',['byteArrayValue',['../structUserValue.html#a511e06ccfcbbc4cc979a4305108399ae',1,'UserValue']]],
+  ['bytedata_26',['byteData',['../structUserValue.html#a9c58035e0c2bfb795be763ca4bca7e83',1,'UserValue']]],
+  ['bytemask_27',['byteMask',['../structUserValue.html#a056f41e90861ba52474a794a31a31cd1',1,'UserValue']]],
+  ['bytematch_28',['ByteMatch',['../structByteMatch.html',1,'']]],
+  ['bytes_29',['bytes',['../structValue.html#a5f5173398304cef519d17570ea8f2573',1,'Value']]],
+  ['bytes_2ecppm_30',['bytes.cppm',['../bytes_8cppm.html',1,'']]],
+  ['bytesneededfortype_31',['bytesNeededForType',['../types_8cppm.html#aa76ce477d8694cc6cd4f0530cc7a7cd8',1,'types.cppm']]],
+  ['bytesscanned_32',['bytesScanned',['../structScanStats.html#a461e6128a9e036aac2b00bd0b76eae5b',1,'ScanStats']]],
+  ['byteswritten_33',['bytesWritten',['../structcore_1_1WriteResult.html#a2ea1570de193e565533cef8bd423ac05',1,'core::WriteResult']]],
+  ['bytevalue_34',['byteValue',['../structUserValue.html#aa3f685b0afcb215071a21fcfad4b1d5f',1,'UserValue']]]
 ];

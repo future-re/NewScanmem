@@ -125,6 +125,9 @@ $(document).ready(function(){initNavTree('namespacevalue.html',''); initResizabl
 <tr class="memitem:af0dfa655ec7dceec2aeedfbbdb67f6ef"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevalue.html#af0dfa655ec7dceec2aeedfbbdb67f6ef">value::buildScalar</a> (const std::vector&lt; std::string &gt; &amp;args, size_t startIndex, Parser parser) -&gt; std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt;</td></tr>
 <tr class="memdesc:af0dfa655ec7dceec2aeedfbbdb67f6ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper: build <a class="el" href="structUserValue.html">UserValue</a> for scalar of type T  <br /></td></tr>
 <tr class="separator:af0dfa655ec7dceec2aeedfbbdb67f6ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f9e8f3e0c06a093169364d5d9f2a306" id="r_a2f9e8f3e0c06a093169364d5d9f2a306"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a2f9e8f3e0c06a093169364d5d9f2a306">value::buildUserValueRange</a> (<a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> dataType, const std::vector&lt; std::string &gt; &amp;args, size_t startIndex) -&gt; std::optional&lt; <a class="el" href="core_8cppm.html#a1bd4a9d0e06aae509377546df72a7528">UserValueRange</a> &gt;</td></tr>
+<tr class="memdesc:a2f9e8f3e0c06a093169364d5d9f2a306"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build UserValueRange from parsed arguments for range matching  <br /></td></tr>
+<tr class="separator:a2f9e8f3e0c06a093169364d5d9f2a306"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48fdf6a5fe196be8bee4cd940f2d6860" id="r_a48fdf6a5fe196be8bee4cd940f2d6860"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a48fdf6a5fe196be8bee4cd940f2d6860">value::parseDataType</a> (std::string_view tok) -&gt; std::optional&lt; <a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> &gt;</td></tr>
 <tr class="memdesc:a48fdf6a5fe196be8bee4cd940f2d6860"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse data type from string with aliases support  <br /></td></tr>
 <tr class="separator:a48fdf6a5fe196be8bee4cd940f2d6860"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,9 +150,6 @@ $(document).ready(function(){initNavTree('namespacevalue.html',''); initResizabl
 <tr class="memitem:a2f22ce19e97134b18e84bb63f1cd9bfc" id="r_a2f22ce19e97134b18e84bb63f1cd9bfc"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a2f22ce19e97134b18e84bb63f1cd9bfc">value::buildUserValue</a> (<a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> dataType, <a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, const std::vector&lt; std::string &gt; &amp;args, size_t startIndex) -&gt; std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt;</td></tr>
 <tr class="memdesc:a2f22ce19e97134b18e84bb63f1cd9bfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build <a class="el" href="structUserValue.html">UserValue</a> from parsed arguments  <br /></td></tr>
 <tr class="separator:a2f22ce19e97134b18e84bb63f1cd9bfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f9e8f3e0c06a093169364d5d9f2a306" id="r_a2f9e8f3e0c06a093169364d5d9f2a306"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a2f9e8f3e0c06a093169364d5d9f2a306">value::buildUserValueRange</a> (<a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> dataType, const std::vector&lt; std::string &gt; &amp;args, size_t startIndex) -&gt; std::optional&lt; <a class="el" href="core_8cppm.html#a1bd4a9d0e06aae509377546df72a7528">UserValueRange</a> &gt;</td></tr>
-<tr class="memdesc:a2f9e8f3e0c06a093169364d5d9f2a306"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build UserValueRange from parsed arguments for range matching  <br /></td></tr>
-<tr class="separator:a2f9e8f3e0c06a093169364d5d9f2a306"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">函数说明</h2>
 <a id="a57bdd35a4b3e6623835851aa01eb0183" name="a57bdd35a4b3e6623835851aa01eb0183"></a>
@@ -431,7 +431,7 @@ template&lt;typename T , typename Parser &gt; </div>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; std::optional&lt;<a class="el" href="core_8cppm.html#a1bd4a9d0e06aae509377546df72a7528">UserValueRange</a>&gt; </td>
+          <td></td><td> -&gt;  std::optional&lt; <a class="el" href="core_8cppm.html#a1bd4a9d0e06aae509377546df72a7528">UserValueRange</a> &gt;</td>
         </tr>
       </table>
   </td>

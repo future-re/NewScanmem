@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['value_0',['value',['../namespacevalue.html',1,'']]],
-  ['value_3a_3adetail_1',['detail',['../namespacevalue_1_1detail.html',1,'value']]],
-  ['value_3a_3aview_5fdetail_2',['view_detail',['../namespacevalue_1_1view__detail.html',1,'value']]],
-  ['version_3',['version',['../namespaceversion.html',1,'']]]
+  ['ui_0',['ui',['../namespaceui.html',1,'']]],
+  ['ui_3a_3acolor_1',['color',['../namespaceui_1_1color.html',1,'ui']]],
+  ['utils_2',['utils',['../namespaceutils.html',1,'']]]
 ];
