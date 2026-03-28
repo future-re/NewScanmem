@@ -25,5 +25,6 @@ var searchData=
   ['core_2eprocess_5fchecker_22',['core.process_checker',['../module_core_8process__checker.html',1,'']]],
   ['core_2eregion_5fclassifier_23',['core.region_classifier',['../module_core_8region__classifier.html',1,'']]],
   ['core_2eregion_5ffilter_24',['core.region_filter',['../module_core_8region__filter.html',1,'']]],
-  ['core_2escanner_25',['core.scanner',['../module_core_8scanner.html',1,'']]]
+  ['core_2escan_5fhistory_25',['core.scan_history',['../module_core_8scan__history.html',1,'']]],
+  ['core_2escanner_26',['core.scanner',['../module_core_8scanner.html',1,'']]]
 ];

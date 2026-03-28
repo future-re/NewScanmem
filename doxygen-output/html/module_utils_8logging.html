@@ -103,6 +103,10 @@ $(document).ready(function(){initNavTree('module_utils_8logging.html',''); initR
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 类</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html">utils::Logger</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread-safe logger with file and console output  <a href="classutils_1_1Logger.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html">utils::Logger</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread-safe logger with file and console output  <a href="classutils_1_1Logger.html#details">更多...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -116,38 +120,55 @@ $(document).ready(function(){initNavTree('module_utils_8logging.html',''); initR
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 函数</h2></td></tr>
+<tr class="memitem:a099fb68592c54826b6d609d76bef0067" id="r_a099fb68592c54826b6d609d76bef0067"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a099fb68592c54826b6d609d76bef0067">Logger</a> (std::string name, std::optional&lt; std::string &gt; filename=std::nullopt, LogLevel level=LogLevel::INFO)</td></tr>
+<tr class="separator:a099fb68592c54826b6d609d76bef0067"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae336927bfdd8dc5ecc1fdb2eb092b98a" id="r_ae336927bfdd8dc5ecc1fdb2eb092b98a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#ae336927bfdd8dc5ecc1fdb2eb092b98a">Logger</a> (const Logger &amp;)=delete</td></tr>
 <tr class="separator:ae336927bfdd8dc5ecc1fdb2eb092b98a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af06161a3be564f581dd244f83ff3dd8d" id="r_af06161a3be564f581dd244f83ff3dd8d"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#af06161a3be564f581dd244f83ff3dd8d">operator=</a> (const Logger &amp;) -&gt; Logger &amp;=delete</td></tr>
 <tr class="separator:af06161a3be564f581dd244f83ff3dd8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a037c358405f126564e41b5381ff683ab" id="r_a037c358405f126564e41b5381ff683ab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a037c358405f126564e41b5381ff683ab">Logger</a> (Logger &amp;&amp;)=delete</td></tr>
-<tr class="separator:a037c358405f126564e41b5381ff683ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4f502431efdc6ec5b6d6b7b34d49d6e" id="r_ad4f502431efdc6ec5b6d6b7b34d49d6e"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#ad4f502431efdc6ec5b6d6b7b34d49d6e">operator=</a> (Logger &amp;&amp;) -&gt; Logger &amp;=delete</td></tr>
-<tr class="separator:ad4f502431efdc6ec5b6d6b7b34d49d6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6a9c19963a2c89d22ae0636a1ffac6f" id="r_af6a9c19963a2c89d22ae0636a1ffac6f"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#af6a9c19963a2c89d22ae0636a1ffac6f">instance</a> () -&gt; Logger &amp;</td></tr>
-<tr class="separator:af6a9c19963a2c89d22ae0636a1ffac6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9e249c42579b043ecc22b8355f55cb2" id="r_ac9e249c42579b043ecc22b8355f55cb2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#ac9e249c42579b043ecc22b8355f55cb2">Logger</a> (Logger &amp;&amp;other) noexcept</td></tr>
+<tr class="separator:ac9e249c42579b043ecc22b8355f55cb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbb01cebffd1c4cf068a1474c23365bd" id="r_acbb01cebffd1c4cf068a1474c23365bd"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#acbb01cebffd1c4cf068a1474c23365bd">operator=</a> (Logger &amp;&amp;other) noexcept -&gt; Logger &amp;</td></tr>
+<tr class="separator:acbb01cebffd1c4cf068a1474c23365bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77bc1942350f8303838db8dde4c9a4dd" id="r_a77bc1942350f8303838db8dde4c9a4dd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a77bc1942350f8303838db8dde4c9a4dd">~Logger</a> ()</td></tr>
+<tr class="separator:a77bc1942350f8303838db8dde4c9a4dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a683be1ca87d9561f9e526407d3e21af2" id="r_a683be1ca87d9561f9e526407d3e21af2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a683be1ca87d9561f9e526407d3e21af2">init</a> (const std::string &amp;filename, LogLevel level=LogLevel::INFO)</td></tr>
 <tr class="separator:a683be1ca87d9561f9e526407d3e21af2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a507160bcbb80a8245a1a155ece5ea903" id="r_a507160bcbb80a8245a1a155ece5ea903"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
 <tr class="memitem:a507160bcbb80a8245a1a155ece5ea903"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a507160bcbb80a8245a1a155ece5ea903">log</a> (LogLevel level, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
 <tr class="separator:a507160bcbb80a8245a1a155ece5ea903"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3443a14b3e6b15e8dd19ae8bafd11e33" id="r_a3443a14b3e6b15e8dd19ae8bafd11e33"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
-<tr class="memitem:a3443a14b3e6b15e8dd19ae8bafd11e33"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a3443a14b3e6b15e8dd19ae8bafd11e33">debug</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
-<tr class="separator:a3443a14b3e6b15e8dd19ae8bafd11e33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99d362c9c4daff25946e7cefe2645d1d" id="r_a99d362c9c4daff25946e7cefe2645d1d"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
-<tr class="memitem:a99d362c9c4daff25946e7cefe2645d1d"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a99d362c9c4daff25946e7cefe2645d1d">info</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
-<tr class="separator:a99d362c9c4daff25946e7cefe2645d1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88765dffafbc4d950cad36fccb670064" id="r_a88765dffafbc4d950cad36fccb670064"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
-<tr class="memitem:a88765dffafbc4d950cad36fccb670064"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a88765dffafbc4d950cad36fccb670064">warn</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
-<tr class="separator:a88765dffafbc4d950cad36fccb670064"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc6b16a3e4f199dfc2aa79efc9e76c79" id="r_abc6b16a3e4f199dfc2aa79efc9e76c79"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
-<tr class="memitem:abc6b16a3e4f199dfc2aa79efc9e76c79"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#abc6b16a3e4f199dfc2aa79efc9e76c79">error</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
-<tr class="separator:abc6b16a3e4f199dfc2aa79efc9e76c79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04a0992d04741f49b749461045b9c547" id="r_a04a0992d04741f49b749461045b9c547"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:a04a0992d04741f49b749461045b9c547"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a04a0992d04741f49b749461045b9c547">debug</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a04a0992d04741f49b749461045b9c547"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7979bfb3991a4ea78ad3338cc8b7bbd" id="r_aa7979bfb3991a4ea78ad3338cc8b7bbd"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:aa7979bfb3991a4ea78ad3338cc8b7bbd"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#aa7979bfb3991a4ea78ad3338cc8b7bbd">info</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:aa7979bfb3991a4ea78ad3338cc8b7bbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05fab6f80b1120555910ffdb81cbb441" id="r_a05fab6f80b1120555910ffdb81cbb441"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:a05fab6f80b1120555910ffdb81cbb441"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a05fab6f80b1120555910ffdb81cbb441">warn</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a05fab6f80b1120555910ffdb81cbb441"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21b3ab5f2c1d3f53df18335537f5a9b6" id="r_a21b3ab5f2c1d3f53df18335537f5a9b6"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:a21b3ab5f2c1d3f53df18335537f5a9b6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a21b3ab5f2c1d3f53df18335537f5a9b6">error</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a21b3ab5f2c1d3f53df18335537f5a9b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6a9c19963a2c89d22ae0636a1ffac6f" id="r_af6a9c19963a2c89d22ae0636a1ffac6f"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#af6a9c19963a2c89d22ae0636a1ffac6f">instance</a> () -&gt; Logger &amp;</td></tr>
+<tr class="separator:af6a9c19963a2c89d22ae0636a1ffac6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a552eb47fe2c86af6e32cf5ef134a478e" id="r_a552eb47fe2c86af6e32cf5ef134a478e"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:a552eb47fe2c86af6e32cf5ef134a478e"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a552eb47fe2c86af6e32cf5ef134a478e">s_debug</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a552eb47fe2c86af6e32cf5ef134a478e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade270066479613f8ed669c5451798a6b" id="r_ade270066479613f8ed669c5451798a6b"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:ade270066479613f8ed669c5451798a6b"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#ade270066479613f8ed669c5451798a6b">s_info</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:ade270066479613f8ed669c5451798a6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfca155e7040a11256630f1d0dc366a4" id="r_adfca155e7040a11256630f1d0dc366a4"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:adfca155e7040a11256630f1d0dc366a4"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#adfca155e7040a11256630f1d0dc366a4">s_warn</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:adfca155e7040a11256630f1d0dc366a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8c42d4ae8388d5fbf22fa7c1b8bafbb" id="r_ad8c42d4ae8388d5fbf22fa7c1b8bafbb"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:ad8c42d4ae8388d5fbf22fa7c1b8bafbb"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#ad8c42d4ae8388d5fbf22fa7c1b8bafbb">s_error</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:ad8c42d4ae8388d5fbf22fa7c1b8bafbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="files" name="files"></a>
 文件</h2></td></tr>
 <tr class="memitem:logging_8cppm" id="r_logging_8cppm"><td class="memItemLeft" align="right" valign="top">文件 &#160;</td><td class="memItemRight" valign="bottom">src/utils/<a class="el" href="logging_8cppm.html">logging.cppm</a></td></tr>
+<tr class="memdesc:logging_8cppm"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logger with dependency injection support <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

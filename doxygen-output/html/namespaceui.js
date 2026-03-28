@@ -20,10 +20,23 @@ var namespaceui =
       [ "YELLOW", "namespaceui_1_1color.html#a0d9f7b4d6ebece3c6bbb559d12d42ce3", null ]
     ] ],
     [ "ConsoleUI", "classui_1_1ConsoleUI.html", "classui_1_1ConsoleUI" ],
+    [ "KeyEvent", "structui_1_1KeyEvent.html", "structui_1_1KeyEvent" ],
+    [ "LineEditor", "classui_1_1LineEditor.html", "classui_1_1LineEditor" ],
     [ "MessageContext", "structui_1_1MessageContext.html", "structui_1_1MessageContext" ],
     [ "MessagePrinter", "classui_1_1MessagePrinter.html", "classui_1_1MessagePrinter" ],
+    [ "RawMode", "classui_1_1RawMode.html", "classui_1_1RawMode" ],
     [ "UserInterface", "classui_1_1UserInterface.html", "classui_1_1UserInterface" ],
     [ "CompletionCallback", "namespaceui.html#adfe71bb0e06e4a7c2565858feecdcc78", null ],
+    [ "KeyAction", "namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627", [
+      [ "ENTER", "namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a331b3100a485d8cacff1d3df8e9b0c13", null ],
+      [ "BACKSPACE", "namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a6f5d8e41084b4d3d47fa621c459eede1", null ],
+      [ "MOVE_LEFT", "namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627ad7aa835d76fc894935ade13f4d0624f8", null ],
+      [ "MOVE_RIGHT", "namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a3dc5ed1f827e8c9a6392edb90af992d5", null ],
+      [ "EOF_SIGNAL", "namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a2a840417b5da27f30bb7494cc4ebeed9", null ],
+      [ "INSERT_CHAR", "namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a918ad5ef488cbd16df6d54785a6bb34e", null ],
+      [ "TAB_COMPLETE", "namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a29f47414c6f001d81f2d074d829e99b0", null ],
+      [ "IGNORE", "namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627aa2e843feab94ef623fea888f07c28696", null ]
+    ] ],
     [ "MessageLevel", "namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2", [
       [ "INFO", "namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2a551b723eafd6a31d444fcb2f5920fbd3", null ],
       [ "WARNING", "namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2a059e9861e0400dfbe05c98a841f3f96b", null ],
@@ -38,5 +51,6 @@ var namespaceui =
       [ "USER", "namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a2e40ad879e955201df4dedbf8d479a12", null ]
     ] ],
     [ "makeConsoleUI", "namespaceui.html#a02903ff89a09404ef09cdbcae5e330e4", null ],
-    [ "makeConsoleUI", "namespaceui.html#abef5789b57a74dc96b8c8fc35a30a125", null ]
+    [ "makeConsoleUI", "namespaceui.html#abef5789b57a74dc96b8c8fc35a30a125", null ],
+    [ "readKey", "namespaceui.html#a3144e0f770336bf1c2731dd0d451525a", null ]
 ];

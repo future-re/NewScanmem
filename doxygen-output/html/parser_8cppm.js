@@ -6,6 +6,8 @@ var parser_8cppm =
     [ "buildScalarRange", "parser_8cppm.html#ae28438fbb59121fdb73047773e075203", null ],
     [ "buildUserValue", "parser_8cppm.html#a2f22ce19e97134b18e84bb63f1cd9bfc", null ],
     [ "buildUserValueRange", "parser_8cppm.html#a2f9e8f3e0c06a093169364d5d9f2a306", null ],
+    [ "getDataTypeMap", "parser_8cppm.html#abf90ee69b7759f55b958230dab7f1efa", null ],
+    [ "getMatchTypeMap", "parser_8cppm.html#a5a11318bd71257f1dd0c152c1a050059", null ],
     [ "parseAnyNumberValue", "parser_8cppm.html#a28ae15c8c39828415fcb2ad464af7e5f", null ],
     [ "parseByteArrayValue", "parser_8cppm.html#a9044054b3b00dda28f4d806220809d3c", null ],
     [ "parseDataType", "parser_8cppm.html#a48fdf6a5fe196be8bee4cd940f2d6860", null ],

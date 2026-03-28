@@ -110,6 +110,9 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a9eaed5c344b09d84ac970e3aac1aed34" id="r_a9eaed5c344b09d84ac970e3aac1aed34"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1ProcMemIO.html#a9eaed5c344b09d84ac970e3aac1aed34">open</a> (bool writable) -&gt; std::expected&lt; void, std::string &gt;</td></tr>
 <tr class="memdesc:a9eaed5c344b09d84ac970e3aac1aed34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open /proc/&lt;pid&gt;/mem with specified mode  <br /></td></tr>
 <tr class="separator:a9eaed5c344b09d84ac970e3aac1aed34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2931baefb8977d121dc22d97df82d49" id="r_ac2931baefb8977d121dc22d97df82d49"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1ProcMemIO.html#ac2931baefb8977d121dc22d97df82d49">open</a> () -&gt; std::expected&lt; void, std::string &gt;</td></tr>
+<tr class="memdesc:ac2931baefb8977d121dc22d97df82d49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open /proc/&lt;pid&gt;/mem in read-only mode (convenience overload)  <br /></td></tr>
+<tr class="separator:ac2931baefb8977d121dc22d97df82d49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a225eeccc5d886724c5af63499b25f911" id="r_a225eeccc5d886724c5af63499b25f911"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1ProcMemIO.html#a225eeccc5d886724c5af63499b25f911">~ProcMemIO</a> ()</td></tr>
 <tr class="separator:a225eeccc5d886724c5af63499b25f911"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8f679d6ed83f2deaf3c29e637c76c19" id="r_ac8f679d6ed83f2deaf3c29e637c76c19"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1ProcMemIO.html#ac8f679d6ed83f2deaf3c29e637c76c19">ProcMemIO</a> (const <a class="el" href="classcore_1_1ProcMemIO.html">ProcMemIO</a> &amp;)=delete</td></tr>
@@ -123,6 +126,9 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:aa97d8278f52dad7b175c6c9e1c25223a" id="r_aa97d8278f52dad7b175c6c9e1c25223a"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1ProcMemIO.html#aa97d8278f52dad7b175c6c9e1c25223a">read</a> (void *addr, std::span&lt; std::uint8_t &gt; buf) const -&gt; std::expected&lt; std::size_t, std::string &gt;</td></tr>
 <tr class="memdesc:aa97d8278f52dad7b175c6c9e1c25223a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read bytes from target process memory  <br /></td></tr>
 <tr class="separator:aa97d8278f52dad7b175c6c9e1c25223a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17e90101be0e08a5783d802470856720" id="r_a17e90101be0e08a5783d802470856720"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1ProcMemIO.html#a17e90101be0e08a5783d802470856720">read</a> (void *addr, std::uint8_t *buf, std::size_t len) const -&gt; std::expected&lt; std::size_t, std::string &gt;</td></tr>
+<tr class="memdesc:a17e90101be0e08a5783d802470856720"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read bytes from target process memory (raw pointer overload)  <br /></td></tr>
+<tr class="separator:a17e90101be0e08a5783d802470856720"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dc0b7ce056ba94c86e59a7856dccee6" id="r_a7dc0b7ce056ba94c86e59a7856dccee6"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1ProcMemIO.html#a7dc0b7ce056ba94c86e59a7856dccee6">write</a> (void *addr, std::span&lt; const std::uint8_t &gt; buf) const -&gt; std::expected&lt; std::size_t, std::string &gt;</td></tr>
 <tr class="memdesc:a7dc0b7ce056ba94c86e59a7856dccee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write bytes to target process memory  <br /></td></tr>
 <tr class="separator:a7dc0b7ce056ba94c86e59a7856dccee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -264,8 +270,36 @@ Public 成员函数</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">成员函数说明</h2>
+<a id="ac2931baefb8977d121dc22d97df82d49" name="ac2931baefb8977d121dc22d97df82d49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2931baefb8977d121dc22d97df82d49">&#9670;&#160;</a></span>open() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::ProcMemIO::open </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> -&gt; std::expected&lt;void, std::string&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Open /proc/&lt;pid&gt;/mem in read-only mode (convenience overload) </p>
+<dl class="section return"><dt>返回</dt><dd>Expected void or error message </dd></dl>
+
+</div>
+</div>
 <a id="a9eaed5c344b09d84ac970e3aac1aed34" name="a9eaed5c344b09d84ac970e3aac1aed34"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9eaed5c344b09d84ac970e3aac1aed34">&#9670;&#160;</a></span>open()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9eaed5c344b09d84ac970e3aac1aed34">&#9670;&#160;</a></span>open() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -352,7 +386,7 @@ Public 成员函数</h2></td></tr>
 </div>
 </div>
 <a id="aa97d8278f52dad7b175c6c9e1c25223a" name="aa97d8278f52dad7b175c6c9e1c25223a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa97d8278f52dad7b175c6c9e1c25223a">&#9670;&#160;</a></span>read()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa97d8278f52dad7b175c6c9e1c25223a">&#9670;&#160;</a></span>read() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -394,6 +428,59 @@ Public 成员函数</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>Expected bytes read or error message (partial reads allowed) </dd></dl>
+
+</div>
+</div>
+<a id="a17e90101be0e08a5783d802470856720" name="a17e90101be0e08a5783d802470856720"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17e90101be0e08a5783d802470856720">&#9670;&#160;</a></span>read() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::ProcMemIO::read </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint8_t *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const -&gt; std::expected&lt;std::size_t, std::string&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read bytes from target process memory (raw pointer overload) </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">addr</td><td>Target address in remote process </td></tr>
+    <tr><td class="paramname">buf</td><td>Buffer to store read data </td></tr>
+    <tr><td class="paramname">len</td><td>Number of bytes to read </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Expected bytes read or error message </dd></dl>
 
 </div>
 </div>

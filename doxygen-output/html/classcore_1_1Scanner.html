@@ -98,7 +98,7 @@ $(document).ready(function(){initNavTree('classcore_1_1Scanner.html',''); initRe
 </div><!--header-->
 <div class="contents">
 
-<p>High-level scanner managing scan sessions  
+<p>High-level scanner with explicit operations  
  <a href="classcore_1_1Scanner.html#details">更多...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -106,24 +106,30 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:aa4f39c860299a9b19799409dbf2a8cb2" id="r_aa4f39c860299a9b19799409dbf2a8cb2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Scanner.html#aa4f39c860299a9b19799409dbf2a8cb2">Scanner</a> (pid_t pid)</td></tr>
 <tr class="memdesc:aa4f39c860299a9b19799409dbf2a8cb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct scanner for given process  <br /></td></tr>
 <tr class="separator:aa4f39c860299a9b19799409dbf2a8cb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29b139e20acad2875ab8143f9833036b" id="r_a29b139e20acad2875ab8143f9833036b"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Scanner.html#a29b139e20acad2875ab8143f9833036b">performScan</a> (const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const <a class="el" href="structUserValue.html">UserValue</a> &amp;value, bool saveToHistory=false) -&gt; std::expected&lt; <a class="el" href="structScanStats.html">ScanStats</a>, std::string &gt;</td></tr>
-<tr class="memdesc:a29b139e20acad2875ab8143f9833036b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform memory scan with specific value  <br /></td></tr>
-<tr class="separator:a29b139e20acad2875ab8143f9833036b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e27cd9428113e29a0ad15c06f952723" id="r_a1e27cd9428113e29a0ad15c06f952723"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Scanner.html#a1e27cd9428113e29a0ad15c06f952723">performScan</a> (const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, bool saveToHistory=false) -&gt; std::expected&lt; <a class="el" href="structScanStats.html">ScanStats</a>, std::string &gt;</td></tr>
-<tr class="memdesc:a1e27cd9428113e29a0ad15c06f952723"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform memory scan without specific value (e.g., MATCHANY)  <br /></td></tr>
-<tr class="separator:a1e27cd9428113e29a0ad15c06f952723"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31f8a56fb5e1f7ec6bfd1aa78ffd25c9" id="r_a31f8a56fb5e1f7ec6bfd1aa78ffd25c9"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Scanner.html#a31f8a56fb5e1f7ec6bfd1aa78ffd25c9">snapshot</a> (const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt; &amp;value=std::nullopt, bool saveToHistory=false) -&gt; <a class="el" href="structcore_1_1ScanResponse.html">ScanResponse</a></td></tr>
+<tr class="memdesc:a31f8a56fb5e1f7ec6bfd1aa78ffd25c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a full memory scan (clears existing matches)  <br /></td></tr>
+<tr class="separator:a31f8a56fb5e1f7ec6bfd1aa78ffd25c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79289780cb5757200e790903d9bff1ee" id="r_a79289780cb5757200e790903d9bff1ee"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Scanner.html#a79289780cb5757200e790903d9bff1ee">filter</a> (const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const <a class="el" href="structUserValue.html">UserValue</a> &amp;value, bool saveToHistory=false) -&gt; <a class="el" href="structcore_1_1ScanResponse.html">ScanResponse</a></td></tr>
+<tr class="memdesc:a79289780cb5757200e790903d9bff1ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filter existing matches incrementally  <br /></td></tr>
+<tr class="separator:a79289780cb5757200e790903d9bff1ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01e47d7dc565e957f15fa86b0b9d708c" id="r_a01e47d7dc565e957f15fa86b0b9d708c"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Scanner.html#a01e47d7dc565e957f15fa86b0b9d708c">rescan</a> (const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt; &amp;value=std::nullopt, bool saveToHistory=false) -&gt; <a class="el" href="structcore_1_1ScanResponse.html">ScanResponse</a></td></tr>
+<tr class="memdesc:a01e47d7dc565e957f15fa86b0b9d708c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rescan: clear matches and perform full scan  <br /></td></tr>
+<tr class="separator:a01e47d7dc565e957f15fa86b0b9d708c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc191b1d2e8a0518a66115aec300cf95" id="r_afc191b1d2e8a0518a66115aec300cf95"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Scanner.html#afc191b1d2e8a0518a66115aec300cf95">scan</a> (const <a class="el" href="structcore_1_1ScanRequest.html">ScanRequest</a> &amp;request) -&gt; <a class="el" href="structcore_1_1ScanResponse.html">ScanResponse</a></td></tr>
+<tr class="memdesc:afc191b1d2e8a0518a66115aec300cf95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unified scan interface (for backward compatibility)  <br /></td></tr>
+<tr class="separator:afc191b1d2e8a0518a66115aec300cf95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bd1c8e40929d9424b4fa75109795e64" id="r_a7bd1c8e40929d9424b4fa75109795e64"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Scanner.html#a7bd1c8e40929d9424b4fa75109795e64">performScan</a> (const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt; &amp;value=std::nullopt, bool saveToHistory=false) -&gt; std::expected&lt; <a class="el" href="structScanStats.html">ScanStats</a>, std::string &gt;</td></tr>
+<tr class="memdesc:a7bd1c8e40929d9424b4fa75109795e64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Legacy perform scan (full scan)  <br /></td></tr>
+<tr class="separator:a7bd1c8e40929d9424b4fa75109795e64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e32efcec959f0565c174b52124321ba" id="r_a4e32efcec959f0565c174b52124321ba"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Scanner.html#a4e32efcec959f0565c174b52124321ba">performFilteredScan</a> (const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt; &amp;value=std::nullopt, bool saveToHistory=false) -&gt; std::expected&lt; <a class="el" href="structScanStats.html">ScanStats</a>, std::string &gt;</td></tr>
+<tr class="memdesc:a4e32efcec959f0565c174b52124321ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Legacy perform filtered scan  <br /></td></tr>
+<tr class="separator:a4e32efcec959f0565c174b52124321ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29468a60039dfac26a7f8f5c84000a60" id="r_a29468a60039dfac26a7f8f5c84000a60"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Scanner.html#a29468a60039dfac26a7f8f5c84000a60">scan</a> (const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const <a class="el" href="structUserValue.html">UserValue</a> &amp;value, bool saveToHistory=false) -&gt; std::expected&lt; <a class="el" href="structScanStats.html">ScanStats</a>, std::string &gt;</td></tr>
-<tr class="memdesc:a29468a60039dfac26a7f8f5c84000a60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default workflow with specific value: first call does full scan; subsequent calls do filtered scan on existing matches.  <br /></td></tr>
+<tr class="memdesc:a29468a60039dfac26a7f8f5c84000a60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Legacy scan with value (auto-determines full/filter)  <br /></td></tr>
 <tr class="separator:a29468a60039dfac26a7f8f5c84000a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b6e8afad903155ed679b2657d692fb3" id="r_a8b6e8afad903155ed679b2657d692fb3"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Scanner.html#a8b6e8afad903155ed679b2657d692fb3">scan</a> (const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, bool saveToHistory=false) -&gt; std::expected&lt; <a class="el" href="structScanStats.html">ScanStats</a>, std::string &gt;</td></tr>
-<tr class="memdesc:a8b6e8afad903155ed679b2657d692fb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default workflow without specific value: first call does full scan; subsequent calls do filtered scan on existing matches.  <br /></td></tr>
+<tr class="memdesc:a8b6e8afad903155ed679b2657d692fb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Legacy scan without value (auto-determines full/filter)  <br /></td></tr>
 <tr class="separator:a8b6e8afad903155ed679b2657d692fb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a724ef01d995b4d85cd42dfcb35ea2a76" id="r_a724ef01d995b4d85cd42dfcb35ea2a76"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Scanner.html#a724ef01d995b4d85cd42dfcb35ea2a76">performFilteredScan</a> (const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const <a class="el" href="structUserValue.html">UserValue</a> &amp;value, bool saveToHistory=false) -&gt; std::expected&lt; <a class="el" href="structScanStats.html">ScanStats</a>, std::string &gt;</td></tr>
-<tr class="memdesc:a724ef01d995b4d85cd42dfcb35ea2a76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a filtered (incremental) scan with specific value  <br /></td></tr>
-<tr class="separator:a724ef01d995b4d85cd42dfcb35ea2a76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8db0525f0b38c2b2b7858c2a1a49a7ea" id="r_a8db0525f0b38c2b2b7858c2a1a49a7ea"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Scanner.html#a8db0525f0b38c2b2b7858c2a1a49a7ea">performFilteredScan</a> (const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, bool saveToHistory=false) -&gt; std::expected&lt; <a class="el" href="structScanStats.html">ScanStats</a>, std::string &gt;</td></tr>
-<tr class="memdesc:a8db0525f0b38c2b2b7858c2a1a49a7ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a filtered (incremental) scan without specific value  <br /></td></tr>
-<tr class="separator:a8db0525f0b38c2b2b7858c2a1a49a7ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92a349d999a0233c6f3a08b747402a7b" id="r_a92a349d999a0233c6f3a08b747402a7b"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Scanner.html#a92a349d999a0233c6f3a08b747402a7b">getResultCount</a> () const -&gt; std::size_t</td></tr>
 <tr class="memdesc:a92a349d999a0233c6f3a08b747402a7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of saved scan results in history  <br /></td></tr>
 <tr class="separator:a92a349d999a0233c6f3a08b747402a7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,16 +163,20 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a4e4921aced4be4fa13828c2b160ad7aa" id="r_a4e4921aced4be4fa13828c2b160ad7aa"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Scanner.html#a4e4921aced4be4fa13828c2b160ad7aa">getPid</a> () const -&gt; pid_t</td></tr>
 <tr class="memdesc:a4e4921aced4be4fa13828c2b160ad7aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get target PID  <br /></td></tr>
 <tr class="separator:a4e4921aced4be4fa13828c2b160ad7aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a175cff5ca3dd3a6769de4d06e9daccd6" id="r_a175cff5ca3dd3a6769de4d06e9daccd6"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Scanner.html#a175cff5ca3dd3a6769de4d06e9daccd6">getLastDataType</a> () const -&gt; std::optional&lt; <a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> &gt;</td></tr>
+<tr class="memitem:a175cff5ca3dd3a6769de4d06e9daccd6" id="r_a175cff5ca3dd3a6769de4d06e9daccd6"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Scanner.html#a175cff5ca3dd3a6769de4d06e9daccd6">getLastDataType</a> () const -&gt; std::optional&lt; <a class="el" href="scan_2types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> &gt;</td></tr>
 <tr class="memdesc:a175cff5ca3dd3a6769de4d06e9daccd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get last scan data type  <br /></td></tr>
 <tr class="separator:a175cff5ca3dd3a6769de4d06e9daccd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8e0eeedf0532de021e4b745f17da4a6" id="r_aa8e0eeedf0532de021e4b745f17da4a6"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Scanner.html#aa8e0eeedf0532de021e4b745f17da4a6">saveCurrentToHistory</a> () -&gt; void</td></tr>
+<tr class="memdesc:aa8e0eeedf0532de021e4b745f17da4a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save current matches to history  <br /></td></tr>
+<tr class="separator:aa8e0eeedf0532de021e4b745f17da4a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock"><p>High-level scanner managing scan sessions </p>
-<p>The <a class="el" href="classcore_1_1Scanner.html" title="High-level scanner managing scan sessions">Scanner</a> maintains:</p><ul>
-<li>m_matches: Current/active matches from the most recent scan</li>
-<li>m_results: History queue of all saved scan results </li>
-</ul>
+<div class="textblock"><p>High-level scanner with explicit operations </p>
+<p>Design principles:</p><ol type="1">
+<li>Explicit operations: No magic behavior, caller chooses the operation</li>
+<li>Clear state management: Matches, history, and state are well-defined</li>
+<li>Type-safe: Uses modern C++ features for safety </li>
+</ol>
 </div><h2 class="groupheader">构造及析构函数说明</h2>
 <a id="aa4f39c860299a9b19799409dbf2a8cb2" name="aa4f39c860299a9b19799409dbf2a8cb2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa4f39c860299a9b19799409dbf2a8cb2">&#9670;&#160;</a></span>Scanner()</h2>
@@ -257,6 +267,59 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
+<a id="a79289780cb5757200e790903d9bff1ee" name="a79289780cb5757200e790903d9bff1ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79289780cb5757200e790903d9bff1ee">&#9670;&#160;</a></span>filter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::Scanner::filter </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;&#160;</td>
+          <td class="paramname"><em>opts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> &amp;&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>saveToHistory</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; <a class="el" href="structcore_1_1ScanResponse.html">ScanResponse</a> </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Filter existing matches incrementally </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">opts</td><td>Scan options </td></tr>
+    <tr><td class="paramname">value</td><td>Target value (required for filtering) </td></tr>
+    <tr><td class="paramname">saveToHistory</td><td>Whether to save to history </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Scan response with results </dd></dl>
+
+</div>
+</div>
 <a id="a175cff5ca3dd3a6769de4d06e9daccd6" name="a175cff5ca3dd3a6769de4d06e9daccd6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a175cff5ca3dd3a6769de4d06e9daccd6">&#9670;&#160;</a></span>getLastDataType()</h2>
 
@@ -270,7 +333,7 @@ Public 成员函数</h2></td></tr>
           <td class="memname">auto core::Scanner::getLastDataType </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const -&gt; std::optional&lt;<a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a>&gt; </td>
+          <td> const -&gt; std::optional&lt;<a class="el" href="scan_2types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a>&gt; </td>
         </tr>
       </table>
   </td>
@@ -281,7 +344,6 @@ Public 成员函数</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get last scan data type </p>
-<dl class="section return"><dt>返回</dt><dd>Optional ScanDataType </dd></dl>
 
 </div>
 </div>
@@ -309,7 +371,6 @@ Public 成员函数</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get number of matches in current scan </p>
-<dl class="section return"><dt>返回</dt><dd>Match count </dd></dl>
 
 </div>
 </div>
@@ -337,7 +398,6 @@ Public 成员函数</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get mutable current/active matches </p>
-<dl class="section return"><dt>返回</dt><dd>Reference to matches array </dd></dl>
 
 </div>
 </div>
@@ -365,7 +425,6 @@ Public 成员函数</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get current/active matches from most recent scan </p>
-<dl class="section return"><dt>返回</dt><dd>Reference to matches array </dd></dl>
 
 </div>
 </div>
@@ -393,7 +452,6 @@ Public 成员函数</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get target PID </p>
-<dl class="section return"><dt>返回</dt><dd>Process ID </dd></dl>
 
 </div>
 </div>
@@ -422,13 +480,6 @@ Public 成员函数</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get a specific scan result by index </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">index</td><td>Index into results history (0 = oldest) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd>Pointer to result, or nullptr if index out of range </dd></dl>
 
 </div>
 </div>
@@ -456,7 +507,6 @@ Public 成员函数</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get number of saved scan results in history </p>
-<dl class="section return"><dt>返回</dt><dd>Result count </dd></dl>
 
 </div>
 </div>
@@ -484,7 +534,6 @@ Public 成员函数</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get all scan results </p>
-<dl class="section return"><dt>返回</dt><dd>Reference to results vector </dd></dl>
 
 </div>
 </div>
@@ -512,12 +561,11 @@ Public 成员函数</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Check if current scan has matches </p>
-<dl class="section return"><dt>返回</dt><dd>True if matches exist </dd></dl>
 
 </div>
 </div>
-<a id="a8db0525f0b38c2b2b7858c2a1a49a7ea" name="a8db0525f0b38c2b2b7858c2a1a49a7ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8db0525f0b38c2b2b7858c2a1a49a7ea">&#9670;&#160;</a></span>performFilteredScan() <span class="overload">[1/2]</span></h2>
+<a id="a4e32efcec959f0565c174b52124321ba" name="a4e32efcec959f0565c174b52124321ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e32efcec959f0565c174b52124321ba">&#9670;&#160;</a></span>performFilteredScan()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -534,54 +582,8 @@ Public 成员函数</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>saveToHistory</em> = <code>false</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; std::expected&lt;<a class="el" href="structScanStats.html">ScanStats</a>, std::string&gt; </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Perform a filtered (incremental) scan without specific value </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">opts</td><td>New scan options (dataType/matchType/etc.) </td></tr>
-    <tr><td class="paramname">saveToHistory</td><td>If true, snapshot the narrowed result into history </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd>Expected updated stats or error string </dd></dl>
-
-</div>
-</div>
-<a id="a724ef01d995b4d85cd42dfcb35ea2a76" name="a724ef01d995b4d85cd42dfcb35ea2a76"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a724ef01d995b4d85cd42dfcb35ea2a76">&#9670;&#160;</a></span>performFilteredScan() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto core::Scanner::performFilteredScan </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;&#160;</td>
-          <td class="paramname"><em>opts</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> &amp;&#160;</td>
-          <td class="paramname"><em>value</em>, </td>
+          <td class="paramtype">const std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>value</em> = <code>std::nullopt</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -602,21 +604,13 @@ Public 成员函数</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Perform a filtered (incremental) scan with specific value </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">opts</td><td>New scan options (dataType/matchType/etc.) </td></tr>
-    <tr><td class="paramname">value</td><td>New user value </td></tr>
-    <tr><td class="paramname">saveToHistory</td><td>If true, snapshot the narrowed result into history </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd>Expected updated stats or error string </dd></dl>
+<p>Legacy perform filtered scan </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000002">弃用:</a></b></dt><dd>Use <a class="el" href="classcore_1_1Scanner.html#a79289780cb5757200e790903d9bff1ee" title="Filter existing matches incrementally">filter()</a> explicitly </dd></dl>
 
 </div>
 </div>
-<a id="a1e27cd9428113e29a0ad15c06f952723" name="a1e27cd9428113e29a0ad15c06f952723"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e27cd9428113e29a0ad15c06f952723">&#9670;&#160;</a></span>performScan() <span class="overload">[1/2]</span></h2>
+<a id="a7bd1c8e40929d9424b4fa75109795e64" name="a7bd1c8e40929d9424b4fa75109795e64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bd1c8e40929d9424b4fa75109795e64">&#9670;&#160;</a></span>performScan()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -633,6 +627,12 @@ Public 成员函数</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>value</em> = <code>std::nullopt</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>saveToHistory</em> = <code>false</code>&#160;</td>
         </tr>
@@ -649,20 +649,13 @@ Public 成员函数</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Perform memory scan without specific value (e.g., MATCHANY) </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">opts</td><td>Scan options </td></tr>
-    <tr><td class="paramname">saveToHistory</td><td>If true, save scan results to history queue </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd>Expected scan statistics or error message </dd></dl>
+<p>Legacy perform scan (full scan) </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">弃用:</a></b></dt><dd>Use <a class="el" href="classcore_1_1Scanner.html#a31f8a56fb5e1f7ec6bfd1aa78ffd25c9" title="Perform a full memory scan (clears existing matches)">snapshot()</a> explicitly </dd></dl>
 
 </div>
 </div>
-<a id="a29b139e20acad2875ab8143f9833036b" name="a29b139e20acad2875ab8143f9833036b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a29b139e20acad2875ab8143f9833036b">&#9670;&#160;</a></span>performScan() <span class="overload">[2/2]</span></h2>
+<a id="a01e47d7dc565e957f15fa86b0b9d708c" name="a01e47d7dc565e957f15fa86b0b9d708c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01e47d7dc565e957f15fa86b0b9d708c">&#9670;&#160;</a></span>rescan()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -671,7 +664,7 @@ Public 成员函数</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto core::Scanner::performScan </td>
+          <td class="memname">auto core::Scanner::rescan </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;&#160;</td>
           <td class="paramname"><em>opts</em>, </td>
@@ -679,8 +672,8 @@ Public 成员函数</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> &amp;&#160;</td>
-          <td class="paramname"><em>value</em>, </td>
+          <td class="paramtype">const std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>value</em> = <code>std::nullopt</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -691,7 +684,7 @@ Public 成员函数</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; std::expected&lt;<a class="el" href="structScanStats.html">ScanStats</a>, std::string&gt; </td>
+          <td></td><td> -&gt; <a class="el" href="structcore_1_1ScanResponse.html">ScanResponse</a> </td>
         </tr>
       </table>
   </td>
@@ -701,16 +694,16 @@ Public 成员函数</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Perform memory scan with specific value </p>
+<p>Rescan: clear matches and perform full scan </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">opts</td><td>Scan options </td></tr>
-    <tr><td class="paramname">value</td><td><a class="el" href="structValue.html">Value</a> to search for </td></tr>
-    <tr><td class="paramname">saveToHistory</td><td>If true, save scan results to history queue </td></tr>
+    <tr><td class="paramname">value</td><td>Optional target value </td></tr>
+    <tr><td class="paramname">saveToHistory</td><td>Whether to save to history </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd>Expected scan statistics or error message </dd></dl>
+<dl class="section return"><dt>返回</dt><dd>Scan response with results </dd></dl>
 
 </div>
 </div>
@@ -741,8 +734,35 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
+<a id="aa8e0eeedf0532de021e4b745f17da4a6" name="aa8e0eeedf0532de021e4b745f17da4a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8e0eeedf0532de021e4b745f17da4a6">&#9670;&#160;</a></span>saveCurrentToHistory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::Scanner::saveCurrentToHistory </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> -&gt; void </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Save current matches to history </p>
+
+</div>
+</div>
 <a id="a8b6e8afad903155ed679b2657d692fb3" name="a8b6e8afad903155ed679b2657d692fb3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8b6e8afad903155ed679b2657d692fb3">&#9670;&#160;</a></span>scan() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b6e8afad903155ed679b2657d692fb3">&#9670;&#160;</a></span>scan() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -775,12 +795,13 @@ Public 成员函数</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Default workflow without specific value: first call does full scan; subsequent calls do filtered scan on existing matches. </p>
+<p>Legacy scan without value (auto-determines full/filter) </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000004">弃用:</a></b></dt><dd>Use <a class="el" href="classcore_1_1Scanner.html#a31f8a56fb5e1f7ec6bfd1aa78ffd25c9" title="Perform a full memory scan (clears existing matches)">snapshot()</a> or <a class="el" href="classcore_1_1Scanner.html#a79289780cb5757200e790903d9bff1ee" title="Filter existing matches incrementally">filter()</a> explicitly </dd></dl>
 
 </div>
 </div>
 <a id="a29468a60039dfac26a7f8f5c84000a60" name="a29468a60039dfac26a7f8f5c84000a60"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a29468a60039dfac26a7f8f5c84000a60">&#9670;&#160;</a></span>scan() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a29468a60039dfac26a7f8f5c84000a60">&#9670;&#160;</a></span>scan() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -819,7 +840,96 @@ Public 成员函数</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Default workflow with specific value: first call does full scan; subsequent calls do filtered scan on existing matches. </p>
+<p>Legacy scan with value (auto-determines full/filter) </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000003">弃用:</a></b></dt><dd>Use <a class="el" href="classcore_1_1Scanner.html#a31f8a56fb5e1f7ec6bfd1aa78ffd25c9" title="Perform a full memory scan (clears existing matches)">snapshot()</a> or <a class="el" href="classcore_1_1Scanner.html#a79289780cb5757200e790903d9bff1ee" title="Filter existing matches incrementally">filter()</a> explicitly </dd></dl>
+
+</div>
+</div>
+<a id="afc191b1d2e8a0518a66115aec300cf95" name="afc191b1d2e8a0518a66115aec300cf95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc191b1d2e8a0518a66115aec300cf95">&#9670;&#160;</a></span>scan() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::Scanner::scan </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structcore_1_1ScanRequest.html">ScanRequest</a> &amp;&#160;</td>
+          <td class="paramname"><em>request</em></td><td>)</td>
+          <td> -&gt; <a class="el" href="structcore_1_1ScanResponse.html">ScanResponse</a> </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unified scan interface (for backward compatibility) </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Scan request with mode and options </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Scan response </dd></dl>
+
+</div>
+</div>
+<a id="a31f8a56fb5e1f7ec6bfd1aa78ffd25c9" name="a31f8a56fb5e1f7ec6bfd1aa78ffd25c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31f8a56fb5e1f7ec6bfd1aa78ffd25c9">&#9670;&#160;</a></span>snapshot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto core::Scanner::snapshot </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;&#160;</td>
+          <td class="paramname"><em>opts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>value</em> = <code>std::nullopt</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>saveToHistory</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; <a class="el" href="structcore_1_1ScanResponse.html">ScanResponse</a> </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform a full memory scan (clears existing matches) </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">opts</td><td>Scan options </td></tr>
+    <tr><td class="paramname">value</td><td>Optional target value </td></tr>
+    <tr><td class="paramname">saveToHistory</td><td>Whether to save to history </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Scan response with results </dd></dl>
 
 </div>
 </div>

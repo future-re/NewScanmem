@@ -94,9 +94,16 @@ $(document).ready(function(){initNavTree('functions_s.html',''); initResizable()
 <div class="textblock">这里列出了所有类成员，并附带类的详细说明:</div>
 
 <h3><a id="index_s" name="index_s"></a>- s -</h3><ul>
-<li>saveToHistory&#160;:&#160;<a class="el" href="structapp_1_1ScanRequest.html#a0334b153c3fdcc7206ff6115b3ad352f">app::ScanRequest</a></li>
-<li>scan()&#160;:&#160;<a class="el" href="classcore_1_1Scanner.html#a29468a60039dfac26a7f8f5c84000a60">core::Scanner</a></li>
+<li>s_debug()&#160;:&#160;<a class="el" href="classutils_1_1Logger.html#a552eb47fe2c86af6e32cf5ef134a478e">utils::Logger</a></li>
+<li>s_error()&#160;:&#160;<a class="el" href="classutils_1_1Logger.html#ad8c42d4ae8388d5fbf22fa7c1b8bafbb">utils::Logger</a></li>
+<li>s_info()&#160;:&#160;<a class="el" href="classutils_1_1Logger.html#ade270066479613f8ed669c5451798a6b">utils::Logger</a></li>
+<li>s_warn()&#160;:&#160;<a class="el" href="classutils_1_1Logger.html#adfca155e7040a11256630f1d0dc366a4">utils::Logger</a></li>
+<li>saveCurrentToHistory()&#160;:&#160;<a class="el" href="classcore_1_1Scanner.html#aa8e0eeedf0532de021e4b745f17da4a6">core::Scanner</a></li>
+<li>saveToHistory&#160;:&#160;<a class="el" href="structapp_1_1ScanRequest.html#a0334b153c3fdcc7206ff6115b3ad352f">app::ScanRequest</a>, <a class="el" href="structcore_1_1ScanRequest.html#a66c6f96e9ce713ee7dcc1effe6fdfc60">core::ScanRequest</a></li>
+<li>scan()&#160;:&#160;<a class="el" href="classcore_1_1Scanner.html#afc191b1d2e8a0518a66115aec300cf95">core::Scanner</a></li>
 <li>ScanCommand()&#160;:&#160;<a class="el" href="classcli_1_1commands_1_1ScanCommand.html#ab64b46330dcceb6bd93d6ce11f1fbaac">cli::commands::ScanCommand</a></li>
+<li>ScanHistory()&#160;:&#160;<a class="el" href="classcore_1_1ScanHistory.html#a1bad940ad8002a14af1c8698b10bd9a7">core::ScanHistory</a></li>
+<li>ScanJob()&#160;:&#160;<a class="el" href="classscan_1_1ScanJob.html#a8c27bbc73dcf31e2f61af5343eb4f099">scan::ScanJob</a></li>
 <li>scanner&#160;:&#160;<a class="el" href="structapp_1_1CurrentMatchListRequest.html#afdd034049bc8432f5d759279368ef052">app::CurrentMatchListRequest</a>, <a class="el" href="structapp_1_1ScanRequest.html#a033a8e3a12b7b0ef01b5a718d5aef96b">app::ScanRequest</a>, <a class="el" href="structcli_1_1SessionState.html#a3d7d552777b6a2388ee1c93fc69ac7b9">cli::SessionState</a></li>
 <li>Scanner()&#160;:&#160;<a class="el" href="classcore_1_1Scanner.html#aa4f39c860299a9b19799409dbf2a8cb2">core::Scanner</a></li>
 <li>ScanResult()&#160;:&#160;<a class="el" href="structScanResult.html#ab63395f1e141a354464f651907f2e73e">ScanResult</a></li>
@@ -105,7 +112,7 @@ $(document).ready(function(){initNavTree('functions_s.html',''); initResizable()
 <li>setBackendMode()&#160;:&#160;<a class="el" href="classui_1_1ConsoleUI.html#a215272aaaf81eebd040b45fc7904a953">ui::ConsoleUI</a></li>
 <li>setBytes()&#160;:&#160;<a class="el" href="structValue.html#a218d396c011de5caf5522c246c66e019">Value</a></li>
 <li>SetCommand()&#160;:&#160;<a class="el" href="classcli_1_1commands_1_1SetCommand.html#a863afa8032fe612be6bafc1dee67393b">cli::commands::SetCommand</a></li>
-<li>setCompletionCallback()&#160;:&#160;<a class="el" href="classui_1_1ConsoleUI.html#a008d0c2db242c5f237837caf1c493599">ui::ConsoleUI</a></li>
+<li>setCompletionCallback()&#160;:&#160;<a class="el" href="classui_1_1ConsoleUI.html#a008d0c2db242c5f237837caf1c493599">ui::ConsoleUI</a>, <a class="el" href="classui_1_1LineEditor.html#af1728018df0ac1519c37cf41546db706">ui::LineEditor</a></li>
 <li>setDebugMode()&#160;:&#160;<a class="el" href="classui_1_1UserInterface.html#a6ffed1ac62121f3254fca8e1e2b33c37">ui::UserInterface</a></li>
 <li>setEndianness()&#160;:&#160;<a class="el" href="structcli_1_1SessionState.html#abc1e06e63d66c65b40de226f1b8d5364">cli::SessionState</a>, <a class="el" href="classcore_1_1MemoryWriter.html#abc6c5e190f0f3d95ba2a54e884d3d8b8">core::MemoryWriter</a></li>
 <li>setFlag()&#160;:&#160;<a class="el" href="structUserValue.html#a2d93b25f84a809a4329c3df3f70b15d9">UserValue</a></li>
@@ -113,18 +120,18 @@ $(document).ready(function(){initNavTree('functions_s.html',''); initResizable()
 <li>setPromptBuilder()&#160;:&#160;<a class="el" href="classcli_1_1REPL.html#a7884f6c3e4eda983eba7c79bd39022dd">cli::REPL</a></li>
 <li>shared&#160;:&#160;<a class="el" href="structcore_1_1RegionFlags.html#af65df61dea754dd979f5c531aa75fd79">core::RegionFlags</a></li>
 <li>shouldExit&#160;:&#160;<a class="el" href="structcli_1_1CommandResult.html#affa318d121f655743c92bfd95adfbbc9">cli::CommandResult</a></li>
-<li>showCurrentMatches()&#160;:&#160;<a class="el" href="classapp_1_1ResultService.html#a4b3e313d2e54e4b8d6a4148968974b8f">app::ResultService</a></li>
 <li>showIndex&#160;:&#160;<a class="el" href="structapp_1_1CurrentMatchListRequest.html#a3948e0e9b57dfff476e5524dec1f520a">app::CurrentMatchListRequest</a>, <a class="el" href="structcore_1_1FormatOptions.html#a206f850799bfb73d4f3ad1187a74d558">core::FormatOptions</a></li>
 <li>showRegion&#160;:&#160;<a class="el" href="structapp_1_1CurrentMatchListRequest.html#abccc8a5f89c6a5db887837ab4761ee92">app::CurrentMatchListRequest</a>, <a class="el" href="structcore_1_1FormatOptions.html#aa2dd4d997776a8ca5d4ae8aeb647750e">core::FormatOptions</a></li>
-<li>size()&#160;:&#160;<a class="el" href="classcli_1_1CommandRegistry.html#aa322d21a47cf3b2324a21637245fd96a">cli::CommandRegistry</a>, <a class="el" href="structcore_1_1Region.html#a6ba91430b2642c5adeb8ffe4078e6318">core::Region</a>, <a class="el" href="structSet.html#ab8a9e56b0f8d7ea6ed5b15e15407cf88">Set</a>, <a class="el" href="structUserValue.html#ace7509d122f848f7c338401cef3fcf19">UserValue</a>, <a class="el" href="structValue.html#ab260fc93602a7b0d66535c763164e8a5">Value</a></li>
+<li>size()&#160;:&#160;<a class="el" href="classcli_1_1CommandRegistry.html#aa322d21a47cf3b2324a21637245fd96a">cli::CommandRegistry</a>, <a class="el" href="structcore_1_1Region.html#a6ba91430b2642c5adeb8ffe4078e6318">core::Region</a>, <a class="el" href="structSet.html#ab8a9e56b0f8d7ea6ed5b15e15407cf88">Set</a>, <a class="el" href="structUserValue.html#ace7509d122f848f7c338401cef3fcf19">UserValue</a>, <a class="el" href="structvalue_1_1ByteArray.html#a33589f50ee89cd28fc0c982be7c90b5d">value::ByteArray</a>, <a class="el" href="structValue.html#ab260fc93602a7b0d66535c763164e8a5">Value</a></li>
+<li>snapshot()&#160;:&#160;<a class="el" href="classapp_1_1ScanService.html#ad81d0eea1e7c067686a874bd45526d4f">app::ScanService</a>, <a class="el" href="classcore_1_1Scanner.html#a31f8a56fb5e1f7ec6bfd1aa78ffd25c9">core::Scanner</a></li>
 <li>SnapshotCommand()&#160;:&#160;<a class="el" href="classcli_1_1commands_1_1SnapshotCommand.html#ad38f7e4cbcb2127b8485482902c60148">cli::commands::SnapshotCommand</a></li>
-<li>split()&#160;:&#160;<a class="el" href="classutils_1_1StringUtils.html#a2d0c70efc765147ab74f8f3240a44f74">utils::StringUtils</a></li>
+<li>split()&#160;:&#160;<a class="el" href="classutils_1_1StringUtils.html#ad73a8bbb50fc39d4ac65656013a6e112">utils::StringUtils</a></li>
 <li>start&#160;:&#160;<a class="el" href="structcore_1_1Region.html#aaf402760124d38b40e00f8d59f0a9539">core::Region</a>, <a class="el" href="structcore_1_1RegionLookupEntry.html#a3406054ce489d6b8b52cb8a034c23886">core::RegionLookupEntry</a></li>
 <li>startsWith()&#160;:&#160;<a class="el" href="classutils_1_1StringUtils.html#a43380ad73f33145d5965ae9a971bb199">utils::StringUtils</a></li>
-<li>stats&#160;:&#160;<a class="el" href="structapp_1_1ScanExecutionResult.html#aed1eb7c41d4626cc38110b9df84ccf65">app::ScanExecutionResult</a>, <a class="el" href="structScanResult.html#ac2d355c3d81de92c7b9c832635b5d113">ScanResult</a></li>
+<li>stats&#160;:&#160;<a class="el" href="structapp_1_1ScanExecutionResult.html#aed1eb7c41d4626cc38110b9df84ccf65">app::ScanExecutionResult</a>, <a class="el" href="structcore_1_1ScanResponse.html#ae1f375215ac435829972658cc110be96">core::ScanResponse</a>, <a class="el" href="structScanResult.html#ac2d355c3d81de92c7b9c832635b5d113">ScanResult</a></li>
 <li>step&#160;:&#160;<a class="el" href="structScanOptions.html#a206f549ce388cb7e2136336b6feb0949">ScanOptions</a></li>
 <li>stringValue()&#160;:&#160;<a class="el" href="structUserValue.html#a715d78e2d77141e2d435cd10a0601866">UserValue</a></li>
-<li>success&#160;:&#160;<a class="el" href="structcli_1_1CommandResult.html#adf4f9154fed11db9c7254e767f7056c3">cli::CommandResult</a>, <a class="el" href="structcore_1_1WriteResult.html#a038a4946a91840162a604fd5d60f5115">core::WriteResult</a>, <a class="el" href="classui_1_1MessagePrinter.html#a989a9e794bff81caa37ccc8fb3859515">ui::MessagePrinter</a></li>
+<li>success&#160;:&#160;<a class="el" href="structcli_1_1CommandResult.html#adf4f9154fed11db9c7254e767f7056c3">cli::CommandResult</a>, <a class="el" href="structcore_1_1ScanResponse.html#a37ccb0f25ba0a995ae638e4c899888c9">core::ScanResponse</a>, <a class="el" href="structcore_1_1WriteResult.html#a038a4946a91840162a604fd5d60f5115">core::WriteResult</a>, <a class="el" href="classui_1_1MessagePrinter.html#a989a9e794bff81caa37ccc8fb3859515">ui::MessagePrinter</a></li>
 <li>successCount&#160;:&#160;<a class="el" href="structcore_1_1VecWriteResult.html#abaea834a300f2be9e82f5c2e380f6411">core::VecWriteResult</a></li>
 <li>swaths&#160;:&#160;<a class="el" href="classscan_1_1MatchesAndOldValuesArray.html#a708a9a57a212c889e8cc5674205c4efc">scan::MatchesAndOldValuesArray</a></li>
 </ul>

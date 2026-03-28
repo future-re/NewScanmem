@@ -98,36 +98,43 @@ $(document).ready(function(){initNavTree('logging_8cppm.html',''); initResizable
   <div class="headertitle"><div class="title">logging.cppm 文件参考<div class="ingroups">模块 <a class="el" href="module_utils_8logging.html">utils.logging</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Logger with dependency injection support  
+<a href="#details">更多...</a></p>
 <div class="textblock"><code>#include &lt;chrono&gt;</code><br />
 <code>#include &lt;format&gt;</code><br />
 <code>#include &lt;fstream&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;mutex&gt;</code><br />
+<code>#include &lt;optional&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 logging.cppm 的引用(Include)关系图:</div>
 <div class="dyncontent">
 <div class="center"><img src="logging_8cppm__incl.png" border="0" usemap="#asrc_2utils_2logging_8cppm" alt=""/></div>
 <map name="asrc_2utils_2logging_8cppm" id="asrc_2utils_2logging_8cppm">
-<area shape="rect" title=" " alt="" coords="192,5,357,31"/>
+<area shape="rect" title="Logger with dependency injection support" alt="" coords="243,5,408,31"/>
 <area shape="rect" title=" " alt="" coords="5,79,72,104"/>
-<area shape="poly" title=" " alt="" coords="238,33,86,79,85,73,236,28"/>
+<area shape="poly" title=" " alt="" coords="279,33,86,81,85,76,278,28"/>
 <area shape="rect" title=" " alt="" coords="96,79,163,104"/>
-<area shape="poly" title=" " alt="" coords="252,33,166,75,164,70,250,28"/>
+<area shape="poly" title=" " alt="" coords="295,33,175,76,173,71,293,28"/>
 <area shape="rect" title=" " alt="" coords="187,79,261,104"/>
-<area shape="poly" title=" " alt="" coords="268,33,242,69,238,66,264,29"/>
+<area shape="poly" title=" " alt="" coords="311,33,253,73,250,68,308,28"/>
 <area shape="rect" title=" " alt="" coords="285,79,365,104"/>
-<area shape="poly" title=" " alt="" coords="285,29,311,66,307,69,281,33"/>
+<area shape="poly" title=" " alt="" coords="328,31,328,65,323,65,323,31"/>
 <area shape="rect" title=" " alt="" coords="389,79,453,104"/>
-<area shape="poly" title=" " alt="" coords="299,28,386,70,384,75,297,33"/>
-<area shape="rect" title=" " alt="" coords="477,79,536,104"/>
-<area shape="poly" title=" " alt="" coords="313,28,465,74,463,80,311,33"/>
+<area shape="poly" title=" " alt="" coords="342,29,396,68,393,72,339,33"/>
+<area shape="rect" title=" " alt="" coords="477,79,552,104"/>
+<area shape="poly" title=" " alt="" coords="357,28,472,71,470,76,355,33"/>
+<area shape="rect" title=" " alt="" coords="576,79,635,104"/>
+<area shape="poly" title=" " alt="" coords="373,28,563,76,562,81,372,33"/>
 </map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 类</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html">utils::Logger</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread-safe logger with file and console output  <a href="classutils_1_1Logger.html#details">更多...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -144,7 +151,9 @@ logging.cppm 的引用(Include)关系图:</div>
  }</td></tr>
 <tr class="separator:a6b50893705cf2a59daf6b680304017dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>Logger with dependency injection support </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

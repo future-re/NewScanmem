@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['scanroutine_0',['scanRoutine',['../routine_8cppm.html#aff96e3e9f60125b052dd05157b210931',1,'routine.cppm']]]
+  ['localscanresult_0',['LocalScanResult',['../namespacescan.html#abfdb63de5616a8bc626ac8dc585d8a8f',1,'scan']]]
 ];

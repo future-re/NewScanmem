@@ -1,6 +1,6 @@
 <map id="app::ScanRequest" name="app::ScanRequest">
-<area shape="rect" id="Node000001" title=" " alt="" coords="65,93,203,119"/>
-<area shape="rect" id="Node000002" href="$classcore_1_1Scanner.html" title="High&#45;level scanner managing scan sessions" alt="" coords="5,5,116,31"/>
+<area shape="rect" id="Node000001" title="Request for scan service" alt="" coords="65,93,203,119"/>
+<area shape="rect" id="Node000002" href="$classcore_1_1Scanner.html" title="High&#45;level scanner with explicit operations" alt="" coords="5,5,116,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,39,126,91,122,95,77,43"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="141,5,274,31"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="191,43,146,95,142,91,187,39"/>

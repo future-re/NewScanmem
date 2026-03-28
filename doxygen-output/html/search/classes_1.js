@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['bytematch_0',['ByteMatch',['../structByteMatch.html',1,'']]]
+  ['bytearray_0',['ByteArray',['../structvalue_1_1ByteArray.html',1,'value']]],
+  ['bytematch_1',['ByteMatch',['../structByteMatch.html',1,'']]]
 ];

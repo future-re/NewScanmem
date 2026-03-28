@@ -45,22 +45,32 @@ var annotated_dup =
       [ "RegionFilterConfig", "structcore_1_1RegionFilterConfig.html", "structcore_1_1RegionFilterConfig" ],
       [ "RegionFlags", "structcore_1_1RegionFlags.html", "structcore_1_1RegionFlags" ],
       [ "RegionLookupEntry", "structcore_1_1RegionLookupEntry.html", "structcore_1_1RegionLookupEntry" ],
+      [ "ScanHistory", "classcore_1_1ScanHistory.html", "classcore_1_1ScanHistory" ],
       [ "Scanner", "classcore_1_1Scanner.html", "classcore_1_1Scanner" ],
+      [ "ScanRequest", "structcore_1_1ScanRequest.html", "structcore_1_1ScanRequest" ],
+      [ "ScanResponse", "structcore_1_1ScanResponse.html", "structcore_1_1ScanResponse" ],
       [ "VecWriteResult", "structcore_1_1VecWriteResult.html", "structcore_1_1VecWriteResult" ],
       [ "WriteResult", "structcore_1_1WriteResult.html", "structcore_1_1WriteResult" ]
     ] ],
     [ "scan", "namespacescan.html", [
       [ "MatchesAndOldValuesArray", "classscan_1_1MatchesAndOldValuesArray.html", "classscan_1_1MatchesAndOldValuesArray" ],
       [ "MatchesAndOldValuesSwath", "classscan_1_1MatchesAndOldValuesSwath.html", "classscan_1_1MatchesAndOldValuesSwath" ],
-      [ "OldValueAndMatchInfo", "structscan_1_1OldValueAndMatchInfo.html", "structscan_1_1OldValueAndMatchInfo" ]
+      [ "OldValueAndMatchInfo", "structscan_1_1OldValueAndMatchInfo.html", "structscan_1_1OldValueAndMatchInfo" ],
+      [ "ScanContext", "structscan_1_1ScanContext.html", "structscan_1_1ScanContext" ],
+      [ "ScanJob", "classscan_1_1ScanJob.html", "classscan_1_1ScanJob" ],
+      [ "ScanResult", "structscan_1_1ScanResult.html", "structscan_1_1ScanResult" ]
     ] ],
     [ "std", "namespacestd.html", [
-      [ "formatter< UserValue >", "structstd_1_1formatter_3_01UserValue_01_4.html", null ]
+      [ "formatter< UserValue >", "structstd_1_1formatter_3_01UserValue_01_4.html", null ],
+      [ "formatter< value::Value >", "structstd_1_1formatter_3_01value_1_1Value_01_4.html", null ]
     ] ],
     [ "ui", "namespaceui.html", [
       [ "ConsoleUI", "classui_1_1ConsoleUI.html", "classui_1_1ConsoleUI" ],
+      [ "KeyEvent", "structui_1_1KeyEvent.html", "structui_1_1KeyEvent" ],
+      [ "LineEditor", "classui_1_1LineEditor.html", "classui_1_1LineEditor" ],
       [ "MessageContext", "structui_1_1MessageContext.html", "structui_1_1MessageContext" ],
       [ "MessagePrinter", "classui_1_1MessagePrinter.html", "classui_1_1MessagePrinter" ],
+      [ "RawMode", "classui_1_1RawMode.html", "classui_1_1RawMode" ],
       [ "UserInterface", "classui_1_1UserInterface.html", "classui_1_1UserInterface" ]
     ] ],
     [ "utils", "namespaceutils.html", [
@@ -73,14 +83,15 @@ var annotated_dup =
         [ "ValueAccess< UserValue >", "structvalue_1_1view__detail_1_1ValueAccess_3_01UserValue_01_4.html", null ],
         [ "ValueAccess< Value >", "structvalue_1_1view__detail_1_1ValueAccess_3_01Value_01_4.html", null ]
       ] ],
+      [ "ByteArray", "structvalue_1_1ByteArray.html", "structvalue_1_1ByteArray" ],
       [ "ParserView", "structvalue_1_1ParserView.html", null ],
+      [ "ValueRange", "structvalue_1_1ValueRange.html", "structvalue_1_1ValueRange" ],
       [ "ValueView", "classvalue_1_1ValueView.html", null ],
       [ "ValueView< UserValue >", "classvalue_1_1ValueView_3_01UserValue_01_4.html", null ],
       [ "ValueView< Value >", "classvalue_1_1ValueView_3_01Value_01_4.html", null ],
       [ "ValueViewBase", "classvalue_1_1ValueViewBase.html", "classvalue_1_1ValueViewBase" ]
     ] ],
     [ "ByteMatch", "structByteMatch.html", "structByteMatch" ],
-    [ "ProcMemReader", "classProcMemReader.html", "classProcMemReader" ],
     [ "ScanOptions", "structScanOptions.html", "structScanOptions" ],
     [ "ScanResult", "structScanResult.html", "structScanResult" ],
     [ "ScanStats", "structScanStats.html", "structScanStats" ],

@@ -103,15 +103,15 @@ $(document).ready(function(){initNavTree('classcore_1_1MatchFormatter.html','');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
-<tr class="memitem:ab35eb8569750d179107529f8d474f472" id="r_ab35eb8569750d179107529f8d474f472"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MatchFormatter.html#ab35eb8569750d179107529f8d474f472">display</a> (const std::vector&lt; <a class="el" href="structcore_1_1MatchEntry.html">MatchEntry</a> &gt; &amp;entries, size_t totalCount, const <a class="el" href="structcore_1_1FormatOptions.html">FormatOptions</a> &amp;options={}) -&gt; void</td></tr>
-<tr class="memdesc:ab35eb8569750d179107529f8d474f472"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format and display match entries  <br /></td></tr>
-<tr class="separator:ab35eb8569750d179107529f8d474f472"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac23c707ad5f10d7196ab72273f3850e" id="r_aac23c707ad5f10d7196ab72273f3850e"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MatchFormatter.html#aac23c707ad5f10d7196ab72273f3850e">format</a> (const std::vector&lt; <a class="el" href="structcore_1_1MatchEntry.html">MatchEntry</a> &gt; &amp;entries, std::size_t totalCount, const <a class="el" href="structcore_1_1FormatOptions.html">FormatOptions</a> &amp;options={}) -&gt; std::vector&lt; std::string &gt;</td></tr>
+<tr class="memdesc:aac23c707ad5f10d7196ab72273f3850e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format match entries into a list of strings  <br /></td></tr>
+<tr class="separator:aac23c707ad5f10d7196ab72273f3850e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>Formats and displays match entries </p>
 </div><h2 class="groupheader">成员函数说明</h2>
-<a id="ab35eb8569750d179107529f8d474f472" name="ab35eb8569750d179107529f8d474f472"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab35eb8569750d179107529f8d474f472">&#9670;&#160;</a></span>display()</h2>
+<a id="aac23c707ad5f10d7196ab72273f3850e" name="aac23c707ad5f10d7196ab72273f3850e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac23c707ad5f10d7196ab72273f3850e">&#9670;&#160;</a></span>format()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -120,7 +120,7 @@ $(document).ready(function(){initNavTree('classcore_1_1MatchFormatter.html','');
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static auto core::MatchFormatter::display </td>
+          <td class="memname">static auto core::MatchFormatter::format </td>
           <td>(</td>
           <td class="paramtype">const std::vector&lt; <a class="el" href="structcore_1_1MatchEntry.html">MatchEntry</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>entries</em>, </td>
@@ -128,7 +128,7 @@ $(document).ready(function(){initNavTree('classcore_1_1MatchFormatter.html','');
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t&#160;</td>
+          <td class="paramtype">std::size_t&#160;</td>
           <td class="paramname"><em>totalCount</em>, </td>
         </tr>
         <tr>
@@ -140,7 +140,7 @@ $(document).ready(function(){initNavTree('classcore_1_1MatchFormatter.html','');
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; void </td>
+          <td></td><td> -&gt; std::vector&lt;std::string&gt; </td>
         </tr>
       </table>
   </td>
@@ -150,7 +150,7 @@ $(document).ready(function(){initNavTree('classcore_1_1MatchFormatter.html','');
 </table>
 </div><div class="memdoc">
 
-<p>Format and display match entries </p>
+<p>Format match entries into a list of strings </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">entries</td><td>Match entries to display </td></tr>
@@ -159,6 +159,7 @@ $(document).ready(function(){initNavTree('classcore_1_1MatchFormatter.html','');
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>返回</dt><dd>Vector of formatted lines </dd></dl>
 
 </div>
 </div>

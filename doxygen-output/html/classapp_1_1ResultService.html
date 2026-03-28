@@ -100,12 +100,13 @@ $(document).ready(function(){initNavTree('classapp_1_1ResultService.html',''); i
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
-<tr class="memitem:a4b3e313d2e54e4b8d6a4148968974b8f" id="r_a4b3e313d2e54e4b8d6a4148968974b8f"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classapp_1_1ResultService.html#a4b3e313d2e54e4b8d6a4148968974b8f">showCurrentMatches</a> (const <a class="el" href="structapp_1_1CurrentMatchListRequest.html">CurrentMatchListRequest</a> &amp;request) -&gt; std::expected&lt; std::size_t, std::string &gt;</td></tr>
-<tr class="separator:a4b3e313d2e54e4b8d6a4148968974b8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc7015a9943fd80a915387c4ebedf8f2" id="r_acc7015a9943fd80a915387c4ebedf8f2"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classapp_1_1ResultService.html#acc7015a9943fd80a915387c4ebedf8f2">getMatches</a> (const <a class="el" href="structapp_1_1CurrentMatchListRequest.html">CurrentMatchListRequest</a> &amp;request) -&gt; std::expected&lt; std::pair&lt; std::vector&lt; <a class="el" href="structcore_1_1MatchEntry.html">core::MatchEntry</a> &gt;, std::size_t &gt;, std::string &gt;</td></tr>
+<tr class="memdesc:acc7015a9943fd80a915387c4ebedf8f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current match entries from scanner  <br /></td></tr>
+<tr class="separator:acc7015a9943fd80a915387c4ebedf8f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">成员函数说明</h2>
-<a id="a4b3e313d2e54e4b8d6a4148968974b8f" name="a4b3e313d2e54e4b8d6a4148968974b8f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4b3e313d2e54e4b8d6a4148968974b8f">&#9670;&#160;</a></span>showCurrentMatches()</h2>
+<a id="acc7015a9943fd80a915387c4ebedf8f2" name="acc7015a9943fd80a915387c4ebedf8f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc7015a9943fd80a915387c4ebedf8f2">&#9670;&#160;</a></span>getMatches()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -114,11 +115,12 @@ $(document).ready(function(){initNavTree('classapp_1_1ResultService.html',''); i
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static auto app::ResultService::showCurrentMatches </td>
+          <td class="memname">static auto app::ResultService::getMatches </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structapp_1_1CurrentMatchListRequest.html">CurrentMatchListRequest</a> &amp;&#160;</td>
           <td class="paramname"><em>request</em></td><td>)</td>
-          <td> -&gt; std::expected&lt;std::size_t, std::string&gt; </td>
+          <td> -&gt; std::expected&lt;std::pair&lt;std::vector&lt;<a class="el" href="structcore_1_1MatchEntry.html">core::MatchEntry</a>&gt;, std::size_t&gt;,
+                         std::string&gt; </td>
         </tr>
       </table>
   </td>
@@ -127,6 +129,15 @@ $(document).ready(function(){initNavTree('classapp_1_1ResultService.html',''); i
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Get current match entries from scanner </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Request parameters </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Pair of (entries, total_count) or error </dd></dl>
 
 </div>
 </div>

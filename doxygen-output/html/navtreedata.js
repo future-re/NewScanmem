@@ -73,15 +73,17 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classcli_1_1commands_1_1PidCommand.html#afd51223504cd4fe0d0a31caba1c0ee99",
-"classcore_1_1ProcMemIO.html#a9eaed5c344b09d84ac970e3aac1aed34",
-"classui_1_1ConsoleUI.html#a9a88badb0ade4b8a5105eefb104a40f5",
-"engine_8cppm.html#a233b8d4dd456fd5bf3e2c9ebbadefcc8",
-"module_cli_8commands_8scan.html#a912f3886c9acf5203d6f9059dafb13ad",
-"module_ui_8show__message.html#a6829b4fa3cb9211b4ac106c73ba19be6",
-"namespacevalue.html#ae28438fbb59121fdb73047773e075203",
-"structapp_1_1CurrentMatchListRequest.html#abccc8a5f89c6a5db887837ab4761ee92",
-"structcore_1_1RegionFlags.html#aacacfdd7e88e6bde49beae649054c7cd"
+"classcli_1_1commands_1_1QuitCommand.html#aba3bf8ce561572edd8f430c18f0e6daf",
+"classcore_1_1ProcMemIO.html#acdcd9ca1c0889bf54df7d5fba0de17de",
+"classscan_1_1ScanJob.html#a19aae521bd4d95e788acadfbe0350858",
+"classutils_1_1Logger.html#a099fb68592c54826b6d609d76bef0067",
+"functions_u.html",
+"module_core_8memory.html#a42d80a675561be2b06aa0dcae792585e",
+"module_utils_8endianness.html#a9b386dd2997f6356dc5ad20ce16003cc",
+"namespaceui_1_1color.html#ae8a88904a28fadfdbd251f2237139684",
+"show__message_8cppm.html#af9e067985096e67e9d9f8d5e5694341b",
+"structcli_1_1SessionState.html#a506fc2d66259b36a862a481bdb15e975",
+"structscan_1_1OldValueAndMatchInfo.html#aa478a24ba8b133896ed816d25f3e0ba0"
 ];
 
 var SYNCONMSG = '点击 关闭 面板同步';

@@ -111,9 +111,18 @@ $(document).ready(function(){initNavTree('namespaceui.html',''); initResizable()
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classui_1_1ConsoleUI.html">ConsoleUI</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Console-based implementation of <a class="el" href="classui_1_1UserInterface.html" title="Abstract interface for user interaction">UserInterface</a>  <a href="classui_1_1ConsoleUI.html#details">更多...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structui_1_1KeyEvent.html">KeyEvent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A single keyboard event with action type and optional character  <a href="structui_1_1KeyEvent.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classui_1_1LineEditor.html">LineEditor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interactive line editor with cursor movement and tab completion  <a href="classui_1_1LineEditor.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structui_1_1MessageContext.html">MessageContext</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classui_1_1MessagePrinter.html">MessagePrinter</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classui_1_1RawMode.html">RawMode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">RAII guard for terminal raw mode (disables canonical input &amp; echo)  <a href="classui_1_1RawMode.html#details">更多...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classui_1_1UserInterface.html">UserInterface</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract interface for user interaction  <a href="classui_1_1UserInterface.html#details">更多...</a><br /></td></tr>
@@ -144,6 +153,20 @@ $(document).ready(function(){initNavTree('namespaceui.html',''); initResizable()
 <br />
  }</td></tr>
 <tr class="separator:a44e6b543cec37673f5eaa69b80960a99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2efe88e2c1c96ccd92d265c9ba945627" id="r_a2efe88e2c1c96ccd92d265c9ba945627"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627">ui::KeyAction</a> : std::uint8_t { <br />
+&#160;&#160;<a class="el" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a331b3100a485d8cacff1d3df8e9b0c13">ENTER</a>
+, <a class="el" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a6f5d8e41084b4d3d47fa621c459eede1">BACKSPACE</a>
+, <a class="el" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627ad7aa835d76fc894935ade13f4d0624f8">MOVE_LEFT</a>
+, <a class="el" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a3dc5ed1f827e8c9a6392edb90af992d5">MOVE_RIGHT</a>
+, <br />
+&#160;&#160;<a class="el" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a2a840417b5da27f30bb7494cc4ebeed9">EOF_SIGNAL</a>
+, <a class="el" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a918ad5ef488cbd16df6d54785a6bb34e">INSERT_CHAR</a>
+, <a class="el" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a29f47414c6f001d81f2d074d829e99b0">TAB_COMPLETE</a>
+, <a class="el" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627aa2e843feab94ef623fea888f07c28696">IGNORE</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:a2efe88e2c1c96ccd92d265c9ba945627"><td class="mdescLeft">&#160;</td><td class="mdescRight">Categorized keyboard input actions  <a href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627">更多...</a><br /></td></tr>
+<tr class="separator:a2efe88e2c1c96ccd92d265c9ba945627"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 函数</h2></td></tr>
@@ -153,6 +176,9 @@ $(document).ready(function(){initNavTree('namespaceui.html',''); initResizable()
 <tr class="memitem:abef5789b57a74dc96b8c8fc35a30a125" id="r_abef5789b57a74dc96b8c8fc35a30a125"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceui.html#abef5789b57a74dc96b8c8fc35a30a125">ui::makeConsoleUI</a> (bool debugMode, bool backendMode) -&gt; <a class="el" href="classui_1_1ConsoleUI.html">ConsoleUI</a></td></tr>
 <tr class="memdesc:abef5789b57a74dc96b8c8fc35a30a125"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create console UI with specified options  <br /></td></tr>
 <tr class="separator:abef5789b57a74dc96b8c8fc35a30a125"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3144e0f770336bf1c2731dd0d451525a" id="r_a3144e0f770336bf1c2731dd0d451525a"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceui.html#a3144e0f770336bf1c2731dd0d451525a">ui::readKey</a> () -&gt; <a class="el" href="structui_1_1KeyEvent.html">KeyEvent</a></td></tr>
+<tr class="memdesc:a3144e0f770336bf1c2731dd0d451525a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a single key event from stdin (raw mode assumed)  <br /></td></tr>
+<tr class="separator:a3144e0f770336bf1c2731dd0d451525a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">类型定义说明</h2>
 <a id="adfe71bb0e06e4a7c2565858feecdcc78" name="adfe71bb0e06e4a7c2565858feecdcc78"></a>
@@ -187,6 +213,40 @@ $(document).ready(function(){initNavTree('namespaceui.html',''); initResizable()
 </div>
 </div>
 <h2 class="groupheader">枚举类型说明</h2>
+<a id="a2efe88e2c1c96ccd92d265c9ba945627" name="a2efe88e2c1c96ccd92d265c9ba945627"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2efe88e2c1c96ccd92d265c9ba945627">&#9670;&#160;</a></span>KeyAction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627">ui::KeyAction</a> : std::uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">export</span><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Categorized keyboard input actions </p>
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="a2efe88e2c1c96ccd92d265c9ba945627a331b3100a485d8cacff1d3df8e9b0c13" name="a2efe88e2c1c96ccd92d265c9ba945627a331b3100a485d8cacff1d3df8e9b0c13"></a>ENTER&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2efe88e2c1c96ccd92d265c9ba945627a6f5d8e41084b4d3d47fa621c459eede1" name="a2efe88e2c1c96ccd92d265c9ba945627a6f5d8e41084b4d3d47fa621c459eede1"></a>BACKSPACE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2efe88e2c1c96ccd92d265c9ba945627ad7aa835d76fc894935ade13f4d0624f8" name="a2efe88e2c1c96ccd92d265c9ba945627ad7aa835d76fc894935ade13f4d0624f8"></a>MOVE_LEFT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2efe88e2c1c96ccd92d265c9ba945627a3dc5ed1f827e8c9a6392edb90af992d5" name="a2efe88e2c1c96ccd92d265c9ba945627a3dc5ed1f827e8c9a6392edb90af992d5"></a>MOVE_RIGHT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2efe88e2c1c96ccd92d265c9ba945627a2a840417b5da27f30bb7494cc4ebeed9" name="a2efe88e2c1c96ccd92d265c9ba945627a2a840417b5da27f30bb7494cc4ebeed9"></a>EOF_SIGNAL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2efe88e2c1c96ccd92d265c9ba945627a918ad5ef488cbd16df6d54785a6bb34e" name="a2efe88e2c1c96ccd92d265c9ba945627a918ad5ef488cbd16df6d54785a6bb34e"></a>INSERT_CHAR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2efe88e2c1c96ccd92d265c9ba945627a29f47414c6f001d81f2d074d829e99b0" name="a2efe88e2c1c96ccd92d265c9ba945627a29f47414c6f001d81f2d074d829e99b0"></a>TAB_COMPLETE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2efe88e2c1c96ccd92d265c9ba945627aa2e843feab94ef623fea888f07c28696" name="a2efe88e2c1c96ccd92d265c9ba945627aa2e843feab94ef623fea888f07c28696"></a>IGNORE&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
 <a id="a4b8a6d96aee295a8102d06460fe071f2" name="a4b8a6d96aee295a8102d06460fe071f2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4b8a6d96aee295a8102d06460fe071f2">&#9670;&#160;</a></span>MessageLevel</h2>
 
@@ -318,6 +378,34 @@ $(document).ready(function(){initNavTree('namespaceui.html',''); initResizable()
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>Console UI instance </dd></dl>
+
+</div>
+</div>
+<a id="a3144e0f770336bf1c2731dd0d451525a" name="a3144e0f770336bf1c2731dd0d451525a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3144e0f770336bf1c2731dd0d451525a">&#9670;&#160;</a></span>readKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto ui::readKey </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> -&gt; <a class="el" href="structui_1_1KeyEvent.html">KeyEvent</a> </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read a single key event from stdin (raw mode assumed) </p>
+<dl class="section return"><dt>返回</dt><dd>Parsed <a class="el" href="structui_1_1KeyEvent.html" title="A single keyboard event with action type and optional character">KeyEvent</a> </dd></dl>
 
 </div>
 </div>

@@ -4,6 +4,8 @@ var module_cli_8app__config =
     [ "cli::AppConfig::isValid", "module_cli_8app__config.html#a23e2d9b33b9d7b2477384161d62702fa", null ],
     [ "cli::AppConfig::targetPid", "module_cli_8app__config.html#a5be85714320e85fd849c6890e7cc18db", null ],
     [ "cli::AppConfig::debugMode", "module_cli_8app__config.html#a1465e8d937c6844081e56630bf7a8d43", null ],
+    [ "cli::AppConfig::backendMode", "module_cli_8app__config.html#a38e10ee1bc03d3d7df2535c4e7faca71", null ],
+    [ "cli::AppConfig::batchMode", "module_cli_8app__config.html#aaa580cc29f8a5a4c6557d25e134c4f2d", null ],
     [ "cli::AppConfig::exitOnError", "module_cli_8app__config.html#aaf6a213d086af3adfe8222e60eccf39e", null ],
     [ "cli::AppConfig::colorMode", "module_cli_8app__config.html#a36fc07a1a782cda15bd20c7087769870", null ],
     [ "cli::AppConfig::autoBaseline", "module_cli_8app__config.html#a96b0080f81fb47a23c569e3b3bc39e61", null ],

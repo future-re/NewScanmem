@@ -1,16 +1,13 @@
 var searchData=
 [
-  ['scancommand_0',['ScanCommand',['../classcli_1_1commands_1_1ScanCommand.html',1,'cli::commands']]],
-  ['scanexecutionresult_1',['ScanExecutionResult',['../structapp_1_1ScanExecutionResult.html',1,'app']]],
-  ['scanner_2',['Scanner',['../classcore_1_1Scanner.html',1,'core']]],
-  ['scanoptions_3',['ScanOptions',['../structScanOptions.html',1,'']]],
-  ['scanrequest_4',['ScanRequest',['../structapp_1_1ScanRequest.html',1,'app']]],
-  ['scanresult_5',['ScanResult',['../structScanResult.html',1,'']]],
-  ['scanservice_6',['ScanService',['../classapp_1_1ScanService.html',1,'app']]],
-  ['scanstats_7',['ScanStats',['../structScanStats.html',1,'']]],
-  ['sessionstate_8',['SessionState',['../structcli_1_1SessionState.html',1,'cli']]],
-  ['set_9',['Set',['../structSet.html',1,'']]],
-  ['setcommand_10',['SetCommand',['../classcli_1_1commands_1_1SetCommand.html',1,'cli::commands']]],
-  ['snapshotcommand_11',['SnapshotCommand',['../classcli_1_1commands_1_1SnapshotCommand.html',1,'cli::commands']]],
-  ['stringutils_12',['StringUtils',['../classutils_1_1StringUtils.html',1,'utils']]]
+  ['rawmode_0',['RawMode',['../classui_1_1RawMode.html',1,'ui']]],
+  ['region_1',['Region',['../structcore_1_1Region.html',1,'core']]],
+  ['regionclassifier_2',['RegionClassifier',['../classcore_1_1RegionClassifier.html',1,'core']]],
+  ['regionfilter_3',['RegionFilter',['../classcore_1_1RegionFilter.html',1,'core']]],
+  ['regionfilterconfig_4',['RegionFilterConfig',['../structcore_1_1RegionFilterConfig.html',1,'core']]],
+  ['regionflags_5',['RegionFlags',['../structcore_1_1RegionFlags.html',1,'core']]],
+  ['regionlookupentry_6',['RegionLookupEntry',['../structcore_1_1RegionLookupEntry.html',1,'core']]],
+  ['repl_7',['REPL',['../classcli_1_1REPL.html',1,'cli']]],
+  ['resetcommand_8',['ResetCommand',['../classcli_1_1commands_1_1ResetCommand.html',1,'cli::commands']]],
+  ['resultservice_9',['ResultService',['../classapp_1_1ResultService.html',1,'app']]]
 ];

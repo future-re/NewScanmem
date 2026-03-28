@@ -98,43 +98,106 @@ $(document).ready(function(){initNavTree('classutils_1_1Logger.html',''); initRe
   <div class="headertitle"><div class="title">utils::Logger类 参考<span class="mlabels"><span class="mlabel">export</span></span><div class="ingroups">模块 <a class="el" href="module_utils_8logging.html">utils.logging</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Thread-safe logger with file and console output  
+ <a href="classutils_1_1Logger.html#details">更多...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
+<tr class="memitem:a099fb68592c54826b6d609d76bef0067" id="r_a099fb68592c54826b6d609d76bef0067"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a099fb68592c54826b6d609d76bef0067">Logger</a> (std::string name, std::optional&lt; std::string &gt; filename=std::nullopt, <a class="el" href="namespaceutils.html#a6b50893705cf2a59daf6b680304017dd">LogLevel</a> level=<a class="el" href="namespaceutils.html#a6b50893705cf2a59daf6b680304017dda551b723eafd6a31d444fcb2f5920fbd3">LogLevel::INFO</a>)</td></tr>
+<tr class="separator:a099fb68592c54826b6d609d76bef0067"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae336927bfdd8dc5ecc1fdb2eb092b98a" id="r_ae336927bfdd8dc5ecc1fdb2eb092b98a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#ae336927bfdd8dc5ecc1fdb2eb092b98a">Logger</a> (const <a class="el" href="classutils_1_1Logger.html">Logger</a> &amp;)=delete</td></tr>
 <tr class="separator:ae336927bfdd8dc5ecc1fdb2eb092b98a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af06161a3be564f581dd244f83ff3dd8d" id="r_af06161a3be564f581dd244f83ff3dd8d"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#af06161a3be564f581dd244f83ff3dd8d">operator=</a> (const <a class="el" href="classutils_1_1Logger.html">Logger</a> &amp;) -&gt; <a class="el" href="classutils_1_1Logger.html">Logger</a> &amp;=delete</td></tr>
 <tr class="separator:af06161a3be564f581dd244f83ff3dd8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a037c358405f126564e41b5381ff683ab" id="r_a037c358405f126564e41b5381ff683ab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a037c358405f126564e41b5381ff683ab">Logger</a> (<a class="el" href="classutils_1_1Logger.html">Logger</a> &amp;&amp;)=delete</td></tr>
-<tr class="separator:a037c358405f126564e41b5381ff683ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4f502431efdc6ec5b6d6b7b34d49d6e" id="r_ad4f502431efdc6ec5b6d6b7b34d49d6e"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#ad4f502431efdc6ec5b6d6b7b34d49d6e">operator=</a> (<a class="el" href="classutils_1_1Logger.html">Logger</a> &amp;&amp;) -&gt; <a class="el" href="classutils_1_1Logger.html">Logger</a> &amp;=delete</td></tr>
-<tr class="separator:ad4f502431efdc6ec5b6d6b7b34d49d6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9e249c42579b043ecc22b8355f55cb2" id="r_ac9e249c42579b043ecc22b8355f55cb2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#ac9e249c42579b043ecc22b8355f55cb2">Logger</a> (<a class="el" href="classutils_1_1Logger.html">Logger</a> &amp;&amp;other) noexcept</td></tr>
+<tr class="separator:ac9e249c42579b043ecc22b8355f55cb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbb01cebffd1c4cf068a1474c23365bd" id="r_acbb01cebffd1c4cf068a1474c23365bd"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#acbb01cebffd1c4cf068a1474c23365bd">operator=</a> (<a class="el" href="classutils_1_1Logger.html">Logger</a> &amp;&amp;other) noexcept -&gt; <a class="el" href="classutils_1_1Logger.html">Logger</a> &amp;</td></tr>
+<tr class="separator:acbb01cebffd1c4cf068a1474c23365bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77bc1942350f8303838db8dde4c9a4dd" id="r_a77bc1942350f8303838db8dde4c9a4dd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a77bc1942350f8303838db8dde4c9a4dd">~Logger</a> ()</td></tr>
+<tr class="separator:a77bc1942350f8303838db8dde4c9a4dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a683be1ca87d9561f9e526407d3e21af2" id="r_a683be1ca87d9561f9e526407d3e21af2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a683be1ca87d9561f9e526407d3e21af2">init</a> (const std::string &amp;filename, <a class="el" href="namespaceutils.html#a6b50893705cf2a59daf6b680304017dd">LogLevel</a> level=<a class="el" href="namespaceutils.html#a6b50893705cf2a59daf6b680304017dda551b723eafd6a31d444fcb2f5920fbd3">LogLevel::INFO</a>)</td></tr>
 <tr class="separator:a683be1ca87d9561f9e526407d3e21af2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a507160bcbb80a8245a1a155ece5ea903" id="r_a507160bcbb80a8245a1a155ece5ea903"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
 <tr class="memitem:a507160bcbb80a8245a1a155ece5ea903"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a507160bcbb80a8245a1a155ece5ea903">log</a> (<a class="el" href="namespaceutils.html#a6b50893705cf2a59daf6b680304017dd">LogLevel</a> level, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
 <tr class="separator:a507160bcbb80a8245a1a155ece5ea903"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04a0992d04741f49b749461045b9c547" id="r_a04a0992d04741f49b749461045b9c547"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:a04a0992d04741f49b749461045b9c547"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a04a0992d04741f49b749461045b9c547">debug</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a04a0992d04741f49b749461045b9c547"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7979bfb3991a4ea78ad3338cc8b7bbd" id="r_aa7979bfb3991a4ea78ad3338cc8b7bbd"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:aa7979bfb3991a4ea78ad3338cc8b7bbd"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#aa7979bfb3991a4ea78ad3338cc8b7bbd">info</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:aa7979bfb3991a4ea78ad3338cc8b7bbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05fab6f80b1120555910ffdb81cbb441" id="r_a05fab6f80b1120555910ffdb81cbb441"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:a05fab6f80b1120555910ffdb81cbb441"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a05fab6f80b1120555910ffdb81cbb441">warn</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a05fab6f80b1120555910ffdb81cbb441"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21b3ab5f2c1d3f53df18335537f5a9b6" id="r_a21b3ab5f2c1d3f53df18335537f5a9b6"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:a21b3ab5f2c1d3f53df18335537f5a9b6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a21b3ab5f2c1d3f53df18335537f5a9b6">error</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a21b3ab5f2c1d3f53df18335537f5a9b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
 <tr class="memitem:af6a9c19963a2c89d22ae0636a1ffac6f" id="r_af6a9c19963a2c89d22ae0636a1ffac6f"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#af6a9c19963a2c89d22ae0636a1ffac6f">instance</a> () -&gt; <a class="el" href="classutils_1_1Logger.html">Logger</a> &amp;</td></tr>
 <tr class="separator:af6a9c19963a2c89d22ae0636a1ffac6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3443a14b3e6b15e8dd19ae8bafd11e33" id="r_a3443a14b3e6b15e8dd19ae8bafd11e33"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
-<tr class="memitem:a3443a14b3e6b15e8dd19ae8bafd11e33"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a3443a14b3e6b15e8dd19ae8bafd11e33">debug</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
-<tr class="separator:a3443a14b3e6b15e8dd19ae8bafd11e33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99d362c9c4daff25946e7cefe2645d1d" id="r_a99d362c9c4daff25946e7cefe2645d1d"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
-<tr class="memitem:a99d362c9c4daff25946e7cefe2645d1d"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a99d362c9c4daff25946e7cefe2645d1d">info</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
-<tr class="separator:a99d362c9c4daff25946e7cefe2645d1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88765dffafbc4d950cad36fccb670064" id="r_a88765dffafbc4d950cad36fccb670064"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
-<tr class="memitem:a88765dffafbc4d950cad36fccb670064"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a88765dffafbc4d950cad36fccb670064">warn</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
-<tr class="separator:a88765dffafbc4d950cad36fccb670064"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc6b16a3e4f199dfc2aa79efc9e76c79" id="r_abc6b16a3e4f199dfc2aa79efc9e76c79"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
-<tr class="memitem:abc6b16a3e4f199dfc2aa79efc9e76c79"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#abc6b16a3e4f199dfc2aa79efc9e76c79">error</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
-<tr class="separator:abc6b16a3e4f199dfc2aa79efc9e76c79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a552eb47fe2c86af6e32cf5ef134a478e" id="r_a552eb47fe2c86af6e32cf5ef134a478e"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:a552eb47fe2c86af6e32cf5ef134a478e"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#a552eb47fe2c86af6e32cf5ef134a478e">s_debug</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a552eb47fe2c86af6e32cf5ef134a478e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade270066479613f8ed669c5451798a6b" id="r_ade270066479613f8ed669c5451798a6b"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:ade270066479613f8ed669c5451798a6b"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#ade270066479613f8ed669c5451798a6b">s_info</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:ade270066479613f8ed669c5451798a6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfca155e7040a11256630f1d0dc366a4" id="r_adfca155e7040a11256630f1d0dc366a4"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:adfca155e7040a11256630f1d0dc366a4"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#adfca155e7040a11256630f1d0dc366a4">s_warn</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:adfca155e7040a11256630f1d0dc366a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8c42d4ae8388d5fbf22fa7c1b8bafbb" id="r_ad8c42d4ae8388d5fbf22fa7c1b8bafbb"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:ad8c42d4ae8388d5fbf22fa7c1b8bafbb"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classutils_1_1Logger.html#ad8c42d4ae8388d5fbf22fa7c1b8bafbb">s_error</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:ad8c42d4ae8388d5fbf22fa7c1b8bafbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">构造及析构函数说明</h2>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>Thread-safe logger with file and console output </p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a099fb68592c54826b6d609d76bef0067" name="a099fb68592c54826b6d609d76bef0067"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a099fb68592c54826b6d609d76bef0067">&#9670;&#160;</a></span>Logger() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">utils::Logger::Logger </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::optional&lt; std::string &gt;&#160;</td>
+          <td class="paramname"><em>filename</em> = <code>std::nullopt</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceutils.html#a6b50893705cf2a59daf6b680304017dd">LogLevel</a>&#160;</td>
+          <td class="paramname"><em>level</em> = <code><a class="el" href="namespaceutils.html#a6b50893705cf2a59daf6b680304017dda551b723eafd6a31d444fcb2f5920fbd3">LogLevel::INFO</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ae336927bfdd8dc5ecc1fdb2eb092b98a" name="ae336927bfdd8dc5ecc1fdb2eb092b98a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae336927bfdd8dc5ecc1fdb2eb092b98a">&#9670;&#160;</a></span>Logger() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae336927bfdd8dc5ecc1fdb2eb092b98a">&#9670;&#160;</a></span>Logger() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,8 +222,8 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a037c358405f126564e41b5381ff683ab" name="a037c358405f126564e41b5381ff683ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a037c358405f126564e41b5381ff683ab">&#9670;&#160;</a></span>Logger() <span class="overload">[2/2]</span></h2>
+<a id="ac9e249c42579b043ecc22b8355f55cb2" name="ac9e249c42579b043ecc22b8355f55cb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9e249c42579b043ecc22b8355f55cb2">&#9670;&#160;</a></span>Logger() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -172,13 +235,38 @@ Public 成员函数</h2></td></tr>
           <td class="memname">utils::Logger::Logger </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classutils_1_1Logger.html">Logger</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a77bc1942350f8303838db8dde4c9a4dd" name="a77bc1942350f8303838db8dde4c9a4dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77bc1942350f8303838db8dde4c9a4dd">&#9670;&#160;</a></span>~Logger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">utils::Logger::~Logger </td>
+          <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span><span class="mlabel">delete</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -186,8 +274,8 @@ Public 成员函数</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">成员函数说明</h2>
-<a id="a3443a14b3e6b15e8dd19ae8bafd11e33" name="a3443a14b3e6b15e8dd19ae8bafd11e33"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3443a14b3e6b15e8dd19ae8bafd11e33">&#9670;&#160;</a></span>debug()</h2>
+<a id="a04a0992d04741f49b749461045b9c547" name="a04a0992d04741f49b749461045b9c547"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04a0992d04741f49b749461045b9c547">&#9670;&#160;</a></span>debug()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -198,7 +286,7 @@ template&lt;typename... Args&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void utils::Logger::debug </td>
+          <td class="memname">void utils::Logger::debug </td>
           <td>(</td>
           <td class="paramtype">std::format_string&lt; Args... &gt;&#160;</td>
           <td class="paramname"><em>fmt</em>, </td>
@@ -217,15 +305,15 @@ template&lt;typename... Args&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="abc6b16a3e4f199dfc2aa79efc9e76c79" name="abc6b16a3e4f199dfc2aa79efc9e76c79"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abc6b16a3e4f199dfc2aa79efc9e76c79">&#9670;&#160;</a></span>error()</h2>
+<a id="a21b3ab5f2c1d3f53df18335537f5a9b6" name="a21b3ab5f2c1d3f53df18335537f5a9b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21b3ab5f2c1d3f53df18335537f5a9b6">&#9670;&#160;</a></span>error()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -236,7 +324,7 @@ template&lt;typename... Args&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void utils::Logger::error </td>
+          <td class="memname">void utils::Logger::error </td>
           <td>(</td>
           <td class="paramtype">std::format_string&lt; Args... &gt;&#160;</td>
           <td class="paramname"><em>fmt</em>, </td>
@@ -255,15 +343,15 @@ template&lt;typename... Args&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a99d362c9c4daff25946e7cefe2645d1d" name="a99d362c9c4daff25946e7cefe2645d1d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99d362c9c4daff25946e7cefe2645d1d">&#9670;&#160;</a></span>info()</h2>
+<a id="aa7979bfb3991a4ea78ad3338cc8b7bbd" name="aa7979bfb3991a4ea78ad3338cc8b7bbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7979bfb3991a4ea78ad3338cc8b7bbd">&#9670;&#160;</a></span>info()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -274,7 +362,7 @@ template&lt;typename... Args&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void utils::Logger::info </td>
+          <td class="memname">void utils::Logger::info </td>
           <td>(</td>
           <td class="paramtype">std::format_string&lt; Args... &gt;&#160;</td>
           <td class="paramname"><em>fmt</em>, </td>
@@ -293,7 +381,7 @@ template&lt;typename... Args&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -431,8 +519,8 @@ template&lt;typename... Args&gt; </div>
 
 </div>
 </div>
-<a id="ad4f502431efdc6ec5b6d6b7b34d49d6e" name="ad4f502431efdc6ec5b6d6b7b34d49d6e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4f502431efdc6ec5b6d6b7b34d49d6e">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+<a id="acbb01cebffd1c4cf068a1474c23365bd" name="acbb01cebffd1c4cf068a1474c23365bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbb01cebffd1c4cf068a1474c23365bd">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -444,21 +532,21 @@ template&lt;typename... Args&gt; </div>
           <td class="memname">auto utils::Logger::operator= </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classutils_1_1Logger.html">Logger</a> &amp;&amp;&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td> -&gt;  <a class="el" href="classutils_1_1Logger.html">Logger</a> &amp;=delete</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> -&gt; <a class="el" href="classutils_1_1Logger.html">Logger</a>&amp; </td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span><span class="mlabel">delete</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a88765dffafbc4d950cad36fccb670064" name="a88765dffafbc4d950cad36fccb670064"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a88765dffafbc4d950cad36fccb670064">&#9670;&#160;</a></span>warn()</h2>
+<a id="a552eb47fe2c86af6e32cf5ef134a478e" name="a552eb47fe2c86af6e32cf5ef134a478e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a552eb47fe2c86af6e32cf5ef134a478e">&#9670;&#160;</a></span>s_debug()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -469,7 +557,7 @@ template&lt;typename... Args&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void utils::Logger::warn </td>
+          <td class="memname">static void utils::Logger::s_debug </td>
           <td>(</td>
           <td class="paramtype">std::format_string&lt; Args... &gt;&#160;</td>
           <td class="paramname"><em>fmt</em>, </td>
@@ -489,6 +577,158 @@ template&lt;typename... Args&gt; </div>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad8c42d4ae8388d5fbf22fa7c1b8bafbb" name="ad8c42d4ae8388d5fbf22fa7c1b8bafbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8c42d4ae8388d5fbf22fa7c1b8bafbb">&#9670;&#160;</a></span>s_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void utils::Logger::s_error </td>
+          <td>(</td>
+          <td class="paramtype">std::format_string&lt; Args... &gt;&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ade270066479613f8ed669c5451798a6b" name="ade270066479613f8ed669c5451798a6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade270066479613f8ed669c5451798a6b">&#9670;&#160;</a></span>s_info()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void utils::Logger::s_info </td>
+          <td>(</td>
+          <td class="paramtype">std::format_string&lt; Args... &gt;&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adfca155e7040a11256630f1d0dc366a4" name="adfca155e7040a11256630f1d0dc366a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfca155e7040a11256630f1d0dc366a4">&#9670;&#160;</a></span>s_warn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void utils::Logger::s_warn </td>
+          <td>(</td>
+          <td class="paramtype">std::format_string&lt; Args... &gt;&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a05fab6f80b1120555910ffdb81cbb441" name="a05fab6f80b1120555910ffdb81cbb441"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05fab6f80b1120555910ffdb81cbb441">&#9670;&#160;</a></span>warn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void utils::Logger::warn </td>
+          <td>(</td>
+          <td class="paramtype">std::format_string&lt; Args... &gt;&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

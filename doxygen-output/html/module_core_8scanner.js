@@ -1,14 +1,25 @@
 var module_core_8scanner =
 [
+    [ "ScanRequest", "structcore_1_1ScanRequest.html", "structcore_1_1ScanRequest" ],
+    [ "ScanResponse", "structcore_1_1ScanResponse.html", "structcore_1_1ScanResponse" ],
     [ "Scanner", "classcore_1_1Scanner.html", "classcore_1_1Scanner" ],
+    [ "ScanRequest", "structcore_1_1ScanRequest.html", "structcore_1_1ScanRequest" ],
+    [ "ScanResponse", "structcore_1_1ScanResponse.html", "structcore_1_1ScanResponse" ],
     [ "Scanner", "classcore_1_1Scanner.html", "classcore_1_1Scanner" ],
+    [ "core::ScanMode", "module_core_8scanner.html#ae4767c3e4cd8298a18da706496f62ab9", [
+      [ "FULL_SCAN", "module_core_8scanner.html#ae4767c3e4cd8298a18da706496f62ab9ac6347916d6ca9727b838e63e5a250035", null ],
+      [ "INCREMENTAL", "module_core_8scanner.html#ae4767c3e4cd8298a18da706496f62ab9a9c098c060958933384cc3fde595a1c07", null ],
+      [ "RESCAN", "module_core_8scanner.html#ae4767c3e4cd8298a18da706496f62ab9a45117e19c4f64bb8745ca22683e483fb", null ]
+    ] ],
     [ "core::Scanner::Scanner", "module_core_8scanner.html#aa4f39c860299a9b19799409dbf2a8cb2", null ],
-    [ "core::Scanner::performScan", "module_core_8scanner.html#a29b139e20acad2875ab8143f9833036b", null ],
-    [ "core::Scanner::performScan", "module_core_8scanner.html#a1e27cd9428113e29a0ad15c06f952723", null ],
+    [ "core::Scanner::snapshot", "module_core_8scanner.html#a31f8a56fb5e1f7ec6bfd1aa78ffd25c9", null ],
+    [ "core::Scanner::filter", "module_core_8scanner.html#a79289780cb5757200e790903d9bff1ee", null ],
+    [ "core::Scanner::rescan", "module_core_8scanner.html#a01e47d7dc565e957f15fa86b0b9d708c", null ],
+    [ "core::Scanner::scan", "module_core_8scanner.html#afc191b1d2e8a0518a66115aec300cf95", null ],
+    [ "core::Scanner::performScan", "module_core_8scanner.html#a7bd1c8e40929d9424b4fa75109795e64", null ],
+    [ "core::Scanner::performFilteredScan", "module_core_8scanner.html#a4e32efcec959f0565c174b52124321ba", null ],
     [ "core::Scanner::scan", "module_core_8scanner.html#a29468a60039dfac26a7f8f5c84000a60", null ],
     [ "core::Scanner::scan", "module_core_8scanner.html#a8b6e8afad903155ed679b2657d692fb3", null ],
-    [ "core::Scanner::performFilteredScan", "module_core_8scanner.html#a724ef01d995b4d85cd42dfcb35ea2a76", null ],
-    [ "core::Scanner::performFilteredScan", "module_core_8scanner.html#a8db0525f0b38c2b2b7858c2a1a49a7ea", null ],
     [ "core::Scanner::getResultCount", "module_core_8scanner.html#a92a349d999a0233c6f3a08b747402a7b", null ],
     [ "core::Scanner::getResult", "module_core_8scanner.html#a66666d7b77ed25b3e9aa1c5729051827", null ],
     [ "core::Scanner::getResults", "module_core_8scanner.html#a1f74522eabddecea11fc4a2b54472860", null ],
@@ -20,5 +31,14 @@ var module_core_8scanner =
     [ "core::Scanner::getMatchCount", "module_core_8scanner.html#a0fdc585f1b3064570c06478c7871093f", null ],
     [ "core::Scanner::hasMatches", "module_core_8scanner.html#aa4e7c5e1c6475faecbc92452b1a511a6", null ],
     [ "core::Scanner::getPid", "module_core_8scanner.html#a4e4921aced4be4fa13828c2b160ad7aa", null ],
-    [ "core::Scanner::getLastDataType", "module_core_8scanner.html#a175cff5ca3dd3a6769de4d06e9daccd6", null ]
+    [ "core::Scanner::getLastDataType", "module_core_8scanner.html#a175cff5ca3dd3a6769de4d06e9daccd6", null ],
+    [ "core::Scanner::saveCurrentToHistory", "module_core_8scanner.html#aa8e0eeedf0532de021e4b745f17da4a6", null ],
+    [ "core::ScanRequest::mode", "module_core_8scanner.html#a42e9277708e5e5cd73d8afb927e31661", null ],
+    [ "core::ScanRequest::options", "module_core_8scanner.html#a628809435fac2702bfca18d3b90b622c", null ],
+    [ "core::ScanRequest::targetValue", "module_core_8scanner.html#a8b4c10d672d218d1bb6681b755cf7cc2", null ],
+    [ "core::ScanRequest::saveToHistory", "module_core_8scanner.html#a66c6f96e9ce713ee7dcc1effe6fdfc60", null ],
+    [ "core::ScanResponse::stats", "module_core_8scanner.html#ae1f375215ac435829972658cc110be96", null ],
+    [ "core::ScanResponse::matchCount", "module_core_8scanner.html#a93809853be0ecf3177be7361fb29d777", null ],
+    [ "core::ScanResponse::success", "module_core_8scanner.html#a37ccb0f25ba0a995ae638e4c899888c9", null ],
+    [ "core::ScanResponse::error", "module_core_8scanner.html#a334101004579445b55c570ff25db3b26", null ]
 ];

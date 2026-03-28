@@ -9,5 +9,6 @@ var dir_aebb8dcc11953d78e620bbef0b9e2183 =
     [ "process_checker.cppm", "process__checker_8cppm.html", "process__checker_8cppm" ],
     [ "region_classifier.cppm", "region__classifier_8cppm.html", "region__classifier_8cppm" ],
     [ "region_filter.cppm", "region__filter_8cppm.html", "region__filter_8cppm" ],
+    [ "scan_history.cppm", "scan__history_8cppm.html", "scan__history_8cppm" ],
     [ "scanner.cppm", "scanner_8cppm.html", "scanner_8cppm" ]
 ];

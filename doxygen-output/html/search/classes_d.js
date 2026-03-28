@@ -1,6 +1,20 @@
 var searchData=
 [
-  ['userinput_0',['UserInput',['../structUserInput.html',1,'']]],
-  ['userinterface_1',['UserInterface',['../classui_1_1UserInterface.html',1,'ui']]],
-  ['uservalue_2',['UserValue',['../structUserValue.html',1,'']]]
+  ['scancommand_0',['ScanCommand',['../classcli_1_1commands_1_1ScanCommand.html',1,'cli::commands']]],
+  ['scancontext_1',['ScanContext',['../structscan_1_1ScanContext.html',1,'scan']]],
+  ['scanexecutionresult_2',['ScanExecutionResult',['../structapp_1_1ScanExecutionResult.html',1,'app']]],
+  ['scanhistory_3',['ScanHistory',['../classcore_1_1ScanHistory.html',1,'core']]],
+  ['scanjob_4',['ScanJob',['../classscan_1_1ScanJob.html',1,'scan']]],
+  ['scanner_5',['Scanner',['../classcore_1_1Scanner.html',1,'core']]],
+  ['scanoptions_6',['ScanOptions',['../structScanOptions.html',1,'']]],
+  ['scanrequest_7',['scanrequest',['../structapp_1_1ScanRequest.html',1,'app::ScanRequest'],['../structcore_1_1ScanRequest.html',1,'core::ScanRequest']]],
+  ['scanresponse_8',['ScanResponse',['../structcore_1_1ScanResponse.html',1,'core']]],
+  ['scanresult_9',['scanresult',['../structscan_1_1ScanResult.html',1,'scan::ScanResult'],['../structScanResult.html',1,'ScanResult']]],
+  ['scanservice_10',['ScanService',['../classapp_1_1ScanService.html',1,'app']]],
+  ['scanstats_11',['ScanStats',['../structScanStats.html',1,'']]],
+  ['sessionstate_12',['SessionState',['../structcli_1_1SessionState.html',1,'cli']]],
+  ['set_13',['Set',['../structSet.html',1,'']]],
+  ['setcommand_14',['SetCommand',['../classcli_1_1commands_1_1SetCommand.html',1,'cli::commands']]],
+  ['snapshotcommand_15',['SnapshotCommand',['../classcli_1_1commands_1_1SnapshotCommand.html',1,'cli::commands']]],
+  ['stringutils_16',['StringUtils',['../classutils_1_1StringUtils.html',1,'utils']]]
 ];

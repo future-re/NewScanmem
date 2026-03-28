@@ -2,6 +2,8 @@ var structcli_1_1AppConfig =
 [
     [ "isValid", "structcli_1_1AppConfig.html#a23e2d9b33b9d7b2477384161d62702fa", null ],
     [ "autoBaseline", "structcli_1_1AppConfig.html#a96b0080f81fb47a23c569e3b3bc39e61", null ],
+    [ "backendMode", "structcli_1_1AppConfig.html#a38e10ee1bc03d3d7df2535c4e7faca71", null ],
+    [ "batchMode", "structcli_1_1AppConfig.html#aaa580cc29f8a5a4c6557d25e134c4f2d", null ],
     [ "colorMode", "structcli_1_1AppConfig.html#a36fc07a1a782cda15bd20c7087769870", null ],
     [ "debugMode", "structcli_1_1AppConfig.html#a1465e8d937c6844081e56630bf7a8d43", null ],
     [ "exitOnError", "structcli_1_1AppConfig.html#aaf6a213d086af3adfe8222e60eccf39e", null ],
