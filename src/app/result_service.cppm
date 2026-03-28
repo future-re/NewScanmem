@@ -12,14 +12,13 @@ module;
 #include <expected>
 #include <optional>
 #include <string>
+#include <vector>
 
 export module app.result_service;
 
 import core.match;
-import core.match_formatter;
 import core.region_classifier;
 import core.scanner;
-import ui.show_message;
 import utils.endianness;
 
 export namespace app {
@@ -30,17 +29,21 @@ struct CurrentMatchListRequest {
     std::size_t limit{20};
     bool showRegion{true};
     bool showIndex{true};
-    utils::Endianness endianness{
-        (std::endian::native == std::endian::little
-             ? utils::Endianness::LITTLE
-             : utils::Endianness::BIG)};
+    utils::Endianness endianness{(std::endian::native == std::endian::little
+                                      ? utils::Endianness::LITTLE
+                                      : utils::Endianness::BIG)};
 };
 
 class ResultService {
    public:
-    [[nodiscard]] static auto showCurrentMatches(
-        const CurrentMatchListRequest& request)
-        -> std::expected<std::size_t, std::string> {
+    /**
+     * @brief Get current match entries from scanner
+     * @param request Request parameters
+     * @return Pair of (entries, total_count) or error
+     */
+    [[nodiscard]] static auto getMatches(const CurrentMatchListRequest& request)
+        -> std::expected<std::pair<std::vector<core::MatchEntry>, std::size_t>,
+                         std::string> {
         if (request.scanner == nullptr) {
             return std::unexpected("No scanner initialized. Run a scan first.");
         }
@@ -55,18 +58,7 @@ class ResultService {
         core::MatchCollectionOptions collectOptions{
             .limit = request.limit, .collectRegion = request.showRegion};
 
-        auto [entries, totalCount] =
-            collector.collect(*request.scanner, collectOptions);
-
-        core::FormatOptions formatOptions{
-            .showRegion = request.showRegion,
-            .showIndex = request.showIndex,
-            .bigEndianDisplay =
-                (request.endianness == utils::Endianness::BIG),
-            .dataType = request.scanner->getLastDataType()};
-        core::MatchFormatter::display(entries, totalCount, formatOptions);
-
-        return totalCount;
+        return collector.collect(*request.scanner, collectOptions);
     }
 };
 

@@ -12,6 +12,7 @@ module;
 #include <string>
 #include <string_view>
 #include <type_traits>
+#include <unordered_map>
 #include <utility>
 #include <vector>
 
@@ -127,6 +128,81 @@ namespace detail {
 }
 }  // namespace detail
 
+namespace detail {
+
+// Data type lookup table
+inline const auto& getDataTypeMap() {
+    using MapType = std::unordered_map<std::string_view, ScanDataType>;
+    static const MapType MAP = [] {
+        MapType m;
+        // ANY types
+        m.emplace("any", ScanDataType::ANY_NUMBER);
+        m.emplace("anynumber", ScanDataType::ANY_NUMBER);
+        m.emplace("anyint", ScanDataType::ANY_INTEGER);
+        m.emplace("anyinteger", ScanDataType::ANY_INTEGER);
+        m.emplace("anyfloat", ScanDataType::ANY_FLOAT);
+        // Integer types
+        m.emplace("int", ScanDataType::INTEGER_32);
+        m.emplace("int8", ScanDataType::INTEGER_8);
+        m.emplace("i8", ScanDataType::INTEGER_8);
+        m.emplace("int16", ScanDataType::INTEGER_16);
+        m.emplace("i16", ScanDataType::INTEGER_16);
+        m.emplace("int32", ScanDataType::INTEGER_32);
+        m.emplace("i32", ScanDataType::INTEGER_32);
+        m.emplace("int64", ScanDataType::INTEGER_64);
+        m.emplace("i64", ScanDataType::INTEGER_64);
+        // Float types
+        m.emplace("float", ScanDataType::FLOAT_32);
+        m.emplace("f32", ScanDataType::FLOAT_32);
+        m.emplace("float_32", ScanDataType::FLOAT_32);
+        m.emplace("float32", ScanDataType::FLOAT_32);
+        m.emplace("double", ScanDataType::FLOAT_64);
+        m.emplace("f64", ScanDataType::FLOAT_64);
+        m.emplace("float_64", ScanDataType::FLOAT_64);
+        m.emplace("float64", ScanDataType::FLOAT_64);
+        // Other types
+        m.emplace("string", ScanDataType::STRING);
+        m.emplace("str", ScanDataType::STRING);
+        m.emplace("bytearray", ScanDataType::BYTE_ARRAY);
+        m.emplace("bytes", ScanDataType::BYTE_ARRAY);
+        return m;
+    }();
+    return MAP;
+}
+
+// Match type lookup table
+inline const auto& getMatchTypeMap() {
+    using MapType = std::unordered_map<std::string_view, ScanMatchType>;
+    static const MapType MAP = [] {
+        MapType m;
+        m.emplace("any", ScanMatchType::MATCH_ANY);
+        m.emplace("eq", ScanMatchType::MATCH_EQUAL_TO);
+        m.emplace("=", ScanMatchType::MATCH_EQUAL_TO);
+        m.emplace("neq", ScanMatchType::MATCH_NOT_EQUAL_TO);
+        m.emplace("!=", ScanMatchType::MATCH_NOT_EQUAL_TO);
+        m.emplace("gt", ScanMatchType::MATCH_GREATER_THAN);
+        m.emplace(">", ScanMatchType::MATCH_GREATER_THAN);
+        m.emplace("lt", ScanMatchType::MATCH_LESS_THAN);
+        m.emplace("<", ScanMatchType::MATCH_LESS_THAN);
+        m.emplace("range", ScanMatchType::MATCH_RANGE);
+        m.emplace("changed", ScanMatchType::MATCH_CHANGED);
+        m.emplace("notchanged", ScanMatchType::MATCH_NOT_CHANGED);
+        m.emplace("update", ScanMatchType::MATCH_NOT_CHANGED);
+        m.emplace("inc", ScanMatchType::MATCH_INCREASED);
+        m.emplace("increased", ScanMatchType::MATCH_INCREASED);
+        m.emplace("dec", ScanMatchType::MATCH_DECREASED);
+        m.emplace("decreased", ScanMatchType::MATCH_DECREASED);
+        m.emplace("incby", ScanMatchType::MATCH_INCREASED_BY);
+        m.emplace("decby", ScanMatchType::MATCH_DECREASED_BY);
+        m.emplace("regex", ScanMatchType::MATCH_REGEX);
+        m.emplace("re", ScanMatchType::MATCH_REGEX);
+        return m;
+    }();
+    return MAP;
+}
+
+}  // namespace detail
+
 /**
  * @brief Parse data type from string with aliases support
  * @param tok Token to parse (e.g., "int", "int64", "float")
@@ -134,44 +210,10 @@ namespace detail {
  */
 [[nodiscard]] inline auto parseDataType(std::string_view tok)
     -> std::optional<ScanDataType> {
-    const auto TO_STR = utils::StringUtils::toLower(tok);
-    if (TO_STR == "any" || TO_STR == "anynumber") {
-        return ScanDataType::ANY_NUMBER;
-    }
-    if (TO_STR == "anyint" || TO_STR == "anyinteger") {
-        return ScanDataType::ANY_INTEGER;
-    }
-    if (TO_STR == "anyfloat") {
-        return ScanDataType::ANY_FLOAT;
-    }
-    if (TO_STR == "int") {
-        return ScanDataType::INTEGER_32;
-    }
-    if (TO_STR == "int8" || TO_STR == "i8") {
-        return ScanDataType::INTEGER_8;
-    }
-    if (TO_STR == "int16" || TO_STR == "i16") {
-        return ScanDataType::INTEGER_16;
-    }
-    if (TO_STR == "int32" || TO_STR == "i32") {
-        return ScanDataType::INTEGER_32;
-    }
-    if (TO_STR == "int64" || TO_STR == "i64") {
-        return ScanDataType::INTEGER_64;
-    }
-    if (TO_STR == "float" || TO_STR == "f32" || TO_STR == "float_32" ||
-        TO_STR == "float32") {
-        return ScanDataType::FLOAT_32;
-    }
-    if (TO_STR == "double" || TO_STR == "f64" || TO_STR == "float_64" ||
-        TO_STR == "float64") {
-        return ScanDataType::FLOAT_64;
-    }
-    if (TO_STR == "string" || TO_STR == "str") {
-        return ScanDataType::STRING;
-    }
-    if (TO_STR == "bytearray" || TO_STR == "bytes") {
-        return ScanDataType::BYTE_ARRAY;
+    const auto lowered = utils::StringUtils::toLower(tok);
+    const auto& map = detail::getDataTypeMap();
+    if (auto it = map.find(lowered); it != map.end()) {
+        return it->second;
     }
     return std::nullopt;
 }
@@ -183,45 +225,10 @@ namespace detail {
  */
 [[nodiscard]] inline auto parseMatchType(std::string_view tok)
     -> std::optional<ScanMatchType> {
-    const auto MATCH_STR = utils::StringUtils::toLower(tok);
-    if (MATCH_STR == "any") {
-        return ScanMatchType::MATCH_ANY;
-    }
-    if (MATCH_STR == "eq" || MATCH_STR == "=") {
-        return ScanMatchType::MATCH_EQUAL_TO;
-    }
-    if (MATCH_STR == "neq" || MATCH_STR == "!=") {
-        return ScanMatchType::MATCH_NOT_EQUAL_TO;
-    }
-    if (MATCH_STR == "gt" || MATCH_STR == ">") {
-        return ScanMatchType::MATCH_GREATER_THAN;
-    }
-    if (MATCH_STR == "lt" || MATCH_STR == "<") {
-        return ScanMatchType::MATCH_LESS_THAN;
-    }
-    if (MATCH_STR == "range") {
-        return ScanMatchType::MATCH_RANGE;
-    }
-    if (MATCH_STR == "changed") {
-        return ScanMatchType::MATCH_CHANGED;
-    }
-    if (MATCH_STR == "notchanged" || MATCH_STR == "update") {
-        return ScanMatchType::MATCH_NOT_CHANGED;
-    }
-    if (MATCH_STR == "inc" || MATCH_STR == "increased") {
-        return ScanMatchType::MATCH_INCREASED;
-    }
-    if (MATCH_STR == "dec" || MATCH_STR == "decreased") {
-        return ScanMatchType::MATCH_DECREASED;
-    }
-    if (MATCH_STR == "incby") {
-        return ScanMatchType::MATCH_INCREASED_BY;
-    }
-    if (MATCH_STR == "decby") {
-        return ScanMatchType::MATCH_DECREASED_BY;
-    }
-    if (MATCH_STR == "regex" || MATCH_STR == "re") {
-        return ScanMatchType::MATCH_REGEX;
+    const auto lowered = utils::StringUtils::toLower(tok);
+    const auto& map = detail::getMatchTypeMap();
+    if (auto it = map.find(lowered); it != map.end()) {
+        return it->second;
     }
     return std::nullopt;
 }

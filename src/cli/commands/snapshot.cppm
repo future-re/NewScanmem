@@ -74,7 +74,7 @@ class SnapshotCommand : public Command {
         opts.dataType = dataType;
         opts.matchType = ScanMatchType::MATCH_ANY;
 
-        auto res = scanner->performScan(opts, true);
+        auto res = scanner->performScan(opts, std::nullopt, true);
         if (!res) {
             return std::unexpected(res.error());
         }

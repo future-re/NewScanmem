@@ -4,7 +4,7 @@ import scan.engine;        // runScan, ScanOptions, ScanStats
 import scan.co_engine;     // runScanParallel
 import scan.match_storage; // MatchesAndOldValuesArray
 import scan.types;         // ScanDataType, ScanMatchType
-import value;       // UserValue
+import value.core;  // UserValue
 import value.flags;        // MatchFlags
 import core.maps;          // RegionScanLevel
 

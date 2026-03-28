@@ -15,7 +15,7 @@ import scan.types;
 import scan.routine;
 import value.flags;
 import scan.bytes;
-import value;
+import value.core;
 
 // This module implements string and regex-related routines and a
 // thread-local regex cache.

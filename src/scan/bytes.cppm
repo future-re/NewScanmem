@@ -14,7 +14,7 @@ import scan.types;
 import scan.routine;
 import value.flags;
 
-import value;
+import value.core;
 
 // Byte compare & search helpers used by the scanning engine.
 // Public utilities:

@@ -17,7 +17,8 @@ import core.scanner;
 import core.region_classifier;
 import core.region_filter;
 import value.flags;
-import scan.types; // for ScanDataType, bytesNeededForType
+import scan.types;         // for ScanDataType, bytesNeededForType
+import scan.match_storage; // for MatchesAndOldValuesSwath, OldValueAndMatchInfo
 
 export namespace core {
 
@@ -72,25 +73,20 @@ class MatchCollector {
                                const MatchCollectionOptions& options = {}) const
         -> std::pair<std::vector<MatchEntry>, size_t> {
         const auto& matches = scanner.getMatches();
-
-        // Get data type to determine value size
         auto dataType = scanner.getLastDataType();
         size_t valueSize = dataType ? bytesNeededForType(*dataType) : 1;
 
-        size_t globalIndex = 0;   // Global index across ALL matches
-        size_t displayCount = 0;  // Count of collected entries
-        size_t totalCount = 0;    // Total match count
-        size_t filteredCount =
-            0;  // Count after filtering (for export-time filter)
+        size_t globalIndex = 0;
+        size_t displayCount = 0;
+        size_t totalCount = 0;
+        size_t filteredCount = 0;
 
         std::vector<MatchEntry> entries;
         entries.reserve(options.limit);
 
-        // Check if export-time filtering is active
         bool useExportFilter = options.regionFilter.isExportTimeFilter() &&
                                options.regionFilter.filter.isActive();
 
-        // Collect match entries
         for (const auto& swath : matches.swaths) {
             auto* base = static_cast<std::uint8_t*>(swath.firstByteInChild);
             if (base == nullptr) {
@@ -106,7 +102,6 @@ class MatchCollector {
                 totalCount++;
                 auto addr = std::bit_cast<std::uintptr_t>(base + i);
 
-                // Check export-time filter
                 bool passesFilter = true;
                 if (useExportFilter && m_classifier) {
                     passesFilter = options.regionFilter.filter.isAddressAllowed(
@@ -117,52 +112,61 @@ class MatchCollector {
                     filteredCount++;
 
                     if (displayCount < options.limit) {
-                        std::string region = "unk";
-                        if (m_classifier && options.collectRegion) {
-                            region = m_classifier->classify(addr);
-                        }
+                        size_t actualSize =
+                            getActualValueSize(cell, valueSize, dataType);
+                        auto valueBytes =
+                            extractValueBytes(swath, i, actualSize);
+                        std::string region =
+                            getClassifiedRegion(addr, options.collectRegion);
 
-                        // Determine value size based on data type and match
-                        // length
-                        size_t actualValueSize = valueSize;
-                        // For string/bytearray, use matchLength if available
-                        if (dataType &&
-                            (*dataType == ScanDataType::STRING ||
-                             *dataType == ScanDataType::BYTE_ARRAY)) {
-                            if (cell.matchLength > 0) {
-                                actualValueSize = cell.matchLength;
-                            }
-                        }
-
-                        // Read complete value bytes from memory
-                        std::vector<std::uint8_t> valueBytes(actualValueSize);
-                        for (size_t j = 0;
-                             j < actualValueSize && (i + j) < swath.data.size();
-                             ++j) {
-                            valueBytes[j] = swath.data[i + j].oldByte;
-                        }
-
-                        // Use globalIndex to maintain stable indices
                         entries.push_back(
                             MatchEntry{.index = globalIndex,
                                        .address = addr,
                                        .value = std::move(valueBytes),
-                                       .region = region});
-
+                                       .region = std::move(region)});
                         displayCount++;
                     }
                 }
-
                 globalIndex++;
             }
         }
 
-        // Return filtered count when export-time filtering is active
         size_t effectiveTotal = useExportFilter ? filteredCount : totalCount;
         return {entries, effectiveTotal};
     }
 
    private:
+    [[nodiscard]] static auto getActualValueSize(
+        const scan::OldValueAndMatchInfo& cell, size_t defaultValueSize,
+        std::optional<ScanDataType> dataType) -> size_t {
+        if (dataType && (*dataType == ScanDataType::STRING ||
+                         *dataType == ScanDataType::BYTE_ARRAY)) {
+            if (cell.matchLength > 0) {
+                return cell.matchLength;
+            }
+        }
+        return defaultValueSize;
+    }
+
+    [[nodiscard]] static auto extractValueBytes(
+        const scan::MatchesAndOldValuesSwath& swath, size_t startIndex,
+        size_t count) -> std::vector<std::uint8_t> {
+        std::vector<std::uint8_t> bytes(count);
+        for (size_t j = 0; j < count && (startIndex + j) < swath.data.size();
+             ++j) {
+            bytes[j] = swath.data[startIndex + j].oldByte;
+        }
+        return bytes;
+    }
+
+    [[nodiscard]] auto getClassifiedRegion(std::uintptr_t addr,
+                                           bool collectRegion) const
+        -> std::string {
+        if (m_classifier && collectRegion) {
+            return m_classifier->classify(addr);
+        }
+        return "unk";
+    }
     std::optional<RegionClassifier> m_classifier;
 };
 

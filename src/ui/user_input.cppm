@@ -9,7 +9,7 @@ module;
 
 export module ui.user_input;
 
-import value;
+import value.core;
 import value.flags;
 
 // Lightweight user input carrier:

@@ -21,7 +21,7 @@ import cli.session;
 import ui.show_message;
 import core.memory_writer;
 import utils.endianness;
-import value;
+import value.core;
 import scan.types;
 import utils.logging;
 import utils.parserStr;
@@ -75,7 +75,7 @@ class WriteCommand : public Command {
         // 根据数据类型解析值
         const auto& valueStr = args[0];
 
-        utils::Logger::debug("Parsing write value: {}", valueStr);
+        utils::Logger::instance().debug("Parsing write value: {}", valueStr);
 
         std::vector<uint8_t> valueData;
 

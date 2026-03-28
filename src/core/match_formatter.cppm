@@ -127,31 +127,35 @@ struct FormatOptions {
 class MatchFormatter {
    public:
     /**
-     * @brief Format and display match entries
+     * @brief Format match entries into a list of strings
      * @param entries Match entries to display
      * @param totalCount Total number of matches
      * @param options Formatting options
+     * @return Vector of formatted lines
      */
-    static auto display(const std::vector<MatchEntry>& entries,
-                        size_t totalCount, const FormatOptions& options = {})
-        -> void {
+    [[nodiscard]] static auto format(const std::vector<MatchEntry>& entries,
+                                     std::size_t totalCount,
+                                     const FormatOptions& options = {})
+        -> std::vector<std::string> {
+        std::vector<std::string> lines;
+
         // Print header
         if (options.showIndex && options.showRegion) {
-            ui::MessagePrinter::info(
-                "Index  Address             Value     Region");
-            ui::MessagePrinter::info(
+            lines.emplace_back("Index  Address             Value     Region");
+            lines.emplace_back(
                 "-----------------------------------------------");
         } else if (options.showIndex) {
-            ui::MessagePrinter::info("Index  Address             Value");
-            ui::MessagePrinter::info("---------------------------------------");
+            lines.emplace_back("Index  Address             Value");
+            lines.emplace_back("---------------------------------------");
         } else if (options.showRegion) {
-            ui::MessagePrinter::info("Address             Value     Region");
-            ui::MessagePrinter::info("---------------------------------------");
+            lines.emplace_back("Address             Value     Region");
+            lines.emplace_back("---------------------------------------");
         } else {
-            ui::MessagePrinter::info("Address             Value");
-            ui::MessagePrinter::info("-----------------------------------");
+            lines.emplace_back("Address             Value");
+            lines.emplace_back("-----------------------------------");
         }
 
+        // Print entries
         // Print entries
         for (const auto& entry : entries) {
             auto formattedValue = formatValueByType(
@@ -159,34 +163,35 @@ class MatchFormatter {
             const auto formattedRegion = std::format("[{}]", entry.region);
 
             if (options.showIndex && options.showRegion) {
-                ui::MessagePrinter::info(
-                    std::format("{:<6} 0x{:016x}  {:<12} {}", entry.index,
-                                entry.address, formattedValue,
-                                formattedRegion));
+                lines.emplace_back(std::format(
+                    "{:<6} 0x{:016x}  {:<12} {}", entry.index, entry.address,
+                    formattedValue, formattedRegion));
             } else if (options.showIndex) {
-                ui::MessagePrinter::info(std::format("{:<6} 0x{:016x}  {}",
-                                                     entry.index, entry.address,
-                                                     formattedValue));
+                lines.emplace_back(std::format("{:<6} 0x{:016x}  {}",
+                                               entry.index, entry.address,
+                                               formattedValue));
             } else if (options.showRegion) {
-                ui::MessagePrinter::info(
-                    std::format("0x{:016x}  {:<12} {}", entry.address,
-                                formattedValue, formattedRegion));
+                lines.emplace_back(std::format("0x{:016x}  {:<12} {}",
+                                               entry.address, formattedValue,
+                                               formattedRegion));
             } else {
-                ui::MessagePrinter::info(std::format(
-                    "0x{:016x}  {}", entry.address, formattedValue));
+                lines.emplace_back(std::format("0x{:016x}  {}", entry.address,
+                                               formattedValue));
             }
         }
 
-        // Print summary
-        size_t displayCount = entries.size();
+        // Summary
+        std::size_t displayCount = entries.size();
         if (totalCount > displayCount) {
-            ui::MessagePrinter::info(
+            lines.emplace_back(
                 std::format("\n... and {} more matches (total: {})",
                             totalCount - displayCount, totalCount));
         }
 
-        ui::MessagePrinter::info(std::format("\nShowing {} of {} matches",
-                                             displayCount, totalCount));
+        lines.emplace_back(std::format("\nShowing {} of {} matches",
+                                       displayCount, totalCount));
+
+        return lines;
     }
 };
 

@@ -6,7 +6,6 @@
 module;
 
 #include <expected>
-#include <optional>
 #include <string>
 #include <string_view>
 #include <vector>
@@ -14,8 +13,11 @@ module;
 export module cli.commands.list;
 
 import app.result_service;
+import core.match_formatter;
 import cli.command;
 import cli.session;
+import ui.show_message;
+import utils.endianness;
 
 export namespace cli::commands {
 
@@ -52,15 +54,36 @@ class ListCommand : public Command {
                 return std::unexpected("Invalid limit: " + args[0]);
             }
         }
-        auto result = app::ResultService::showCurrentMatches(
+
+        // Get match entries via service
+        auto result = app::ResultService::getMatches(
             {.scanner = m_session->scanner.get(),
              .pid = m_session->pid,
              .limit = limit,
              .showRegion = true,
              .showIndex = true,
              .endianness = m_session->endianness});
+
         if (!result) {
             return std::unexpected(result.error());
+        }
+
+        const auto& [entries, totalCount] = *result;
+
+        // Format results
+        core::FormatOptions formatOptions{
+            .showRegion = true,
+            .showIndex = true,
+            .bigEndianDisplay =
+                (m_session->endianness == utils::Endianness::BIG),
+            .dataType = m_session->scanner->getLastDataType()};
+
+        auto lines =
+            core::MatchFormatter::format(entries, totalCount, formatOptions);
+
+        // Display results
+        for (const auto& line : lines) {
+            ui::MessagePrinter::info(line);
         }
 
         return CommandResult{.success = true, .message = ""};

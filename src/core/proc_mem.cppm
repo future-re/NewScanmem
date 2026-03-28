@@ -2,10 +2,8 @@
  * @file proc_mem.cppm
  * @brief Process memory I/O via /proc/<pid>/mem (进程内存 I/O)
  *
- * @internal
- * This is a low-level internal module intended for use by core.* modules only.
- * External code should use core.memory (MemoryWriter) for safer, higher-level
- * APIs.
+ * Unified low-level read/write interface for target process memory.
+ * Used by core.scanner, scan.engine, scan.filter, and scan.co_engine.
  *
  * Provides minimal read/write capabilities using pread/pwrite on
  * /proc/<pid>/mem. Requirements:
@@ -67,6 +65,14 @@ class ProcMemIO {
         return {};
     }
 
+    /**
+     * @brief Open /proc/<pid>/mem in read-only mode (convenience overload)
+     * @return Expected void or error message
+     */
+    [[nodiscard]] auto open() -> std::expected<void, std::string> {
+        return open(false);
+    }
+
     ~ProcMemIO() {
         if (m_fd >= 0) {
             ::close(m_fd);
@@ -119,6 +125,19 @@ class ProcMemIO {
             total += static_cast<std::size_t>(rval);
         }
         return total;
+    }
+
+    /**
+     * @brief Read bytes from target process memory (raw pointer overload)
+     * @param addr Target address in remote process
+     * @param buf Buffer to store read data
+     * @param len Number of bytes to read
+     * @return Expected bytes read or error message
+     */
+    [[nodiscard]] auto read(void* addr, std::uint8_t* buf,
+                            std::size_t len) const
+        -> std::expected<std::size_t, std::string> {
+        return read(addr, std::span<std::uint8_t>{buf, len});
     }
 
     /**

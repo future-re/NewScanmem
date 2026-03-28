@@ -18,8 +18,9 @@ import app.result_service;
 import app.scan_service;
 import cli.command;
 import cli.session;
+import core.match_formatter;
 import scan.types;
-import value;
+import value.core;
 import value.parser;
 import ui.show_message;
 import utils.logging;
@@ -88,21 +89,21 @@ class ScanCommand : public Command {
 
     [[nodiscard]] auto execute(const std::vector<std::string>& args)
         -> std::expected<CommandResult, std::string> override {
-        utils::Logger::info("Executing scan command...");
+        utils::Logger::instance().info("Executing scan command...");
         if (m_session == nullptr || m_session->pid <= 0) {
-            utils::Logger::error("Target PID not set.");
+            utils::Logger::instance().error("Target PID not set.");
             return std::unexpected("Set target pid first: pid <pid>");
         }
         auto* scanner = m_session->ensureScanner();
         if (scanner == nullptr) {
-            utils::Logger::error("Failed to initialize scanner.");
+            utils::Logger::instance().error("Failed to initialize scanner.");
             return std::unexpected("Failed to initialize scanner");
         }
 
         auto dataType = *value::parseDataType(args[0]);
-        utils::Logger::debug("Parsed DataType: {}", static_cast<int>(dataType));
+        utils::Logger::instance().debug("Parsed DataType: {}", static_cast<int>(dataType));
         auto matchType = *value::parseMatchType(args[1]);
-        utils::Logger::debug("Parsed MatchType: {}",
+        utils::Logger::instance().debug("Parsed MatchType: {}",
                              static_cast<int>(matchType));
         std::optional<UserValue> userVal;
         size_t startIdx = 2;
@@ -112,9 +113,9 @@ class ScanCommand : public Command {
         }
         if (userVal) {
             if (auto text = userVal->stringValue()) {
-                utils::Logger::debug("UserValue: {}", *text);
+                utils::Logger::instance().debug("UserValue: {}", *text);
             } else {
-                utils::Logger::debug("UserValue size: {}",
+                utils::Logger::instance().debug("UserValue size: {}",
                                      userVal->size());
             }
         }
@@ -127,15 +128,15 @@ class ScanCommand : public Command {
                                  .saveToHistory = true};
         auto result = app::ScanService::run(request);
         if (!result) {
-            utils::Logger::error("Scan failed: {}", result.error());
+            utils::Logger::instance().error("Scan failed: {}", result.error());
             return std::unexpected(result.error());
         }
 
         ui::MessagePrinter::info(std::format("Current match count: {}",
                                              result->matchCount));
-        utils::Logger::info("Scan command finished.");
+        utils::Logger::instance().info("Scan command finished.");
 
-        auto previewResult = app::ResultService::showCurrentMatches(
+        auto previewResult = app::ResultService::getMatches(
             {.scanner = scanner,
              .pid = m_session->pid,
              .limit = 20,
@@ -144,6 +145,13 @@ class ScanCommand : public Command {
              .endianness = m_session->endianness});
         if (!previewResult) {
             return std::unexpected(previewResult.error());
+        }
+
+        const auto& [entries, totalCount] = *previewResult;
+        auto lines = core::MatchFormatter::format(entries, totalCount,
+            {.showRegion = true, .showIndex = true, .dataType = dataType});
+        for (const auto& line : lines) {
+            ui::MessagePrinter::info(line);
         }
 
         return CommandResult{.success = true, .message = ""};

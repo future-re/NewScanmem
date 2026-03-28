@@ -1,13 +1,9 @@
 module;
 
-#include <fcntl.h>
 #include <sys/types.h>
-#include <sys/uio.h>
-#include <unistd.h>
 
 #include <algorithm>
 #include <bit>
-#include <cerrno>
 #include <cstdint>
 #include <cstring>
 #include <expected>
@@ -22,10 +18,12 @@ import scan.match_storage; // MatchesAndOldValuesArray, MatchesAndOldValuesSwath
 import scan.factory;       // smGetScanroutine
 import scan.types; // ScanDataType / ScanMatchType / bytesNeededForType / matchUsesOldValue
 import value.flags;        // MatchFlags
-import value;              // Value / UserValue
+import value.core;         // Value / UserValue
 import core.maps;          // readProcessMaps, Region, RegionScanLevel
 import core.region_filter; // RegionFilterConfig
+import core.proc_mem;      // ProcMemIO
 
+using core::ProcMemIO;
 using core::Region;
 using core::RegionScanLevel;
 using scan::MatchesAndOldValuesArray;
@@ -71,89 +69,6 @@ export struct ScanResult {
     ScanOptions opts;                        // Options used for this scan
     std::optional<UserValue> value;          // User value used (if any)
     ScanResult() : stats{}, opts{} {}
-};
-
-// /proc/<pid>/mem reader
-export class ProcMemReader {
-   public:
-    ProcMemReader() = default;
-    explicit ProcMemReader(pid_t pid) : m_pid(pid) {}
-
-    [[nodiscard]] auto open() -> std::expected<void, std::string> {
-        if (m_pid <= 0) {
-            return std::unexpected{"invalid pid"};
-        }
-        std::string path = std::format("/proc/{}/mem", m_pid);
-        // NOLINTNEXTLINE(cppcoreguidelines-pro-type-vararg)
-        int fileDesc = ::open(path.c_str(), O_RDONLY | O_CLOEXEC);
-        if (fileDesc < 0) {
-            return std::unexpected{
-                std::format("open {} failed: {}", path, std::strerror(errno))};
-        }
-        m_fd = fileDesc;
-        return {};
-    }
-
-    ~ProcMemReader() noexcept {
-        if (m_fd >= 0) {
-            ::close(m_fd);
-        }
-    }
-
-    ProcMemReader(const ProcMemReader&) = delete;
-    auto operator=(const ProcMemReader&) -> ProcMemReader& = delete;
-    ProcMemReader(ProcMemReader&& other) noexcept
-        : m_pid(other.m_pid), m_fd(other.m_fd) {
-        other.m_fd = -1;
-    }
-    auto operator=(ProcMemReader&& other) noexcept -> ProcMemReader& {
-        if (this != &other) {
-            if (m_fd >= 0) {
-                ::close(m_fd);
-            }
-            m_pid = other.m_pid;
-            m_fd = other.m_fd;
-            other.m_fd = -1;
-        }
-        return *this;
-    }
-
-    // Try to read [addr, addr+len) into buf; returns the number of bytes
-    // successfully read (may be less than len).
-    [[nodiscard]] auto read(void* addr, std::uint8_t* buf,
-                            std::size_t len) const
-        -> std::expected<std::size_t, std::string> {
-        if (m_fd < 0) {
-            return std::unexpected{"reader not opened"};
-        }
-        const auto OFFSET =
-            static_cast<off_t>(std::bit_cast<std::uintptr_t>(addr));
-        std::size_t total = 0;
-        while (total < len) {
-            const ssize_t RVAL = ::pread(m_fd, buf + total, len - total,
-                                         static_cast<off_t>(OFFSET + total));
-            if (RVAL < 0) {
-                if (errno == EIO || errno == EFAULT || errno == EPERM ||
-                    errno == EACCES) {
-                    // The kernel typically returns an error for unreadable
-                    // pages; terminate reading this block and return the
-                    // portion read.
-                    break;
-                }
-                return std::unexpected{
-                    std::format("pread error: {}", std::strerror(errno))};
-            }
-            if (RVAL == 0) {
-                break;  // reached EOF
-            }
-            total += static_cast<std::size_t>(RVAL);
-        }
-        return total;
-    }
-
-   private:
-    pid_t m_pid{-1};
-    int m_fd{-1};
 };
 
 // Append bytes read to the swath
@@ -244,7 +159,7 @@ inline void scanBlock(const std::uint8_t* buffer, std::size_t bytesRead,
 }
 
 // Handle scanning for a single memory region
-export inline auto scanRegion(const Region& region, ProcMemReader& reader,
+export inline auto scanRegion(const Region& region, ProcMemIO& reader,
                               const ScanOptions& opts, const auto& routine,
                               const UserValue* userValue, ScanStats& stats,
                               const MatchesAndOldValuesArray* previousSnapshot,
@@ -322,7 +237,7 @@ export inline auto runScanInternal(
     }
 
     // Open /proc/<pid>/mem
-    ProcMemReader reader{pid};
+    ProcMemIO reader{pid};
     if (auto err = reader.open(); !err) {
         return std::unexpected{err.error()};
     }

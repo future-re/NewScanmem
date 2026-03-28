@@ -1,6 +1,11 @@
 /**
  * @file scanner.cppm
- * @brief High-level scanner interface wrapping scan.engine
+ * @brief High-level scanner interface with explicit operations
+ *
+ * Replaces the old ambiguous scan() method with explicit operations:
+ * - snapshot(): Full memory scan (creates baseline)
+ * - filter(): Incremental scan on existing matches
+ * - rescan(): Clear and perform full scan again
  */
 
 module;
@@ -11,11 +16,8 @@ module;
 #include <cstddef>
 #include <deque>
 #include <expected>
-#include <iostream>
-#include <mutex>
 #include <optional>
 #include <string>
-#include <thread>
 
 export module core.scanner;
 
@@ -24,19 +26,54 @@ import scan.co_engine;     // runScanParallel
 import scan.types;         // ScanDataType, ScanMatchType
 import scan.filter;        // filterMatches
 import scan.match_storage; // MatchesAndOldValuesArray
-import value;       // UserValue
+import value.core;         // UserValue, Value
+import value.flags;
 import core.maps;          // RegionScanLevel
+import core.scan_history;  // ScanHistory
 import utils.logging;      // Logger
 
 export namespace core {
 
 /**
+ * @enum ScanMode
+ * @brief Explicit scan operation modes
+ */
+enum class ScanMode {
+    FULL_SCAN,    ///< Full memory scan, clears existing matches
+    INCREMENTAL,  ///< Filter on existing matches only
+    RESCAN        ///< Clear matches then full scan
+};
+
+/**
+ * @struct ScanRequest
+ * @brief Request for a scan operation
+ */
+struct ScanRequest {
+    ScanMode mode{ScanMode::FULL_SCAN};  ///< Scan operation mode
+    ScanOptions options;                  ///< Scan options (data type, match type, etc.)
+    std::optional<UserValue> targetValue; ///< Target value (for comparison matches)
+    bool saveToHistory{false};            ///< Whether to save result to history
+};
+
+/**
+ * @struct ScanResponse
+ * @brief Response from a scan operation
+ */
+struct ScanResponse {
+    ScanStats stats;                      ///< Scan statistics
+    std::size_t matchCount{0};            ///< Total matches found
+    bool success{false};                  ///< Whether scan succeeded
+    std::optional<std::string> error;     ///< Error message if failed
+};
+
+/**
  * @class Scanner
- * @brief High-level scanner managing scan sessions
+ * @brief High-level scanner with explicit operations
  *
- * The Scanner maintains:
- * - m_matches: Current/active matches from the most recent scan
- * - m_results: History queue of all saved scan results
+ * Design principles:
+ * 1. Explicit operations: No magic behavior, caller chooses the operation
+ * 2. Clear state management: Matches, history, and state are well-defined
+ * 3. Type-safe: Uses modern C++ features for safety
  */
 class Scanner {
    public:
@@ -46,200 +83,229 @@ class Scanner {
      */
     explicit Scanner(pid_t pid) : m_pid(pid) {}
 
+    // ====================================================================
+    // Explicit Public Operations
+    // ====================================================================
+
     /**
-     * @brief Perform memory scan with specific value
+     * @brief Perform a full memory scan (clears existing matches)
      * @param opts Scan options
-     * @param value Value to search for
-     * @param saveToHistory If true, save scan results to history queue
-     * @return Expected scan statistics or error message
+     * @param value Optional target value
+     * @param saveToHistory Whether to save to history
+     * @return Scan response with results
      */
-    [[nodiscard]] auto performScan(const ScanOptions& opts,
-                                   const UserValue& value,
-                                   bool saveToHistory = false)
-        -> std::expected<ScanStats, std::string> {
-        // Full scan mode: clear previous active matches (snapshot refresh)
-        m_matches.swaths.clear();
-        m_lastDataType = opts.dataType;  // Record data type
-        auto result = runScanParallel(m_pid, opts, &value, m_matches, nullptr);
-        if (!result) {
-            return std::unexpected(result.error());
-        }
-
-        if (saveToHistory) {
-            // Initialize history item; contents are copied from current matches
-            ScanResult scanResult;
-            scanResult.stats = *result;
-            scanResult.opts = opts;
-            scanResult.value = value;
-            // Copy current matches to result history
-            scanResult.matches = m_matches;
-            addToHistory(std::move(scanResult));
-        }
-
-        return *result;
+    [[nodiscard]] auto snapshot(const ScanOptions& opts,
+                                const std::optional<UserValue>& value = std::nullopt,
+                                bool saveToHistory = false) -> ScanResponse {
+        clearMatches();
+        return doScan(opts, value, saveToHistory);
     }
 
     /**
-     * @brief Perform memory scan without specific value (e.g., MATCHANY)
+     * @brief Filter existing matches incrementally
      * @param opts Scan options
-     * @param saveToHistory If true, save scan results to history queue
-     * @return Expected scan statistics or error message
+     * @param value Target value (required for filtering)
+     * @param saveToHistory Whether to save to history
+     * @return Scan response with results
      */
-    [[nodiscard]] auto performScan(const ScanOptions& opts,
-                                   bool saveToHistory = false)
-        -> std::expected<ScanStats, std::string> {
-        // Full scan mode: clear previous active matches (snapshot refresh)
-        m_matches.swaths.clear();
-        m_lastDataType = opts.dataType;  // Record data type
-        auto result = runScanParallel(m_pid, opts, nullptr, m_matches, nullptr);
-        if (!result) {
-            return std::unexpected(result.error());
+    [[nodiscard]] auto filter(const ScanOptions& opts,
+                              const UserValue& value,
+                              bool saveToHistory = false) -> ScanResponse {
+        if (!hasMatches()) {
+            return ScanResponse{.stats{}, .matchCount{0}, .success{false},
+                                .error{"No existing matches to filter. Run snapshot() first."}};
         }
+
+        auto statsExp = filterMatches(m_pid, opts, &value, m_matches);
+        if (!statsExp) {
+            return ScanResponse{.stats{}, .matchCount{0}, .success{false}, .error{statsExp.error()}};
+        }
+
+        pruneEmptySwaths();
 
         if (saveToHistory) {
-            // Initialize history item; contents are copied from current matches
-            ScanResult scanResult;
-            scanResult.stats = *result;
-            scanResult.opts = opts;
-            // Copy current matches to result history
-            scanResult.matches = m_matches;
-            addToHistory(std::move(scanResult));
+            saveResultToHistory(*statsExp, opts, value);
         }
 
-        return *result;
+        return ScanResponse{.stats{*statsExp}, .matchCount{getMatchCount()}, .success{true}};
     }
 
     /**
-     * @brief Default workflow with specific value: first call does full scan;
-     *        subsequent calls do filtered scan on existing matches.
+     * @brief Rescan: clear matches and perform full scan
+     * @param opts Scan options
+     * @param value Optional target value
+     * @param saveToHistory Whether to save to history
+     * @return Scan response with results
+     */
+    [[nodiscard]] auto rescan(const ScanOptions& opts,
+                              const std::optional<UserValue>& value = std::nullopt,
+                              bool saveToHistory = false) -> ScanResponse {
+        reset();
+        return doScan(opts, value, saveToHistory);
+    }
+
+    /**
+     * @brief Unified scan interface (for backward compatibility)
+     * @param request Scan request with mode and options
+     * @return Scan response
+     */
+    [[nodiscard]] auto scan(const ScanRequest& request) -> ScanResponse {
+        switch (request.mode) {
+            case ScanMode::FULL_SCAN:
+                return snapshot(request.options, request.targetValue, request.saveToHistory);
+            case ScanMode::INCREMENTAL:
+                if (!request.targetValue) {
+                    return ScanResponse{.success{false},
+                                        .error{"INCREMENTAL mode requires a target value"}};
+                }
+                return filter(request.options, *request.targetValue, request.saveToHistory);
+            case ScanMode::RESCAN:
+                return rescan(request.options, request.targetValue, request.saveToHistory);
+        }
+        return ScanResponse{.success{false}, .error{"Unknown scan mode"}};
+    }
+
+    // ====================================================================
+    // Legacy API (deprecated but functional)
+    // ====================================================================
+
+    /**
+     * @brief Legacy perform scan (full scan)
+     * @deprecated Use snapshot() explicitly
+     */
+    [[nodiscard]] auto performScan(const ScanOptions& opts,
+                                   const std::optional<UserValue>& value = std::nullopt,
+                                   bool saveToHistory = false)
+        -> std::expected<ScanStats, std::string> {
+        auto result = snapshot(opts, value, saveToHistory);
+        if (!result.success) {
+            return std::unexpected{result.error.value_or("Scan failed")};
+        }
+        return result.stats;
+    }
+
+    /**
+     * @brief Legacy perform filtered scan
+     * @deprecated Use filter() explicitly
+     */
+    [[nodiscard]] auto performFilteredScan(const ScanOptions& opts,
+                                           const std::optional<UserValue>& value = std::nullopt,
+                                           bool saveToHistory = false)
+        -> std::expected<ScanStats, std::string> {
+        if (!hasMatches()) {
+            return std::unexpected{"No existing matches to filter; perform full scan first"};
+        }
+        if (value) {
+            auto result = filter(opts, *value, saveToHistory);
+            if (!result.success) {
+                return std::unexpected{result.error.value_or("Filter failed")};
+            }
+            return result.stats;
+        }
+        // Filter without value
+        auto statsExp = filterMatches(m_pid, opts, nullptr, m_matches);
+        if (!statsExp) {
+            return std::unexpected{statsExp.error()};
+        }
+        pruneEmptySwaths();
+        if (saveToHistory) {
+            ScanResult scanResult;
+            scanResult.stats = *statsExp;
+            scanResult.opts = opts;
+            scanResult.matches = m_matches;
+            m_history.add(std::move(scanResult));
+        }
+        return *statsExp;
+    }
+
+    /**
+     * @brief Legacy scan with value (auto-determines full/filter)
+     * @deprecated Use snapshot() or filter() explicitly
      */
     [[nodiscard]] auto scan(const ScanOptions& opts, const UserValue& value,
                             bool saveToHistory = false)
         -> std::expected<ScanStats, std::string> {
         if (!hasMatches()) {
-            return performScan(opts, value, saveToHistory);
+            auto result = doScan(opts, value, saveToHistory);
+            if (!result.success) {
+                return std::unexpected{result.error.value_or("Scan failed")};
+            }
+            return result.stats;
         }
-        return performFilteredScan(opts, value, saveToHistory);
+        auto result = filter(opts, value, saveToHistory);
+        if (!result.success) {
+            return std::unexpected{result.error.value_or("Filter failed")};
+        }
+        return result.stats;
     }
 
     /**
-     * @brief Default workflow without specific value: first call does full
-     * scan; subsequent calls do filtered scan on existing matches.
+     * @brief Legacy scan without value (auto-determines full/filter)
+     * @deprecated Use snapshot() or filter() explicitly
      */
     [[nodiscard]] auto scan(const ScanOptions& opts, bool saveToHistory = false)
         -> std::expected<ScanStats, std::string> {
         if (!hasMatches()) {
-            return performScan(opts, saveToHistory);
+            auto result = doScan(opts, std::nullopt, saveToHistory);
+            if (!result.success) {
+                return std::unexpected{result.error.value_or("Scan failed")};
+            }
+            return result.stats;
         }
-        return performFilteredScan(opts, saveToHistory);
-    }
-
-    /**
-     * @brief Perform a filtered (incremental) scan with specific value
-     * @param opts New scan options (dataType/matchType/etc.)
-     * @param value New user value
-     * @param saveToHistory If true, snapshot the narrowed result into history
-     * @return Expected updated stats or error string
-     */
-    [[nodiscard]] auto performFilteredScan(const ScanOptions& opts,
-                                           const UserValue& value,
-                                           bool saveToHistory = false)
-        -> std::expected<ScanStats, std::string> {
-        if (!hasMatches()) {
-            return std::unexpected(
-                "no existing matches to narrow; perform full scan first");
-        }
-
-        auto statsExp = filterMatches(m_pid, opts, &value, m_matches);
-        if (!statsExp) {
-            return std::unexpected(statsExp.error());
-        }
-        pruneEmptySwaths();
-        if (saveToHistory) {
-            ScanResult scanRecord;
-            scanRecord.stats = *statsExp;
-            scanRecord.opts = opts;
-            scanRecord.value = value;
-            scanRecord.matches = m_matches;
-            addToHistory(std::move(scanRecord));
-        }
-        return *statsExp;
-    }
-
-    /**
-     * @brief Perform a filtered (incremental) scan without specific value
-     * @param opts New scan options (dataType/matchType/etc.)
-     * @param saveToHistory If true, snapshot the narrowed result into history
-     * @return Expected updated stats or error string
-     */
-    [[nodiscard]] auto performFilteredScan(const ScanOptions& opts,
-                                           bool saveToHistory = false)
-        -> std::expected<ScanStats, std::string> {
-        if (!hasMatches()) {
-            return std::unexpected(
-                "no existing matches to narrow; perform full scan first");
-        }
-
+        // Filter without value
         auto statsExp = filterMatches(m_pid, opts, nullptr, m_matches);
         if (!statsExp) {
-            return std::unexpected(statsExp.error());
+            return std::unexpected{statsExp.error()};
         }
         pruneEmptySwaths();
         if (saveToHistory) {
-            ScanResult scanRecord;
-            scanRecord.stats = *statsExp;
-            scanRecord.opts = opts;
-            scanRecord.matches = m_matches;
-            addToHistory(std::move(scanRecord));
+            ScanResult scanResult;
+            scanResult.stats = *statsExp;
+            scanResult.opts = opts;
+            m_history.add(std::move(scanResult));
         }
         return *statsExp;
     }
+
+    // ====================================================================
+    // State Queries
+    // ====================================================================
 
     /**
      * @brief Get number of saved scan results in history
-     * @return Result count
      */
     [[nodiscard]] auto getResultCount() const -> std::size_t {
-        return m_results.size();
+        return m_history.count();
     }
 
     /**
      * @brief Get a specific scan result by index
-     * @param index Index into results history (0 = oldest)
-     * @return Pointer to result, or nullptr if index out of range
      */
     [[nodiscard]] auto getResult(std::size_t index) const -> const ScanResult* {
-        if (index >= m_results.size()) {
-            return nullptr;
-        }
-        return &m_results[index];
+        return m_history.get(index);
     }
 
     /**
      * @brief Get all scan results
-     * @return Reference to results vector
      */
     [[nodiscard]] auto getResults() const -> const std::deque<ScanResult>& {
-        return m_results;
+        return m_history.getAll();
     }
 
     /**
      * @brief Clear scan result history
      */
-    auto clearResultHistory() -> void { m_results.clear(); }
+    auto clearResultHistory() -> void { m_history.clear(); }
 
     /**
      * @brief Get current/active matches from most recent scan
-     * @return Reference to matches array
      */
-    [[nodiscard]] auto getMatches() const
-        -> const scan::MatchesAndOldValuesArray& {
+    [[nodiscard]] auto getMatches() const -> const scan::MatchesAndOldValuesArray& {
         return m_matches;
     }
 
     /**
      * @brief Get mutable current/active matches
-     * @return Reference to matches array
      */
     [[nodiscard]] auto getMatches() -> scan::MatchesAndOldValuesArray& {
         return m_matches;
@@ -255,12 +321,11 @@ class Scanner {
      */
     auto reset() -> void {
         m_matches.swaths.clear();
-        m_results.clear();
+        m_history.clear();
     }
 
     /**
      * @brief Get number of matches in current scan
-     * @return Match count
      */
     [[nodiscard]] auto getMatchCount() const -> std::size_t {
         std::size_t count = 0;
@@ -276,7 +341,6 @@ class Scanner {
 
     /**
      * @brief Check if current scan has matches
-     * @return True if matches exist
      */
     [[nodiscard]] auto hasMatches() const -> bool {
         for (const auto& swath : m_matches.swaths) {
@@ -291,30 +355,66 @@ class Scanner {
 
     /**
      * @brief Get target PID
-     * @return Process ID
      */
     [[nodiscard]] auto getPid() const -> pid_t { return m_pid; }
 
     /**
      * @brief Get last scan data type
-     * @return Optional ScanDataType
      */
     [[nodiscard]] auto getLastDataType() const -> std::optional<ScanDataType> {
         return m_lastDataType;
     }
 
-   private:
-    static constexpr std::size_t MAX_HISTORY = 10;
-    pid_t m_pid;
-    scan::MatchesAndOldValuesArray m_matches;  // Current/active matches
-    std::deque<ScanResult> m_results;  // History of scan results (stable refs)
-    std::optional<ScanDataType> m_lastDataType;  // Last scan data type
-    auto addToHistory(ScanResult&& result) -> void {
-        if (m_results.size() >= MAX_HISTORY) {
-            m_results.pop_front();
-        }
-        m_results.push_back(std::move(result));
+    /**
+     * @brief Save current matches to history
+     */
+    auto saveCurrentToHistory() -> void {
+        ScanResult scanResult;
+        scanResult.matches = m_matches;
+        m_history.add(std::move(scanResult));
     }
+
+   private:
+    pid_t m_pid;
+    scan::MatchesAndOldValuesArray m_matches;
+    ScanHistory m_history;
+    std::optional<ScanDataType> m_lastDataType;
+
+    // Internal implementation
+    [[nodiscard]] auto doScan(const ScanOptions& opts,
+                              const std::optional<UserValue>& value,
+                              bool saveToHistory) -> ScanResponse {
+        m_lastDataType = opts.dataType;
+        auto result = runScanParallel(m_pid, opts, 
+                                      value ? &*value : nullptr,
+                                      m_matches, nullptr);
+        if (!result) {
+            return ScanResponse{.stats{}, .matchCount{0}, .success{false}, .error{result.error()}};
+        }
+
+        if (saveToHistory && value) {
+            saveResultToHistory(*result, opts, *value);
+        } else if (saveToHistory) {
+            ScanResult scanResult;
+            scanResult.stats = *result;
+            scanResult.opts = opts;
+            scanResult.matches = m_matches;
+            m_history.add(std::move(scanResult));
+        }
+
+        return ScanResponse{.stats{*result}, .matchCount{getMatchCount()}, .success{true}};
+    }
+
+    auto saveResultToHistory(const ScanStats& stats, const ScanOptions& opts,
+                             const UserValue& value) -> void {
+        ScanResult scanResult;
+        scanResult.stats = stats;
+        scanResult.opts = opts;
+        scanResult.value = value;
+        scanResult.matches = m_matches;
+        m_history.add(std::move(scanResult));
+    }
+
     auto pruneEmptySwaths() -> void {
         auto [eraseBegin, eraseEnd] =
             std::ranges::remove_if(m_matches.swaths, [](const auto& swath) {

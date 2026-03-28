@@ -13,7 +13,7 @@ export module utils.read_helpers;
 
 import scan.types;
 import value.flags;
-import value;
+import value.core;
 
 // Helpers for byte reading, endianness conversion, and type traits
 // Goal: provide unified reading and type-tagging utilities for

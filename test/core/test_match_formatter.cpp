@@ -98,7 +98,7 @@ TEST(MatchFormatterTest, FormatString) {
     EXPECT_EQ(result, "Hello World");
 }
 
-TEST(MatchFormatterTest, DisplaySmokeTest) {
+TEST(MatchFormatterTest, FormatSmokeTest) {
     std::vector<MatchEntry> entries = {{.index = 0,
                                         .address = 0x1000,
                                         .value = {0x01, 0x00, 0x00, 0x00},
@@ -112,7 +112,7 @@ TEST(MatchFormatterTest, DisplaySmokeTest) {
     options.dataType = ScanDataType::INTEGER_32;
 
     // This just ensures it doesn't crash
-    EXPECT_NO_THROW(MatchFormatter::display(entries, 2, options));
+    EXPECT_NO_THROW(MatchFormatter::format(entries, 2, options));
 }
 
 TEST(MatchFormatterTest, InsufficientBytes) {

@@ -8,7 +8,7 @@
 
 import scan.string;
 import scan.types;
-import value;
+import value.core;
 import value.flags;
 
 class ScanStringTest : public ::testing::Test {

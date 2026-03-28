@@ -54,43 +54,28 @@ class REPL {
             "Type 'help' for available commands, 'quit' to exit\n");
 
         while (true) {
-            // Read command
             const auto CURRENT_PROMPT =
                 m_promptBuilder ? m_promptBuilder() : m_prompt;
             auto lineResult = m_ui->getLine(CURRENT_PROMPT);
             if (!lineResult) {
-                // EOF or error
                 break;
             }
 
-            std::string line = *lineResult;
-
-            // Skip empty lines
-            if (line.empty()) {
+            if (lineResult->empty()) {
                 continue;
             }
 
-            // Parse command line
-            auto [commandName, args] = parseCommandLine(line);
-
-            if (commandName.empty()) {
-                continue;
-            }
-
-            // Execute command
-            auto result = executeCommand(commandName, args);
+            auto result = executeLine(*lineResult);
 
             if (!result) {
                 ui::MessagePrinter::error("Error: " + result.error());
                 continue;
             }
 
-            // Check if we should exit
             if (result->shouldExit) {
                 return 0;
             }
 
-            // Display result message if present
             if (!result->message.empty()) {
                 if (result->success) {
                     ui::MessagePrinter::info(result->message);
@@ -99,8 +84,21 @@ class REPL {
                 }
             }
         }
-
         return 0;
+    }
+
+    /**
+     * @brief Parse and execute a single command line
+     * @param line Raw input line
+     * @return Expected command result or error
+     */
+    static auto executeLine(const std::string& line)
+        -> std::expected<CommandResult, std::string> {
+        auto [commandName, args] = parseCommandLine(line);
+        if (commandName.empty()) {
+            return CommandResult{.success = true};
+        }
+        return executeCommand(commandName, args);
     }
 
     /**

@@ -10,9 +10,11 @@ export module scan.filter;
 
 import scan.types; // ScanDataType / ScanMatchType / bytesNeededForType / matchUsesOldValue
 import scan.factory; // smGetScanroutine
-import scan.engine;  // ProcMemReader / ScanStats / ScanOptions
+import scan.engine;  // ScanStats / ScanOptions
 import scan.match_storage;
-import value;
+import value.core;
+import value.flags;
+import core.proc_mem; // ProcMemIO
 
 using scan::MatchesAndOldValuesArray;
 using scan::MatchesAndOldValuesSwath;
@@ -20,7 +22,7 @@ using scan::OldValueAndMatchInfo;
 
 // Narrow matches for a single swath using the provided routine.
 inline void narrowSwath(MatchesAndOldValuesSwath& swath, auto& routine,
-                        const UserValue* value, ProcMemReader& reader,
+                        const UserValue* value, core::ProcMemIO& reader,
                         std::vector<std::uint8_t>& buffer, ScanStats& stats,
                         const ScanOptions& opts) {
     if (swath.firstByteInChild == nullptr) {
@@ -80,7 +82,7 @@ export [[nodiscard]] inline auto filterMatches(
         return std::unexpected("no scan routine for filtered options");
     }
 
-    ProcMemReader reader{pid};
+    core::ProcMemIO reader{pid};
     if (auto err = reader.open(); !err) {
         return std::unexpected(err.error());
     }

@@ -13,7 +13,7 @@ import scan.types;
 import scan.routine;
 import utils.read_helpers;
 import value.flags;
-import value;
+import value.core;
 import value.parser; // for almostEqual, absTol
 
 // This module implements the core numeric matching logic and factory

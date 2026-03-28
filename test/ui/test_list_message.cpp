@@ -13,29 +13,7 @@ import scan.types;
 
 using namespace core;
 
-/**
- * @brief Helper class to capture std::cerr output
- */
-class MessageCapture {
-   public:
-    MessageCapture() : m_oldCerr(std::cerr.rdbuf()) {
-        std::cerr.rdbuf(m_cerrBuf.rdbuf());
-    }
-    ~MessageCapture() { std::cerr.rdbuf(m_oldCerr); }
-
-    [[nodiscard]] auto getOutput() const -> std::string {
-        return m_cerrBuf.str();
-    }
-    void clear() { m_cerrBuf.str(""); }
-
-   private:
-    std::stringstream m_cerrBuf;
-    std::streambuf* m_oldCerr;
-};
-
-TEST(ListMessageTest, DisplayVariousDataTypes) {
-    MessageCapture capture;
-
+TEST(ListMessageTest, FormatVariousDataTypes) {
     // 1. Test Integer 32
     {
         std::vector<MatchEntry> entries;
@@ -49,8 +27,11 @@ TEST(ListMessageTest, DisplayVariousDataTypes) {
         options.showIndex = true;
         options.showRegion = true;
 
-        MatchFormatter::display(entries, 1, options);
-        std::string out = capture.getOutput();
+        auto lines = MatchFormatter::format(entries, 1, options);
+        std::string out;
+        for (const auto& line : lines) {
+            out += line + "\n";
+        }
 
         // 打印出来以便直接观察效果
         std::cout << out << std::endl;
@@ -58,7 +39,6 @@ TEST(ListMessageTest, DisplayVariousDataTypes) {
         EXPECT_NE(out.find("12345678"), std::string::npos);
         EXPECT_NE(out.find("0x0000000000001000"), std::string::npos);
         EXPECT_NE(out.find("[heap]"), std::string::npos);
-        capture.clear();
     }
 
     // 2. Test Float 32
@@ -72,13 +52,15 @@ TEST(ListMessageTest, DisplayVariousDataTypes) {
         FormatOptions options;
         options.dataType = ScanDataType::FLOAT_32;
 
-        MatchFormatter::display(entries, 1, options);
-        std::string out = capture.getOutput();
+        auto lines = MatchFormatter::format(entries, 1, options);
+        std::string out;
+        for (const auto& line : lines) {
+            out += line + "\n";
+        }
         std::cout << out << std::endl;
 
         EXPECT_NE(out.find("3.14159"), std::string::npos);
         EXPECT_NE(out.find("[stack]"), std::string::npos);
-        capture.clear();
     }
 
     // 3. Test String
@@ -91,12 +73,14 @@ TEST(ListMessageTest, DisplayVariousDataTypes) {
         FormatOptions options;
         options.dataType = ScanDataType::STRING;
 
-        MatchFormatter::display(entries, 1, options);
-        std::string out = capture.getOutput();
+        auto lines = MatchFormatter::format(entries, 1, options);
+        std::string out;
+        for (const auto& line : lines) {
+            out += line + "\n";
+        }
         std::cout << out << std::endl;
 
         EXPECT_NE(out.find("NewScanmem"), std::string::npos);
-        capture.clear();
     }
 
     // 4. Test Hex Bytes (No data type)
@@ -108,17 +92,18 @@ TEST(ListMessageTest, DisplayVariousDataTypes) {
         FormatOptions options;
         options.dataType = std::nullopt;
 
-        MatchFormatter::display(entries, 1, options);
-        std::string out = capture.getOutput();
+        auto lines = MatchFormatter::format(entries, 1, options);
+        std::string out;
+        for (const auto& line : lines) {
+            out += line + "\n";
+        }
         std::cout << out << std::endl;
 
         EXPECT_NE(out.find("0xde 0xad 0xbe 0xef"), std::string::npos);
-        capture.clear();
     }
 }
 
-TEST(ListMessageTest, DisplayOptions) {
-    MessageCapture capture;
+TEST(ListMessageTest, FormatOptions) {
     std::vector<MatchEntry> entries = {{.index = 0,
                                         .address = 0x1000,
                                         .value = {0x01, 0x00, 0x00, 0x00},
@@ -129,15 +114,20 @@ TEST(ListMessageTest, DisplayOptions) {
     // Test without index and region
     options.showIndex = false;
     options.showRegion = false;
-    MatchFormatter::display(entries, 1, options);
-    std::string out = capture.getOutput();
+    auto lines = MatchFormatter::format(entries, 1, options);
+    std::string out;
+    for (const auto& line : lines) {
+        out += line + "\n";
+    }
     EXPECT_EQ(out.find("Index"), std::string::npos);
     EXPECT_EQ(out.find("region1"), std::string::npos);
-    capture.clear();
 
     // Test with summary for more matches
-    MatchFormatter::display(entries, 100, options);
-    out = capture.getOutput();
+    lines = MatchFormatter::format(entries, 100, options);
+    out.clear();
+    for (const auto& line : lines) {
+        out += line + "\n";
+    }
     EXPECT_NE(out.find("and 99 more matches"), std::string::npos);
     EXPECT_NE(out.find("total: 100"), std::string::npos);
 }

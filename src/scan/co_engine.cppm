@@ -18,14 +18,16 @@ import scan.factory;
 import scan.types;
 import scan.routine;
 import value.flags;
-import value;
+import value.core;
 import core.maps;
 import core.region_filter;
+import core.proc_mem;
 import scan.engine;
 
 namespace scan {
 
-using LocalScanResult = ScanResult;
+// Use the ScanResult from scan.engine (not scan.routine)
+using LocalScanResult = ::ScanResult;
 
 // WORKER Thread: From shared queue, grab regions to scan
 static void scanRegionsWorker(
@@ -36,7 +38,7 @@ static void scanRegionsWorker(
     ScanStats& localStats,
     std::vector<std::pair<std::size_t, MatchesAndOldValuesSwath>>& localSwaths,
     std::latch& workDone) {
-    ProcMemReader localReader{pid};
+    core::ProcMemIO localReader{pid};
     if (auto err = localReader.open(); !err) {
         workDone.count_down();
         return;
@@ -81,7 +83,8 @@ static void mergeThreadResults(
         return lhs.first < rhs.first;
     });
 
-    // Deduplication guard: avoid merging swaths from the same region multiple times
+    // Deduplication guard: avoid merging swaths from the same region multiple
+    // times
     std::vector<bool> seen;
     if (!regions.empty()) {
         std::size_t maxRegionId = 0;
@@ -139,19 +142,21 @@ export auto runScanParallel(pid_t pid, const ScanOptions& opts,
     const std::size_t OLD_SLICE = bytesNeededForType(opts.dataType);
 
     // 4. Determine number of threads
-    const size_t NUM_THREADS =
-        std::min((unsigned long)std::thread::hardware_concurrency(),
-                 regions.size()  // Number of threads should not exceed number of regions
-        );
+    const size_t NUM_THREADS = std::min(
+        (unsigned long)std::thread::hardware_concurrency(),
+        regions.size()  // Number of threads should not exceed number of regions
+    );
 
     if (NUM_THREADS <= 1) {
         // Single thread fallback to original implementation
         return runScanInternal(pid, opts, userValue, out, previousSnapshot);
     }
 
-    // 5. Dynamic scheduling: each thread grabs the next region in original order (O(1) scheduling)
-    // Note: Compared to taking the minimum among k chunks each time (O(k)) or using a heap (O(log k)),
-    //       directly using the original regions + atomic index for work distribution is simple and balanced.
+    // 5. Dynamic scheduling: each thread grabs the next region in original
+    // order (O(1) scheduling) Note: Compared to taking the minimum among k
+    // chunks each time (O(k)) or using a heap (O(log k)),
+    //       directly using the original regions + atomic index for work
+    //       distribution is simple and balanced.
 
     // 6. Prepare thread-local storage
     std::vector<LocalScanResult> results(NUM_THREADS);

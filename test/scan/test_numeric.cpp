@@ -7,7 +7,7 @@
 
 import scan.numeric;
 import scan.types;
-import value;
+import value.core;
 import value.flags;
 
 class ScanNumericTest : public ::testing::Test {

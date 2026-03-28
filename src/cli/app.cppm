@@ -45,7 +45,7 @@ class Application {
         : m_config(config),
           m_ui(std::make_shared<ui::ConsoleUI>(
               ui::MessageContext{.debugMode = config.debugMode,
-                                 .backendMode = false,
+                                 .backendMode = config.backendMode,
                                  .colorMode = config.colorMode})) {}
 
     /**
@@ -54,10 +54,12 @@ class Application {
      */
     auto run() -> int {
         registerCommands();
-        utils::Logger::instance().init(
-            "/log/scanmem.log",
-            utils::LogLevel::DEBUG);  // Always log debug info to file in dev
-        if (m_config.targetPid != 0) {
+        utils::Logger::instance().init("/log/scanmem.log",
+                                       utils::LogLevel::DEBUG);
+
+        if (m_session.pid != 0) {
+            ui::MessagePrinter{}.info("Target PID: {}", m_session.pid);
+        } else if (m_config.targetPid != 0) {
             m_session.pid = m_config.targetPid;
             ui::MessagePrinter{}.info("Target PID: {}", m_config.targetPid);
         } else {
@@ -77,15 +79,55 @@ class Application {
 
         // Execute initial commands if present
         if (m_config.initialCommands) {
-            // TODO: execute initial commands via REPL or direct dispatch
+            bool shouldExit = executeCommandString(*m_config.initialCommands);
+            if (shouldExit || m_config.batchMode) {
+                return 0;
+            }
         }
 
-        // Start interactive REPL (prompt reflects current pid)
+        if (m_config.batchMode) {
+            return 0;
+        }
+
+        // Start interactive REPL
         REPL repl{m_ui, buildPrompt(), [this]() { return buildPrompt(); }};
         return repl.run();
     }
 
    private:
+    /**
+     * @brief Execute a string containing multiple commands separated by
+     * semicolons
+     * @param commands Semicolon-separated commands
+     * @return True if any command requested exit
+     */
+    auto executeCommandString(const std::string& commands) -> bool {
+        std::string command;
+        std::string_view sv = commands;
+        size_t start = 0;
+        size_t end;
+
+        while ((end = sv.find(';', start)) != std::string_view::npos) {
+            command = std::string(sv.substr(start, end - start));
+            if (!command.empty()) {
+                auto result = REPL::executeLine(command);
+                if (result && result->shouldExit) {
+                    return true;
+                }
+            }
+            start = end + 1;
+        }
+
+        command = std::string(sv.substr(start));
+        if (!command.empty()) {
+            auto result = REPL::executeLine(command);
+            if (result && result->shouldExit) {
+                return true;
+            }
+        }
+
+        return false;
+    }
     /**
      * @brief Get command completions for a given prefix
      * @param prefix Input prefix to complete

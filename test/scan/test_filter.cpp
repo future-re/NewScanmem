@@ -4,7 +4,7 @@
 import scan.filter;
 import scan.types;
 import scan.match_storage;
-import value;
+import value.core;
 
 using namespace scan;
 

@@ -26,8 +26,15 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 # 引入代码覆盖率支持
 include(CodeCoverage)
 
-# 添加编译gtest库
+# 添加 CLI11 (header-only)
 include(FetchContent)
+FetchContent_Declare(
+  cli11
+  URL https://github.com/CLIUtils/CLI11/archive/refs/tags/v2.4.2.zip
+)
+FetchContent_MakeAvailable(cli11)
+
+# 添加编译gtest库
 FetchContent_Declare(
   googletest
   URL https://github.com/google/googletest/archive/refs/tags/v1.17.0.zip

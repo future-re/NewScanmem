@@ -22,7 +22,7 @@ module;
 
 export module core.memory_writer;
 
-import value;
+import value.core;
 
 import core.scanner;
 import core.match;
@@ -87,8 +87,8 @@ export class MemoryWriter {
     [[nodiscard]] auto writeToMatch(const Scanner& scanner, UserValue& value,
                                     std::vector<size_t> matchIndex)
         -> std::expected<VecWriteResult, std::string> {
-        utils::Logger::debug("UserValue: {}", value);
-        utils::Logger::debug("Preparing to write value to match at index {}",
+        utils::Logger::instance().debug("UserValue: {}", value);
+        utils::Logger::instance().debug("Preparing to write value to match at index {}",
                              matchIndex.empty() ? 0 : matchIndex[0]);
     }
 

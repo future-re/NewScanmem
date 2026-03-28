@@ -6,7 +6,8 @@
 import scan.bytes;
 import scan.string;
 import scan.types;
-import value;
+import value.core;
+import value.flags;
 
 namespace {
 

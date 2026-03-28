@@ -3,7 +3,7 @@ import core.scanner;
 using core::Scanner;  // Scanner
 import scan.engine;   // ScanOptions
 import scan.types;    // ScanDataType / ScanMatchType
-import value;  // UserValue
+import value.core;  // UserValue
 
 #include <gtest/gtest.h>
 #include <sys/mman.h>

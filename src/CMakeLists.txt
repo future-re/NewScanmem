@@ -27,6 +27,8 @@ set(MODULE_SOURCES
     
     # UI abstraction layer
     ui/interface.cppm
+    ui/terminal.cppm
+    ui/line_editor.cppm
     ui/console.cppm
     ui/show_message.cppm
     ui/user_input.cppm
@@ -54,6 +56,7 @@ set(MODULE_SOURCES
     cli/commands/watch.cppm
     
     # Core abstraction layer
+    core/scan_history.cppm
     core/scanner.cppm
     core/memory.cppm
     core/proc_mem.cppm
@@ -67,6 +70,7 @@ set(MODULE_SOURCES
     
     # Value 模块 - 按依赖顺序排列
     value/flags.cppm      # 最底层
+    value/types.cppm      # 新类型系统
     value/core.cppm
     value/parser.cppm
     value/view.cppm       # view
@@ -81,6 +85,7 @@ set(MODULE_SOURCES
     scan/string.cppm
     scan/numeric.cppm
     scan/factory.cppm
+    scan/job.cppm
     scan/engine.cppm
     scan/co_engine.cppm
     scan/filter.cppm
@@ -99,4 +104,4 @@ target_link_libraries(NewScanmem_lib PUBLIC Boost::filesystem Boost::regex ICU::
 
 # --- 主可执行文件 ---
 add_executable(NewScanmem main.cpp)
-target_link_libraries(NewScanmem PRIVATE NewScanmem_lib)
+target_link_libraries(NewScanmem PRIVATE NewScanmem_lib CLI11::CLI11)
