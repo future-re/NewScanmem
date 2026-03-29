@@ -6,7 +6,6 @@ module;
 #include <atomic>
 #include <cstddef>
 #include <cstdint>
-#include <format>
 #include <expected>
 #include <latch>
 #include <span>
@@ -16,6 +15,7 @@ module;
 export module scan.engine;
 
 import scan.factory;
+import scan.job;
 import scan.match_storage;
 import scan.types;
 import scan.routine;
@@ -42,45 +42,6 @@ inline void appendBytesToSwath(MatchesAndOldValuesSwath& swath,
     }
 }
 
-[[nodiscard]] inline auto prepareScanRegionsForEngine(pid_t pid,
-                                                      const ScanOptions& opts)
-    -> std::expected<std::vector<core::Region>, std::string> {
-    auto regionsExp = readProcessMaps(pid, opts.regionLevel);
-    if (!regionsExp) {
-        return std::unexpected{std::format("readProcessMaps failed: {}",
-                                           regionsExp.error().message)};
-    }
-    auto regions = *regionsExp;
-    if (opts.regionFilter.isScanTimeFilter() &&
-        opts.regionFilter.filter.isActive()) {
-        regions = opts.regionFilter.filter.filterRegions(regions);
-    }
-    return regions;
-}
-
-[[nodiscard]] inline auto prepareScanRoutineForEngine(
-    const ScanOptions& opts) -> std::expected<ScanRoutine, std::string> {
-    auto routine =
-        makeScanRoutine(opts.dataType, opts.matchType, opts.reverseEndianness);
-    if (!routine) {
-        return std::unexpected{"no scan routine for options"};
-    }
-    return routine;
-}
-
-[[nodiscard]] inline auto scanWindowSizeForEngine(const ScanOptions& opts,
-                                                  const UserValue* userValue)
-    -> std::size_t {
-    std::size_t window = bytesNeededForType(opts.dataType);
-    if (userValue != nullptr) {
-        window = std::max(window, userValue->primary.size());
-        if (userValue->secondary) {
-            window = std::max(window, userValue->secondary->size());
-        }
-    }
-    return std::max<std::size_t>(1, window);
-}
-
 inline auto fetchOldBytes(const MatchesAndOldValuesArray& previous,
                           void* address, std::size_t length,
                           std::vector<std::uint8_t>& out) -> bool {
@@ -97,17 +58,17 @@ inline auto fetchOldBytes(const MatchesAndOldValuesArray& previous,
         if (current < base) {
             continue;
         }
-        const std::size_t offset = static_cast<std::size_t>(current - base);
-        if (offset >= swath.data.size()) {
+        const auto OFFSET = static_cast<std::size_t>(current - base);
+        if (OFFSET >= swath.data.size()) {
             continue;
         }
-        const std::size_t remaining = swath.data.size() - offset;
-        if (remaining < length) {
+        const std::size_t REAMINING = swath.data.size() - OFFSET;
+        if (REAMINING < length) {
             continue;
         }
         out.resize(length);
         for (std::size_t index = 0; index < length; ++index) {
-            out[index] = swath.data[offset + index].oldByte;
+            out[index] = swath.data[OFFSET + index].oldByte;
         }
         return true;
     }
@@ -139,10 +100,10 @@ inline void scanBlock(std::span<const std::uint8_t> buffer,
                       void* regionBlockBase,
                       const MatchesAndOldValuesArray* previousSnapshot,
                       std::size_t oldSliceLen, bool reverseEndianness) {
-    const std::size_t stepSize = std::max<std::size_t>(1, step);
-    for (std::size_t offset = 0; offset < buffer.size(); offset += stepSize) {
+    const std::size_t STEP_SIZE = std::max<std::size_t>(1, step);
+    for (std::size_t offset = 0; offset < buffer.size(); offset += STEP_SIZE) {
         auto memory = buffer.subspan(offset);
-        auto address = static_cast<void*>(
+        auto* address = static_cast<void*>(
             static_cast<std::uint8_t*>(regionBlockBase) + offset);
         auto oldValue = makeOldValue(previousSnapshot, address, oldSliceLen);
         auto context = makeScanContext(
@@ -159,10 +120,12 @@ inline void scanBlock(std::span<const std::uint8_t> buffer,
     }
 }
 
-export inline auto scanRegion(
-    const Region& region, ProcMemIO& reader, const ScanOptions& opts,
-    const ScanRoutine& routine, const UserValue* userValue, ScanStats& stats,
-    const MatchesAndOldValuesArray* previousSnapshot, std::size_t oldSliceLen)
+export inline auto scanRegion(const Region& region, ProcMemIO& reader,
+                              const ScanOptions& opts,
+                              const ScanRoutine& routine,
+                              const UserValue* userValue, ScanStats& stats,
+                              const MatchesAndOldValuesArray* previousSnapshot,
+                              std::size_t oldSliceLen)
     -> std::optional<MatchesAndOldValuesSwath> {
     if (!region.isReadable() || region.size == 0) {
         return std::nullopt;
@@ -174,32 +137,32 @@ export inline auto scanRegion(
     std::size_t regionOffset = 0;
 
     while (regionOffset < region.size) {
-        const std::size_t remaining = region.size - regionOffset;
-        const std::size_t toRead = std::min(remaining, opts.blockSize);
+        const std::size_t REMAINING = region.size - regionOffset;
+        const std::size_t TO_READ = std::min(REMAINING, opts.blockSize);
         auto* baseAddr =
             static_cast<std::uint8_t*>(region.start) + regionOffset;
 
-        auto bytesReadExp = reader.read(baseAddr, buffer.data(), toRead);
+        auto bytesReadExp = reader.read(baseAddr, buffer.data(), TO_READ);
         if (!bytesReadExp) {
-            regionOffset += toRead;
+            regionOffset += TO_READ;
             continue;
         }
 
-        const std::size_t bytesRead = *bytesReadExp;
-        if (bytesRead == 0) {
-            regionOffset += toRead;
+        const std::size_t BYTES_READ = *bytesReadExp;
+        if (BYTES_READ == 0) {
+            regionOffset += TO_READ;
             continue;
         }
 
-        const std::size_t baseIndex = swath.data.size();
-        appendBytesToSwath(swath, buffer.data(), bytesRead, baseAddr);
-        scanBlock(std::span<const std::uint8_t>(buffer.data(), bytesRead),
-                  baseIndex, opts.step, routine, userValue, swath, stats,
+        const std::size_t BASE_INDEX = swath.data.size();
+        appendBytesToSwath(swath, buffer.data(), BYTES_READ, baseAddr);
+        scanBlock(std::span<const std::uint8_t>(buffer.data(), BYTES_READ),
+                  BASE_INDEX, opts.step, routine, userValue, swath, stats,
                   baseAddr, previousSnapshot, oldSliceLen,
                   opts.reverseEndianness);
 
-        stats.bytesScanned += bytesRead;
-        regionOffset += bytesRead;
+        stats.bytesScanned += BYTES_READ;
+        regionOffset += BYTES_READ;
     }
 
     return swath.data.empty() ? std::nullopt : std::make_optional(swath);
@@ -212,13 +175,13 @@ export inline auto runScanInternal(
     -> std::expected<ScanStats, std::string> {
     out.swaths.clear();
 
-    auto regionsExp = prepareScanRegionsForEngine(pid, opts);
+    auto regionsExp = prepareScanRegions(pid, opts);
     if (!regionsExp) {
         return std::unexpected{regionsExp.error()};
     }
     auto regions = std::move(*regionsExp);
 
-    auto routineExp = prepareScanRoutineForEngine(opts);
+    auto routineExp = prepareScanRoutine(opts, userValue);
     if (!routineExp) {
         return std::unexpected{routineExp.error()};
     }
@@ -230,12 +193,11 @@ export inline auto runScanInternal(
     }
 
     ScanStats stats{};
-    const std::size_t oldSliceLen = scanWindowSizeForEngine(opts, userValue);
+    const std::size_t OLD_SLICE_LEN = scanWindowSize(opts, userValue);
 
     for (const auto& region : regions) {
-        if (auto swath =
-                scanRegion(region, reader, opts, routine, userValue, stats,
-                           previousSnapshot, oldSliceLen)) {
+        if (auto swath = scanRegion(region, reader, opts, routine, userValue,
+                                    stats, previousSnapshot, OLD_SLICE_LEN)) {
             out.addSwath(*swath);
         }
     }
@@ -342,7 +304,7 @@ export auto runScanParallel(pid_t pid, const ScanOptions& opts,
     -> std::expected<ScanStats, std::string> {
     out.swaths.clear();
 
-    auto regionsExp = prepareScanRegionsForEngine(pid, opts);
+    auto regionsExp = prepareScanRegions(pid, opts);
     if (!regionsExp) {
         return std::unexpected{regionsExp.error()};
     }
@@ -352,16 +314,16 @@ export auto runScanParallel(pid_t pid, const ScanOptions& opts,
         return ScanStats{};
     }
 
-    auto routineExp = prepareScanRoutineForEngine(opts);
+    auto routineExp = prepareScanRoutine(opts, userValue);
     if (!routineExp) {
         return std::unexpected{routineExp.error()};
     }
     auto routine = *routineExp;
-    const std::size_t oldSlice = scanWindowSizeForEngine(opts, userValue);
+    const std::size_t OLD_SLICE = scanWindowSize(opts, userValue);
 
-    const size_t NUM_THREADS =
-        std::min(static_cast<size_t>(std::max(1u, std::thread::hardware_concurrency())),
-                 regions.size());
+    const size_t NUM_THREADS = std::min(
+        static_cast<size_t>(std::max(1U, std::thread::hardware_concurrency())),
+        regions.size());
 
     if (NUM_THREADS <= 1) {
         return runScanInternal(pid, opts, userValue, out, previousSnapshot);
@@ -379,7 +341,7 @@ export auto runScanParallel(pid_t pid, const ScanOptions& opts,
     for (size_t i = 0; i < NUM_THREADS; ++i) {
         threads.emplace_back([&, i]() {
             scanRegionsWorker(pid, regions, nextIndex, opts, routine, userValue,
-                              oldSlice, previousSnapshot, results[i],
+                              OLD_SLICE, previousSnapshot, results[i],
                               threadSwaths[i], workDone);
         });
     }

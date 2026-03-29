@@ -52,11 +52,11 @@ struct ScanResult {
     MatchFlags matchedFlag{MatchFlags::EMPTY};  ///< Type of match
 
     [[nodiscard]] static auto noMatch() -> ScanResult {
-        return ScanResult{false, 0, MatchFlags::EMPTY};
+        return ScanResult{.matched=false, .matchLength=0, .matchedFlag=MatchFlags::EMPTY};
     }
 
     [[nodiscard]] static auto match(std::size_t length, MatchFlags flag) -> ScanResult {
-        return ScanResult{true, length, flag};
+        return ScanResult{.matched=true, .matchLength=length, .matchedFlag=flag};
     }
 
     explicit operator bool() const noexcept { return matched; }

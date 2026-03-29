@@ -3,7 +3,6 @@
  * @brief Value parsing utilities for scan operations
  */
 module;
-#include <algorithm>
 #include <cctype>
 #include <cmath>
 #include <cstddef>
@@ -11,7 +10,6 @@ module;
 #include <optional>
 #include <string>
 #include <string_view>
-#include <type_traits>
 #include <unordered_map>
 #include <utility>
 #include <vector>
@@ -47,8 +45,8 @@ namespace detail {
 }
 
 [[nodiscard]] inline auto parseByteArrayValue(
-    const std::vector<std::string>& args,
-    size_t startIndex) -> std::optional<UserValue> {
+    const std::vector<std::string>& args, size_t startIndex)
+    -> std::optional<UserValue> {
     if (startIndex >= args.size()) {
         return std::nullopt;
     }
@@ -114,8 +112,8 @@ namespace detail {
 }
 
 [[nodiscard]] inline auto parseAnyNumberValue(
-    const std::vector<std::string>& args,
-    size_t startIndex) -> std::optional<UserValue> {
+    const std::vector<std::string>& args, size_t startIndex)
+    -> std::optional<UserValue> {
     if (startIndex >= args.size()) {
         return std::nullopt;
     }
@@ -130,72 +128,72 @@ namespace detail {
 namespace detail {
 
 // Data type lookup table
-inline const auto& getDataTypeMap() {
+inline auto getDataTypeMap() -> const auto& {
     using MapType = std::unordered_map<std::string_view, ScanDataType>;
     static const MapType MAP = [] {
-        MapType m;
+        MapType mapType;
         // ANY types
-        m.emplace("any", ScanDataType::ANY_NUMBER);
-        m.emplace("anynumber", ScanDataType::ANY_NUMBER);
-        m.emplace("anyint", ScanDataType::ANY_INTEGER);
-        m.emplace("anyinteger", ScanDataType::ANY_INTEGER);
-        m.emplace("anyfloat", ScanDataType::ANY_FLOAT);
+        mapType.emplace("any", ScanDataType::ANY_NUMBER);
+        mapType.emplace("anynumber", ScanDataType::ANY_NUMBER);
+        mapType.emplace("anyint", ScanDataType::ANY_INTEGER);
+        mapType.emplace("anyinteger", ScanDataType::ANY_INTEGER);
+        mapType.emplace("anyfloat", ScanDataType::ANY_FLOAT);
         // Integer types
-        m.emplace("int", ScanDataType::INTEGER_32);
-        m.emplace("int8", ScanDataType::INTEGER_8);
-        m.emplace("i8", ScanDataType::INTEGER_8);
-        m.emplace("int16", ScanDataType::INTEGER_16);
-        m.emplace("i16", ScanDataType::INTEGER_16);
-        m.emplace("int32", ScanDataType::INTEGER_32);
-        m.emplace("i32", ScanDataType::INTEGER_32);
-        m.emplace("int64", ScanDataType::INTEGER_64);
-        m.emplace("i64", ScanDataType::INTEGER_64);
+        mapType.emplace("int", ScanDataType::INTEGER_32);
+        mapType.emplace("int8", ScanDataType::INTEGER_8);
+        mapType.emplace("i8", ScanDataType::INTEGER_8);
+        mapType.emplace("int16", ScanDataType::INTEGER_16);
+        mapType.emplace("i16", ScanDataType::INTEGER_16);
+        mapType.emplace("int32", ScanDataType::INTEGER_32);
+        mapType.emplace("i32", ScanDataType::INTEGER_32);
+        mapType.emplace("int64", ScanDataType::INTEGER_64);
+        mapType.emplace("i64", ScanDataType::INTEGER_64);
         // Float types
-        m.emplace("float", ScanDataType::FLOAT_32);
-        m.emplace("f32", ScanDataType::FLOAT_32);
-        m.emplace("float_32", ScanDataType::FLOAT_32);
-        m.emplace("float32", ScanDataType::FLOAT_32);
-        m.emplace("double", ScanDataType::FLOAT_64);
-        m.emplace("f64", ScanDataType::FLOAT_64);
-        m.emplace("float_64", ScanDataType::FLOAT_64);
-        m.emplace("float64", ScanDataType::FLOAT_64);
+        mapType.emplace("float", ScanDataType::FLOAT_32);
+        mapType.emplace("f32", ScanDataType::FLOAT_32);
+        mapType.emplace("float_32", ScanDataType::FLOAT_32);
+        mapType.emplace("float32", ScanDataType::FLOAT_32);
+        mapType.emplace("double", ScanDataType::FLOAT_64);
+        mapType.emplace("f64", ScanDataType::FLOAT_64);
+        mapType.emplace("float_64", ScanDataType::FLOAT_64);
+        mapType.emplace("float64", ScanDataType::FLOAT_64);
         // Other types
-        m.emplace("string", ScanDataType::STRING);
-        m.emplace("str", ScanDataType::STRING);
-        m.emplace("bytearray", ScanDataType::BYTE_ARRAY);
-        m.emplace("bytes", ScanDataType::BYTE_ARRAY);
-        return m;
+        mapType.emplace("string", ScanDataType::STRING);
+        mapType.emplace("str", ScanDataType::STRING);
+        mapType.emplace("bytearray", ScanDataType::BYTE_ARRAY);
+        mapType.emplace("bytes", ScanDataType::BYTE_ARRAY);
+        return mapType;
     }();
     return MAP;
 }
 
 // Match type lookup table
-inline const auto& getMatchTypeMap() {
+inline auto getMatchTypeMap() -> const auto& {
     using MapType = std::unordered_map<std::string_view, ScanMatchType>;
     static const MapType MAP = [] {
-        MapType m;
-        m.emplace("any", ScanMatchType::MATCH_ANY);
-        m.emplace("eq", ScanMatchType::MATCH_EQUAL_TO);
-        m.emplace("=", ScanMatchType::MATCH_EQUAL_TO);
-        m.emplace("neq", ScanMatchType::MATCH_NOT_EQUAL_TO);
-        m.emplace("!=", ScanMatchType::MATCH_NOT_EQUAL_TO);
-        m.emplace("gt", ScanMatchType::MATCH_GREATER_THAN);
-        m.emplace(">", ScanMatchType::MATCH_GREATER_THAN);
-        m.emplace("lt", ScanMatchType::MATCH_LESS_THAN);
-        m.emplace("<", ScanMatchType::MATCH_LESS_THAN);
-        m.emplace("range", ScanMatchType::MATCH_RANGE);
-        m.emplace("changed", ScanMatchType::MATCH_CHANGED);
-        m.emplace("notchanged", ScanMatchType::MATCH_NOT_CHANGED);
-        m.emplace("update", ScanMatchType::MATCH_NOT_CHANGED);
-        m.emplace("inc", ScanMatchType::MATCH_INCREASED);
-        m.emplace("increased", ScanMatchType::MATCH_INCREASED);
-        m.emplace("dec", ScanMatchType::MATCH_DECREASED);
-        m.emplace("decreased", ScanMatchType::MATCH_DECREASED);
-        m.emplace("incby", ScanMatchType::MATCH_INCREASED_BY);
-        m.emplace("decby", ScanMatchType::MATCH_DECREASED_BY);
-        m.emplace("regex", ScanMatchType::MATCH_REGEX);
-        m.emplace("re", ScanMatchType::MATCH_REGEX);
-        return m;
+        MapType mapType;
+        mapType.emplace("any", ScanMatchType::MATCH_ANY);
+        mapType.emplace("eq", ScanMatchType::MATCH_EQUAL_TO);
+        mapType.emplace("=", ScanMatchType::MATCH_EQUAL_TO);
+        mapType.emplace("neq", ScanMatchType::MATCH_NOT_EQUAL_TO);
+        mapType.emplace("!=", ScanMatchType::MATCH_NOT_EQUAL_TO);
+        mapType.emplace("gt", ScanMatchType::MATCH_GREATER_THAN);
+        mapType.emplace(">", ScanMatchType::MATCH_GREATER_THAN);
+        mapType.emplace("lt", ScanMatchType::MATCH_LESS_THAN);
+        mapType.emplace("<", ScanMatchType::MATCH_LESS_THAN);
+        mapType.emplace("range", ScanMatchType::MATCH_RANGE);
+        mapType.emplace("changed", ScanMatchType::MATCH_CHANGED);
+        mapType.emplace("notchanged", ScanMatchType::MATCH_NOT_CHANGED);
+        mapType.emplace("update", ScanMatchType::MATCH_NOT_CHANGED);
+        mapType.emplace("inc", ScanMatchType::MATCH_INCREASED);
+        mapType.emplace("increased", ScanMatchType::MATCH_INCREASED);
+        mapType.emplace("dec", ScanMatchType::MATCH_DECREASED);
+        mapType.emplace("decreased", ScanMatchType::MATCH_DECREASED);
+        mapType.emplace("incby", ScanMatchType::MATCH_INCREASED_BY);
+        mapType.emplace("decby", ScanMatchType::MATCH_DECREASED_BY);
+        mapType.emplace("regex", ScanMatchType::MATCH_REGEX);
+        mapType.emplace("re", ScanMatchType::MATCH_REGEX);
+        return mapType;
     }();
     return MAP;
 }
@@ -209,10 +207,10 @@ inline const auto& getMatchTypeMap() {
  */
 [[nodiscard]] inline auto parseDataType(std::string_view tok)
     -> std::optional<ScanDataType> {
-    const auto lowered = utils::StringUtils::toLower(tok);
+    const auto LOWERED = utils::StringUtils::toLower(tok);
     const auto& map = detail::getDataTypeMap();
-    if (auto it = map.find(lowered); it != map.end()) {
-        return it->second;
+    if (auto loweredIt = map.find(LOWERED); loweredIt != map.end()) {
+        return loweredIt->second;
     }
     return std::nullopt;
 }
@@ -224,10 +222,10 @@ inline const auto& getMatchTypeMap() {
  */
 [[nodiscard]] inline auto parseMatchType(std::string_view tok)
     -> std::optional<ScanMatchType> {
-    const auto lowered = utils::StringUtils::toLower(tok);
+    const auto LOWERED = utils::StringUtils::toLower(tok);
     const auto& map = detail::getMatchTypeMap();
-    if (auto it = map.find(lowered); it != map.end()) {
-        return it->second;
+    if (auto loweredIt = map.find(LOWERED); loweredIt != map.end()) {
+        return loweredIt->second;
     }
     return std::nullopt;
 }
@@ -285,10 +283,11 @@ template <typename T, typename Parser>
  * @param startIndex Index to start parsing from
  * @return Optional UserValue
  */
-[[nodiscard]] inline auto buildUserValue(
-    ScanDataType dataType, ScanMatchType matchType,
-    const std::vector<std::string>& args,
-    size_t startIndex) -> std::optional<UserValue> {
+[[nodiscard]] inline auto buildUserValue(ScanDataType dataType,
+                                         ScanMatchType matchType,
+                                         const std::vector<std::string>& args,
+                                         size_t startIndex)
+    -> std::optional<UserValue> {
     if (!matchNeedsUserValue(matchType)) {
         return std::nullopt;
     }

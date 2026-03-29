@@ -108,45 +108,45 @@ export inline auto makeStringScanRoutine(ScanMatchType matchType)
         if (patternValue.flag() != MatchFlags::STRING) {
             return scan::ScanResult::noMatch();
         }
-        std::string_view PATTERN(
-            reinterpret_cast<const char*>(patternValue.bytes.data()),
+        std::string_view pattern(
+            std::bit_cast<const char*>(patternValue.bytes.data()),
             patternValue.bytes.size());
-        if (PATTERN.empty()) {
+        if (pattern.empty()) {
             return scan::ScanResult::noMatch();
         }
         Value memoryValue{ctx.memory.data(), ctx.memory.size()};
         MatchFlags flags = MatchFlags::EMPTY;
         if (matchType == ScanMatchType::MATCH_REGEX) {
-            const auto matched =
+            const auto MATCHED =
                 runRegexMatch(&memoryValue, ctx.memory.size(),
-                              std::string(PATTERN), &flags);
-            if (matched == 0U) {
+                              std::string(pattern), &flags);
+            if (MATCHED == 0U) {
                 return scan::ScanResult::noMatch();
             }
-            return scan::ScanResult::match(matched, flags);
+            return scan::ScanResult::match(MATCHED, flags);
         }
         const auto* const MASK_PTR =
             (patternValue.mask &&
-             patternValue.mask->size() == PATTERN.size())
+             patternValue.mask->size() == pattern.size())
                 ? &*patternValue.mask
                 : nullptr;
-        const auto* bytePtr = std::bit_cast<const uint8_t*>(PATTERN.data());
+        const auto* bytePtr = std::bit_cast<const uint8_t*>(pattern.data());
         if (MASK_PTR) {
-            const auto matched =
+            const auto MATCHED =
                 compareBytesMasked(&memoryValue, ctx.memory.size(), bytePtr,
-                                   PATTERN.size(), MASK_PTR->data(),
+                                   pattern.size(), MASK_PTR->data(),
                                    MASK_PTR->size(), &flags);
-            if (matched == 0U) {
+            if (MATCHED == 0U) {
                 return scan::ScanResult::noMatch();
             }
-            return scan::ScanResult::match(matched, flags);
+            return scan::ScanResult::match(MATCHED, flags);
         }
-        const auto matched =
+        const auto MATCHED =
             compareBytes(&memoryValue, ctx.memory.size(), bytePtr,
-                         PATTERN.size(), &flags);
-        if (matched == 0U) {
+                         pattern.size(), &flags);
+        if (MATCHED == 0U) {
             return scan::ScanResult::noMatch();
         }
-        return scan::ScanResult::match(matched, flags);
+        return scan::ScanResult::match(MATCHED, flags);
     };
 }

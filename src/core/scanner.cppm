@@ -27,16 +27,16 @@ import scan.filter;        // filterMatches
 import scan.match_storage; // MatchesAndOldValuesArray
 import value.core;         // UserValue, Value
 import value.flags;
-import core.maps;          // RegionScanLevel
-import core.scan_history;  // ScanHistory
+import core.maps;         // RegionScanLevel
+import core.scan_history; // ScanHistory
 
 export namespace core {
 
 struct ScannerResult {
-    ScanStats stats;                      ///< Scan statistics
-    std::size_t matchCount{0};            ///< Total matches found
-    bool success{false};                  ///< Whether scan succeeded
-    std::optional<std::string> error;     ///< Error message if failed
+    ScanStats stats;                   ///< Scan statistics
+    std::size_t matchCount{0};         ///< Total matches found
+    bool success{false};               ///< Whether scan succeeded
+    std::optional<std::string> error;  ///< Error message if failed
 };
 
 /**
@@ -63,9 +63,10 @@ class Scanner {
      * @param saveToHistory Whether to save to history
      * @return Scan response with results
      */
-    [[nodiscard]] auto snapshot(const ScanOptions& opts,
-                                const std::optional<UserValue>& value = std::nullopt,
-                                bool saveToHistory = false) -> ScannerResult {
+    [[nodiscard]] auto snapshot(
+        const ScanOptions& opts,
+        const std::optional<UserValue>& value = std::nullopt,
+        bool saveToHistory = false) -> ScannerResult {
         clearMatches();
         return doScan(opts, value, saveToHistory);
     }
@@ -77,25 +78,26 @@ class Scanner {
      * @param saveToHistory Whether to save to history
      * @return Scan response with results
      */
-    [[nodiscard]] auto filter(const ScanOptions& opts,
-                              const std::optional<UserValue>& value = std::nullopt,
-                              bool saveToHistory = false) -> ScannerResult {
+    [[nodiscard]] auto filter(
+        const ScanOptions& opts,
+        const std::optional<UserValue>& value = std::nullopt,
+        bool saveToHistory = false) -> ScannerResult {
         if (!hasMatches()) {
             return ScannerResult{
-                .stats{},
-                .matchCount{0},
-                .success{false},
-                .error{"No existing matches to filter. Run snapshot() first."}};
+                .stats = {},
+                .matchCount = 0,
+                .success = false,
+                .error =
+                    "No existing matches to filter. Run snapshot() first."};
         }
 
         auto statsExp =
             filterMatches(m_pid, opts, value ? &*value : nullptr, m_matches);
         if (!statsExp) {
-            return ScannerResult{
-                .stats{},
-                .matchCount{0},
-                .success{false},
-                .error{statsExp.error()}};
+            return ScannerResult{.stats = {},
+                                 .matchCount = 0,
+                                 .success = false,
+                                 .error = statsExp.error()};
         }
 
         pruneEmptySwaths();
@@ -105,7 +107,7 @@ class Scanner {
         }
 
         return ScannerResult{
-            .stats{*statsExp}, .matchCount{getMatchCount()}, .success{true}};
+            .stats = *statsExp, .matchCount = getMatchCount(), .success = true};
     }
 
     /**
@@ -115,9 +117,10 @@ class Scanner {
      * @param saveToHistory Whether to save to history
      * @return Scan response with results
      */
-    [[nodiscard]] auto rescan(const ScanOptions& opts,
-                              const std::optional<UserValue>& value = std::nullopt,
-                              bool saveToHistory = false) -> ScannerResult {
+    [[nodiscard]] auto rescan(
+        const ScanOptions& opts,
+        const std::optional<UserValue>& value = std::nullopt,
+        bool saveToHistory = false) -> ScannerResult {
         reset();
         return doScan(opts, value, saveToHistory);
     }
@@ -155,7 +158,8 @@ class Scanner {
     /**
      * @brief Get current/active matches from most recent scan
      */
-    [[nodiscard]] auto getMatches() const -> const scan::MatchesAndOldValuesArray& {
+    [[nodiscard]] auto getMatches() const
+        -> const scan::MatchesAndOldValuesArray& {
         return m_matches;
     }
 
@@ -230,15 +234,13 @@ class Scanner {
                               const std::optional<UserValue>& value,
                               bool saveToHistory) -> ScannerResult {
         m_lastDataType = opts.dataType;
-        auto result = runScanParallel(m_pid, opts, 
-                                      value ? &*value : nullptr,
+        auto result = runScanParallel(m_pid, opts, value ? &*value : nullptr,
                                       m_matches, nullptr);
         if (!result) {
-            return ScannerResult{
-                .stats{},
-                .matchCount{0},
-                .success{false},
-                .error{result.error()}};
+            return ScannerResult{.stats = {},
+                                 .matchCount = 0,
+                                 .success = false,
+                                 .error = result.error()};
         }
 
         if (saveToHistory) {
@@ -246,7 +248,7 @@ class Scanner {
         }
 
         return ScannerResult{
-            .stats{*result}, .matchCount{getMatchCount()}, .success{true}};
+            .stats = *result, .matchCount = getMatchCount(), .success = true};
     }
 
     auto saveResultToHistory(const ScanStats& stats, const ScanOptions& opts,
