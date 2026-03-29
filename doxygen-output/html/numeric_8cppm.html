@@ -104,132 +104,162 @@ $(document).ready(function(){initNavTree('numeric_8cppm.html',''); initResizable
 <code>#include &lt;optional&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
 <code>import <a class="el" href="core_8cppm.html">value.core</a>;</code><br />
-<code>import <a class="el" href="parser_8cppm.html">value.parser</a>;</code><br />
 <code>import <a class="el" href="flags_8cppm.html">value.flags</a>;</code><br />
 <code>import <a class="el" href="read__helpers_8cppm.html">utils.read_helpers</a>;</code><br />
 <code>import <a class="el" href="routine_8cppm.html">scan.routine</a>;</code><br />
-<code>import <a class="el" href="scan_2types_8cppm.html">scan.types</a>;</code><br />
+<code>import <a class="el" href="types_8cppm.html">scan.types</a>;</code><br />
 </div><div class="textblock"><div class="dynheader">
 numeric.cppm 的引用(Include)关系图:</div>
 <div class="dyncontent">
 <div class="center"><img src="numeric_8cppm__incl.png" border="0" usemap="#asrc_2scan_2numeric_8cppm" alt=""/></div>
 <map name="asrc_2scan_2numeric_8cppm" id="asrc_2scan_2numeric_8cppm">
-<area shape="rect" title=" " alt="" coords="1599,5,1771,31"/>
-<area shape="rect" title=" " alt="" coords="318,299,403,324"/>
-<area shape="poly" title=" " alt="" coords="1599,23,1316,31,934,52,739,69,558,91,405,119,343,136,292,154,251,173,216,194,204,206,198,219,198,233,205,249,220,261,244,273,305,294,304,299,242,278,217,266,201,252,193,234,193,218,200,203,213,190,249,168,290,150,341,131,404,114,558,86,738,63,934,46,1315,26,1599,18"/>
-<area shape="rect" title=" " alt="" coords="1141,152,1204,177"/>
-<area shape="poly" title=" " alt="" coords="1599,28,1468,45,1396,61,1326,81,1257,113,1201,147,1199,142,1255,108,1324,76,1395,55,1467,40,1598,23"/>
-<area shape="rect" title=" " alt="" coords="2208,225,2279,251"/>
-<area shape="poly" title=" " alt="" coords="1771,17,1945,23,2048,30,2153,42,2253,58,2341,81,2378,96,2410,112,2435,130,2454,151,2461,173,2456,191,2439,206,2415,217,2354,231,2293,237,2292,232,2353,225,2413,212,2436,201,2451,188,2456,173,2449,153,2432,134,2407,116,2376,101,2339,87,2252,64,2153,47,2048,35,1945,28,1771,22"/>
-<area shape="rect" title=" " alt="" coords="2035,299,2102,324"/>
-<area shape="poly" title=" " alt="" coords="1771,18,1917,23,2092,33,2257,50,2324,62,2375,76,2409,89,2435,102,2456,121,2475,151,2484,176,2485,199,2478,219,2465,237,2447,252,2423,265,2366,285,2300,299,2232,307,2116,313,2115,307,2232,302,2299,293,2365,280,2421,260,2444,248,2461,233,2474,217,2480,198,2479,177,2470,153,2452,124,2432,107,2406,94,2373,81,2323,67,2256,56,2092,39,1917,28,1771,24"/>
-<area shape="rect" title=" " alt="" coords="922,225,997,251"/>
-<area shape="poly" title=" " alt="" coords="1599,26,1441,42,1352,58,1264,81,1183,113,1106,151,989,220,986,216,1103,146,1181,108,1263,76,1350,53,1440,37,1598,20"/>
-<area shape="rect" title=" " alt="" coords="1300,299,1392,324"/>
-<area shape="poly" title=" " alt="" coords="1727,28,1825,61,1881,84,1934,112,1978,142,1995,159,2007,176,2014,195,2015,214,2008,233,1994,253,1757,278,1406,308,1406,302,1757,272,1991,248,2004,231,2009,213,2009,196,2002,179,1991,162,1975,146,1932,116,1879,89,1823,66,1725,33"/>
-<area shape="rect" href="core_8cppm.html" title="Core single&#45;value container" alt="" coords="1738,152,1829,177"/>
-<area shape="poly" title=" " alt="" coords="1695,30,1770,139,1765,142,1691,33"/>
-<area shape="rect" href="flags_8cppm.html" title=" " alt="" coords="1258,225,1351,251"/>
-<area shape="poly" title=" " alt="" coords="1618,33,1547,52,1474,81,1427,111,1385,148,1323,216,1319,213,1381,144,1424,107,1471,76,1545,47,1617,28"/>
-<area shape="rect" href="parser_8cppm.html" title="Value parsing utilities for scan operations" alt="" coords="851,79,953,104"/>
-<area shape="poly" title=" " alt="" coords="1599,30,967,87,967,81,1598,24"/>
-<area shape="rect" href="scan_2types_8cppm.html" title=" " alt="" coords="2107,152,2199,177"/>
-<area shape="poly" title=" " alt="" coords="1771,22,1948,40,2031,56,2064,65,2089,76,2106,89,2121,105,2143,138,2139,141,2117,109,2103,93,2086,81,2062,70,2030,61,1947,46,1770,27"/>
-<area shape="rect" href="read__helpers_8cppm.html" title=" " alt="" coords="1485,79,1623,104"/>
-<area shape="poly" title=" " alt="" coords="1665,33,1588,74,1586,70,1662,28"/>
-<area shape="rect" href="routine_8cppm.html" title="Scan routine interface with modern, type&#45;safe API" alt="" coords="2172,79,2275,104"/>
-<area shape="poly" title=" " alt="" coords="1771,27,2146,76,2159,78,2158,83,2146,81,1771,33"/>
-<area shape="poly" title=" " alt="" coords="1738,172,1484,193,1346,209,1247,228,1221,241,1195,253,1066,269,843,286,417,310,417,305,843,281,1065,264,1193,248,1219,236,1245,223,1345,204,1484,187,1737,166"/>
-<area shape="poly" title=" " alt="" coords="1829,170,2195,227,2194,232,1828,176"/>
-<area shape="poly" title=" " alt="" coords="1798,175,1843,211,1903,248,1965,275,2023,295,2021,300,1963,280,1901,253,1840,215,1795,180"/>
-<area shape="poly" title=" " alt="" coords="1738,173,1011,235,1010,230,1738,167"/>
-<area shape="poly" title=" " alt="" coords="1756,180,1574,253,1486,279,1406,299,1404,294,1484,274,1572,248,1754,175"/>
-<area shape="rect" title=" " alt="" coords="1693,225,1749,251"/>
-<area shape="poly" title=" " alt="" coords="1775,179,1742,217,1738,213,1771,176"/>
-<area shape="rect" title=" " alt="" coords="1427,225,1465,251"/>
-<area shape="poly" title=" " alt="" coords="1738,177,1485,228,1479,229,1478,224,1484,223,1737,172"/>
-<area shape="rect" title=" " alt="" coords="1495,299,1575,324"/>
-<area shape="poly" title=" " alt="" coords="1765,180,1682,228,1568,294,1565,289,1679,223,1762,175"/>
-<area shape="rect" title=" " alt="" coords="1914,225,1981,251"/>
-<area shape="poly" title=" " alt="" coords="1811,175,1909,217,1907,222,1809,180"/>
-<area shape="rect" title=" " alt="" coords="1773,225,1839,251"/>
-<area shape="poly" title=" " alt="" coords="1790,177,1801,211,1796,213,1785,178"/>
-<area shape="rect" title=" " alt="" coords="703,299,762,324"/>
-<area shape="poly" title=" " alt="" coords="1738,175,1638,194,1580,209,1523,228,1501,241,1478,253,1434,261,1360,270,1157,286,776,310,776,305,1157,281,1360,264,1433,256,1476,248,1498,236,1521,223,1578,204,1637,189,1737,170"/>
-<area shape="rect" title=" " alt="" coords="1123,225,1183,251"/>
-<area shape="poly" title=" " alt="" coords="1738,171,1508,190,1356,206,1202,228,1197,229,1196,224,1202,223,1355,201,1507,184,1738,166"/>
-<area shape="rect" title=" " alt="" coords="1021,299,1084,324"/>
-<area shape="poly" title=" " alt="" coords="1738,179,1661,199,1574,228,1549,241,1523,253,1405,281,1286,299,1179,308,1098,312,1098,307,1179,303,1285,294,1404,276,1521,248,1546,236,1572,223,1659,194,1737,174"/>
-<area shape="poly" title=" " alt="" coords="1738,177,1720,180,1365,231,1364,226,1719,175,1737,172"/>
-<area shape="poly" title=" " alt="" coords="1352,242,1414,248,2022,303,2022,309,1414,253,1351,247"/>
-<area shape="poly" title=" " alt="" coords="1314,250,1335,285,1330,288,1309,252"/>
-<area shape="poly" title=" " alt="" coords="1343,248,1486,292,1484,297,1341,253"/>
-<area shape="poly" title=" " alt="" coords="1258,250,1240,253,977,287,776,308,776,303,976,282,1239,248,1258,245"/>
-<area shape="poly" title=" " alt="" coords="1265,253,1098,300,1097,295,1263,248"/>
-<area shape="poly" title=" " alt="" coords="851,96,777,100,685,109,585,126,487,155,419,179,394,197,371,227,361,256,360,285,355,285,356,255,366,224,391,193,417,175,485,149,584,121,685,104,777,94,850,91"/>
-<area shape="poly" title=" " alt="" coords="946,101,1128,149,1127,154,945,107"/>
-<area shape="poly" title=" " alt="" coords="954,92,1441,111,1727,128,1846,138,1936,149,2009,164,2081,182,2199,218,2197,223,2079,187,2008,169,1935,155,1845,143,1726,133,1441,116,954,97"/>
-<area shape="poly" title=" " alt="" coords="954,91,1140,95,1398,104,1655,122,1761,134,1841,149,1887,163,1923,176,1955,195,1994,223,2028,254,2054,286,2050,289,2024,258,1991,227,1952,200,1920,181,1886,168,1840,155,1760,139,1654,127,1397,110,1140,100,953,96"/>
-<area shape="poly" title=" " alt="" coords="909,103,952,211,947,213,904,105"/>
-<area shape="poly" title=" " alt="" coords="855,107,821,118,792,134,782,143,776,153,775,164,779,176,802,197,839,219,911,248,1012,275,1115,292,1210,302,1286,306,1286,311,1209,307,1114,297,1011,280,909,253,837,223,799,202,774,179,769,165,771,152,778,140,789,130,819,113,853,102"/>
-<area shape="poly" title=" " alt="" coords="954,94,1724,156,1724,161,954,99"/>
-<area shape="poly" title=" " alt="" coords="851,97,817,102,782,112,750,129,724,154,716,169,711,185,709,221,715,256,725,285,720,287,710,257,704,221,706,184,711,167,720,150,747,124,780,107,816,97,850,92"/>
-<area shape="poly" title=" " alt="" coords="923,102,1122,216,1119,221,921,107"/>
-<area shape="poly" title=" " alt="" coords="851,101,804,110,759,125,743,135,733,147,730,160,735,176,760,209,791,235,827,257,865,273,942,295,1008,305,1007,310,941,300,863,279,824,262,788,240,756,212,730,179,724,160,728,144,740,131,757,120,802,105,850,96"/>
-<area shape="poly" title=" " alt="" coords="933,102,1130,175,1257,218,1256,223,1128,180,931,107"/>
-<area shape="rect" title=" " alt="" coords="5,299,71,324"/>
-<area shape="poly" title=" " alt="" coords="850,96,710,99,527,108,349,126,276,138,223,154,171,183,125,220,86,258,58,290,54,286,82,254,121,216,168,179,221,150,275,133,348,120,526,103,709,94,850,90"/>
-<area shape="rect" title=" " alt="" coords="105,299,203,324"/>
-<area shape="poly" title=" " alt="" coords="850,97,562,115,405,132,340,142,292,155,255,167,226,180,202,198,178,227,164,256,158,286,153,285,159,254,173,224,199,194,224,175,253,162,291,149,339,137,404,126,561,109,850,92"/>
-<area shape="rect" title=" " alt="" coords="789,152,913,177"/>
-<area shape="poly" title=" " alt="" coords="896,106,870,142,865,139,891,103"/>
-<area shape="rect" href="utils_2string_8cppm.html" title="String utility functions for common string operations" alt="" coords="215,225,306,251"/>
-<area shape="poly" title=" " alt="" coords="850,95,728,98,575,107,427,124,369,138,326,154,309,166,295,182,274,214,270,211,291,178,306,162,323,150,367,133,427,119,574,101,728,93,850,90"/>
-<area shape="rect" href="parserStr_8cppm.html" title="String parsing utilities for numeric and boolean values" alt="" coords="499,152,612,177"/>
-<area shape="poly" title=" " alt="" coords="851,106,625,152,624,147,850,101"/>
-<area shape="poly" title=" " alt="" coords="954,93,1986,149,2093,156,2093,162,1986,155,953,98"/>
-<area shape="poly" title=" " alt="" coords="278,249,335,288,332,293,275,253"/>
-<area shape="poly" title=" " alt="" coords="307,244,690,301,689,306,306,249"/>
-<area shape="poly" title=" " alt="" coords="307,242,369,248,1008,304,1008,309,368,253,306,247"/>
-<area shape="poly" title=" " alt="" coords="226,253,84,298,83,293,224,248"/>
-<area shape="poly" title=" " alt="" coords="245,253,184,293,181,289,242,248"/>
-<area shape="rect" title=" " alt="" coords="227,299,294,324"/>
-<area shape="poly" title=" " alt="" coords="263,251,263,285,258,285,258,251"/>
-<area shape="poly" title=" " alt="" coords="613,169,790,189,1009,223,1060,236,1110,248,1244,266,1380,280,1644,298,1870,306,2022,307,2022,313,1869,311,1644,303,1379,285,1243,271,1110,253,1059,241,1008,228,789,194,612,174"/>
-<area shape="poly" title=" " alt="" coords="613,173,909,225,908,230,612,179"/>
-<area shape="poly" title=" " alt="" coords="592,175,713,211,867,248,983,268,1099,284,1287,303,1286,308,1098,289,982,273,865,253,711,216,590,180"/>
-<area shape="poly" title=" " alt="" coords="581,175,619,196,658,223,691,255,718,286,714,290,688,259,655,227,616,200,578,180"/>
-<area shape="poly" title=" " alt="" coords="499,172,336,191,258,206,227,216,205,228,191,240,180,255,164,287,159,285,175,252,187,236,202,223,225,211,256,201,335,185,498,167"/>
-<area shape="poly" title=" " alt="" coords="509,180,320,225,319,220,507,175"/>
-<area shape="rect" title=" " alt="" coords="381,225,455,251"/>
-<area shape="poly" title=" " alt="" coords="534,180,454,221,451,217,532,175"/>
-<area shape="rect" title=" " alt="" coords="480,225,561,251"/>
-<area shape="poly" title=" " alt="" coords="552,179,535,214,530,212,547,176"/>
-<area shape="rect" title=" " alt="" coords="586,225,645,251"/>
-<area shape="poly" title=" " alt="" coords="567,176,599,213,595,217,563,179"/>
-<area shape="poly" title=" " alt="" coords="2169,175,2219,214,2216,219,2166,179"/>
-<area shape="poly" title=" " alt="" coords="2156,178,2153,212,2149,233,2140,252,2123,275,2101,293,2098,289,2119,271,2136,249,2143,231,2148,212,2150,178"/>
-<area shape="poly" title=" " alt="" coords="1516,107,1264,180,1137,219,1009,253,841,279,674,296,417,311,417,306,674,291,840,274,1008,248,1136,214,1263,175,1514,102"/>
-<area shape="poly" title=" " alt="" coords="1486,107,1224,155,1218,156,1217,151,1223,149,1485,101"/>
-<area shape="poly" title=" " alt="" coords="1624,91,1691,96,1771,106,1855,123,1936,150,1969,164,1994,178,2016,196,2039,224,2056,254,2066,284,2061,286,2051,256,2034,227,2012,200,1991,182,1967,169,1934,154,1853,128,1770,111,1690,101,1623,96"/>
-<area shape="poly" title=" " alt="" coords="1485,106,1385,126,1275,155,1246,167,1216,180,1123,204,1011,229,1009,223,1122,199,1214,175,1244,162,1273,149,1384,120,1484,101"/>
-<area shape="poly" title=" " alt="" coords="1536,106,1505,127,1472,154,1409,225,1363,289,1359,285,1405,222,1468,150,1501,123,1533,102"/>
-<area shape="poly" title=" " alt="" coords="1592,101,1734,145,1732,150,1590,107"/>
-<area shape="poly" title=" " alt="" coords="1565,103,1580,138,1582,159,1576,179,1561,193,1536,206,1480,228,1478,224,1534,201,1558,188,1572,176,1577,158,1575,140,1560,106"/>
-<area shape="poly" title=" " alt="" coords="1624,95,1729,113,1787,128,1842,150,1890,180,1929,213,1925,218,1887,184,1839,154,1785,133,1728,118,1623,101"/>
-<area shape="poly" title=" " alt="" coords="1527,106,1480,127,1427,154,1376,187,1332,219,1328,215,1373,183,1425,150,1477,123,1525,102"/>
-<area shape="poly" title=" " alt="" coords="1624,98,2093,154,2093,159,1624,104"/>
-<area shape="rect" title=" " alt="" coords="1482,152,1562,177"/>
-<area shape="poly" title=" " alt="" coords="1551,105,1535,141,1530,139,1546,103"/>
-<area shape="poly" title=" " alt="" coords="2228,104,2242,211,2237,212,2222,105"/>
-<area shape="poly" title=" " alt="" coords="2276,91,2343,96,2410,109,2437,120,2455,135,2462,155,2454,179,2421,217,2382,248,2337,271,2289,288,2241,300,2195,307,2116,313,2116,308,2194,302,2240,295,2288,283,2335,266,2379,243,2418,213,2449,176,2457,155,2451,138,2434,125,2408,114,2342,101,2275,96"/>
-<area shape="poly" title=" " alt="" coords="2172,98,1886,116,1730,133,1667,143,1619,154,1597,167,1575,180,1495,190,1336,206,1010,235,1010,230,1335,201,1494,185,1573,175,1595,162,1617,150,1666,138,1730,127,1886,111,2172,92"/>
-<area shape="poly" title=" " alt="" coords="2172,104,1843,156,1842,151,2172,98"/>
-<area shape="poly" title=" " alt="" coords="2172,100,1976,119,1851,135,1726,155,1672,167,1619,180,1365,229,1364,223,1617,175,1671,161,1726,149,1851,130,1975,114,2172,94"/>
-<area shape="rect" title=" " alt="" coords="2275,152,2361,177"/>
-<area shape="poly" title=" " alt="" coords="2240,102,2293,141,2290,146,2237,106"/>
-<area shape="rect" title=" " alt="" coords="2386,152,2439,177"/>
-<area shape="poly" title=" " alt="" coords="2255,102,2374,146,2372,151,2253,107"/>
+<area shape="rect" title=" " alt="" coords="717,5,889,31"/>
+<area shape="rect" title=" " alt="" coords="1115,372,1200,397"/>
+<area shape="poly" title=" " alt="" coords="863,28,953,49,1051,79,1094,97,1129,117,1153,139,1160,151,1163,163,1163,239,1161,358,1155,358,1157,239,1157,164,1155,153,1149,142,1126,121,1092,101,1049,84,952,54,862,33"/>
+<area shape="rect" title=" " alt="" coords="2862,152,2925,177"/>
+<area shape="poly" title=" " alt="" coords="889,17,1207,25,1690,44,1968,61,2260,84,2555,113,2843,149,2849,150,2848,156,2842,155,2554,118,2260,89,1968,67,1689,50,1207,30,889,23"/>
+<area shape="rect" title=" " alt="" coords="195,372,266,397"/>
+<area shape="poly" title=" " alt="" coords="717,23,600,26,468,36,347,53,299,66,264,81,240,98,223,115,214,135,211,163,211,239,216,304,227,358,222,359,211,304,205,239,205,163,209,134,219,112,236,93,261,76,297,61,346,48,467,30,600,21,717,17"/>
+<area shape="rect" title=" " alt="" coords="347,445,413,471"/>
+<area shape="poly" title=" " alt="" coords="717,24,616,29,493,39,359,56,226,81,187,88,148,90,77,94,49,99,27,111,13,132,8,164,8,312,10,324,17,336,44,358,83,379,132,397,240,427,333,446,332,451,238,432,130,402,81,384,41,363,13,339,5,326,3,313,3,163,8,130,24,107,47,94,77,88,148,85,186,82,225,76,358,50,492,33,615,23,716,18"/>
+<area shape="rect" title=" " alt="" coords="2748,445,2823,471"/>
+<area shape="poly" title=" " alt="" coords="889,18,1382,28,1722,38,2076,52,2413,71,2695,95,2806,109,2891,124,2945,142,2960,152,2965,163,2965,313,2962,337,2952,359,2938,379,2920,396,2878,423,2836,443,2834,438,2876,419,2917,392,2934,375,2948,356,2957,336,2960,312,2960,164,2956,155,2943,147,2889,130,2805,114,2695,100,2412,76,2076,57,1721,43,1382,33,889,23"/>
+<area shape="rect" title=" " alt="" coords="663,445,755,471"/>
+<area shape="poly" title=" " alt="" coords="745,33,618,68,540,96,458,132,377,177,302,232,267,263,236,297,209,334,185,373,181,387,186,399,199,409,218,417,276,429,350,435,515,439,650,443,650,448,515,444,349,440,275,434,217,422,196,413,182,402,176,388,180,371,204,331,232,293,264,259,298,228,374,173,456,127,538,91,616,63,743,28"/>
+<area shape="rect" href="core_8cppm.html" title="Core single&#45;value container" alt="" coords="840,299,931,324"/>
+<area shape="poly" title=" " alt="" coords="806,31,813,94,831,177,852,236,875,285,871,288,847,238,825,178,808,95,801,31"/>
+<area shape="rect" href="flags_8cppm.html" title=" " alt="" coords="579,372,672,397"/>
+<area shape="poly" title=" " alt="" coords="716,21,605,24,480,33,367,51,323,64,292,81,274,98,265,116,262,137,261,163,261,239,267,269,282,289,306,305,336,322,377,337,437,352,565,373,564,378,436,357,376,342,334,326,303,310,278,293,262,271,256,240,256,163,257,136,260,114,270,95,289,77,321,59,366,46,479,28,604,19,716,16"/>
+<area shape="rect" href="read__helpers_8cppm.html" title=" " alt="" coords="888,79,1027,104"/>
+<area shape="poly" title=" " alt="" coords="829,28,921,70,919,75,826,33"/>
+<area shape="rect" href="types_8cppm.html" title=" " alt="" coords="1198,152,1290,177"/>
+<area shape="poly" title=" " alt="" coords="889,23,1052,42,1127,57,1180,76,1197,89,1212,105,1234,138,1230,141,1208,109,1194,93,1177,81,1126,62,1051,47,889,28"/>
+<area shape="rect" href="routine_8cppm.html" title="Canonical scan routine abstractions and compatibility shims" alt="" coords="459,225,562,251"/>
+<area shape="poly" title=" " alt="" coords="784,33,704,83,603,154,533,217,530,213,600,150,701,79,782,28"/>
+<area shape="poly" title=" " alt="" coords="930,321,1102,366,1101,371,928,327"/>
+<area shape="poly" title=" " alt="" coords="840,320,280,381,279,375,840,315"/>
+<area shape="poly" title=" " alt="" coords="840,324,822,327,734,333,621,338,511,349,466,359,432,374,418,386,406,401,390,433,385,431,402,399,414,383,429,370,464,354,510,344,621,332,734,328,821,321,840,318"/>
+<area shape="poly" title=" " alt="" coords="931,312,1441,335,1722,352,1824,361,1885,369,1914,382,1942,395,2278,420,2734,451,2734,456,2277,425,1941,400,1912,387,1883,375,1823,366,1721,357,1441,340,931,317"/>
+<area shape="poly" title=" " alt="" coords="866,326,831,347,794,374,759,406,730,437,726,433,755,402,790,370,828,343,863,322"/>
+<area shape="rect" title=" " alt="" coords="1272,445,1328,471"/>
+<area shape="poly" title=" " alt="" coords="885,325,882,360,886,379,895,395,922,413,960,424,1007,431,1059,435,1167,437,1259,443,1258,448,1167,443,1059,440,1006,436,959,429,919,417,891,399,881,381,877,360,880,324"/>
+<area shape="rect" title=" " alt="" coords="1051,372,1090,397"/>
+<area shape="poly" title=" " alt="" coords="916,322,1039,369,1038,374,914,327"/>
+<area shape="rect" title=" " alt="" coords="2529,445,2596,471"/>
+<area shape="poly" title=" " alt="" coords="907,322,1041,395,1105,409,1179,419,1354,432,1553,436,1765,435,2183,429,2366,432,2516,443,2515,448,2366,437,2183,434,1766,440,1553,441,1354,437,1179,425,1104,414,1039,400,905,326"/>
+<area shape="rect" title=" " alt="" coords="1352,445,1419,471"/>
+<area shape="poly" title=" " alt="" coords="892,323,911,360,926,379,945,395,997,421,1044,436,1088,442,1131,441,1223,436,1277,436,1339,443,1338,448,1277,441,1223,441,1131,447,1087,447,1043,441,995,426,943,400,923,383,907,363,887,326"/>
+<area shape="rect" title=" " alt="" coords="1189,445,1248,471"/>
+<area shape="poly" title=" " alt="" coords="874,326,859,341,845,360,839,379,840,388,845,396,867,412,901,425,992,442,1092,451,1175,454,1175,459,1091,456,991,448,899,430,864,416,841,399,835,389,834,378,841,357,855,338,870,322"/>
+<area shape="rect" title=" " alt="" coords="443,372,503,397"/>
+<area shape="poly" title=" " alt="" coords="840,323,822,327,672,349,523,375,517,376,516,371,522,369,671,344,821,321,839,318"/>
+<area shape="rect" title=" " alt="" coords="1443,445,1506,471"/>
+<area shape="poly" title=" " alt="" coords="898,322,938,360,966,379,996,395,1057,416,1110,428,1159,433,1206,433,1305,432,1363,434,1430,443,1429,448,1362,440,1305,437,1206,439,1159,438,1110,433,1055,421,994,400,963,384,935,364,894,326"/>
+<area shape="poly" title=" " alt="" coords="844,327,681,371,680,366,843,321"/>
+<area shape="poly" title=" " alt="" coords="587,400,427,446,426,441,585,395"/>
+<area shape="poly" title=" " alt="" coords="641,395,687,434,683,438,637,399"/>
+<area shape="poly" title=" " alt="" coords="673,389,1176,449,1175,454,672,394"/>
+<area shape="poly" title=" " alt="" coords="672,386,1042,407,1260,424,1430,443,1430,448,1260,430,1041,413,672,391"/>
+<area shape="rect" title=" " alt="" coords="559,445,639,471"/>
+<area shape="poly" title=" " alt="" coords="623,399,610,434,605,432,618,397"/>
+<area shape="poly" title=" " alt="" coords="968,103,1002,150,1144,359,1140,362,998,154,964,106"/>
+<area shape="poly" title=" " alt="" coords="1027,90,1384,94,1910,104,2448,121,2673,134,2843,149,2849,150,2848,155,2842,155,2673,139,2448,126,1910,109,1384,99,1027,96"/>
+<area shape="poly" title=" " alt="" coords="888,97,753,109,669,121,578,140,485,166,393,201,305,245,224,301,196,324,173,347,166,358,163,370,165,382,173,396,198,413,239,427,334,447,332,453,238,433,195,418,169,399,160,384,158,370,161,356,169,343,192,320,221,297,302,241,390,196,483,161,577,135,668,116,752,103,888,92"/>
+<area shape="poly" title=" " alt="" coords="1027,89,1295,94,1485,103,1701,120,1934,145,2177,182,2420,232,2539,262,2655,296,2705,308,2747,317,2783,334,2800,349,2816,371,2821,387,2820,404,2806,435,2801,433,2815,403,2816,388,2811,373,2796,353,2780,338,2745,322,2704,313,2654,301,2538,267,2419,237,2176,187,1934,151,1700,125,1484,109,1295,99,1027,95"/>
+<area shape="poly" title=" " alt="" coords="913,107,869,125,848,138,830,154,803,187,781,224,747,303,726,376,715,432,710,431,721,375,742,301,776,221,799,184,826,150,845,134,867,120,911,102"/>
+<area shape="poly" title=" " alt="" coords="957,105,935,178,897,286,892,285,929,177,952,103"/>
+<area shape="poly" title=" " alt="" coords="963,104,994,195,1042,323,1060,359,1055,361,1038,325,989,197,958,105"/>
+<area shape="poly" title=" " alt="" coords="1027,92,1280,104,1442,114,1607,129,1762,148,1891,171,1941,185,1979,200,2004,217,2013,236,2013,312,2018,342,2030,362,2050,379,2077,395,2115,409,2164,419,2284,430,2410,435,2516,443,2515,448,2410,440,2283,435,2163,425,2113,415,2075,400,2047,383,2026,366,2013,344,2008,313,2008,237,2000,220,1977,205,1939,190,1889,176,1761,153,1607,134,1441,120,1279,109,1027,97"/>
+<area shape="poly" title=" " alt="" coords="888,99,850,105,809,115,770,131,735,154,712,176,693,202,663,259,643,314,632,359,627,358,638,313,658,257,689,199,708,173,732,150,768,126,808,110,849,99,887,93"/>
+<area shape="rect" title=" " alt="" coords="840,152,920,177"/>
+<area shape="poly" title=" " alt="" coords="947,106,905,144,901,141,943,102"/>
+<area shape="rect" title=" " alt="" coords="560,299,613,324"/>
+<area shape="poly" title=" " alt="" coords="888,95,839,100,786,110,733,128,684,154,653,184,628,220,609,256,597,287,592,285,604,254,623,217,649,180,681,150,731,123,785,105,838,95,887,90"/>
+<area shape="poly" title=" " alt="" coords="1004,101,1185,146,1184,151,1003,107"/>
+<area shape="poly" title=" " alt="" coords="1198,171,790,193,572,210,493,219,447,228,388,256,333,292,287,331,253,363,249,360,283,327,330,288,385,251,446,223,492,214,571,205,789,188,1198,165"/>
+<area shape="poly" title=" " alt="" coords="1198,175,1101,191,969,217,821,253,673,301,650,314,626,326,588,336,553,338,491,333,462,332,436,337,409,349,383,374,376,387,373,401,375,432,370,432,368,401,371,385,379,370,406,345,434,331,462,327,491,328,553,333,587,331,624,322,647,309,671,296,819,248,968,212,1100,186,1197,170"/>
+<area shape="poly" title=" " alt="" coords="1290,165,1489,174,1796,196,1975,213,2163,235,2352,263,2536,296,2577,302,2615,304,2680,306,2710,311,2738,322,2766,341,2793,371,2800,385,2802,401,2798,432,2792,431,2797,401,2795,387,2788,373,2762,345,2736,326,2709,316,2680,311,2614,309,2577,307,2536,301,2351,268,2162,240,1975,218,1796,201,1488,179,1290,170"/>
+<area shape="poly" title=" " alt="" coords="1216,180,927,296,925,291,1214,175"/>
+<area shape="rect" href="match__storage_8cppm.html" title="Types for storing scan results and historical bytes." alt="" coords="2053,299,2206,324"/>
+<area shape="poly" title=" " alt="" coords="1290,164,1394,169,1537,178,1700,196,1865,223,1988,256,2088,291,2087,296,1986,261,1863,228,1699,201,1537,184,1394,174,1290,170"/>
+<area shape="rect" href="region__filter_8cppm.html" title="Region&#45;based filtering for memory scans and match results" alt="" coords="1482,225,1614,251"/>
+<area shape="poly" title=" " alt="" coords="1291,174,1486,220,1485,225,1290,179"/>
+<area shape="rect" href="maps_8cppm.html" title=" " alt="" coords="1781,372,1872,397"/>
+<area shape="poly" title=" " alt="" coords="1291,167,1442,184,1535,200,1627,223,1719,246,1756,264,1795,297,1814,327,1825,358,1820,360,1810,329,1791,300,1753,268,1717,251,1626,228,1534,205,1441,189,1290,172"/>
+<area shape="poly" title=" " alt="" coords="2053,321,1214,382,1214,377,2052,316"/>
+<area shape="poly" title=" " alt="" coords="2052,317,1386,338,431,375,280,383,279,378,431,369,1386,332,2052,312"/>
+<area shape="poly" title=" " alt="" coords="2052,323,1690,358,1212,400,427,456,427,451,1212,395,1689,352,2052,318"/>
+<area shape="poly" title=" " alt="" coords="2206,309,2337,311,2492,319,2568,326,2636,337,2694,351,2736,370,2751,383,2764,398,2780,431,2775,433,2759,401,2748,386,2733,374,2692,356,2635,342,2567,332,2492,324,2337,316,2206,314"/>
+<area shape="poly" title=" " alt="" coords="2118,326,2103,342,2090,360,2084,379,2085,388,2090,396,2103,407,2120,416,2165,429,2221,436,2282,439,2410,439,2516,443,2516,448,2410,444,2282,445,2220,442,2164,434,2118,421,2100,411,2086,399,2080,389,2079,379,2085,358,2099,338,2114,322"/>
+<area shape="poly" title=" " alt="" coords="2053,323,1713,367,1490,402,1262,448,1261,443,1489,397,1712,361,2052,318"/>
+<area shape="poly" title=" " alt="" coords="2053,325,1920,346,1770,375,1633,410,1520,445,1518,440,1631,405,1769,369,1919,340,2052,320"/>
+<area shape="poly" title=" " alt="" coords="2052,319,686,383,685,378,2052,314"/>
+<area shape="rect" title=" " alt="" coords="2653,372,2723,397"/>
+<area shape="poly" title=" " alt="" coords="2206,316,2399,335,2640,369,2639,375,2399,340,2206,321"/>
+<area shape="rect" title=" " alt="" coords="2099,372,2165,397"/>
+<area shape="poly" title=" " alt="" coords="2132,324,2134,358,2128,359,2127,324"/>
+<area shape="rect" title=" " alt="" coords="2189,372,2251,397"/>
+<area shape="poly" title=" " alt="" coords="2146,322,2196,361,2193,365,2142,326"/>
+<area shape="rect" title=" " alt="" coords="2275,372,2341,397"/>
+<area shape="poly" title=" " alt="" coords="2159,322,2267,364,2265,369,2157,327"/>
+<area shape="rect" title=" " alt="" coords="2365,372,2440,397"/>
+<area shape="poly" title=" " alt="" coords="2174,321,2353,368,2351,373,2173,327"/>
+<area shape="rect" title=" " alt="" coords="2464,372,2531,397"/>
+<area shape="poly" title=" " alt="" coords="2199,321,2451,369,2450,374,2198,327"/>
+<area shape="rect" title=" " alt="" coords="2555,372,2629,397"/>
+<area shape="poly" title=" " alt="" coords="2207,319,2358,339,2542,369,2541,375,2357,345,2206,324"/>
+<area shape="poly" title=" " alt="" coords="1482,245,1197,265,1014,281,828,301,615,337,403,374,394,386,387,401,382,432,377,431,382,399,389,384,400,370,614,331,828,296,1013,275,1197,259,1482,240"/>
+<area shape="poly" title=" " alt="" coords="1615,239,1884,253,2249,279,2427,297,2584,318,2702,342,2742,355,2767,370,2778,383,2784,399,2789,431,2784,431,2779,401,2773,386,2764,374,2740,360,2700,347,2583,323,2427,302,2248,284,1884,259,1614,245"/>
+<area shape="poly" title=" " alt="" coords="1482,250,1371,270,1322,284,1290,301,1264,330,1245,366,1232,401,1225,432,1220,431,1227,400,1240,364,1259,327,1286,297,1320,279,1370,265,1481,245"/>
+<area shape="poly" title=" " alt="" coords="1547,252,1486,433,1481,431,1542,250"/>
+<area shape="rect" title=" " alt="" coords="1530,445,1627,471"/>
+<area shape="poly" title=" " alt="" coords="1615,243,1642,250,1669,260,1694,276,1714,297,1723,318,1722,340,1713,360,1698,380,1658,414,1616,441,1613,436,1655,410,1695,376,1709,358,1717,339,1718,319,1710,300,1691,280,1667,265,1640,255,1613,248"/>
+<area shape="rect" title=" " alt="" coords="1585,299,1700,324"/>
+<area shape="poly" title=" " alt="" coords="1565,249,1618,288,1615,292,1562,253"/>
+<area shape="rect" href="region__classifier_8cppm.html" title="Memory region classification for address categorization" alt="" coords="1300,299,1460,324"/>
+<area shape="poly" title=" " alt="" coords="1522,253,1421,296,1419,291,1520,248"/>
+<area shape="poly" title=" " alt="" coords="1615,244,1689,261,1728,276,1764,297,1795,326,1817,358,1812,361,1791,329,1761,301,1726,281,1688,267,1614,249"/>
+<area shape="poly" title=" " alt="" coords="1345,327,1207,370,1205,365,1343,321"/>
+<area shape="poly" title=" " alt="" coords="1300,317,1130,323,918,334,714,351,631,362,567,375,541,386,516,400,420,442,418,437,513,395,539,381,566,369,630,357,714,346,918,329,1130,318,1300,312"/>
+<area shape="poly" title=" " alt="" coords="1316,327,1220,346,1104,375,1102,370,1219,341,1315,321"/>
+<area shape="poly" title=" " alt="" coords="1383,324,1387,432,1382,432,1378,325"/>
+<area shape="poly" title=" " alt="" coords="1369,326,1243,438,1240,434,1365,322"/>
+<area shape="poly" title=" " alt="" coords="1390,323,1462,432,1457,435,1386,326"/>
+<area shape="poly" title=" " alt="" coords="1397,322,1553,435,1550,439,1394,326"/>
+<area shape="rect" title=" " alt="" coords="1652,445,1735,471"/>
+<area shape="poly" title=" " alt="" coords="1406,322,1657,437,1655,442,1404,327"/>
+<area shape="poly" title=" " alt="" coords="1452,321,1768,371,1767,377,1451,327"/>
+<area shape="poly" title=" " alt="" coords="1781,390,1283,411,547,448,427,456,427,451,547,443,1283,406,1781,385"/>
+<area shape="poly" title=" " alt="" coords="1872,392,1891,395,2734,451,2734,456,1890,400,1872,397"/>
+<area shape="poly" title=" " alt="" coords="1781,392,1593,410,1470,426,1342,448,1341,443,1469,421,1593,405,1781,387"/>
+<area shape="poly" title=" " alt="" coords="1872,392,1891,395,2065,411,2202,415,2340,422,2516,443,2515,448,2340,427,2202,421,2064,416,1890,400,1872,397"/>
+<area shape="poly" title=" " alt="" coords="1781,394,1626,415,1432,448,1432,448,1431,443,1432,443,1625,410,1781,389"/>
+<area shape="poly" title=" " alt="" coords="1781,391,1561,408,1414,424,1262,448,1261,443,1413,419,1561,402,1781,386"/>
+<area shape="poly" title=" " alt="" coords="1782,396,1520,448,1519,443,1781,391"/>
+<area shape="poly" title=" " alt="" coords="1788,400,1633,444,1631,439,1786,395"/>
+<area shape="poly" title=" " alt="" coords="1806,400,1728,441,1726,436,1804,395"/>
+<area shape="rect" title=" " alt="" coords="1892,445,1977,471"/>
+<area shape="poly" title=" " alt="" coords="1845,395,1907,435,1904,440,1843,400"/>
+<area shape="rect" title=" " alt="" coords="2001,445,2097,471"/>
+<area shape="poly" title=" " alt="" coords="1863,395,2001,439,2000,444,1862,400"/>
+<area shape="rect" title=" " alt="" coords="2121,445,2196,471"/>
+<area shape="poly" title=" " alt="" coords="1873,393,2108,442,2107,448,1872,398"/>
+<area shape="rect" title=" " alt="" coords="2220,445,2311,471"/>
+<area shape="poly" title=" " alt="" coords="1873,392,1891,395,2047,418,2207,442,2206,448,2046,423,1890,400,1872,397"/>
+<area shape="rect" title=" " alt="" coords="2335,445,2409,471"/>
+<area shape="poly" title=" " alt="" coords="1872,392,1891,395,2010,409,2105,417,2200,426,2322,443,2321,448,2199,431,2104,422,2010,414,1890,400,1872,397"/>
+<area shape="rect" title=" " alt="" coords="2433,445,2505,471"/>
+<area shape="poly" title=" " alt="" coords="1872,392,1891,395,2038,410,2154,416,2271,424,2420,443,2419,448,2270,429,2153,422,2037,415,1890,400,1872,397"/>
+<area shape="rect" title=" " alt="" coords="1759,445,1867,471"/>
+<area shape="poly" title=" " alt="" coords="1827,398,1821,432,1815,431,1822,397"/>
+<area shape="poly" title=" " alt="" coords="507,253,484,289,467,309,447,326,380,348,280,374,279,369,378,343,444,322,463,305,480,286,503,250"/>
+<area shape="poly" title=" " alt="" coords="460,245,393,255,315,277,277,294,242,315,210,341,185,373,178,392,183,407,197,420,219,430,276,444,333,451,333,457,275,450,217,435,195,424,179,410,173,392,180,371,207,338,239,311,275,289,314,272,392,250,459,240"/>
+<area shape="poly" title=" " alt="" coords="562,237,717,238,942,246,1205,264,1340,278,1472,296,1523,308,1574,321,1674,338,1752,348,1931,369,2088,395,2275,415,2458,431,2734,451,2734,456,2458,437,2274,420,2088,400,1930,375,1751,353,1673,344,1573,327,1522,313,1472,301,1340,283,1205,270,942,252,717,244,562,242"/>
+<area shape="poly" title=" " alt="" coords="563,246,827,296,826,301,562,252"/>
+<area shape="poly" title=" " alt="" coords="516,250,528,284,550,322,572,344,595,362,592,367,568,348,546,326,524,286,511,252"/>
+<area shape="poly" title=" " alt="" coords="525,249,566,287,562,291,521,253"/>
+<area shape="rect" title=" " alt="" coords="347,299,434,324"/>
+<area shape="poly" title=" " alt="" coords="493,253,424,294,421,289,490,248"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -240,28 +270,28 @@ numeric.cppm 的引用(Include)关系图:</div>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:abf10ceef7e7529ecdec4723721593e4b" id="r_abf10ceef7e7529ecdec4723721593e4b"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:abf10ceef7e7529ecdec4723721593e4b"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="numeric_8cppm.html#abf10ceef7e7529ecdec4723721593e4b">numericMatchCore</a> (<a class="el" href="scan_2types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, T memv, const <a class="el" href="structValue.html">Value</a> *oldValue, const UserValue *userValue, <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> *saveFlags) noexcept -&gt; unsigned int</td></tr>
-<tr class="separator:abf10ceef7e7529ecdec4723721593e4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4623a5f258f349a4847883c887b8450" id="r_ab4623a5f258f349a4847883c887b8450"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ab4623a5f258f349a4847883c887b8450"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#ab4623a5f258f349a4847883c887b8450">detail::runNumericMatch</a> (<a class="el" href="scan_2types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, bool reverseEndianness, const <a class="el" href="structValue.html">Value</a> *memoryPtr, size_t memLength, const <a class="el" href="structValue.html">Value</a> *oldValue, const UserValue *userValue, <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> *saveFlags) noexcept -&gt; unsigned int</td></tr>
-<tr class="separator:ab4623a5f258f349a4847883c887b8450"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca568eae0b3707cce9c067bf16b37b9f" id="r_aca568eae0b3707cce9c067bf16b37b9f"><td class="memTemplParams" colspan="2">template&lt;typename... Ts&gt; </td></tr>
-<tr class="memitem:aca568eae0b3707cce9c067bf16b37b9f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#aca568eae0b3707cce9c067bf16b37b9f">detail::tryNumericSequence</a> (<a class="el" href="scan_2types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, bool reverseEndianness, const <a class="el" href="structValue.html">Value</a> *memoryPtr, size_t memLength, const <a class="el" href="structValue.html">Value</a> *oldValue, const UserValue *userValue, <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> *saveFlags) noexcept -&gt; unsigned int</td></tr>
-<tr class="separator:aca568eae0b3707cce9c067bf16b37b9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc180e0a2cbe10299dee53e5047ef861" id="r_acc180e0a2cbe10299dee53e5047ef861"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:acc180e0a2cbe10299dee53e5047ef861"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="numeric_8cppm.html#acc180e0a2cbe10299dee53e5047ef861">makeNumericRoutine</a> (<a class="el" href="scan_2types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, bool reverseEndianness) -&gt; <a class="el" href="routine_8cppm.html#aff96e3e9f60125b052dd05157b210931">scanRoutine</a></td></tr>
-<tr class="separator:acc180e0a2cbe10299dee53e5047ef861"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8bec0eb416a1883535a4bc3f31f2515c" id="r_a8bec0eb416a1883535a4bc3f31f2515c"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="numeric_8cppm.html#a8bec0eb416a1883535a4bc3f31f2515c">makeAnyIntegerRoutine</a> (<a class="el" href="scan_2types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, bool reverseEndianness) -&gt; <a class="el" href="routine_8cppm.html#aff96e3e9f60125b052dd05157b210931">scanRoutine</a></td></tr>
-<tr class="separator:a8bec0eb416a1883535a4bc3f31f2515c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e2a50d3788e09140b6de70f8fd84f99" id="r_a4e2a50d3788e09140b6de70f8fd84f99"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="numeric_8cppm.html#a4e2a50d3788e09140b6de70f8fd84f99">makeAnyFloatRoutine</a> (<a class="el" href="scan_2types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, bool reverseEndianness) -&gt; <a class="el" href="routine_8cppm.html#aff96e3e9f60125b052dd05157b210931">scanRoutine</a></td></tr>
-<tr class="separator:a4e2a50d3788e09140b6de70f8fd84f99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7dc8ecf1a451459342047f469c969d12" id="r_a7dc8ecf1a451459342047f469c969d12"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="numeric_8cppm.html#a7dc8ecf1a451459342047f469c969d12">makeAnyNumberRoutine</a> (<a class="el" href="scan_2types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, bool reverseEndianness) -&gt; <a class="el" href="routine_8cppm.html#aff96e3e9f60125b052dd05157b210931">scanRoutine</a></td></tr>
-<tr class="separator:a7dc8ecf1a451459342047f469c969d12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a918fe15a56f6cae443cbf3cb58364c84" id="r_a918fe15a56f6cae443cbf3cb58364c84"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a918fe15a56f6cae443cbf3cb58364c84"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="numeric_8cppm.html#a918fe15a56f6cae443cbf3cb58364c84">numericMatchCore</a> (<a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, T memv, const <a class="el" href="structValue.html">Value</a> *oldValue, const <a class="el" href="structUserValue.html">UserValue</a> *userValue, <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> *saveFlags, bool reverseEndianness=false) noexcept -&gt; unsigned int</td></tr>
+<tr class="separator:a918fe15a56f6cae443cbf3cb58364c84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af86320d9d2824ca666fc8bcfc695933d" id="r_af86320d9d2824ca666fc8bcfc695933d"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:af86320d9d2824ca666fc8bcfc695933d"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#af86320d9d2824ca666fc8bcfc695933d">detail::runNumericMatch</a> (<a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, const <a class="el" href="structscan_1_1ScanContext.html">scan::ScanContext</a> &amp;ctx, <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> *saveFlags) noexcept -&gt; unsigned int</td></tr>
+<tr class="separator:af86320d9d2824ca666fc8bcfc695933d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b5b5992a0a2cfeeacee2d94009514c1" id="r_a1b5b5992a0a2cfeeacee2d94009514c1"><td class="memTemplParams" colspan="2">template&lt;typename... Ts&gt; </td></tr>
+<tr class="memitem:a1b5b5992a0a2cfeeacee2d94009514c1"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedetail.html#a1b5b5992a0a2cfeeacee2d94009514c1">detail::tryNumericSequence</a> (<a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, const <a class="el" href="structscan_1_1ScanContext.html">scan::ScanContext</a> &amp;ctx, <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> *saveFlags) noexcept -&gt; unsigned int</td></tr>
+<tr class="separator:a1b5b5992a0a2cfeeacee2d94009514c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d70395fd5fbc4a188ef45cfe3a8eea2" id="r_a2d70395fd5fbc4a188ef45cfe3a8eea2"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a2d70395fd5fbc4a188ef45cfe3a8eea2"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="numeric_8cppm.html#a2d70395fd5fbc4a188ef45cfe3a8eea2">makeNumericScanRoutine</a> (<a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, bool reverseEndianness) -&gt; <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">scan::ScanRoutine</a></td></tr>
+<tr class="separator:a2d70395fd5fbc4a188ef45cfe3a8eea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79e24b0d21deed8453ea39117d7d56c0" id="r_a79e24b0d21deed8453ea39117d7d56c0"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="numeric_8cppm.html#a79e24b0d21deed8453ea39117d7d56c0">makeAnyIntegerScanRoutine</a> (<a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, bool reverseEndianness) -&gt; <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">scan::ScanRoutine</a></td></tr>
+<tr class="separator:a79e24b0d21deed8453ea39117d7d56c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf967caff7429ed6e9a4643e585683c0" id="r_adf967caff7429ed6e9a4643e585683c0"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="numeric_8cppm.html#adf967caff7429ed6e9a4643e585683c0">makeAnyFloatScanRoutine</a> (<a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, bool reverseEndianness) -&gt; <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">scan::ScanRoutine</a></td></tr>
+<tr class="separator:adf967caff7429ed6e9a4643e585683c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf4f9494088f0aabb7a70fe21b204c95" id="r_acf4f9494088f0aabb7a70fe21b204c95"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="numeric_8cppm.html#acf4f9494088f0aabb7a70fe21b204c95">makeAnyNumberScanRoutine</a> (<a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, bool reverseEndianness) -&gt; <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">scan::ScanRoutine</a></td></tr>
+<tr class="separator:acf4f9494088f0aabb7a70fe21b204c95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">函数说明</h2>
-<a id="a4e2a50d3788e09140b6de70f8fd84f99" name="a4e2a50d3788e09140b6de70f8fd84f99"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4e2a50d3788e09140b6de70f8fd84f99">&#9670;&#160;</a></span>makeAnyFloatRoutine()</h2>
+<a id="adf967caff7429ed6e9a4643e585683c0" name="adf967caff7429ed6e9a4643e585683c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf967caff7429ed6e9a4643e585683c0">&#9670;&#160;</a></span>makeAnyFloatScanRoutine()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -270,9 +300,9 @@ numeric.cppm 的引用(Include)关系图:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto makeAnyFloatRoutine </td>
+          <td class="memname">auto makeAnyFloatScanRoutine </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="scan_2types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a>&#160;</td>
           <td class="paramname"><em>matchType</em>, </td>
         </tr>
         <tr>
@@ -284,7 +314,7 @@ numeric.cppm 的引用(Include)关系图:</div>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; <a class="el" href="routine_8cppm.html#aff96e3e9f60125b052dd05157b210931">scanRoutine</a> </td>
+          <td></td><td> -&gt; <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">scan::ScanRoutine</a> </td>
         </tr>
       </table>
   </td>
@@ -296,8 +326,8 @@ numeric.cppm 的引用(Include)关系图:</div>
 
 </div>
 </div>
-<a id="a8bec0eb416a1883535a4bc3f31f2515c" name="a8bec0eb416a1883535a4bc3f31f2515c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8bec0eb416a1883535a4bc3f31f2515c">&#9670;&#160;</a></span>makeAnyIntegerRoutine()</h2>
+<a id="a79e24b0d21deed8453ea39117d7d56c0" name="a79e24b0d21deed8453ea39117d7d56c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79e24b0d21deed8453ea39117d7d56c0">&#9670;&#160;</a></span>makeAnyIntegerScanRoutine()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -306,9 +336,9 @@ numeric.cppm 的引用(Include)关系图:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto makeAnyIntegerRoutine </td>
+          <td class="memname">auto makeAnyIntegerScanRoutine </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="scan_2types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a>&#160;</td>
           <td class="paramname"><em>matchType</em>, </td>
         </tr>
         <tr>
@@ -320,7 +350,7 @@ numeric.cppm 的引用(Include)关系图:</div>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; <a class="el" href="routine_8cppm.html#aff96e3e9f60125b052dd05157b210931">scanRoutine</a> </td>
+          <td></td><td> -&gt; <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">scan::ScanRoutine</a> </td>
         </tr>
       </table>
   </td>
@@ -332,8 +362,8 @@ numeric.cppm 的引用(Include)关系图:</div>
 
 </div>
 </div>
-<a id="a7dc8ecf1a451459342047f469c969d12" name="a7dc8ecf1a451459342047f469c969d12"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7dc8ecf1a451459342047f469c969d12">&#9670;&#160;</a></span>makeAnyNumberRoutine()</h2>
+<a id="acf4f9494088f0aabb7a70fe21b204c95" name="acf4f9494088f0aabb7a70fe21b204c95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf4f9494088f0aabb7a70fe21b204c95">&#9670;&#160;</a></span>makeAnyNumberScanRoutine()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -342,9 +372,9 @@ numeric.cppm 的引用(Include)关系图:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto makeAnyNumberRoutine </td>
+          <td class="memname">auto makeAnyNumberScanRoutine </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="scan_2types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a>&#160;</td>
           <td class="paramname"><em>matchType</em>, </td>
         </tr>
         <tr>
@@ -356,7 +386,7 @@ numeric.cppm 的引用(Include)关系图:</div>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; <a class="el" href="routine_8cppm.html#aff96e3e9f60125b052dd05157b210931">scanRoutine</a> </td>
+          <td></td><td> -&gt; <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">scan::ScanRoutine</a> </td>
         </tr>
       </table>
   </td>
@@ -368,8 +398,8 @@ numeric.cppm 的引用(Include)关系图:</div>
 
 </div>
 </div>
-<a id="acc180e0a2cbe10299dee53e5047ef861" name="acc180e0a2cbe10299dee53e5047ef861"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acc180e0a2cbe10299dee53e5047ef861">&#9670;&#160;</a></span>makeNumericRoutine()</h2>
+<a id="a2d70395fd5fbc4a188ef45cfe3a8eea2" name="a2d70395fd5fbc4a188ef45cfe3a8eea2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d70395fd5fbc4a188ef45cfe3a8eea2">&#9670;&#160;</a></span>makeNumericScanRoutine()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -380,9 +410,9 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto makeNumericRoutine </td>
+          <td class="memname">auto makeNumericScanRoutine </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="scan_2types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a>&#160;</td>
           <td class="paramname"><em>matchType</em>, </td>
         </tr>
         <tr>
@@ -394,7 +424,7 @@ template&lt;typename T &gt; </div>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; <a class="el" href="routine_8cppm.html#aff96e3e9f60125b052dd05157b210931">scanRoutine</a> </td>
+          <td></td><td> -&gt; <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">scan::ScanRoutine</a> </td>
         </tr>
       </table>
   </td>
@@ -406,8 +436,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="abf10ceef7e7529ecdec4723721593e4b" name="abf10ceef7e7529ecdec4723721593e4b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf10ceef7e7529ecdec4723721593e4b">&#9670;&#160;</a></span>numericMatchCore()</h2>
+<a id="a918fe15a56f6cae443cbf3cb58364c84" name="a918fe15a56f6cae443cbf3cb58364c84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a918fe15a56f6cae443cbf3cb58364c84">&#9670;&#160;</a></span>numericMatchCore()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -420,7 +450,7 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname">auto numericMatchCore </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="scan_2types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a>&#160;</td>
           <td class="paramname"><em>matchType</em>, </td>
         </tr>
         <tr>
@@ -438,14 +468,20 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const UserValue *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> *&#160;</td>
           <td class="paramname"><em>userValue</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> *&#160;</td>
-          <td class="paramname"><em>saveFlags</em>&#160;</td>
+          <td class="paramname"><em>saveFlags</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>reverseEndianness</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>

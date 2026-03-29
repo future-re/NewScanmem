@@ -96,11 +96,12 @@ $(document).ready(function(){initNavTree('conceptValueTypeConcept.html',''); ini
 <div class="contents">
 <h2 class="groupheader">概念定义</h2>
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="conceptValueTypeConcept.html">ValueTypeConcept</a> =  <a class="code hl_concept" href="conceptByteArrayType.html">ByteArrayType&lt;T&gt;</a> || <a class="code hl_concept" href="conceptStringType.html">StringType&lt;T&gt;</a> || <a class="code hl_concept" href="conceptNumericType.html">NumericType&lt;T&gt;</a></div>
-<div class="ttc" id="aconceptByteArrayType_html"><div class="ttname"><a href="conceptByteArrayType.html">ByteArrayType</a></div><div class="ttdef"><b>Definition</b> flags.cppm:18</div></div>
-<div class="ttc" id="aconceptNumericType_html"><div class="ttname"><a href="conceptNumericType.html">NumericType</a></div><div class="ttdef"><b>Definition</b> flags.cppm:12</div></div>
-<div class="ttc" id="aconceptStringType_html"><div class="ttname"><a href="conceptStringType.html">StringType</a></div><div class="ttdef"><b>Definition</b> flags.cppm:15</div></div>
-<div class="ttc" id="aconceptValueTypeConcept_html"><div class="ttname"><a href="conceptValueTypeConcept.html">ValueTypeConcept</a></div><div class="ttdef"><b>Definition</b> flags.cppm:21</div></div>
+<div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="conceptValueTypeConcept.html">ValueTypeConcept</a> = </div>
+<div class="line">    <a class="code hl_concept" href="conceptValueArithmeticType.html">ValueArithmeticType&lt;T&gt;</a> || <a class="code hl_concept" href="conceptValueStringType.html">ValueStringType&lt;T&gt;</a> || <a class="code hl_concept" href="conceptValueByteVectorType.html">ValueByteVectorType&lt;T&gt;</a></div>
+<div class="ttc" id="aconceptValueArithmeticType_html"><div class="ttname"><a href="conceptValueArithmeticType.html">ValueArithmeticType</a></div><div class="ttdef"><b>Definition</b> flags.cppm:12</div></div>
+<div class="ttc" id="aconceptValueByteVectorType_html"><div class="ttname"><a href="conceptValueByteVectorType.html">ValueByteVectorType</a></div><div class="ttdef"><b>Definition</b> flags.cppm:18</div></div>
+<div class="ttc" id="aconceptValueStringType_html"><div class="ttname"><a href="conceptValueStringType.html">ValueStringType</a></div><div class="ttdef"><b>Definition</b> flags.cppm:15</div></div>
+<div class="ttc" id="aconceptValueTypeConcept_html"><div class="ttname"><a href="conceptValueTypeConcept.html">ValueTypeConcept</a></div><div class="ttdef"><b>Definition</b> flags.cppm:22</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

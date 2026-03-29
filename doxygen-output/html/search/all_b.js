@@ -9,10 +9,8 @@ var searchData=
   ['little_6',['LITTLE',['../namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cca1314341b466dcb5e2c880b76414c49fe',1,'utils']]],
   ['littleendiantohost_7',['littleEndianToHost',['../namespaceutils.html#ad29bf669b42ac7d5dc515e64e638c410',1,'utils']]],
   ['loadaddr_8',['loadAddr',['../structcore_1_1Region.html#ae788f67862f749decc719bc7413b8059',1,'core::Region']]],
-  ['localscanresult_9',['LocalScanResult',['../namespacescan.html#abfdb63de5616a8bc626ac8dc585d8a8f',1,'scan']]],
-  ['log_10',['log',['../classutils_1_1Logger.html#a507160bcbb80a8245a1a155ece5ea903',1,'utils::Logger']]],
-  ['logger_11',['logger',['../classutils_1_1Logger.html',1,'utils::Logger'],['../classutils_1_1Logger.html#a099fb68592c54826b6d609d76bef0067',1,'utils::Logger::Logger(std::string name, std::optional&lt; std::string &gt; filename=std::nullopt, LogLevel level=LogLevel::INFO)'],['../classutils_1_1Logger.html#ae336927bfdd8dc5ecc1fdb2eb092b98a',1,'utils::Logger::Logger(const Logger &amp;)=delete'],['../classutils_1_1Logger.html#ac9e249c42579b043ecc22b8355f55cb2',1,'utils::Logger::Logger(Logger &amp;&amp;other) noexcept']]],
-  ['logging_2ecppm_12',['logging.cppm',['../logging_8cppm.html',1,'']]],
-  ['loglevel_13',['LogLevel',['../namespaceutils.html#a6b50893705cf2a59daf6b680304017dd',1,'utils']]],
-  ['low_14',['low',['../structvalue_1_1ValueRange.html#a67ce4762a686028ff273fdf4de2a1467',1,'value::ValueRange']]]
+  ['log_9',['log',['../classutils_1_1Logger.html#a507160bcbb80a8245a1a155ece5ea903',1,'utils::Logger']]],
+  ['logger_10',['logger',['../classutils_1_1Logger.html',1,'utils::Logger'],['../classutils_1_1Logger.html#a099fb68592c54826b6d609d76bef0067',1,'utils::Logger::Logger(std::string name, std::optional&lt; std::string &gt; filename=std::nullopt, LogLevel level=LogLevel::INFO)'],['../classutils_1_1Logger.html#ae336927bfdd8dc5ecc1fdb2eb092b98a',1,'utils::Logger::Logger(const Logger &amp;)=delete'],['../classutils_1_1Logger.html#ac9e249c42579b043ecc22b8355f55cb2',1,'utils::Logger::Logger(Logger &amp;&amp;other) noexcept']]],
+  ['logging_2ecppm_11',['logging.cppm',['../logging_8cppm.html',1,'']]],
+  ['loglevel_12',['LogLevel',['../namespaceutils.html#a6b50893705cf2a59daf6b680304017dd',1,'utils']]]
 ];

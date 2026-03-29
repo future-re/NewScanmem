@@ -108,6 +108,8 @@ $(document).ready(function(){initNavTree('module_core_8match.html',''); initResi
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1MatchCollectionOptions.html">core::MatchCollectionOptions</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Options for match collection  <a href="structcore_1_1MatchCollectionOptions.html#details">更多...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1MatchSource.html">core::MatchSource</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MatchCollector.html">core::MatchCollector</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collects match entries from scanner results  <a href="classcore_1_1MatchCollector.html#details">更多...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,9 +128,9 @@ $(document).ready(function(){initNavTree('module_core_8match.html',''); initResi
 <tr class="memitem:adf919bc14d0bfa57f1a5c4426b0a4d3a" id="r_adf919bc14d0bfa57f1a5c4426b0a4d3a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MatchCollector.html#adf919bc14d0bfa57f1a5c4426b0a4d3a">MatchCollector</a> (std::optional&lt; RegionClassifier &gt; classifier=std::nullopt)</td></tr>
 <tr class="memdesc:adf919bc14d0bfa57f1a5c4426b0a4d3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create collector with optional region classifier  <br /></td></tr>
 <tr class="separator:adf919bc14d0bfa57f1a5c4426b0a4d3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91cbd05f757f4df9785ae7d1ee802d8d" id="r_a91cbd05f757f4df9785ae7d1ee802d8d"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MatchCollector.html#a91cbd05f757f4df9785ae7d1ee802d8d">collect</a> (const Scanner &amp;scanner, const MatchCollectionOptions &amp;options={}) const -&gt; std::pair&lt; std::vector&lt; MatchEntry &gt;, size_t &gt;</td></tr>
-<tr class="memdesc:a91cbd05f757f4df9785ae7d1ee802d8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collect match entries from scanner  <br /></td></tr>
-<tr class="separator:a91cbd05f757f4df9785ae7d1ee802d8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b61cb797bb8efcbe6491896a37d1320" id="r_a3b61cb797bb8efcbe6491896a37d1320"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MatchCollector.html#a3b61cb797bb8efcbe6491896a37d1320">collect</a> (const MatchSource &amp;source, const MatchCollectionOptions &amp;options={}) const -&gt; std::pair&lt; std::vector&lt; MatchEntry &gt;, size_t &gt;</td></tr>
+<tr class="memdesc:a3b61cb797bb8efcbe6491896a37d1320"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collect match entries from scanner  <br /></td></tr>
+<tr class="separator:a3b61cb797bb8efcbe6491896a37d1320"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 变量</h2></td></tr>
@@ -146,6 +148,10 @@ $(document).ready(function(){initNavTree('module_core_8match.html',''); initResi
 <tr class="separator:a387c0330cf47b6b2406a97a63300d655"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bac7028617559e1e4b53b7cbb192031" id="r_a7bac7028617559e1e4b53b7cbb192031"><td class="memItemLeft" align="right" valign="top">RegionFilterConfig&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1MatchCollectionOptions.html#a7bac7028617559e1e4b53b7cbb192031">regionFilter</a></td></tr>
 <tr class="separator:a7bac7028617559e1e4b53b7cbb192031"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68d2d5ddd5ecdc6e95c338015d022e52" id="r_a68d2d5ddd5ecdc6e95c338015d022e52"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">scan::MatchesAndOldValuesArray</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1MatchSource.html#a68d2d5ddd5ecdc6e95c338015d022e52">matches</a> {nullptr}</td></tr>
+<tr class="separator:a68d2d5ddd5ecdc6e95c338015d022e52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84ab09b67b87000376c85b6701ced0c8" id="r_a84ab09b67b87000376c85b6701ced0c8"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1MatchSource.html#a84ab09b67b87000376c85b6701ced0c8">dataType</a></td></tr>
+<tr class="separator:a84ab09b67b87000376c85b6701ced0c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="files" name="files"></a>

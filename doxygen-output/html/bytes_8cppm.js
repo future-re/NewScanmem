@@ -8,5 +8,5 @@ var bytes_8cppm =
     [ "findBytePattern", "bytes_8cppm.html#a78e3a7791f99031035b214a40b8a23d0", null ],
     [ "findBytePatternMasked", "bytes_8cppm.html#a7114671ac5a78ca48d9ab4492b5e7f60", null ],
     [ "findBytePatternMasked", "bytes_8cppm.html#a96f29f2b0a006119df9736f8cf11e255", null ],
-    [ "makeBytearrayRoutine", "bytes_8cppm.html#abcfc40a8165a0160298400395cd4d601", null ]
+    [ "makeBytearrayScanRoutine", "bytes_8cppm.html#ad491b6287a4fa67cee830a7086a58396", null ]
 ];

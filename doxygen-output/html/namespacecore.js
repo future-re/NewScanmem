@@ -6,6 +6,7 @@ var namespacecore =
     [ "MatchCollector", "classcore_1_1MatchCollector.html", "classcore_1_1MatchCollector" ],
     [ "MatchEntry", "structcore_1_1MatchEntry.html", "structcore_1_1MatchEntry" ],
     [ "MatchFormatter", "classcore_1_1MatchFormatter.html", null ],
+    [ "MatchSource", "structcore_1_1MatchSource.html", "structcore_1_1MatchSource" ],
     [ "MemoryWriter", "classcore_1_1MemoryWriter.html", "classcore_1_1MemoryWriter" ],
     [ "ProcessChecker", "classcore_1_1ProcessChecker.html", null ],
     [ "ProcMemIO", "classcore_1_1ProcMemIO.html", "classcore_1_1ProcMemIO" ],
@@ -17,8 +18,7 @@ var namespacecore =
     [ "RegionLookupEntry", "structcore_1_1RegionLookupEntry.html", "structcore_1_1RegionLookupEntry" ],
     [ "ScanHistory", "classcore_1_1ScanHistory.html", "classcore_1_1ScanHistory" ],
     [ "Scanner", "classcore_1_1Scanner.html", "classcore_1_1Scanner" ],
-    [ "ScanRequest", "structcore_1_1ScanRequest.html", "structcore_1_1ScanRequest" ],
-    [ "ScanResponse", "structcore_1_1ScanResponse.html", "structcore_1_1ScanResponse" ],
+    [ "ScannerResult", "structcore_1_1ScannerResult.html", "structcore_1_1ScannerResult" ],
     [ "VecWriteResult", "structcore_1_1VecWriteResult.html", "structcore_1_1VecWriteResult" ],
     [ "WriteResult", "structcore_1_1WriteResult.html", "structcore_1_1WriteResult" ],
     [ "ProcessState", "namespacecore.html#a7c631f2329b573f9f3e97ac102e1bfb3", [
@@ -44,11 +44,6 @@ var namespacecore =
       [ "CODE", "namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16ba08054846bbc9933fd0395f8be516a9f9", null ],
       [ "HEAP", "namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16bab6722804f5872cdd88347da194d42087", null ],
       [ "STACK", "namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16ba0fac686d86aba414411b58f6bce53a76", null ]
-    ] ],
-    [ "ScanMode", "namespacecore.html#ae4767c3e4cd8298a18da706496f62ab9", [
-      [ "FULL_SCAN", "namespacecore.html#ae4767c3e4cd8298a18da706496f62ab9ac6347916d6ca9727b838e63e5a250035", null ],
-      [ "INCREMENTAL", "namespacecore.html#ae4767c3e4cd8298a18da706496f62ab9a9c098c060958933384cc3fde595a1c07", null ],
-      [ "RESCAN", "namespacecore.html#ae4767c3e4cd8298a18da706496f62ab9a45117e19c4f64bb8745ca22683e483fb", null ]
     ] ],
     [ "formatValueByType", "namespacecore.html#a8fc2c70ddd2ac4ab5bcbd567bae58e1b", null ],
     [ "readProcessMaps", "namespacecore.html#a146e68cbe4ef66265e9f370b733f982f", null ],

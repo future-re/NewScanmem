@@ -169,7 +169,7 @@ proc_mem.cppm 的引用(Include)关系图:</div>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>Process memory I/O via /proc/&lt;pid&gt;/mem (进程内存 I/O) </p>
-<p>Unified low-level read/write interface for target process memory. Used by core.scanner, scan.engine, scan.filter, and scan.co_engine.</p>
+<p>Unified low-level read/write interface for target process memory. Used by core.scanner, scan.engine, and scan.filter.</p>
 <p>Provides minimal read/write capabilities using pread/pwrite on /proc/&lt;pid&gt;/mem. Requirements:</p><ul>
 <li>Sufficient privileges (root or CAP_SYS_PTRACE)</li>
 <li>Does NOT auto-attach/detach ptrace (caller manages debugging policy)</li>

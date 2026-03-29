@@ -1,13 +1,9 @@
 var flags_8cppm =
 [
-    [ "NumericType", "conceptNumericType.html", null ],
-    [ "StringType", "conceptStringType.html", null ],
-    [ "ByteArrayType", "conceptByteArrayType.html", null ],
+    [ "ValueArithmeticType", "conceptValueArithmeticType.html", null ],
+    [ "ValueStringType", "conceptValueStringType.html", null ],
+    [ "ValueByteVectorType", "conceptValueByteVectorType.html", null ],
     [ "ValueTypeConcept", "conceptValueTypeConcept.html", null ],
-    [ "UserValueByteArray", "flags_8cppm.html#a1d41f7d77622c203545689588af412cf", null ],
-    [ "UserValueString", "flags_8cppm.html#aab0b8804e9279ef15d5677d4eff5cdb5", null ],
-    [ "ValueByteArray", "flags_8cppm.html#a6ba04f5efa8fc4c288182cd88b201176", null ],
-    [ "ValueString", "flags_8cppm.html#a03cc25adb31ace4b1d946a03ae4bbe98", null ],
     [ "ValueType", "flags_8cppm.html#ab6d525f0a5a2799ff592b83d7b606be0", null ],
     [ "MatchFlags", "flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552", [
       [ "EMPTY", "flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552aba2b45bdc11e2a4a6e86aab2ac693cbb", null ],
@@ -18,14 +14,16 @@ var flags_8cppm =
       [ "STRING", "flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552a63b588d5559f64f89a416e656880b949", null ],
       [ "BYTE_ARRAY", "flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552ad0db1b5ac322ccae21a1299c0cce02ed", null ]
     ] ],
-    [ "any", "flags_8cppm.html#a1ffc4152d9ead4614527aa4286c9eb2f", null ],
-    [ "flagForType", "flags_8cppm.html#ac163f1a02efc35bab6ebaf3ca994771e", null ],
-    [ "operator&", "flags_8cppm.html#a6d6aa1a46cc3df43bc750a300555d1f8", null ],
-    [ "operator&=", "flags_8cppm.html#adb7daf98f747dc16ae71f906197b8228", null ],
-    [ "operator^", "flags_8cppm.html#a0180ae0a7085d8867ff57e6b01956e68", null ],
-    [ "operator|", "flags_8cppm.html#a2ee4e3bdeb4d19d985d58273d8001e6c", null ],
-    [ "operator|=", "flags_8cppm.html#aaf65058d0fce5c6e22e21eb5b532c5b0", null ],
-    [ "operator~", "flags_8cppm.html#ad3b16c979619753b94278760c81b6af2", null ],
+    [ "any", "flags_8cppm.html#a7877e7586dcd03558511864bd903214e", null ],
+    [ "flagForType", "flags_8cppm.html#a2bd4546b83b208d80dfb2fc0829d9cb1", null ],
+    [ "operator&", "flags_8cppm.html#a7c25a73550e7ac5529b56f10ccfe0f2a", null ],
+    [ "operator&=", "flags_8cppm.html#af4fb55330eb2063ae81bce78c9683c33", null ],
+    [ "operator^", "flags_8cppm.html#a5f037739e5fc4239b378467e94eb5a47", null ],
+    [ "operator|", "flags_8cppm.html#ad8048cfe0be891cec39f897a61245345", null ],
+    [ "operator|=", "flags_8cppm.html#a54165c957e8ce5b2bb65e318c5a4fdee", null ],
+    [ "operator~", "flags_8cppm.html#a3c7feb7adcb9c46f14ae4e26c3be9d74", null ],
     [ "orFlagsIfNotNull", "flags_8cppm.html#a7e605c864f4832134b5158fc27483766", null ],
-    [ "setFlagsIfNotNull", "flags_8cppm.html#ae86b30c64142ec32a5396e8c0c8028dc", null ]
+    [ "setFlagsIfNotNull", "flags_8cppm.html#ae86b30c64142ec32a5396e8c0c8028dc", null ],
+    [ "toUnderlying", "flags_8cppm.html#a11c3b156442a3ee2895b61c9d94ffd6e", null ],
+    [ "widthFlag", "flags_8cppm.html#afa11beea144d0c67faf454b831a26c59", null ]
 ];

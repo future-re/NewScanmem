@@ -93,8 +93,6 @@ $(document).ready(function(){initNavTree('namespacevalue.html',''); initResizabl
 <div class="header">
   <div class="summary">
 <a href="#namespaces">命名空间</a> &#124;
-<a href="#nested-classes">类</a> &#124;
-<a href="#typedef-members">类型定义</a> &#124;
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle"><div class="title">value 命名空间参考<span class="mlabels"><span class="mlabel">export</span></span></div></div>
 </div><!--header-->
@@ -105,226 +103,32 @@ $(document).ready(function(){initNavTree('namespacevalue.html',''); initResizabl
 <tr class="memitem:namespacevalue_1_1detail" id="r_namespacevalue_1_1detail"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue_1_1detail.html">detail</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-类</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvalue_1_1ByteArray.html">ByteArray</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvalue_1_1ParserView.html">ParserView</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvalue_1_1ValueRange.html">ValueRange</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvalue_1_1ValueView.html">ValueView</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-类型定义</h2></td></tr>
-<tr class="memitem:a4a80ac4b08d2671dced0e8e19271f221" id="r_a4a80ac4b08d2671dced0e8e19271f221"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">value::Value</a> = std::variant&lt; std::monostate, int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t, float, double, std::string, <a class="el" href="structvalue_1_1ByteArray.html">ByteArray</a> &gt;</td></tr>
-<tr class="separator:a4a80ac4b08d2671dced0e8e19271f221"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72b224f9e7456d84485857b76d427a67" id="r_a72b224f9e7456d84485857b76d427a67"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a72b224f9e7456d84485857b76d427a67">value::ValueVariant</a> = <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a></td></tr>
-<tr class="separator:a72b224f9e7456d84485857b76d427a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa156a18f203716374e5693eb0e96c158" id="r_aa156a18f203716374e5693eb0e96c158"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#aa156a18f203716374e5693eb0e96c158">value::ByteArrayData</a> = <a class="el" href="structvalue_1_1ByteArray.html">ByteArray</a></td></tr>
-<tr class="separator:aa156a18f203716374e5693eb0e96c158"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:aac39cf2795c1ecdd4e77afa9fbdeb3fc" id="r_aac39cf2795c1ecdd4e77afa9fbdeb3fc"><td class="memTemplParams" colspan="2">template&lt;typename T , typename Parser &gt; </td></tr>
-<tr class="memitem:aac39cf2795c1ecdd4e77afa9fbdeb3fc"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevalue.html#aac39cf2795c1ecdd4e77afa9fbdeb3fc">value::buildScalar</a> (const std::vector&lt; std::string &gt; &amp;args, size_t startIndex, Parser parser) -&gt; std::optional&lt; <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> &gt;</td></tr>
-<tr class="memdesc:aac39cf2795c1ecdd4e77afa9fbdeb3fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper: build UserValue for scalar of type T  <br /></td></tr>
-<tr class="separator:aac39cf2795c1ecdd4e77afa9fbdeb3fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f9e8f3e0c06a093169364d5d9f2a306" id="r_a2f9e8f3e0c06a093169364d5d9f2a306"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a2f9e8f3e0c06a093169364d5d9f2a306">value::buildUserValueRange</a> (<a class="el" href="scan_2types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> dataType, const std::vector&lt; std::string &gt; &amp;args, size_t startIndex) -&gt; std::optional&lt; UserValueRange &gt;</td></tr>
-<tr class="memdesc:a2f9e8f3e0c06a093169364d5d9f2a306"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build <a class="el" href="structValue.html">Value</a> range from parsed arguments for range matching  <br /></td></tr>
-<tr class="separator:a2f9e8f3e0c06a093169364d5d9f2a306"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48fdf6a5fe196be8bee4cd940f2d6860" id="r_a48fdf6a5fe196be8bee4cd940f2d6860"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a48fdf6a5fe196be8bee4cd940f2d6860">value::parseDataType</a> (std::string_view tok) -&gt; std::optional&lt; <a class="el" href="scan_2types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> &gt;</td></tr>
+<tr class="memitem:af0dfa655ec7dceec2aeedfbbdb67f6ef" id="r_af0dfa655ec7dceec2aeedfbbdb67f6ef"><td class="memTemplParams" colspan="2">template&lt;typename T , typename Parser &gt; </td></tr>
+<tr class="memitem:af0dfa655ec7dceec2aeedfbbdb67f6ef"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevalue.html#af0dfa655ec7dceec2aeedfbbdb67f6ef">value::buildScalar</a> (const std::vector&lt; std::string &gt; &amp;args, size_t startIndex, Parser parser) -&gt; std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt;</td></tr>
+<tr class="memdesc:af0dfa655ec7dceec2aeedfbbdb67f6ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper: build <a class="el" href="structUserValue.html">UserValue</a> for scalar of type T  <br /></td></tr>
+<tr class="separator:af0dfa655ec7dceec2aeedfbbdb67f6ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e2797c09af9fba00b95edfb23081954" id="r_a9e2797c09af9fba00b95edfb23081954"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a9e2797c09af9fba00b95edfb23081954">value::buildUserValueRange</a> (<a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> dataType, const std::vector&lt; std::string &gt; &amp;args, size_t startIndex) -&gt; std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt;</td></tr>
+<tr class="memdesc:a9e2797c09af9fba00b95edfb23081954"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build a ranged <a class="el" href="structUserValue.html">UserValue</a> from parsed arguments for range matching  <br /></td></tr>
+<tr class="separator:a9e2797c09af9fba00b95edfb23081954"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48fdf6a5fe196be8bee4cd940f2d6860" id="r_a48fdf6a5fe196be8bee4cd940f2d6860"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a48fdf6a5fe196be8bee4cd940f2d6860">value::parseDataType</a> (std::string_view tok) -&gt; std::optional&lt; <a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> &gt;</td></tr>
 <tr class="memdesc:a48fdf6a5fe196be8bee4cd940f2d6860"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse data type from string with aliases support  <br /></td></tr>
 <tr class="separator:a48fdf6a5fe196be8bee4cd940f2d6860"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a971e73366312690f43ff10fb1e988772" id="r_a971e73366312690f43ff10fb1e988772"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a971e73366312690f43ff10fb1e988772">value::parseMatchType</a> (std::string_view tok) -&gt; std::optional&lt; <a class="el" href="scan_2types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> &gt;</td></tr>
+<tr class="memitem:a971e73366312690f43ff10fb1e988772" id="r_a971e73366312690f43ff10fb1e988772"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a971e73366312690f43ff10fb1e988772">value::parseMatchType</a> (std::string_view tok) -&gt; std::optional&lt; <a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> &gt;</td></tr>
 <tr class="memdesc:a971e73366312690f43ff10fb1e988772"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse match type from string with aliases support  <br /></td></tr>
 <tr class="separator:a971e73366312690f43ff10fb1e988772"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a855151450ace674b7a842613a58e0122" id="r_a855151450ace674b7a842613a58e0122"><td class="memTemplParams" colspan="2">template&lt;typename F &gt; </td></tr>
-<tr class="memitem:a855151450ace674b7a842613a58e0122"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a855151450ace674b7a842613a58e0122">value::relTol</a> () -&gt; F</td></tr>
-<tr class="separator:a855151450ace674b7a842613a58e0122"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57bdd35a4b3e6623835851aa01eb0183" id="r_a57bdd35a4b3e6623835851aa01eb0183"><td class="memTemplParams" colspan="2">template&lt;typename F &gt; </td></tr>
-<tr class="memitem:a57bdd35a4b3e6623835851aa01eb0183"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a57bdd35a4b3e6623835851aa01eb0183">value::absTol</a> () -&gt; F</td></tr>
-<tr class="separator:a57bdd35a4b3e6623835851aa01eb0183"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e78503416b5d524bc083f40110460b9" id="r_a5e78503416b5d524bc083f40110460b9"><td class="memTemplParams" colspan="2">template&lt;typename F &gt; </td></tr>
-<tr class="memitem:a5e78503416b5d524bc083f40110460b9"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a5e78503416b5d524bc083f40110460b9">value::almostEqual</a> (F firstValue, F secondValue) noexcept -&gt; bool</td></tr>
-<tr class="separator:a5e78503416b5d524bc083f40110460b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae28438fbb59121fdb73047773e075203" id="r_ae28438fbb59121fdb73047773e075203"><td class="memTemplParams" colspan="2">template&lt;typename T , typename Parser &gt; </td></tr>
-<tr class="memitem:ae28438fbb59121fdb73047773e075203"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevalue.html#ae28438fbb59121fdb73047773e075203">value::buildScalarRange</a> (const std::vector&lt; std::string &gt; &amp;args, size_t startIndex, Parser parser) -&gt; std::optional&lt; UserValueRange &gt;</td></tr>
-<tr class="memdesc:ae28438fbb59121fdb73047773e075203"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper: build UserValue for scalar range of type T  <br /></td></tr>
-<tr class="separator:ae28438fbb59121fdb73047773e075203"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d16523efcc11138ad98cb1c0ef3f7a6" id="r_a6d16523efcc11138ad98cb1c0ef3f7a6"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a6d16523efcc11138ad98cb1c0ef3f7a6">value::buildUserValue</a> (<a class="el" href="scan_2types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> dataType, <a class="el" href="scan_2types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, const std::vector&lt; std::string &gt; &amp;args, size_t startIndex) -&gt; std::optional&lt; <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> &gt;</td></tr>
-<tr class="memdesc:a6d16523efcc11138ad98cb1c0ef3f7a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build <a class="el" href="structValue.html">Value</a> from parsed arguments  <br /></td></tr>
-<tr class="separator:a6d16523efcc11138ad98cb1c0ef3f7a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee571e120760334c9f1819620e8e2a9f" id="r_aee571e120760334c9f1819620e8e2a9f"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#aee571e120760334c9f1819620e8e2a9f">value::isEmpty</a> (const <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> &amp;v) -&gt; bool</td></tr>
-<tr class="separator:aee571e120760334c9f1819620e8e2a9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a685b18dcdf99241b7897808a7b6d844d" id="r_a685b18dcdf99241b7897808a7b6d844d"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a685b18dcdf99241b7897808a7b6d844d">value::isString</a> (const <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> &amp;v) -&gt; bool</td></tr>
-<tr class="separator:a685b18dcdf99241b7897808a7b6d844d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9fe416e5b38440b3047561d8b2dc6d1" id="r_ac9fe416e5b38440b3047561d8b2dc6d1"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#ac9fe416e5b38440b3047561d8b2dc6d1">value::isByteArray</a> (const <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> &amp;v) -&gt; bool</td></tr>
-<tr class="separator:ac9fe416e5b38440b3047561d8b2dc6d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac963fdb8ba56b852c2f7afec307e5d6f" id="r_ac963fdb8ba56b852c2f7afec307e5d6f"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ac963fdb8ba56b852c2f7afec307e5d6f"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevalue.html#ac963fdb8ba56b852c2f7afec307e5d6f">value::isType</a> (const <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> &amp;v) -&gt; bool</td></tr>
-<tr class="separator:ac963fdb8ba56b852c2f7afec307e5d6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84f11336a4b97e2b91ad51404093ca12" id="r_a84f11336a4b97e2b91ad51404093ca12"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a84f11336a4b97e2b91ad51404093ca12"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a84f11336a4b97e2b91ad51404093ca12">value::getAs</a> (const <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> &amp;v) -&gt; std::optional&lt; T &gt;</td></tr>
-<tr class="separator:a84f11336a4b97e2b91ad51404093ca12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2752a231376c350d4d982fba89cd4511" id="r_a2752a231376c350d4d982fba89cd4511"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a2752a231376c350d4d982fba89cd4511">value::getValueFlag</a> (const <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> &amp;v) -&gt; <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a></td></tr>
-<tr class="separator:a2752a231376c350d4d982fba89cd4511"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2284bbe9f5dfdb7e4307e5865195a176" id="r_a2284bbe9f5dfdb7e4307e5865195a176"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; <br />
-requires (std::is_arithmetic_v&lt;T&gt;)</td></tr>
-<tr class="memitem:a2284bbe9f5dfdb7e4307e5865195a176"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a2284bbe9f5dfdb7e4307e5865195a176">value::scalarToBytes</a> (T value, <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a> endian) -&gt; std::vector&lt; std::uint8_t &gt;</td></tr>
-<tr class="separator:a2284bbe9f5dfdb7e4307e5865195a176"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93e0a259fd13479930d6fc09c02bf9c6" id="r_a93e0a259fd13479930d6fc09c02bf9c6"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; <br />
-requires (std::is_arithmetic_v&lt;T&gt;)</td></tr>
-<tr class="memitem:a93e0a259fd13479930d6fc09c02bf9c6"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a93e0a259fd13479930d6fc09c02bf9c6">value::bytesToScalar</a> (std::span&lt; const std::uint8_t &gt; bytes, <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a> endian) -&gt; std::optional&lt; T &gt;</td></tr>
-<tr class="separator:a93e0a259fd13479930d6fc09c02bf9c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ef79544346e0f82d554580a450a0e49" id="r_a8ef79544346e0f82d554580a450a0e49"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a8ef79544346e0f82d554580a450a0e49">value::toBytes</a> (const <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> &amp;v, <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a> endian=<a class="el" href="namespaceutils.html#a30b4b3e4177bc7f02df665fa43350c35">utils::getHost</a>()) -&gt; std::vector&lt; std::uint8_t &gt;</td></tr>
-<tr class="separator:a8ef79544346e0f82d554580a450a0e49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af790c09dbfa05de1571518a41406d21c" id="r_af790c09dbfa05de1571518a41406d21c"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#af790c09dbfa05de1571518a41406d21c">value::getByteSize</a> (const <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> &amp;v) -&gt; std::size_t</td></tr>
-<tr class="separator:af790c09dbfa05de1571518a41406d21c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d22950e8c63faabdbb900496e5e469e" id="r_a8d22950e8c63faabdbb900496e5e469e"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a8d22950e8c63faabdbb900496e5e469e"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a8d22950e8c63faabdbb900496e5e469e">value::makeValue</a> (T value) -&gt; <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a></td></tr>
-<tr class="separator:a8d22950e8c63faabdbb900496e5e469e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13ffc0ae758235e7c6d85dcd58736fc6" id="r_a13ffc0ae758235e7c6d85dcd58736fc6"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a13ffc0ae758235e7c6d85dcd58736fc6">value::makeString</a> (std::string s) -&gt; <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a></td></tr>
-<tr class="separator:a13ffc0ae758235e7c6d85dcd58736fc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a851aaa28fe78dad1474df27f8e8a6147" id="r_a851aaa28fe78dad1474df27f8e8a6147"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a851aaa28fe78dad1474df27f8e8a6147">value::makeByteArray</a> (std::vector&lt; std::uint8_t &gt; data, std::optional&lt; std::vector&lt; std::uint8_t &gt; &gt; mask=std::nullopt) -&gt; <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a></td></tr>
-<tr class="separator:a851aaa28fe78dad1474df27f8e8a6147"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95b3d8e2f58faf271ff85379dc1c0df8" id="r_a95b3d8e2f58faf271ff85379dc1c0df8"><td class="memTemplParams" colspan="2">template&lt;typename T , typename Parser &gt; </td></tr>
+<tr class="memitem:a95b3d8e2f58faf271ff85379dc1c0df8"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a95b3d8e2f58faf271ff85379dc1c0df8">value::buildScalarRange</a> (const std::vector&lt; std::string &gt; &amp;args, size_t startIndex, Parser parser) -&gt; std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt;</td></tr>
+<tr class="memdesc:a95b3d8e2f58faf271ff85379dc1c0df8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper: build a numeric user-value range of type T  <br /></td></tr>
+<tr class="separator:a95b3d8e2f58faf271ff85379dc1c0df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f22ce19e97134b18e84bb63f1cd9bfc" id="r_a2f22ce19e97134b18e84bb63f1cd9bfc"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevalue.html#a2f22ce19e97134b18e84bb63f1cd9bfc">value::buildUserValue</a> (<a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> dataType, <a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, const std::vector&lt; std::string &gt; &amp;args, size_t startIndex) -&gt; std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt;</td></tr>
+<tr class="memdesc:a2f22ce19e97134b18e84bb63f1cd9bfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build <a class="el" href="structUserValue.html">UserValue</a> from parsed arguments  <br /></td></tr>
+<tr class="separator:a2f22ce19e97134b18e84bb63f1cd9bfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">类型定义说明</h2>
-<a id="aa156a18f203716374e5693eb0e96c158" name="aa156a18f203716374e5693eb0e96c158"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa156a18f203716374e5693eb0e96c158">&#9670;&#160;</a></span>ByteArrayData</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="namespacevalue.html#aa156a18f203716374e5693eb0e96c158">value::ByteArrayData</a> = typedef <a class="el" href="structvalue_1_1ByteArray.html">ByteArray</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a4a80ac4b08d2671dced0e8e19271f221" name="a4a80ac4b08d2671dced0e8e19271f221"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a80ac4b08d2671dced0e8e19271f221">&#9670;&#160;</a></span>Value</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">value::Value</a> = typedef std::variant&lt; std::monostate, int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t, float, double, std::string, <a class="el" href="structvalue_1_1ByteArray.html">ByteArray</a> &gt;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a72b224f9e7456d84485857b76d427a67" name="a72b224f9e7456d84485857b76d427a67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a72b224f9e7456d84485857b76d427a67">&#9670;&#160;</a></span>ValueVariant</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="namespacevalue.html#a72b224f9e7456d84485857b76d427a67">value::ValueVariant</a> = typedef <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">函数说明</h2>
-<a id="a57bdd35a4b3e6623835851aa01eb0183" name="a57bdd35a4b3e6623835851aa01eb0183"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a57bdd35a4b3e6623835851aa01eb0183">&#9670;&#160;</a></span>absTol()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename F &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr auto value::absTol </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> -&gt; F </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a5e78503416b5d524bc083f40110460b9" name="a5e78503416b5d524bc083f40110460b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5e78503416b5d524bc083f40110460b9">&#9670;&#160;</a></span>almostEqual()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename F &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto value::almostEqual </td>
-          <td>(</td>
-          <td class="paramtype">F&#160;</td>
-          <td class="paramname"><em>firstValue</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">F&#160;</td>
-          <td class="paramname"><em>secondValue</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; bool </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aac39cf2795c1ecdd4e77afa9fbdeb3fc" name="aac39cf2795c1ecdd4e77afa9fbdeb3fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aac39cf2795c1ecdd4e77afa9fbdeb3fc">&#9670;&#160;</a></span>buildScalar()</h2>
+<a id="af0dfa655ec7dceec2aeedfbbdb67f6ef" name="af0dfa655ec7dceec2aeedfbbdb67f6ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0dfa655ec7dceec2aeedfbbdb67f6ef">&#9670;&#160;</a></span>buildScalar()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -355,7 +159,7 @@ template&lt;typename T , typename Parser &gt; </div>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt;  std::optional&lt; <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> &gt;</td>
+          <td></td><td> -&gt;  std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt;</td>
         </tr>
       </table>
   </td>
@@ -365,7 +169,7 @@ template&lt;typename T , typename Parser &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Helper: build UserValue for scalar of type T </p>
+<p>Helper: build <a class="el" href="structUserValue.html">UserValue</a> for scalar of type T </p>
 <dl class="tparams"><dt>模板参数</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>Scalar type (int8_t, int16_t, int32_t, int64_t, float, double) </td></tr>
@@ -381,12 +185,12 @@ template&lt;typename T , typename Parser &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd>Optional UserValue </dd></dl>
+<dl class="section return"><dt>返回</dt><dd>Optional <a class="el" href="structUserValue.html">UserValue</a> </dd></dl>
 
 </div>
 </div>
-<a id="ae28438fbb59121fdb73047773e075203" name="ae28438fbb59121fdb73047773e075203"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae28438fbb59121fdb73047773e075203">&#9670;&#160;</a></span>buildScalarRange()</h2>
+<a id="a95b3d8e2f58faf271ff85379dc1c0df8" name="a95b3d8e2f58faf271ff85379dc1c0df8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95b3d8e2f58faf271ff85379dc1c0df8">&#9670;&#160;</a></span>buildScalarRange()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -417,7 +221,7 @@ template&lt;typename T , typename Parser &gt; </div>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; std::optional&lt;UserValueRange&gt; </td>
+          <td></td><td> -&gt; std::optional&lt;<a class="el" href="structUserValue.html">UserValue</a>&gt; </td>
         </tr>
       </table>
   </td>
@@ -427,7 +231,7 @@ template&lt;typename T , typename Parser &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Helper: build UserValue for scalar range of type T </p>
+<p>Helper: build a numeric user-value range of type T </p>
 <dl class="tparams"><dt>模板参数</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>Scalar type (int8_t, int16_t, int32_t, int64_t, float, double) </td></tr>
@@ -443,12 +247,12 @@ template&lt;typename T , typename Parser &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd>Optional UserValueRange </dd></dl>
+<dl class="section return"><dt>返回</dt><dd>Optional <a class="el" href="structUserValue.html">UserValue</a> </dd></dl>
 
 </div>
 </div>
-<a id="a6d16523efcc11138ad98cb1c0ef3f7a6" name="a6d16523efcc11138ad98cb1c0ef3f7a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d16523efcc11138ad98cb1c0ef3f7a6">&#9670;&#160;</a></span>buildUserValue()</h2>
+<a id="a2f22ce19e97134b18e84bb63f1cd9bfc" name="a2f22ce19e97134b18e84bb63f1cd9bfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f22ce19e97134b18e84bb63f1cd9bfc">&#9670;&#160;</a></span>buildUserValue()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -459,13 +263,13 @@ template&lt;typename T , typename Parser &gt; </div>
         <tr>
           <td class="memname">auto value::buildUserValue </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="scan_2types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a>&#160;</td>
           <td class="paramname"><em>dataType</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="scan_2types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a>&#160;</td>
           <td class="paramname"><em>matchType</em>, </td>
         </tr>
         <tr>
@@ -483,7 +287,7 @@ template&lt;typename T , typename Parser &gt; </div>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; std::optional&lt;<a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a>&gt; </td>
+          <td></td><td> -&gt; std::optional&lt;<a class="el" href="structUserValue.html">UserValue</a>&gt; </td>
         </tr>
       </table>
   </td>
@@ -493,22 +297,22 @@ template&lt;typename T , typename Parser &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Build <a class="el" href="structValue.html">Value</a> from parsed arguments </p>
+<p>Build <a class="el" href="structUserValue.html">UserValue</a> from parsed arguments </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dataType</td><td>Data type of the value </td></tr>
+    <tr><td class="paramname">dataType</td><td>Data type of the user input </td></tr>
     <tr><td class="paramname">matchType</td><td>Match type (affects whether range is needed) </td></tr>
     <tr><td class="paramname">args</td><td>Argument list </td></tr>
     <tr><td class="paramname">startIndex</td><td>Index to start parsing from </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd>Optional <a class="el" href="structValue.html">Value</a> </dd></dl>
+<dl class="section return"><dt>返回</dt><dd>Optional <a class="el" href="structUserValue.html">UserValue</a> </dd></dl>
 
 </div>
 </div>
-<a id="a2f9e8f3e0c06a093169364d5d9f2a306" name="a2f9e8f3e0c06a093169364d5d9f2a306"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f9e8f3e0c06a093169364d5d9f2a306">&#9670;&#160;</a></span>buildUserValueRange()</h2>
+<a id="a9e2797c09af9fba00b95edfb23081954" name="a9e2797c09af9fba00b95edfb23081954"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e2797c09af9fba00b95edfb23081954">&#9670;&#160;</a></span>buildUserValueRange()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -519,7 +323,7 @@ template&lt;typename T , typename Parser &gt; </div>
         <tr>
           <td class="memname">auto value::buildUserValueRange </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="scan_2types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a>&#160;</td>
           <td class="paramname"><em>dataType</em>, </td>
         </tr>
         <tr>
@@ -537,7 +341,7 @@ template&lt;typename T , typename Parser &gt; </div>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt;  std::optional&lt; UserValueRange &gt;</td>
+          <td></td><td> -&gt;  std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt;</td>
         </tr>
       </table>
   </td>
@@ -547,7 +351,7 @@ template&lt;typename T , typename Parser &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Build <a class="el" href="structValue.html">Value</a> range from parsed arguments for range matching </p>
+<p>Build a ranged <a class="el" href="structUserValue.html">UserValue</a> from parsed arguments for range matching </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">dataType</td><td>Data type of the values </td></tr>
@@ -556,322 +360,7 @@ template&lt;typename T , typename Parser &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd>Optional <a class="el" href="structvalue_1_1ValueRange.html">ValueRange</a> (pair of two Values) </dd></dl>
-
-</div>
-</div>
-<a id="a93e0a259fd13479930d6fc09c02bf9c6" name="a93e0a259fd13479930d6fc09c02bf9c6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93e0a259fd13479930d6fc09c02bf9c6">&#9670;&#160;</a></span>bytesToScalar()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; <br />
-requires (std::is_arithmetic_v&lt;T&gt;)</div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto value::bytesToScalar </td>
-          <td>(</td>
-          <td class="paramtype">std::span&lt; const std::uint8_t &gt;&#160;</td>
-          <td class="paramname"><em>bytes</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a>&#160;</td>
-          <td class="paramname"><em>endian</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; std::optional&lt;T&gt; </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a84f11336a4b97e2b91ad51404093ca12" name="a84f11336a4b97e2b91ad51404093ca12"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a84f11336a4b97e2b91ad51404093ca12">&#9670;&#160;</a></span>getAs()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto value::getAs </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> &amp;&#160;</td>
-          <td class="paramname"><em>v</em></td><td>)</td>
-          <td> -&gt; std::optional&lt;T&gt; </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="af790c09dbfa05de1571518a41406d21c" name="af790c09dbfa05de1571518a41406d21c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af790c09dbfa05de1571518a41406d21c">&#9670;&#160;</a></span>getByteSize()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto value::getByteSize </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> &amp;&#160;</td>
-          <td class="paramname"><em>v</em></td><td>)</td>
-          <td> -&gt; std::size_t </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a2752a231376c350d4d982fba89cd4511" name="a2752a231376c350d4d982fba89cd4511"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2752a231376c350d4d982fba89cd4511">&#9670;&#160;</a></span>getValueFlag()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr auto value::getValueFlag </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> &amp;&#160;</td>
-          <td class="paramname"><em>v</em></td><td>)</td>
-          <td> -&gt; <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac9fe416e5b38440b3047561d8b2dc6d1" name="ac9fe416e5b38440b3047561d8b2dc6d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac9fe416e5b38440b3047561d8b2dc6d1">&#9670;&#160;</a></span>isByteArray()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr auto value::isByteArray </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> &amp;&#160;</td>
-          <td class="paramname"><em>v</em></td><td>)</td>
-          <td> -&gt; bool </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aee571e120760334c9f1819620e8e2a9f" name="aee571e120760334c9f1819620e8e2a9f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee571e120760334c9f1819620e8e2a9f">&#9670;&#160;</a></span>isEmpty()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr auto value::isEmpty </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> &amp;&#160;</td>
-          <td class="paramname"><em>v</em></td><td>)</td>
-          <td> -&gt; bool </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a685b18dcdf99241b7897808a7b6d844d" name="a685b18dcdf99241b7897808a7b6d844d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a685b18dcdf99241b7897808a7b6d844d">&#9670;&#160;</a></span>isString()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr auto value::isString </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> &amp;&#160;</td>
-          <td class="paramname"><em>v</em></td><td>)</td>
-          <td> -&gt; bool </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac963fdb8ba56b852c2f7afec307e5d6f" name="ac963fdb8ba56b852c2f7afec307e5d6f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac963fdb8ba56b852c2f7afec307e5d6f">&#9670;&#160;</a></span>isType()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr auto value::isType </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> &amp;&#160;</td>
-          <td class="paramname"><em>v</em></td><td>)</td>
-          <td> -&gt; bool </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a851aaa28fe78dad1474df27f8e8a6147" name="a851aaa28fe78dad1474df27f8e8a6147"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a851aaa28fe78dad1474df27f8e8a6147">&#9670;&#160;</a></span>makeByteArray()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto value::makeByteArray </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; std::uint8_t &gt;&#160;</td>
-          <td class="paramname"><em>data</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::optional&lt; std::vector&lt; std::uint8_t &gt; &gt;&#160;</td>
-          <td class="paramname"><em>mask</em> = <code>std::nullopt</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a13ffc0ae758235e7c6d85dcd58736fc6" name="a13ffc0ae758235e7c6d85dcd58736fc6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a13ffc0ae758235e7c6d85dcd58736fc6">&#9670;&#160;</a></span>makeString()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto value::makeString </td>
-          <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
-          <td> -&gt; <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a8d22950e8c63faabdbb900496e5e469e" name="a8d22950e8c63faabdbb900496e5e469e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8d22950e8c63faabdbb900496e5e469e">&#9670;&#160;</a></span>makeValue()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto value::makeValue </td>
-          <td>(</td>
-          <td class="paramtype">T&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td> -&gt; <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<dl class="section return"><dt>返回</dt><dd>Optional <a class="el" href="structUserValue.html">UserValue</a> </dd></dl>
 
 </div>
 </div>
@@ -889,7 +378,7 @@ template&lt;typename T &gt; </div>
           <td>(</td>
           <td class="paramtype">std::string_view&#160;</td>
           <td class="paramname"><em>tok</em></td><td>)</td>
-          <td> -&gt; std::optional&lt;<a class="el" href="scan_2types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a>&gt; </td>
+          <td> -&gt; std::optional&lt;<a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a>&gt; </td>
         </tr>
       </table>
   </td>
@@ -924,7 +413,7 @@ template&lt;typename T &gt; </div>
           <td>(</td>
           <td class="paramtype">std::string_view&#160;</td>
           <td class="paramname"><em>tok</em></td><td>)</td>
-          <td> -&gt; std::optional&lt;<a class="el" href="scan_2types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a>&gt; </td>
+          <td> -&gt; std::optional&lt;<a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a>&gt; </td>
         </tr>
       </table>
   </td>
@@ -942,108 +431,6 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>Optional ScanMatchType </dd></dl>
-
-</div>
-</div>
-<a id="a855151450ace674b7a842613a58e0122" name="a855151450ace674b7a842613a58e0122"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a855151450ace674b7a842613a58e0122">&#9670;&#160;</a></span>relTol()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename F &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr auto value::relTol </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> -&gt; F </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a2284bbe9f5dfdb7e4307e5865195a176" name="a2284bbe9f5dfdb7e4307e5865195a176"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2284bbe9f5dfdb7e4307e5865195a176">&#9670;&#160;</a></span>scalarToBytes()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; <br />
-requires (std::is_arithmetic_v&lt;T&gt;)</div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto value::scalarToBytes </td>
-          <td>(</td>
-          <td class="paramtype">T&#160;</td>
-          <td class="paramname"><em>value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a>&#160;</td>
-          <td class="paramname"><em>endian</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; std::vector&lt;std::uint8_t&gt; </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a8ef79544346e0f82d554580a450a0e49" name="a8ef79544346e0f82d554580a450a0e49"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ef79544346e0f82d554580a450a0e49">&#9670;&#160;</a></span>toBytes()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto value::toBytes </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespacevalue.html#a4a80ac4b08d2671dced0e8e19271f221">Value</a> &amp;&#160;</td>
-          <td class="paramname"><em>v</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a>&#160;</td>
-          <td class="paramname"><em>endian</em> = <code><a class="el" href="namespaceutils.html#a30b4b3e4177bc7f02df665fa43350c35">utils::getHost</a>()</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; std::vector&lt;std::uint8_t&gt; </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
 
 </div>
 </div>

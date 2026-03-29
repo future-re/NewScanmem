@@ -97,28 +97,47 @@ $(document).ready(function(){initNavTree('classapp_1_1ScanService.html',''); ini
   <div class="headertitle"><div class="title">app::ScanService类 参考<span class="mlabels"><span class="mlabel">export</span></span><div class="ingroups">模块 <a class="el" href="module_app_8scan__service.html">app.scan_service</a></div></div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>High-level service for scan operations  
- <a href="classapp_1_1ScanService.html#details">更多...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
-<tr class="memitem:a555e1d3bebfbaa892a531bd47de27085" id="r_a555e1d3bebfbaa892a531bd47de27085"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classapp_1_1ScanService.html#a555e1d3bebfbaa892a531bd47de27085">run</a> (const <a class="el" href="structapp_1_1ScanRequest.html">ScanRequest</a> &amp;request) -&gt; std::expected&lt; <a class="el" href="structapp_1_1ScanExecutionResult.html">ScanExecutionResult</a>, std::string &gt;</td></tr>
-<tr class="memdesc:a555e1d3bebfbaa892a531bd47de27085"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute a scan based on the request  <br /></td></tr>
-<tr class="separator:a555e1d3bebfbaa892a531bd47de27085"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad81d0eea1e7c067686a874bd45526d4f" id="r_ad81d0eea1e7c067686a874bd45526d4f"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classapp_1_1ScanService.html#ad81d0eea1e7c067686a874bd45526d4f">snapshot</a> (<a class="el" href="classcore_1_1Scanner.html">core::Scanner</a> *scanner, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const std::optional&lt; UserValue &gt; &amp;value=std::nullopt, bool saveToHistory=true) -&gt; std::expected&lt; <a class="el" href="structapp_1_1ScanExecutionResult.html">ScanExecutionResult</a>, std::string &gt;</td></tr>
-<tr class="memdesc:ad81d0eea1e7c067686a874bd45526d4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a snapshot scan (full memory scan)  <br /></td></tr>
+<tr class="memitem:ad20d811d130c7e12684fac5eee63d96d" id="r_ad20d811d130c7e12684fac5eee63d96d"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classapp_1_1ScanService.html#ad20d811d130c7e12684fac5eee63d96d">execute</a> (const <a class="el" href="structapp_1_1ScanExecutionRequest.html">ScanExecutionRequest</a> &amp;request) -&gt; std::expected&lt; <a class="el" href="structapp_1_1ScanExecutionResult.html">ScanExecutionResult</a>, std::string &gt;</td></tr>
+<tr class="separator:ad20d811d130c7e12684fac5eee63d96d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad81d0eea1e7c067686a874bd45526d4f" id="r_ad81d0eea1e7c067686a874bd45526d4f"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classapp_1_1ScanService.html#ad81d0eea1e7c067686a874bd45526d4f">snapshot</a> (<a class="el" href="classcore_1_1Scanner.html">core::Scanner</a> *scanner, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt; &amp;value=std::nullopt, bool saveToHistory=true) -&gt; std::expected&lt; <a class="el" href="structapp_1_1ScanExecutionResult.html">ScanExecutionResult</a>, std::string &gt;</td></tr>
 <tr class="separator:ad81d0eea1e7c067686a874bd45526d4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51d2aafd239ed0504e4ec7bfa582c39e" id="r_a51d2aafd239ed0504e4ec7bfa582c39e"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classapp_1_1ScanService.html#a51d2aafd239ed0504e4ec7bfa582c39e">filter</a> (<a class="el" href="classcore_1_1Scanner.html">core::Scanner</a> *scanner, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const UserValue &amp;value, bool saveToHistory=true) -&gt; std::expected&lt; <a class="el" href="structapp_1_1ScanExecutionResult.html">ScanExecutionResult</a>, std::string &gt;</td></tr>
-<tr class="memdesc:a51d2aafd239ed0504e4ec7bfa582c39e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a filter scan (incremental on existing matches)  <br /></td></tr>
-<tr class="separator:a51d2aafd239ed0504e4ec7bfa582c39e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1da64165c4ff9efdd948312aeb5deff" id="r_af1da64165c4ff9efdd948312aeb5deff"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classapp_1_1ScanService.html#af1da64165c4ff9efdd948312aeb5deff">filter</a> (<a class="el" href="classcore_1_1Scanner.html">core::Scanner</a> *scanner, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt; &amp;value=std::nullopt, bool saveToHistory=true) -&gt; std::expected&lt; <a class="el" href="structapp_1_1ScanExecutionResult.html">ScanExecutionResult</a>, std::string &gt;</td></tr>
+<tr class="separator:af1da64165c4ff9efdd948312aeb5deff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa4697cb447af71a2df36d897152353b" id="r_aaa4697cb447af71a2df36d897152353b"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classapp_1_1ScanService.html#aaa4697cb447af71a2df36d897152353b">rescan</a> (<a class="el" href="classcore_1_1Scanner.html">core::Scanner</a> *scanner, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt; &amp;value=std::nullopt, bool saveToHistory=true) -&gt; std::expected&lt; <a class="el" href="structapp_1_1ScanExecutionResult.html">ScanExecutionResult</a>, std::string &gt;</td></tr>
+<tr class="separator:aaa4697cb447af71a2df36d897152353b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock"><p>High-level service for scan operations </p>
-<p>Provides a simplified interface over <a class="el" href="classcore_1_1Scanner.html" title="High-level scanner with explicit operations">core::Scanner</a> with automatic mode selection and error handling. </p>
-</div><h2 class="groupheader">成员函数说明</h2>
-<a id="a51d2aafd239ed0504e4ec7bfa582c39e" name="a51d2aafd239ed0504e4ec7bfa582c39e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51d2aafd239ed0504e4ec7bfa582c39e">&#9670;&#160;</a></span>filter()</h2>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="ad20d811d130c7e12684fac5eee63d96d" name="ad20d811d130c7e12684fac5eee63d96d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad20d811d130c7e12684fac5eee63d96d">&#9670;&#160;</a></span>execute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static auto app::ScanService::execute </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structapp_1_1ScanExecutionRequest.html">ScanExecutionRequest</a> &amp;&#160;</td>
+          <td class="paramname"><em>request</em></td><td>)</td>
+          <td> -&gt; std::expected&lt;<a class="el" href="structapp_1_1ScanExecutionResult.html">ScanExecutionResult</a>, std::string&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af1da64165c4ff9efdd948312aeb5deff" name="af1da64165c4ff9efdd948312aeb5deff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1da64165c4ff9efdd948312aeb5deff">&#9670;&#160;</a></span>filter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -141,8 +160,8 @@ $(document).ready(function(){initNavTree('classapp_1_1ScanService.html',''); ini
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const UserValue &amp;&#160;</td>
-          <td class="paramname"><em>value</em>, </td>
+          <td class="paramtype">const std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>value</em> = <code>std::nullopt</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -163,12 +182,10 @@ $(document).ready(function(){initNavTree('classapp_1_1ScanService.html',''); ini
 </table>
 </div><div class="memdoc">
 
-<p>Perform a filter scan (incremental on existing matches) </p>
-
 </div>
 </div>
-<a id="a555e1d3bebfbaa892a531bd47de27085" name="a555e1d3bebfbaa892a531bd47de27085"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a555e1d3bebfbaa892a531bd47de27085">&#9670;&#160;</a></span>run()</h2>
+<a id="aaa4697cb447af71a2df36d897152353b" name="aaa4697cb447af71a2df36d897152353b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa4697cb447af71a2df36d897152353b">&#9670;&#160;</a></span>rescan()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -177,11 +194,33 @@ $(document).ready(function(){initNavTree('classapp_1_1ScanService.html',''); ini
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static auto app::ScanService::run </td>
+          <td class="memname">static auto app::ScanService::rescan </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structapp_1_1ScanRequest.html">ScanRequest</a> &amp;&#160;</td>
-          <td class="paramname"><em>request</em></td><td>)</td>
-          <td> -&gt; std::expected&lt;<a class="el" href="structapp_1_1ScanExecutionResult.html">ScanExecutionResult</a>, std::string&gt; </td>
+          <td class="paramtype"><a class="el" href="classcore_1_1Scanner.html">core::Scanner</a> *&#160;</td>
+          <td class="paramname"><em>scanner</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;&#160;</td>
+          <td class="paramname"><em>opts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>value</em> = <code>std::nullopt</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>saveToHistory</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::expected&lt;<a class="el" href="structapp_1_1ScanExecutionResult.html">ScanExecutionResult</a>, std::string&gt; </td>
         </tr>
       </table>
   </td>
@@ -190,15 +229,6 @@ $(document).ready(function(){initNavTree('classapp_1_1ScanService.html',''); ini
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Execute a scan based on the request </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">request</td><td>Scan request parameters </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd>Expected result or error message </dd></dl>
 
 </div>
 </div>
@@ -226,7 +256,7 @@ $(document).ready(function(){initNavTree('classapp_1_1ScanService.html',''); ini
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::optional&lt; UserValue &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::optional&lt; <a class="el" href="structUserValue.html">UserValue</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>value</em> = <code>std::nullopt</code>, </td>
         </tr>
         <tr>
@@ -247,8 +277,6 @@ $(document).ready(function(){initNavTree('classapp_1_1ScanService.html',''); ini
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Perform a snapshot scan (full memory scan) </p>
 
 </div>
 </div>

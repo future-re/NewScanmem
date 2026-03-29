@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['localscanresult_0',['LocalScanResult',['../namespacescan.html#abfdb63de5616a8bc626ac8dc585d8a8f',1,'scan']]]
+  ['valuetype_0',['ValueType',['../flags_8cppm.html#ab6d525f0a5a2799ff592b83d7b606be0',1,'flags.cppm']]]
 ];

@@ -1,14 +1,17 @@
 var searchData=
 [
-  ['read_0',['read',['../structcore_1_1RegionFlags.html#a1ad624e07985838bd525ba8ca406302a',1,'core::RegionFlags']]],
-  ['red_1',['RED',['../namespaceui_1_1color.html#ae03871e05f14eaa77840d3eb1aad56a0',1,'ui::color']]],
-  ['region_2',['region',['../structcore_1_1MatchEntry.html#a98bbe3de3a8d1c7ce058fc31cddd48f9',1,'core::MatchEntry']]],
-  ['region_5ftype_5fnames_3',['REGION_TYPE_NAMES',['../namespacecore.html#a9cbc794a299a247419a8c580a01e623a',1,'core']]],
-  ['regionfilter_4',['regionfilter',['../structcore_1_1MatchCollectionOptions.html#a7bac7028617559e1e4b53b7cbb192031',1,'core::MatchCollectionOptions::regionFilter'],['../structScanOptions.html#a5e8e10baa9e7c249927ae7a8be3681bd',1,'ScanOptions::regionFilter']]],
-  ['regionlevel_5',['regionlevel',['../structapp_1_1ScanRequest.html#aeeb740cc0c039c1af61ba5bf4d23df90',1,'app::ScanRequest::regionLevel'],['../structcli_1_1AppConfig.html#afd2f6c5f178ef433b67dfff0f7e4a24f',1,'cli::AppConfig::regionLevel'],['../structcli_1_1SessionState.html#a508356ef675833f5fbd7948e36a06add',1,'cli::SessionState::regionLevel'],['../structScanOptions.html#a791b43d33de9728773e2ddcf40bb7328',1,'ScanOptions::regionLevel']]],
-  ['regionsvisited_6',['regionsVisited',['../structScanStats.html#a588f9fa573bb993a2561d351b47eeb0c',1,'ScanStats']]],
-  ['requiredflag_7',['requiredFlag',['../structscan_1_1ScanContext.html#ab086b0e5abdc5da3d09746e5a39dd9c1',1,'scan::ScanContext']]],
-  ['reset_8',['RESET',['../namespaceui_1_1color.html#ad819c282c1897eaf1d54ba8078109470',1,'ui::color']]],
-  ['results_9',['results',['../structcore_1_1VecWriteResult.html#a9384f22e0c6e15d46d52ad62c39c93cb',1,'core::VecWriteResult']]],
-  ['reverseendianness_10',['reverseendianness',['../structScanOptions.html#a15668009ebc696507aee81ae33f728d6',1,'ScanOptions::reverseEndianness'],['../structscan_1_1ScanContext.html#a9c78f105095df9526ff0ab4d13974ef0',1,'scan::ScanContext::reverseEndianness']]]
+  ['savetohistory_0',['saveToHistory',['../structapp_1_1ScanExecutionRequest.html#aef91c31b387ae15be561f78c9485f35a',1,'app::ScanExecutionRequest']]],
+  ['scanner_1',['scanner',['../structapp_1_1CurrentMatchListRequest.html#afdd034049bc8432f5d759279368ef052',1,'app::CurrentMatchListRequest::scanner'],['../structapp_1_1ScanExecutionRequest.html#aede249c5c479450c68485927f5525ff2',1,'app::ScanExecutionRequest::scanner'],['../structcli_1_1SessionState.html#a3d7d552777b6a2388ee1c93fc69ac7b9',1,'cli::SessionState::scanner']]],
+  ['secondary_2',['secondary',['../structUserValue.html#aee57887f90fb0e9014671d28d810609a',1,'UserValue']]],
+  ['shared_3',['shared',['../structcore_1_1RegionFlags.html#af65df61dea754dd979f5c531aa75fd79',1,'core::RegionFlags']]],
+  ['shouldexit_4',['shouldExit',['../structcli_1_1CommandResult.html#affa318d121f655743c92bfd95adfbbc9',1,'cli::CommandResult']]],
+  ['showindex_5',['showindex',['../structapp_1_1CurrentMatchListRequest.html#a3948e0e9b57dfff476e5524dec1f520a',1,'app::CurrentMatchListRequest::showIndex'],['../structcore_1_1FormatOptions.html#a206f850799bfb73d4f3ad1187a74d558',1,'core::FormatOptions::showIndex']]],
+  ['showregion_6',['showregion',['../structapp_1_1CurrentMatchListRequest.html#abccc8a5f89c6a5db887837ab4761ee92',1,'app::CurrentMatchListRequest::showRegion'],['../structcore_1_1FormatOptions.html#aa2dd4d997776a8ca5d4ae8aeb647750e',1,'core::FormatOptions::showRegion']]],
+  ['size_7',['size',['../structcore_1_1Region.html#a6ba91430b2642c5adeb8ffe4078e6318',1,'core::Region']]],
+  ['start_8',['start',['../structcore_1_1Region.html#aaf402760124d38b40e00f8d59f0a9539',1,'core::Region::start'],['../structcore_1_1RegionLookupEntry.html#a3406054ce489d6b8b52cb8a034c23886',1,'core::RegionLookupEntry::start']]],
+  ['stats_9',['stats',['../structapp_1_1ScanExecutionResult.html#aed1eb7c41d4626cc38110b9df84ccf65',1,'app::ScanExecutionResult::stats'],['../structcore_1_1ScannerResult.html#a582ba64df574303fe46341b97698e49e',1,'core::ScannerResult::stats'],['../structScanRecord.html#a51c14cd7a0ba42d01b979bf83e5d5cfc',1,'ScanRecord::stats']]],
+  ['step_10',['step',['../structScanOptions.html#a206f549ce388cb7e2136336b6feb0949',1,'ScanOptions']]],
+  ['success_11',['success',['../structcli_1_1CommandResult.html#adf4f9154fed11db9c7254e767f7056c3',1,'cli::CommandResult::success'],['../structcore_1_1WriteResult.html#a038a4946a91840162a604fd5d60f5115',1,'core::WriteResult::success'],['../structcore_1_1ScannerResult.html#a88956ad955bb16a9a6cfeec54ebcdb92',1,'core::ScannerResult::success']]],
+  ['successcount_12',['successCount',['../structcore_1_1VecWriteResult.html#abaea834a300f2be9e82f5c2e380f6411',1,'core::VecWriteResult']]],
+  ['swaths_13',['swaths',['../classscan_1_1MatchesAndOldValuesArray.html#a708a9a57a212c889e8cc5674205c4efc',1,'scan::MatchesAndOldValuesArray']]]
 ];

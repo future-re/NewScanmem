@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['id_0',['id',['../structcore_1_1Region.html#a754f72026fdac244b69b6854cc5269bc',1,'core::Region']]],
-  ['index_1',['index',['../structcore_1_1MatchEntry.html#a8eeca6e4a36962cd6a2fd7f7bb47d68f',1,'core::MatchEntry']]],
-  ['initialcommands_2',['initialCommands',['../structcli_1_1AppConfig.html#a1de020f742ba62c651e3f794fb8d34ef',1,'cli::AppConfig']]],
-  ['isfiltered_3',['isFiltered',['../structapp_1_1ScanExecutionResult.html#a50ac2359dcf971fb4944ef3ddd89d3c5',1,'app::ScanExecutionResult']]]
+  ['length_0',['length',['../structByteMatch.html#aa02fcc654bc8ef25719c3c6f37f70bdd',1,'ByteMatch']]],
+  ['limit_1',['limit',['../structapp_1_1CurrentMatchListRequest.html#a06345baa9adc762a6ed4d6f943d7d41c',1,'app::CurrentMatchListRequest::limit'],['../structcore_1_1MatchCollectionOptions.html#aa19aa7b2946f235c0ca8c89e9c1ce322',1,'core::MatchCollectionOptions::limit']]],
+  ['loadaddr_2',['loadAddr',['../structcore_1_1Region.html#ae788f67862f749decc719bc7413b8059',1,'core::Region']]]
 ];

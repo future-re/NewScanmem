@@ -108,7 +108,7 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:ad66068f06cfca86eca33955e0ae98fd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd4b33a5affeab4013de868de83acef6" id="r_abd4b33a5affeab4013de868de83acef6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structValue.html#abd4b33a5affeab4013de868de83acef6">Value</a> (std::vector&lt; std::uint8_t &gt; <a class="el" href="structValue.html#a29188b87d471471d179e7ca97993353b">data</a>)</td></tr>
 <tr class="separator:abd4b33a5affeab4013de868de83acef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a091708ea41f8c9beb21c3ceca07e6c24" id="r_a091708ea41f8c9beb21c3ceca07e6c24"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptNumericType.html">NumericType</a> T&gt; </td></tr>
+<tr class="memitem:a091708ea41f8c9beb21c3ceca07e6c24" id="r_a091708ea41f8c9beb21c3ceca07e6c24"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptValueArithmeticType.html">ValueArithmeticType</a> T&gt; </td></tr>
 <tr class="memitem:a091708ea41f8c9beb21c3ceca07e6c24"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structValue.html#a091708ea41f8c9beb21c3ceca07e6c24">as</a> () const -&gt; std::optional&lt; T &gt;</td></tr>
 <tr class="separator:a091708ea41f8c9beb21c3ceca07e6c24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaaaac229b590409d0546f0cb185bc06d" id="r_aaaaac229b590409d0546f0cb185bc06d"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structValue.html#aaaaac229b590409d0546f0cb185bc06d">asString</a> () const -&gt; std::optional&lt; std::string &gt;</td></tr>
@@ -138,15 +138,26 @@ Public 成员函数</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
-<tr class="memitem:a805f3679ff59ce60c6da52e329e836d8" id="r_a805f3679ff59ce60c6da52e329e836d8"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptValueArithmeticType.html">ValueArithmeticType</a> T&gt; </td></tr>
-<tr class="memitem:a805f3679ff59ce60c6da52e329e836d8"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structValue.html#a805f3679ff59ce60c6da52e329e836d8">of</a> (T &amp;&amp;value) -&gt; <a class="el" href="structValue.html">Value</a></td></tr>
-<tr class="separator:a805f3679ff59ce60c6da52e329e836d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07ddb474a5fea1589947b5b9517b7f4c" id="r_a07ddb474a5fea1589947b5b9517b7f4c"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptValueArithmeticType.html">ValueArithmeticType</a> T&gt; </td></tr>
+<tr class="memitem:a07ddb474a5fea1589947b5b9517b7f4c"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structValue.html#a07ddb474a5fea1589947b5b9517b7f4c">of</a> (T value) -&gt; <a class="el" href="structValue.html">Value</a></td></tr>
+<tr class="separator:a07ddb474a5fea1589947b5b9517b7f4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14fb1a3f236cbecabc3001bb5ae62c65" id="r_a14fb1a3f236cbecabc3001bb5ae62c65"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptValueArithmeticType.html">ValueArithmeticType</a> T&gt; </td></tr>
+<tr class="memitem:a14fb1a3f236cbecabc3001bb5ae62c65"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structValue.html#a14fb1a3f236cbecabc3001bb5ae62c65">fromScalar</a> (T value) -&gt; <a class="el" href="structValue.html">Value</a></td></tr>
+<tr class="separator:a14fb1a3f236cbecabc3001bb5ae62c65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a805f3679ff59ce60c6da52e329e836d8" id="r_a805f3679ff59ce60c6da52e329e836d8"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptValueStringType.html">ValueStringType</a> T&gt; </td></tr>
 <tr class="memitem:a805f3679ff59ce60c6da52e329e836d8"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structValue.html#a805f3679ff59ce60c6da52e329e836d8">of</a> (T &amp;&amp;value) -&gt; <a class="el" href="structValue.html">Value</a></td></tr>
 <tr class="separator:a805f3679ff59ce60c6da52e329e836d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4278794ee032e8c60f61701917b13bb" id="r_af4278794ee032e8c60f61701917b13bb"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptValueStringType.html">ValueStringType</a> T&gt; </td></tr>
+<tr class="memitem:af4278794ee032e8c60f61701917b13bb"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structValue.html#af4278794ee032e8c60f61701917b13bb">fromString</a> (T &amp;&amp;value) -&gt; <a class="el" href="structValue.html">Value</a></td></tr>
+<tr class="separator:af4278794ee032e8c60f61701917b13bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac6299f7a091a5f2366d7412fc8c40be" id="r_aac6299f7a091a5f2366d7412fc8c40be"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structValue.html#aac6299f7a091a5f2366d7412fc8c40be">fromString</a> (const char *value) -&gt; <a class="el" href="structValue.html">Value</a></td></tr>
+<tr class="separator:aac6299f7a091a5f2366d7412fc8c40be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36dc077157fa9867941e3fa195997dca" id="r_a36dc077157fa9867941e3fa195997dca"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptValueByteVectorType.html">ValueByteVectorType</a> T&gt; </td></tr>
 <tr class="memitem:a36dc077157fa9867941e3fa195997dca"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structValue.html#a36dc077157fa9867941e3fa195997dca">of</a> (T &amp;&amp;<a class="el" href="structValue.html#a29188b87d471471d179e7ca97993353b">data</a>, std::optional&lt; std::vector&lt; std::uint8_t &gt; &gt; <a class="el" href="structValue.html#a339fb36549826b01557e9c89f13bc569">mask</a>=std::nullopt) -&gt; <a class="el" href="structValue.html">Value</a></td></tr>
 <tr class="separator:a36dc077157fa9867941e3fa195997dca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a375f844540143e378660bb70b2861883" id="r_a375f844540143e378660bb70b2861883"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptValueByteVectorType.html">ValueByteVectorType</a> T&gt; </td></tr>
+<tr class="memitem:a375f844540143e378660bb70b2861883"><td class="memTemplItemLeft" align="right" valign="top">static auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structValue.html#a375f844540143e378660bb70b2861883">fromByteArray</a> (T &amp;&amp;<a class="el" href="structValue.html#a29188b87d471471d179e7ca97993353b">data</a>, std::optional&lt; std::vector&lt; std::uint8_t &gt; &gt; <a class="el" href="structValue.html#a339fb36549826b01557e9c89f13bc569">mask</a>=std::nullopt) -&gt; <a class="el" href="structValue.html">Value</a></td></tr>
+<tr class="separator:a375f844540143e378660bb70b2861883"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public 属性</h2></td></tr>
@@ -252,7 +263,7 @@ Public 属性</h2></td></tr>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="conceptNumericType.html">NumericType</a> T&gt; </div>
+template&lt;<a class="el" href="conceptValueArithmeticType.html">ValueArithmeticType</a> T&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -448,6 +459,126 @@ template&lt;<a class="el" href="conceptNumericType.html">NumericType</a> T&gt; <
 
 </div>
 </div>
+<a id="a375f844540143e378660bb70b2861883" name="a375f844540143e378660bb70b2861883"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a375f844540143e378660bb70b2861883">&#9670;&#160;</a></span>fromByteArray()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="conceptValueByteVectorType.html">ValueByteVectorType</a> T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static auto Value::fromByteArray </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;&amp;&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::optional&lt; std::vector&lt; std::uint8_t &gt; &gt;&#160;</td>
+          <td class="paramname"><em>mask</em> = <code>std::nullopt</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; <a class="el" href="structValue.html">Value</a> </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a14fb1a3f236cbecabc3001bb5ae62c65" name="a14fb1a3f236cbecabc3001bb5ae62c65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14fb1a3f236cbecabc3001bb5ae62c65">&#9670;&#160;</a></span>fromScalar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="conceptValueArithmeticType.html">ValueArithmeticType</a> T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static auto Value::fromScalar </td>
+          <td>(</td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td> -&gt; <a class="el" href="structValue.html">Value</a> </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aac6299f7a091a5f2366d7412fc8c40be" name="aac6299f7a091a5f2366d7412fc8c40be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac6299f7a091a5f2366d7412fc8c40be">&#9670;&#160;</a></span>fromString() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static auto Value::fromString </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td> -&gt; <a class="el" href="structValue.html">Value</a> </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af4278794ee032e8c60f61701917b13bb" name="af4278794ee032e8c60f61701917b13bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4278794ee032e8c60f61701917b13bb">&#9670;&#160;</a></span>fromString() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="conceptValueStringType.html">ValueStringType</a> T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static auto Value::fromString </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;&amp;&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td> -&gt; <a class="el" href="structValue.html">Value</a> </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a68b879f60a8fb934a682df922f088caa" name="a68b879f60a8fb934a682df922f088caa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a68b879f60a8fb934a682df922f088caa">&#9670;&#160;</a></span>hasMask()</h2>
 
@@ -517,7 +648,7 @@ template&lt;<a class="el" href="conceptValueByteVectorType.html">ValueByteVector
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="conceptValueArithmeticType.html">ValueArithmeticType</a> T&gt; </div>
+template&lt;<a class="el" href="conceptValueStringType.html">ValueStringType</a> T&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -539,13 +670,13 @@ template&lt;<a class="el" href="conceptValueArithmeticType.html">ValueArithmetic
 
 </div>
 </div>
-<a id="a805f3679ff59ce60c6da52e329e836d8" name="a805f3679ff59ce60c6da52e329e836d8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a805f3679ff59ce60c6da52e329e836d8">&#9670;&#160;</a></span>of() <span class="overload">[3/3]</span></h2>
+<a id="a07ddb474a5fea1589947b5b9517b7f4c" name="a07ddb474a5fea1589947b5b9517b7f4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07ddb474a5fea1589947b5b9517b7f4c">&#9670;&#160;</a></span>of() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="conceptValueStringType.html">ValueStringType</a> T&gt; </div>
+template&lt;<a class="el" href="conceptValueArithmeticType.html">ValueArithmeticType</a> T&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -553,7 +684,7 @@ template&lt;<a class="el" href="conceptValueStringType.html">ValueStringType</a>
         <tr>
           <td class="memname">static auto Value::of </td>
           <td>(</td>
-          <td class="paramtype">T &amp;&amp;&#160;</td>
+          <td class="paramtype">T&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
           <td> -&gt; <a class="el" href="structValue.html">Value</a> </td>
         </tr>

@@ -4,12 +4,14 @@ var namespaces_dup =
     [ "cli", "namespacecli.html", "namespacecli" ],
     [ "core", "namespacecore.html", "namespacecore" ],
     [ "detail", "namespacedetail.html", [
-      [ "runNumericMatch", "namespacedetail.html#ab4623a5f258f349a4847883c887b8450", null ],
+      [ "runNumericMatch", "namespacedetail.html#af86320d9d2824ca666fc8bcfc695933d", null ],
       [ "swapBytes", "namespacedetail.html#a93e8c6f46325bf4cd18530ed3db59b71", null ],
       [ "swapBytes", "namespacedetail.html#a15a21289437f105dab2ffef908feeaf7", null ],
       [ "swapBytes", "namespacedetail.html#aa61f7443552eef65706ca99283eacc2d", null ],
       [ "swapBytes", "namespacedetail.html#aff190188b65e4c3776fc6744be48bf2b", null ],
-      [ "tryNumericSequence", "namespacedetail.html#aca568eae0b3707cce9c067bf16b37b9f", null ]
+      [ "toUnderlying", "namespacedetail.html#a11c3b156442a3ee2895b61c9d94ffd6e", null ],
+      [ "tryNumericSequence", "namespacedetail.html#a1b5b5992a0a2cfeeacee2d94009514c1", null ],
+      [ "widthFlag", "namespacedetail.html#afa11beea144d0c67faf454b831a26c59", null ]
     ] ],
     [ "scan", "namespacescan.html", "namespacescan" ],
     [ "scanmem", "namespacescanmem.html", [

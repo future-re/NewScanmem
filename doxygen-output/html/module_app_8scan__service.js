@@ -1,24 +1,18 @@
 var module_app_8scan__service =
 [
-    [ "ScanRequest", "structapp_1_1ScanRequest.html", "structapp_1_1ScanRequest" ],
+    [ "ScanExecutionRequest", "structapp_1_1ScanExecutionRequest.html", "structapp_1_1ScanExecutionRequest" ],
     [ "ScanExecutionResult", "structapp_1_1ScanExecutionResult.html", "structapp_1_1ScanExecutionResult" ],
     [ "ScanService", "classapp_1_1ScanService.html", null ],
-    [ "ScanRequest", "structapp_1_1ScanRequest.html", "structapp_1_1ScanRequest" ],
-    [ "ScanExecutionResult", "structapp_1_1ScanExecutionResult.html", "structapp_1_1ScanExecutionResult" ],
-    [ "ScanService", "classapp_1_1ScanService.html", null ],
-    [ "app::ScanServiceMode", "module_app_8scan__service.html#a1ce094bcfd75eb6bda771545fbbb0b4a", [
-      [ "AUTO", "module_app_8scan__service.html#a1ce094bcfd75eb6bda771545fbbb0b4aae1f2d5134ed2543d38a0de9751cf75d9", null ],
-      [ "SNAPSHOT", "module_app_8scan__service.html#a1ce094bcfd75eb6bda771545fbbb0b4aa46b8744c6bc840d2cb241fa165f3e204", null ],
-      [ "FILTER", "module_app_8scan__service.html#a1ce094bcfd75eb6bda771545fbbb0b4aae75ab17a550f46adbbe891b819cf951d", null ],
-      [ "RESCAN", "module_app_8scan__service.html#a1ce094bcfd75eb6bda771545fbbb0b4aa45117e19c4f64bb8745ca22683e483fb", null ]
+    [ "app::ScanExecutionMode", "module_app_8scan__service.html#a6f3e3109ae1ef7cd01df388e524fa593", [
+      [ "SNAPSHOT", "module_app_8scan__service.html#a6f3e3109ae1ef7cd01df388e524fa593a46b8744c6bc840d2cb241fa165f3e204", null ],
+      [ "FILTER", "module_app_8scan__service.html#a6f3e3109ae1ef7cd01df388e524fa593ae75ab17a550f46adbbe891b819cf951d", null ],
+      [ "RESCAN", "module_app_8scan__service.html#a6f3e3109ae1ef7cd01df388e524fa593a45117e19c4f64bb8745ca22683e483fb", null ]
     ] ],
-    [ "app::ScanRequest::scanner", "module_app_8scan__service.html#a033a8e3a12b7b0ef01b5a718d5aef96b", null ],
-    [ "app::ScanRequest::regionLevel", "module_app_8scan__service.html#aeeb740cc0c039c1af61ba5bf4d23df90", null ],
-    [ "app::ScanRequest::dataType", "module_app_8scan__service.html#ad0e8f65bd79143fa1f79932f1785ec78", null ],
-    [ "app::ScanRequest::matchType", "module_app_8scan__service.html#a1be1d74377a1f79d1f8d128327fb6253", null ],
-    [ "app::ScanRequest::userValue", "module_app_8scan__service.html#adee6912374cf15aba1ea8e49d4c21c76", null ],
-    [ "app::ScanRequest::mode", "module_app_8scan__service.html#abd74f15ed7c6c236e46a67e51f9856d8", null ],
-    [ "app::ScanRequest::saveToHistory", "module_app_8scan__service.html#a0334b153c3fdcc7206ff6115b3ad352f", null ],
+    [ "app::ScanExecutionRequest::scanner", "module_app_8scan__service.html#aede249c5c479450c68485927f5525ff2", null ],
+    [ "app::ScanExecutionRequest::options", "module_app_8scan__service.html#aef8c428e5280b5e4bd04a0267ab7b1ae", null ],
+    [ "app::ScanExecutionRequest::userValue", "module_app_8scan__service.html#a741e6ef2bd0fe0b81f21156840942a1f", null ],
+    [ "app::ScanExecutionRequest::mode", "module_app_8scan__service.html#a3ec481cc0137ccdba81d5f5861410864", null ],
+    [ "app::ScanExecutionRequest::saveToHistory", "module_app_8scan__service.html#aef91c31b387ae15be561f78c9485f35a", null ],
     [ "app::ScanExecutionResult::stats", "module_app_8scan__service.html#aed1eb7c41d4626cc38110b9df84ccf65", null ],
     [ "app::ScanExecutionResult::matchCount", "module_app_8scan__service.html#a9511a80aa339a24a09d6a19dcf726430", null ],
     [ "app::ScanExecutionResult::isFiltered", "module_app_8scan__service.html#a50ac2359dcf971fb4944ef3ddd89d3c5", null ]

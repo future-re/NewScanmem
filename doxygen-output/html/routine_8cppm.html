@@ -100,7 +100,7 @@ $(document).ready(function(){initNavTree('routine_8cppm.html',''); initResizable
 </div><!--header-->
 <div class="contents">
 
-<p>Scan routine interface with modern, type-safe API  
+<p>Canonical scan routine abstractions and compatibility shims  
 <a href="#details">更多...</a></p>
 <div class="textblock"><code>#include &lt;cstddef&gt;</code><br />
 <code>#include &lt;cstdint&gt;</code><br />
@@ -114,50 +114,49 @@ routine.cppm 的引用(Include)关系图:</div>
 <div class="dyncontent">
 <div class="center"><img src="routine_8cppm__incl.png" border="0" usemap="#asrc_2scan_2routine_8cppm" alt=""/></div>
 <map name="asrc_2scan_2routine_8cppm" id="asrc_2scan_2routine_8cppm">
-<area shape="rect" title="Scan routine interface with modern, type&#45;safe API" alt="" coords="431,5,596,31"/>
-<area shape="rect" title=" " alt="" coords="25,152,95,177"/>
-<area shape="poly" title=" " alt="" coords="478,33,109,150,108,145,476,28"/>
-<area shape="rect" title=" " alt="" coords="100,225,167,251"/>
-<area shape="poly" title=" " alt="" coords="431,31,318,48,192,74,133,91,81,109,40,130,14,154,9,165,9,175,15,184,25,193,54,210,88,222,86,227,52,214,22,198,11,188,4,176,3,164,10,150,37,126,79,104,131,86,191,69,317,43,430,26"/>
-<area shape="rect" title=" " alt="" coords="634,79,721,104"/>
-<area shape="poly" title=" " alt="" coords="541,28,639,71,637,76,538,33"/>
-<area shape="rect" title=" " alt="" coords="1011,152,1085,177"/>
-<area shape="poly" title=" " alt="" coords="526,29,566,66,594,86,624,102,673,120,716,131,792,140,870,141,969,149,997,153,997,159,969,155,870,146,792,145,715,137,671,125,621,106,591,90,563,70,522,33"/>
-<area shape="rect" title=" " alt="" coords="745,79,799,104"/>
-<area shape="poly" title=" " alt="" coords="557,28,732,76,731,81,556,33"/>
-<area shape="rect" href="flags_8cppm.html" title=" " alt="" coords="221,152,315,177"/>
-<area shape="poly" title=" " alt="" coords="495,33,301,147,298,143,492,29"/>
-<area shape="rect" href="core_8cppm.html" title="Core single&#45;value container" alt="" coords="468,79,559,104"/>
-<area shape="poly" title=" " alt="" coords="516,31,516,65,511,65,511,31"/>
-<area shape="poly" title=" " alt="" coords="247,180,169,221,166,216,245,175"/>
-<area shape="rect" title=" " alt="" coords="209,225,289,251"/>
-<area shape="poly" title=" " alt="" coords="267,178,258,213,253,212,262,177"/>
-<area shape="rect" title=" " alt="" coords="431,225,489,251"/>
-<area shape="poly" title=" " alt="" coords="300,175,418,219,416,224,298,180"/>
-<area shape="rect" title=" " alt="" coords="573,225,665,251"/>
-<area shape="poly" title=" " alt="" coords="315,173,560,222,559,227,314,178"/>
-<area shape="rect" title=" " alt="" coords="815,225,878,251"/>
-<area shape="poly" title=" " alt="" coords="315,173,327,175,596,209,802,230,801,235,595,215,326,180,314,178"/>
-<area shape="poly" title=" " alt="" coords="468,101,311,123,115,155,110,156,109,150,114,149,311,118,467,96"/>
-<area shape="poly" title=" " alt="" coords="467,94,410,96,341,105,268,123,233,137,200,154,169,182,147,215,143,212,165,179,197,150,231,132,266,118,340,100,410,91,467,89"/>
-<area shape="poly" title=" " alt="" coords="559,98,578,101,694,116,785,125,876,133,992,149,997,150,996,155,991,155,875,139,784,130,693,121,577,107,558,104"/>
-<area shape="poly" title=" " alt="" coords="475,107,321,151,320,146,473,101"/>
-<area shape="poly" title=" " alt="" coords="468,97,400,103,322,113,253,130,228,141,211,154,206,168,208,183,229,214,225,217,204,185,200,167,207,150,225,136,252,125,321,108,399,97,467,92"/>
-<area shape="poly" title=" " alt="" coords="543,102,569,115,593,133,608,154,608,167,603,179,583,201,558,216,530,227,504,234,502,229,529,222,555,212,580,197,599,176,603,166,603,156,589,137,566,120,541,107"/>
-<area shape="poly" title=" " alt="" coords="556,102,593,120,610,134,623,151,630,166,632,182,629,212,623,212,626,182,624,167,619,153,606,137,590,125,554,106"/>
-<area shape="poly" title=" " alt="" coords="559,98,577,101,662,105,773,107,828,110,879,117,921,130,950,150,956,161,957,173,944,192,920,209,892,223,890,218,918,205,940,189,952,171,951,163,946,154,918,135,878,123,828,115,773,112,662,111,577,107,558,104"/>
-<area shape="rect" title=" " alt="" coords="424,152,509,177"/>
-<area shape="poly" title=" " alt="" coords="508,106,484,142,479,139,503,103"/>
-<area shape="rect" title=" " alt="" coords="533,152,589,177"/>
-<area shape="poly" title=" " alt="" coords="523,103,548,139,544,142,519,106"/>
-<area shape="rect" title=" " alt="" coords="715,152,754,177"/>
-<area shape="poly" title=" " alt="" coords="550,101,702,150,701,155,548,107"/>
-<area shape="rect" title=" " alt="" coords="779,152,845,177"/>
-<area shape="poly" title=" " alt="" coords="559,100,765,149,764,154,558,106"/>
-<area shape="rect" title=" " alt="" coords="869,152,936,177"/>
-<area shape="poly" title=" " alt="" coords="559,98,578,101,715,123,856,149,855,154,714,129,577,107,558,103"/>
-<area shape="rect" title=" " alt="" coords="339,152,399,177"/>
-<area shape="poly" title=" " alt="" coords="491,106,406,148,404,143,489,102"/>
+<area shape="rect" title="Canonical scan routine abstractions and compatibility shims" alt="" coords="393,5,558,31"/>
+<area shape="rect" title=" " alt="" coords="24,152,95,177"/>
+<area shape="poly" title=" " alt="" coords="443,33,106,150,104,145,441,28"/>
+<area shape="rect" title=" " alt="" coords="81,225,147,251"/>
+<area shape="poly" title=" " alt="" coords="393,33,289,51,174,78,121,94,74,112,37,132,13,154,9,163,9,172,20,190,42,205,69,218,67,223,39,210,16,193,4,173,4,162,9,150,34,128,72,107,119,89,173,73,288,46,392,28"/>
+<area shape="rect" title=" " alt="" coords="596,79,683,104"/>
+<area shape="poly" title=" " alt="" coords="503,28,601,71,599,76,500,33"/>
+<area shape="rect" title=" " alt="" coords="959,152,1034,177"/>
+<area shape="poly" title=" " alt="" coords="488,29,528,66,556,86,586,102,636,120,680,131,760,138,842,139,890,142,946,149,945,155,889,147,842,144,759,144,679,136,635,125,583,106,553,90,525,70,484,33"/>
+<area shape="rect" title=" " alt="" coords="707,79,761,104"/>
+<area shape="poly" title=" " alt="" coords="519,28,694,76,693,81,518,33"/>
+<area shape="rect" href="flags_8cppm.html" title=" " alt="" coords="170,152,263,177"/>
+<area shape="poly" title=" " alt="" coords="456,33,250,148,248,143,453,29"/>
+<area shape="rect" href="core_8cppm.html" title="Core single&#45;value container" alt="" coords="430,79,521,104"/>
+<area shape="poly" title=" " alt="" coords="478,31,478,65,473,65,473,31"/>
+<area shape="poly" title=" " alt="" coords="202,180,144,219,140,215,199,175"/>
+<area shape="rect" title=" " alt="" coords="171,225,251,251"/>
+<area shape="poly" title=" " alt="" coords="218,178,216,212,210,212,213,177"/>
+<area shape="rect" title=" " alt="" coords="275,225,334,251"/>
+<area shape="poly" title=" " alt="" coords="232,175,281,214,278,219,229,179"/>
+<area shape="rect" title=" " alt="" coords="435,225,527,251"/>
+<area shape="poly" title=" " alt="" coords="260,175,425,219,424,224,258,180"/>
+<area shape="rect" title=" " alt="" coords="589,225,652,251"/>
+<area shape="poly" title=" " alt="" coords="264,172,576,226,575,231,263,177"/>
+<area shape="poly" title=" " alt="" coords="430,102,114,155,109,156,108,150,113,149,429,97"/>
+<area shape="poly" title=" " alt="" coords="430,99,281,118,208,134,180,143,159,154,147,167,136,182,123,213,118,211,132,179,143,163,156,150,177,138,207,128,280,112,429,94"/>
+<area shape="poly" title=" " alt="" coords="521,98,540,101,652,115,741,124,831,133,946,149,945,155,830,138,741,129,651,121,539,107,520,104"/>
+<area shape="poly" title=" " alt="" coords="434,107,272,151,271,146,433,101"/>
+<area shape="poly" title=" " alt="" coords="430,102,376,120,350,134,328,154,313,182,308,212,302,211,308,180,324,150,347,130,374,115,429,97"/>
+<area shape="poly" title=" " alt="" coords="516,102,552,120,568,134,582,151,586,162,585,174,574,193,553,209,528,222,525,218,550,205,570,189,580,172,581,163,577,153,565,138,549,125,513,106"/>
+<area shape="poly" title=" " alt="" coords="522,102,564,120,584,133,601,150,616,180,622,211,617,212,611,182,597,154,581,138,561,125,520,106"/>
+<area shape="rect" title=" " alt="" coords="338,152,423,177"/>
+<area shape="poly" title=" " alt="" coords="462,106,409,146,405,141,458,102"/>
+<area shape="rect" title=" " alt="" coords="447,152,503,177"/>
+<area shape="poly" title=" " alt="" coords="478,104,478,138,473,138,473,104"/>
+<area shape="rect" title=" " alt="" coords="528,152,567,177"/>
+<area shape="poly" title=" " alt="" coords="489,102,528,140,524,144,485,106"/>
+<area shape="rect" title=" " alt="" coords="693,152,759,177"/>
+<area shape="poly" title=" " alt="" coords="516,101,680,148,679,153,515,107"/>
+<area shape="rect" title=" " alt="" coords="783,152,850,177"/>
+<area shape="poly" title=" " alt="" coords="522,99,770,149,769,154,520,104"/>
+<area shape="rect" title=" " alt="" coords="875,152,935,177"/>
+<area shape="poly" title=" " alt="" coords="521,98,540,101,699,123,770,133,862,150,861,155,769,138,698,128,539,107,520,103"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -177,8 +176,6 @@ routine.cppm 的引用(Include)关系图:</div>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 类型定义</h2></td></tr>
-<tr class="memitem:aff96e3e9f60125b052dd05157b210931" id="r_aff96e3e9f60125b052dd05157b210931"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="routine_8cppm.html#aff96e3e9f60125b052dd05157b210931">scanRoutine</a> = std::function&lt; unsigned int(const <a class="el" href="structValue.html">Value</a> *, size_t, const <a class="el" href="structValue.html">Value</a> *, const UserValue *, <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> *)&gt;</td></tr>
-<tr class="separator:aff96e3e9f60125b052dd05157b210931"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacf8ab44fe879bda5070b3b61ec7ceaa" id="r_aacf8ab44fe879bda5070b3b61ec7ceaa"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">scan::ScanRoutine</a> = std::function&lt; <a class="el" href="structscan_1_1ScanResult.html">ScanResult</a>(const <a class="el" href="structscan_1_1ScanContext.html">ScanContext</a> &amp;ctx)&gt;</td></tr>
 <tr class="memdesc:aacf8ab44fe879bda5070b3b61ec7ceaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modern scan routine type  <br /></td></tr>
 <tr class="separator:aacf8ab44fe879bda5070b3b61ec7ceaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -188,37 +185,12 @@ routine.cppm 的引用(Include)关系图:</div>
 <tr class="memitem:a522b4708799baf2cfa4609ec02c94081" id="r_a522b4708799baf2cfa4609ec02c94081"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a522b4708799baf2cfa4609ec02c94081">scan::nullRoutine</a> () -&gt; <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">ScanRoutine</a></td></tr>
 <tr class="memdesc:a522b4708799baf2cfa4609ec02c94081"><td class="mdescLeft">&#160;</td><td class="mdescRight">Null scan routine that never matches  <br /></td></tr>
 <tr class="separator:a522b4708799baf2cfa4609ec02c94081"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb77f90f614031fdf8204380561bc44f" id="r_adb77f90f614031fdf8204380561bc44f"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#adb77f90f614031fdf8204380561bc44f">scan::adaptRoutine</a> (<a class="el" href="routine_8cppm.html#aff96e3e9f60125b052dd05157b210931">scanRoutine</a> oldRoutine) -&gt; <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">ScanRoutine</a></td></tr>
-<tr class="memdesc:adb77f90f614031fdf8204380561bc44f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adapter from old scanRoutine to new ScanRoutine  <br /></td></tr>
-<tr class="separator:adb77f90f614031fdf8204380561bc44f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a897f8757ddf1b846932f653c34007339" id="r_a897f8757ddf1b846932f653c34007339"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a897f8757ddf1b846932f653c34007339">scan::makeScanContext</a> (std::span&lt; const std::uint8_t &gt; memory, const <a class="el" href="structValue.html">Value</a> *oldValue, const <a class="el" href="structUserValue.html">UserValue</a> *userValue, <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> requiredFlag, bool reverseEndianness) -&gt; <a class="el" href="structscan_1_1ScanContext.html">ScanContext</a></td></tr>
+<tr class="separator:a897f8757ddf1b846932f653c34007339"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock"><p>Scan routine interface with modern, type-safe API </p>
-<p>Replaces the old C-style function signature with a clean, object-oriented interface using ScanContext and <a class="el" href="structScanResult.html" title="Stores the complete result of a single scan operation">ScanResult</a>. </p>
-</div><h2 class="groupheader">类型定义说明</h2>
-<a id="aff96e3e9f60125b052dd05157b210931" name="aff96e3e9f60125b052dd05157b210931"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff96e3e9f60125b052dd05157b210931">&#9670;&#160;</a></span>scanRoutine</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="routine_8cppm.html#aff96e3e9f60125b052dd05157b210931">scanRoutine</a> =  std::function&lt;unsigned int( const <a class="el" href="structValue.html">Value</a>* , size_t , const <a class="el" href="structValue.html">Value</a>* , const UserValue* , <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a>* )&gt;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-</div><!-- contents -->
+<div class="textblock"><p>Canonical scan routine abstractions and compatibility shims </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

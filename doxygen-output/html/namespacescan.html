@@ -111,53 +111,61 @@ $(document).ready(function(){initNavTree('namespacescan.html',''); initResizable
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structscan_1_1ScanContext.html">ScanContext</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context for a single scan operation at a memory location  <a href="structscan_1_1ScanContext.html#details">更多...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscan_1_1ScanJob.html">ScanJob</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates scan initialization and shared resources  <a href="classscan_1_1ScanJob.html#details">更多...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structscan_1_1ScanResult.html">ScanResult</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Result of a scan operation at a memory location  <a href="structscan_1_1ScanResult.html#details">更多...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 类型定义</h2></td></tr>
-<tr class="memitem:abfdb63de5616a8bc626ac8dc585d8a8f" id="r_abfdb63de5616a8bc626ac8dc585d8a8f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#abfdb63de5616a8bc626ac8dc585d8a8f">LocalScanResult</a> = <a class="el" href="structScanResult.html">::ScanResult</a></td></tr>
-<tr class="separator:abfdb63de5616a8bc626ac8dc585d8a8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacf8ab44fe879bda5070b3b61ec7ceaa" id="r_aacf8ab44fe879bda5070b3b61ec7ceaa"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">scan::ScanRoutine</a> = std::function&lt; <a class="el" href="structscan_1_1ScanResult.html">ScanResult</a>(const <a class="el" href="structscan_1_1ScanContext.html">ScanContext</a> &amp;ctx)&gt;</td></tr>
 <tr class="memdesc:aacf8ab44fe879bda5070b3b61ec7ceaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modern scan routine type  <br /></td></tr>
 <tr class="separator:aacf8ab44fe879bda5070b3b61ec7ceaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:af9d5470b0b4ca2af4f4bf0cd42a8398e" id="r_af9d5470b0b4ca2af4f4bf0cd42a8398e"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#af9d5470b0b4ca2af4f4bf0cd42a8398e">scan::runScanParallel</a> (pid_t pid, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const UserValue *userValue, <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;out, const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> *previousSnapshot) -&gt; std::expected&lt; <a class="el" href="structScanStats.html">ScanStats</a>, std::string &gt;</td></tr>
+<tr class="memitem:aa9497a8d82a8df19a5bae50748aa3ce6" id="r_aa9497a8d82a8df19a5bae50748aa3ce6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#aa9497a8d82a8df19a5bae50748aa3ce6">appendBytesToSwath</a> (<a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html">MatchesAndOldValuesSwath</a> &amp;swath, const std::uint8_t *buffer, std::size_t bytesRead, void *baseAddr)</td></tr>
+<tr class="separator:aa9497a8d82a8df19a5bae50748aa3ce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b0172d18906b731d0177402040dfae3" id="r_a1b0172d18906b731d0177402040dfae3"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a1b0172d18906b731d0177402040dfae3">prepareScanRegionsForEngine</a> (pid_t pid, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts) -&gt; std::expected&lt; std::vector&lt; <a class="el" href="structcore_1_1Region.html">core::Region</a> &gt;, std::string &gt;</td></tr>
+<tr class="separator:a1b0172d18906b731d0177402040dfae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46398d196af3b90850800bf88405fe1f" id="r_a46398d196af3b90850800bf88405fe1f"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a46398d196af3b90850800bf88405fe1f">prepareScanRoutineForEngine</a> (const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts) -&gt; std::expected&lt; <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">ScanRoutine</a>, std::string &gt;</td></tr>
+<tr class="separator:a46398d196af3b90850800bf88405fe1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a324b43726f4b06732a43b2721370aec9" id="r_a324b43726f4b06732a43b2721370aec9"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a324b43726f4b06732a43b2721370aec9">scanWindowSizeForEngine</a> (const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const <a class="el" href="structUserValue.html">UserValue</a> *userValue) -&gt; std::size_t</td></tr>
+<tr class="separator:a324b43726f4b06732a43b2721370aec9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a462d1e0b69da478bf33d96816d84e6" id="r_a2a462d1e0b69da478bf33d96816d84e6"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a2a462d1e0b69da478bf33d96816d84e6">fetchOldBytes</a> (const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;previous, void *address, std::size_t length, std::vector&lt; std::uint8_t &gt; &amp;out) -&gt; bool</td></tr>
+<tr class="separator:a2a462d1e0b69da478bf33d96816d84e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82425acd6362c9795431fbe0edc6ea3f" id="r_a82425acd6362c9795431fbe0edc6ea3f"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a82425acd6362c9795431fbe0edc6ea3f">makeOldValue</a> (const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> *previousSnapshot, void *address, std::size_t length) -&gt; std::optional&lt; <a class="el" href="structValue.html">Value</a> &gt;</td></tr>
+<tr class="separator:a82425acd6362c9795431fbe0edc6ea3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10d5a34075cded19a21a5de4bfa5c1f2" id="r_a10d5a34075cded19a21a5de4bfa5c1f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a10d5a34075cded19a21a5de4bfa5c1f2">scanBlock</a> (std::span&lt; const std::uint8_t &gt; buffer, std::size_t baseIndex, std::size_t step, const <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">ScanRoutine</a> &amp;routine, const <a class="el" href="structUserValue.html">UserValue</a> *userValue, <a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html">MatchesAndOldValuesSwath</a> &amp;swath, <a class="el" href="structScanStats.html">ScanStats</a> &amp;stats, void *regionBlockBase, const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> *previousSnapshot, std::size_t oldSliceLen, bool reverseEndianness)</td></tr>
+<tr class="separator:a10d5a34075cded19a21a5de4bfa5c1f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad71998fac2a2f6aff77b87893394112" id="r_aad71998fac2a2f6aff77b87893394112"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#aad71998fac2a2f6aff77b87893394112">scan::scanRegion</a> (const <a class="el" href="structcore_1_1Region.html">Region</a> &amp;region, <a class="el" href="classcore_1_1ProcMemIO.html">ProcMemIO</a> &amp;reader, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">ScanRoutine</a> &amp;routine, const <a class="el" href="structUserValue.html">UserValue</a> *userValue, <a class="el" href="structScanStats.html">ScanStats</a> &amp;stats, const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> *previousSnapshot, std::size_t oldSliceLen) -&gt; std::optional&lt; <a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html">MatchesAndOldValuesSwath</a> &gt;</td></tr>
+<tr class="separator:aad71998fac2a2f6aff77b87893394112"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81178f1476398edf7150350972640fdd" id="r_a81178f1476398edf7150350972640fdd"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a81178f1476398edf7150350972640fdd">scan::runScanInternal</a> (pid_t pid, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const <a class="el" href="structUserValue.html">UserValue</a> *userValue, <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;out, const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> *previousSnapshot) -&gt; std::expected&lt; <a class="el" href="structScanStats.html">ScanStats</a>, std::string &gt;</td></tr>
+<tr class="separator:a81178f1476398edf7150350972640fdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a905a9c1e53449bb511335da03e835452" id="r_a905a9c1e53449bb511335da03e835452"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a905a9c1e53449bb511335da03e835452">scan::runScan</a> (pid_t pid, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const <a class="el" href="structUserValue.html">UserValue</a> *userValue, <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;out) -&gt; std::expected&lt; <a class="el" href="structScanStats.html">ScanStats</a>, std::string &gt;</td></tr>
+<tr class="separator:a905a9c1e53449bb511335da03e835452"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdd23fd3a068993e16a8c297e9a9f8a8" id="r_abdd23fd3a068993e16a8c297e9a9f8a8"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#abdd23fd3a068993e16a8c297e9a9f8a8">scan::runScanWithPrevious</a> (pid_t pid, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const <a class="el" href="structUserValue.html">UserValue</a> *userValue, <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;out, const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;previousSnapshot) -&gt; std::expected&lt; <a class="el" href="structScanStats.html">ScanStats</a>, std::string &gt;</td></tr>
+<tr class="separator:abdd23fd3a068993e16a8c297e9a9f8a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9d5470b0b4ca2af4f4bf0cd42a8398e" id="r_af9d5470b0b4ca2af4f4bf0cd42a8398e"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#af9d5470b0b4ca2af4f4bf0cd42a8398e">scan::runScanParallel</a> (pid_t pid, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const <a class="el" href="structUserValue.html">UserValue</a> *userValue, <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;out, const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> *previousSnapshot) -&gt; std::expected&lt; <a class="el" href="structScanStats.html">ScanStats</a>, std::string &gt;</td></tr>
 <tr class="separator:af9d5470b0b4ca2af4f4bf0cd42a8398e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a160a67d805c815eebed21cd498ae8d3a" id="r_a160a67d805c815eebed21cd498ae8d3a"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a160a67d805c815eebed21cd498ae8d3a">scan::makeScanRoutine</a> (<a class="el" href="scan_2types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> dataType, <a class="el" href="scan_2types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> requiredFlag, bool reverseEndianness) -&gt; <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">ScanRoutine</a></td></tr>
-<tr class="memdesc:a160a67d805c815eebed21cd498ae8d3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a scan routine for the given data type and match type  <br /></td></tr>
-<tr class="separator:a160a67d805c815eebed21cd498ae8d3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2576708b3a202f43991fb6c8e2318f86" id="r_a2576708b3a202f43991fb6c8e2318f86"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a2576708b3a202f43991fb6c8e2318f86">scan::isRoutineAvailable</a> (<a class="el" href="scan_2types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> dataType, <a class="el" href="scan_2types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> requiredFlag) -&gt; bool</td></tr>
-<tr class="memdesc:a2576708b3a202f43991fb6c8e2318f86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a scan routine is available for the given configuration  <br /></td></tr>
-<tr class="separator:a2576708b3a202f43991fb6c8e2318f86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af35fd9832bdafb89dcbcaac307175373" id="r_af35fd9832bdafb89dcbcaac307175373"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#af35fd9832bdafb89dcbcaac307175373">scan::makeScanRoutine</a> (<a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> dataType, <a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType, bool reverseEndianness) -&gt; <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">ScanRoutine</a></td></tr>
+<tr class="memdesc:af35fd9832bdafb89dcbcaac307175373"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a scan routine for the given data type and match type  <br /></td></tr>
+<tr class="separator:af35fd9832bdafb89dcbcaac307175373"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87e62c3935d332e267e7b6f072ae81f9" id="r_a87e62c3935d332e267e7b6f072ae81f9"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a87e62c3935d332e267e7b6f072ae81f9">scan::isRoutineAvailable</a> (<a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> dataType, <a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a> matchType) -&gt; bool</td></tr>
+<tr class="memdesc:a87e62c3935d332e267e7b6f072ae81f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a scan routine is available for the given configuration  <br /></td></tr>
+<tr class="separator:a87e62c3935d332e267e7b6f072ae81f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a941efa4c3abc5822fe51cabcd719ed4c" id="r_a941efa4c3abc5822fe51cabcd719ed4c"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a941efa4c3abc5822fe51cabcd719ed4c">scan::prepareScanRegions</a> (pid_t pid, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts) -&gt; std::expected&lt; std::vector&lt; <a class="el" href="structcore_1_1Region.html">core::Region</a> &gt;, std::string &gt;</td></tr>
+<tr class="separator:a941efa4c3abc5822fe51cabcd719ed4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31ea4ffeedb7a6e00883aae1deda3a8b" id="r_a31ea4ffeedb7a6e00883aae1deda3a8b"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a31ea4ffeedb7a6e00883aae1deda3a8b">scan::prepareScanRoutine</a> (const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const <a class="el" href="structUserValue.html">UserValue</a> *userValue) -&gt; std::expected&lt; <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">ScanRoutine</a>, std::string &gt;</td></tr>
+<tr class="separator:a31ea4ffeedb7a6e00883aae1deda3a8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac80f5730b731b6ddf50add3992acf200" id="r_ac80f5730b731b6ddf50add3992acf200"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#ac80f5730b731b6ddf50add3992acf200">scan::scanWindowSize</a> (const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const <a class="el" href="structUserValue.html">UserValue</a> *userValue) -&gt; std::size_t</td></tr>
+<tr class="separator:ac80f5730b731b6ddf50add3992acf200"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a522b4708799baf2cfa4609ec02c94081" id="r_a522b4708799baf2cfa4609ec02c94081"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a522b4708799baf2cfa4609ec02c94081">scan::nullRoutine</a> () -&gt; <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">ScanRoutine</a></td></tr>
 <tr class="memdesc:a522b4708799baf2cfa4609ec02c94081"><td class="mdescLeft">&#160;</td><td class="mdescRight">Null scan routine that never matches  <br /></td></tr>
 <tr class="separator:a522b4708799baf2cfa4609ec02c94081"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb77f90f614031fdf8204380561bc44f" id="r_adb77f90f614031fdf8204380561bc44f"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#adb77f90f614031fdf8204380561bc44f">scan::adaptRoutine</a> (<a class="el" href="routine_8cppm.html#aff96e3e9f60125b052dd05157b210931">scanRoutine</a> oldRoutine) -&gt; <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">ScanRoutine</a></td></tr>
-<tr class="memdesc:adb77f90f614031fdf8204380561bc44f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adapter from old scanRoutine to new ScanRoutine  <br /></td></tr>
-<tr class="separator:adb77f90f614031fdf8204380561bc44f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a897f8757ddf1b846932f653c34007339" id="r_a897f8757ddf1b846932f653c34007339"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a897f8757ddf1b846932f653c34007339">scan::makeScanContext</a> (std::span&lt; const std::uint8_t &gt; memory, const <a class="el" href="structValue.html">Value</a> *oldValue, const <a class="el" href="structUserValue.html">UserValue</a> *userValue, <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> requiredFlag, bool reverseEndianness) -&gt; <a class="el" href="structscan_1_1ScanContext.html">ScanContext</a></td></tr>
+<tr class="separator:a897f8757ddf1b846932f653c34007339"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">类型定义说明</h2>
-<a id="abfdb63de5616a8bc626ac8dc585d8a8f" name="abfdb63de5616a8bc626ac8dc585d8a8f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abfdb63de5616a8bc626ac8dc585d8a8f">&#9670;&#160;</a></span>LocalScanResult</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="namespacescan.html#abfdb63de5616a8bc626ac8dc585d8a8f">scan::LocalScanResult</a> = typedef <a class="el" href="structScanResult.html">::ScanResult</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="aacf8ab44fe879bda5070b3b61ec7ceaa" name="aacf8ab44fe879bda5070b3b61ec7ceaa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aacf8ab44fe879bda5070b3b61ec7ceaa">&#9670;&#160;</a></span>ScanRoutine</h2>
 
@@ -183,8 +191,8 @@ $(document).ready(function(){initNavTree('namespacescan.html',''); initResizable
 </div>
 </div>
 <h2 class="groupheader">函数说明</h2>
-<a id="adb77f90f614031fdf8204380561bc44f" name="adb77f90f614031fdf8204380561bc44f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb77f90f614031fdf8204380561bc44f">&#9670;&#160;</a></span>adaptRoutine()</h2>
+<a id="aa9497a8d82a8df19a5bae50748aa3ce6" name="aa9497a8d82a8df19a5bae50748aa3ce6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9497a8d82a8df19a5bae50748aa3ce6">&#9670;&#160;</a></span>appendBytesToSwath()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -193,33 +201,94 @@ $(document).ready(function(){initNavTree('namespacescan.html',''); initResizable
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto scan::adaptRoutine </td>
+          <td class="memname">void scan::appendBytesToSwath </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="routine_8cppm.html#aff96e3e9f60125b052dd05157b210931">scanRoutine</a>&#160;</td>
-          <td class="paramname"><em>oldRoutine</em></td><td>)</td>
-          <td> -&gt; <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">ScanRoutine</a> </td>
+          <td class="paramtype"><a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html">MatchesAndOldValuesSwath</a> &amp;&#160;</td>
+          <td class="paramname"><em>swath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::uint8_t *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>bytesRead</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>baseAddr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Adapter from old scanRoutine to new ScanRoutine </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">oldRoutine</td><td>The old-style routine </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd>A new-style ScanRoutine wrapper </dd></dl>
+</div>
+</div>
+<a id="a2a462d1e0b69da478bf33d96816d84e6" name="a2a462d1e0b69da478bf33d96816d84e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a462d1e0b69da478bf33d96816d84e6">&#9670;&#160;</a></span>fetchOldBytes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto scan::fetchOldBytes </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;&#160;</td>
+          <td class="paramname"><em>previous</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>length</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; std::uint8_t &gt; &amp;&#160;</td>
+          <td class="paramname"><em>out</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; bool </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
-<a id="a2576708b3a202f43991fb6c8e2318f86" name="a2576708b3a202f43991fb6c8e2318f86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2576708b3a202f43991fb6c8e2318f86">&#9670;&#160;</a></span>isRoutineAvailable()</h2>
+<a id="a87e62c3935d332e267e7b6f072ae81f9" name="a87e62c3935d332e267e7b6f072ae81f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87e62c3935d332e267e7b6f072ae81f9">&#9670;&#160;</a></span>isRoutineAvailable()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -230,20 +299,14 @@ $(document).ready(function(){initNavTree('namespacescan.html',''); initResizable
         <tr>
           <td class="memname">auto scan::isRoutineAvailable </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="scan_2types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a>&#160;</td>
           <td class="paramname"><em>dataType</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="scan_2types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a>&#160;</td>
-          <td class="paramname"><em>matchType</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a>&#160;</td>
-          <td class="paramname"><em>requiredFlag</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a>&#160;</td>
+          <td class="paramname"><em>matchType</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -262,8 +325,104 @@ $(document).ready(function(){initNavTree('namespacescan.html',''); initResizable
 
 </div>
 </div>
-<a id="a160a67d805c815eebed21cd498ae8d3a" name="a160a67d805c815eebed21cd498ae8d3a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a160a67d805c815eebed21cd498ae8d3a">&#9670;&#160;</a></span>makeScanRoutine()</h2>
+<a id="a82425acd6362c9795431fbe0edc6ea3f" name="a82425acd6362c9795431fbe0edc6ea3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82425acd6362c9795431fbe0edc6ea3f">&#9670;&#160;</a></span>makeOldValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto scan::makeOldValue </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> *&#160;</td>
+          <td class="paramname"><em>previousSnapshot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::optional&lt;<a class="el" href="structValue.html">Value</a>&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a897f8757ddf1b846932f653c34007339" name="a897f8757ddf1b846932f653c34007339"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a897f8757ddf1b846932f653c34007339">&#9670;&#160;</a></span>makeScanContext()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto scan::makeScanContext </td>
+          <td>(</td>
+          <td class="paramtype">std::span&lt; const std::uint8_t &gt;&#160;</td>
+          <td class="paramname"><em>memory</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structValue.html">Value</a> *&#160;</td>
+          <td class="paramname"><em>oldValue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> *&#160;</td>
+          <td class="paramname"><em>userValue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a>&#160;</td>
+          <td class="paramname"><em>requiredFlag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>reverseEndianness</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; <a class="el" href="structscan_1_1ScanContext.html">ScanContext</a> </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af35fd9832bdafb89dcbcaac307175373" name="af35fd9832bdafb89dcbcaac307175373"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af35fd9832bdafb89dcbcaac307175373">&#9670;&#160;</a></span>makeScanRoutine()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -274,20 +433,14 @@ $(document).ready(function(){initNavTree('namespacescan.html',''); initResizable
         <tr>
           <td class="memname">auto scan::makeScanRoutine </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="scan_2types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a>&#160;</td>
           <td class="paramname"><em>dataType</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="scan_2types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2">ScanMatchType</a>&#160;</td>
           <td class="paramname"><em>matchType</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a>&#160;</td>
-          <td class="paramname"><em>requiredFlag</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -349,6 +502,242 @@ $(document).ready(function(){initNavTree('namespacescan.html',''); initResizable
 
 </div>
 </div>
+<a id="a941efa4c3abc5822fe51cabcd719ed4c" name="a941efa4c3abc5822fe51cabcd719ed4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a941efa4c3abc5822fe51cabcd719ed4c">&#9670;&#160;</a></span>prepareScanRegions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto scan::prepareScanRegions </td>
+          <td>(</td>
+          <td class="paramtype">pid_t&#160;</td>
+          <td class="paramname"><em>pid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;&#160;</td>
+          <td class="paramname"><em>opts</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::expected&lt;std::vector&lt;<a class="el" href="structcore_1_1Region.html">core::Region</a>&gt;, std::string&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1b0172d18906b731d0177402040dfae3" name="a1b0172d18906b731d0177402040dfae3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b0172d18906b731d0177402040dfae3">&#9670;&#160;</a></span>prepareScanRegionsForEngine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto scan::prepareScanRegionsForEngine </td>
+          <td>(</td>
+          <td class="paramtype">pid_t&#160;</td>
+          <td class="paramname"><em>pid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;&#160;</td>
+          <td class="paramname"><em>opts</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::expected&lt;std::vector&lt;<a class="el" href="structcore_1_1Region.html">core::Region</a>&gt;, std::string&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a31ea4ffeedb7a6e00883aae1deda3a8b" name="a31ea4ffeedb7a6e00883aae1deda3a8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31ea4ffeedb7a6e00883aae1deda3a8b">&#9670;&#160;</a></span>prepareScanRoutine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto scan::prepareScanRoutine </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;&#160;</td>
+          <td class="paramname"><em>opts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> *&#160;</td>
+          <td class="paramname"><em>userValue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::expected&lt;<a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">ScanRoutine</a>, std::string&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a46398d196af3b90850800bf88405fe1f" name="a46398d196af3b90850800bf88405fe1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46398d196af3b90850800bf88405fe1f">&#9670;&#160;</a></span>prepareScanRoutineForEngine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto scan::prepareScanRoutineForEngine </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;&#160;</td>
+          <td class="paramname"><em>opts</em></td><td>)</td>
+          <td> -&gt; std::expected&lt;<a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">ScanRoutine</a>, std::string&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a905a9c1e53449bb511335da03e835452" name="a905a9c1e53449bb511335da03e835452"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a905a9c1e53449bb511335da03e835452">&#9670;&#160;</a></span>runScan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto scan::runScan </td>
+          <td>(</td>
+          <td class="paramtype">pid_t&#160;</td>
+          <td class="paramname"><em>pid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;&#160;</td>
+          <td class="paramname"><em>opts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> *&#160;</td>
+          <td class="paramname"><em>userValue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;&#160;</td>
+          <td class="paramname"><em>out</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::expected&lt;<a class="el" href="structScanStats.html">ScanStats</a>, std::string&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a81178f1476398edf7150350972640fdd" name="a81178f1476398edf7150350972640fdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81178f1476398edf7150350972640fdd">&#9670;&#160;</a></span>runScanInternal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto scan::runScanInternal </td>
+          <td>(</td>
+          <td class="paramtype">pid_t&#160;</td>
+          <td class="paramname"><em>pid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;&#160;</td>
+          <td class="paramname"><em>opts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> *&#160;</td>
+          <td class="paramname"><em>userValue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> *&#160;</td>
+          <td class="paramname"><em>previousSnapshot</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::expected&lt;<a class="el" href="structScanStats.html">ScanStats</a>, std::string&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="af9d5470b0b4ca2af4f4bf0cd42a8398e" name="af9d5470b0b4ca2af4f4bf0cd42a8398e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af9d5470b0b4ca2af4f4bf0cd42a8398e">&#9670;&#160;</a></span>runScanParallel()</h2>
 
@@ -373,7 +762,7 @@ $(document).ready(function(){initNavTree('namespacescan.html',''); initResizable
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const UserValue *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> *&#160;</td>
           <td class="paramname"><em>userValue</em>, </td>
         </tr>
         <tr>
@@ -397,6 +786,294 @@ $(document).ready(function(){initNavTree('namespacescan.html',''); initResizable
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abdd23fd3a068993e16a8c297e9a9f8a8" name="abdd23fd3a068993e16a8c297e9a9f8a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdd23fd3a068993e16a8c297e9a9f8a8">&#9670;&#160;</a></span>runScanWithPrevious()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto scan::runScanWithPrevious </td>
+          <td>(</td>
+          <td class="paramtype">pid_t&#160;</td>
+          <td class="paramname"><em>pid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;&#160;</td>
+          <td class="paramname"><em>opts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> *&#160;</td>
+          <td class="paramname"><em>userValue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;&#160;</td>
+          <td class="paramname"><em>previousSnapshot</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::expected&lt;<a class="el" href="structScanStats.html">ScanStats</a>, std::string&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a10d5a34075cded19a21a5de4bfa5c1f2" name="a10d5a34075cded19a21a5de4bfa5c1f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10d5a34075cded19a21a5de4bfa5c1f2">&#9670;&#160;</a></span>scanBlock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void scan::scanBlock </td>
+          <td>(</td>
+          <td class="paramtype">std::span&lt; const std::uint8_t &gt;&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>baseIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>step</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">ScanRoutine</a> &amp;&#160;</td>
+          <td class="paramname"><em>routine</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> *&#160;</td>
+          <td class="paramname"><em>userValue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html">MatchesAndOldValuesSwath</a> &amp;&#160;</td>
+          <td class="paramname"><em>swath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structScanStats.html">ScanStats</a> &amp;&#160;</td>
+          <td class="paramname"><em>stats</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>regionBlockBase</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> *&#160;</td>
+          <td class="paramname"><em>previousSnapshot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>oldSliceLen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>reverseEndianness</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aad71998fac2a2f6aff77b87893394112" name="aad71998fac2a2f6aff77b87893394112"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad71998fac2a2f6aff77b87893394112">&#9670;&#160;</a></span>scanRegion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto scan::scanRegion </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structcore_1_1Region.html">Region</a> &amp;&#160;</td>
+          <td class="paramname"><em>region</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classcore_1_1ProcMemIO.html">ProcMemIO</a> &amp;&#160;</td>
+          <td class="paramname"><em>reader</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;&#160;</td>
+          <td class="paramname"><em>opts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">ScanRoutine</a> &amp;&#160;</td>
+          <td class="paramname"><em>routine</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> *&#160;</td>
+          <td class="paramname"><em>userValue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structScanStats.html">ScanStats</a> &amp;&#160;</td>
+          <td class="paramname"><em>stats</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> *&#160;</td>
+          <td class="paramname"><em>previousSnapshot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>oldSliceLen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::optional&lt;<a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html">MatchesAndOldValuesSwath</a>&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac80f5730b731b6ddf50add3992acf200" name="ac80f5730b731b6ddf50add3992acf200"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac80f5730b731b6ddf50add3992acf200">&#9670;&#160;</a></span>scanWindowSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto scan::scanWindowSize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;&#160;</td>
+          <td class="paramname"><em>opts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> *&#160;</td>
+          <td class="paramname"><em>userValue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::size_t </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a324b43726f4b06732a43b2721370aec9" name="a324b43726f4b06732a43b2721370aec9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a324b43726f4b06732a43b2721370aec9">&#9670;&#160;</a></span>scanWindowSizeForEngine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto scan::scanWindowSizeForEngine </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;&#160;</td>
+          <td class="paramname"><em>opts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> *&#160;</td>
+          <td class="paramname"><em>userValue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt; std::size_t </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

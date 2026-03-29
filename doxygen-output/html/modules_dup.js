@@ -31,7 +31,6 @@ var modules_dup =
     [ "core.scanner", "module_core_8scanner.html", "module_core_8scanner" ],
     [ "utils.version", "module_utils_8version.html", "module_utils_8version" ],
     [ "scan.bytes", "module_scan_8bytes.html", "module_scan_8bytes" ],
-    [ "scan.co_engine", "module_scan_8co__engine.html", "module_scan_8co__engine" ],
     [ "scan.engine", "module_scan_8engine.html", "module_scan_8engine" ],
     [ "scan.factory", "module_scan_8factory.html", "module_scan_8factory" ],
     [ "scan.filter", "module_scan_8filter.html", "module_scan_8filter" ],
@@ -57,7 +56,5 @@ var modules_dup =
     [ "value.core", "module_value_8core.html", "module_value_8core" ],
     [ "value.flags", "module_value_8flags.html", "module_value_8flags" ],
     [ "value.parser", "module_value_8parser.html", "module_value_8parser" ],
-    [ "value.types", "module_value_8types.html", "module_value_8types" ],
-    [ "value", "module_value.html", "module_value" ],
-    [ "value.view", "module_value_8view.html", "module_value_8view" ]
+    [ "value", "module_value.html", null ]
 ];

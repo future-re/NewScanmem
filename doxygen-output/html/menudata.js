@@ -84,7 +84,6 @@ var menudata={children:[
 {text:"e",url:"modulemembers_vars.html#index_e"},
 {text:"f",url:"modulemembers_vars.html#index_f"},
 {text:"g",url:"modulemembers_vars.html#index_g"},
-{text:"h",url:"modulemembers_vars.html#index_h"},
 {text:"i",url:"modulemembers_vars.html#index_i"},
 {text:"l",url:"modulemembers_vars.html#index_l"},
 {text:"m",url:"modulemembers_vars.html#index_m"},
@@ -120,7 +119,6 @@ var menudata={children:[
 {text:"r",url:"namespacemembers.html#index_r"},
 {text:"s",url:"namespacemembers.html#index_s"},
 {text:"t",url:"namespacemembers.html#index_t"},
-{text:"v",url:"namespacemembers.html#index_v"},
 {text:"w",url:"namespacemembers.html#index_w"},
 {text:"y",url:"namespacemembers.html#index_y"}]},
 {text:"函数",url:"namespacemembers_func.html",children:[
@@ -200,7 +198,6 @@ var menudata={children:[
 {text:"d",url:"functions_vars.html#index_d"},
 {text:"e",url:"functions_vars.html#index_e"},
 {text:"f",url:"functions_vars.html#index_f"},
-{text:"h",url:"functions_vars.html#index_h"},
 {text:"i",url:"functions_vars.html#index_i"},
 {text:"l",url:"functions_vars.html#index_l"},
 {text:"m",url:"functions_vars.html#index_m"},
@@ -243,7 +240,8 @@ var menudata={children:[
 {text:"o",url:"globals_func.html#index_o"},
 {text:"p",url:"globals_func.html#index_p"},
 {text:"r",url:"globals_func.html#index_r"},
-{text:"s",url:"globals_func.html#index_s"}]},
+{text:"s",url:"globals_func.html#index_s"},
+{text:"u",url:"globals_func.html#index_u"}]},
 {text:"变量",url:"globals_vars.html"},
 {text:"类型定义",url:"globals_type.html"},
 {text:"枚举",url:"globals_enum.html"}]}]}]}

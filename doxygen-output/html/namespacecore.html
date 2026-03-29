@@ -119,6 +119,8 @@ $(document).ready(function(){initNavTree('namespacecore.html',''); initResizable
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MatchFormatter.html">MatchFormatter</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Formats and displays match entries  <a href="classcore_1_1MatchFormatter.html#details">更多...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1MatchSource.html">MatchSource</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MemoryWriter.html">MemoryWriter</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">High-level interface for writing to process memory  <a href="classcore_1_1MemoryWriter.html#details">更多...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,11 +152,7 @@ $(document).ready(function(){initNavTree('namespacecore.html',''); initResizable
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Scanner.html">Scanner</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">High-level scanner with explicit operations  <a href="classcore_1_1Scanner.html#details">更多...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1ScanRequest.html">ScanRequest</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Request for a scan operation  <a href="structcore_1_1ScanRequest.html#details">更多...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1ScanResponse.html">ScanResponse</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Response from a scan operation  <a href="structcore_1_1ScanResponse.html#details">更多...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1ScannerResult.html">ScannerResult</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1VecWriteResult.html">VecWriteResult</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Result of vector write operations  <a href="structcore_1_1VecWriteResult.html#details">更多...</a><br /></td></tr>
@@ -194,18 +192,12 @@ $(document).ready(function(){initNavTree('namespacecore.html',''); initResizable
  }</td></tr>
 <tr class="memdesc:a72a2e8d29b79f853c273543adab4dfe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filtering mode selection  <a href="namespacecore.html#a72a2e8d29b79f853c273543adab4dfe4">更多...</a><br /></td></tr>
 <tr class="separator:a72a2e8d29b79f853c273543adab4dfe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4767c3e4cd8298a18da706496f62ab9" id="r_ae4767c3e4cd8298a18da706496f62ab9"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecore.html#ae4767c3e4cd8298a18da706496f62ab9">core::ScanMode</a> { <a class="el" href="namespacecore.html#ae4767c3e4cd8298a18da706496f62ab9ac6347916d6ca9727b838e63e5a250035">FULL_SCAN</a>
-, <a class="el" href="namespacecore.html#ae4767c3e4cd8298a18da706496f62ab9a9c098c060958933384cc3fde595a1c07">INCREMENTAL</a>
-, <a class="el" href="namespacecore.html#ae4767c3e4cd8298a18da706496f62ab9a45117e19c4f64bb8745ca22683e483fb">RESCAN</a>
- }</td></tr>
-<tr class="memdesc:ae4767c3e4cd8298a18da706496f62ab9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit scan operation modes  <a href="namespacecore.html#ae4767c3e4cd8298a18da706496f62ab9">更多...</a><br /></td></tr>
-<tr class="separator:ae4767c3e4cd8298a18da706496f62ab9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 函数</h2></td></tr>
 <tr class="memitem:a146e68cbe4ef66265e9f370b733f982f" id="r_a146e68cbe4ef66265e9f370b733f982f"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecore.html#a146e68cbe4ef66265e9f370b733f982f">core::readProcessMaps</a> (pid_t pid, <a class="el" href="namespacecore.html#a4f0a0af961035f2bb7659bd168afc3ee">RegionScanLevel</a> level=<a class="el" href="namespacecore.html#a4f0a0af961035f2bb7659bd168afc3eea5fb1f955b45e38e31789286a1790398d">RegionScanLevel::ALL</a>) -&gt; std::expected&lt; std::vector&lt; <a class="el" href="structcore_1_1Region.html">Region</a> &gt;, <a class="el" href="structcore_1_1MapsReader_1_1Error.html">MapsReader::Error</a> &gt;</td></tr>
 <tr class="separator:a146e68cbe4ef66265e9f370b733f982f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fc2c70ddd2ac4ab5bcbd567bae58e1b" id="r_a8fc2c70ddd2ac4ab5bcbd567bae58e1b"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecore.html#a8fc2c70ddd2ac4ab5bcbd567bae58e1b">core::formatValueByType</a> (const std::vector&lt; std::uint8_t &gt; &amp;valueBytes, std::optional&lt; <a class="el" href="scan_2types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> &gt; dataType, bool bigEndian) -&gt; std::string</td></tr>
+<tr class="memitem:a8fc2c70ddd2ac4ab5bcbd567bae58e1b" id="r_a8fc2c70ddd2ac4ab5bcbd567bae58e1b"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecore.html#a8fc2c70ddd2ac4ab5bcbd567bae58e1b">core::formatValueByType</a> (const std::vector&lt; std::uint8_t &gt; &amp;valueBytes, std::optional&lt; <a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> &gt; dataType, bool bigEndian) -&gt; std::string</td></tr>
 <tr class="memdesc:a8fc2c70ddd2ac4ab5bcbd567bae58e1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format value according to data type  <br /></td></tr>
 <tr class="separator:a8fc2c70ddd2ac4ab5bcbd567bae58e1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b9299e713784696c1df515d1f4c35c0" id="r_a9b9299e713784696c1df515d1f4c35c0"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecore.html#a9b9299e713784696c1df515d1f4c35c0">core::writeBytes</a> (pid_t pid, void *addr, std::span&lt; const std::uint8_t &gt; buf) -&gt; std::expected&lt; std::size_t, std::string &gt;</td></tr>
@@ -344,38 +336,6 @@ $(document).ready(function(){initNavTree('namespacecore.html',''); initResizable
 
 </div>
 </div>
-<a id="ae4767c3e4cd8298a18da706496f62ab9" name="ae4767c3e4cd8298a18da706496f62ab9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae4767c3e4cd8298a18da706496f62ab9">&#9670;&#160;</a></span>ScanMode</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum class <a class="el" href="namespacecore.html#ae4767c3e4cd8298a18da706496f62ab9">core::ScanMode</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span><span class="mlabel">strong</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Explicit scan operation modes </p>
-<table class="fieldtable">
-<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="ae4767c3e4cd8298a18da706496f62ab9ac6347916d6ca9727b838e63e5a250035" name="ae4767c3e4cd8298a18da706496f62ab9ac6347916d6ca9727b838e63e5a250035"></a>FULL_SCAN&#160;</td><td class="fielddoc"><p>Full memory scan, clears existing matches </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ae4767c3e4cd8298a18da706496f62ab9a9c098c060958933384cc3fde595a1c07" name="ae4767c3e4cd8298a18da706496f62ab9a9c098c060958933384cc3fde595a1c07"></a>INCREMENTAL&#160;</td><td class="fielddoc"><p>Filter on existing matches only </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ae4767c3e4cd8298a18da706496f62ab9a45117e19c4f64bb8745ca22683e483fb" name="ae4767c3e4cd8298a18da706496f62ab9a45117e19c4f64bb8745ca22683e483fb"></a>RESCAN&#160;</td><td class="fielddoc"><p>Clear matches then full scan </p>
-</td></tr>
-</table>
-
-</div>
-</div>
 <h2 class="groupheader">函数说明</h2>
 <a id="a8fc2c70ddd2ac4ab5bcbd567bae58e1b" name="a8fc2c70ddd2ac4ab5bcbd567bae58e1b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8fc2c70ddd2ac4ab5bcbd567bae58e1b">&#9670;&#160;</a></span>formatValueByType()</h2>
@@ -395,7 +355,7 @@ $(document).ready(function(){initNavTree('namespacecore.html',''); initResizable
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::optional&lt; <a class="el" href="scan_2types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> &gt;&#160;</td>
+          <td class="paramtype">std::optional&lt; <a class="el" href="types_8cppm.html#a67986707d17cc91d949eb328ec7fb6f0">ScanDataType</a> &gt;&#160;</td>
           <td class="paramname"><em>dataType</em>, </td>
         </tr>
         <tr>

@@ -1,10 +1,8 @@
 var module_scan_8engine =
 [
-    [ "ScanOptions", "structScanOptions.html", "structScanOptions" ],
-    [ "ScanStats", "structScanStats.html", "structScanStats" ],
-    [ "ScanResult", "structScanResult.html", "structScanResult" ],
-    [ "scanRegion", "engine_8cppm.html#ab619c8833c080d3fd99e7d53c705a699", null ],
-    [ "runScanInternal", "engine_8cppm.html#aed4276ac57a143cffb03627a953c5154", null ],
-    [ "runScan", "engine_8cppm.html#a233b8d4dd456fd5bf3e2c9ebbadefcc8", null ],
-    [ "runScanWithPrevious", "engine_8cppm.html#a931fb06ed6e0c1b8c2cbdf9f36dce8b5", null ]
+    [ "scan::scanRegion", "module_scan_8engine.html#aad71998fac2a2f6aff77b87893394112", null ],
+    [ "scan::runScanInternal", "module_scan_8engine.html#a81178f1476398edf7150350972640fdd", null ],
+    [ "scan::runScan", "module_scan_8engine.html#a905a9c1e53449bb511335da03e835452", null ],
+    [ "scan::runScanWithPrevious", "module_scan_8engine.html#abdd23fd3a068993e16a8c297e9a9f8a8", null ],
+    [ "scan::runScanParallel", "module_scan_8engine.html#af9d5470b0b4ca2af4f4bf0cd42a8398e", null ]
 ];

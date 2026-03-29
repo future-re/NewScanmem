@@ -3,8 +3,8 @@ var annotated_dup =
     [ "app", "namespaceapp.html", [
       [ "CurrentMatchListRequest", "structapp_1_1CurrentMatchListRequest.html", "structapp_1_1CurrentMatchListRequest" ],
       [ "ResultService", "classapp_1_1ResultService.html", null ],
+      [ "ScanExecutionRequest", "structapp_1_1ScanExecutionRequest.html", "structapp_1_1ScanExecutionRequest" ],
       [ "ScanExecutionResult", "structapp_1_1ScanExecutionResult.html", "structapp_1_1ScanExecutionResult" ],
-      [ "ScanRequest", "structapp_1_1ScanRequest.html", "structapp_1_1ScanRequest" ],
       [ "ScanService", "classapp_1_1ScanService.html", null ]
     ] ],
     [ "cli", "namespacecli.html", [
@@ -36,6 +36,7 @@ var annotated_dup =
       [ "MatchCollector", "classcore_1_1MatchCollector.html", "classcore_1_1MatchCollector" ],
       [ "MatchEntry", "structcore_1_1MatchEntry.html", "structcore_1_1MatchEntry" ],
       [ "MatchFormatter", "classcore_1_1MatchFormatter.html", null ],
+      [ "MatchSource", "structcore_1_1MatchSource.html", "structcore_1_1MatchSource" ],
       [ "MemoryWriter", "classcore_1_1MemoryWriter.html", "classcore_1_1MemoryWriter" ],
       [ "ProcessChecker", "classcore_1_1ProcessChecker.html", null ],
       [ "ProcMemIO", "classcore_1_1ProcMemIO.html", "classcore_1_1ProcMemIO" ],
@@ -47,8 +48,7 @@ var annotated_dup =
       [ "RegionLookupEntry", "structcore_1_1RegionLookupEntry.html", "structcore_1_1RegionLookupEntry" ],
       [ "ScanHistory", "classcore_1_1ScanHistory.html", "classcore_1_1ScanHistory" ],
       [ "Scanner", "classcore_1_1Scanner.html", "classcore_1_1Scanner" ],
-      [ "ScanRequest", "structcore_1_1ScanRequest.html", "structcore_1_1ScanRequest" ],
-      [ "ScanResponse", "structcore_1_1ScanResponse.html", "structcore_1_1ScanResponse" ],
+      [ "ScannerResult", "structcore_1_1ScannerResult.html", "structcore_1_1ScannerResult" ],
       [ "VecWriteResult", "structcore_1_1VecWriteResult.html", "structcore_1_1VecWriteResult" ],
       [ "WriteResult", "structcore_1_1WriteResult.html", "structcore_1_1WriteResult" ]
     ] ],
@@ -57,12 +57,11 @@ var annotated_dup =
       [ "MatchesAndOldValuesSwath", "classscan_1_1MatchesAndOldValuesSwath.html", "classscan_1_1MatchesAndOldValuesSwath" ],
       [ "OldValueAndMatchInfo", "structscan_1_1OldValueAndMatchInfo.html", "structscan_1_1OldValueAndMatchInfo" ],
       [ "ScanContext", "structscan_1_1ScanContext.html", "structscan_1_1ScanContext" ],
-      [ "ScanJob", "classscan_1_1ScanJob.html", "classscan_1_1ScanJob" ],
       [ "ScanResult", "structscan_1_1ScanResult.html", "structscan_1_1ScanResult" ]
     ] ],
     [ "std", "namespacestd.html", [
-      [ "formatter< Value >", "structstd_1_1formatter_3_01Value_01_4.html", null ],
-      [ "formatter< value::Value >", "structstd_1_1formatter_3_01value_1_1Value_01_4.html", null ]
+      [ "formatter< UserValue >", "structstd_1_1formatter_3_01UserValue_01_4.html", null ],
+      [ "formatter< Value >", "structstd_1_1formatter_3_01Value_01_4.html", null ]
     ] ],
     [ "ui", "namespaceui.html", [
       [ "ConsoleUI", "classui_1_1ConsoleUI.html", "classui_1_1ConsoleUI" ],
@@ -77,17 +76,12 @@ var annotated_dup =
       [ "Logger", "classutils_1_1Logger.html", "classutils_1_1Logger" ],
       [ "StringUtils", "classutils_1_1StringUtils.html", null ]
     ] ],
-    [ "value", "namespacevalue.html", [
-      [ "ByteArray", "structvalue_1_1ByteArray.html", "structvalue_1_1ByteArray" ],
-      [ "ParserView", "structvalue_1_1ParserView.html", null ],
-      [ "ValueRange", "structvalue_1_1ValueRange.html", "structvalue_1_1ValueRange" ],
-      [ "ValueView", "classvalue_1_1ValueView.html", "classvalue_1_1ValueView" ]
-    ] ],
     [ "ByteMatch", "structByteMatch.html", "structByteMatch" ],
     [ "ScanOptions", "structScanOptions.html", "structScanOptions" ],
-    [ "ScanResult", "structScanResult.html", "structScanResult" ],
+    [ "ScanRecord", "structScanRecord.html", "structScanRecord" ],
     [ "ScanStats", "structScanStats.html", "structScanStats" ],
     [ "Set", "structSet.html", "structSet" ],
     [ "UserInput", "structUserInput.html", "structUserInput" ],
+    [ "UserValue", "structUserValue.html", "structUserValue" ],
     [ "Value", "structValue.html", "structValue" ]
 ];

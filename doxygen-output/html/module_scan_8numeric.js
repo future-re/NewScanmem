@@ -1,8 +1,8 @@
 var module_scan_8numeric =
 [
-    [ "numericMatchCore", "numeric_8cppm.html#abf10ceef7e7529ecdec4723721593e4b", null ],
-    [ "makeNumericRoutine", "numeric_8cppm.html#acc180e0a2cbe10299dee53e5047ef861", null ],
-    [ "makeAnyIntegerRoutine", "numeric_8cppm.html#a8bec0eb416a1883535a4bc3f31f2515c", null ],
-    [ "makeAnyFloatRoutine", "numeric_8cppm.html#a4e2a50d3788e09140b6de70f8fd84f99", null ],
-    [ "makeAnyNumberRoutine", "numeric_8cppm.html#a7dc8ecf1a451459342047f469c969d12", null ]
+    [ "numericMatchCore", "numeric_8cppm.html#a918fe15a56f6cae443cbf3cb58364c84", null ],
+    [ "makeNumericScanRoutine", "numeric_8cppm.html#a2d70395fd5fbc4a188ef45cfe3a8eea2", null ],
+    [ "makeAnyIntegerScanRoutine", "numeric_8cppm.html#a79e24b0d21deed8453ea39117d7d56c0", null ],
+    [ "makeAnyFloatScanRoutine", "numeric_8cppm.html#adf967caff7429ed6e9a4643e585683c0", null ],
+    [ "makeAnyNumberScanRoutine", "numeric_8cppm.html#acf4f9494088f0aabb7a70fe21b204c95", null ]
 ];
