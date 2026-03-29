@@ -1,8 +1,8 @@
 var namespacevalue =
 [
     [ "detail", "namespacevalue_1_1detail.html", [
-      [ "getDataTypeMap", "namespacevalue_1_1detail.html#abf90ee69b7759f55b958230dab7f1efa", null ],
-      [ "getMatchTypeMap", "namespacevalue_1_1detail.html#a5a11318bd71257f1dd0c152c1a050059", null ],
+      [ "getDataTypeMap", "namespacevalue_1_1detail.html#a94e99ce24e00d887d5da7813c0cf9967", null ],
+      [ "getMatchTypeMap", "namespacevalue_1_1detail.html#afe09619ef20127f911e8545e0a7a1de4", null ],
       [ "parseAnyNumberValue", "namespacevalue_1_1detail.html#a28ae15c8c39828415fcb2ad464af7e5f", null ],
       [ "parseByteArrayValue", "namespacevalue_1_1detail.html#a9044054b3b00dda28f4d806220809d3c", null ],
       [ "parseStringValue", "namespacevalue_1_1detail.html#a798b216b4b582955fc13debf9ea88e76", null ]

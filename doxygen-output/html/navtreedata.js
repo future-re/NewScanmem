@@ -77,12 +77,12 @@ var NAVTREEINDEX =
 "classcore_1_1ProcMemIO.html#acdcd9ca1c0889bf54df7d5fba0de17de",
 "classui_1_1ConsoleUI.html#a89a9daa8575af0bd95626d92a8c9eac3",
 "core_8cppm.html",
-"module_cli_8commands_8count.html#abc300722003f591c023fdac83b8f43fa",
-"module_scan_8match__storage.html#aa478a24ba8b133896ed816d25f3e0ba0",
-"namespacecore.html#a7c631f2329b573f9f3e97ac102e1bfb3a43491564ebcfd38568918efbd6e840fd",
-"show__message_8cppm.html#a6829b4fa3cb9211b4ac106c73ba19be6",
-"structcli_1_1SessionState.html#a506fc2d66259b36a862a481bdb15e975",
-"structscan_1_1ScanContext.html#a15d0f86d897986009c51c6503c93fecf"
+"module_cli_8commands_8help.html#a034ea8ba51735ad36f3f5fc99de2a0e1",
+"module_scan_8match__storage.html#adb6466011e3792193e69389cf1a6e8ec",
+"namespacecore.html#a7c631f2329b573f9f3e97ac102e1bfb3abb4784231ff45108ee20bad16e4a2e8c",
+"show__message_8cppm.html#ad24c90bdb275cf70e7fc993888dc744b",
+"structcli_1_1SessionState.html#a5973fc6feb4cab4d1ad424cae7172e9a",
+"structscan_1_1ScanContext.html#a7b1ca583e2be7a86d52bff85ca36676d"
 ];
 
 var SYNCONMSG = '点击 关闭 面板同步';

@@ -14,15 +14,12 @@ var namespacescan =
     [ "makeScanRoutine", "namespacescan.html#af35fd9832bdafb89dcbcaac307175373", null ],
     [ "nullRoutine", "namespacescan.html#a522b4708799baf2cfa4609ec02c94081", null ],
     [ "prepareScanRegions", "namespacescan.html#a941efa4c3abc5822fe51cabcd719ed4c", null ],
-    [ "prepareScanRegionsForEngine", "namespacescan.html#a1b0172d18906b731d0177402040dfae3", null ],
     [ "prepareScanRoutine", "namespacescan.html#a31ea4ffeedb7a6e00883aae1deda3a8b", null ],
-    [ "prepareScanRoutineForEngine", "namespacescan.html#a46398d196af3b90850800bf88405fe1f", null ],
     [ "runScan", "namespacescan.html#a905a9c1e53449bb511335da03e835452", null ],
     [ "runScanInternal", "namespacescan.html#a81178f1476398edf7150350972640fdd", null ],
     [ "runScanParallel", "namespacescan.html#af9d5470b0b4ca2af4f4bf0cd42a8398e", null ],
     [ "runScanWithPrevious", "namespacescan.html#abdd23fd3a068993e16a8c297e9a9f8a8", null ],
     [ "scanBlock", "namespacescan.html#a10d5a34075cded19a21a5de4bfa5c1f2", null ],
     [ "scanRegion", "namespacescan.html#aad71998fac2a2f6aff77b87893394112", null ],
-    [ "scanWindowSize", "namespacescan.html#ac80f5730b731b6ddf50add3992acf200", null ],
-    [ "scanWindowSizeForEngine", "namespacescan.html#a324b43726f4b06732a43b2721370aec9", null ]
+    [ "scanWindowSize", "namespacescan.html#ac80f5730b731b6ddf50add3992acf200", null ]
 ];

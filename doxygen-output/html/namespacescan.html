@@ -125,12 +125,6 @@ $(document).ready(function(){initNavTree('namespacescan.html',''); initResizable
 函数</h2></td></tr>
 <tr class="memitem:aa9497a8d82a8df19a5bae50748aa3ce6" id="r_aa9497a8d82a8df19a5bae50748aa3ce6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#aa9497a8d82a8df19a5bae50748aa3ce6">appendBytesToSwath</a> (<a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html">MatchesAndOldValuesSwath</a> &amp;swath, const std::uint8_t *buffer, std::size_t bytesRead, void *baseAddr)</td></tr>
 <tr class="separator:aa9497a8d82a8df19a5bae50748aa3ce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b0172d18906b731d0177402040dfae3" id="r_a1b0172d18906b731d0177402040dfae3"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a1b0172d18906b731d0177402040dfae3">prepareScanRegionsForEngine</a> (pid_t pid, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts) -&gt; std::expected&lt; std::vector&lt; <a class="el" href="structcore_1_1Region.html">core::Region</a> &gt;, std::string &gt;</td></tr>
-<tr class="separator:a1b0172d18906b731d0177402040dfae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46398d196af3b90850800bf88405fe1f" id="r_a46398d196af3b90850800bf88405fe1f"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a46398d196af3b90850800bf88405fe1f">prepareScanRoutineForEngine</a> (const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts) -&gt; std::expected&lt; <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">ScanRoutine</a>, std::string &gt;</td></tr>
-<tr class="separator:a46398d196af3b90850800bf88405fe1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a324b43726f4b06732a43b2721370aec9" id="r_a324b43726f4b06732a43b2721370aec9"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a324b43726f4b06732a43b2721370aec9">scanWindowSizeForEngine</a> (const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const <a class="el" href="structUserValue.html">UserValue</a> *userValue) -&gt; std::size_t</td></tr>
-<tr class="separator:a324b43726f4b06732a43b2721370aec9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a462d1e0b69da478bf33d96816d84e6" id="r_a2a462d1e0b69da478bf33d96816d84e6"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a2a462d1e0b69da478bf33d96816d84e6">fetchOldBytes</a> (const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;previous, void *address, std::size_t length, std::vector&lt; std::uint8_t &gt; &amp;out) -&gt; bool</td></tr>
 <tr class="separator:a2a462d1e0b69da478bf33d96816d84e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82425acd6362c9795431fbe0edc6ea3f" id="r_a82425acd6362c9795431fbe0edc6ea3f"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a82425acd6362c9795431fbe0edc6ea3f">makeOldValue</a> (const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> *previousSnapshot, void *address, std::size_t length) -&gt; std::optional&lt; <a class="el" href="structValue.html">Value</a> &gt;</td></tr>
@@ -538,42 +532,6 @@ $(document).ready(function(){initNavTree('namespacescan.html',''); initResizable
 
 </div>
 </div>
-<a id="a1b0172d18906b731d0177402040dfae3" name="a1b0172d18906b731d0177402040dfae3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b0172d18906b731d0177402040dfae3">&#9670;&#160;</a></span>prepareScanRegionsForEngine()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto scan::prepareScanRegionsForEngine </td>
-          <td>(</td>
-          <td class="paramtype">pid_t&#160;</td>
-          <td class="paramname"><em>pid</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;&#160;</td>
-          <td class="paramname"><em>opts</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; std::expected&lt;std::vector&lt;<a class="el" href="structcore_1_1Region.html">core::Region</a>&gt;, std::string&gt; </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a31ea4ffeedb7a6e00883aae1deda3a8b" name="a31ea4ffeedb7a6e00883aae1deda3a8b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a31ea4ffeedb7a6e00883aae1deda3a8b">&#9670;&#160;</a></span>prepareScanRoutine()</h2>
 
@@ -604,32 +562,6 @@ $(document).ready(function(){initNavTree('namespacescan.html',''); initResizable
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a46398d196af3b90850800bf88405fe1f" name="a46398d196af3b90850800bf88405fe1f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a46398d196af3b90850800bf88405fe1f">&#9670;&#160;</a></span>prepareScanRoutineForEngine()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto scan::prepareScanRoutineForEngine </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;&#160;</td>
-          <td class="paramname"><em>opts</em></td><td>)</td>
-          <td> -&gt; std::expected&lt;<a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">ScanRoutine</a>, std::string&gt; </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1038,42 +970,6 @@ $(document).ready(function(){initNavTree('namespacescan.html',''); initResizable
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a324b43726f4b06732a43b2721370aec9" name="a324b43726f4b06732a43b2721370aec9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a324b43726f4b06732a43b2721370aec9">&#9670;&#160;</a></span>scanWindowSizeForEngine()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto scan::scanWindowSizeForEngine </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;&#160;</td>
-          <td class="paramname"><em>opts</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> *&#160;</td>
-          <td class="paramname"><em>userValue</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; std::size_t </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
