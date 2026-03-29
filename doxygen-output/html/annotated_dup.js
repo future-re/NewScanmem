@@ -61,7 +61,7 @@ var annotated_dup =
       [ "ScanResult", "structscan_1_1ScanResult.html", "structscan_1_1ScanResult" ]
     ] ],
     [ "std", "namespacestd.html", [
-      [ "formatter< UserValue >", "structstd_1_1formatter_3_01UserValue_01_4.html", null ],
+      [ "formatter< Value >", "structstd_1_1formatter_3_01Value_01_4.html", null ],
       [ "formatter< value::Value >", "structstd_1_1formatter_3_01value_1_1Value_01_4.html", null ]
     ] ],
     [ "ui", "namespaceui.html", [
@@ -78,18 +78,10 @@ var annotated_dup =
       [ "StringUtils", "classutils_1_1StringUtils.html", null ]
     ] ],
     [ "value", "namespacevalue.html", [
-      [ "view_detail", "namespacevalue_1_1view__detail.html", [
-        [ "ValueAccess", "structvalue_1_1view__detail_1_1ValueAccess.html", null ],
-        [ "ValueAccess< UserValue >", "structvalue_1_1view__detail_1_1ValueAccess_3_01UserValue_01_4.html", null ],
-        [ "ValueAccess< Value >", "structvalue_1_1view__detail_1_1ValueAccess_3_01Value_01_4.html", null ]
-      ] ],
       [ "ByteArray", "structvalue_1_1ByteArray.html", "structvalue_1_1ByteArray" ],
       [ "ParserView", "structvalue_1_1ParserView.html", null ],
       [ "ValueRange", "structvalue_1_1ValueRange.html", "structvalue_1_1ValueRange" ],
-      [ "ValueView", "classvalue_1_1ValueView.html", null ],
-      [ "ValueView< UserValue >", "classvalue_1_1ValueView_3_01UserValue_01_4.html", null ],
-      [ "ValueView< Value >", "classvalue_1_1ValueView_3_01Value_01_4.html", null ],
-      [ "ValueViewBase", "classvalue_1_1ValueViewBase.html", "classvalue_1_1ValueViewBase" ]
+      [ "ValueView", "classvalue_1_1ValueView.html", "classvalue_1_1ValueView" ]
     ] ],
     [ "ByteMatch", "structByteMatch.html", "structByteMatch" ],
     [ "ScanOptions", "structScanOptions.html", "structScanOptions" ],
@@ -97,6 +89,5 @@ var annotated_dup =
     [ "ScanStats", "structScanStats.html", "structScanStats" ],
     [ "Set", "structSet.html", "structSet" ],
     [ "UserInput", "structUserInput.html", "structUserInput" ],
-    [ "UserValue", "structUserValue.html", "structUserValue" ],
     [ "Value", "structValue.html", "structValue" ]
 ];

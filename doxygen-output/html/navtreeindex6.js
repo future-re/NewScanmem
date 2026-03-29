@@ -1,9 +1,5 @@
 var NAVTREEINDEX6 =
 {
-"module_core_8memory.html#a42d80a675561be2b06aa0dcae792585e":[1,0,21,3],
-"module_core_8memory.html#a9ebcc6fa02a36252c8e7dcedd3f9a840":[1,0,21,6],
-"module_core_8memory.html#aaf7bb0186935285bf63a4d16840f41d7":[1,0,21,2],
-"module_core_8memory.html#afa7afc84d7b4ecb90ee60bd8f6227555":[1,0,21,5],
 "module_core_8memory__writer.html":[1,0,22],
 "module_core_8proc__mem.html":[1,0,23],
 "module_core_8proc__mem.html#a17e90101be0e08a5783d802470856720":[1,0,23,12],
@@ -249,5 +245,9 @@ var NAVTREEINDEX6 =
 "module_utils_8endianness.html#a715e0f3bd35b3504e091f77a7ae1de2e":[1,0,48,6],
 "module_utils_8endianness.html#a84b9cbc873018d8701ba5930643441bc":[1,0,48,9],
 "module_utils_8endianness.html#a915e03ea533a95d375075d41a74e7aeb":[1,0,48,7],
-"module_utils_8endianness.html#a97022d89a68c435e218e7d7231b23d6f":[1,0,48,4]
+"module_utils_8endianness.html#a97022d89a68c435e218e7d7231b23d6f":[1,0,48,4],
+"module_utils_8endianness.html#a9b386dd2997f6356dc5ad20ce16003cc":[1,0,48,0],
+"module_utils_8endianness.html#a9b386dd2997f6356dc5ad20ce16003cca1314341b466dcb5e2c880b76414c49fe":[1,0,48,0,0],
+"module_utils_8endianness.html#a9b386dd2997f6356dc5ad20ce16003ccaa60c6c694491d75b439073b8cb05b139":[1,0,48,0,1],
+"module_utils_8endianness.html#ab1294d3772177d832662a183da812730":[1,0,48,2]
 };

@@ -147,7 +147,7 @@ engine.cppm 的引用(Include)关系图:</div>
 <area shape="poly" title=" " alt="" coords="2352,22,2305,27,2256,38,2207,55,2163,81,2134,110,2111,146,2095,182,2085,213,2080,211,2090,180,2107,143,2130,107,2160,77,2205,50,2254,33,2305,22,2351,17"/>
 <area shape="rect" href="maps_8cppm.html" title=" " alt="" coords="1768,372,1859,397"/>
 <area shape="poly" title=" " alt="" coords="2354,33,2296,49,2240,75,2217,92,2199,112,2187,136,2183,164,2183,239,2180,260,2174,275,2163,287,2149,297,2077,326,2025,347,1971,363,1873,380,1872,375,1970,358,2023,342,2075,322,2147,292,2159,283,2169,273,2175,258,2177,239,2177,163,2182,134,2194,109,2214,88,2238,70,2294,44,2353,28"/>
-<area shape="rect" href="core_8cppm.html" title=" " alt="" coords="2691,372,2781,397"/>
+<area shape="rect" href="core_8cppm.html" title="Simplified unified Value type with aggregated factory" alt="" coords="2691,372,2781,397"/>
 <area shape="poly" title=" " alt="" coords="2450,29,2505,77,2572,154,2635,234,2723,358,2718,361,2631,237,2568,158,2501,81,2447,33"/>
 <area shape="rect" href="flags_8cppm.html" title=" " alt="" coords="3575,445,3668,471"/>
 <area shape="poly" title=" " alt="" coords="2515,19,2915,34,3462,63,3724,82,3945,105,4031,118,4096,131,4139,146,4150,154,4155,163,4155,240,4151,268,4139,289,4098,326,4046,365,3998,392,3951,410,3905,420,3806,431,3682,447,3681,441,3805,425,3904,415,3950,404,3995,388,4043,361,4094,322,4135,286,4146,267,4149,239,4149,164,4146,157,4136,151,4095,136,4030,123,3944,110,3724,88,3461,68,2915,40,2515,25"/>
@@ -336,15 +336,15 @@ engine.cppm 的引用(Include)关系图:</div>
 <tr class="separator:acd4ab87128e7c0509a3b75a88ddc71da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8feacb556107d4fe4741e471c4868f86" id="r_a8feacb556107d4fe4741e471c4868f86"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="engine_8cppm.html#a8feacb556107d4fe4741e471c4868f86">fetchOldBytes</a> (const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;prev, void *addr, std::size_t len, std::vector&lt; std::uint8_t &gt; &amp;out) -&gt; bool</td></tr>
 <tr class="separator:a8feacb556107d4fe4741e471c4868f86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff8e5999fd5b84729d7f79755ea8d31c" id="r_aff8e5999fd5b84729d7f79755ea8d31c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="engine_8cppm.html#aff8e5999fd5b84729d7f79755ea8d31c">scanBlock</a> (const std::uint8_t *buffer, std::size_t bytesRead, std::size_t baseIndex, std::size_t step, const auto &amp;routine, const <a class="el" href="structUserValue.html">UserValue</a> *userValue, <a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html">MatchesAndOldValuesSwath</a> &amp;swath, <a class="el" href="structScanStats.html">ScanStats</a> &amp;stats, void *regionBlockBase, const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> *previousSnapshot, bool usesOld, std::size_t oldSliceLen)</td></tr>
+<tr class="memitem:aff8e5999fd5b84729d7f79755ea8d31c" id="r_aff8e5999fd5b84729d7f79755ea8d31c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="engine_8cppm.html#aff8e5999fd5b84729d7f79755ea8d31c">scanBlock</a> (const std::uint8_t *buffer, std::size_t bytesRead, std::size_t baseIndex, std::size_t step, const auto &amp;routine, const <a class="el" href="core_8cppm.html#acf32bc427a29bd1bc5732f9de2aade33">UserValue</a> *userValue, <a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html">MatchesAndOldValuesSwath</a> &amp;swath, <a class="el" href="structScanStats.html">ScanStats</a> &amp;stats, void *regionBlockBase, const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> *previousSnapshot, bool usesOld, std::size_t oldSliceLen)</td></tr>
 <tr class="separator:aff8e5999fd5b84729d7f79755ea8d31c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab619c8833c080d3fd99e7d53c705a699" id="r_ab619c8833c080d3fd99e7d53c705a699"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="engine_8cppm.html#ab619c8833c080d3fd99e7d53c705a699">scanRegion</a> (const <a class="el" href="structcore_1_1Region.html">Region</a> &amp;region, <a class="el" href="classcore_1_1ProcMemIO.html">ProcMemIO</a> &amp;reader, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const auto &amp;routine, const <a class="el" href="structUserValue.html">UserValue</a> *userValue, <a class="el" href="structScanStats.html">ScanStats</a> &amp;stats, const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> *previousSnapshot, bool usesOld, std::size_t oldSliceLen) -&gt; std::optional&lt; <a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html">MatchesAndOldValuesSwath</a> &gt;</td></tr>
+<tr class="memitem:ab619c8833c080d3fd99e7d53c705a699" id="r_ab619c8833c080d3fd99e7d53c705a699"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="engine_8cppm.html#ab619c8833c080d3fd99e7d53c705a699">scanRegion</a> (const <a class="el" href="structcore_1_1Region.html">Region</a> &amp;region, <a class="el" href="classcore_1_1ProcMemIO.html">ProcMemIO</a> &amp;reader, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const auto &amp;routine, const <a class="el" href="core_8cppm.html#acf32bc427a29bd1bc5732f9de2aade33">UserValue</a> *userValue, <a class="el" href="structScanStats.html">ScanStats</a> &amp;stats, const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> *previousSnapshot, bool usesOld, std::size_t oldSliceLen) -&gt; std::optional&lt; <a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html">MatchesAndOldValuesSwath</a> &gt;</td></tr>
 <tr class="separator:ab619c8833c080d3fd99e7d53c705a699"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed4276ac57a143cffb03627a953c5154" id="r_aed4276ac57a143cffb03627a953c5154"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="engine_8cppm.html#aed4276ac57a143cffb03627a953c5154">runScanInternal</a> (pid_t pid, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const <a class="el" href="structUserValue.html">UserValue</a> *userValue, <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;out, const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> *previousSnapshot) -&gt; std::expected&lt; <a class="el" href="structScanStats.html">ScanStats</a>, std::string &gt;</td></tr>
+<tr class="memitem:aed4276ac57a143cffb03627a953c5154" id="r_aed4276ac57a143cffb03627a953c5154"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="engine_8cppm.html#aed4276ac57a143cffb03627a953c5154">runScanInternal</a> (pid_t pid, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const <a class="el" href="core_8cppm.html#acf32bc427a29bd1bc5732f9de2aade33">UserValue</a> *userValue, <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;out, const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> *previousSnapshot) -&gt; std::expected&lt; <a class="el" href="structScanStats.html">ScanStats</a>, std::string &gt;</td></tr>
 <tr class="separator:aed4276ac57a143cffb03627a953c5154"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a233b8d4dd456fd5bf3e2c9ebbadefcc8" id="r_a233b8d4dd456fd5bf3e2c9ebbadefcc8"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="engine_8cppm.html#a233b8d4dd456fd5bf3e2c9ebbadefcc8">runScan</a> (pid_t pid, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const <a class="el" href="structUserValue.html">UserValue</a> *userValue, <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;out) -&gt; std::expected&lt; <a class="el" href="structScanStats.html">ScanStats</a>, std::string &gt;</td></tr>
+<tr class="memitem:a233b8d4dd456fd5bf3e2c9ebbadefcc8" id="r_a233b8d4dd456fd5bf3e2c9ebbadefcc8"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="engine_8cppm.html#a233b8d4dd456fd5bf3e2c9ebbadefcc8">runScan</a> (pid_t pid, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const <a class="el" href="core_8cppm.html#acf32bc427a29bd1bc5732f9de2aade33">UserValue</a> *userValue, <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;out) -&gt; std::expected&lt; <a class="el" href="structScanStats.html">ScanStats</a>, std::string &gt;</td></tr>
 <tr class="separator:a233b8d4dd456fd5bf3e2c9ebbadefcc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a931fb06ed6e0c1b8c2cbdf9f36dce8b5" id="r_a931fb06ed6e0c1b8c2cbdf9f36dce8b5"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="engine_8cppm.html#a931fb06ed6e0c1b8c2cbdf9f36dce8b5">runScanWithPrevious</a> (pid_t pid, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const <a class="el" href="structUserValue.html">UserValue</a> *userValue, <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;out, const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;previousSnapshot) -&gt; std::expected&lt; <a class="el" href="structScanStats.html">ScanStats</a>, std::string &gt;</td></tr>
+<tr class="memitem:a931fb06ed6e0c1b8c2cbdf9f36dce8b5" id="r_a931fb06ed6e0c1b8c2cbdf9f36dce8b5"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="engine_8cppm.html#a931fb06ed6e0c1b8c2cbdf9f36dce8b5">runScanWithPrevious</a> (pid_t pid, const <a class="el" href="structScanOptions.html">ScanOptions</a> &amp;opts, const <a class="el" href="core_8cppm.html#acf32bc427a29bd1bc5732f9de2aade33">UserValue</a> *userValue, <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;out, const <a class="el" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a> &amp;previousSnapshot) -&gt; std::expected&lt; <a class="el" href="structScanStats.html">ScanStats</a>, std::string &gt;</td></tr>
 <tr class="separator:a931fb06ed6e0c1b8c2cbdf9f36dce8b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">函数说明</h2>
@@ -468,7 +468,7 @@ engine.cppm 的引用(Include)关系图:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="core_8cppm.html#acf32bc427a29bd1bc5732f9de2aade33">UserValue</a> *&#160;</td>
           <td class="paramname"><em>userValue</em>, </td>
         </tr>
         <tr>
@@ -516,7 +516,7 @@ engine.cppm 的引用(Include)关系图:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="core_8cppm.html#acf32bc427a29bd1bc5732f9de2aade33">UserValue</a> *&#160;</td>
           <td class="paramname"><em>userValue</em>, </td>
         </tr>
         <tr>
@@ -570,7 +570,7 @@ engine.cppm 的引用(Include)关系图:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="core_8cppm.html#acf32bc427a29bd1bc5732f9de2aade33">UserValue</a> *&#160;</td>
           <td class="paramname"><em>userValue</em>, </td>
         </tr>
         <tr>
@@ -642,7 +642,7 @@ engine.cppm 的引用(Include)关系图:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="core_8cppm.html#acf32bc427a29bd1bc5732f9de2aade33">UserValue</a> *&#160;</td>
           <td class="paramname"><em>userValue</em>, </td>
         </tr>
         <tr>
@@ -732,7 +732,7 @@ engine.cppm 的引用(Include)关系图:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="core_8cppm.html#acf32bc427a29bd1bc5732f9de2aade33">UserValue</a> *&#160;</td>
           <td class="paramname"><em>userValue</em>, </td>
         </tr>
         <tr>

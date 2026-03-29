@@ -22,7 +22,7 @@ var hierarchy =
     [ "app::CurrentMatchListRequest", "structapp_1_1CurrentMatchListRequest.html", null ],
     [ "core::MapsReader::Error", "structcore_1_1MapsReader_1_1Error.html", null ],
     [ "core::FormatOptions", "structcore_1_1FormatOptions.html", null ],
-    [ "std::formatter< UserValue >", "structstd_1_1formatter_3_01UserValue_01_4.html", null ],
+    [ "std::formatter< Value >", "structstd_1_1formatter_3_01Value_01_4.html", null ],
     [ "std::formatter< value::Value >", "structstd_1_1formatter_3_01value_1_1Value_01_4.html", null ],
     [ "ui::KeyEvent", "structui_1_1KeyEvent.html", null ],
     [ "ui::LineEditor", "classui_1_1LineEditor.html", null ],
@@ -70,20 +70,9 @@ var hierarchy =
     [ "ui::UserInterface", "classui_1_1UserInterface.html", [
       [ "ui::ConsoleUI", "classui_1_1ConsoleUI.html", null ]
     ] ],
-    [ "UserValue", "structUserValue.html", null ],
     [ "Value", "structValue.html", null ],
-    [ "value::view_detail::ValueAccess< ValueType >", "structvalue_1_1view__detail_1_1ValueAccess.html", null ],
-    [ "value::view_detail::ValueAccess< UserValue >", "structvalue_1_1view__detail_1_1ValueAccess_3_01UserValue_01_4.html", null ],
-    [ "value::view_detail::ValueAccess< Value >", "structvalue_1_1view__detail_1_1ValueAccess_3_01Value_01_4.html", null ],
     [ "value::ValueRange", "structvalue_1_1ValueRange.html", null ],
-    [ "value::ValueView< ValueType >", "classvalue_1_1ValueView.html", null ],
-    [ "value::ValueViewBase< ValueType >", "classvalue_1_1ValueViewBase.html", null ],
-    [ "value::ValueViewBase< UserValue >", "classvalue_1_1ValueViewBase.html", [
-      [ "value::ValueView< UserValue >", "classvalue_1_1ValueView_3_01UserValue_01_4.html", null ]
-    ] ],
-    [ "value::ValueViewBase< Value >", "classvalue_1_1ValueViewBase.html", [
-      [ "value::ValueView< Value >", "classvalue_1_1ValueView_3_01Value_01_4.html", null ]
-    ] ],
+    [ "value::ValueView", "classvalue_1_1ValueView.html", null ],
     [ "core::VecWriteResult", "structcore_1_1VecWriteResult.html", null ],
     [ "core::WriteResult", "structcore_1_1WriteResult.html", null ]
 ];

@@ -2,7 +2,7 @@ var searchData=
 [
   ['savetohistory_0',['savetohistory',['../structcore_1_1ScanRequest.html#a66c6f96e9ce713ee7dcc1effe6fdfc60',1,'core::ScanRequest::saveToHistory'],['../structapp_1_1ScanRequest.html#a0334b153c3fdcc7206ff6115b3ad352f',1,'app::ScanRequest::saveToHistory']]],
   ['scanner_1',['scanner',['../structapp_1_1CurrentMatchListRequest.html#afdd034049bc8432f5d759279368ef052',1,'app::CurrentMatchListRequest::scanner'],['../structapp_1_1ScanRequest.html#a033a8e3a12b7b0ef01b5a718d5aef96b',1,'app::ScanRequest::scanner'],['../structcli_1_1SessionState.html#a3d7d552777b6a2388ee1c93fc69ac7b9',1,'cli::SessionState::scanner']]],
-  ['secondarybytevalue_2',['secondaryByteValue',['../structUserValue.html#ae7e1b835990f292505a85f646f37c7c0',1,'UserValue']]],
+  ['secondarybytes_2',['secondaryBytes',['../structValue.html#ad0203c0cea08bdbf4186bcb4fe29e75a',1,'Value']]],
   ['shared_3',['shared',['../structcore_1_1RegionFlags.html#af65df61dea754dd979f5c531aa75fd79',1,'core::RegionFlags']]],
   ['shouldexit_4',['shouldExit',['../structcli_1_1CommandResult.html#affa318d121f655743c92bfd95adfbbc9',1,'cli::CommandResult']]],
   ['showindex_5',['showindex',['../structapp_1_1CurrentMatchListRequest.html#a3948e0e9b57dfff476e5524dec1f520a',1,'app::CurrentMatchListRequest::showIndex'],['../structcore_1_1FormatOptions.html#a206f850799bfb73d4f3ad1187a74d558',1,'core::FormatOptions::showIndex']]],

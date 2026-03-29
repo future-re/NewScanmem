@@ -13,7 +13,7 @@ var searchData=
   ['region_5ffilter_2ecppm_10',['region_filter.cppm',['../region__filter_8cppm.html',1,'']]],
   ['region_5ftype_5fnames_11',['REGION_TYPE_NAMES',['../namespacecore.html#a9cbc794a299a247419a8c580a01e623a',1,'core']]],
   ['regionclassifier_12',['RegionClassifier',['../classcore_1_1RegionClassifier.html',1,'core']]],
-  ['regionfilter_13',['regionfilter',['../classcore_1_1RegionFilter.html',1,'core::RegionFilter'],['../structcore_1_1MatchCollectionOptions.html#a7bac7028617559e1e4b53b7cbb192031',1,'core::MatchCollectionOptions::regionFilter'],['../structScanOptions.html#a5e8e10baa9e7c249927ae7a8be3681bd',1,'ScanOptions::regionFilter'],['../classcore_1_1RegionFilter.html#a834e04f399b0da7b90bdcf0b37408d1a',1,'core::RegionFilter::RegionFilter()']]],
+  ['regionfilter_13',['regionfilter',['../classcore_1_1RegionFilter.html',1,'core::RegionFilter'],['../classcore_1_1RegionFilter.html#a834e04f399b0da7b90bdcf0b37408d1a',1,'core::RegionFilter::RegionFilter()'],['../structcore_1_1MatchCollectionOptions.html#a7bac7028617559e1e4b53b7cbb192031',1,'core::MatchCollectionOptions::regionFilter'],['../structScanOptions.html#a5e8e10baa9e7c249927ae7a8be3681bd',1,'ScanOptions::regionFilter']]],
   ['regionfilterconfig_14',['RegionFilterConfig',['../structcore_1_1RegionFilterConfig.html',1,'core']]],
   ['regionfiltermode_15',['RegionFilterMode',['../namespacecore.html#a72a2e8d29b79f853c273543adab4dfe4',1,'core']]],
   ['regionflags_16',['RegionFlags',['../structcore_1_1RegionFlags.html',1,'core']]],

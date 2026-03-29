@@ -2,7 +2,7 @@ var searchData=
 [
   ['magenta_0',['MAGENTA',['../namespaceui_1_1color.html#addde567215c75ee4918b2fcec8d5583e',1,'ui::color']]],
   ['major_5fv_1',['MAJOR_V',['../namespaceversion.html#a38c8c20aa98ac2e15188a9902685f797',1,'version']]],
-  ['mask_2',['mask',['../structvalue_1_1ByteArray.html#ac4890f974a67190091d29df5d599dcee',1,'value::ByteArray']]],
+  ['mask_2',['mask',['../structvalue_1_1ByteArray.html#ac4890f974a67190091d29df5d599dcee',1,'value::ByteArray::mask'],['../structValue.html#a339fb36549826b01557e9c89f13bc569',1,'Value::mask']]],
   ['matchcount_3',['matchcount',['../structapp_1_1ScanExecutionResult.html#a9511a80aa339a24a09d6a19dcf726430',1,'app::ScanExecutionResult::matchCount'],['../structcore_1_1ScanResponse.html#a93809853be0ecf3177be7361fb29d777',1,'core::ScanResponse::matchCount']]],
   ['matched_4',['matched',['../structscan_1_1ScanResult.html#aca4b01318e8860d2e696e70d5db3ba89',1,'scan::ScanResult']]],
   ['matchedflag_5',['matchedFlag',['../structscan_1_1ScanResult.html#a8487b2106bf6878ab1586fc5e335f898',1,'scan::ScanResult']]],

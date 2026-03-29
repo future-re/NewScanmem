@@ -19,7 +19,7 @@ var searchData=
   ['mapsreader_16',['MapsReader',['../classcore_1_1MapsReader.html',1,'core']]],
   ['markrangebyaddress_17',['markRangeByAddress',['../classscan_1_1MatchesAndOldValuesSwath.html#a4e8993fde21c3a7b7152a3451ae13b62',1,'scan::MatchesAndOldValuesSwath']]],
   ['markrangebyindex_18',['markRangeByIndex',['../classscan_1_1MatchesAndOldValuesSwath.html#a1f204c43ecbae5a8c1c9ff40e60f79ba',1,'scan::MatchesAndOldValuesSwath']]],
-  ['mask_19',['mask',['../structvalue_1_1ByteArray.html#ac4890f974a67190091d29df5d599dcee',1,'value::ByteArray']]],
+  ['mask_19',['mask',['../structvalue_1_1ByteArray.html#ac4890f974a67190091d29df5d599dcee',1,'value::ByteArray::mask'],['../structValue.html#a339fb36549826b01557e9c89f13bc569',1,'Value::mask']]],
   ['match_20',['match',['../structscan_1_1ScanResult.html#a6003b3aed7e49ffe6fd047699ef3625e',1,'scan::ScanResult']]],
   ['match_2ecppm_21',['match.cppm',['../match_8cppm.html',1,'']]],
   ['match_5fany_22',['MATCH_ANY',['../scan_2types_8cppm.html#a4df52803e75ddce42be0c8cd134893d2a0b34a50323be5afcfd559d4a25434dbe',1,'types.cppm']]],

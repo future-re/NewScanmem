@@ -99,6 +99,9 @@ $(document).ready(function(){initNavTree('core_8cppm.html',''); initResizable();
   <div class="headertitle"><div class="title">core.cppm 文件参考<div class="ingroups">模块 <a class="el" href="module_value_8core.html">value.core</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Simplified unified <a class="el" href="structValue.html">Value</a> type with aggregated factory  
+<a href="#details">更多...</a></p>
 <div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;array&gt;</code><br />
 <code>#include &lt;bit&gt;</code><br />
@@ -116,7 +119,7 @@ core.cppm 的引用(Include)关系图:</div>
 <div class="dyncontent">
 <div class="center"><img src="core_8cppm__incl.png" border="0" usemap="#asrc_2value_2core_8cppm" alt=""/></div>
 <map name="asrc_2value_2core_8cppm" id="asrc_2value_2core_8cppm">
-<area shape="rect" title=" " alt="" coords="459,5,613,31"/>
+<area shape="rect" title="Simplified unified Value type with aggregated factory" alt="" coords="459,5,613,31"/>
 <area shape="rect" title=" " alt="" coords="5,79,91,104"/>
 <area shape="poly" title=" " alt="" coords="459,31,300,51,104,81,104,76,299,46,459,26"/>
 <area shape="rect" title=" " alt="" coords="115,79,171,104"/>
@@ -158,9 +161,7 @@ core.cppm 的引用(Include)关系图:</div>
 类</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structValue.html">Value</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUserValue.html">UserValue</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstd_1_1formatter_3_01UserValue_01_4.html">std::formatter&lt; UserValue &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstd_1_1formatter_3_01Value_01_4.html">std::formatter&lt; Value &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -170,21 +171,25 @@ core.cppm 的引用(Include)关系图:</div>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 类型定义</h2></td></tr>
-<tr class="memitem:a1bd4a9d0e06aae509377546df72a7528" id="r_a1bd4a9d0e06aae509377546df72a7528"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core_8cppm.html#a1bd4a9d0e06aae509377546df72a7528">UserValueRange</a> = std::pair&lt; <a class="el" href="structUserValue.html">UserValue</a>, <a class="el" href="structUserValue.html">UserValue</a> &gt;</td></tr>
-<tr class="separator:a1bd4a9d0e06aae509377546df72a7528"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf32bc427a29bd1bc5732f9de2aade33" id="r_acf32bc427a29bd1bc5732f9de2aade33"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core_8cppm.html#acf32bc427a29bd1bc5732f9de2aade33">UserValue</a> = <a class="el" href="structValue.html">Value</a></td></tr>
+<tr class="separator:acf32bc427a29bd1bc5732f9de2aade33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa35bdac14325743e14c43243391df9a8" id="r_aa35bdac14325743e14c43243391df9a8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core_8cppm.html#aa35bdac14325743e14c43243391df9a8">UserValueRange</a> = std::pair&lt; <a class="el" href="structValue.html">Value</a>, <a class="el" href="structValue.html">Value</a> &gt;</td></tr>
+<tr class="separator:aa35bdac14325743e14c43243391df9a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:ae22b16bf445bb0ad1154680a026e49f3" id="r_ae22b16bf445bb0ad1154680a026e49f3"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptNumericType.html">NumericType</a> T&gt; </td></tr>
-<tr class="memitem:ae22b16bf445bb0ad1154680a026e49f3"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8cppm.html#ae22b16bf445bb0ad1154680a026e49f3">userValueAs</a> (const <a class="el" href="structUserValue.html">UserValue</a> &amp;value) -&gt; std::optional&lt; T &gt;</td></tr>
-<tr class="separator:ae22b16bf445bb0ad1154680a026e49f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2e3c9521d996fe8070bfd4e4bc0cb8d" id="r_ae2e3c9521d996fe8070bfd4e4bc0cb8d"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptNumericType.html">NumericType</a> T&gt; </td></tr>
-<tr class="memitem:ae2e3c9521d996fe8070bfd4e4bc0cb8d"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8cppm.html#ae2e3c9521d996fe8070bfd4e4bc0cb8d">userValueHighAs</a> (const <a class="el" href="structUserValue.html">UserValue</a> &amp;value) -&gt; std::optional&lt; T &gt;</td></tr>
-<tr class="separator:ae2e3c9521d996fe8070bfd4e4bc0cb8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1d57f34e54a4f693dea8410df52bf55" id="r_ae1d57f34e54a4f693dea8410df52bf55"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptNumericType.html">NumericType</a> T&gt; </td></tr>
+<tr class="memitem:ae1d57f34e54a4f693dea8410df52bf55"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8cppm.html#ae1d57f34e54a4f693dea8410df52bf55">userValueAs</a> (const <a class="el" href="structValue.html">Value</a> &amp;value) -&gt; std::optional&lt; T &gt;</td></tr>
+<tr class="separator:ae1d57f34e54a4f693dea8410df52bf55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a520d0a5d3a969c6954092b0703127d81" id="r_a520d0a5d3a969c6954092b0703127d81"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptNumericType.html">NumericType</a> T&gt; </td></tr>
+<tr class="memitem:a520d0a5d3a969c6954092b0703127d81"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8cppm.html#a520d0a5d3a969c6954092b0703127d81">userValueHighAs</a> (const <a class="el" href="structValue.html">Value</a> &amp;value) -&gt; std::optional&lt; T &gt;</td></tr>
+<tr class="separator:a520d0a5d3a969c6954092b0703127d81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">类型定义说明</h2>
-<a id="a1bd4a9d0e06aae509377546df72a7528" name="a1bd4a9d0e06aae509377546df72a7528"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1bd4a9d0e06aae509377546df72a7528">&#9670;&#160;</a></span>UserValueRange</h2>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>Simplified unified <a class="el" href="structValue.html">Value</a> type with aggregated factory </p>
+</div><h2 class="groupheader">类型定义说明</h2>
+<a id="acf32bc427a29bd1bc5732f9de2aade33" name="acf32bc427a29bd1bc5732f9de2aade33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf32bc427a29bd1bc5732f9de2aade33">&#9670;&#160;</a></span>UserValue</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -193,7 +198,29 @@ core.cppm 的引用(Include)关系图:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="core_8cppm.html#a1bd4a9d0e06aae509377546df72a7528">UserValueRange</a> =  std::pair&lt;<a class="el" href="structUserValue.html">UserValue</a>, <a class="el" href="structUserValue.html">UserValue</a>&gt;</td>
+          <td class="memname">using <a class="el" href="core_8cppm.html#acf32bc427a29bd1bc5732f9de2aade33">UserValue</a> =  <a class="el" href="structValue.html">Value</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa35bdac14325743e14c43243391df9a8" name="aa35bdac14325743e14c43243391df9a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa35bdac14325743e14c43243391df9a8">&#9670;&#160;</a></span>UserValueRange</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="core_8cppm.html#aa35bdac14325743e14c43243391df9a8">UserValueRange</a> =  std::pair&lt;<a class="el" href="structValue.html">Value</a>, <a class="el" href="structValue.html">Value</a>&gt;</td>
         </tr>
       </table>
   </td>
@@ -206,8 +233,8 @@ core.cppm 的引用(Include)关系图:</div>
 </div>
 </div>
 <h2 class="groupheader">函数说明</h2>
-<a id="ae22b16bf445bb0ad1154680a026e49f3" name="ae22b16bf445bb0ad1154680a026e49f3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae22b16bf445bb0ad1154680a026e49f3">&#9670;&#160;</a></span>userValueAs()</h2>
+<a id="ae1d57f34e54a4f693dea8410df52bf55" name="ae1d57f34e54a4f693dea8410df52bf55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1d57f34e54a4f693dea8410df52bf55">&#9670;&#160;</a></span>userValueAs()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -220,7 +247,7 @@ template&lt;<a class="el" href="conceptNumericType.html">NumericType</a> T&gt; <
         <tr>
           <td class="memname">auto userValueAs </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="structValue.html">Value</a> &amp;&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
           <td> -&gt; std::optional&lt;T&gt; </td>
         </tr>
@@ -234,8 +261,8 @@ template&lt;<a class="el" href="conceptNumericType.html">NumericType</a> T&gt; <
 
 </div>
 </div>
-<a id="ae2e3c9521d996fe8070bfd4e4bc0cb8d" name="ae2e3c9521d996fe8070bfd4e4bc0cb8d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2e3c9521d996fe8070bfd4e4bc0cb8d">&#9670;&#160;</a></span>userValueHighAs()</h2>
+<a id="a520d0a5d3a969c6954092b0703127d81" name="a520d0a5d3a969c6954092b0703127d81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a520d0a5d3a969c6954092b0703127d81">&#9670;&#160;</a></span>userValueHighAs()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -248,7 +275,7 @@ template&lt;<a class="el" href="conceptNumericType.html">NumericType</a> T&gt; <
         <tr>
           <td class="memname">auto userValueHighAs </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structUserValue.html">UserValue</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="structValue.html">Value</a> &amp;&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
           <td> -&gt; std::optional&lt;T&gt; </td>
         </tr>
