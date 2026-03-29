@@ -5,33 +5,27 @@
 
 module;
 
-#include <sys/uio.h>
-#include <unistd.h>
-
-#include <array>
+#include <algorithm>
 #include <bit>
 #include <cstddef>
 #include <cstdint>
-#include <cstring>
 #include <expected>
 #include <format>
 #include <optional>
+#include <ranges>
 #include <string>
-#include <utility>
 #include <vector>
 
 export module core.memory_writer;
 
 import value.core;
 
+import core.proc_mem;
 import core.scanner;
-import core.match;
 import scan.match_storage;
 import utils.endianness;
 import value.flags;
 import utils.logging;
-
-using scan::OldValueAndMatchInfo;
 
 namespace core {
 
@@ -88,15 +82,112 @@ export class MemoryWriter {
                                     const UserValue& value,
                                     std::vector<size_t> matchIndex)
         -> std::expected<VecWriteResult, std::string> {
-        (void)scanner;
-        (void)matchIndex;
-        utils::Logger::instance().debug("UserValue: {}", value);
-        utils::Logger::instance().debug("Preparing to write value to match at index {}",
-                             matchIndex.empty() ? 0 : matchIndex[0]);
-        return std::unexpected("MemoryWriter::writeToMatch is not implemented");
+        if (m_pid <= 0) {
+            return std::unexpected("invalid pid");
+        }
+        if (matchIndex.empty()) {
+            return std::unexpected("no match indices provided");
+        }
+
+        const auto bytesToWrite = encodeValueBytes(value);
+        if (bytesToWrite.empty()) {
+            return std::unexpected("empty write value");
+        }
+
+        const auto& matches = scanner.getMatches();
+        VecWriteResult summary{
+            .successCount = 0,
+            .failedCount = 0,
+            .results = {},
+            .errors = {},
+        };
+
+        summary.results.reserve(matchIndex.size());
+
+        for (const auto index : matchIndex) {
+            auto addressExp = resolveMatchAddress(matches, index);
+            if (!addressExp) {
+                summary.failedCount++;
+                summary.errors.push_back(addressExp.error());
+                continue;
+            }
+
+            const auto address = *addressExp;
+            auto writeExp =
+                core::writeBytes(m_pid, std::bit_cast<void*>(address), bytesToWrite);
+            if (!writeExp || *writeExp != bytesToWrite.size()) {
+                summary.failedCount++;
+                summary.errors.push_back(
+                    !writeExp
+                        ? std::format("match #{} write failed: {}", index,
+                                      writeExp.error())
+                        : std::format(
+                              "match #{} partial write: expected {} bytes, wrote {}",
+                              index, bytesToWrite.size(), *writeExp));
+                summary.results.push_back(
+                    {.address = address,
+                     .bytesWritten = writeExp ? *writeExp : 0,
+                     .success = false});
+                continue;
+            }
+
+            summary.successCount++;
+            summary.results.push_back(
+                {.address = address,
+                 .bytesWritten = *writeExp,
+                 .success = true});
+        }
+
+        if (summary.successCount == 0) {
+            return std::unexpected(summary.errors.empty()
+                                       ? "no values written"
+                                       : summary.errors.front());
+        }
+
+        return summary;
     }
 
    private:
+    [[nodiscard]] auto encodeValueBytes(const UserValue& value) const
+        -> std::vector<std::uint8_t> {
+        auto bytes = value.primary.bytes;
+        if (bytes.size() <= 1) {
+            return bytes;
+        }
+        const auto flags = value.primary.flag();
+        const bool isTextual = flags == MatchFlags::STRING ||
+                               flags == MatchFlags::BYTE_ARRAY;
+        if (isTextual || m_endianness == utils::getHost()) {
+            return bytes;
+        }
+        std::reverse(bytes.begin(), bytes.end());
+        return bytes;
+    }
+
+    [[nodiscard]] static auto resolveMatchAddress(
+        const scan::MatchesAndOldValuesArray& matches, std::size_t matchIndex)
+        -> std::expected<std::uintptr_t, std::string> {
+        std::size_t currentIndex = 0;
+        for (const auto& swath : matches.swaths) {
+            if (swath.firstByteInChild == nullptr) {
+                continue;
+            }
+            auto* base =
+                static_cast<const std::uint8_t*>(swath.firstByteInChild);
+            for (std::size_t i = 0; i < swath.data.size(); ++i) {
+                if (swath.data[i].matchInfo == MatchFlags::EMPTY) {
+                    continue;
+                }
+                if (currentIndex == matchIndex) {
+                    return std::bit_cast<std::uintptr_t>(base + i);
+                }
+                currentIndex++;
+            }
+        }
+        return std::unexpected(
+            std::format("match index {} out of range", matchIndex));
+    }
+
     pid_t m_pid;
     utils::Endianness m_endianness{(std::endian::native == std::endian::little
                                         ? utils::Endianness::LITTLE

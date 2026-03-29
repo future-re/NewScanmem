@@ -158,7 +158,7 @@ class ScanCommand : public Command {
         auto lines = core::MatchFormatter::format(entries, totalCount,
             {.showRegion = true, .showIndex = true, .dataType = dataType});
         for (const auto& line : lines) {
-            ui::MessagePrinter::info(line);
+            ui::MessagePrinter::plain(line);
         }
 
         return CommandResult{.success = true, .message = ""};

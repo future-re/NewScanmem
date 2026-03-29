@@ -143,6 +143,8 @@ class MessagePrinter {
                                  color::GREEN, color::RESET, msg);
     }
 
+    static void plain(std::string_view msg) { std::cerr << msg << '\n'; }
+
     // Expose context
     [[nodiscard]] auto conext() const -> const MessageContext& { return m_ctx; }
 

@@ -6,6 +6,7 @@
 module;
 
 #include <expected>
+#include <format>
 #include <string>
 #include <string_view>
 #include <vector>
@@ -70,21 +71,19 @@ class ListCommand : public Command {
 
         const auto& [entries, totalCount] = *result;
 
-        // Format results
-        core::FormatOptions formatOptions{
-            .showRegion = true,
-            .showIndex = true,
-            .bigEndianDisplay =
-                (m_session->endianness == utils::Endianness::BIG),
-            .dataType = m_session->scanner->getLastDataType()};
+        ui::MessagePrinter::plain(
+            "Index  Address             Size      Region");
+        ui::MessagePrinter::plain(
+            "-----------------------------------------------");
 
-        auto lines =
-            core::MatchFormatter::format(entries, totalCount, formatOptions);
-
-        // Display results
-        for (const auto& line : lines) {
-            ui::MessagePrinter::info(line);
+        for (const auto& entry : entries) {
+            ui::MessagePrinter::plain(std::format(
+                "{:<6} 0x{:016x}  0x{:02x}      [{}]", entry.index,
+                entry.address, entry.value.size(), entry.region));
         }
+        ui::MessagePrinter::plain("");
+        ui::MessagePrinter::plain(
+            std::format("Showing {} of {} matches", entries.size(), totalCount));
 
         return CommandResult{.success = true, .message = ""};
     }

@@ -7,6 +7,7 @@ module;
 
 #include <cstdint>
 #include <expected>
+#include <format>
 #include <optional>
 #include <string>
 #include <string_view>
@@ -16,6 +17,8 @@ export module cli.commands.write;
 
 import cli.command;
 import cli.session;
+import core.memory_writer;
+import ui.show_message;
 import value.core;
 import value.parser;
 import scan.types;
@@ -83,59 +86,48 @@ class WriteCommand : public Command {
             }
         }
 
-        // // 创建写入器并执行写入（按会话端序）
-        // core::MemoryWriter writer(
-        //     m_session->pid, (m_session->endianness ==
-        //     utils::Endianness::LITTLE
-        //                          ? utils::Endianness::LITTLE
-        //                          : utils::Endianness::BIG));
-        // auto* scanner = m_session->scanner.get();
+        core::MemoryWriter writer(m_session->pid, m_session->endianness);
+        auto* scanner = m_session->scanner.get();
 
-        // if (targetIndex) {
-        //     // 写入单个匹配
-        //     auto result = writer.writeToMatch(*scanner, value, *targetIndex);
-        //     if (!result) {
-        //         return std::unexpected("Write failed: " + result.error());
-        //     }
-        //     ui::MessagePrinter::success(std::format(
-        //         "Successfully wrote value to match #{}", *targetIndex));
-        // } else {
-        //     // 批量写入所有匹配
-        //     auto result = writer.writeToMatches(*scanner, value);
+        std::vector<size_t> writeTargets;
+        if (targetIndex) {
+            writeTargets.push_back(*targetIndex);
+        } else {
+            const auto totalMatches = scanner->getMatchCount();
+            writeTargets.reserve(totalMatches);
+            for (size_t index = 0; index < totalMatches; ++index) {
+                writeTargets.push_back(index);
+            }
+        }
 
-        //     if (result.successCount == 0) {
-        //         if (!result.errors.empty()) {
-        //             return std::unexpected("All writes failed. First error: "
-        //             +
-        //                                    result.errors[0]);
-        //         }
-        //         return std::unexpected("No values written");
-        //     }
+        auto result = writer.writeToMatch(*scanner, *value, writeTargets);
+        if (!result) {
+            return std::unexpected("Write failed: " + result.error());
+        }
 
-        //     // 显示结果摘要
-        //     ui::MessagePrinter::success(std::format(
-        //         "Successfully wrote {} value(s)", result.successCount));
+        if (targetIndex) {
+            ui::MessagePrinter::success(std::format(
+                "Successfully wrote value to match #{}", *targetIndex));
+        } else {
+            ui::MessagePrinter::success(std::format(
+                "Successfully wrote {} value(s)", result->successCount));
+            if (result->failedCount > 0) {
+                ui::MessagePrinter::warn(
+                    std::format("{} write(s) failed", result->failedCount));
+                const std::size_t errorLimit =
+                    std::min<std::size_t>(result->errors.size(), 3);
+                for (std::size_t i = 0; i < errorLimit; ++i) {
+                    ui::MessagePrinter::warn(result->errors[i]);
+                }
+                if (result->errors.size() > errorLimit) {
+                    ui::MessagePrinter::warn(
+                        std::format("... and {} more errors",
+                                    result->errors.size() - errorLimit));
+                }
+            }
+        }
 
-        //     if (result.failedCount > 0) {
-        //         ui::MessagePrinter::warn(
-        //             std::format("{} write(s) failed", result.failedCount));
-
-        //         // 显示前几个错误
-        //         size_t errorLimit = std::min(result.errors.size(),
-        //         size_t{3}); for (size_t i = 0; i < errorLimit; ++i) {
-        //             ui::MessagePrinter::warn("  " + result.errors[i]);
-        //         }
-        //         if (result.errors.size() > errorLimit) {
-        //             ui::MessagePrinter::warn(
-        //                 std::format("  ... and {} more errors",
-        //                             result.errors.size() - errorLimit));
-        //         }
-        //     }
-        // }
-
-        return std::unexpected(
-            "Write command parsing is ready, but memory writing is not "
-            "implemented yet");
+        return CommandResult{.success = true, .message = ""};
     }
 
    private:
