@@ -58,7 +58,10 @@ class ResultService {
         core::MatchCollectionOptions collectOptions{
             .limit = request.limit, .collectRegion = request.showRegion};
 
-        return collector.collect(*request.scanner, collectOptions);
+        return collector.collect(
+            {.matches = &request.scanner->getMatches(),
+             .dataType = request.scanner->getLastDataType()},
+            collectOptions);
     }
 };
 

@@ -68,13 +68,11 @@ set(MODULE_SOURCES
     core/match.cppm
     core/match_formatter.cppm
     
-    # Value 模块 - 按依赖顺序排列
-    value/flags.cppm      # 最底层
-    value/types.cppm      # 新类型系统
+    # Value modules
+    value/flags.cppm
     value/core.cppm
     value/parser.cppm
-    value/view.cppm       # view
-    value/value.cppm      # export all value 
+    value/value.cppm
     
     # Scan 模块
     scan/types.cppm
@@ -87,7 +85,6 @@ set(MODULE_SOURCES
     scan/factory.cppm
     scan/job.cppm
     scan/engine.cppm
-    scan/co_engine.cppm
     scan/filter.cppm
 
     scanmem.cppm

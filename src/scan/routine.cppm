@@ -1,9 +1,6 @@
 /**
  * @file routine.cppm
- * @brief Scan routine interface with modern, type-safe API
- *
- * Replaces the old C-style function signature with a clean,
- * object-oriented interface using ScanContext and ScanResult.
+ * @brief Canonical scan routine abstractions and compatibility shims
  */
 
 module;
@@ -18,18 +15,6 @@ export module scan.routine;
 
 import value.core;
 import value.flags;
-
-// ============================================================================
-// Backward compatibility: Old scan routine type
-// ============================================================================
-
-export using scanRoutine = std::function<unsigned int(
-    const Value* /*memoryPtr*/, size_t /*memLength*/, const Value* /*oldValue*/,
-    const UserValue* /*userValue*/, MatchFlags* /*saveFlags*/)>;
-
-// ============================================================================
-// Modern API
-// ============================================================================
 
 export namespace scan {
 
@@ -89,34 +74,22 @@ using ScanRoutine = std::function<ScanResult(const ScanContext& ctx)>;
     return [](const ScanContext&) -> ScanResult { return ScanResult::noMatch(); };
 }
 
-/**
- * @brief Adapter from old scanRoutine to new ScanRoutine
- * @param oldRoutine The old-style routine
- * @return A new-style ScanRoutine wrapper
- */
-[[nodiscard]] inline auto adaptRoutine(scanRoutine oldRoutine) -> ScanRoutine {
-    if (!oldRoutine) {
-        return nullRoutine();
-    }
-    return [oldRoutine](const ScanContext& ctx) -> ScanResult {
-        // Convert span to Value for old API
-        Value memValue;
-        memValue.bytes.assign(ctx.memory.begin(), ctx.memory.end());
-        
-        MatchFlags flags = MatchFlags::EMPTY;
-        unsigned int len = oldRoutine(
-            &memValue,
-            ctx.memory.size(),
-            ctx.oldValue ? &*ctx.oldValue : nullptr,
-            ctx.userValue ? &*ctx.userValue : nullptr,
-            &flags
-        );
-        
-        if (len > 0) {
-            return ScanResult::match(len, flags);
-        }
-        return ScanResult::noMatch();
+[[nodiscard]] inline auto makeScanContext(
+    std::span<const std::uint8_t> memory, const Value* oldValue,
+    const UserValue* userValue, MatchFlags requiredFlag,
+    bool reverseEndianness) -> ScanContext {
+    ScanContext ctx{
+        .memory = memory,
+        .requiredFlag = requiredFlag,
+        .reverseEndianness = reverseEndianness,
     };
+    if (oldValue != nullptr) {
+        ctx.oldValue = *oldValue;
+    }
+    if (userValue != nullptr) {
+        ctx.userValue = *userValue;
+    }
+    return ctx;
 }
 
 }  // namespace scan

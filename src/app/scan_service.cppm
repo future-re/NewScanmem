@@ -1,6 +1,6 @@
 /**
  * @file scan_service.cppm
- * @brief Application service for scan execution with modern API
+ * @brief Explicit application service for scan execution
  */
 
 module;
@@ -14,122 +14,53 @@ export module app.scan_service;
 
 import core.maps;
 import core.scanner;
-import scan.engine;
 import scan.types;
 import value.core;
 
 export namespace app {
 
-/**
- * @brief Scan mode for high-level API
- */
-enum class ScanServiceMode {
-    AUTO,       ///< Auto-detect: snapshot if no matches, filter if has matches
-    SNAPSHOT,   ///< Force full memory scan
-    FILTER,     ///< Force filter on existing matches
-    RESCAN      ///< Force reset and full scan
+enum class ScanExecutionMode {
+    SNAPSHOT,
+    FILTER,
+    RESCAN
 };
 
-/**
- * @struct ScanRequest
- * @brief Request for scan service
- */
-struct ScanRequest {
+struct ScanExecutionRequest {
     core::Scanner* scanner{nullptr};
-    core::RegionScanLevel regionLevel{core::RegionScanLevel::ALL_RW};
-    ScanDataType dataType{ScanDataType::ANY_NUMBER};
-    ScanMatchType matchType{ScanMatchType::MATCH_ANY};
+    ScanOptions options{};
     std::optional<UserValue> userValue;
-    ScanServiceMode mode{ScanServiceMode::AUTO};
+    ScanExecutionMode mode{ScanExecutionMode::SNAPSHOT};
     bool saveToHistory{true};
 };
 
-/**
- * @struct ScanExecutionResult
- * @brief Result of scan execution
- */
 struct ScanExecutionResult {
     ScanStats stats{};
     std::size_t matchCount{0};
-    bool isFiltered{false};  ///< True if this was a filter operation
+    bool isFiltered{false};
 };
 
-/**
- * @class ScanService
- * @brief High-level service for scan operations
- *
- * Provides a simplified interface over core::Scanner with automatic
- * mode selection and error handling.
- */
 class ScanService {
    public:
-    /**
-     * @brief Execute a scan based on the request
-     * @param request Scan request parameters
-     * @return Expected result or error message
-     */
-    [[nodiscard]] static auto run(const ScanRequest& request)
+    [[nodiscard]] static auto execute(const ScanExecutionRequest& request)
         -> std::expected<ScanExecutionResult, std::string> {
         if (request.scanner == nullptr) {
             return std::unexpected("Failed to initialize scanner");
         }
 
-        ScanOptions options;
-        options.dataType = request.dataType;
-        options.matchType = request.matchType;
-        options.regionLevel = request.regionLevel;
-
-        // Determine scan mode
-        core::ScanMode mode = core::ScanMode::FULL_SCAN;
-        bool isFiltered = false;
-
         switch (request.mode) {
-            case ScanServiceMode::AUTO:
-                if (request.scanner->hasMatches()) {
-                    mode = core::ScanMode::INCREMENTAL;
-                    isFiltered = true;
-                } else {
-                    mode = core::ScanMode::FULL_SCAN;
-                }
-                break;
-            case ScanServiceMode::SNAPSHOT:
-                mode = core::ScanMode::FULL_SCAN;
-                break;
-            case ScanServiceMode::FILTER:
-                mode = core::ScanMode::INCREMENTAL;
-                isFiltered = true;
-                if (!request.userValue.has_value()) {
-                    return std::unexpected("Filter mode requires a user value");
-                }
-                break;
-            case ScanServiceMode::RESCAN:
-                mode = core::ScanMode::RESCAN;
-                break;
+            case ScanExecutionMode::SNAPSHOT:
+                return snapshot(request.scanner, request.options,
+                                request.userValue, request.saveToHistory);
+            case ScanExecutionMode::FILTER:
+                return filter(request.scanner, request.options,
+                              request.userValue, request.saveToHistory);
+            case ScanExecutionMode::RESCAN:
+                return rescan(request.scanner, request.options, request.userValue,
+                              request.saveToHistory);
         }
-
-        // Build scan request
-        core::ScanRequest scanReq{
-            .mode = mode,
-            .options = options,
-            .targetValue = request.userValue,
-            .saveToHistory = request.saveToHistory
-        };
-
-        auto response = request.scanner->scan(scanReq);
-        if (!response.success) {
-            return std::unexpected(response.error.value_or("Scan failed"));
-        }
-
-        return ScanExecutionResult{
-            .stats = response.stats,
-            .matchCount = response.matchCount,
-            .isFiltered = isFiltered
-        };
+        return std::unexpected("Unknown scan execution mode");
     }
 
-    /**
-     * @brief Perform a snapshot scan (full memory scan)
-     */
     [[nodiscard]] static auto snapshot(core::Scanner* scanner,
                                        const ScanOptions& opts,
                                        const std::optional<UserValue>& value = std::nullopt,
@@ -147,12 +78,9 @@ class ScanService {
                                    .isFiltered = false};
     }
 
-    /**
-     * @brief Perform a filter scan (incremental on existing matches)
-     */
     [[nodiscard]] static auto filter(core::Scanner* scanner,
                                      const ScanOptions& opts,
-                                     const UserValue& value,
+                                     const std::optional<UserValue>& value = std::nullopt,
                                      bool saveToHistory = true)
         -> std::expected<ScanExecutionResult, std::string> {
         if (!scanner) {
@@ -165,6 +93,23 @@ class ScanService {
         return ScanExecutionResult{.stats = response.stats,
                                    .matchCount = response.matchCount,
                                    .isFiltered = true};
+    }
+
+    [[nodiscard]] static auto rescan(core::Scanner* scanner,
+                                     const ScanOptions& opts,
+                                     const std::optional<UserValue>& value = std::nullopt,
+                                     bool saveToHistory = true)
+        -> std::expected<ScanExecutionResult, std::string> {
+        if (!scanner) {
+            return std::unexpected("Scanner is null");
+        }
+        auto response = scanner->rescan(opts, value, saveToHistory);
+        if (!response.success) {
+            return std::unexpected(response.error.value_or("Rescan failed"));
+        }
+        return ScanExecutionResult{.stats = response.stats,
+                                   .matchCount = response.matchCount,
+                                   .isFiltered = false};
     }
 };
 

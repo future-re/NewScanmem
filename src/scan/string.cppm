@@ -19,7 +19,10 @@ import value.core;
 
 // This module implements string and regex-related routines and a
 // thread-local regex cache.
-// Exports: makeStringRoutine, getCachedRegex, findRegexPattern
+// Exports: makeStringScanRoutine, getCachedRegex, findRegexPattern
+
+export inline auto makeStringScanRoutine(ScanMatchType matchType)
+    -> scan::ScanRoutine;
 
 export inline auto getCachedRegex(const std::string& pattern) noexcept
     -> const boost::regex* {
@@ -92,41 +95,58 @@ namespace {
 
 }  // namespace
 
-export inline auto makeStringRoutine(ScanMatchType matchType) -> scanRoutine {
-    return [matchType](const Value* memoryPtr, size_t memLength,
-                       const Value* /*oldValue*/, const UserValue* userValue,
-                       MatchFlags* saveFlags) -> unsigned int {
-        setFlagsIfNotNull(saveFlags, MatchFlags::EMPTY);
+export inline auto makeStringScanRoutine(ScanMatchType matchType)
+    -> scan::ScanRoutine {
+    return [matchType](const scan::ScanContext& ctx) -> scan::ScanResult {
         if (matchType == ScanMatchType::MATCH_ANY) {
-            return handleMATCHANY(memLength, saveFlags);
+            return scan::ScanResult::match(ctx.memory.size(), MatchFlags::B8);
         }
-        if (!userValue) {
-            return 0;
+        if (!ctx.userValue) {
+            return scan::ScanResult::noMatch();
         }
-        if (userValue->flags != MatchFlags::STRING) {
-            return 0;
+        const auto& patternValue = ctx.userValue->primary;
+        if (patternValue.flag() != MatchFlags::STRING) {
+            return scan::ScanResult::noMatch();
         }
-        std::string_view PATTERN(reinterpret_cast<const char*>(userValue->bytes.data()), 
-                                  userValue->bytes.size());
+        std::string_view PATTERN(
+            reinterpret_cast<const char*>(patternValue.bytes.data()),
+            patternValue.bytes.size());
         if (PATTERN.empty()) {
-            return 0;
+            return scan::ScanResult::noMatch();
         }
+        Value memoryValue{ctx.memory.data(), ctx.memory.size()};
+        MatchFlags flags = MatchFlags::EMPTY;
         if (matchType == ScanMatchType::MATCH_REGEX) {
-            return runRegexMatch(
-                memoryPtr, memLength, std::string(PATTERN), saveFlags);
+            const auto matched =
+                runRegexMatch(&memoryValue, ctx.memory.size(),
+                              std::string(PATTERN), &flags);
+            if (matched == 0U) {
+                return scan::ScanResult::noMatch();
+            }
+            return scan::ScanResult::match(matched, flags);
         }
         const auto* const MASK_PTR =
-            (userValue->mask &&
-             userValue->mask->size() == PATTERN.size())
-                ? &*userValue->mask
+            (patternValue.mask &&
+             patternValue.mask->size() == PATTERN.size())
+                ? &*patternValue.mask
                 : nullptr;
         const auto* bytePtr = std::bit_cast<const uint8_t*>(PATTERN.data());
         if (MASK_PTR) {
-            return compareBytesMasked(memoryPtr, memLength, bytePtr,
-                                      PATTERN.size(), MASK_PTR->data(),
-                                      MASK_PTR->size(), saveFlags);
+            const auto matched =
+                compareBytesMasked(&memoryValue, ctx.memory.size(), bytePtr,
+                                   PATTERN.size(), MASK_PTR->data(),
+                                   MASK_PTR->size(), &flags);
+            if (matched == 0U) {
+                return scan::ScanResult::noMatch();
+            }
+            return scan::ScanResult::match(matched, flags);
         }
-        return compareBytes(memoryPtr, memLength, bytePtr, PATTERN.size(),
-                            saveFlags);
+        const auto matched =
+            compareBytes(&memoryValue, ctx.memory.size(), bytePtr,
+                         PATTERN.size(), &flags);
+        if (matched == 0U) {
+            return scan::ScanResult::noMatch();
+        }
+        return scan::ScanResult::match(matched, flags);
     };
 }

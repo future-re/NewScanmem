@@ -10,38 +10,21 @@ include(GoogleTest)
 # 统一的测试依赖库集合
 set(TEST_LIBS GTest::GTest GTest::Main NewScanmem_lib)
 
-# 测试源文件列表
-set(TEST_SOURCES
-    utils/test_sets.cpp
-    utils/test_endianness.cpp
-    value/test_value.cpp
-    value/test_parser.cpp
-    core/test_maps.cpp
-    core/test_memory_writer.cpp
-    core/test_memory.cpp
-    core/test_scanner.cpp
-    core/test_region_filter.cpp
-    core/test_match.cpp
-    core/test_proc_mem.cpp
-    core/test_match_formatter.cpp
-    core/test_region_classifier.cpp
-    core/test_match_collect.cpp
-    scan/test_bytes.cpp
-    scan/test_numeric.cpp
-    scan/test_string.cpp
-    scan/test_parallel.cpp
-    scan/test_filter.cpp
-    scan/test_engine.cpp
-    scan/test_match_storage.cpp
-    scan/test_factory.cpp
-    ui/test_show_message.cpp
-    ui/test_list_message.cpp
+# 自动收集当前目录下的单元测试源文件，排除单独管理的集成测试与 e2e 测试
+file(GLOB_RECURSE TEST_SOURCES CONFIGURE_DEPENDS
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
 )
+
+list(FILTER TEST_SOURCES EXCLUDE REGEX ".*/integration/.*")
+list(FILTER TEST_SOURCES EXCLUDE REGEX ".*/e2e/.*")
 
 # 为每个测试源生成可执行文件并注册 gtest_discover_tests
 foreach(TEST_SRC ${TEST_SOURCES})
+    file(RELATIVE_PATH TEST_REL_PATH "${CMAKE_CURRENT_SOURCE_DIR}" "${TEST_SRC}")
     get_filename_component(TEST_NAME "${TEST_SRC}" NAME_WE)
-    set(TEST_TARGET "test_${TEST_NAME}") # 添加前缀以避免目标名冲突
+    string(REPLACE "/" "_" TEST_TARGET_SUFFIX "${TEST_REL_PATH}")
+    string(REPLACE ".cpp" "" TEST_TARGET_SUFFIX "${TEST_TARGET_SUFFIX}")
+    set(TEST_TARGET "test_${TEST_TARGET_SUFFIX}")
 
     add_executable(${TEST_TARGET} ${TEST_SRC})
     target_link_libraries(${TEST_TARGET} PRIVATE ${TEST_LIBS})

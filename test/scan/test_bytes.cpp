@@ -1,9 +1,11 @@
 #include <gtest/gtest.h>
 
+#include <span>
 #include <string>
 #include <vector>
 
 import scan.bytes;
+import scan.routine;
 import scan.string;
 import scan.types;
 import value.core;
@@ -139,55 +141,58 @@ TEST(ScanBytesTest, FindBytePatternMaskedIgnoresMaskedBits) {
 TEST(ScanBytesTest, BytearrayRoutineWithMaskMatches) {
     UserValue userValue =
         UserValue::fromByteArray(std::vector<uint8_t>{0xAA, 0xBB});
-    userValue.mask = std::vector<std::uint8_t>{0xFF, 0xF0};
+    userValue.primary.mask = std::vector<std::uint8_t>{0xFF, 0xF0};
 
-    auto routine = makeBytearrayRoutine(ScanMatchType::MATCH_EQUAL_TO);
+    auto routine = makeBytearrayScanRoutine(ScanMatchType::MATCH_EQUAL_TO);
     const std::vector<std::uint8_t> HAY_STACK{0xAA, 0xB5, 0x00};
-    Value mem{HAY_STACK.data(), HAY_STACK.size()};
-    MatchFlags flags = MatchFlags::EMPTY;
-    const unsigned MATCHED =
-        routine(&mem, HAY_STACK.size(), nullptr, &userValue, &flags);
-    EXPECT_EQ(MATCHED, 2U);
-    EXPECT_NE(flags, MatchFlags::EMPTY);
+    auto ctx = scan::makeScanContext(
+        std::span<const uint8_t>(HAY_STACK.data(), HAY_STACK.size()), nullptr,
+        &userValue, userValue.flag(), false);
+    auto result = routine(ctx);
+    EXPECT_EQ(result.matchLength, 2U);
+    EXPECT_NE(result.matchedFlag, MatchFlags::EMPTY);
 }
 
 TEST(ScanBytesTest, MakeBytearrayRoutineAddsBYTE_ARRAYFlag) {
     UserValue userValue =
         UserValue::fromByteArray(std::vector<uint8_t>{0xAA, 0xBB});
-    userValue.mask = std::vector<std::uint8_t>{0xFF, 0xF0};
+    userValue.primary.mask = std::vector<std::uint8_t>{0xFF, 0xF0};
 
-    auto routine = makeBytearrayRoutine(ScanMatchType::MATCH_EQUAL_TO);
+    auto routine = makeBytearrayScanRoutine(ScanMatchType::MATCH_EQUAL_TO);
     const std::vector<std::uint8_t> HAY_STACK{0xAA, 0xB5, 0x00};
-    Value mem{HAY_STACK.data(), HAY_STACK.size()};
-    MatchFlags flags = MatchFlags::EMPTY;
-    const unsigned MATCHED =
-        routine(&mem, HAY_STACK.size(), nullptr, &userValue, &flags);
-    EXPECT_EQ(MATCHED, 2U);
-    EXPECT_TRUE((flags & MatchFlags::BYTE_ARRAY) == MatchFlags::BYTE_ARRAY);
+    auto ctx = scan::makeScanContext(
+        std::span<const uint8_t>(HAY_STACK.data(), HAY_STACK.size()), nullptr,
+        &userValue, userValue.flag(), false);
+    auto result = routine(ctx);
+    EXPECT_EQ(result.matchLength, 2U);
+    EXPECT_TRUE((result.matchedFlag & MatchFlags::BYTE_ARRAY) ==
+                MatchFlags::BYTE_ARRAY);
 }
 
 TEST(ScanStringTest, MATCH_ANYReturnsFullLength) {
     const std::string TEXT = "hello";
-    Value mem{reinterpret_cast<const std::uint8_t*>(TEXT.data()), TEXT.size()};
-    auto routine = makeStringRoutine(ScanMatchType::MATCH_ANY);
-    MatchFlags flags = MatchFlags::EMPTY;
-    const unsigned MATCHED =
-        routine(&mem, mem.size(), nullptr, nullptr, &flags);
-    EXPECT_EQ(MATCHED, TEXT.size());
-    EXPECT_NE(flags, MatchFlags::EMPTY);
+    auto routine = makeStringScanRoutine(ScanMatchType::MATCH_ANY);
+    auto ctx = scan::makeScanContext(
+        std::span<const uint8_t>(
+            reinterpret_cast<const std::uint8_t*>(TEXT.data()), TEXT.size()),
+        nullptr, nullptr, MatchFlags::EMPTY, false);
+    auto result = routine(ctx);
+    EXPECT_EQ(result.matchLength, TEXT.size());
+    EXPECT_NE(result.matchedFlag, MatchFlags::EMPTY);
 }
 
 TEST(ScanStringTest, RegexMatchUsesPattern) {
     const std::string TEXT = "zzabczz";
-    Value mem{reinterpret_cast<const std::uint8_t*>(TEXT.data()), TEXT.size()};
     UserValue userValue = UserValue::fromString("a.c");
 
-    auto routine = makeStringRoutine(ScanMatchType::MATCH_REGEX);
-    MatchFlags flags = MatchFlags::EMPTY;
-    const unsigned MATCHED =
-        routine(&mem, mem.size(), nullptr, &userValue, &flags);
-    EXPECT_EQ(MATCHED, 3U);
-    EXPECT_NE(flags, MatchFlags::EMPTY);
+    auto routine = makeStringScanRoutine(ScanMatchType::MATCH_REGEX);
+    auto ctx = scan::makeScanContext(
+        std::span<const uint8_t>(
+            reinterpret_cast<const std::uint8_t*>(TEXT.data()), TEXT.size()),
+        nullptr, &userValue, userValue.flag(), false);
+    auto result = routine(ctx);
+    EXPECT_EQ(result.matchLength, 3U);
+    EXPECT_NE(result.matchedFlag, MatchFlags::EMPTY);
 }
 
 }  // namespace

@@ -8,7 +8,6 @@ module;
 #include <algorithm>
 #include <array>
 #include <bit>
-#include <concepts>
 #include <cstddef>
 #include <cstdint>
 #include <cstring>
@@ -22,16 +21,6 @@ module;
 export module value.core;
 
 import value.flags;
-
-template <typename T>
-concept ValueArithmeticType = std::is_arithmetic_v<std::remove_cvref_t<T>>;
-
-template <typename T>
-concept ValueStringType = std::same_as<std::remove_cvref_t<T>, std::string>;
-
-template <typename T>
-concept ValueByteVectorType =
-    std::same_as<std::remove_cvref_t<T>, std::vector<std::uint8_t>>;
 
 export struct Value;
 
@@ -89,13 +78,27 @@ export struct Value {
     // Canonical factories for single values
     // ====================================================================
     template <ValueArithmeticType T>
-    [[nodiscard]] static auto of(T&& value) -> Value {
-        return makeArithmetic(std::forward<T>(value));
+    [[nodiscard]] static auto of(T value) -> Value {
+        return makeArithmetic(value);
+    }
+
+    template <ValueArithmeticType T>
+    [[nodiscard]] static auto fromScalar(T value) -> Value {
+        return of(value);
     }
 
     template <ValueStringType T>
     [[nodiscard]] static auto of(T&& value) -> Value {
         return makeString(std::string(std::forward<T>(value)));
+    }
+
+    template <ValueStringType T>
+    [[nodiscard]] static auto fromString(T&& value) -> Value {
+        return of(std::forward<T>(value));
+    }
+
+    [[nodiscard]] static auto fromString(const char* value) -> Value {
+        return makeString(std::string(value));
     }
 
     template <ValueByteVectorType T>
@@ -106,11 +109,18 @@ export struct Value {
                          std::move(mask));
     }
 
+    template <ValueByteVectorType T>
+    [[nodiscard]] static auto fromByteArray(
+        T&& data, std::optional<std::vector<std::uint8_t>> mask = std::nullopt)
+        -> Value {
+        return of(std::forward<T>(data), std::move(mask));
+    }
+
     // ====================================================================
     // Canonical accessors for single values
     // ====================================================================
 
-    template <NumericType T>
+    template <ValueArithmeticType T>
     [[nodiscard]] auto as() const -> std::optional<T> {
         if (bytes.size() != sizeof(T)) {
             return std::nullopt;
@@ -166,6 +176,89 @@ export struct Value {
 };
 
 // ============================================================================
+// UserValue: scan-facing wrapper around one or two Values
+// ============================================================================
+export struct UserValue {
+    Value primary;
+    std::optional<Value> secondary;
+
+    UserValue() = default;
+
+    explicit UserValue(Value value) : primary(std::move(value)) {}
+
+    UserValue(Value lowValue, Value highValue)
+        : primary(std::move(lowValue)), secondary(std::move(highValue)) {}
+
+    template <ValueArithmeticType T>
+    [[nodiscard]] static auto of(T value) -> UserValue {
+        return UserValue{Value::of(value)};
+    }
+
+    template <ValueArithmeticType T>
+    [[nodiscard]] static auto fromScalar(T value) -> UserValue {
+        return of(value);
+    }
+
+    template <ValueStringType T>
+    [[nodiscard]] static auto of(T&& value) -> UserValue {
+        return UserValue{Value::of(std::forward<T>(value))};
+    }
+
+    template <ValueStringType T>
+    [[nodiscard]] static auto fromString(T&& value) -> UserValue {
+        return of(std::forward<T>(value));
+    }
+
+    [[nodiscard]] static auto fromString(const char* value) -> UserValue {
+        return UserValue{Value::fromString(value)};
+    }
+
+    template <ValueByteVectorType T>
+    [[nodiscard]] static auto of(
+        T&& data, std::optional<std::vector<std::uint8_t>> mask = std::nullopt)
+        -> UserValue {
+        return UserValue{
+            Value::of(std::forward<T>(data), std::move(mask))};
+    }
+
+    template <ValueByteVectorType T>
+    [[nodiscard]] static auto fromByteArray(
+        T&& data, std::optional<std::vector<std::uint8_t>> mask = std::nullopt)
+        -> UserValue {
+        return of(std::forward<T>(data), std::move(mask));
+    }
+
+    [[nodiscard]] auto flag() const noexcept -> MatchFlags {
+        return primary.flag();
+    }
+
+    [[nodiscard]] auto size() const noexcept -> std::size_t {
+        return primary.size();
+    }
+
+    [[nodiscard]] auto empty() const noexcept -> bool { return primary.empty(); }
+
+    [[nodiscard]] auto data() const noexcept -> const std::uint8_t* {
+        return primary.data();
+    }
+
+    [[nodiscard]] auto stringValue() const -> std::optional<std::string> {
+        return primary.asString();
+    }
+
+    [[nodiscard]] auto byteArrayValue() const
+        -> std::optional<std::vector<std::uint8_t>> {
+        return primary.asBytes();
+    }
+
+    [[nodiscard]] auto hasMask() const -> bool { return primary.hasMask(); }
+
+    [[nodiscard]] auto hasSecondary() const noexcept -> bool {
+        return secondary.has_value();
+    }
+};
+
+// ============================================================================
 // std::formatter
 // ============================================================================
 namespace std {
@@ -194,6 +287,21 @@ struct formatter<Value> {
             format_to(ctx.out(), "{:02x}", value.data()[i]);
         }
         return format_to(ctx.out(), "]");
+    }
+};
+
+template <>
+struct formatter<UserValue> {
+    static constexpr auto parse(format_parse_context& ctx) {
+        return ctx.begin();
+    }
+
+    static auto format(const UserValue& value, format_context& ctx) {
+        if (value.secondary) {
+            return format_to(ctx.out(), "{}..{}", value.primary,
+                             *value.secondary);
+        }
+        return format_to(ctx.out(), "{}", value.primary);
     }
 };
 

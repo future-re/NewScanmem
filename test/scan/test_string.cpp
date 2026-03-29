@@ -3,10 +3,12 @@
 #include <gtest/gtest.h>
 
 #include <cstdint>
+#include <span>
 #include <string>
 #include <vector>
 
 import scan.string;
+import scan.routine;
 import scan.types;
 import value.core;
 import value.flags;
@@ -16,68 +18,66 @@ class ScanStringTest : public ::testing::Test {
     Value m_mem;
 };
 
-// Test makeStringRoutine MATCH_ANY with nullptr saveFlags
 TEST_F(ScanStringTest,
-       MakeStringRoutineMATCH_ANYWithNullSaveFlagsDoesNotCrash) {
+       MakeStringScanRoutineMATCH_ANYMatchesFullLength) {
     std::vector<uint8_t> data = {'H', 'e', 'l', 'l', 'o'};
     m_mem = Value(data);
 
-    auto routine = makeStringRoutine(ScanMatchType::MATCH_ANY);
+    auto routine = makeStringScanRoutine(ScanMatchType::MATCH_ANY);
+    auto ctx = scan::makeScanContext(
+        std::span<const uint8_t>(m_mem.bytes.data(), m_mem.bytes.size()),
+        nullptr, nullptr, MatchFlags::EMPTY, false);
+    auto result = routine(ctx);
 
-    // Should not crash with nullptr saveFlags
-    unsigned int result =
-        routine(&m_mem, m_mem.bytes.size(), nullptr, nullptr, nullptr);
-
-    EXPECT_EQ(result, static_cast<unsigned int>(data.size()));
+    EXPECT_EQ(result.matchLength, data.size());
 }
 
-// Test makeStringRoutine with string match and nullptr saveFlags
 TEST_F(ScanStringTest,
-       MakeStringRoutineStringMatchWithNullSaveFlagsDoesNotCrash) {
+       MakeStringScanRoutineStringMatchWorks) {
     std::vector<uint8_t> data = {'H', 'e', 'l', 'l', 'o', ' ',
                                  'W', 'o', 'r', 'l', 'd'};
     m_mem = Value(data);
 
     UserValue userValue = UserValue::fromString("Hello");
 
-    auto routine = makeStringRoutine(ScanMatchType::MATCH_EQUAL_TO);
+    auto routine = makeStringScanRoutine(ScanMatchType::MATCH_EQUAL_TO);
+    auto ctx = scan::makeScanContext(
+        std::span<const uint8_t>(m_mem.bytes.data(), m_mem.bytes.size()),
+        nullptr, &userValue, userValue.flag(), false);
 
-    // Should not crash with nullptr saveFlags
-    unsigned int result =
-        routine(&m_mem, m_mem.bytes.size(), nullptr, &userValue, nullptr);
+    auto result = routine(ctx);
 
-    EXPECT_EQ(result, 5U);  // "Hello" is 5 bytes
+    EXPECT_EQ(result.matchLength, 5U);  // "Hello" is 5 bytes
 }
 
-// Test regex match with nullptr saveFlags
 TEST_F(ScanStringTest, RegexMatchWithNullSaveFlagsDoesNotCrash) {
     std::vector<uint8_t> data = {'t', 'e', 's', 't', '1', '2', '3'};
     m_mem = Value(data);
 
     UserValue userValue = UserValue::fromString("[0-9]+");
 
-    auto routine = makeStringRoutine(ScanMatchType::MATCH_REGEX);
+    auto routine = makeStringScanRoutine(ScanMatchType::MATCH_REGEX);
+    auto ctx = scan::makeScanContext(
+        std::span<const uint8_t>(m_mem.bytes.data(), m_mem.bytes.size()),
+        nullptr, &userValue, userValue.flag(), false);
 
-    // Should not crash with nullptr saveFlags
-    unsigned int result =
-        routine(&m_mem, m_mem.bytes.size(), nullptr, &userValue, nullptr);
+    auto result = routine(ctx);
 
-    EXPECT_EQ(result, 3U);  // "123" matches the regex
+    EXPECT_EQ(result.matchLength, 3U);  // "123" matches the regex
 }
 
-// Verify that when saveFlags is provided, it's correctly set
 TEST_F(ScanStringTest, StringRoutineSetsFlags) {
     std::vector<uint8_t> data = {'T', 'e', 's', 't'};
     m_mem = Value(data);
 
-    auto routine = makeStringRoutine(ScanMatchType::MATCH_ANY);
-    MatchFlags flags = MatchFlags::EMPTY;
+    auto routine = makeStringScanRoutine(ScanMatchType::MATCH_ANY);
+    auto ctx = scan::makeScanContext(
+        std::span<const uint8_t>(m_mem.bytes.data(), m_mem.bytes.size()),
+        nullptr, nullptr, MatchFlags::EMPTY, false);
+    auto result = routine(ctx);
 
-    unsigned int result =
-        routine(&m_mem, m_mem.bytes.size(), nullptr, nullptr, &flags);
-
-    EXPECT_EQ(result, static_cast<unsigned int>(data.size()));
-    EXPECT_EQ(flags, MatchFlags::B8);
+    EXPECT_EQ(result.matchLength, data.size());
+    EXPECT_EQ(result.matchedFlag, MatchFlags::B8);
 }
 
 // Test findRegexPattern directly

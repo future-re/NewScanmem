@@ -3,9 +3,11 @@
 #include <gtest/gtest.h>
 
 #include <cstdint>
+#include <span>
 #include <vector>
 
 import scan.numeric;
+import scan.routine;
 import scan.types;
 import value.core;
 import value.flags;
@@ -29,75 +31,73 @@ TEST_F(ScanNumericTest, NumericMatchCoreWithNullSaveFlagsDoesNotCrash) {
     EXPECT_EQ(result, sizeof(int32_t));
 }
 
-// Test makeNumericRoutine with nullptr saveFlags
-TEST_F(ScanNumericTest, MakeNumericRoutineWithNullSaveFlagsDoesNotCrash) {
+// Test makeNumericScanRoutine on a canonical ScanContext
+TEST_F(ScanNumericTest, MakeNumericScanRoutineMatchesAnyValue) {
     std::vector<uint8_t> data = {100, 0, 0, 0, 0, 0, 0, 0};  // int64 = 100
     m_mem = Value(data);
 
-    auto routine = makeNumericRoutine<int64_t>(ScanMatchType::MATCH_ANY, false);
+    auto routine =
+        makeNumericScanRoutine<int64_t>(ScanMatchType::MATCH_ANY, false);
 
-    // Should not crash with nullptr saveFlags
-    unsigned int result =
-        routine(&m_mem, m_mem.bytes.size(), nullptr, nullptr, nullptr);
+    auto ctx = scan::makeScanContext(
+        std::span<const uint8_t>(m_mem.bytes.data(), m_mem.bytes.size()),
+        nullptr, nullptr, MatchFlags::EMPTY, false);
+    auto result = routine(ctx);
 
-    EXPECT_EQ(result, sizeof(int64_t));
+    EXPECT_EQ(result.matchLength, sizeof(int64_t));
+    EXPECT_EQ(result.matchedFlag, MatchFlags::B64);
 }
 
-// Test makeAnyIntegerRoutine with nullptr saveFlags
-TEST_F(ScanNumericTest, MakeAnyIntegerRoutineWithNullSaveFlagsDoesNotCrash) {
+TEST_F(ScanNumericTest, MakeAnyIntegerScanRoutineMatches) {
     std::vector<uint8_t> data = {0xFF, 0x00};  // uint16 = 255
     m_mem = Value(data);
 
-    auto routine = makeAnyIntegerRoutine(ScanMatchType::MATCH_ANY, false);
+    auto routine = makeAnyIntegerScanRoutine(ScanMatchType::MATCH_ANY, false);
+    auto ctx = scan::makeScanContext(
+        std::span<const uint8_t>(m_mem.bytes.data(), m_mem.bytes.size()),
+        nullptr, nullptr, MatchFlags::EMPTY, false);
+    auto result = routine(ctx);
 
-    // Should not crash with nullptr saveFlags
-    unsigned int result =
-        routine(&m_mem, m_mem.bytes.size(), nullptr, nullptr, nullptr);
-
-    // Should match at least as uint8_t or larger
-    EXPECT_GT(result, 0U);
+    EXPECT_GT(result.matchLength, 0U);
 }
 
-// Test makeAnyFloatRoutine with nullptr saveFlags
-TEST_F(ScanNumericTest, MakeAnyFloatRoutineWithNullSaveFlagsDoesNotCrash) {
+TEST_F(ScanNumericTest, MakeAnyFloatScanRoutineMatches) {
     std::vector<uint8_t> data = {0, 0, 0x80, 0x3F};  // float = 1.0
     m_mem = Value(data);
 
-    auto routine = makeAnyFloatRoutine(ScanMatchType::MATCH_ANY, false);
+    auto routine = makeAnyFloatScanRoutine(ScanMatchType::MATCH_ANY, false);
+    auto ctx = scan::makeScanContext(
+        std::span<const uint8_t>(m_mem.bytes.data(), m_mem.bytes.size()),
+        nullptr, nullptr, MatchFlags::EMPTY, false);
+    auto result = routine(ctx);
 
-    // Should not crash with nullptr saveFlags
-    unsigned int result =
-        routine(&m_mem, m_mem.bytes.size(), nullptr, nullptr, nullptr);
-
-    EXPECT_EQ(result, sizeof(float));
+    EXPECT_EQ(result.matchLength, sizeof(float));
 }
 
-// Test makeAnyNumberRoutine with nullptr saveFlags
-TEST_F(ScanNumericTest, MakeAnyNumberRoutineWithNullSaveFlagsDoesNotCrash) {
+TEST_F(ScanNumericTest, MakeAnyNumberScanRoutineMatches) {
     std::vector<uint8_t> data = {42};  // uint8 = 42
     m_mem = Value(data);
 
-    auto routine = makeAnyNumberRoutine(ScanMatchType::MATCH_ANY, false);
+    auto routine = makeAnyNumberScanRoutine(ScanMatchType::MATCH_ANY, false);
+    auto ctx = scan::makeScanContext(
+        std::span<const uint8_t>(m_mem.bytes.data(), m_mem.bytes.size()),
+        nullptr, nullptr, MatchFlags::EMPTY, false);
+    auto result = routine(ctx);
 
-    // Should not crash with nullptr saveFlags
-    unsigned int result =
-        routine(&m_mem, m_mem.bytes.size(), nullptr, nullptr, nullptr);
-
-    EXPECT_GT(result, 0U);
+    EXPECT_GT(result.matchLength, 0U);
 }
 
-// Verify that when saveFlags is provided, it's correctly set
 TEST_F(ScanNumericTest, NumericRoutineSetsFlags) {
     std::vector<uint8_t> data = {42, 0};  // uint16 = 42
     m_mem = Value(data);
 
     auto routine =
-        makeNumericRoutine<uint16_t>(ScanMatchType::MATCH_ANY, false);
-    MatchFlags flags = MatchFlags::EMPTY;
+        makeNumericScanRoutine<uint16_t>(ScanMatchType::MATCH_ANY, false);
+    auto ctx = scan::makeScanContext(
+        std::span<const uint8_t>(m_mem.bytes.data(), m_mem.bytes.size()),
+        nullptr, nullptr, MatchFlags::EMPTY, false);
+    auto result = routine(ctx);
 
-    unsigned int result =
-        routine(&m_mem, m_mem.bytes.size(), nullptr, nullptr, &flags);
-
-    EXPECT_EQ(result, sizeof(uint16_t));
-    EXPECT_EQ(flags, MatchFlags::B16);
+    EXPECT_EQ(result.matchLength, sizeof(uint16_t));
+    EXPECT_EQ(result.matchedFlag, MatchFlags::B16);
 }

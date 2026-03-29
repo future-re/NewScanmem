@@ -2,8 +2,14 @@ module;
 
 #include <cstddef>
 #include <cstdint>
+#include <optional>
 
 export module scan.types;
+
+import core.maps;
+import core.region_filter;
+import scan.match_storage;
+import value.core;
 
 // Classification of scan data types
 export enum class ScanDataType : std::uint8_t {
@@ -135,3 +141,27 @@ export [[nodiscard]] constexpr auto bytesNeededForType(ScanDataType dataType)
     }
     return 8;  // NOLINT(readability-magic-numbers)
 }
+
+export struct ScanOptions {
+    ScanDataType dataType{ScanDataType::ANY_NUMBER};
+    ScanMatchType matchType{ScanMatchType::MATCH_ANY};
+    bool reverseEndianness{false};
+    std::size_t step{1};
+    static constexpr std::size_t BLOCK_SIZE = 64 * 1024;
+    std::size_t blockSize{BLOCK_SIZE};
+    core::RegionScanLevel regionLevel{core::RegionScanLevel::ALL_RW};
+    core::RegionFilterConfig regionFilter;
+};
+
+export struct ScanStats {
+    std::size_t regionsVisited{0};
+    std::size_t bytesScanned{0};
+    std::size_t matches{0};
+};
+
+export struct ScanRecord {
+    ScanStats stats{};
+    scan::MatchesAndOldValuesArray matches;
+    ScanOptions opts{};
+    std::optional<UserValue> value;
+};

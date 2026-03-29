@@ -7,6 +7,7 @@ module;
 #include <cstring>
 #include <iostream>
 #include <optional>
+#include <span>
 #include <type_traits>
 
 export module utils.read_helpers;
@@ -58,9 +59,29 @@ export template <typename T>
     return swapIfReverse<T>(val, reverseEndianness);
 }
 
+export template <typename T>
+[[nodiscard]] inline auto readTyped(std::span<const std::uint8_t> bytes,
+                                    bool reverseEndianness) noexcept
+    -> std::optional<T> {
+    if (bytes.size() < sizeof(T)) {
+        return std::nullopt;
+    }
+    T val{};
+    std::memcpy(&val, bytes.data(), sizeof(T));
+    return swapIfReverse<T>(val, reverseEndianness);
+}
+
+export template <typename T>
+[[nodiscard]] inline auto readTyped(const Value& value, bool reverseEndianness)
+    noexcept -> std::optional<T> {
+    return readTyped<T>(std::span<const std::uint8_t>(value.data(), value.size()),
+                        reverseEndianness);
+}
+
 // Try to read old value from Value* (strictly checks flags and length)
 export template <typename T>
-[[nodiscard]] inline auto oldValueAs(const Value* valuePtr) noexcept
+[[nodiscard]] inline auto oldValueAs(const Value* valuePtr,
+                                     bool reverseEndianness = false) noexcept
     -> std::optional<T> {
     if (!valuePtr) {
         return std::nullopt;
@@ -72,7 +93,58 @@ export template <typename T>
     if (valuePtr->size() < sizeof(T)) {
         return std::nullopt;
     }
-    T out{};
-    std::memcpy(&out, valuePtr->data(), sizeof(T));
-    return out;
+    return readTyped<T>(*valuePtr, reverseEndianness);
+}
+
+export template <typename T>
+[[nodiscard]] inline auto userValueAs(const UserValue& value,
+                                      bool reverseEndianness = false) noexcept
+    -> std::optional<T> {
+    const auto REQUIRED = flagForType<T>();
+    if ((value.flag() & REQUIRED) == MatchFlags::EMPTY) {
+        return std::nullopt;
+    }
+    return readTyped<T>(value.primary, reverseEndianness);
+}
+
+export template <typename T>
+[[nodiscard]] inline auto userValueHighAs(
+    const UserValue& value, bool reverseEndianness = false) noexcept
+    -> std::optional<T> {
+    if (!value.secondary) {
+        return std::nullopt;
+    }
+    const auto REQUIRED = flagForType<T>();
+    if (((*value.secondary).flag() & REQUIRED) == MatchFlags::EMPTY) {
+        return std::nullopt;
+    }
+    return readTyped<T>(*value.secondary, reverseEndianness);
+}
+
+export template <typename F>
+constexpr auto relTol() -> F {
+    if constexpr (std::is_same_v<F, float>) {
+        return static_cast<F>(1E-5F);
+    } else {
+        return static_cast<F>(1E-12);
+    }
+}
+
+export template <typename F>
+constexpr auto absTol() -> F {
+    if constexpr (std::is_same_v<F, float>) {
+        return static_cast<F>(1E-6F);
+    } else {
+        return static_cast<F>(1E-12);
+    }
+}
+
+export template <typename F>
+[[nodiscard]] inline auto almostEqual(F firstValue,
+                                      F secondValue) noexcept -> bool {
+    using std::fabs;
+    const F DIFFERENCE_VALUE = fabs(firstValue - secondValue);
+    const F SCALE_VALUE =
+        std::max(F(1), std::max(fabs(firstValue), fabs(secondValue)));
+    return DIFFERENCE_VALUE <= std::max(absTol<F>(), relTol<F>() * SCALE_VALUE);
 }

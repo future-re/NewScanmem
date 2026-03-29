@@ -84,12 +84,16 @@ export class MemoryWriter {
      * @param matchIndex  Vector: Index of the match to write to
      * @return Expected WriteResult or error string
      */
-    [[nodiscard]] auto writeToMatch(const Scanner& scanner, UserValue& value,
+    [[nodiscard]] auto writeToMatch(const Scanner& scanner,
+                                    const UserValue& value,
                                     std::vector<size_t> matchIndex)
         -> std::expected<VecWriteResult, std::string> {
+        (void)scanner;
+        (void)matchIndex;
         utils::Logger::instance().debug("UserValue: {}", value);
         utils::Logger::instance().debug("Preparing to write value to match at index {}",
                              matchIndex.empty() ? 0 : matchIndex[0]);
+        return std::unexpected("MemoryWriter::writeToMatch is not implemented");
     }
 
    private:

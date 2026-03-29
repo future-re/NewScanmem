@@ -1,5 +1,5 @@
 /**
- * @file parser.cppm
+ * @file parser
  * @brief Value parsing utilities for scan operations
  */
 module;
@@ -30,20 +30,20 @@ export namespace value {
 template <typename T, typename Parser>
 [[nodiscard]] inline auto buildScalar(const std::vector<std::string>& args,
                                       size_t startIndex, Parser parser)
-    -> std::optional<Value>;
+    -> std::optional<UserValue>;
 
 [[nodiscard]] inline auto buildUserValueRange(
     ScanDataType dataType, const std::vector<std::string>& args,
-    size_t startIndex) -> std::optional<UserValueRange>;
+    size_t startIndex) -> std::optional<UserValue>;
 
 namespace detail {
 [[nodiscard]] inline auto parseStringValue(const std::vector<std::string>& args,
                                            size_t startIndex)
-    -> std::optional<Value> {
+    -> std::optional<UserValue> {
     if (startIndex >= args.size()) {
         return std::nullopt;
     }
-    return Value::fromString(args[startIndex]);
+    return UserValue::fromString(args[startIndex]);
 }
 
 [[nodiscard]] inline auto parseByteArrayValue(
@@ -110,12 +110,12 @@ namespace detail {
         mask.push_back(static_cast<std::uint8_t>((hiMask << 4) | loMask));
     }
 
-    return Value::fromByteArray(std::move(bytes), std::move(mask));
+    return UserValue::fromByteArray(std::move(bytes), std::move(mask));
 }
 
 [[nodiscard]] inline auto parseAnyNumberValue(
     const std::vector<std::string>& args,
-    size_t startIndex) -> std::optional<Value> {
+    size_t startIndex) -> std::optional<UserValue> {
     if (startIndex >= args.size()) {
         return std::nullopt;
     }
@@ -232,34 +232,6 @@ inline const auto& getMatchTypeMap() {
     return std::nullopt;
 }
 
-template <typename F>
-constexpr auto relTol() -> F {
-    if constexpr (std::is_same_v<F, float>) {
-        return static_cast<F>(1E-5F);
-    } else {
-        return static_cast<F>(1E-12);
-    }
-}
-
-template <typename F>
-constexpr auto absTol() -> F {
-    if constexpr (std::is_same_v<F, float>) {
-        return static_cast<F>(1E-6F);
-    } else {
-        return static_cast<F>(1E-12);
-    }
-}
-
-template <typename F>
-[[nodiscard]] inline auto almostEqual(F firstValue,
-                                      F secondValue) noexcept -> bool {
-    using std::fabs;
-    const F DIFFERENCE_VALUE = fabs(firstValue - secondValue);
-    const F SCALE_VALUE =
-        std::max(F(1), std::max(fabs(firstValue), fabs(secondValue)));
-    return DIFFERENCE_VALUE <= std::max(absTol<F>(), relTol<F>() * SCALE_VALUE);
-}
-
 /**
  * @brief Helper: build UserValue for scalar of type T
  * @tparam T Scalar type (int8_t, int16_t, int32_t, int64_t, float, double)
@@ -272,28 +244,28 @@ template <typename F>
 template <typename T, typename Parser>
 [[nodiscard]] inline auto buildScalar(const std::vector<std::string>& args,
                                       size_t startIndex, Parser parser)
-    -> std::optional<Value> {
+    -> std::optional<UserValue> {
     auto valueOpt = parser(args[startIndex]);
     if (!valueOpt) {
         return std::nullopt;
     }
 
-    return Value::fromScalar<T>(*valueOpt);
+    return UserValue::fromScalar<T>(*valueOpt);
 }
 
 /**
- * @brief Helper: build UserValue for scalar range of type T
+ * @brief Helper: build a numeric user-value range of type T
  * @tparam T Scalar type (int8_t, int16_t, int32_t, int64_t, float, double)
  * @tparam Parser Parser function type
  * @param args Argument list
  * @param startIndex Start index in args
  * @param parser Parser function (parseInteger<T> or parseDouble)
- * @return Optional UserValueRange
+ * @return Optional UserValue
  */
 template <typename T, typename Parser>
 [[nodiscard]] inline auto buildScalarRange(const std::vector<std::string>& args,
                                            size_t startIndex, Parser parser)
-    -> std::optional<UserValueRange> {
+    -> std::optional<UserValue> {
     auto valueLOpt = parser(args[startIndex]);
     if (!valueLOpt) {
         return std::nullopt;
@@ -302,22 +274,21 @@ template <typename T, typename Parser>
     if (!valueROpt) {
         return std::nullopt;
     }
-    return UserValueRange{Value::of<T>(*valueLOpt),
-                          Value::of<T>(*valueROpt)};
+    return UserValue{Value::of<T>(*valueLOpt), Value::of<T>(*valueROpt)};
 }
 
 /**
- * @brief Build Value from parsed arguments
- * @param dataType Data type of the value
+ * @brief Build UserValue from parsed arguments
+ * @param dataType Data type of the user input
  * @param matchType Match type (affects whether range is needed)
  * @param args Argument list
  * @param startIndex Index to start parsing from
- * @return Optional Value
+ * @return Optional UserValue
  */
 [[nodiscard]] inline auto buildUserValue(
     ScanDataType dataType, ScanMatchType matchType,
     const std::vector<std::string>& args,
-    size_t startIndex) -> std::optional<Value> {
+    size_t startIndex) -> std::optional<UserValue> {
     if (!matchNeedsUserValue(matchType)) {
         return std::nullopt;
     }
@@ -332,10 +303,7 @@ template <typename T, typename Parser>
         if (!rangeValue) {
             return std::nullopt;
         }
-
-        Value result = std::move(rangeValue->first);
-        result.secondaryBytes = std::move(rangeValue->second.bytes);
-        return result;
+        return rangeValue;
     }
 
     switch (dataType) {
@@ -376,15 +344,15 @@ template <typename T, typename Parser>
 }
 
 /**
- * @brief Build Value range from parsed arguments for range matching
+ * @brief Build a ranged UserValue from parsed arguments for range matching
  * @param dataType Data type of the values
  * @param args Argument list
  * @param startIndex Index to start parsing from
- * @return Optional ValueRange (pair of two Values)
+ * @return Optional UserValue
  */
 [[nodiscard]] inline auto buildUserValueRange(
     ScanDataType dataType, const std::vector<std::string>& args,
-    size_t startIndex) -> std::optional<UserValueRange> {
+    size_t startIndex) -> std::optional<UserValue> {
     if (startIndex + 1 >= args.size()) {
         return std::nullopt;
     }

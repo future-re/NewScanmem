@@ -13,7 +13,6 @@ module;
 
 export module core.match;
 
-import core.scanner;
 import core.region_classifier;
 import core.region_filter;
 import value.flags;
@@ -44,6 +43,11 @@ struct MatchCollectionOptions {
         regionFilter;  // Region filtering for export-time filtering
 };
 
+struct MatchSource {
+    const scan::MatchesAndOldValuesArray* matches{nullptr};
+    std::optional<ScanDataType> dataType;
+};
+
 /**
  * @class MatchCollector
  * @brief Collects match entries from scanner results
@@ -69,11 +73,14 @@ class MatchCollector {
      * This ensures indices remain stable regardless of filtering.
      */
     // NOLINTNEXTLINE
-    [[nodiscard]] auto collect(const Scanner& scanner,
+    [[nodiscard]] auto collect(const MatchSource& source,
                                const MatchCollectionOptions& options = {}) const
         -> std::pair<std::vector<MatchEntry>, size_t> {
-        const auto& matches = scanner.getMatches();
-        auto dataType = scanner.getLastDataType();
+        if (source.matches == nullptr) {
+            return {{}, 0};
+        }
+        const auto& matches = *source.matches;
+        auto dataType = source.dataType;
         size_t valueSize = dataType ? bytesNeededForType(*dataType) : 1;
 
         size_t globalIndex = 0;

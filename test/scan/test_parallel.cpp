@@ -1,7 +1,6 @@
 // Tests for parallel scan consistency vs sequential
 
-import scan.engine;        // runScan, ScanOptions, ScanStats
-import scan.co_engine;     // runScanParallel
+import scan.engine;        // runScan, runScanParallel, ScanOptions, ScanStats
 import scan.match_storage; // MatchesAndOldValuesArray
 import scan.types;         // ScanDataType, ScanMatchType
 import value.core;  // UserValue
@@ -122,8 +121,8 @@ TEST(ScanParallel, ConsistencyWithValueEquals) {
 
     // Search for a specific numeric value; use 0 which is common in memory
     UserValue val = UserValue::of<std::uint64_t>(0);
-    val.flags = (MatchFlags::B8 | MatchFlags::B16 | MatchFlags::B32 |
-                MatchFlags::B64);
+    val.primary.flags = (MatchFlags::B8 | MatchFlags::B16 | MatchFlags::B32 |
+                         MatchFlags::B64);
 
     ScanOptions opts;
     opts.dataType = ScanDataType::ANY_NUMBER;
@@ -157,8 +156,8 @@ TEST(ScanParallel, StrictEqualityDeepCompare) {
 
     // 测试使用一个常见值匹配，并设定固定步长与块大小
     UserValue val = UserValue::of<std::uint64_t>(0);
-    val.flags = (MatchFlags::B8 | MatchFlags::B16 | MatchFlags::B32 |
-                MatchFlags::B64);
+    val.primary.flags = (MatchFlags::B8 | MatchFlags::B16 | MatchFlags::B32 |
+                         MatchFlags::B64);
 
     ScanOptions opts;
     opts.dataType = ScanDataType::ANY_NUMBER;

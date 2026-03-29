@@ -17,7 +17,6 @@ import cli.command;
 import cli.session;
 import ui.show_message;
 import core.scanner;
-import scan.engine;
 import scan.types;
 import value.parser;
 
@@ -74,14 +73,15 @@ class SnapshotCommand : public Command {
         opts.dataType = dataType;
         opts.matchType = ScanMatchType::MATCH_ANY;
 
-        auto res = scanner->performScan(opts, std::nullopt, true);
-        if (!res) {
-            return std::unexpected(res.error());
+        auto res = scanner->snapshot(opts, std::nullopt, true);
+        if (!res.success) {
+            return std::unexpected(res.error.value_or("Snapshot failed"));
         }
 
         ui::MessagePrinter::info(std::format(
             "Snapshot created: regions={}, bytes={}, matches={}",
-            res->regionsVisited, res->bytesScanned, scanner->getMatchCount()));
+            res.stats.regionsVisited, res.stats.bytesScanned,
+            scanner->getMatchCount()));
 
         return CommandResult{.success = true, .message = ""};
     }

@@ -3,7 +3,7 @@
  * @brief Process memory I/O via /proc/<pid>/mem (进程内存 I/O)
  *
  * Unified low-level read/write interface for target process memory.
- * Used by core.scanner, scan.engine, scan.filter, and scan.co_engine.
+ * Used by core.scanner, scan.engine, and scan.filter.
  *
  * Provides minimal read/write capabilities using pread/pwrite on
  * /proc/<pid>/mem. Requirements:

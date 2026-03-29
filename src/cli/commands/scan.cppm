@@ -112,21 +112,28 @@ class ScanCommand : public Command {
                 value::buildUserValue(dataType, matchType, args, startIdx);
         }
         if (userVal) {
-            if (auto text = userVal->getString()) {
+            if (auto text = userVal->stringValue()) {
                 utils::Logger::instance().debug("UserValue: {}", *text);
             } else {
+                utils::Logger::instance().debug("UserValue: {}", *userVal);
                 utils::Logger::instance().debug("UserValue size: {}",
                                      userVal->size());
             }
         }
 
-        app::ScanRequest request{.scanner = scanner,
-                                 .regionLevel = m_session->regionLevel,
-                                 .dataType = dataType,
-                                 .matchType = matchType,
-                                 .userValue = userVal,
-                                 .saveToHistory = true};
-        auto result = app::ScanService::run(request);
+        ScanOptions options;
+        options.dataType = dataType;
+        options.matchType = matchType;
+        options.regionLevel = m_session->regionLevel;
+
+        auto mode = scanner->hasMatches() ? app::ScanExecutionMode::FILTER
+                                          : app::ScanExecutionMode::SNAPSHOT;
+        app::ScanExecutionRequest request{.scanner = scanner,
+                                          .options = options,
+                                          .userValue = userVal,
+                                          .mode = mode,
+                                          .saveToHistory = true};
+        auto result = app::ScanService::execute(request);
         if (!result) {
             utils::Logger::instance().error("Scan failed: {}", result.error());
             return std::unexpected(result.error());

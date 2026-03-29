@@ -6,9 +6,7 @@
 module;
 
 #include <cstdint>
-#include <cstring>
 #include <expected>
-#include <format>
 #include <optional>
 #include <string>
 #include <string_view>
@@ -18,13 +16,9 @@ export module cli.commands.write;
 
 import cli.command;
 import cli.session;
-import ui.show_message;
-import core.memory_writer;
-import utils.endianness;
 import value.core;
+import value.parser;
 import scan.types;
-import utils.logging;
-import utils.parserStr;
 
 export namespace cli::commands {
 
@@ -72,42 +66,12 @@ class WriteCommand : public Command {
                 "No scan data type available. Run a scan first.");
         }
 
-        // 根据数据类型解析值
         const auto& valueStr = args[0];
-
-        utils::Logger::instance().debug("Parsing write value: {}", valueStr);
-
-        std::vector<uint8_t> valueData;
-
-        if (bool isFloatType = (*lastDataType == ScanDataType::FLOAT_32 ||
-                                *lastDataType == ScanDataType::FLOAT_64 ||
-                                *lastDataType == ScanDataType::ANY_FLOAT)) {
-            auto tempParseValue = utils::parseDouble(valueStr);
-            if (!tempParseValue) {
-                return std::unexpected("Invalid float value: " + valueStr);
-            }
-            memcpy(valueData.data(), &(*tempParseValue),
-                   sizeof(*tempParseValue));
-        } else if (bool isIntegerType =
-                       (*lastDataType == ScanDataType::INTEGER_8 ||
-                        *lastDataType == ScanDataType::INTEGER_16 ||
-                        *lastDataType == ScanDataType::INTEGER_32 ||
-                        *lastDataType == ScanDataType::INTEGER_64 ||
-                        *lastDataType == ScanDataType::ANY_INTEGER)) {
-            auto tempParseValue = utils::parseInteger<std::int64_t>(valueStr);
-            if (!tempParseValue) {
-                return std::unexpected("Invalid integer value: " + valueStr);
-            }
-            memcpy(valueData.data(), &(*tempParseValue),
-                   sizeof(*tempParseValue));
-        } else if (bool isString = (*lastDataType == ScanDataType::STRING)) {
-            memcpy(valueData.data(), valueStr.data(), valueStr.size());
-        } else if (bool isByteArray =
-                       (*lastDataType == ScanDataType::BYTE_ARRAY)) {
-            memcpy(valueData.data(), valueStr.data(), valueStr.size());
+        auto value = parseWriteUserValue(*lastDataType, valueStr);
+        if (!value) {
+            return std::unexpected("Invalid value for current scan type: " +
+                                   valueStr);
         }
-
-        UserValue value;
 
         // 解析索引
         std::optional<size_t> targetIndex;
@@ -169,10 +133,20 @@ class WriteCommand : public Command {
         //     }
         // }
 
-        return CommandResult{.success = true, .message = ""};
+        return std::unexpected(
+            "Write command parsing is ready, but memory writing is not "
+            "implemented yet");
     }
 
    private:
+    [[nodiscard]] static auto parseWriteUserValue(ScanDataType dataType,
+                                                  std::string_view valueText)
+        -> std::optional<UserValue> {
+        std::vector<std::string> args{std::string(valueText)};
+        return value::buildUserValue(dataType, ScanMatchType::MATCH_EQUAL_TO,
+                                     args, 0);
+    }
+
     SessionState* m_session;
 };
 

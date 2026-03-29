@@ -3,15 +3,17 @@ module;
 #include <cstddef>
 #include <cstdint>
 #include <expected>
+#include <optional>
+#include <span>
 #include <string>
 #include <vector>
 
 export module scan.filter;
 
-import scan.types; // ScanDataType / ScanMatchType / bytesNeededForType / matchUsesOldValue
-import scan.factory; // smGetScanroutine
-import scan.engine;  // ScanStats / ScanOptions
+import scan.types; // ScanOptions / ScanStats / bytesNeededForType / matchUsesOldValue
+import scan.job;
 import scan.match_storage;
+import scan.routine;
 import value.core;
 import value.flags;
 import core.proc_mem; // ProcMemIO
@@ -19,6 +21,33 @@ import core.proc_mem; // ProcMemIO
 using scan::MatchesAndOldValuesArray;
 using scan::MatchesAndOldValuesSwath;
 using scan::OldValueAndMatchInfo;
+
+namespace {
+
+[[nodiscard]] inline auto makeOldValueForCell(const MatchesAndOldValuesSwath& swath,
+                                              std::size_t index,
+                                              const ScanOptions& opts)
+    -> std::optional<Value> {
+    if (!matchUsesOldValue(opts.matchType)) {
+        return std::nullopt;
+    }
+    const std::size_t NEED = bytesNeededForType(opts.dataType);
+    const std::size_t REM = swath.data.size() - index;
+    if (REM < NEED) {
+        return std::nullopt;
+    }
+
+    Value oldValue;
+    oldValue.bytes.reserve(NEED);
+    for (std::size_t k = 0; k < NEED; ++k) {
+        oldValue.bytes.push_back(swath.data[index + k].oldByte);
+    }
+    oldValue.flags =
+        MatchFlags::B8 | MatchFlags::B16 | MatchFlags::B32 | MatchFlags::B64;
+    return oldValue;
+}
+
+}  // namespace
 
 // Narrow matches for a single swath using the provided routine.
 inline void narrowSwath(MatchesAndOldValuesSwath& swath, auto& routine,
@@ -38,32 +67,23 @@ inline void narrowSwath(MatchesAndOldValuesSwath& swath, auto& routine,
         auto readExp = reader.read(addr, buffer.data(), buffer.size());
         if (!readExp || *readExp == 0) {
             cell.matchInfo = MatchFlags::EMPTY;
+            cell.matchLength = 0;
             continue;
         }
-        Value mem{buffer.data(), *readExp};
-        MatchFlags newFlags = MatchFlags::EMPTY;
-        const Value* oldValuePtr = nullptr;
-        Value oldValueHolder;
-        if (matchUsesOldValue(opts.matchType)) {
-            const std::size_t NEED = bytesNeededForType(opts.dataType);
-            const std::size_t REM = swath.data.size() - i;
-            if (REM >= NEED) {
-                oldValueHolder.bytes.resize(NEED);
-                for (std::size_t k = 0; k < NEED; ++k) {
-                    oldValueHolder.bytes[k] = swath.data[i + k].oldByte;
-                }
-                oldValueHolder.flags = MatchFlags::B8 | MatchFlags::B16 |
-                                       MatchFlags::B32 | MatchFlags::B64;
-                oldValuePtr = &oldValueHolder;
-            }
-        }
-        const unsigned MATCHED_LEN =
-            routine(&mem, *readExp, oldValuePtr, value, &newFlags);
-        if (MATCHED_LEN > 0) {
-            cell.matchInfo = newFlags;
+        auto oldValue = makeOldValueForCell(swath, i, opts);
+        auto ctx = scan::makeScanContext(
+            std::span<const std::uint8_t>(buffer.data(), *readExp),
+            oldValue ? &*oldValue : nullptr, value,
+            (value != nullptr) ? value->flag() : MatchFlags::EMPTY,
+            opts.reverseEndianness);
+        auto result = routine(ctx);
+        if (result) {
+            cell.matchInfo = result.matchedFlag;
+            cell.matchLength = static_cast<std::uint16_t>(result.matchLength);
             stats.matches++;
         } else {
             cell.matchInfo = MatchFlags::EMPTY;
+            cell.matchLength = 0;
         }
         stats.bytesScanned += *readExp;
     }
@@ -74,20 +94,18 @@ export [[nodiscard]] inline auto filterMatches(
     pid_t pid, const ScanOptions& opts, const UserValue* value,
     MatchesAndOldValuesArray& matches)
     -> std::expected<ScanStats, std::string> {
-    auto routine =
-        smGetScanroutine(opts.dataType, opts.matchType,
-                         (value != nullptr) ? value->flag() : MatchFlags::EMPTY,
-                         opts.reverseEndianness);
-    if (!routine) {
-        return std::unexpected("no scan routine for filtered options");
+    auto routineExp = scan::prepareScanRoutine(opts, value);
+    if (!routineExp) {
+        return std::unexpected(routineExp.error());
     }
+    auto routine = *routineExp;
 
     core::ProcMemIO reader{pid};
     if (auto err = reader.open(); !err) {
         return std::unexpected(err.error());
     }
 
-    const std::size_t SLICE_SIZE = bytesNeededForType(opts.dataType);
+    const std::size_t SLICE_SIZE = scan::scanWindowSize(opts, value);
     std::vector<std::uint8_t> buffer(SLICE_SIZE);
     ScanStats stats{};
     for (auto& swath : matches.swaths) {

@@ -21,7 +21,10 @@ import value.core;
 // - compareBytes / compareBytesMasked: check whether the buffer prefix at the
 //   current offset matches the supplied pattern (NOT a search).
 // - findBytePattern / findBytePatternMasked: search for the first occurrence.
-// - makeBytearrayRoutine: build a scan routine for byte array matches.
+// - makeBytearrayScanRoutine: build a scan routine for byte array matches.
+
+export inline auto makeBytearrayScanRoutine(ScanMatchType matchType)
+    -> scan::ScanRoutine;
 
 export inline auto compareBytes(const Value* memoryPtr, size_t memLength,
                                 const std::uint8_t* patternData,
@@ -156,40 +159,41 @@ export inline auto findBytePatternMasked(
                                  pattern.size(), mask.data(), mask.size());
 }
 
-export inline auto makeBytearrayRoutine(ScanMatchType matchType)
-    -> scanRoutine {
-    return [matchType](const Value* memoryPtr, size_t memLength,
-                       const Value* /*oldValue*/, const UserValue* userValue,
-                       MatchFlags* saveFlags) -> unsigned int {
-        setFlagsIfNotNull(saveFlags, MatchFlags::EMPTY);
+export inline auto makeBytearrayScanRoutine(ScanMatchType matchType)
+    -> scan::ScanRoutine {
+    return [matchType](const scan::ScanContext& ctx) -> scan::ScanResult {
+        MatchFlags flags = MatchFlags::EMPTY;
         if (matchType == ScanMatchType::MATCH_ANY) {
-            setFlagsIfNotNull(saveFlags, MatchFlags::B8);
-            return static_cast<unsigned int>(memLength);
+            return scan::ScanResult::match(ctx.memory.size(), MatchFlags::B8);
         }
-        if (userValue->flag() != MatchFlags::BYTE_ARRAY) {
-            return 0;
+        if (!ctx.userValue || ctx.userValue->flag() != MatchFlags::BYTE_ARRAY) {
+            return scan::ScanResult::noMatch();
         }
-        const auto& byteArrayRef = userValue->bytes;
+        const auto& patternValue = ctx.userValue->primary;
+        const auto& byteArrayRef = patternValue.bytes;
         if (byteArrayRef.empty()) {
-            return 0;
+            return scan::ScanResult::noMatch();
         }
-        if (userValue->mask &&
-            userValue->mask->size() == byteArrayRef.size()) {
+        Value memoryValue{ctx.memory.data(), ctx.memory.size()};
+        if (patternValue.mask &&
+            patternValue.mask->size() == byteArrayRef.size()) {
             unsigned matchedLen = compareBytesMasked(
-                memoryPtr, memLength, byteArrayRef.data(), byteArrayRef.size(),
-                userValue->mask->data(), userValue->mask->size(),
-                saveFlags);
+                &memoryValue, ctx.memory.size(), byteArrayRef.data(),
+                byteArrayRef.size(), patternValue.mask->data(),
+                patternValue.mask->size(), &flags);
             if (matchedLen > 0) {
-                orFlagsIfNotNull(saveFlags, MatchFlags::BYTE_ARRAY);
+                return scan::ScanResult::match(
+                    matchedLen, flags | MatchFlags::BYTE_ARRAY);
             }
-            return matchedLen;
+            return scan::ScanResult::noMatch();
         }
         unsigned matchedLen =
-            compareBytes(memoryPtr, memLength, byteArrayRef.data(),
-                         byteArrayRef.size(), saveFlags);
+            compareBytes(&memoryValue, ctx.memory.size(), byteArrayRef.data(),
+                         byteArrayRef.size(), &flags);
         if (matchedLen > 0) {
-            orFlagsIfNotNull(saveFlags, MatchFlags::BYTE_ARRAY);
+            return scan::ScanResult::match(matchedLen,
+                                           flags | MatchFlags::BYTE_ARRAY);
         }
-        return matchedLen;
+        return scan::ScanResult::noMatch();
     };
 }

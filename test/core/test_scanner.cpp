@@ -106,8 +106,8 @@ class ScannerTest : public ::testing::Test {
 TEST(ScannerStandaloneTest, FilteredScanWithoutInitialFull) {
     Scanner scanner(::getpid());  // current process
     ScanOptions opts;             // defaults MATCH_ANY ANYNUMBER
-    auto filtered = scanner.performFilteredScan(opts);
-    EXPECT_FALSE(filtered.has_value());
+    auto filtered = scanner.filter(opts);
+    EXPECT_FALSE(filtered.success);
 }
 
 // Test: full scan then filtered scan narrowing and reset on new full scan
@@ -119,8 +119,8 @@ TEST_F(ScannerTest, FullThenFilteredAndReset) {
     ScanOptions fullOpts;
     fullOpts.dataType = ScanDataType::INTEGER_8;
     fullOpts.matchType = ScanMatchType::MATCH_ANY;
-    auto fullStatsExp = scanner.performScan(fullOpts);
-    ASSERT_TRUE(fullStatsExp.has_value()) << "Full scan failed";
+    auto fullResult = scanner.snapshot(fullOpts);
+    ASSERT_TRUE(fullResult.success) << "Full scan failed";
     auto fullCount = scanner.getMatchCount();
     ASSERT_GT(fullCount, 0U) << "Full scan should produce matches";
 
@@ -129,17 +129,16 @@ TEST_F(ScannerTest, FullThenFilteredAndReset) {
     ScanOptions filteredOpts;
     filteredOpts.dataType = ScanDataType::INTEGER_8;
     filteredOpts.matchType = ScanMatchType::MATCH_EQUAL_TO;
-    auto filteredStatsExp =
-        scanner.performFilteredScan(filteredOpts, val, true);
-    ASSERT_TRUE(filteredStatsExp.has_value()) << "Filtered scan failed";
+    auto filteredResult = scanner.filter(filteredOpts, val, true);
+    ASSERT_TRUE(filteredResult.success) << "Filtered scan failed";
     auto narrowedCount = scanner.getMatchCount();
     EXPECT_GT(narrowedCount, 0U) << "Should retain some matches for value 42";
     EXPECT_LE(narrowedCount, fullCount)
         << "Filtered scan should not increase matches";
 
     // Another full scan should reset matches to a (likely) larger count
-    auto fullAgainExp = scanner.performScan(fullOpts);
-    ASSERT_TRUE(fullAgainExp.has_value()) << "Second full scan failed";
+    auto fullAgain = scanner.snapshot(fullOpts);
+    ASSERT_TRUE(fullAgain.success) << "Second full scan failed";
     auto fullAgainCount = scanner.getMatchCount();
     EXPECT_GE(fullAgainCount, narrowedCount)
         << "Full scan should reset/widen matches";

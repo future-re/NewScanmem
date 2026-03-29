@@ -30,7 +30,10 @@ TEST_F(MatchCollectorTest, CollectWithoutClassifier) {
     opts.limit = 10;
     opts.collectRegion = false;
 
-    auto [entries, total] = collector.collect(*scanner, opts);
+    auto [entries, total] = collector.collect(
+        {.matches = &scanner->getMatches(),
+         .dataType = scanner->getLastDataType()},
+        opts);
 
     // Empty scanner should return empty results
     EXPECT_EQ(entries.size(), 0);
@@ -42,7 +45,10 @@ TEST_F(MatchCollectorTest, CollectWithLimit) {
     MatchCollectionOptions opts;
     opts.limit = 5;
 
-    auto [entries, total] = collector.collect(*scanner, opts);
+    auto [entries, total] = collector.collect(
+        {.matches = &scanner->getMatches(),
+         .dataType = scanner->getLastDataType()},
+        opts);
 
     // Should respect limit
     EXPECT_LE(entries.size(), opts.limit);

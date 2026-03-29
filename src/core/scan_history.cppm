@@ -11,7 +11,7 @@ module;
 
 export module core.scan_history;
 
-import scan.engine; // for ScanResult
+import scan.types;
 
 export namespace core {
 
@@ -29,7 +29,7 @@ class ScanHistory {
      *
      * If history exceeds MAX_HISTORY (10), the oldest result is removed.
      */
-    void add(ScanResult result) {
+    void add(ScanRecord result) {
         if (m_results.size() >= MAX_HISTORY) {
             m_results.pop_front();
         }
@@ -47,7 +47,7 @@ class ScanHistory {
      * @param index Index from 0 (oldest) to count()-1 (newest)
      * @return Pointer to result, or nullptr if out of range
      */
-    [[nodiscard]] auto get(std::size_t index) const -> const ScanResult* {
+    [[nodiscard]] auto get(std::size_t index) const -> const ScanRecord* {
         if (index >= m_results.size()) {
             return nullptr;
         }
@@ -58,7 +58,7 @@ class ScanHistory {
      * @brief Get all scan results
      * @return Reference to deque of results
      */
-    [[nodiscard]] auto getAll() const -> const std::deque<ScanResult>& {
+    [[nodiscard]] auto getAll() const -> const std::deque<ScanRecord>& {
         return m_results;
     }
 
@@ -69,7 +69,7 @@ class ScanHistory {
 
    private:
     static constexpr std::size_t MAX_HISTORY = 10;
-    std::deque<ScanResult> m_results;
+    std::deque<ScanRecord> m_results;
 };
 
 }  // namespace core

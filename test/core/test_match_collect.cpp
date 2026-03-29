@@ -52,7 +52,10 @@ TEST(MatchCollectorTest, ExportTimeFilterStackAllowed) {
     opts.collectRegion = true;
     opts.regionFilter = cfg;
 
-    auto [entries, total] = collector.collect(scanner, opts);
+    auto [entries, total] = collector.collect(
+        {.matches = &scanner.getMatches(),
+         .dataType = scanner.getLastDataType()},
+        opts);
     // Only even indices were marked as matches; half of 8 => 4
     EXPECT_EQ(total, 4U);
     ASSERT_EQ(entries.size(), 4U);
@@ -94,7 +97,10 @@ TEST(MatchCollectorTest, ExportTimeFilterHeapOnlyDropsStack) {
     opts.collectRegion = true;
     opts.regionFilter = cfg;
 
-    auto [entries, total] = collector.collect(scanner, opts);
+    auto [entries, total] = collector.collect(
+        {.matches = &scanner.getMatches(),
+         .dataType = scanner.getLastDataType()},
+        opts);
     // All addresses are on stack; heap-only filter should drop them
     EXPECT_EQ(total, 0U);
     EXPECT_TRUE(entries.empty());

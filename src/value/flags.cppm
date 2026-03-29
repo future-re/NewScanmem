@@ -9,30 +9,21 @@ module;
 export module value.flags;
 
 export template <typename T>
-concept NumericType = std::integral<T> || std::floating_point<T>;
+concept ValueArithmeticType = std::is_arithmetic_v<std::remove_cvref_t<T>>;
 
 export template <typename T>
-concept StringType = std::is_same_v<T, std::string>;
+concept ValueStringType = std::same_as<std::remove_cvref_t<T>, std::string>;
 
 export template <typename T>
-concept ByteArrayType = std::is_same_v<T, std::vector<std::uint8_t>>;
+concept ValueByteVectorType =
+    std::same_as<std::remove_cvref_t<T>, std::vector<std::uint8_t>>;
 
 export template <typename T>
-concept ValueTypeConcept = ByteArrayType<T> || StringType<T> || NumericType<T>;
+concept ValueTypeConcept =
+    ValueArithmeticType<T> || ValueStringType<T> || ValueByteVectorType<T>;
 
-export using UserValueByteArray = std::vector<std::uint8_t>;
-
-export using ValueByteArray = UserValueByteArray;
-
-export using ValueString = std::string;
-
-export using UserValueString = ValueString;
-
-
-// base Flags for matching types
 export enum class MatchFlags : std::uint16_t {
     EMPTY = 0,
-    // Width-based flags (used for marking match width/type in scan paths)
     B8 = 1U << 0,
     B16 = 1U << 1,
     B32 = 1U << 2,
@@ -43,48 +34,72 @@ export enum class MatchFlags : std::uint16_t {
 
 export using ValueType = MatchFlags;
 
-// bit wise operators for MatchFlags
-export constexpr auto operator|(MatchFlags aVal,
-                                MatchFlags bVal) noexcept -> MatchFlags {
-    return static_cast<MatchFlags>(static_cast<std::uint16_t>(aVal) |
-                                   static_cast<std::uint16_t>(bVal));
+namespace detail {
+
+[[nodiscard]] constexpr auto toUnderlying(MatchFlags flags) noexcept
+    -> std::underlying_type_t<MatchFlags> {
+    return static_cast<std::underlying_type_t<MatchFlags>>(flags);
 }
 
-export constexpr auto operator&(MatchFlags aVal,
-                                MatchFlags bVal) noexcept -> MatchFlags {
-    return static_cast<MatchFlags>(static_cast<std::uint16_t>(aVal) &
-                                   static_cast<std::uint16_t>(bVal));
+template <typename T>
+[[nodiscard]] consteval auto widthFlag() noexcept -> MatchFlags {
+    if constexpr (sizeof(T) == 1) {
+        return MatchFlags::B8;
+    } else if constexpr (sizeof(T) == 2) {
+        return MatchFlags::B16;
+    } else if constexpr (sizeof(T) == 4) {
+        return MatchFlags::B32;
+    } else if constexpr (sizeof(T) == 8) {
+        return MatchFlags::B64;
+    } else {
+        return MatchFlags::EMPTY;
+    }
 }
 
-export constexpr auto operator^(MatchFlags aVal,
-                                MatchFlags bVal) noexcept -> MatchFlags {
-    return static_cast<MatchFlags>(static_cast<std::uint16_t>(aVal) ^
-                                   static_cast<std::uint16_t>(bVal));
+}  // namespace detail
+
+export [[nodiscard]] constexpr auto operator|(MatchFlags lhs,
+                                              MatchFlags rhs) noexcept
+    -> MatchFlags {
+    return static_cast<MatchFlags>(detail::toUnderlying(lhs) |
+                                   detail::toUnderlying(rhs));
 }
 
-export constexpr auto operator~(MatchFlags aVal) noexcept -> MatchFlags {
-    return static_cast<MatchFlags>(~static_cast<std::uint16_t>(aVal));
+export [[nodiscard]] constexpr auto operator&(MatchFlags lhs,
+                                              MatchFlags rhs) noexcept
+    -> MatchFlags {
+    return static_cast<MatchFlags>(detail::toUnderlying(lhs) &
+                                   detail::toUnderlying(rhs));
 }
 
-export inline auto operator|=(MatchFlags& aVal,
-                              MatchFlags bVal) noexcept -> MatchFlags& {
-    aVal = (aVal | bVal);
-    return aVal;
+export [[nodiscard]] constexpr auto operator^(MatchFlags lhs,
+                                              MatchFlags rhs) noexcept
+    -> MatchFlags {
+    return static_cast<MatchFlags>(detail::toUnderlying(lhs) ^
+                                   detail::toUnderlying(rhs));
 }
 
-export inline auto operator&=(MatchFlags& aVal,
-                              MatchFlags bVal) noexcept -> MatchFlags& {
-    aVal = (aVal & bVal);
-    return aVal;
+export [[nodiscard]] constexpr auto operator~(MatchFlags flags) noexcept
+    -> MatchFlags {
+    return static_cast<MatchFlags>(~detail::toUnderlying(flags));
 }
 
-// check if any flag is set
-export constexpr auto any(MatchFlags flag) noexcept -> bool {
-    return (flag != MatchFlags::EMPTY);
+export constexpr auto operator|=(MatchFlags& lhs, MatchFlags rhs) noexcept
+    -> MatchFlags& {
+    lhs = lhs | rhs;
+    return lhs;
 }
 
-// Null-safe flag manipulation helpers
-// These functions safely handle nullptr for optional flag output parameters
+export constexpr auto operator&=(MatchFlags& lhs, MatchFlags rhs) noexcept
+    -> MatchFlags& {
+    lhs = lhs & rhs;
+    return lhs;
+}
+
+export [[nodiscard]] constexpr auto any(MatchFlags flags) noexcept -> bool {
+    return flags != MatchFlags::EMPTY;
+}
+
 export inline void setFlagsIfNotNull(MatchFlags* dest,
                                      MatchFlags flags) noexcept {
     if (dest != nullptr) {
@@ -100,27 +115,15 @@ export inline void orFlagsIfNotNull(MatchFlags* dest,
 }
 
 export template <typename T>
-[[nodiscard]] constexpr auto flagForType() noexcept -> MatchFlags {
-    if constexpr (std::is_same_v<T, std::string>) {
+[[nodiscard]] consteval auto flagForType() noexcept -> MatchFlags {
+    using U = std::remove_cvref_t<T>;
+
+    if constexpr (ValueStringType<U>) {
         return MatchFlags::STRING;
-    } else if constexpr (std::is_same_v<T, std::vector<std::uint8_t>>) {
+    } else if constexpr (ValueByteVectorType<U>) {
         return MatchFlags::BYTE_ARRAY;
-    } else if constexpr (std::is_same_v<T, float>) {
-        return MatchFlags::B32;
-    } else if constexpr (std::is_same_v<T, double>) {
-        return MatchFlags::B64;
-    } else if constexpr (std::is_integral_v<T>) {
-        if constexpr (sizeof(T) == 1) {
-            return MatchFlags::B8;
-        } else if constexpr (sizeof(T) == 2) {
-            return MatchFlags::B16;
-        } else if constexpr (sizeof(T) == 4) {
-            return MatchFlags::B32;
-        } else if constexpr (sizeof(T) == 8) {
-            return MatchFlags::B64;
-        } else {
-            return MatchFlags::EMPTY;
-        }
+    } else if constexpr (ValueArithmeticType<U>) {
+        return detail::widthFlag<U>();
     } else {
         return MatchFlags::EMPTY;
     }
