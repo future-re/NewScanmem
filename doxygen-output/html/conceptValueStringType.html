@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NewScanmem: 类成员 - 函数</title>
+<title>NewScanmem: ValueStringType 概念引用</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -65,7 +65,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('functions_func_o.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('conceptValueStringType.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -90,20 +90,20 @@ $(document).ready(function(){initNavTree('functions_func_o.html',''); initResiza
 </div>
 </div>
 
+<div class="header">
+  <div class="headertitle"><div class="title">ValueStringType 概念引用<div class="ingroups">模块 <a class="el" href="module_value_8core.html">value.core</a></div></div></div>
+</div><!--header-->
 <div class="contents">
-<div class="textblock">&#160;</div>
-
-<h3><a id="index_o" name="index_o"></a>- o -</h3><ul>
-<li>of()&#160;:&#160;<a class="el" href="structValue.html#a805f3679ff59ce60c6da52e329e836d8">Value</a></li>
-<li>open()&#160;:&#160;<a class="el" href="classcore_1_1ProcMemIO.html#a9eaed5c344b09d84ac970e3aac1aed34">core::ProcMemIO</a></li>
-<li>operator bool()&#160;:&#160;<a class="el" href="structscan_1_1ScanResult.html#a5585b6b180c20d86df0c3b5ee5e4635b">scan::ScanResult</a></li>
-<li>operator=()&#160;:&#160;<a class="el" href="classcli_1_1Command.html#ae71c1be8e80712c7dc97bb6543a36b57">cli::Command</a>, <a class="el" href="classcore_1_1ProcMemIO.html#a44defbd199d3e2d7b1d28b8f68be3d57">core::ProcMemIO</a>, <a class="el" href="classui_1_1RawMode.html#ac7f37ac35f492e195161aed1ac9c707a">ui::RawMode</a>, <a class="el" href="classui_1_1UserInterface.html#aa7156089c13b28c6b420f7c13ba32ac1">ui::UserInterface</a>, <a class="el" href="classutils_1_1Logger.html#af06161a3be564f581dd244f83ff3dd8d">utils::Logger</a></li>
-</ul>
-</div><!-- contents -->
+<h2 class="groupheader">概念定义</h2>
+<div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="conceptValueStringType.html">ValueStringType</a> =  std::same_as&lt;std::remove_cvref_t&lt;T&gt;, std::string&gt;</div>
+<div class="ttc" id="aconceptValueStringType_html"><div class="ttname"><a href="conceptValueStringType.html">ValueStringType</a></div><div class="ttdef"><b>Definition</b> core.cppm:30</div></div>
+</div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a class="el" href="conceptValueStringType.html">ValueStringType</a></li>
     <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

@@ -1,10 +1,5 @@
 var NAVTREEINDEX5 =
 {
-"functions_~.html":[4,3,0,21],
-"globals.html":[5,1,0],
-"globals_enum.html":[5,1,4],
-"globals_func.html":[5,1,1],
-"globals_type.html":[5,1,3],
 "globals_vars.html":[5,1,2],
 "help_8cppm.html":[5,0,0,1,0,1],
 "hierarchy.html":[4,2],
@@ -249,5 +244,10 @@ var NAVTREEINDEX5 =
 "module_core_8memory.html#a42d80a675561be2b06aa0dcae792585e":[1,0,21,3],
 "module_core_8memory.html#a9ebcc6fa02a36252c8e7dcedd3f9a840":[1,0,21,6],
 "module_core_8memory.html#aaf7bb0186935285bf63a4d16840f41d7":[1,0,21,2],
-"module_core_8memory.html#afa7afc84d7b4ecb90ee60bd8f6227555":[1,0,21,5]
+"module_core_8memory.html#afa7afc84d7b4ecb90ee60bd8f6227555":[1,0,21,5],
+"module_core_8memory__writer.html":[1,0,22],
+"module_core_8proc__mem.html":[1,0,23],
+"module_core_8proc__mem.html#a17e90101be0e08a5783d802470856720":[1,0,23,12],
+"module_core_8proc__mem.html#a225eeccc5d886724c5af63499b25f911":[1,0,23,6],
+"module_core_8proc__mem.html#a39e7f0977874a746ab7a31ea059f89eb":[1,0,23,9]
 };

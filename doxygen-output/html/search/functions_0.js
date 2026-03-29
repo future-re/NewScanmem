@@ -11,9 +11,8 @@ var searchData=
   ['appendbytestoswath_8',['appendBytesToSwath',['../engine_8cppm.html#acd4ab87128e7c0509a3b75a88ddc71da',1,'engine.cppm']]],
   ['appendrange_9',['appendRange',['../classscan_1_1MatchesAndOldValuesSwath.html#a2d75740077358246210e676ca71d4d00',1,'scan::MatchesAndOldValuesSwath']]],
   ['application_10',['Application',['../classcli_1_1Application.html#acc6583cfc6748cf350119214c79966d8',1,'cli::Application']]],
-  ['as_11',['as',['../classvalue_1_1ValueView.html#a92666c59b3ad5932248fe45aa1588eb8',1,'value::ValueView::as()'],['../structValue.html#a091708ea41f8c9beb21c3ceca07e6c24',1,'Value::as() const -&gt; std::optional&lt; T &gt;']]],
+  ['as_11',['as',['../structValue.html#a091708ea41f8c9beb21c3ceca07e6c24',1,'Value::as()'],['../classvalue_1_1ValueView.html#a92666c59b3ad5932248fe45aa1588eb8',1,'value::ValueView::as()']]],
   ['asbytes_12',['asBytes',['../structValue.html#adf9a4958d4ccb171ad1f6d1d27db5951',1,'Value']]],
-  ['ashigh_13',['asHigh',['../structValue.html#a4b768c520f645bf31e9c78be0fb4a62b',1,'Value']]],
-  ['asspan_14',['asSpan',['../structcore_1_1Region.html#abb0a122c3549bc47e4d48fa3514dbde6',1,'core::Region']]],
-  ['asstring_15',['asString',['../structValue.html#aaaaac229b590409d0546f0cb185bc06d',1,'Value']]]
+  ['asspan_13',['asSpan',['../structcore_1_1Region.html#abb0a122c3549bc47e4d48fa3514dbde6',1,'core::Region']]],
+  ['asstring_14',['asString',['../structValue.html#aaaaac229b590409d0546f0cb185bc06d',1,'Value']]]
 ];

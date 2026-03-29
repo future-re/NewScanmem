@@ -5,7 +5,7 @@ var searchData=
   ['adaptroutine_2',['adaptRoutine',['../namespacescan.html#adb77f90f614031fdf8204380561bc44f',1,'scan']]],
   ['add_3',['add',['../classcore_1_1ScanHistory.html#aa374fc55a69ddcd6ad544e60e4d5031c',1,'core::ScanHistory']]],
   ['addelement_4',['addElement',['../classscan_1_1MatchesAndOldValuesSwath.html#a66c0a02df04ba7a0731aaf909b8b1638',1,'scan::MatchesAndOldValuesSwath']]],
-  ['address_5',['address',['../structcore_1_1WriteResult.html#a92b2364c3c97957b53c8c5b6995c18f1',1,'core::WriteResult::address'],['../structcore_1_1MatchEntry.html#ae82202523386a88397860b46b16ef4a1',1,'core::MatchEntry::address']]],
+  ['address_5',['address',['../structcore_1_1MatchEntry.html#ae82202523386a88397860b46b16ef4a1',1,'core::MatchEntry::address'],['../structcore_1_1WriteResult.html#a92b2364c3c97957b53c8c5b6995c18f1',1,'core::WriteResult::address']]],
   ['addswath_6',['addSwath',['../classscan_1_1MatchesAndOldValuesArray.html#a6b6b929b631205010f63695f10e8173f',1,'scan::MatchesAndOldValuesArray']]],
   ['addtype_7',['addType',['../classcore_1_1RegionFilter.html#a838d6e26ddeb1daaa745d44168ce2a33',1,'core::RegionFilter']]],
   ['all_8',['ALL',['../namespacecore.html#a4f0a0af961035f2bb7659bd168afc3eea5fb1f955b45e38e31789286a1790398d',1,'core']]],
@@ -24,11 +24,10 @@ var searchData=
   ['appendbytestoswath_21',['appendBytesToSwath',['../engine_8cppm.html#acd4ab87128e7c0509a3b75a88ddc71da',1,'engine.cppm']]],
   ['appendrange_22',['appendRange',['../classscan_1_1MatchesAndOldValuesSwath.html#a2d75740077358246210e676ca71d4d00',1,'scan::MatchesAndOldValuesSwath']]],
   ['application_23',['application',['../classcli_1_1Application.html#acc6583cfc6748cf350119214c79966d8',1,'cli::Application::Application()'],['../classcli_1_1Application.html',1,'cli::Application']]],
-  ['as_24',['as',['../classvalue_1_1ValueView.html#a92666c59b3ad5932248fe45aa1588eb8',1,'value::ValueView::as()'],['../structValue.html#a091708ea41f8c9beb21c3ceca07e6c24',1,'Value::as() const -&gt; std::optional&lt; T &gt;']]],
+  ['as_24',['as',['../structValue.html#a091708ea41f8c9beb21c3ceca07e6c24',1,'Value::as()'],['../classvalue_1_1ValueView.html#a92666c59b3ad5932248fe45aa1588eb8',1,'value::ValueView::as()']]],
   ['asbytes_25',['asBytes',['../structValue.html#adf9a4958d4ccb171ad1f6d1d27db5951',1,'Value']]],
-  ['ashigh_26',['asHigh',['../structValue.html#a4b768c520f645bf31e9c78be0fb4a62b',1,'Value']]],
-  ['asspan_27',['asSpan',['../structcore_1_1Region.html#abb0a122c3549bc47e4d48fa3514dbde6',1,'core::Region']]],
-  ['asstring_28',['asString',['../structValue.html#aaaaac229b590409d0546f0cb185bc06d',1,'Value']]],
-  ['auto_29',['AUTO',['../namespaceapp.html#a1ce094bcfd75eb6bda771545fbbb0b4aae1f2d5134ed2543d38a0de9751cf75d9',1,'app']]],
-  ['autobaseline_30',['autoBaseline',['../structcli_1_1AppConfig.html#a96b0080f81fb47a23c569e3b3bc39e61',1,'cli::AppConfig']]]
+  ['asspan_26',['asSpan',['../structcore_1_1Region.html#abb0a122c3549bc47e4d48fa3514dbde6',1,'core::Region']]],
+  ['asstring_27',['asString',['../structValue.html#aaaaac229b590409d0546f0cb185bc06d',1,'Value']]],
+  ['auto_28',['AUTO',['../namespaceapp.html#a1ce094bcfd75eb6bda771545fbbb0b4aae1f2d5134ed2543d38a0de9751cf75d9',1,'app']]],
+  ['autobaseline_29',['autoBaseline',['../structcli_1_1AppConfig.html#a96b0080f81fb47a23c569e3b3bc39e61',1,'cli::AppConfig']]]
 ];
