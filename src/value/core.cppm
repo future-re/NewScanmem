@@ -1,6 +1,6 @@
 /**
  * @file core.cppm
- * @brief Simplified unified Value type with aggregated factory
+ * @brief Core single-value container
  */
 
 module;
@@ -8,74 +8,63 @@ module;
 #include <algorithm>
 #include <array>
 #include <bit>
+#include <concepts>
 #include <cstddef>
 #include <cstdint>
 #include <cstring>
 #include <format>
 #include <optional>
 #include <string>
+#include <type_traits>
+#include <utility>
 #include <vector>
 
 export module value.core;
 
 import value.flags;
-import utils.endianness;
+
+template <typename T>
+concept ValueArithmeticType = std::is_arithmetic_v<std::remove_cvref_t<T>>;
+
+template <typename T>
+concept ValueStringType = std::same_as<std::remove_cvref_t<T>, std::string>;
+
+template <typename T>
+concept ValueByteVectorType =
+    std::same_as<std::remove_cvref_t<T>, std::vector<std::uint8_t>>;
 
 export struct Value;
 
 // ============================================================================
-// Unified Value: Single type for all value operations
+// Value: core single-value container
 // ============================================================================
 export struct Value {
     MatchFlags flags = MatchFlags::EMPTY;
     std::vector<std::uint8_t> bytes;
 
-    // For range matching: upper bound value
-    std::optional<std::vector<std::uint8_t>> secondaryBytes;
-
     // For byte array matching: 0xFF=fixed, 0x00=wildcard
     std::optional<std::vector<std::uint8_t>> mask;
 
-    Value() = default;
-
-    explicit Value(const std::uint8_t* data, std::size_t len)
-        : bytes(data, data + len) {}
-
-    explicit Value(std::vector<std::uint8_t> data) : bytes(std::move(data)) {}
-
-    // ====================================================================
-    // Unified factory: Single method to create any Value
-    // ====================================================================
-
-    /**
-     * @brief Create a Value from any supported type
-     *
-     * Supported types:
-     * - Numeric: int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t,
-     * uint32_t, uint64_t, float, double
-     * - std::string
-     * - std::vector<std::uint8_t> (with optional mask)
-     * - std::pair<T, T> for ranges
-     */
-    template <typename T>
-    [[nodiscard]] static auto of(T value) -> Value {
-        if constexpr (std::is_arithmetic_v<T>) {
-            return fromScalar(value);
-        } else {
-            static_assert(std::is_arithmetic_v<T>,
-                          "Unsupported type for Value::of()");
-            return Value{};
-        }
+   private:
+    template <ValueArithmeticType T>
+    [[nodiscard]] static auto makeArithmetic(T value) -> Value {
+        using U = std::remove_cvref_t<T>;
+        Value val;
+        val.flags = flagForType<U>();
+        auto raw = std::bit_cast<std::array<std::uint8_t, sizeof(U)>>(
+            static_cast<U>(value));
+        val.bytes.assign(raw.begin(), raw.end());
+        return val;
     }
 
-    [[nodiscard]] static auto of(std::string value) -> Value {
+    [[nodiscard]] static auto makeString(std::string value) -> Value {
         Value val;
         val.flags = MatchFlags::STRING;
         val.bytes.assign(value.begin(), value.end());
         return val;
     }
 
-    [[nodiscard]] static auto of(
+    [[nodiscard]] static auto makeBytes(
         std::vector<std::uint8_t> data,
         std::optional<std::vector<std::uint8_t>> mask = std::nullopt) -> Value {
         Value val;
@@ -88,44 +77,37 @@ export struct Value {
         return val;
     }
 
-    // Range factory: Value::of(std::pair{10, 100})
-    template <NumericType T>
-    [[nodiscard]] static auto of(std::pair<T, T> range) -> Value {
-        Value val = fromScalar(range.first);
-        auto highBytes =
-            std::bit_cast<std::array<std::uint8_t, sizeof(T)>>(range.second);
-        val.secondaryBytes =
-            std::vector<std::uint8_t>(highBytes.begin(), highBytes.end());
-        return val;
+   public:
+    Value() = default;
+
+    explicit Value(const std::uint8_t* data, std::size_t len)
+        : bytes(data, data + len) {}
+
+    explicit Value(std::vector<std::uint8_t> data) : bytes(std::move(data)) {}
+
+    // ====================================================================
+    // Canonical factories for single values
+    // ====================================================================
+    template <ValueArithmeticType T>
+    [[nodiscard]] static auto of(T&& value) -> Value {
+        return makeArithmetic(std::forward<T>(value));
     }
 
-    // Legacy factory methods (kept for compatibility)
-    template <NumericType T>
-    [[nodiscard]] static auto fromScalar(T value) -> Value {
-        Value val;
-        val.flags = flagForType<T>();
-        auto bytes = std::bit_cast<std::array<std::uint8_t, sizeof(T)>>(value);
-        val.bytes.assign(bytes.begin(), bytes.end());
-        return val;
+    template <ValueStringType T>
+    [[nodiscard]] static auto of(T&& value) -> Value {
+        return makeString(std::string(std::forward<T>(value)));
     }
 
-    [[nodiscard]] static auto fromString(std::string value) -> Value {
-        return of(std::move(value));
-    }
-
-    [[nodiscard]] static auto fromByteArray(
-        std::vector<std::uint8_t> data,
-        std::optional<std::vector<std::uint8_t>> mask = std::nullopt) -> Value {
-        return of(std::move(data), std::move(mask));
-    }
-
-    template <NumericType T>
-    [[nodiscard]] static auto fromRange(T low, T high) -> Value {
-        return of(std::pair{low, high});
+    template <ValueByteVectorType T>
+    [[nodiscard]] static auto of(
+        T&& data, std::optional<std::vector<std::uint8_t>> mask = std::nullopt)
+        -> Value {
+        return makeBytes(std::vector<std::uint8_t>(std::forward<T>(data)),
+                         std::move(mask));
     }
 
     // ====================================================================
-    // Unified accessor: Get value as any type
+    // Canonical accessors for single values
     // ====================================================================
 
     template <NumericType T>
@@ -153,31 +135,6 @@ export struct Value {
         return bytes;
     }
 
-    // Range accessor: get upper bound
-    template <NumericType T>
-    [[nodiscard]] auto asHigh() const -> std::optional<T> {
-        if (!secondaryBytes || secondaryBytes->size() != sizeof(T)) {
-            return std::nullopt;
-        }
-        T result{};
-        std::copy_n(secondaryBytes->data(), sizeof(T),
-                    (std::uint8_t*)(&result));
-        return result;
-    }
-
-    // Legacy accessors (kept for compatibility)
-    template <NumericType T>
-    [[nodiscard]] auto getScalar() const -> std::optional<T> {
-        return as<T>();
-    }
-    [[nodiscard]] auto getString() const -> std::optional<std::string> {
-        return asString();
-    }
-    [[nodiscard]] auto getByteArray() const
-        -> std::optional<std::vector<std::uint8_t>> {
-        return asBytes();
-    }
-
     // ====================================================================
     // Basic operations
     // ====================================================================
@@ -194,7 +151,6 @@ export struct Value {
 
     void clear() {
         bytes.clear();
-        secondaryBytes.reset();
         mask.reset();
         flags = MatchFlags::EMPTY;
     }
@@ -206,34 +162,8 @@ export struct Value {
     void setBytes(const std::vector<std::uint8_t>& data) { bytes = data; }
     void setBytes(std::vector<std::uint8_t>&& data) { bytes = std::move(data); }
 
-    // ====================================================================
-    // Utility
-    // ====================================================================
-
-    [[nodiscard]] auto isRange() const -> bool {
-        return secondaryBytes.has_value();
-    }
-
     [[nodiscard]] auto hasMask() const -> bool { return mask.has_value(); }
 };
-
-// ============================================================================
-// Backward compatibility
-// ============================================================================
-export using UserValue = Value;
-export using UserValueRange = std::pair<Value, Value>;
-
-// Legacy functions
-export template <NumericType T>
-[[nodiscard]] inline auto userValueAs(const Value& value) -> std::optional<T> {
-    return value.as<T>();
-}
-
-export template <NumericType T>
-[[nodiscard]] inline auto userValueHighAs(const Value& value)
-    -> std::optional<T> {
-    return value.asHigh<T>();
-}
 
 // ============================================================================
 // std::formatter
@@ -247,10 +177,10 @@ struct formatter<Value> {
     }
 
     static auto format(const Value& value, format_context& ctx) {
-        if (value.flags == MatchFlags::EMPTY) {
+        if (value.flag() == MatchFlags::EMPTY) {
             return format_to(ctx.out(), "<empty>");
         }
-        if (value.flags == MatchFlags::STRING) {
+        if (value.flag() == MatchFlags::STRING) {
             if (auto text = value.asString()) {
                 return format_to(ctx.out(), "\"{}\"", *text);
             }
