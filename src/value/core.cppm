@@ -1,4 +1,10 @@
+/**
+ * @file core.cppm
+ * @brief Simplified unified Value type with aggregated factory
+ */
+
 module;
+
 #include <algorithm>
 #include <array>
 #include <bit>
@@ -15,215 +21,250 @@ export module value.core;
 import value.flags;
 import utils.endianness;
 
+export struct Value;
+
+// ============================================================================
+// Unified Value: Single type for all value operations
+// ============================================================================
 export struct Value {
     MatchFlags flags = MatchFlags::EMPTY;
     std::vector<std::uint8_t> bytes;
 
+    // For range matching: upper bound value
+    std::optional<std::vector<std::uint8_t>> secondaryBytes;
+
+    // For byte array matching: 0xFF=fixed, 0x00=wildcard
+    std::optional<std::vector<std::uint8_t>> mask;
+
     Value() = default;
 
-    // Construct from raw data
     explicit Value(const std::uint8_t* data, std::size_t len)
         : bytes(data, data + len) {}
 
     explicit Value(std::vector<std::uint8_t> data) : bytes(std::move(data)) {}
 
-    // set bytes
+    // ====================================================================
+    // Unified factory: Single method to create any Value
+    // ====================================================================
+
+    /**
+     * @brief Create a Value from any supported type
+     *
+     * Supported types:
+     * - Numeric: int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t,
+     * uint32_t, uint64_t, float, double
+     * - std::string
+     * - std::vector<std::uint8_t> (with optional mask)
+     * - std::pair<T, T> for ranges
+     */
+    template <typename T>
+    [[nodiscard]] static auto of(T value) -> Value {
+        if constexpr (std::is_arithmetic_v<T>) {
+            return fromScalar(value);
+        } else {
+            static_assert(std::is_arithmetic_v<T>,
+                          "Unsupported type for Value::of()");
+            return Value{};
+        }
+    }
+
+    [[nodiscard]] static auto of(std::string value) -> Value {
+        Value val;
+        val.flags = MatchFlags::STRING;
+        val.bytes.assign(value.begin(), value.end());
+        return val;
+    }
+
+    [[nodiscard]] static auto of(
+        std::vector<std::uint8_t> data,
+        std::optional<std::vector<std::uint8_t>> mask = std::nullopt) -> Value {
+        Value val;
+        val.flags = MatchFlags::BYTE_ARRAY;
+        val.bytes = std::move(data);
+        val.mask = std::move(mask);
+        if (val.mask && val.mask->size() != val.bytes.size()) {
+            val.mask = std::nullopt;
+        }
+        return val;
+    }
+
+    // Range factory: Value::of(std::pair{10, 100})
+    template <NumericType T>
+    [[nodiscard]] static auto of(std::pair<T, T> range) -> Value {
+        Value val = fromScalar(range.first);
+        auto highBytes =
+            std::bit_cast<std::array<std::uint8_t, sizeof(T)>>(range.second);
+        val.secondaryBytes =
+            std::vector<std::uint8_t>(highBytes.begin(), highBytes.end());
+        return val;
+    }
+
+    // Legacy factory methods (kept for compatibility)
+    template <NumericType T>
+    [[nodiscard]] static auto fromScalar(T value) -> Value {
+        Value val;
+        val.flags = flagForType<T>();
+        auto bytes = std::bit_cast<std::array<std::uint8_t, sizeof(T)>>(value);
+        val.bytes.assign(bytes.begin(), bytes.end());
+        return val;
+    }
+
+    [[nodiscard]] static auto fromString(std::string value) -> Value {
+        return of(std::move(value));
+    }
+
+    [[nodiscard]] static auto fromByteArray(
+        std::vector<std::uint8_t> data,
+        std::optional<std::vector<std::uint8_t>> mask = std::nullopt) -> Value {
+        return of(std::move(data), std::move(mask));
+    }
+
+    template <NumericType T>
+    [[nodiscard]] static auto fromRange(T low, T high) -> Value {
+        return of(std::pair{low, high});
+    }
+
+    // ====================================================================
+    // Unified accessor: Get value as any type
+    // ====================================================================
+
+    template <NumericType T>
+    [[nodiscard]] auto as() const -> std::optional<T> {
+        if (bytes.size() != sizeof(T)) {
+            return std::nullopt;
+        }
+        T result{};
+        std::copy_n(bytes.data(), sizeof(T), (std::uint8_t*)(&result));
+        return result;
+    }
+
+    [[nodiscard]] auto asString() const -> std::optional<std::string> {
+        if (flags != MatchFlags::STRING) {
+            return std::nullopt;
+        }
+        return std::string(bytes.begin(), bytes.end());
+    }
+
+    [[nodiscard]] auto asBytes() const
+        -> std::optional<std::vector<std::uint8_t>> {
+        if (flags != MatchFlags::BYTE_ARRAY) {
+            return std::nullopt;
+        }
+        return bytes;
+    }
+
+    // Range accessor: get upper bound
+    template <NumericType T>
+    [[nodiscard]] auto asHigh() const -> std::optional<T> {
+        if (!secondaryBytes || secondaryBytes->size() != sizeof(T)) {
+            return std::nullopt;
+        }
+        T result{};
+        std::copy_n(secondaryBytes->data(), sizeof(T),
+                    (std::uint8_t*)(&result));
+        return result;
+    }
+
+    // Legacy accessors (kept for compatibility)
+    template <NumericType T>
+    [[nodiscard]] auto getScalar() const -> std::optional<T> {
+        return as<T>();
+    }
+    [[nodiscard]] auto getString() const -> std::optional<std::string> {
+        return asString();
+    }
+    [[nodiscard]] auto getByteArray() const
+        -> std::optional<std::vector<std::uint8_t>> {
+        return asBytes();
+    }
+
+    // ====================================================================
+    // Basic operations
+    // ====================================================================
+
+    [[nodiscard]] auto data() const noexcept -> const std::uint8_t* {
+        return bytes.data();
+    }
+    [[nodiscard]] auto data() noexcept -> std::uint8_t* { return bytes.data(); }
+    [[nodiscard]] auto size() const noexcept -> std::size_t {
+        return bytes.size();
+    }
+    [[nodiscard]] auto empty() const noexcept -> bool { return bytes.empty(); }
+    [[nodiscard]] auto flag() const noexcept -> MatchFlags { return flags; }
+
+    void clear() {
+        bytes.clear();
+        secondaryBytes.reset();
+        mask.reset();
+        flags = MatchFlags::EMPTY;
+    }
+
     void setBytes(const std::uint8_t* data, std::size_t len) {
         bytes.assign(data, data + len);
     }
 
     void setBytes(const std::vector<std::uint8_t>& data) { bytes = data; }
-
     void setBytes(std::vector<std::uint8_t>&& data) { bytes = std::move(data); }
 
-    // Get byte view
-    [[nodiscard]] auto data() const noexcept -> const std::uint8_t* {
-        return bytes.data();
+    // ====================================================================
+    // Utility
+    // ====================================================================
+
+    [[nodiscard]] auto isRange() const -> bool {
+        return secondaryBytes.has_value();
     }
 
-    [[nodiscard]] auto data() noexcept -> std::uint8_t* { return bytes.data(); }
-
-    [[nodiscard]] auto size() const noexcept -> std::size_t {
-        return bytes.size();
-    }
-
-    [[nodiscard]] auto empty() const noexcept -> bool { return bytes.empty(); }
-
-    void clear() {
-        bytes.clear();
-        flags = MatchFlags::EMPTY;
-    }
+    [[nodiscard]] auto hasMask() const -> bool { return mask.has_value(); }
 };
 
 // ============================================================================
-// UserValue: User input value (for scan matching)
+// Backward compatibility
 // ============================================================================
-export struct UserValue {
-    Value byteValue;  // Underlying byte value
-    std::optional<Value> secondaryByteValue;  // Optional high value for ranges
-    std::optional<std::vector<std::uint8_t>>
-        byteMask;  // 0xFF=fixed, 0x00=wildcard (only for byte arrays)
+export using UserValue = Value;
+export using UserValueRange = std::pair<Value, Value>;
 
-    // Accessors
-    [[nodiscard]] auto flags() const noexcept -> MatchFlags {
-        return byteValue.flags;
-    }
-    [[nodiscard]] auto data() const noexcept -> const std::uint8_t* {
-        return byteValue.data();
-    }
-    [[nodiscard]] auto size() const noexcept -> std::size_t {
-        return byteValue.size();
-    }
+// Legacy functions
+export template <NumericType T>
+[[nodiscard]] inline auto userValueAs(const Value& value) -> std::optional<T> {
+    return value.as<T>();
+}
 
-    template <NumericType T>
-    static auto fromValue(T value) -> UserValue {
-        UserValue userValue;
-        userValue.byteValue.flags = flagForType<T>();
-        auto bytes = std::bit_cast<std::array<std::uint8_t, sizeof(T)>>(value);
-        userValue.byteValue.bytes.assign(bytes.begin(), bytes.end());
-        return userValue;
-    }
-
-    template <NumericType T>
-    static auto fromScalar(T value) -> UserValue {
-        return fromValue<T>(value);
-    }
-
-    template <StringType T>
-    static auto fromValue(std::string val) -> UserValue {
-        UserValue userValue;
-        userValue.byteValue.flags = MatchFlags::STRING;
-        userValue.byteValue.bytes.assign(val.begin(), val.end());
-        return userValue;
-    }
-
-    static auto fromString(std::string val) -> UserValue {
-        return fromValue<std::string>(std::move(val));
-    }
-
-    template <ByteArrayType T>
-    static auto fromValue(std::vector<std::uint8_t> val,
-                          std::optional<std::vector<std::uint8_t>> mask =
-                              std::nullopt) -> UserValue {
-        UserValue userValue;
-        userValue.byteValue.flags = MatchFlags::BYTE_ARRAY;
-        userValue.byteValue.bytes = std::move(val);
-        userValue.byteMask = std::move(mask);
-        return userValue;
-    }
-
-    static auto fromByteArray(
-        std::vector<std::uint8_t> val,
-        std::optional<std::vector<std::uint8_t>> mask = std::nullopt)
-        -> UserValue {
-        return fromValue<std::vector<std::uint8_t>>(std::move(val),
-                                                    std::move(mask));
-    }
-
-    template <NumericType T>
-    [[nodiscard]]
-    auto getValue() const -> std::optional<T> {
-        if (byteValue.size() != sizeof(T)) {
-            return std::nullopt;
-        }
-        T resultValue{};
-        std::copy_n(byteValue.data(), sizeof(T),
-                    reinterpret_cast<std::uint8_t*>(&resultValue));
-        return resultValue;
-    }
-
-    template <StringType T>
-    [[nodiscard]]
-    auto getValue() const -> std::optional<std::string> {
-        if (byteValue.flags != MatchFlags::STRING) {
-            return std::nullopt;
-        }
-        return std::string(byteValue.bytes.begin(), byteValue.bytes.end());
-    }
-
-    template <ByteArrayType T>
-    [[nodiscard]]
-    auto getValue() const -> std::optional<std::vector<std::uint8_t>> {
-        if (byteValue.flags != MatchFlags::BYTE_ARRAY) {
-            return std::nullopt;
-        }
-        return byteValue.bytes;
-    }
-
-    [[nodiscard]] auto flag() const -> MatchFlags { return byteValue.flags; }
-
-    void setFlag(MatchFlags newFlag) { byteValue.flags = newFlag; }
-
-    [[nodiscard]] auto byteData() const -> const std::vector<std::uint8_t>& {
-        return byteValue.bytes;
-    }
-
-    [[nodiscard]] auto stringValue() const -> std::optional<std::string> {
-        return getValue<std::string>();
-    }
-
-    [[nodiscard]] auto byteArrayValue() const
-        -> std::optional<std::vector<std::uint8_t>> {
-        return getValue<std::vector<std::uint8_t>>();
-    }
-};
+export template <NumericType T>
+[[nodiscard]] inline auto userValueHighAs(const Value& value)
+    -> std::optional<T> {
+    return value.asHigh<T>();
+}
 
 // ============================================================================
-// std::formatter for UserValue
+// std::formatter
 // ============================================================================
 namespace std {
+
 template <>
-struct formatter<UserValue> {
+struct formatter<Value> {
     static constexpr auto parse(format_parse_context& ctx) {
         return ctx.begin();
     }
 
-    static auto format(const UserValue& userValue, format_context& ctx) {
-        if (userValue.flags() == MatchFlags::EMPTY) {
+    static auto format(const Value& value, format_context& ctx) {
+        if (value.flags == MatchFlags::EMPTY) {
             return format_to(ctx.out(), "<empty>");
         }
-        if (userValue.flags() == MatchFlags::STRING) {
-            if (auto text = userValue.getValue<std::string>()) {
+        if (value.flags == MatchFlags::STRING) {
+            if (auto text = value.asString()) {
                 return format_to(ctx.out(), "\"{}\"", *text);
             }
             return format_to(ctx.out(), "\"\"");
         }
         format_to(ctx.out(), "[");
-        for (std::size_t i = 0; i < userValue.size(); ++i) {
+        for (std::size_t i = 0; i < value.size(); ++i) {
             if (i != 0U) {
                 format_to(ctx.out(), " ");
             }
-            format_to(ctx.out(), "{:02x}", userValue.data()[i]);
+            format_to(ctx.out(), "{:02x}", value.data()[i]);
         }
         return format_to(ctx.out(), "]");
     }
 };
+
 }  // namespace std
-
-export using UserValueRange = std::pair<UserValue, UserValue>;
-
-export template <NumericType T>
-[[nodiscard]] inline auto userValueAs(const UserValue& value)
-    -> std::optional<T> {
-    return value.getValue<T>();
-}
-
-export template <NumericType T>
-[[nodiscard]] inline auto userValueHighAs(const UserValue& value)
-    -> std::optional<T> {
-    if (!value.secondaryByteValue.has_value()) {
-        return std::nullopt;
-    }
-    const auto REQUIRED = flagForType<T>();
-    if ((value.secondaryByteValue->flags & REQUIRED) == MatchFlags::EMPTY) {
-        return std::nullopt;
-    }
-    if (value.secondaryByteValue->size() != sizeof(T)) {
-        return std::nullopt;
-    }
-
-    T resultValue{};
-    std::copy_n(value.secondaryByteValue->data(), sizeof(T),
-                reinterpret_cast<std::uint8_t*>(&resultValue));
-    return resultValue;
-}

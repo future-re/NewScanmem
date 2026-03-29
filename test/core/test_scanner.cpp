@@ -125,7 +125,7 @@ TEST_F(ScannerTest, FullThenFilteredAndReset) {
     ASSERT_GT(fullCount, 0U) << "Full scan should produce matches";
 
     // Filtered scan (only bytes equal to 42)
-    UserValue val = UserValue::fromScalar<int8_t>(42);
+    UserValue val = UserValue::of<int8_t>(42);
     ScanOptions filteredOpts;
     filteredOpts.dataType = ScanDataType::INTEGER_8;
     filteredOpts.matchType = ScanMatchType::MATCH_EQUAL_TO;

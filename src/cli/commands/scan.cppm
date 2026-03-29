@@ -112,7 +112,7 @@ class ScanCommand : public Command {
                 value::buildUserValue(dataType, matchType, args, startIdx);
         }
         if (userVal) {
-            if (auto text = userVal->stringValue()) {
+            if (auto text = userVal->getString()) {
                 utils::Logger::instance().debug("UserValue: {}", *text);
             } else {
                 utils::Logger::instance().debug("UserValue size: {}",

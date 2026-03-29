@@ -34,7 +34,7 @@ inline auto numericMatchCore(ScanMatchType matchType, T memv,
 
     if (NEEDS_USER && userValue != nullptr) {
         const auto REQUIRED = flagForType<T>();
-        if ((userValue->flags() & REQUIRED) == MatchFlags::EMPTY) {
+        if ((userValue->flag() & REQUIRED) == MatchFlags::EMPTY) {
             return 0;
         }
     }

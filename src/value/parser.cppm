@@ -30,7 +30,7 @@ export namespace value {
 template <typename T, typename Parser>
 [[nodiscard]] inline auto buildScalar(const std::vector<std::string>& args,
                                       size_t startIndex, Parser parser)
-    -> std::optional<UserValue>;
+    -> std::optional<Value>;
 
 [[nodiscard]] inline auto buildUserValueRange(
     ScanDataType dataType, const std::vector<std::string>& args,
@@ -39,11 +39,11 @@ template <typename T, typename Parser>
 namespace detail {
 [[nodiscard]] inline auto parseStringValue(const std::vector<std::string>& args,
                                            size_t startIndex)
-    -> std::optional<UserValue> {
+    -> std::optional<Value> {
     if (startIndex >= args.size()) {
         return std::nullopt;
     }
-    return UserValue::fromValue<std::string>(args[startIndex]);
+    return Value::fromString(args[startIndex]);
 }
 
 [[nodiscard]] inline auto parseByteArrayValue(
@@ -110,13 +110,12 @@ namespace detail {
         mask.push_back(static_cast<std::uint8_t>((hiMask << 4) | loMask));
     }
 
-    return UserValue::fromValue<std::vector<std::uint8_t>>(std::move(bytes),
-                                                           std::move(mask));
+    return Value::fromByteArray(std::move(bytes), std::move(mask));
 }
 
 [[nodiscard]] inline auto parseAnyNumberValue(
     const std::vector<std::string>& args,
-    size_t startIndex) -> std::optional<UserValue> {
+    size_t startIndex) -> std::optional<Value> {
     if (startIndex >= args.size()) {
         return std::nullopt;
     }
@@ -273,13 +272,13 @@ template <typename F>
 template <typename T, typename Parser>
 [[nodiscard]] inline auto buildScalar(const std::vector<std::string>& args,
                                       size_t startIndex, Parser parser)
-    -> std::optional<UserValue> {
+    -> std::optional<Value> {
     auto valueOpt = parser(args[startIndex]);
     if (!valueOpt) {
         return std::nullopt;
     }
 
-    return UserValue::fromValue<T>(*valueOpt);
+    return Value::fromScalar<T>(*valueOpt);
 }
 
 /**
@@ -303,22 +302,22 @@ template <typename T, typename Parser>
     if (!valueROpt) {
         return std::nullopt;
     }
-    return UserValueRange{UserValue::fromValue<T>(*valueLOpt),
-                          UserValue::fromValue<T>(*valueROpt)};
+    return UserValueRange{Value::of<T>(*valueLOpt),
+                          Value::of<T>(*valueROpt)};
 }
 
 /**
- * @brief Build UserValue from parsed arguments
+ * @brief Build Value from parsed arguments
  * @param dataType Data type of the value
  * @param matchType Match type (affects whether range is needed)
  * @param args Argument list
  * @param startIndex Index to start parsing from
- * @return Optional UserValue
+ * @return Optional Value
  */
 [[nodiscard]] inline auto buildUserValue(
     ScanDataType dataType, ScanMatchType matchType,
     const std::vector<std::string>& args,
-    size_t startIndex) -> std::optional<UserValue> {
+    size_t startIndex) -> std::optional<Value> {
     if (!matchNeedsUserValue(matchType)) {
         return std::nullopt;
     }
@@ -334,8 +333,8 @@ template <typename T, typename Parser>
             return std::nullopt;
         }
 
-        auto result = std::move(rangeValue->first);
-        result.secondaryByteValue = std::move(rangeValue->second.byteValue);
+        Value result = std::move(rangeValue->first);
+        result.secondaryBytes = std::move(rangeValue->second.bytes);
         return result;
     }
 
@@ -377,11 +376,11 @@ template <typename T, typename Parser>
 }
 
 /**
- * @brief Build UserValueRange from parsed arguments for range matching
+ * @brief Build Value range from parsed arguments for range matching
  * @param dataType Data type of the values
  * @param args Argument list
  * @param startIndex Index to start parsing from
- * @return Optional UserValueRange (pair of two UserValues)
+ * @return Optional ValueRange (pair of two Values)
  */
 [[nodiscard]] inline auto buildUserValueRange(
     ScanDataType dataType, const std::vector<std::string>& args,

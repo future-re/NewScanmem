@@ -103,22 +103,22 @@ export inline auto makeStringRoutine(ScanMatchType matchType) -> scanRoutine {
         if (!userValue) {
             return 0;
         }
-        const auto PATTERN_OPT = userValue->stringValue();
-        if (!PATTERN_OPT) {
+        if (userValue->flags != MatchFlags::STRING) {
+            return 0;
+        }
+        std::string_view PATTERN(reinterpret_cast<const char*>(userValue->bytes.data()), 
+                                  userValue->bytes.size());
+        if (PATTERN.empty()) {
             return 0;
         }
         if (matchType == ScanMatchType::MATCH_REGEX) {
             return runRegexMatch(
-                memoryPtr, memLength, std::string(*PATTERN_OPT), saveFlags);
-        }
-        const std::string_view PATTERN{*PATTERN_OPT};
-        if (PATTERN.empty()) {
-            return 0;
+                memoryPtr, memLength, std::string(PATTERN), saveFlags);
         }
         const auto* const MASK_PTR =
-            (userValue->byteMask &&
-             userValue->byteMask->size() == PATTERN.size())
-                ? &*userValue->byteMask
+            (userValue->mask &&
+             userValue->mask->size() == PATTERN.size())
+                ? &*userValue->mask
                 : nullptr;
         const auto* bytePtr = std::bit_cast<const uint8_t*>(PATTERN.data());
         if (MASK_PTR) {

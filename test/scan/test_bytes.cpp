@@ -139,7 +139,7 @@ TEST(ScanBytesTest, FindBytePatternMaskedIgnoresMaskedBits) {
 TEST(ScanBytesTest, BytearrayRoutineWithMaskMatches) {
     UserValue userValue =
         UserValue::fromByteArray(std::vector<uint8_t>{0xAA, 0xBB});
-    userValue.byteMask = std::vector<std::uint8_t>{0xFF, 0xF0};
+    userValue.mask = std::vector<std::uint8_t>{0xFF, 0xF0};
 
     auto routine = makeBytearrayRoutine(ScanMatchType::MATCH_EQUAL_TO);
     const std::vector<std::uint8_t> HAY_STACK{0xAA, 0xB5, 0x00};
@@ -154,7 +154,7 @@ TEST(ScanBytesTest, BytearrayRoutineWithMaskMatches) {
 TEST(ScanBytesTest, MakeBytearrayRoutineAddsBYTE_ARRAYFlag) {
     UserValue userValue =
         UserValue::fromByteArray(std::vector<uint8_t>{0xAA, 0xBB});
-    userValue.byteMask = std::vector<std::uint8_t>{0xFF, 0xF0};
+    userValue.mask = std::vector<std::uint8_t>{0xFF, 0xF0};
 
     auto routine = makeBytearrayRoutine(ScanMatchType::MATCH_EQUAL_TO);
     const std::vector<std::uint8_t> HAY_STACK{0xAA, 0xB5, 0x00};

@@ -169,16 +169,15 @@ export inline auto makeBytearrayRoutine(ScanMatchType matchType)
         if (userValue->flag() != MatchFlags::BYTE_ARRAY) {
             return 0;
         }
-        const auto BYTE_ARRAY_OPT = userValue->byteArrayValue();
-        if (!BYTE_ARRAY_OPT) {
+        const auto& byteArrayRef = userValue->bytes;
+        if (byteArrayRef.empty()) {
             return 0;
         }
-        const auto& byteArrayRef = *BYTE_ARRAY_OPT;
-        if (userValue->byteMask &&
-            userValue->byteMask->size() == byteArrayRef.size()) {
+        if (userValue->mask &&
+            userValue->mask->size() == byteArrayRef.size()) {
             unsigned matchedLen = compareBytesMasked(
                 memoryPtr, memLength, byteArrayRef.data(), byteArrayRef.size(),
-                userValue->byteMask->data(), userValue->byteMask->size(),
+                userValue->mask->data(), userValue->mask->size(),
                 saveFlags);
             if (matchedLen > 0) {
                 orFlagsIfNotNull(saveFlags, MatchFlags::BYTE_ARRAY);
