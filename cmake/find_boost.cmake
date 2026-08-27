@@ -39,21 +39,21 @@ if(NOT Boost_FOUND)
     else()
         message(STATUS "Building Boost (filesystem, regex) in ${boost_SOURCE_DIR} — this may take several minutes...")
 
-        # 优先使用环境变量 CC/CXX；否则尝试查找 clang-20/clang++-20，最后退回 clang/clang++
+        # 优先使用环境变量 CC/CXX；否则使用本机可用的 C/C++ 编译器。
         if(DEFINED ENV{CC})
             set(_cc_env $ENV{CC})
         else()
-            find_program(_cc_env clang-20 clang clang-11 clang-12)
+            find_program(_cc_env cc gcc clang-20 clang)
         endif()
 
         if(DEFINED ENV{CXX})
             set(_cxx_env $ENV{CXX})
         else()
-            find_program(_cxx_env clang++-20 clang++ clang++-11 clang++-12)
+            find_program(_cxx_env c++ g++ clang++-20 clang++)
         endif()
 
         if(NOT _cc_env OR NOT _cxx_env)
-            message(FATAL_ERROR "C/C++ compiler for building Boost not found. Set CC and CXX environment variables or install clang-20.")
+            message(FATAL_ERROR "C/C++ compiler for building Boost not found. Set CC/CXX or install a supported compiler.")
         endif()
 
         # 并行度

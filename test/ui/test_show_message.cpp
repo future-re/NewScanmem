@@ -4,7 +4,7 @@
 #include <sstream>
 #include <string>
 
-import ui.show_message;
+#include "newscanmem/ui/show_message.hpp"
 
 using ui::MessageContext;
 using ui::MessagePrinter;

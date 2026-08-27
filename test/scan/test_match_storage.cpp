@@ -1,8 +1,8 @@
 // Unit tests for scan::match_storage
 #include <gtest/gtest.h>
 
-import scan.match_storage;
-import value.flags;
+#include "newscanmem/scan/match_storage.hpp"
+#include "newscanmem/value/flags.hpp"
 
 using namespace scan;
 

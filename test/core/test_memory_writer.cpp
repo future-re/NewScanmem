@@ -1,8 +1,8 @@
-import core.memory_writer;
-import core.scanner;
-import scan.match_storage;
-import value.core;
-import value.flags;
+#include "newscanmem/core/memory_writer.hpp"
+#include "newscanmem/core/scanner.hpp"
+#include "newscanmem/scan/match_storage.hpp"
+#include "newscanmem/value/core.hpp"
+#include "newscanmem/value/flags.hpp"
 
 #include <gtest/gtest.h>
 #include <unistd.h>

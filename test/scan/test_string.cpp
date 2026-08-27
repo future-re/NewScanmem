@@ -7,11 +7,11 @@
 #include <string>
 #include <vector>
 
-import scan.string;
-import scan.routine;
-import scan.types;
-import value.core;
-import value.flags;
+#include "newscanmem/scan/string.hpp"
+#include "newscanmem/scan/routine.hpp"
+#include "newscanmem/scan/types.hpp"
+#include "newscanmem/value/core.hpp"
+#include "newscanmem/value/flags.hpp"
 
 class ScanStringTest : public ::testing::Test {
    protected:

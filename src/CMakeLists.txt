@@ -1,104 +1,81 @@
-include(find_boost)
-
-# --- 核心模块库 ---
-add_library(NewScanmem_lib STATIC)
+# --- Core header library ---
+# The project previously exposed every implementation unit as a C++20 module.
+# Keep the public surface as ordinary headers so GCC/Clang/CMake versions do
+# not need BMI/module-scanning support.
+add_library(NewScanmem_lib STATIC
+  app/result_service.cpp
+  app/scan_service.cpp
+  core/memory.cpp
+  core/memory_writer.cpp
+  core/match_formatter.cpp
+  core/match.cpp
+  core/maps.cpp
+  core/process_checker.cpp
+  core/proc_mem.cpp
+  core/region_classifier.cpp
+  core/region_filter.cpp
+  core/scan_history.cpp
+  core/scanner.cpp
+  scan/job.cpp
+  scan/factory.cpp
+  scan/routine.cpp
+  scan/engine.cpp
+  scan/filter.cpp
+  scan/match_storage.cpp
+  scan/numeric.cpp
+  scan/bytes.cpp
+  scan/string.cpp
+  value/flags.cpp
+  value/core.cpp
+  value/parser.cpp
+  ui/show_message.cpp
+  ui/terminal.cpp
+  ui/line_editor.cpp
+  ui/console.cpp
+  ui/interface.cpp
+  ui/user_input.cpp
+  cli/command.cpp
+  cli/session.cpp
+  cli/repl.cpp
+  cli/app_config.cpp
+  cli/app.cpp
+    cli/commands/count.cpp
+    cli/commands/help.cpp
+    cli/commands/list.cpp
+  cli/commands/reset.cpp
+  cli/commands/quit.cpp
+  cli/commands/pid.cpp
+    cli/commands/snapshot.cpp
+    cli/commands/set.cpp
+    cli/commands/scan.cpp
+    cli/commands/watch.cpp
+    cli/commands/write.cpp
+  utils/endianness.cpp
+  utils/parserStr.cpp
+  utils/sets.cpp
+  utils/string.cpp
+  utils/logging.cpp
+  scanmem.cpp
+)
 
 # 查找 ICU
 find_package(ICU REQUIRED COMPONENTS uc i18n)
 
 target_compile_features(NewScanmem_lib PUBLIC cxx_std_23)
 
-# Temporarily disabled: clang-tidy 20.1 crashes on C++23 modules
-# set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-p;build")
-# 为了生成版本模块（version.cppm），在源目录创建生成目录并从模板生成
-file(MAKE_DIRECTORY ${CMAKE_SOURCE_DIR}/src/generated/utils)
-configure_file(${CMAKE_SOURCE_DIR}/src/utils/version.cppm.in ${CMAKE_SOURCE_DIR}/src/generated/utils/version.cppm @ONLY)
+target_include_directories(NewScanmem_lib PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>)
 
+file(GLOB_RECURSE NEWSCANMEM_HEADERS CONFIGURE_DEPENDS
+    "${CMAKE_SOURCE_DIR}/include/newscanmem/*.hpp")
+target_sources(NewScanmem_lib PUBLIC
+    FILE_SET HEADERS
+    BASE_DIRS "${CMAKE_SOURCE_DIR}/include"
+    FILES ${NEWSCANMEM_HEADERS})
 
-# 模块源文件（不带 src/ 前缀）
-set(MODULE_SOURCES
-    # Utilities
-    utils/string.cppm
-    utils/parserStr.cppm
-    utils/endianness.cppm
-    utils/sets.cppm
-    utils/logging.cppm
-    generated/utils/version.cppm
-    
-    # UI abstraction layer
-    ui/interface.cppm
-    ui/terminal.cppm
-    ui/line_editor.cppm
-    ui/console.cppm
-    ui/show_message.cppm
-    ui/user_input.cppm
-
-    # Application services
-    app/scan_service.cppm
-    app/result_service.cppm
-    
-    # CLI command system
-    cli/command.cppm
-    cli/repl.cppm
-    cli/session.cppm
-    cli/app_config.cppm
-    cli/app.cppm
-    cli/commands/help.cppm
-    cli/commands/quit.cppm
-    cli/commands/pid.cppm
-    cli/commands/scan.cppm
-    cli/commands/reset.cppm
-    cli/commands/count.cppm
-    cli/commands/set.cppm
-    cli/commands/snapshot.cppm
-    cli/commands/list.cppm
-    cli/commands/write.cppm
-    cli/commands/watch.cppm
-    
-    # Core abstraction layer
-    core/scan_history.cppm
-    core/scanner.cppm
-    core/memory.cppm
-    core/proc_mem.cppm
-    core/maps.cppm
-    core/process_checker.cppm
-    core/region_classifier.cppm
-    core/region_filter.cppm
-    core/memory_writer.cppm
-    core/match.cppm
-    core/match_formatter.cppm
-    
-    # Value modules
-    value/flags.cppm
-    value/core.cppm
-    value/parser.cppm
-    value/value.cppm
-    
-    # Scan 模块
-    scan/types.cppm
-    scan/routine.cppm
-    scan/match_storage.cppm
-    scan/bytes.cppm
-    utils/read_helpers.cppm
-    scan/string.cppm
-    scan/numeric.cppm
-    scan/factory.cppm
-    scan/job.cppm
-    scan/engine.cppm
-    scan/filter.cppm
-
-    scanmem.cppm
-)
-
-# 添加模块源文件到库
-target_sources(NewScanmem_lib
-    PUBLIC
-        FILE_SET CXX_MODULES FILES
-        ${MODULE_SOURCES}
-)
-
-target_link_libraries(NewScanmem_lib PUBLIC Boost::filesystem Boost::regex ICU::uc ICU::i18n)
+target_link_libraries(NewScanmem_lib PUBLIC ICU::uc ICU::i18n)
 
 # --- 主可执行文件 ---
 add_executable(NewScanmem main.cpp)
-target_link_libraries(NewScanmem PRIVATE NewScanmem_lib CLI11::CLI11)
+target_link_libraries(NewScanmem PRIVATE NewScanmem_lib)

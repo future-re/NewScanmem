@@ -2,7 +2,7 @@
 
 #include <vector>
 
-import utils.sets;
+#include "newscanmem/utils/sets.hpp"
 
 TEST(ParseUintSetTest, ValidInput) {
     Set set;

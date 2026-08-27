@@ -1,6 +1,6 @@
 # NewScanmem
 
-NewScanmem 是一个使用 C++20 模块重构的现代化版本的 `scanmem`，旨在通过现代 C++ 特性（如模块化、强类型枚举等）提升代码的可读性、可维护性和性能。
+NewScanmem 是一个使用现代 C++ 重构的 `scanmem`，公共接口位于 `include/newscanmem/`，旨在通过强类型和稳定的头文件接口提升可读性、可维护性和集成能力。
 
 [原项目 Scanmem地址](https://github.com/scanmem/scanmem)
 
@@ -8,17 +8,17 @@ NewScanmem 是一个使用 C++20 模块重构的现代化版本的 `scanmem`，�
 
 ## 📋 项目简介 | Project Overview
 
-`scanmem` 是一个简单的交互式内存扫描工具，通常用于调试和修改运行中的程序。NewScanmem 在原有功能的基础上，使用 C++20 的模块化特性对代码进行了现代化重构，减少了传统头文件的复杂性，并引入了更高效的字符串处理和内存管理方式。
+`scanmem` 是一个简单的交互式内存扫描工具，通常用于调试和修改运行中的程序。NewScanmem 在原有功能的基础上，使用 C++20 和普通 `.hpp` 接口进行重构，并引入了更高效的字符串处理和内存管理方式。
 
-NewScanmem 是一个现代化的 Linux 内存扫描工具，使用 C++20 模块系统构建，专为进程内存分析和调试设计。
+NewScanmem 是一个现代化的 Linux 内存扫描工具，专为进程内存分析和调试设计。
 
 ---
 
 ## 🚀 特性
 
-- **C++20 模块化**：使用 C++20 的模块特性（`import`），替代传统的头文件机制，提升编译速度和代码组织。
+- **稳定头文件接口**：公共头文件位于 `include/newscanmem/`，不依赖 C++ Modules 或 BMI 缓存。
 - **现代化代码风格**：引入强类型枚举（`enum class`）、`std::string_view` 等现代 C++ 特性。
-- **Boost 支持**：集成 Boost 库（如 `Boost.Filesystem` 和 `Boost.StringAlgo`），增强文件操作和字符串处理能力。
+- **标准库实现**：正则、集合解析和文件操作使用 C++ 标准库，减少外部依赖。
 - **高效内存扫描**：优化内存扫描逻辑，提升性能和稳定性。
 
 ---
@@ -73,14 +73,14 @@ ninja
 ### 系统要求 | System Requirements
 
 - **操作系统** | OS: Linux with /proc filesystem
-- **编译器** | Compiler: C++23 with modules support (Clang19+,GCC 13+)
-- **依赖** | Dependencies: CMake, Boost, libstdc++-13-dev ninja-1.11
+- **编译器** | Compiler: C++23（GCC 13+、Clang 16+）
+- **依赖** | Dependencies: CMake, libstdc++-13-dev
 
 ### **依赖项**
 
-- **C++ 编译器**：支持 C++20 的编译器（如 GCC 13+、Clang 19+ 或 MSVC 2022+）。
+- **C++ 编译器**：支持 C++23 的编译器（如 GCC 13+、Clang 16+ 或 MSVC 2022+）。
 - **CMake**：版本 3.28 或更高。
-- **Boost 库**：版本 1.89。
+- **第三方库**：ICU（运行时字符串/国际化支持）。
 
 ## 📖 使用指南 | Usage Guide
 
@@ -110,6 +110,5 @@ cmake --build build
 ### 系统要求 | System Requirements
 
 - **操作系统** | OS: Linux with /proc filesystem
-- **编译器** | Compiler: C++23 with modules support (Clang19+,GCC 13+)
-- **依赖** | Dependencies: CMake, Boost, GTest, libstdc++-13-dev ninja-1.11
-
+- **编译器** | Compiler: C++23（GCC 13+、Clang 16+）
+- **依赖** | Dependencies: CMake, GTest, ICU, libstdc++-13-dev

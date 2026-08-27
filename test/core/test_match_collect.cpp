@@ -4,13 +4,13 @@
 #include <string>
 #include <vector>
 
-import core.match;         // MatchCollector, MatchCollectionOptions
-import core.scanner;       // Scanner
-import core.region_filter; // RegionFilterConfig, RegionFilterMode, RegionFilter
-import core.maps;          // RegionType
-import core.region_classifier; // RegionClassifier
-import scan.match_storage; // MatchesAndOldValuesSwath, MatchesAndOldValuesArray
-import value.flags;        // MatchFlags
+#include "newscanmem/core/match.hpp"
+#include "newscanmem/core/scanner.hpp"
+#include "newscanmem/core/region_filter.hpp"
+#include "newscanmem/core/maps.hpp"
+#include "newscanmem/core/region_classifier.hpp"
+#include "newscanmem/scan/match_storage.hpp"
+#include "newscanmem/value/flags.hpp"
 
 using core::MatchCollectionOptions;
 using core::MatchCollector;

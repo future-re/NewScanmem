@@ -1,84 +1,71 @@
-#include <CLI/CLI.hpp>
+#include "newscanmem/cli/app.hpp"
+#include "newscanmem/cli/app_config.hpp"
+#include "newscanmem/utils/version.hpp"
 
-import cli.app;
-import cli.app_config;
-import utils.version;
-
-#include <cstdlib>
+#include <charconv>
 #include <iostream>
 #include <string>
-#include <vector>
+#include <string_view>
+
+namespace {
+auto parsePid(std::string_view text, pid_t& output) -> bool {
+    if (text.empty()) return false;
+    auto [end, ec] = std::from_chars(text.data(), text.data() + text.size(), output);
+    return ec == std::errc{} && end == text.data() + text.size() && output > 0;
+}
+
+auto printUsage(std::string_view program) -> void {
+    std::cout << "Usage: " << program << " [options] [pid]\n"
+              << "  -p, --pid PID       target process\n"
+              << "  -c, --commands CMD  semicolon-separated commands\n"
+              << "  -b, --batch         execute commands and exit\n"
+              << "      --backend      machine-readable mode\n"
+              << "  -d, --debug         enable debug output\n"
+              << "      --no-color      disable colors\n"
+              << "      --version       print version\n"
+              << "  -h, --help          show this help\n";
+}
+
+auto parseArgs(int argc, char* argv[], cli::AppConfig& config) -> bool {
+    for (int index = 1; index < argc; ++index) {
+        const std::string_view arg = argv[index];
+        if (arg == "-h" || arg == "--help") { printUsage(argv[0]); return false; }
+        if (arg == "--version") { std::cout << "NewScanmem " << version::string() << '\n'; return false; }
+        if (arg == "-b" || arg == "--batch") { config.batchMode = true; config.backendMode = true; continue; }
+        if (arg == "-d" || arg == "--debug") { config.debugMode = true; continue; }
+        if (arg == "--backend") { config.backendMode = true; continue; }
+        if (arg == "--no-color") { config.colorMode = false; continue; }
+
+        std::string_view value;
+        if (arg == "-p" || arg == "--pid" || arg == "-c" || arg == "--commands") {
+            if (++index >= argc) { std::cerr << "Missing value for " << arg << '\n'; return false; }
+            value = argv[index];
+            if (arg == "-c" || arg == "--commands") { config.initialCommands = std::string(value); continue; }
+        } else if (arg.starts_with("--pid=")) {
+            value = arg.substr(6);
+        } else {
+            pid_t positional = 0;
+            if (!parsePid(arg, positional)) { std::cerr << "Unknown option or invalid PID: " << arg << '\n'; return false; }
+            config.targetPid = positional;
+            continue;
+        }
+
+        pid_t pid = 0;
+        if (!parsePid(value, pid)) { std::cerr << "Invalid PID: " << value << '\n'; return false; }
+        config.targetPid = pid;
+    }
+    return true;
+}
+}  // namespace
 
 auto main(int argc, char* argv[]) -> int {
-    CLI::App app{"NewScanmem - 现代内存扫描工具\n"
-                 "一个使用 C++20 模块重构的 scanmem 现代化版本"};
-    app.set_version_flag("--version", std::string("NewScanmem ") + version::string());
-    
     cli::AppConfig config;
-    
-    // PID 选项
-    app.add_option("-p,--pid", config.targetPid, 
-                   "目标进程 PID")
-        ->check(CLI::PositiveNumber);
-    
-    // 位置参数也接受 PID
-    pid_t positionalPid = 0;
-    app.add_option("target_pid", positionalPid, "目标进程 PID (位置参数)")
-        ->check(CLI::PositiveNumber);
-    
-    // 初始命令
-    app.add_option("-c,--commands", config.initialCommands,
-                   "初始执行命令 (分号分隔)")
-        ->type_name("cmds");
-    
-    // 批处理模式
-    app.add_flag("-b,--batch", config.batchMode,
-                 "批处理模式 (执行命令后退出)");
-    
-    // 后端模式
-    app.add_flag("--backend", config.backendMode,
-                 "机器可读模式 (适合脚本解析)");
-    
-    // 调试模式
-    app.add_flag("-d,--debug", config.debugMode,
-                 "启用调试输出");
-    
-    // 禁用颜色
-    app.add_flag("--no-color", config.colorMode,
-                 "禁用彩色输出 (默认启用)")
-        ->default_val(true)
-        ->multi_option_policy(CLI::MultiOptionPolicy::TakeLast);
-    config.colorMode = true;  // 默认值
-    
-    // 自定义帮助
-    app.set_help_flag("-h,--help", "显示帮助信息并退出");
-    
-    try {
-        app.parse(argc, argv);
-    } catch (const CLI::ParseError& e) {
-        return app.exit(e);
-    }
-    
-    // 处理位置参数 PID (如果提供了)
-    if (positionalPid > 0) {
-        config.targetPid = positionalPid;
-    }
-    
-    // 批处理模式自动启用后端模式
-    if (config.batchMode) {
-        config.backendMode = true;
-    }
-    
-    // 颜色模式逻辑：--no-color 会将其设为 false
-    if (!config.colorMode) {
-        // 已通过命令行禁用
-    }
-    
+    if (!parseArgs(argc, argv, config)) return 0;
     try {
         cli::Application application{config};
         return application.run();
-    } catch (const std::exception& e) {
-        std::cerr << "错误: " << e.what() << std::endl;
+    } catch (const std::exception& error) {
+        std::cerr << "错误: " << error.what() << '\n';
         return 1;
     }
 }

@@ -2,9 +2,9 @@
 #include <gtest/gtest.h>
 
 #include <cstring>
-import core.match_formatter;
-import core.match;
-import scan.types;
+#include "newscanmem/core/match_formatter.hpp"
+#include "newscanmem/core/match.hpp"
+#include "newscanmem/scan/types.hpp"
 
 using namespace core;
 

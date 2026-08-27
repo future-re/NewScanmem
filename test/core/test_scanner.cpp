@@ -1,11 +1,13 @@
-import core.scanner;
+#include "newscanmem/core/scanner.hpp"
 
 using core::Scanner;  // Scanner
-import scan.engine;   // ScanOptions
-import scan.types;    // ScanDataType / ScanMatchType
-import value.core;  // UserValue
+#include "newscanmem/scan/engine.hpp"
+#include "newscanmem/scan/types.hpp"
+#include "newscanmem/value/core.hpp"
 
 #include <gtest/gtest.h>
+
+#include <thread>
 #include <sys/mman.h>
 #include <sys/types.h>
 #include <sys/wait.h>

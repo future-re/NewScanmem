@@ -1,5 +1,5 @@
-import core.memory;
-import core.proc_mem; // For direct read-back verification
+#include "newscanmem/core/memory.hpp"
+#include "newscanmem/core/proc_mem.hpp"
 
 using core::MemoryWriter;
 using core::ProcMemIO;

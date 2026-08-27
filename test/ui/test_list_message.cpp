@@ -6,10 +6,10 @@
 #include <string>
 #include <vector>
 
-import core.match;
-import core.match_formatter;
-import ui.show_message;
-import scan.types;
+#include "newscanmem/core/match.hpp"
+#include "newscanmem/core/match_formatter.hpp"
+#include "newscanmem/ui/show_message.hpp"
+#include "newscanmem/scan/types.hpp"
 
 using namespace core;
 

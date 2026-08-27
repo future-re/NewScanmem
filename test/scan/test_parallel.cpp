@@ -1,11 +1,11 @@
 // Tests for parallel scan consistency vs sequential
 
-import scan.engine;        // runScan, runScanParallel, ScanOptions, ScanStats
-import scan.match_storage; // MatchesAndOldValuesArray
-import scan.types;         // ScanDataType, ScanMatchType
-import value.core;  // UserValue
-import value.flags;        // MatchFlags
-import core.maps;          // RegionScanLevel
+#include "newscanmem/scan/engine.hpp"
+#include "newscanmem/scan/match_storage.hpp"
+#include "newscanmem/scan/types.hpp"
+#include "newscanmem/value/core.hpp"
+#include "newscanmem/value/flags.hpp"
+#include "newscanmem/core/maps.hpp"
 
 #include <gtest/gtest.h>
 #include <signal.h>

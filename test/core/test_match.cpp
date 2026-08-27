@@ -6,11 +6,11 @@
 #include <gtest/gtest.h>
 #include <unistd.h>
 
-import core.match;
-import core.scanner;
-import core.region_classifier;
-import value.core;
-import scan.types;
+#include "newscanmem/core/match.hpp"
+#include "newscanmem/core/scanner.hpp"
+#include "newscanmem/core/region_classifier.hpp"
+#include "newscanmem/value/core.hpp"
+#include "newscanmem/scan/types.hpp"
 
 using namespace core;
 

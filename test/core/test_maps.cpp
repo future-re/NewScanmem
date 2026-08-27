@@ -1,4 +1,4 @@
-import core.maps;
+#include "newscanmem/core/maps.hpp"
 
 using core::MapsReader;
 using core::Region;
@@ -50,6 +50,18 @@ TEST(MapsParserTest, ParseSyntheticMaps) {
         regions, [](auto const &reg) { return reg.type == RegionType::HEAP; });
     ASSERT_TRUE(HEAP_IT != std::ranges::end(regions));
     EXPECT_EQ(HEAP_IT->loadAddr, HEAP_IT->start);
+}
+
+TEST(MapsParserTest, AnonymousMappingsRemainReadableCandidates) {
+    const std::string SAMPLE =
+        "100000-101000 rw-p 00000000 00:00 0\n"
+        "200000-201000 r--p 00000000 00:00 0 [anon:name]\n";
+    std::istringstream iss(SAMPLE);
+    auto regions = MapsReader::parseMapsFromStream(iss, "");
+    ASSERT_EQ(regions.size(), 2U);
+    EXPECT_TRUE(regions[0].filename.empty());
+    EXPECT_EQ(regions[0].size, 0x1000U);
+    EXPECT_EQ(regions[1].filename, "[anon:name]");
 }
 
 TEST(MapsParserTest, ParseProcSelfMaps) {

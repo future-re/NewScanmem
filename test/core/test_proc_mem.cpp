@@ -4,7 +4,7 @@
 
 #include <span>
 
-import core.proc_mem;
+#include "newscanmem/core/proc_mem.hpp"
 
 using namespace core;
 

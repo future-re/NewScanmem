@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 3.23)
 
 project(NewScanmem VERSION 0.1.0 LANGUAGES CXX)
 
@@ -13,11 +13,6 @@ enable_testing()
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# 启用 CMake 的原生 C++ Modules 支持（避免与 Clang 的 header-modules 选项混用）
-# 3.28 提供实验性 API；开启后由 CMake 负责扫描与 BMI 生成/复用
-set(CMAKE_EXPERIMENTAL_CXX_MODULE_CMAKE_API "max")
-set(CMAKE_CXX_SCAN_FOR_MODULES ON)
-
 # 生成 compile_commands.json 以便 clangd 等工具使用
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -26,20 +21,18 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 # 引入代码覆盖率支持
 include(CodeCoverage)
 
-# 添加 CLI11 (header-only)
+# Prefer installed dependencies. FetchContent is only a fallback for a clean
+# checkout, so normal offline builds do not unexpectedly access the network.
 include(FetchContent)
-FetchContent_Declare(
-  cli11
-  URL https://github.com/CLIUtils/CLI11/archive/refs/tags/v2.4.2.zip
-)
-FetchContent_MakeAvailable(cli11)
-
-# 添加编译gtest库
-FetchContent_Declare(
-  googletest
-  URL https://github.com/google/googletest/archive/refs/tags/v1.17.0.zip
-)
-FetchContent_MakeAvailable(googletest)
+# GoogleTest is needed only for tests.
+find_package(GTest 1.14 CONFIG QUIET)
+if(NOT TARGET GTest::gtest)
+  FetchContent_Declare(
+    googletest
+    URL https://github.com/google/googletest/archive/refs/tags/v1.17.0.zip
+  )
+  FetchContent_MakeAvailable(googletest)
+endif()
 
 add_subdirectory(src)
 add_subdirectory(test)

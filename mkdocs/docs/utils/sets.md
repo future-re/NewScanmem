@@ -13,9 +13,8 @@ export module sets;
 ## 依赖项
 
 - `<algorithm>` - 标准算法
-- `<boost/regex.hpp>` - 正则表达式支持
-- `<boost/spirit/include/phoenix.hpp>` - Boost Spirit Phoenix 语义动作
-- `<boost/spirit/include/qi.hpp>` - Boost Spirit Qi 解析
+- `<charconv>` - 十进制和十六进制数字解析
+- `<string_view>` - 集合表达式分段解析
 - `<cctype>` - 字符分类
 - `<compare>` - 三路比较
 - `<cstdlib>` - C 标准库

@@ -1,8 +1,8 @@
 // Unit tests for scan::engine
 #include <gtest/gtest.h>
 
-import scan.engine;
-import scan.types;
+#include "newscanmem/scan/engine.hpp"
+#include "newscanmem/scan/types.hpp"
 
 TEST(ScanEngineTest, ScanOptionsDefaults) {
     ScanOptions opts;

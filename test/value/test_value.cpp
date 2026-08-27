@@ -3,8 +3,8 @@
 #include <string>
 #include <vector>
 
-import value;
-import scan.types;
+#include "newscanmem/value.hpp"
+#include "newscanmem/scan/types.hpp"
 
 TEST(ValueTest, StringSupport) {
     auto val = UserValue::fromString("hello");
