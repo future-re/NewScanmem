@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   build:
-    name: Build Linux (${{ matrix.name }})
+    name: Build Linux (${{ matrix.cxx }})
     runs-on: ubuntu-22.04
     container:
       image: ghcr.io/future-re/newscanmem:latest
@@ -25,13 +25,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: Clang 20
-            cc: clang-20
-            cxx: clang++-20
+          - cxx: clang++-20
             cache_key: clang20
-          - name: GCC 13
-            cc: gcc-13
-            cxx: g++-13
+          - cxx: g++-13
             cache_key: gcc13
 
     steps:
@@ -42,7 +38,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /root/.ccache
-          key: ${{ runner.os }}-${{ matrix.cache_key }}-ccache-${{ hashFiles('**/CMakeLists.txt', '**/*.cpp', '**/*.c', '**/*.h', '**/*.hpp', '**/*.cppm') }}
+          key: ${{ runner.os }}-${{ matrix.cache_key }}-ccache-${{ hashFiles('**/CMakeLists.txt', '**/*.cpp', '**/*.h', '**/*.hpp', '**/*.cppm') }}
           restore-keys: |
             ${{ runner.os }}-${{ matrix.cache_key }}-ccache-
 
@@ -50,7 +46,6 @@ jobs:
         run: |
           uname -a || true
           cmake --version
-          ${{ matrix.cc }} --version
           ${{ matrix.cxx }} --version
 
       - name: Configure project
@@ -59,9 +54,7 @@ jobs:
         run: |
           cmake -S . -B build -G Ninja \
             -DCMAKE_BUILD_TYPE=Debug \
-            -DCMAKE_C_COMPILER=${{ matrix.cc }} \
             -DCMAKE_CXX_COMPILER=${{ matrix.cxx }} \
-            -DCMAKE_C_COMPILER_LAUNCHER=ccache \
             -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
             -DCMAKE_CXX_STANDARD=23 \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
