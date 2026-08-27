@@ -1,8 +1,5 @@
 # 测试子目录的 CMakeLists.txt
 
-# 启用测试（通常在顶层调用一次，这里保留注释说明）
-# enable_testing()
-
 # 查找 GTest 并引入 GoogleTest CMake 辅助
 find_package(GTest REQUIRED)
 include(GoogleTest)
@@ -29,9 +26,10 @@ foreach(TEST_SRC ${TEST_SOURCES})
     add_executable(${TEST_TARGET} ${TEST_SRC})
     target_link_libraries(${TEST_TARGET} PRIVATE ${TEST_LIBS})
 
-    # 自动发现测试点
+    # Discover tests during the build. This makes the generated CTest entries
+    # available before the coverage script starts ctest from the build root.
     gtest_discover_tests(${TEST_TARGET}
-        DISCOVERY_MODE PRE_TEST
+        DISCOVERY_MODE POST_BUILD
         PROPERTIES
             DISCOVERED_TEST_PREFIX "${TEST_NAME}::"
             LABELS "unit"
