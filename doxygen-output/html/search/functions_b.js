@@ -9,7 +9,7 @@ var searchData=
   ['makenumericscanroutine_6',['makeNumericScanRoutine',['../numeric_8hpp.html#a2d70395fd5fbc4a188ef45cfe3a8eea2',1,'numeric.hpp']]],
   ['makescancontext_7',['makeScanContext',['../namespacescan.html#aceb6024a9754d6e1cf97597c75c283d8',1,'scan']]],
   ['makescanroutine_8',['makeScanRoutine',['../namespacescan.html#a10335a9c69de8be746c58fda47a463e6',1,'scan']]],
-  ['makestringscanroutine_9',['makestringscanroutine',['../scan_2string_8hpp.html#a992cd618a6d50f1839f7296669540aba',1,'makeStringScanRoutine(ScanMatchType match_type) -&gt; scan::ScanRoutine:&#160;string.cpp'],['../scan_2string_8cpp.html#ac7d9ec3f72058ee9d14332e0e49c5160',1,'makeStringScanRoutine(const ScanMatchType match_type) -&gt; scan::ScanRoutine:&#160;string.cpp']]],
+  ['makestringscanroutine_9',['makestringscanroutine',['../scan_2string_8hpp.html#a992cd618a6d50f1839f7296669540aba',1,'makeStringScanRoutine(ScanMatchType match_type) -&gt; scan::ScanRoutine:&#160;string.cpp'],['../scan_2string_8cpp.html#af6086610d40f287f31e0fbfcf520217d',1,'makeStringScanRoutine(const ScanMatchType matchType) -&gt; scan::ScanRoutine:&#160;string.cpp']]],
   ['markrangebyaddress_10',['markRangeByAddress',['../classscan_1_1MatchesAndOldValuesSwath.html#a993ed6826a1419848b6d456773d4a580',1,'scan::MatchesAndOldValuesSwath']]],
   ['markrangebyindex_11',['markRangeByIndex',['../classscan_1_1MatchesAndOldValuesSwath.html#adc75478661dd843adc419f835d6a0dfa',1,'scan::MatchesAndOldValuesSwath']]],
   ['match_12',['match',['../structscan_1_1ScanResult.html#a6003b3aed7e49ffe6fd047699ef3625e',1,'scan::ScanResult']]],
