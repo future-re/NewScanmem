@@ -21,11 +21,11 @@ var searchData=
   ['flags_2ehpp_18',['flags.hpp',['../flags_8hpp.html',1,'']]],
   ['float_5f32_19',['FLOAT_32',['../types_8hpp.html#a67986707d17cc91d949eb328ec7fb6f0a34429544f281bc1e40ec5525cff2a060',1,'types.hpp']]],
   ['float_5f64_20',['FLOAT_64',['../types_8hpp.html#a67986707d17cc91d949eb328ec7fb6f0a4e11132e1caaf937a1ad0a02e0595b18',1,'types.hpp']]],
-  ['format_21',['format',['../structstd_1_1formatter_3_01Value_01_4.html#a0f606d54738526ea20c10582b1ea8d1d',1,'std::formatter&lt; Value &gt;::format()'],['../structstd_1_1formatter_3_01UserValue_01_4.html#a167d24bdb6fe687679dba535a3a068f7',1,'std::formatter&lt; UserValue &gt;::format()'],['../classcore_1_1MatchFormatter.html#a436e50db024c06bed408861c338be4d9',1,'core::MatchFormatter::format()']]],
+  ['format_21',['format',['../structstd_1_1formatter_3_01Value_01_4.html#a0f606d54738526ea20c10582b1ea8d1d',1,'std::formatter&lt; Value &gt;::format()'],['../structstd_1_1formatter_3_01UserValue_01_4.html#a167d24bdb6fe687679dba535a3a068f7',1,'std::formatter&lt; UserValue &gt;::format()'],['../classcore_1_1MatchFormatter.html#a405371fe01c54faded2f242aeb105529',1,'core::MatchFormatter::format()']]],
   ['formatoptions_22',['FormatOptions',['../structcore_1_1FormatOptions.html',1,'core']]],
   ['formatter_3c_20uservalue_20_3e_23',['formatter&lt; UserValue &gt;',['../structstd_1_1formatter_3_01UserValue_01_4.html',1,'std']]],
   ['formatter_3c_20value_20_3e_24',['formatter&lt; Value &gt;',['../structstd_1_1formatter_3_01Value_01_4.html',1,'std']]],
-  ['formatvaluebytype_25',['formatValueByType',['../namespacecore.html#aeaf1c1daf217dcb0e2257985c03b2196',1,'core']]],
+  ['formatvaluebytype_25',['formatValueByType',['../namespacecore.html#a8fc2c70ddd2ac4ab5bcbd567bae58e1b',1,'core']]],
   ['frombytearray_26',['frombytearray',['../structUserValue.html#a73c9cfea61f55b5396a301caf7d29d06',1,'UserValue::fromByteArray()'],['../structValue.html#a375f844540143e378660bb70b2861883',1,'Value::fromByteArray()']]],
   ['frombytes_27',['fromBytes',['../structUserInput.html#a0426a55155e58859724f7e4599364390',1,'UserInput']]],
   ['frombyteswithmask_28',['fromBytesWithMask',['../structUserInput.html#ab6da7bcbba8ba90975b795e37cdea732',1,'UserInput']]],
@@ -33,5 +33,5 @@ var searchData=
   ['fromrange_30',['fromRange',['../structUserInput.html#a034094d4736d9cad00ac20b29ad2a115',1,'UserInput']]],
   ['fromscalar_31',['fromscalar',['../structUserValue.html#ab14038c252ffa266dc4ceaeba51ab3f6',1,'UserValue::fromScalar()'],['../structValue.html#a14fb1a3f236cbecabc3001bb5ae62c65',1,'Value::fromScalar()']]],
   ['fromstring_32',['fromstring',['../structUserValue.html#ad901c11008c8a28c9301e8f8d89f197b',1,'UserValue::fromString(const char *value) -&gt; UserValue'],['../structUserValue.html#a5558143ecc1e0dcfb72af984fe634935',1,'UserValue::fromString(T &amp;&amp;value) -&gt; UserValue'],['../structValue.html#a582b7e8cd651d34f11472827f731a255',1,'Value::fromString(const char *value) -&gt; Value'],['../structValue.html#af4278794ee032e8c60f61701917b13bb',1,'Value::fromString(T &amp;&amp;value) -&gt; Value'],['../structUserInput.html#a53c109ac1cb56fff0baada728c0f169c',1,'UserInput::fromString()']]],
-  ['fromtypenames_33',['fromTypeNames',['../classcore_1_1RegionFilter.html#a3923003bca55125d6a8d1a967799bb68',1,'core::RegionFilter']]]
+  ['fromtypenames_33',['fromTypeNames',['../classcore_1_1RegionFilter.html#a99079c363fb1ec1622dbcb84bdc5ccd6',1,'core::RegionFilter']]]
 ];

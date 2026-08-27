@@ -6,14 +6,14 @@ var namespacescan =
     [ "ScanContext", "structscan_1_1ScanContext.html", "structscan_1_1ScanContext" ],
     [ "ScanResult", "structscan_1_1ScanResult.html", "structscan_1_1ScanResult" ],
     [ "ScanRoutine", "namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa", null ],
-    [ "isRoutineAvailable", "namespacescan.html#a03f681da1711b047dcc11a1ff68397e1", null ],
-    [ "makeScanContext", "namespacescan.html#aceb6024a9754d6e1cf97597c75c283d8", null ],
-    [ "makeScanRoutine", "namespacescan.html#a10335a9c69de8be746c58fda47a463e6", null ],
+    [ "isRoutineAvailable", "namespacescan.html#a87e62c3935d332e267e7b6f072ae81f9", null ],
+    [ "makeScanContext", "namespacescan.html#a897f8757ddf1b846932f653c34007339", null ],
+    [ "makeScanRoutine", "namespacescan.html#af35fd9832bdafb89dcbcaac307175373", null ],
     [ "nullRoutine", "namespacescan.html#a522b4708799baf2cfa4609ec02c94081", null ],
     [ "prepareScanRegions", "namespacescan.html#a941efa4c3abc5822fe51cabcd719ed4c", null ],
-    [ "prepareScanRoutine", "namespacescan.html#a7cf915f05b8cc4b392c82e8ec2b4d6a9", null ],
-    [ "runScan", "namespacescan.html#a8a9a98a5b9aa1a210defc2452594e036", null ],
-    [ "runScanParallel", "namespacescan.html#a0ff7b3cdff133712e122d2c9fa400bee", null ],
-    [ "runScanWithPrevious", "namespacescan.html#ae05fcde48bb39adf48e716cc836e04f8", null ],
-    [ "scanWindowSize", "namespacescan.html#ab97a00d40cff88f6ab3d1adc494a44f8", null ]
+    [ "prepareScanRoutine", "namespacescan.html#a31ea4ffeedb7a6e00883aae1deda3a8b", null ],
+    [ "runScan", "namespacescan.html#ad87ce4d22847b7cb2caa99e73d618c85", null ],
+    [ "runScanParallel", "namespacescan.html#a3e72fdd00a275d9757aaf6dd7b28be3a", null ],
+    [ "runScanWithPrevious", "namespacescan.html#ab3f403a2f8b622edc713c1a0f5a94e0d", null ],
+    [ "scanWindowSize", "namespacescan.html#ac80f5730b731b6ddf50add3992acf200", null ]
 ];

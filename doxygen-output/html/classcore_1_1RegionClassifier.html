@@ -99,29 +99,21 @@ $(document).ready(function(){initNavTree('classcore_1_1RegionClassifier.html',''
 </div><!--header-->
 <div class="contents">
 
-<p>Classifies memory addresses into region types (heap/stack/code/etc)  
- <a href="classcore_1_1RegionClassifier.html#details">更多...</a></p>
-
 <p><code>#include &lt;<a class="el" href="region__classifier_8hpp_source.html">region_classifier.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
 <tr class="memitem:a2f57db0428d581e738c18b08825dd373" id="r_a2f57db0428d581e738c18b08825dd373"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1RegionClassifier.html#a2f57db0428d581e738c18b08825dd373">classify</a> (std::uintptr_t <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">addr</a>) <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> -&gt; std::string</td></tr>
-<tr class="memdesc:a2f57db0428d581e738c18b08825dd373"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classify an address into a human-readable region description  <br /></td></tr>
 <tr class="separator:a2f57db0428d581e738c18b08825dd373"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae504f89c23de4fe581b9d34ce406ff12" id="r_ae504f89c23de4fe581b9d34ce406ff12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1RegionClassifier.html#ae504f89c23de4fe581b9d34ce406ff12">getRegionType</a> (std::uintptr_t <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">addr</a>) <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> -&gt; std::optional&lt; <a class="el" href="namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8">RegionType</a> &gt;</td></tr>
-<tr class="memdesc:ae504f89c23de4fe581b9d34ce406ff12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get region type enum for an address  <br /></td></tr>
 <tr class="separator:ae504f89c23de4fe581b9d34ce406ff12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
 <tr class="memitem:a1d1a7b26bb63065d77ada2756666dba0" id="r_a1d1a7b26bb63065d77ada2756666dba0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">static</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1RegionClassifier.html#a1d1a7b26bb63065d77ada2756666dba0">create</a> (<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">pid_t</a> pid) -&gt; std::expected&lt; <a class="el" href="classcore_1_1RegionClassifier.html">RegionClassifier</a>, std::string &gt;</td></tr>
-<tr class="memdesc:a1d1a7b26bb63065d77ada2756666dba0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize classifier for a given process  <br /></td></tr>
 <tr class="separator:a1d1a7b26bb63065d77ada2756666dba0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock"><p>Classifies memory addresses into region types (heap/stack/code/etc) </p>
-</div><h2 class="groupheader">成员函数说明</h2>
+<h2 class="groupheader">成员函数说明</h2>
 <a id="a2f57db0428d581e738c18b08825dd373" name="a2f57db0428d581e738c18b08825dd373"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2f57db0428d581e738c18b08825dd373">&#9670;&#160;</a></span>classify()</h2>
 
@@ -137,15 +129,6 @@ Public 成员函数</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Classify an address into a human-readable region description </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">addr</td><td>Address to classify </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd><a class="el" href="structcore_1_1Region.html">Region</a> description string (e.g., "heap", "stack", "code:libfoo.so") </dd></dl>
 
 </div>
 </div>
@@ -173,15 +156,6 @@ Public 成员函数</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Initialize classifier for a given process </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pid</td><td>Target process ID </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd>Expected with classifier or error message </dd></dl>
-
 </div>
 </div>
 <a id="ae504f89c23de4fe581b9d34ce406ff12" name="ae504f89c23de4fe581b9d34ce406ff12"></a>
@@ -199,15 +173,6 @@ Public 成员函数</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get region type enum for an address </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">addr</td><td>Address to classify </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd><a class="el" href="structcore_1_1Region.html">Region</a> type or nullopt if not found </dd></dl>
 
 </div>
 </div>

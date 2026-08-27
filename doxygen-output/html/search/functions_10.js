@@ -7,7 +7,7 @@ var searchData=
   ['scancommand_4',['ScanCommand',['../classcli_1_1commands_1_1ScanCommand.html#ab64b46330dcceb6bd93d6ce11f1fbaac',1,'cli::commands::ScanCommand']]],
   ['scanhistory_5',['ScanHistory',['../classcore_1_1ScanHistory.html#a1bad940ad8002a14af1c8698b10bd9a7',1,'core::ScanHistory']]],
   ['scanner_6',['Scanner',['../classcore_1_1Scanner.html#aa4f39c860299a9b19799409dbf2a8cb2',1,'core::Scanner']]],
-  ['scanwindowsize_7',['scanWindowSize',['../namespacescan.html#ab97a00d40cff88f6ab3d1adc494a44f8',1,'scan']]],
+  ['scanwindowsize_7',['scanWindowSize',['../namespacescan.html#ac80f5730b731b6ddf50add3992acf200',1,'scan']]],
   ['setbackendmode_8',['setBackendMode',['../classui_1_1ConsoleUI.html#a02d8de96387c5a57edaf66847473e1af',1,'ui::ConsoleUI']]],
   ['setbytes_9',['setbytes',['../structValue.html#a218d396c011de5caf5522c246c66e019',1,'Value::setBytes(const std::uint8_t *data, std::size_t len)'],['../structValue.html#ac2260e28f8b2f5b9d7bf180c4c713730',1,'Value::setBytes(const std::vector&lt; std::uint8_t &gt; &amp;data)'],['../structValue.html#aab6cf5d8a2244e7dc6a47350bef5c1c2',1,'Value::setBytes(std::vector&lt; std::uint8_t &gt; &amp;&amp;data)']]],
   ['setcommand_10',['SetCommand',['../classcli_1_1commands_1_1SetCommand.html#a863afa8032fe612be6bafc1dee67393b',1,'cli::commands::SetCommand']]],

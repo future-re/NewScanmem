@@ -16,7 +16,7 @@ var searchData=
   ['region_5ffilter_2ehpp_13',['region_filter.hpp',['../region__filter_8hpp.html',1,'']]],
   ['region_5ftype_5fnames_14',['REGION_TYPE_NAMES',['../namespacecore.html#a9cbc794a299a247419a8c580a01e623a',1,'core']]],
   ['regionclassifier_15',['RegionClassifier',['../classcore_1_1RegionClassifier.html',1,'core']]],
-  ['regionfilter_16',['regionfilter',['../structcore_1_1MatchCollectionOptions.html#a7bac7028617559e1e4b53b7cbb192031',1,'core::MatchCollectionOptions::regionFilter'],['../structScanOptions.html#a5e8e10baa9e7c249927ae7a8be3681bd',1,'ScanOptions::regionFilter'],['../classcore_1_1RegionFilter.html#a6d1d799762cee09d25b00b69c28496a4',1,'core::RegionFilter::RegionFilter()'],['../classcore_1_1RegionFilter.html',1,'core::RegionFilter']]],
+  ['regionfilter_16',['regionfilter',['../structcore_1_1MatchCollectionOptions.html#a7bac7028617559e1e4b53b7cbb192031',1,'core::MatchCollectionOptions::regionFilter'],['../structScanOptions.html#a5e8e10baa9e7c249927ae7a8be3681bd',1,'ScanOptions::regionFilter'],['../classcore_1_1RegionFilter.html#a834e04f399b0da7b90bdcf0b37408d1a',1,'core::RegionFilter::RegionFilter()'],['../classcore_1_1RegionFilter.html',1,'core::RegionFilter']]],
   ['regionfilterconfig_17',['RegionFilterConfig',['../structcore_1_1RegionFilterConfig.html',1,'core']]],
   ['regionfiltermode_18',['RegionFilterMode',['../namespacecore.html#acce81c500fe892fd106971f55c4e89b2',1,'core']]],
   ['regionflags_19',['RegionFlags',['../structcore_1_1RegionFlags.html',1,'core']]],
@@ -48,7 +48,7 @@ var searchData=
   ['run_45',['run',['../classcli_1_1REPL.html#abe1d1a08f88d4e6d5ef4eb466b98861e',1,'cli::REPL::run()'],['../classcli_1_1Application.html#a938d20efb9d2651466f1981027af7cc1',1,'cli::Application::run()'],['../namespacescanmem.html#a8da63e0867106fb20c71af418faf793a',1,'scanmem::run()']]],
   ['running_46',['RUNNING',['../namespacecore.html#a7c631f2329b573f9f3e97ac102e1bfb3a43491564ebcfd38568918efbd6e840fd',1,'core']]],
   ['runnumericmatch_47',['runNumericMatch',['../namespacedetail.html#af86320d9d2824ca666fc8bcfc695933d',1,'detail']]],
-  ['runscan_48',['runScan',['../namespacescan.html#a8a9a98a5b9aa1a210defc2452594e036',1,'scan']]],
-  ['runscanparallel_49',['runScanParallel',['../namespacescan.html#a0ff7b3cdff133712e122d2c9fa400bee',1,'scan']]],
-  ['runscanwithprevious_50',['runScanWithPrevious',['../namespacescan.html#ae05fcde48bb39adf48e716cc836e04f8',1,'scan']]]
+  ['runscan_48',['runScan',['../namespacescan.html#ad87ce4d22847b7cb2caa99e73d618c85',1,'scan']]],
+  ['runscanparallel_49',['runScanParallel',['../namespacescan.html#a3e72fdd00a275d9757aaf6dd7b28be3a',1,'scan']]],
+  ['runscanwithprevious_50',['runScanWithPrevious',['../namespacescan.html#ab3f403a2f8b622edc713c1a0f5a94e0d',1,'scan']]]
 ];

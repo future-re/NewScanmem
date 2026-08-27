@@ -20,7 +20,7 @@ var searchData=
   ['app_5fconfig_2ecpp_17',['app_config.cpp',['../app__config_8cpp.html',1,'']]],
   ['app_5fconfig_2ehpp_18',['app_config.hpp',['../app__config_8hpp.html',1,'']]],
   ['appconfig_19',['AppConfig',['../structcli_1_1AppConfig.html',1,'cli']]],
-  ['appendrange_20',['appendRange',['../classscan_1_1MatchesAndOldValuesSwath.html#a385d0819af32972418e65b3dbbbdf168',1,'scan::MatchesAndOldValuesSwath']]],
+  ['appendrange_20',['appendRange',['../classscan_1_1MatchesAndOldValuesSwath.html#aaac0258c335f7b39ac30944fc0066cd6',1,'scan::MatchesAndOldValuesSwath']]],
   ['application_21',['application',['../classcli_1_1Application.html#acc6583cfc6748cf350119214c79966d8',1,'cli::Application::Application()'],['../classcli_1_1Application.html',1,'cli::Application']]],
   ['as_22',['as',['../structValue.html#a091708ea41f8c9beb21c3ceca07e6c24',1,'Value']]],
   ['asbytes_23',['asBytes',['../structValue.html#adf9a4958d4ccb171ad1f6d1d27db5951',1,'Value']]],

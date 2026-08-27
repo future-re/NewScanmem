@@ -6,7 +6,7 @@ var searchData=
   ['readline_3',['readline',['../classui_1_1UserInterface.html#a4709eb0e9ed65f015425211d7fe4acf7',1,'ui::UserInterface::readLine()'],['../classui_1_1LineEditor.html#aa4c9e2fd73bbea2ce04ee73e21ee6e12',1,'ui::LineEditor::readLine()']]],
   ['readprocessmaps_4',['readprocessmaps',['../classcore_1_1MapsReader.html#a4a47de6592a5a5e807cc97bd5f53d7de',1,'core::MapsReader::readProcessMaps()'],['../namespacecore.html#a146e68cbe4ef66265e9f370b733f982f',1,'core::readProcessMaps()']]],
   ['readtyped_5',['readtyped',['../read__helpers_8hpp.html#aae378502efc7da866132d0feeab269dd',1,'readTyped(const Value *memoryPtr, size_t memLength, bool reverseEndianness) noexcept -&gt; std::optional&lt; T &gt;:&#160;read_helpers.hpp'],['../read__helpers_8hpp.html#ab468db4c00bc72a0061aa9f22311a234',1,'readTyped(std::span&lt; const std::uint8_t &gt; bytes, bool reverseEndianness) noexcept -&gt; std::optional&lt; T &gt;:&#160;read_helpers.hpp'],['../read__helpers_8hpp.html#ae3e2088d88997f571e34f7d919998715',1,'readTyped(const Value &amp;value, bool reverseEndianness) noexcept -&gt; std::optional&lt; T &gt;:&#160;read_helpers.hpp']]],
-  ['regionfilter_6',['RegionFilter',['../classcore_1_1RegionFilter.html#a6d1d799762cee09d25b00b69c28496a4',1,'core::RegionFilter']]],
+  ['regionfilter_6',['RegionFilter',['../classcore_1_1RegionFilter.html#a834e04f399b0da7b90bdcf0b37408d1a',1,'core::RegionFilter']]],
   ['registercommand_7',['registerCommand',['../classcli_1_1CommandRegistry.html#acbc4d069a1878288034a8b79ff4209b5',1,'cli::CommandRegistry']]],
   ['reltol_8',['relTol',['../read__helpers_8hpp.html#a486179053c2cdd2bc3aee7fcb951bb52',1,'read_helpers.hpp']]],
   ['removetype_9',['removeType',['../classcore_1_1RegionFilter.html#a42c9914262ff73b7f47acc517791d6d9',1,'core::RegionFilter']]],
@@ -17,7 +17,7 @@ var searchData=
   ['resetscanner_14',['resetScanner',['../structcli_1_1SessionState.html#aeb228d5ae8220f7a1d2e606a41e4e08d',1,'cli::SessionState']]],
   ['run_15',['run',['../classcli_1_1REPL.html#abe1d1a08f88d4e6d5ef4eb466b98861e',1,'cli::REPL::run()'],['../classcli_1_1Application.html#a938d20efb9d2651466f1981027af7cc1',1,'cli::Application::run()'],['../namespacescanmem.html#a8da63e0867106fb20c71af418faf793a',1,'scanmem::run()']]],
   ['runnumericmatch_16',['runNumericMatch',['../namespacedetail.html#af86320d9d2824ca666fc8bcfc695933d',1,'detail']]],
-  ['runscan_17',['runScan',['../namespacescan.html#a8a9a98a5b9aa1a210defc2452594e036',1,'scan']]],
-  ['runscanparallel_18',['runScanParallel',['../namespacescan.html#a0ff7b3cdff133712e122d2c9fa400bee',1,'scan']]],
-  ['runscanwithprevious_19',['runScanWithPrevious',['../namespacescan.html#ae05fcde48bb39adf48e716cc836e04f8',1,'scan']]]
+  ['runscan_17',['runScan',['../namespacescan.html#ad87ce4d22847b7cb2caa99e73d618c85',1,'scan']]],
+  ['runscanparallel_18',['runScanParallel',['../namespacescan.html#a3e72fdd00a275d9757aaf6dd7b28be3a',1,'scan']]],
+  ['runscanwithprevious_19',['runScanWithPrevious',['../namespacescan.html#ab3f403a2f8b622edc713c1a0f5a94e0d',1,'scan']]]
 ];

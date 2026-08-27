@@ -9,8 +9,8 @@ var searchData=
   ['findregexmatches_6',['findregexmatches',['../scan_2string_8cpp.html#aa0916825f2c572928494723253f92a26',1,'findRegexMatches(const std::span&lt; const std::uint8_t &gt; memory, const std::string_view pattern) -&gt; std::vector&lt; ByteMatch &gt;:&#160;string.cpp'],['../scan_2string_8hpp.html#aa46e94401f2563fffac4dfc5bc356d3c',1,'findRegexMatches(std::span&lt; const std::uint8_t &gt; memory, std::string_view pattern) -&gt; std::vector&lt; ByteMatch &gt;:&#160;string.cpp']]],
   ['flag_7',['flag',['../structUserValue.html#af6798dc1f2d8dff30dde0e0100ef8481',1,'UserValue::flag()'],['../structValue.html#a3003bd729eb762b248ba07ddbb6cdbcd',1,'Value::flag()']]],
   ['flagfortype_8',['flagForType',['../flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1',1,'flags.hpp']]],
-  ['format_9',['format',['../structstd_1_1formatter_3_01UserValue_01_4.html#a167d24bdb6fe687679dba535a3a068f7',1,'std::formatter&lt; UserValue &gt;::format()'],['../structstd_1_1formatter_3_01Value_01_4.html#a0f606d54738526ea20c10582b1ea8d1d',1,'std::formatter&lt; Value &gt;::format()'],['../classcore_1_1MatchFormatter.html#a436e50db024c06bed408861c338be4d9',1,'core::MatchFormatter::format()']]],
-  ['formatvaluebytype_10',['formatValueByType',['../namespacecore.html#aeaf1c1daf217dcb0e2257985c03b2196',1,'core']]],
+  ['format_9',['format',['../structstd_1_1formatter_3_01UserValue_01_4.html#a167d24bdb6fe687679dba535a3a068f7',1,'std::formatter&lt; UserValue &gt;::format()'],['../structstd_1_1formatter_3_01Value_01_4.html#a0f606d54738526ea20c10582b1ea8d1d',1,'std::formatter&lt; Value &gt;::format()'],['../classcore_1_1MatchFormatter.html#a405371fe01c54faded2f242aeb105529',1,'core::MatchFormatter::format()']]],
+  ['formatvaluebytype_10',['formatValueByType',['../namespacecore.html#a8fc2c70ddd2ac4ab5bcbd567bae58e1b',1,'core']]],
   ['frombytearray_11',['frombytearray',['../structUserValue.html#a73c9cfea61f55b5396a301caf7d29d06',1,'UserValue::fromByteArray()'],['../structValue.html#a375f844540143e378660bb70b2861883',1,'Value::fromByteArray()']]],
   ['frombytes_12',['fromBytes',['../structUserInput.html#a0426a55155e58859724f7e4599364390',1,'UserInput']]],
   ['frombyteswithmask_13',['fromBytesWithMask',['../structUserInput.html#ab6da7bcbba8ba90975b795e37cdea732',1,'UserInput']]],
@@ -18,5 +18,5 @@ var searchData=
   ['fromrange_15',['fromRange',['../structUserInput.html#a034094d4736d9cad00ac20b29ad2a115',1,'UserInput']]],
   ['fromscalar_16',['fromscalar',['../structUserValue.html#ab14038c252ffa266dc4ceaeba51ab3f6',1,'UserValue::fromScalar()'],['../structValue.html#a14fb1a3f236cbecabc3001bb5ae62c65',1,'Value::fromScalar(T value) -&gt; Value']]],
   ['fromstring_17',['fromstring',['../structValue.html#a582b7e8cd651d34f11472827f731a255',1,'Value::fromString()'],['../structUserValue.html#a5558143ecc1e0dcfb72af984fe634935',1,'UserValue::fromString(T &amp;&amp;value) -&gt; UserValue'],['../structUserValue.html#ad901c11008c8a28c9301e8f8d89f197b',1,'UserValue::fromString(const char *value) -&gt; UserValue'],['../structValue.html#af4278794ee032e8c60f61701917b13bb',1,'Value::fromString()'],['../structUserInput.html#a53c109ac1cb56fff0baada728c0f169c',1,'UserInput::fromString()']]],
-  ['fromtypenames_18',['fromTypeNames',['../classcore_1_1RegionFilter.html#a3923003bca55125d6a8d1a967799bb68',1,'core::RegionFilter']]]
+  ['fromtypenames_18',['fromTypeNames',['../classcore_1_1RegionFilter.html#a99079c363fb1ec1622dbcb84bdc5ccd6',1,'core::RegionFilter']]]
 ];

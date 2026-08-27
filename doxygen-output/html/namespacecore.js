@@ -45,7 +45,7 @@ var namespacecore =
       [ "HEAP", "namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8ab6722804f5872cdd88347da194d42087", null ],
       [ "STACK", "namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8a0fac686d86aba414411b58f6bce53a76", null ]
     ] ],
-    [ "formatValueByType", "namespacecore.html#aeaf1c1daf217dcb0e2257985c03b2196", null ],
+    [ "formatValueByType", "namespacecore.html#a8fc2c70ddd2ac4ab5bcbd567bae58e1b", null ],
     [ "readProcessMaps", "namespacecore.html#a146e68cbe4ef66265e9f370b733f982f", null ],
     [ "writeBytes", "namespacecore.html#a9b9299e713784696c1df515d1f4c35c0", null ],
     [ "writeValue", "namespacecore.html#a99445fcc9b198d0a35ffde606ce2a556", null ],

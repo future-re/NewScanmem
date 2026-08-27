@@ -3,7 +3,7 @@ var searchData=
   ['backendmode_0',['backendmode',['../structui_1_1MessageContext.html#a4d11ee01fdc9c637a58d5aff56a677ad',1,'ui::MessageContext::backendMode'],['../structcli_1_1AppConfig.html#a38e10ee1bc03d3d7df2535c4e7faca71',1,'cli::AppConfig::backendMode']]],
   ['batchmode_1',['batchMode',['../structcli_1_1AppConfig.html#aaa580cc29f8a5a4c6557d25e134c4f2d',1,'cli::AppConfig']]],
   ['bigendiandisplay_2',['bigEndianDisplay',['../structcore_1_1FormatOptions.html#ab2bd7194fe9bac1ff74efb59287986e8',1,'core::FormatOptions']]],
-  ['binary_5fname_3',['binary_name',['../maps_8cpp.html#a8f09edb430a8c23eec5f30ed1f86fb95',1,'maps.cpp']]],
+  ['binaryname_3',['binaryName',['../maps_8cpp.html#ae60d12a534a985889f6869f8e3c848bc',1,'maps.cpp']]],
   ['black_4',['BLACK',['../namespaceui_1_1color.html#ac2cebcbd2ace228258aff3c500c5dc80',1,'ui::color']]],
   ['block_5fsize_5',['BLOCK_SIZE',['../structScanOptions.html#a136c0a3b59e82244a3d0a0de7f72afbd',1,'ScanOptions']]],
   ['blocksize_6',['blockSize',['../structScanOptions.html#a2ccd86282331f2f57673fcd1abf6d533',1,'ScanOptions']]],
