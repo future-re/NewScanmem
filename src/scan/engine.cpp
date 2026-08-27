@@ -12,11 +12,13 @@
 #include "newscanmem/core/proc_mem.hpp"
 #include "newscanmem/scan/job.hpp"
 #include "newscanmem/scan/routine.hpp"
+#include "newscanmem/scan/string.hpp"
 
 namespace scan {
 namespace {
 using core::ProcMemIO;
 using core::Region;
+
 void appendBytes(MatchesAndOldValuesSwath& swath, const std::uint8_t* buffer,
                  const std::size_t count, void* base) {
     if (swath.data.empty()) swath.firstByteInChild = base;
@@ -25,6 +27,7 @@ void appendBytes(MatchesAndOldValuesSwath& swath, const std::uint8_t* buffer,
                               .matchInfo = MatchFlags::EMPTY,
                               .matchLength = 0});
 }
+
 auto oldValue(const MatchesAndOldValuesArray* previous, void* address,
               const std::size_t length) -> std::optional<Value> {
     if (previous == nullptr || address == nullptr || length == 0)
@@ -48,33 +51,66 @@ auto oldValue(const MatchesAndOldValuesArray* previous, void* address,
     }
     return std::nullopt;
 }
-void scanBlock(const std::span<const std::uint8_t> buffer,
-               const std::size_t candidate_count,
-               const std::size_t base_index, const std::size_t step,
-               const ScanRoutine& routine, const UserValue* user_value,
-               MatchesAndOldValuesSwath& swath, ScanStats& stats,
-               void* block_base, const MatchesAndOldValuesArray* previous,
-               const std::size_t old_length, const bool reverse) {
+
+void scanRegexBlock(const std::span<const std::uint8_t> buffer,
+                    const std::size_t candidateCount,
+                    const std::size_t baseIndex, const std::size_t step,
+                    const UserValue* userValue,
+                    MatchesAndOldValuesSwath& swath, ScanStats& stats) {
+    if (userValue == nullptr ||
+        userValue->primary.flag() != MatchFlags::STRING ||
+        userValue->primary.bytes.empty())
+        return;
+
+    const auto pattern = std::string_view{
+        std::bit_cast<const char*>(userValue->primary.bytes.data()),
+        userValue->primary.bytes.size()};
     const auto stride = std::max<std::size_t>(1, step);
-    const auto scan_end = std::min(candidate_count, buffer.size());
-    for (std::size_t offset = 0; offset < scan_end; offset += stride) {
+
+    for (const auto& match : findRegexMatches(buffer, pattern)) {
+        if (match.offset >= candidateCount) break;
+        if ((match.offset % stride) != 0) continue;
+        swath.markRangeByIndex(baseIndex + match.offset, match.length,
+                               MatchFlags::B8);
+        ++stats.matches;
+    }
+}
+
+void scanBlock(const std::span<const std::uint8_t> buffer,
+               const std::size_t candidateCount,
+               const std::size_t baseIndex, const std::size_t step,
+               const ScanRoutine& routine, const UserValue* userValue,
+               MatchesAndOldValuesSwath& swath, ScanStats& stats,
+               void* blockBase, const MatchesAndOldValuesArray* previous,
+               const std::size_t oldLength, const bool reverse,
+               const bool regexBlockMode) {
+    if (regexBlockMode) {
+        scanRegexBlock(buffer, candidateCount, baseIndex, step, userValue, swath,
+                       stats);
+        return;
+    }
+
+    const auto stride = std::max<std::size_t>(1, step);
+    const auto scanEnd = std::min(candidateCount, buffer.size());
+    for (std::size_t offset = 0; offset < scanEnd; offset += stride) {
         auto* address =
-            static_cast<void*>(static_cast<std::uint8_t*>(block_base) + offset);
-        const auto old = oldValue(previous, address, old_length);
+            static_cast<void*>(static_cast<std::uint8_t*>(blockBase) + offset);
+        const auto old = oldValue(previous, address, oldLength);
         const auto result = routine(makeScanContext(
-            buffer.subspan(offset), old ? &*old : nullptr, user_value,
-            user_value ? user_value->flag() : MatchFlags::EMPTY, reverse));
+            buffer.subspan(offset), old ? &*old : nullptr, userValue,
+            userValue ? userValue->flag() : MatchFlags::EMPTY, reverse));
         if (!result) continue;
-        swath.markRangeByIndex(base_index + offset, result.matchLength,
+        swath.markRangeByIndex(baseIndex + offset, result.matchLength,
                                result.matchedFlag);
         ++stats.matches;
     }
 }
+
 auto scanRegion(
     const Region& region, ProcMemIO& reader, const ScanOptions& options,
-    const ScanRoutine& routine, const UserValue* user_value, ScanStats& stats,
+    const ScanRoutine& routine, const UserValue* userValue, ScanStats& stats,
     const MatchesAndOldValuesArray* previous,
-    const std::size_t old_length) -> std::optional<MatchesAndOldValuesSwath> {
+    const std::size_t oldLength) -> std::optional<MatchesAndOldValuesSwath> {
     if (!region.isReadable() || region.size == 0) return std::nullopt;
     ++stats.regionsVisited;
     MatchesAndOldValuesSwath swath;
@@ -83,35 +119,40 @@ auto scanRegion(
     // see a complete scan window. Only the primary bytes are appended/scanned
     // as candidate starts; look-ahead bytes are processed normally by the next
     // iteration, so matches are neither missed nor counted twice.
-    const auto overlap = old_length > 0 ? old_length - 1 : 0;
+    const auto overlap = oldLength > 0 ? oldLength - 1 : 0;
     std::vector<std::uint8_t> buffer(options.blockSize + overlap);
+    const bool regexBlockMode = options.dataType == ScanDataType::STRING &&
+                                options.matchType == ScanMatchType::MATCH_REGEX;
+
     for (std::size_t offset = 0; offset < region.size;) {
-        const auto primary_count =
+        const auto primaryCount =
             std::min(region.size - offset, options.blockSize);
-        const auto to_read =
-            std::min(region.size - offset, primary_count + overlap);
+        const auto toRead =
+            std::min(region.size - offset, primaryCount + overlap);
         auto* base = static_cast<std::uint8_t*>(region.start) + offset;
-        const auto read = reader.read(base, buffer.data(), to_read);
+        const auto read = reader.read(base, buffer.data(), toRead);
         if (!read || *read == 0) {
-            offset += primary_count;
+            offset += primaryCount;
             continue;
         }
 
-        const auto appended = std::min(*read, primary_count);
-        const auto base_index = swath.data.size();
+        const auto appended = std::min(*read, primaryCount);
+        const auto baseIndex = swath.data.size();
         appendBytes(swath, buffer.data(), appended, base);
-        scanBlock(std::span{buffer.data(), *read}, appended, base_index,
-                  options.step, routine, user_value, swath, stats, base,
-                  previous, old_length, options.reverseEndianness);
+        scanBlock(std::span{buffer.data(), *read}, appended, baseIndex,
+                  options.step, routine, userValue, swath, stats, base, previous,
+                  oldLength, options.reverseEndianness, regexBlockMode);
         stats.bytesScanned += appended;
         offset += appended;
     }
+
     return swath.data.empty()
                ? std::nullopt
                : std::optional<MatchesAndOldValuesSwath>{std::move(swath)};
 }
+
 auto scanInternal(const pid_t pid, const ScanOptions& options,
-                  const UserValue* user_value, MatchesAndOldValuesArray& output,
+                  const UserValue* userValue, MatchesAndOldValuesArray& output,
                   const MatchesAndOldValuesArray* previous)
     -> std::expected<ScanStats, std::string> {
     if (options.blockSize == 0)
@@ -121,24 +162,25 @@ auto scanInternal(const pid_t pid, const ScanOptions& options,
     output.swaths.clear();
     const auto regions = prepareScanRegions(pid, options);
     if (!regions) return std::unexpected(regions.error());
-    const auto routine = prepareScanRoutine(options, user_value);
+    const auto routine = prepareScanRoutine(options, userValue);
     if (!routine) return std::unexpected(routine.error());
     ProcMemIO reader{pid};
     if (const auto opened = reader.open(); !opened)
         return std::unexpected(opened.error());
     ScanStats stats;
-    const auto old_length = scanWindowSize(options, user_value);
+    const auto oldLength = scanWindowSize(options, userValue);
     for (const auto& region : *regions)
-        if (auto swath = scanRegion(region, reader, options, *routine,
-                                    user_value, stats, previous, old_length))
+        if (auto swath = scanRegion(region, reader, options, *routine, userValue,
+                                    stats, previous, oldLength))
             output.addSwath(*swath);
     return stats;
 }
+
 void worker(
     const pid_t pid, const std::span<const Region> regions,
     std::atomic_size_t& next, const ScanOptions& options,
-    const ScanRoutine& routine, const UserValue* user_value,
-    const std::size_t old_length, const MatchesAndOldValuesArray* previous,
+    const ScanRoutine& routine, const UserValue* userValue,
+    const std::size_t oldLength, const MatchesAndOldValuesArray* previous,
     ScanStats& stats,
     std::vector<std::pair<std::size_t, MatchesAndOldValuesSwath>>& swaths,
     std::latch& completed) {
@@ -151,11 +193,12 @@ void worker(
         const auto index = next.fetch_add(1, std::memory_order_relaxed);
         if (index >= regions.size()) break;
         if (auto swath = scanRegion(regions[index], reader, options, routine,
-                                    user_value, stats, previous, old_length))
+                                    userValue, stats, previous, oldLength))
             swaths.emplace_back(regions[index].id, std::move(*swath));
     }
     completed.count_down();
 }
+
 void merge(
     std::vector<std::vector<std::pair<std::size_t, MatchesAndOldValuesSwath>>>&
         inputs,
@@ -171,20 +214,23 @@ void merge(
         if (id != std::exchange(last, id)) output.addSwath(std::move(swath));
 }
 }  // namespace
+
 auto runScan(const pid_t pid, const ScanOptions& options,
-             const UserValue* user_value, MatchesAndOldValuesArray& output)
+             const UserValue* userValue, MatchesAndOldValuesArray& output)
     -> std::expected<ScanStats, std::string> {
-    return scanInternal(pid, options, user_value, output, nullptr);
+    return scanInternal(pid, options, userValue, output, nullptr);
 }
+
 auto runScanWithPrevious(const pid_t pid, const ScanOptions& options,
-                         const UserValue* user_value,
+                         const UserValue* userValue,
                          MatchesAndOldValuesArray& output,
                          const MatchesAndOldValuesArray& previous)
     -> std::expected<ScanStats, std::string> {
-    return scanInternal(pid, options, user_value, output, &previous);
+    return scanInternal(pid, options, userValue, output, &previous);
 }
+
 auto runScanParallel(const pid_t pid, const ScanOptions& options,
-                     const UserValue* user_value,
+                     const UserValue* userValue,
                      MatchesAndOldValuesArray& output,
                      const MatchesAndOldValuesArray* previous)
     -> std::expected<ScanStats, std::string> {
@@ -196,13 +242,13 @@ auto runScanParallel(const pid_t pid, const ScanOptions& options,
     const auto regions = prepareScanRegions(pid, options);
     if (!regions) return std::unexpected(regions.error());
     if (regions->empty()) return ScanStats{};
-    const auto routine = prepareScanRoutine(options, user_value);
+    const auto routine = prepareScanRoutine(options, userValue);
     if (!routine) return std::unexpected(routine.error());
     const auto count = std::min<std::size_t>(
         std::max(1U, std::thread::hardware_concurrency()), regions->size());
     if (count <= 1)
-        return scanInternal(pid, options, user_value, output, previous);
-    const auto old_length = scanWindowSize(options, user_value);
+        return scanInternal(pid, options, userValue, output, previous);
+    const auto oldLength = scanWindowSize(options, userValue);
     std::vector<ScanStats> stats(count);
     std::vector<std::vector<std::pair<std::size_t, MatchesAndOldValuesSwath>>>
         swaths(count);
@@ -212,8 +258,8 @@ auto runScanParallel(const pid_t pid, const ScanOptions& options,
     threads.reserve(count);
     for (std::size_t index = 0; index < count; ++index)
         threads.emplace_back([&, index] {
-            worker(pid, *regions, next, options, *routine, user_value,
-                   old_length, previous, stats[index], swaths[index], done);
+            worker(pid, *regions, next, options, *routine, userValue, oldLength,
+                   previous, stats[index], swaths[index], done);
         });
     done.wait();
     merge(swaths, output);
