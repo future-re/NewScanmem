@@ -16,17 +16,23 @@ auto MemoryWriter::writeToMatch(const Scanner& scanner, const UserValue& value,
     if (indices.empty()) return std::unexpected("no match indices provided");
     const auto bytes = encodeValueBytes(value);
     if (bytes.empty()) return std::unexpected("empty write value");
+
+    const auto addresses = resolveMatchAddresses(scanner.getMatches(), indices);
     VecWriteResult summary{};
     summary.results.reserve(indices.size());
-    for (const auto index : indices) {
-        const auto address = resolveMatchAddress(scanner.getMatches(), index);
-        if (!address) {
+
+    for (std::size_t request = 0; request < indices.size(); ++request) {
+        const auto index = indices[request];
+        if (!addresses[request]) {
             ++summary.failedCount;
-            summary.errors.push_back(address.error());
+            summary.errors.push_back(
+                std::format("match index {} out of range", index));
             continue;
         }
+
+        const auto address = *addresses[request];
         const auto written =
-            core::writeBytes(m_pid, std::bit_cast<void*>(*address), bytes);
+            core::writeBytes(m_pid, std::bit_cast<void*>(address), bytes);
         if (!written || *written != bytes.size()) {
             ++summary.failedCount;
             summary.errors.push_back(
@@ -35,15 +41,16 @@ auto MemoryWriter::writeToMatch(const Scanner& scanner, const UserValue& value,
                          : std::format("match #{} partial write: expected {} "
                                        "bytes, wrote {}",
                                        index, bytes.size(), *written));
-            summary.results.push_back({.address = *address,
+            summary.results.push_back({.address = address,
                                        .bytesWritten = written ? *written : 0,
                                        .success = false});
             continue;
         }
         ++summary.successCount;
         summary.results.push_back(
-            {.address = *address, .bytesWritten = *written, .success = true});
+            {.address = address, .bytesWritten = *written, .success = true});
     }
+
     if (summary.successCount == 0)
         return std::unexpected(summary.errors.empty() ? "no values written"
                                                       : summary.errors.front());
@@ -59,18 +66,43 @@ auto MemoryWriter::encodeValueBytes(const UserValue& value) const
     std::reverse(bytes.begin(), bytes.end());
     return bytes;
 }
-auto MemoryWriter::resolveMatchAddress(
+auto MemoryWriter::resolveMatchAddresses(
     const scan::MatchesAndOldValuesArray& matches,
-    const std::size_t target) -> std::expected<std::uintptr_t, std::string> {
-    std::size_t index = 0;
+    const std::vector<std::size_t>& matchIndices)
+    -> std::vector<std::optional<std::uintptr_t>> {
+    struct PendingIndex {
+        std::size_t target;
+        std::size_t request;
+    };
+
+    std::vector<PendingIndex> pending;
+    pending.reserve(matchIndices.size());
+    for (std::size_t request = 0; request < matchIndices.size(); ++request)
+        pending.push_back({.target = matchIndices[request], .request = request});
+    std::ranges::sort(pending, {}, &PendingIndex::target);
+
+    std::vector<std::optional<std::uintptr_t>> addresses(matchIndices.size());
+    std::size_t pendingIndex = 0;
+    std::size_t matchIndex = 0;
+
     for (const auto& swath : matches.swaths) {
+        if (pendingIndex >= pending.size()) break;
         if (swath.firstByteInChild == nullptr) continue;
         const auto base = std::bit_cast<std::uintptr_t>(swath.firstByteInChild);
-        for (std::size_t offset = 0; offset < swath.data.size(); ++offset)
-            if (swath.data[offset].matchInfo != MatchFlags::EMPTY) {
-                if (index++ == target) return base + offset;
+
+        for (std::size_t offset = 0; offset < swath.data.size(); ++offset) {
+            if (swath.data[offset].matchInfo == MatchFlags::EMPTY) continue;
+
+            while (pendingIndex < pending.size() &&
+                   pending[pendingIndex].target == matchIndex) {
+                addresses[pending[pendingIndex].request] = base + offset;
+                ++pendingIndex;
             }
+            ++matchIndex;
+            if (pendingIndex >= pending.size()) break;
+        }
     }
-    return std::unexpected(std::format("match index {} out of range", target));
+
+    return addresses;
 }
 }  // namespace core
