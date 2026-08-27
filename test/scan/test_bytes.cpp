@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 
+#include <cstdint>
 #include <span>
 #include <string>
 #include <vector>
@@ -13,186 +14,152 @@
 
 namespace {
 
+template <typename T>
+auto view(const std::vector<T>& values) -> std::span<const T> {
+    return {values.data(), values.size()};
+}
+
 TEST(ScanBytesTest, CompareBytesMatchesPrefix) {
-    const std::vector<std::uint8_t> HAY_STACK{1, 2, 3, 4};
-    Value mem{HAY_STACK.data(), HAY_STACK.size()};
-    const std::vector<std::uint8_t> PATTERN{1, 2};
+    const std::vector<std::uint8_t> haystack{1, 2, 3, 4};
+    const std::vector<std::uint8_t> pattern{1, 2};
     MatchFlags flags = MatchFlags::EMPTY;
-    const unsigned MATCHED = compareBytes(
-        &mem, HAY_STACK.size(), PATTERN.data(), PATTERN.size(), &flags);
-    EXPECT_EQ(MATCHED, PATTERN.size());
+
+    const auto matched = compareBytes(view(haystack), view(pattern), &flags);
+
+    EXPECT_EQ(matched, pattern.size());
     EXPECT_NE(flags, MatchFlags::EMPTY);
 }
 
 TEST(ScanBytesTest, CompareBytesMaskedAllowsMaskedBits) {
-    const std::vector<std::uint8_t> HAY_STACK{0xAA, 0xB5};
-    Value mem{HAY_STACK.data(), HAY_STACK.size()};
-    const std::vector<std::uint8_t> PATTERN{0xAA, 0xBB};
-    const std::vector<std::uint8_t> MASK{0xFF, 0xF0};  // low nibble ignored
+    const std::vector<std::uint8_t> haystack{0xAA, 0xB5};
+    const std::vector<std::uint8_t> pattern{0xAA, 0xBB};
+    const std::vector<std::uint8_t> mask{0xFF, 0xF0};
     MatchFlags flags = MatchFlags::EMPTY;
-    const unsigned MATCHED =
-        compareBytesMasked(&mem, HAY_STACK.size(), PATTERN.data(),
-                           PATTERN.size(), MASK.data(), MASK.size(), &flags);
-    EXPECT_EQ(MATCHED, PATTERN.size());
+
+    const auto matched =
+        compareBytesMasked(view(haystack), view(pattern), view(mask), &flags);
+
+    EXPECT_EQ(matched, pattern.size());
     EXPECT_NE(flags, MatchFlags::EMPTY);
 }
 
-TEST(ScanBytesTest, CompareBytesEmptyPatternReturnsZero) {
-    const std::vector<std::uint8_t> HAY_STACK{1, 2, 3};
-    Value mem{HAY_STACK.data(), HAY_STACK.size()};
-    const std::vector<std::uint8_t> PATTERN{};
+TEST(ScanBytesTest, EmptyPatternReturnsZero) {
+    const std::vector<std::uint8_t> haystack{1, 2, 3};
+    const std::vector<std::uint8_t> pattern{};
     MatchFlags flags = MatchFlags::EMPTY;
-    const unsigned MATCHED = compareBytes(
-        &mem, HAY_STACK.size(), PATTERN.data(), PATTERN.size(), &flags);
-    EXPECT_EQ(MATCHED, 0U);
+
+    EXPECT_EQ(compareBytes(view(haystack), view(pattern), &flags), 0U);
     EXPECT_EQ(flags, MatchFlags::EMPTY);
 }
 
-TEST(ScanBytesTest, CompareBytesPatternLongerThanHaystack) {
-    const std::vector<std::uint8_t> HAY_STACK{1, 2};
-    Value mem{HAY_STACK.data(), HAY_STACK.size()};
-    const std::vector<std::uint8_t> PATTERN{1, 2, 3};
+TEST(ScanBytesTest, PatternLongerThanHaystackReturnsZero) {
+    const std::vector<std::uint8_t> haystack{1, 2};
+    const std::vector<std::uint8_t> pattern{1, 2, 3};
     MatchFlags flags = MatchFlags::EMPTY;
-    const unsigned MATCHED = compareBytes(
-        &mem, HAY_STACK.size(), PATTERN.data(), PATTERN.size(), &flags);
-    EXPECT_EQ(MATCHED, 0U);
+
+    EXPECT_EQ(compareBytes(view(haystack), view(pattern), &flags), 0U);
     EXPECT_EQ(flags, MatchFlags::EMPTY);
 }
 
-TEST(ScanBytesTest, CompareBytesVectorOverloadMatches) {
-    const std::vector<std::uint8_t> HAY_STACK{5, 6, 7, 8};
-    Value mem{HAY_STACK.data(), HAY_STACK.size()};
-    const std::vector<std::uint8_t> PATTERN{5, 6};
+TEST(ScanBytesTest, WildcardMaskMatches) {
+    const std::vector<std::uint8_t> haystack{0xAA, 0x55};
+    const std::vector<std::uint8_t> pattern{0x00, 0x00};
+    const std::vector<std::uint8_t> mask{0x00, 0x00};
     MatchFlags flags = MatchFlags::EMPTY;
-    const unsigned MATCHED =
-        compareBytes(&mem, HAY_STACK.size(), PATTERN, &flags);
-    EXPECT_EQ(MATCHED, PATTERN.size());
-    EXPECT_NE(flags, MatchFlags::EMPTY);
-}
 
-TEST(ScanBytesTest, CompareBytesMaskedWildcardMaskMatches) {
-    const std::vector<std::uint8_t> HAY_STACK{0xAA, 0x55};
-    Value mem{HAY_STACK.data(), HAY_STACK.size()};
-    const std::vector<std::uint8_t> PATTERN{0x00, 0x00};
-    const std::vector<std::uint8_t> MASK{0x00, 0x00};  // wildcard everything
-    MatchFlags flags = MatchFlags::EMPTY;
-    const unsigned MATCHED =
-        compareBytesMasked(&mem, HAY_STACK.size(), PATTERN.data(),
-                           PATTERN.size(), MASK.data(), MASK.size(), &flags);
-    EXPECT_EQ(MATCHED, PATTERN.size());
-    EXPECT_NE(flags, MatchFlags::EMPTY);
+    const auto matched =
+        compareBytesMasked(view(haystack), view(pattern), view(mask), &flags);
+
+    EXPECT_EQ(matched, pattern.size());
     EXPECT_TRUE((flags & MatchFlags::BYTE_ARRAY) == MatchFlags::BYTE_ARRAY);
 }
 
-TEST(ScanBytesTest, CompareBytesWithNullSaveFlagsDoesNotCrash) {
-    const std::vector<std::uint8_t> HAY_STACK{1, 2, 3};
-    Value mem{HAY_STACK.data(), HAY_STACK.size()};
-    const std::vector<std::uint8_t> PATTERN{1, 2};
-    const unsigned MATCHED = compareBytes(
-        &mem, HAY_STACK.size(), PATTERN.data(), PATTERN.size(), nullptr);
-    EXPECT_EQ(MATCHED, PATTERN.size());
+TEST(ScanBytesTest, NullFlagsPointerIsAllowed) {
+    const std::vector<std::uint8_t> haystack{1, 2, 3};
+    const std::vector<std::uint8_t> pattern{1, 2};
+
+    EXPECT_EQ(compareBytes(view(haystack), view(pattern), nullptr),
+              pattern.size());
 }
 
-TEST(ScanBytesTest, CompareBytesMaskedWithNullSaveFlagsDoesNotCrash) {
-    const std::vector<std::uint8_t> HAY_STACK{0xAA, 0xB5};
-    Value mem{HAY_STACK.data(), HAY_STACK.size()};
-    const std::vector<std::uint8_t> PATTERN{0xAA, 0xBB};
-    const std::vector<std::uint8_t> MASK{0xFF, 0xF0};
-    const unsigned MATCHED =
-        compareBytesMasked(&mem, HAY_STACK.size(), PATTERN.data(),
-                           PATTERN.size(), MASK.data(), MASK.size(), nullptr);
-    EXPECT_EQ(MATCHED, PATTERN.size());
-}
-
-TEST(ScanBytesTest, CompareBytesMaskedMaskSizeMismatchReturnsZero) {
-    const std::vector<std::uint8_t> HAY_STACK{0xAA, 0x55};
-    Value mem{HAY_STACK.data(), HAY_STACK.size()};
-    const std::vector<std::uint8_t> PATTERN{0xAA, 0x55};
-    const std::vector<std::uint8_t> MASK{0xFF};
+TEST(ScanBytesTest, MaskSizeMismatchReturnsZero) {
+    const std::vector<std::uint8_t> haystack{0xAA, 0x55};
+    const std::vector<std::uint8_t> pattern{0xAA, 0x55};
+    const std::vector<std::uint8_t> mask{0xFF};
     MatchFlags flags = MatchFlags::EMPTY;
-    const unsigned MATCHED =
-        compareBytesMasked(&mem, HAY_STACK.size(), PATTERN.data(),
-                           PATTERN.size(), MASK.data(), MASK.size(), &flags);
-    EXPECT_EQ(MATCHED, 0U);
+
+    EXPECT_EQ(compareBytesMasked(view(haystack), view(pattern), view(mask),
+                                 &flags),
+              0U);
     EXPECT_EQ(flags, MatchFlags::EMPTY);
 }
 
 TEST(ScanBytesTest, FindBytePatternReturnsOffset) {
-    const std::string TEXT = "abcxabcd";
-    Value mem{reinterpret_cast<const std::uint8_t*>(TEXT.data()), TEXT.size()};
-    const std::vector<std::uint8_t> PATTERN{'a', 'b', 'c', 'd'};
-    auto match = findBytePattern(&mem, mem.size(), PATTERN);
+    const std::string text = "abcxabcd";
+    const auto memory = std::span<const std::uint8_t>{
+        reinterpret_cast<const std::uint8_t*>(text.data()), text.size()};
+    const std::vector<std::uint8_t> pattern{'a', 'b', 'c', 'd'};
+
+    const auto match = findBytePattern(memory, view(pattern));
+
     ASSERT_TRUE(match.has_value());
     EXPECT_EQ(match->offset, 4U);
-    EXPECT_EQ(match->length, PATTERN.size());
+    EXPECT_EQ(match->length, pattern.size());
 }
 
 TEST(ScanBytesTest, FindBytePatternMaskedIgnoresMaskedBits) {
-    const std::vector<std::uint8_t> HAY_STACK{0x10, 0x20, 0x30};
-    Value mem{HAY_STACK.data(), HAY_STACK.size()};
-    const std::vector<std::uint8_t> PATTERN{0x00, 0x20};
-    const std::vector<std::uint8_t> MASK{0x00, 0xFF};  // first byte wildcard
-    auto match = findBytePatternMasked(&mem, mem.size(), PATTERN, MASK);
+    const std::vector<std::uint8_t> haystack{0x10, 0x20, 0x30};
+    const std::vector<std::uint8_t> pattern{0x00, 0x20};
+    const std::vector<std::uint8_t> mask{0x00, 0xFF};
+
+    const auto match =
+        findBytePatternMasked(view(haystack), view(pattern), view(mask));
+
     ASSERT_TRUE(match.has_value());
     EXPECT_EQ(match->offset, 0U);
-    EXPECT_EQ(match->length, PATTERN.size());
+    EXPECT_EQ(match->length, pattern.size());
 }
 
 TEST(ScanBytesTest, BytearrayRoutineWithMaskMatches) {
     UserValue userValue =
-        UserValue::fromByteArray(std::vector<uint8_t>{0xAA, 0xBB});
+        UserValue::fromByteArray(std::vector<std::uint8_t>{0xAA, 0xBB});
     userValue.primary.mask = std::vector<std::uint8_t>{0xFF, 0xF0};
+    const std::vector<std::uint8_t> haystack{0xAA, 0xB5, 0x00};
 
     auto routine = makeBytearrayScanRoutine(ScanMatchType::MATCH_EQUAL_TO);
-    const std::vector<std::uint8_t> HAY_STACK{0xAA, 0xB5, 0x00};
-    auto ctx = scan::makeScanContext(
-        std::span<const uint8_t>(HAY_STACK.data(), HAY_STACK.size()), nullptr,
-        &userValue, userValue.flag(), false);
-    auto result = routine(ctx);
-    EXPECT_EQ(result.matchLength, 2U);
-    EXPECT_NE(result.matchedFlag, MatchFlags::EMPTY);
-}
+    auto context = scan::makeScanContext(view(haystack), nullptr, &userValue,
+                                         userValue.flag(), false);
+    const auto result = routine(context);
 
-TEST(ScanBytesTest, MakeBytearrayRoutineAddsBYTE_ARRAYFlag) {
-    UserValue userValue =
-        UserValue::fromByteArray(std::vector<uint8_t>{0xAA, 0xBB});
-    userValue.primary.mask = std::vector<std::uint8_t>{0xFF, 0xF0};
-
-    auto routine = makeBytearrayScanRoutine(ScanMatchType::MATCH_EQUAL_TO);
-    const std::vector<std::uint8_t> HAY_STACK{0xAA, 0xB5, 0x00};
-    auto ctx = scan::makeScanContext(
-        std::span<const uint8_t>(HAY_STACK.data(), HAY_STACK.size()), nullptr,
-        &userValue, userValue.flag(), false);
-    auto result = routine(ctx);
     EXPECT_EQ(result.matchLength, 2U);
     EXPECT_TRUE((result.matchedFlag & MatchFlags::BYTE_ARRAY) ==
                 MatchFlags::BYTE_ARRAY);
 }
 
-TEST(ScanStringTest, MATCH_ANYReturnsFullLength) {
-    const std::string TEXT = "hello";
+TEST(ScanStringTest, MatchAnyReturnsFullLength) {
+    const std::string text = "hello";
+    const auto memory = std::span<const std::uint8_t>{
+        reinterpret_cast<const std::uint8_t*>(text.data()), text.size()};
     auto routine = makeStringScanRoutine(ScanMatchType::MATCH_ANY);
-    auto ctx = scan::makeScanContext(
-        std::span<const uint8_t>(
-            reinterpret_cast<const std::uint8_t*>(TEXT.data()), TEXT.size()),
-        nullptr, nullptr, MatchFlags::EMPTY, false);
-    auto result = routine(ctx);
-    EXPECT_EQ(result.matchLength, TEXT.size());
+    auto context = scan::makeScanContext(memory, nullptr, nullptr,
+                                         MatchFlags::EMPTY, false);
+
+    const auto result = routine(context);
+
+    EXPECT_EQ(result.matchLength, text.size());
     EXPECT_NE(result.matchedFlag, MatchFlags::EMPTY);
 }
 
-TEST(ScanStringTest, RegexMatchUsesPattern) {
-    const std::string TEXT = "zzabczz";
-    UserValue userValue = UserValue::fromString("a.c");
+TEST(ScanStringTest, RegexBlockMatcherUsesPattern) {
+    const std::string text = "zzabczz";
+    const auto memory = std::span<const std::uint8_t>{
+        reinterpret_cast<const std::uint8_t*>(text.data()), text.size()};
 
-    auto routine = makeStringScanRoutine(ScanMatchType::MATCH_REGEX);
-    auto ctx = scan::makeScanContext(
-        std::span<const uint8_t>(
-            reinterpret_cast<const std::uint8_t*>(TEXT.data()), TEXT.size()),
-        nullptr, &userValue, userValue.flag(), false);
-    auto result = routine(ctx);
-    EXPECT_EQ(result.matchLength, 3U);
-    EXPECT_NE(result.matchedFlag, MatchFlags::EMPTY);
+    const auto matches = findRegexMatches(memory, "a.c");
+
+    ASSERT_EQ(matches.size(), 1U);
+    EXPECT_EQ(matches[0].offset, 2U);
+    EXPECT_EQ(matches[0].length, 3U);
 }
 
 }  // namespace
