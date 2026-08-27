@@ -67,7 +67,8 @@ class UserInterface {
      * @param level Message level
      * @param message Message content
      */
-    virtual auto printMessage(MessageLevel level, std::string_view message) -> void;
+    virtual auto printMessage(MessageLevel level,
+                              std::string_view message) -> void;
 
     /**
      * @brief Read line from user
@@ -83,7 +84,8 @@ class UserInterface {
      * @return User input or nullopt on EOF
      * @deprecated Use getLine instead
      */
-    virtual auto readLine(std::string_view prompt) -> std::optional<std::string>;
+    virtual auto readLine(std::string_view prompt)
+        -> std::optional<std::string>;
 
     /**
      * @brief Ask user for confirmation

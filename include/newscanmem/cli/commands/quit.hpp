@@ -27,7 +27,8 @@ class QuitCommand : public Command {
 
     [[nodiscard]] auto getUsage() const -> std::string_view override;
 
-    [[nodiscard]] auto getAliases() const -> std::vector<std::string_view> override;
+    [[nodiscard]] auto getAliases() const
+        -> std::vector<std::string_view> override;
 
     [[nodiscard]] auto validateArgs(const std::vector<std::string>& args) const
         -> std::expected<void, std::string> override;

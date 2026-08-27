@@ -40,7 +40,8 @@ class ResultService {
      * @return Pair of (entries, total_count) or error
      */
     [[nodiscard]] static auto getMatches(const CurrentMatchListRequest& request)
-        -> std::expected<std::pair<std::vector<core::MatchEntry>, std::size_t>, std::string>;
+        -> std::expected<std::pair<std::vector<core::MatchEntry>, std::size_t>,
+                         std::string>;
 };
 
 }  // namespace app

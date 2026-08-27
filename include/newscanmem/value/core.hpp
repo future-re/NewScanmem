@@ -46,7 +46,8 @@ struct Value {
 
     [[nodiscard]] static auto makeString(std::string value) -> Value;
 
-    [[nodiscard]] static auto makeBytes(std::vector<std::uint8_t> data,
+    [[nodiscard]] static auto makeBytes(
+        std::vector<std::uint8_t> data,
         std::optional<std::vector<std::uint8_t>> mask = std::nullopt) -> Value;
 
    public:
@@ -83,16 +84,16 @@ struct Value {
 
     template <ValueByteVectorType T>
     [[nodiscard]] static auto of(
-        T&& data, std::optional<std::vector<std::uint8_t>> mask = std::nullopt)
-        -> Value {
+        T&& data,
+        std::optional<std::vector<std::uint8_t>> mask = std::nullopt) -> Value {
         return makeBytes(std::vector<std::uint8_t>(std::forward<T>(data)),
                          std::move(mask));
     }
 
     template <ValueByteVectorType T>
     [[nodiscard]] static auto fromByteArray(
-        T&& data, std::optional<std::vector<std::uint8_t>> mask = std::nullopt)
-        -> Value {
+        T&& data,
+        std::optional<std::vector<std::uint8_t>> mask = std::nullopt) -> Value {
         return of(std::forward<T>(data), std::move(mask));
     }
 
@@ -112,7 +113,8 @@ struct Value {
 
     [[nodiscard]] auto asString() const -> std::optional<std::string>;
 
-    [[nodiscard]] auto asBytes() const -> std::optional<std::vector<std::uint8_t>>;
+    [[nodiscard]] auto asBytes() const
+        -> std::optional<std::vector<std::uint8_t>>;
 
     // ====================================================================
     // Basic operations
@@ -174,11 +176,10 @@ struct UserValue {
     [[nodiscard]] static auto fromString(const char* value) -> UserValue;
 
     template <ValueByteVectorType T>
-    [[nodiscard]] static auto of(
-        T&& data, std::optional<std::vector<std::uint8_t>> mask = std::nullopt)
-        -> UserValue {
-        return UserValue{
-            Value::of(std::forward<T>(data), std::move(mask))};
+    [[nodiscard]] static auto of(T&& data,
+                                 std::optional<std::vector<std::uint8_t>> mask =
+                                     std::nullopt) -> UserValue {
+        return UserValue{Value::of(std::forward<T>(data), std::move(mask))};
     }
 
     template <ValueByteVectorType T>
@@ -196,7 +197,9 @@ struct UserValue {
         return primary.size();
     }
 
-    [[nodiscard]] auto empty() const noexcept -> bool { return primary.empty(); }
+    [[nodiscard]] auto empty() const noexcept -> bool {
+        return primary.empty();
+    }
 
     [[nodiscard]] auto data() const noexcept -> const std::uint8_t* {
         return primary.data();

@@ -30,8 +30,7 @@ struct UserInput {
     template <typename T>
     static auto fromRange(T loVal, T hiVal) -> UserInput {
         UserInput input;
-        input.value =
-            UserValue{Value::of<T>(loVal), Value::of<T>(hiVal)};
+        input.value = UserValue{Value::of<T>(loVal), Value::of<T>(hiVal)};
         input.valueType = input.value.flag();
         return input;
     }

@@ -13,9 +13,9 @@
 
 #include "newscanmem/core/region_classifier.hpp"
 #include "newscanmem/core/region_filter.hpp"
-#include "newscanmem/value/flags.hpp"
-#include "newscanmem/scan/types.hpp"
 #include "newscanmem/scan/match_storage.hpp"
+#include "newscanmem/scan/types.hpp"
+#include "newscanmem/value/flags.hpp"
 
 namespace core {
 
@@ -56,7 +56,8 @@ class MatchCollector {
      * @brief Create collector with optional region classifier
      * @param classifier Optional region classifier for address categorization
      */
-    explicit MatchCollector(std::optional<RegionClassifier> classifier = std::nullopt);
+    explicit MatchCollector(
+        std::optional<RegionClassifier> classifier = std::nullopt);
 
     /**
      * @brief Collect match entries from scanner
@@ -69,17 +70,21 @@ class MatchCollector {
      * This ensures indices remain stable regardless of filtering.
      */
     // NOLINTNEXTLINE
-    [[nodiscard]] auto collect(const MatchSource& source, const MatchCollectionOptions& options = {}) const
+    [[nodiscard]] auto collect(const MatchSource& source,
+                               const MatchCollectionOptions& options = {}) const
         -> std::pair<std::vector<MatchEntry>, size_t>;
 
    private:
-    [[nodiscard]] static auto getActualValueSize(const scan::OldValueAndMatchInfo& cell,
-        size_t default_value_size, std::optional<ScanDataType> data_type) -> size_t;
+    [[nodiscard]] static auto getActualValueSize(
+        const scan::OldValueAndMatchInfo& cell, size_t default_value_size,
+        std::optional<ScanDataType> data_type) -> size_t;
 
-    [[nodiscard]] static auto extractValueBytes(const scan::MatchesAndOldValuesSwath& swath,
-        size_t start_index, size_t count) -> std::vector<std::uint8_t>;
+    [[nodiscard]] static auto extractValueBytes(
+        const scan::MatchesAndOldValuesSwath& swath, size_t start_index,
+        size_t count) -> std::vector<std::uint8_t>;
 
-    [[nodiscard]] auto getClassifiedRegion(std::uintptr_t address, bool collect_region) const -> std::string;
+    [[nodiscard]] auto getClassifiedRegion(
+        std::uintptr_t address, bool collect_region) const -> std::string;
     std::optional<RegionClassifier> m_classifier;
 };
 

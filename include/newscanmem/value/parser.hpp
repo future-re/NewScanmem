@@ -16,8 +16,8 @@
 #include "newscanmem/scan/types.hpp"
 #include "newscanmem/utils/parserStr.hpp"
 #include "newscanmem/utils/string.hpp"
-#include "newscanmem/value/flags.hpp"
 #include "newscanmem/value/core.hpp"
+#include "newscanmem/value/flags.hpp"
 
 namespace value {
 
@@ -34,22 +34,24 @@ template <typename T, typename Parser>
 namespace detail {
 
 [[nodiscard]] auto parseStringValue(const std::vector<std::string>& args,
-                                   size_t startIndex)
+                                    size_t startIndex)
     -> std::optional<UserValue>;
 
-[[nodiscard]] auto parseByteArrayValue(
-    const std::vector<std::string>& args, size_t startIndex)
+[[nodiscard]] auto parseByteArrayValue(const std::vector<std::string>& args,
+                                       size_t startIndex)
     -> std::optional<UserValue>;
 
-[[nodiscard]] auto parseAnyNumberValue(
-    const std::vector<std::string>& args, size_t startIndex)
+[[nodiscard]] auto parseAnyNumberValue(const std::vector<std::string>& args,
+                                       size_t startIndex)
     -> std::optional<UserValue>;
 
 }  // namespace detail
 
-[[nodiscard]] auto parseDataType(std::string_view tok) -> std::optional<ScanDataType>;
+[[nodiscard]] auto parseDataType(std::string_view tok)
+    -> std::optional<ScanDataType>;
 
-[[nodiscard]] auto parseMatchType(std::string_view tok) -> std::optional<ScanMatchType>;
+[[nodiscard]] auto parseMatchType(std::string_view tok)
+    -> std::optional<ScanMatchType>;
 
 template <typename T, typename Parser>
 [[nodiscard]] inline auto buildScalar(const std::vector<std::string>& args,
@@ -77,10 +79,9 @@ template <typename T, typename Parser>
     return UserValue{Value::of<T>(*valueLOpt), Value::of<T>(*valueROpt)};
 }
 
-[[nodiscard]] auto buildUserValue(ScanDataType dataType,
-                                 ScanMatchType matchType,
-                                 const std::vector<std::string>& args,
-                                 size_t startIndex)
-    -> std::optional<UserValue>;
+[[nodiscard]] auto buildUserValue(
+    ScanDataType dataType, ScanMatchType matchType,
+    const std::vector<std::string>& args,
+    size_t startIndex) -> std::optional<UserValue>;
 
 }  // namespace value

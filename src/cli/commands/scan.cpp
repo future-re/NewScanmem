@@ -87,15 +87,15 @@ auto ScanCommand::execute(const std::vector<std::string>& args)
     }
 
     auto dataType = *value::parseDataType(args[0]);
-    utils::Logger::instance().debug("Parsed DataType: {}", static_cast<int>(dataType));
+    utils::Logger::instance().debug("Parsed DataType: {}",
+                                    static_cast<int>(dataType));
     auto matchType = *value::parseMatchType(args[1]);
     utils::Logger::instance().debug("Parsed MatchType: {}",
-                         static_cast<int>(matchType));
+                                    static_cast<int>(matchType));
     std::optional<UserValue> userVal;
     size_t startIdx = 2;
     if (matchNeedsUserValue(matchType)) {
-        userVal =
-            value::buildUserValue(dataType, matchType, args, startIdx);
+        userVal = value::buildUserValue(dataType, matchType, args, startIdx);
     }
     if (userVal) {
         if (auto text = userVal->stringValue()) {
@@ -103,7 +103,7 @@ auto ScanCommand::execute(const std::vector<std::string>& args)
         } else {
             utils::Logger::instance().debug("UserValue: {}", *userVal);
             utils::Logger::instance().debug("UserValue size: {}",
-                                 userVal->size());
+                                            userVal->size());
         }
     }
 
@@ -125,23 +125,24 @@ auto ScanCommand::execute(const std::vector<std::string>& args)
         return std::unexpected(result.error());
     }
 
-    ui::MessagePrinter::info(std::format("Current match count: {}",
-                                         result->matchCount));
+    ui::MessagePrinter::info(
+        std::format("Current match count: {}", result->matchCount));
     utils::Logger::instance().info("Scan command finished.");
 
-    auto previewResult = app::ResultService::getMatches(
-        {.scanner = scanner,
-         .pid = m_session->pid,
-         .limit = 20,
-         .showRegion = true,
-         .showIndex = true,
-         .endianness = m_session->endianness});
+    auto previewResult =
+        app::ResultService::getMatches({.scanner = scanner,
+                                        .pid = m_session->pid,
+                                        .limit = 20,
+                                        .showRegion = true,
+                                        .showIndex = true,
+                                        .endianness = m_session->endianness});
     if (!previewResult) {
         return std::unexpected(previewResult.error());
     }
 
     const auto& [entries, totalCount] = *previewResult;
-    auto lines = core::MatchFormatter::format(entries, totalCount,
+    auto lines = core::MatchFormatter::format(
+        entries, totalCount,
         {.showRegion = true, .showIndex = true, .dataType = dataType});
     for (const auto& line : lines) {
         ui::MessagePrinter::plain(line);

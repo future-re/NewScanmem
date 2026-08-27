@@ -78,8 +78,8 @@ class ProcMemIO {
      * @param len Number of bytes to read
      * @return Expected bytes read or error message
      */
-    [[nodiscard]] auto read(void* addr, std::uint8_t* buf, std::size_t len) const
-        -> std::expected<std::size_t, std::string>;
+    [[nodiscard]] auto read(void* addr, std::uint8_t* buf, std::size_t len)
+        const -> std::expected<std::size_t, std::string>;
 
     /**
      * @brief Write bytes to target process memory
@@ -87,8 +87,8 @@ class ProcMemIO {
      * @param buf Data to write
      * @return Expected bytes written or error message
      */
-    [[nodiscard]] auto write(void* addr, std::span<const std::uint8_t> buf) const
-        -> std::expected<std::size_t, std::string>;
+    [[nodiscard]] auto write(void* addr, std::span<const std::uint8_t> buf)
+        const -> std::expected<std::size_t, std::string>;
 
     /**
      * @brief Write scalar value to target memory
@@ -119,7 +119,8 @@ class ProcMemIO {
  * @param buf Data to write
  * @return Expected bytes written or error message
  */
-[[nodiscard]] auto writeBytes(pid_t pid, void* addr, std::span<const std::uint8_t> buf)
+[[nodiscard]] auto writeBytes(pid_t pid, void* addr,
+                              std::span<const std::uint8_t> buf)
     -> std::expected<std::size_t, std::string>;
 
 /**

@@ -40,7 +40,8 @@ class RegionClassifier {
      * @param pid Target process ID
      * @return Expected with classifier or error message
      */
-    static auto create(pid_t pid) -> std::expected<RegionClassifier, std::string>;
+    static auto create(pid_t pid)
+        -> std::expected<RegionClassifier, std::string>;
 
     /**
      * @brief Classify an address into a human-readable region description
@@ -55,7 +56,8 @@ class RegionClassifier {
      * @param addr Address to classify
      * @return Region type or nullopt if not found
      */
-    [[nodiscard]] auto getRegionType(std::uintptr_t addr) const -> std::optional<RegionType>;
+    [[nodiscard]] auto getRegionType(std::uintptr_t addr) const
+        -> std::optional<RegionType>;
 
    private:
     explicit RegionClassifier(std::vector<RegionLookupEntry> regions);

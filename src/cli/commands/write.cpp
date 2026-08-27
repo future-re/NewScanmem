@@ -7,10 +7,10 @@
 #include <vector>
 
 #include "newscanmem/core/memory_writer.hpp"
+#include "newscanmem/scan/types.hpp"
 #include "newscanmem/ui/show_message.hpp"
 #include "newscanmem/value/core.hpp"
 #include "newscanmem/value/parser.hpp"
-#include "newscanmem/scan/types.hpp"
 
 namespace cli::commands {
 
@@ -89,8 +89,8 @@ auto WriteCommand::execute(const std::vector<std::string>& args)
     }
 
     if (targetIndex) {
-        ui::MessagePrinter::success(std::format(
-            "Successfully wrote value to match #{}", *targetIndex));
+        ui::MessagePrinter::success(
+            std::format("Successfully wrote value to match #{}", *targetIndex));
     } else {
         ui::MessagePrinter::success(std::format(
             "Successfully wrote {} value(s)", result->successCount));
@@ -117,8 +117,8 @@ auto WriteCommand::parseWriteUserValue(ScanDataType dataType,
                                        std::string_view valueText)
     -> std::optional<UserValue> {
     std::vector<std::string> args{std::string(valueText)};
-    return value::buildUserValue(dataType, ScanMatchType::MATCH_EQUAL_TO,
-                                 args, 0);
+    return value::buildUserValue(dataType, ScanMatchType::MATCH_EQUAL_TO, args,
+                                 0);
 }
 
 }  // namespace cli::commands

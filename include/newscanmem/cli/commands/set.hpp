@@ -10,10 +10,9 @@
 #include <string_view>
 #include <vector>
 
+#include "newscanmem/cli/app_config.hpp"
 #include "newscanmem/cli/command.hpp"
 #include "newscanmem/cli/session.hpp"
-
-#include "newscanmem/cli/app_config.hpp"
 
 // 确保显式使用 cli 命名空间
 using cli::AppConfig;

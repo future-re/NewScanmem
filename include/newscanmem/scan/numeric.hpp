@@ -7,22 +7,21 @@
 #include <optional>
 #include <type_traits>
 
-#include "newscanmem/scan/types.hpp"
 #include "newscanmem/scan/routine.hpp"
+#include "newscanmem/scan/types.hpp"
 #include "newscanmem/utils/read_helpers.hpp"
-#include "newscanmem/value/flags.hpp"
 #include "newscanmem/value/core.hpp"
+#include "newscanmem/value/flags.hpp"
 
 // This module implements the core numeric matching logic and canonical
 // ScanRoutine factories for numeric scan operations.
 
 template <typename T>
 // NOLINTNEXTLINE(readability-function-cognitive-complexity)
-inline auto numericMatchCore(ScanMatchType matchType, T memv,
-                             const Value* oldValue, const UserValue* userValue,
-                             MatchFlags* saveFlags,
-                             bool reverseEndianness = false) noexcept
-    -> unsigned int {
+inline auto numericMatchCore(
+    ScanMatchType matchType, T memv, const Value* oldValue,
+    const UserValue* userValue, MatchFlags* saveFlags,
+    bool reverseEndianness = false) noexcept -> unsigned int {
     const bool NEEDS_USER = matchNeedsUserValue(matchType);
 
     if (NEEDS_USER && userValue == nullptr) {
@@ -67,7 +66,7 @@ inline auto numericMatchCore(ScanMatchType matchType, T memv,
         }
         return firstValue > secondValue;
     };
-    
+
     auto isLessThan = [&](T firstValue, T secondValue) {
         if constexpr (std::is_floating_point_v<T>) {
             return firstValue < secondValue &&
@@ -144,16 +143,17 @@ inline auto numericMatchCore(ScanMatchType matchType, T memv,
 namespace detail {
 
 template <typename T>
-inline auto runNumericMatch(ScanMatchType matchType, const scan::ScanContext& ctx,
+inline auto runNumericMatch(ScanMatchType matchType,
+                            const scan::ScanContext& ctx,
                             MatchFlags* saveFlags) noexcept -> unsigned int {
     auto memOpt = readTyped<T>(ctx.memory, ctx.reverseEndianness);
     if (!memOpt) {
         return 0;
     }
-    return numericMatchCore<T>(
-        matchType, *memOpt, ctx.oldValue ? &*ctx.oldValue : nullptr,
-        ctx.userValue ? &*ctx.userValue : nullptr, saveFlags,
-        ctx.reverseEndianness);
+    return numericMatchCore<T>(matchType, *memOpt,
+                               ctx.oldValue ? &*ctx.oldValue : nullptr,
+                               ctx.userValue ? &*ctx.userValue : nullptr,
+                               saveFlags, ctx.reverseEndianness);
 }
 
 template <typename... Ts>
@@ -161,7 +161,8 @@ inline auto tryNumericSequence(ScanMatchType matchType,
                                const scan::ScanContext& ctx,
                                MatchFlags* saveFlags) noexcept -> unsigned int {
     unsigned int result = 0;
-    ((result != 0 ? 0 : result = runNumericMatch<Ts>(matchType, ctx, saveFlags)),
+    ((result != 0 ? 0
+                  : result = runNumericMatch<Ts>(matchType, ctx, saveFlags)),
      ...);
     return result;
 }
@@ -169,14 +170,13 @@ inline auto tryNumericSequence(ScanMatchType matchType,
 }  // namespace detail
 
 template <typename T>
-inline auto makeNumericScanRoutine(ScanMatchType matchType,
-                                   bool reverseEndianness) -> scan::ScanRoutine {
+inline auto makeNumericScanRoutine(
+    ScanMatchType matchType, bool reverseEndianness) -> scan::ScanRoutine {
     return [matchType, reverseEndianness](const scan::ScanContext& baseCtx) {
         scan::ScanContext ctx = baseCtx;
         ctx.reverseEndianness = reverseEndianness;
         MatchFlags flags = MatchFlags::EMPTY;
-        const auto matched =
-            detail::runNumericMatch<T>(matchType, ctx, &flags);
+        const auto matched = detail::runNumericMatch<T>(matchType, ctx, &flags);
         if (matched == 0U) {
             return scan::ScanResult::noMatch();
         }
@@ -185,13 +185,10 @@ inline auto makeNumericScanRoutine(ScanMatchType matchType,
 }
 
 auto makeAnyIntegerScanRoutine(ScanMatchType matchType,
-                               bool reverseEndianness)
-    -> scan::ScanRoutine;
+                               bool reverseEndianness) -> scan::ScanRoutine;
 
 auto makeAnyFloatScanRoutine(ScanMatchType matchType,
-                             bool reverseEndianness)
-    -> scan::ScanRoutine;
+                             bool reverseEndianness) -> scan::ScanRoutine;
 
 auto makeAnyNumberScanRoutine(ScanMatchType matchType,
-                              bool reverseEndianness)
-    -> scan::ScanRoutine;
+                              bool reverseEndianness) -> scan::ScanRoutine;

@@ -2,18 +2,19 @@
 
 namespace detail {
 
-template auto tryNumericSequence<uint64_t, int64_t, uint32_t, int32_t,
-                                 uint16_t, int16_t, uint8_t, int8_t>(
-    ScanMatchType, const scan::ScanContext&, MatchFlags*) noexcept -> unsigned int;
+template auto tryNumericSequence<uint64_t, int64_t, uint32_t, int32_t, uint16_t,
+                                 int16_t, uint8_t, int8_t>(
+    ScanMatchType, const scan::ScanContext&,
+    MatchFlags*) noexcept -> unsigned int;
 
 template auto tryNumericSequence<double, float>(
-    ScanMatchType, const scan::ScanContext&, MatchFlags*) noexcept -> unsigned int;
+    ScanMatchType, const scan::ScanContext&,
+    MatchFlags*) noexcept -> unsigned int;
 
 }  // namespace detail
 
 auto makeAnyIntegerScanRoutine(ScanMatchType matchType,
-                               bool reverseEndianness)
-    -> scan::ScanRoutine {
+                               bool reverseEndianness) -> scan::ScanRoutine {
     return [matchType, reverseEndianness](const scan::ScanContext& baseCtx) {
         scan::ScanContext ctx = baseCtx;
         ctx.reverseEndianness = reverseEndianness;
@@ -30,8 +31,7 @@ auto makeAnyIntegerScanRoutine(ScanMatchType matchType,
 }
 
 auto makeAnyFloatScanRoutine(ScanMatchType matchType,
-                             bool reverseEndianness)
-    -> scan::ScanRoutine {
+                             bool reverseEndianness) -> scan::ScanRoutine {
     return [matchType, reverseEndianness](const scan::ScanContext& baseCtx) {
         scan::ScanContext ctx = baseCtx;
         ctx.reverseEndianness = reverseEndianness;
@@ -46,14 +46,13 @@ auto makeAnyFloatScanRoutine(ScanMatchType matchType,
 }
 
 auto makeAnyNumberScanRoutine(ScanMatchType matchType,
-                              bool reverseEndianness)
-    -> scan::ScanRoutine {
+                              bool reverseEndianness) -> scan::ScanRoutine {
     return [matchType, reverseEndianness](const scan::ScanContext& baseCtx) {
         scan::ScanContext ctx = baseCtx;
         ctx.reverseEndianness = reverseEndianness;
         MatchFlags flags = MatchFlags::EMPTY;
-        if (auto matched =
-                detail::tryNumericSequence<double, float>(matchType, ctx, &flags);
+        if (auto matched = detail::tryNumericSequence<double, float>(
+                matchType, ctx, &flags);
             matched != 0U) {
             return scan::ScanResult::match(matched, flags);
         }

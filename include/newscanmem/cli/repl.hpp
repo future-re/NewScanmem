@@ -45,7 +45,8 @@ class REPL {
      * @param line Raw input line
      * @return Expected command result or error
      */
-    static auto executeLine(const std::string& line) -> std::expected<CommandResult, std::string>;
+    static auto executeLine(const std::string& line)
+        -> std::expected<CommandResult, std::string>;
 
     /**
      * @brief Set the prompt string
@@ -68,7 +69,8 @@ class REPL {
      * @param args Command arguments
      * @return Expected result or error message
      */
-    static auto executeCommand(const std::string& command_name, const std::vector<std::string>& args)
+    static auto executeCommand(const std::string& command_name,
+                               const std::vector<std::string>& args)
         -> std::expected<CommandResult, std::string>;
 
     std::shared_ptr<ui::UserInterface> m_ui;

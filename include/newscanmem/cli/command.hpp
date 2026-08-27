@@ -60,7 +60,8 @@ class Command {
      * @brief Get command aliases
      * @return Vector of alternative names for this command
      */
-    [[nodiscard]] virtual auto getAliases() const -> std::vector<std::string_view>;
+    [[nodiscard]] virtual auto getAliases() const
+        -> std::vector<std::string_view>;
 
     /**
      * @brief Execute the command
@@ -75,7 +76,8 @@ class Command {
      * @param args Command arguments
      * @return True if arguments are valid
      */
-    [[nodiscard]] virtual auto validateArgs(const std::vector<std::string>& args) const
+    [[nodiscard]] virtual auto validateArgs(
+        const std::vector<std::string>& args) const
         -> std::expected<void, std::string>;
 };
 
@@ -133,6 +135,7 @@ class CommandRegistry {
  * @param line Input line from user
  * @return Pair of (command_name, arguments)
  */
-[[nodiscard]] auto parseCommandLine(std::string_view line) -> std::pair<std::string, std::vector<std::string>>;
+[[nodiscard]] auto parseCommandLine(std::string_view line)
+    -> std::pair<std::string, std::vector<std::string>>;
 
 }  // namespace cli

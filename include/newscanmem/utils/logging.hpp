@@ -30,10 +30,10 @@ class Logger {
     // Non-copyable
     Logger(const Logger&) = delete;
     auto operator=(const Logger&) -> Logger& = delete;
-    
+
     // Movable - must handle mutex
     Logger(Logger&& other) noexcept;
-    
+
     auto operator=(Logger&& other) noexcept -> Logger&;
 
     ~Logger();
@@ -48,8 +48,7 @@ class Logger {
 
         auto now = std::chrono::system_clock::now();
         std::string message = std::format(
-            "[{:%Y-%m-%d %H:%M:%S}] [{}] {}", now,
-            levelToString(level),
+            "[{:%Y-%m-%d %H:%M:%S}] [{}] {}", now, levelToString(level),
             std::format(fmt, std::forward<Args>(args)...));
 
         std::scoped_lock lock(m_mutex);

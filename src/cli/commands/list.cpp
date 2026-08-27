@@ -33,18 +33,22 @@ auto ListCommand::execute(const std::vector<std::string>& args)
             return std::unexpected("Invalid limit: " + args[0]);
         }
     }
-    auto result = app::ResultService::getMatches(
-        {.scanner = m_session->scanner.get(), .pid = m_session->pid,
-         .limit = limit, .showRegion = true, .showIndex = true,
-         .endianness = m_session->endianness});
+    auto result =
+        app::ResultService::getMatches({.scanner = m_session->scanner.get(),
+                                        .pid = m_session->pid,
+                                        .limit = limit,
+                                        .showRegion = true,
+                                        .showIndex = true,
+                                        .endianness = m_session->endianness});
     if (!result) return std::unexpected(result.error());
     const auto& [entries, totalCount] = *result;
     ui::MessagePrinter::plain("Index  Address             Size      Region");
-    ui::MessagePrinter::plain("-----------------------------------------------");
+    ui::MessagePrinter::plain(
+        "-----------------------------------------------");
     for (const auto& entry : entries) {
-        ui::MessagePrinter::plain(std::format(
-            "{:<6} 0x{:016x}  0x{:02x}      [{}]", entry.index,
-            entry.address, entry.value.size(), entry.region));
+        ui::MessagePrinter::plain(
+            std::format("{:<6} 0x{:016x}  0x{:02x}      [{}]", entry.index,
+                        entry.address, entry.value.size(), entry.region));
     }
     ui::MessagePrinter::plain("");
     ui::MessagePrinter::plain(

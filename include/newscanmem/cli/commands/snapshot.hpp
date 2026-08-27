@@ -13,9 +13,9 @@
 
 #include "newscanmem/cli/command.hpp"
 #include "newscanmem/cli/session.hpp"
-#include "newscanmem/ui/show_message.hpp"
 #include "newscanmem/core/scanner.hpp"
 #include "newscanmem/scan/types.hpp"
+#include "newscanmem/ui/show_message.hpp"
 #include "newscanmem/value/parser.hpp"
 
 namespace cli::commands {

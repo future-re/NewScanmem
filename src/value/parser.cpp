@@ -90,7 +90,7 @@ auto parseStringValue(const std::vector<std::string>& args,
 }
 
 auto parseByteArrayValue(const std::vector<std::string>& args,
-                          size_t startIndex) -> std::optional<UserValue> {
+                         size_t startIndex) -> std::optional<UserValue> {
     if (startIndex >= args.size()) {
         return std::nullopt;
     }
@@ -153,7 +153,7 @@ auto parseByteArrayValue(const std::vector<std::string>& args,
 }
 
 auto parseAnyNumberValue(const std::vector<std::string>& args,
-                          size_t startIndex) -> std::optional<UserValue> {
+                         size_t startIndex) -> std::optional<UserValue> {
     if (startIndex >= args.size()) {
         return std::nullopt;
     }
@@ -166,7 +166,8 @@ auto parseAnyNumberValue(const std::vector<std::string>& args,
 
 }  // namespace detail
 
-auto parseDataType(const std::string_view token) -> std::optional<ScanDataType> {
+auto parseDataType(const std::string_view token)
+    -> std::optional<ScanDataType> {
     const auto lowered = utils::StringUtils::toLower(token);
     const auto& types = getDataTypeMap();
     const auto found = types.find(lowered);
@@ -174,7 +175,8 @@ auto parseDataType(const std::string_view token) -> std::optional<ScanDataType> 
                                 : std::optional<ScanDataType>{found->second};
 }
 
-auto parseMatchType(const std::string_view token) -> std::optional<ScanMatchType> {
+auto parseMatchType(const std::string_view token)
+    -> std::optional<ScanMatchType> {
     const auto lowered = utils::StringUtils::toLower(token);
     const auto& types = getMatchTypeMap();
     const auto found = types.find(lowered);
@@ -183,8 +185,8 @@ auto parseMatchType(const std::string_view token) -> std::optional<ScanMatchType
 }
 
 auto buildUserValue(ScanDataType dataType, ScanMatchType matchType,
-                    const std::vector<std::string>& args, size_t startIndex)
-    -> std::optional<UserValue> {
+                    const std::vector<std::string>& args,
+                    size_t startIndex) -> std::optional<UserValue> {
     if (!matchNeedsUserValue(matchType)) {
         return std::nullopt;
     }

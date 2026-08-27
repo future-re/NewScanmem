@@ -108,7 +108,8 @@ template <typename T>
  * @param str Address string (with or without 0x prefix)
  * @return Optional containing parsed address value
  */
-[[nodiscard]] auto parseAddress(std::string_view str) -> std::optional<std::uintptr_t>;
+[[nodiscard]] auto parseAddress(std::string_view str)
+    -> std::optional<std::uintptr_t>;
 
 /**
  * @brief Parse PID (process ID) with validation

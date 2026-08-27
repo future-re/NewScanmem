@@ -16,14 +16,13 @@
 #include <string>
 #include <vector>
 
-#include "newscanmem/value/core.hpp"
-
 #include "newscanmem/core/proc_mem.hpp"
 #include "newscanmem/core/scanner.hpp"
 #include "newscanmem/scan/match_storage.hpp"
 #include "newscanmem/utils/endianness.hpp"
-#include "newscanmem/value/flags.hpp"
 #include "newscanmem/utils/logging.hpp"
+#include "newscanmem/value/core.hpp"
+#include "newscanmem/value/flags.hpp"
 
 namespace core {
 
@@ -79,9 +78,11 @@ class MemoryWriter {
         -> std::expected<VecWriteResult, std::string>;
 
    private:
-    [[nodiscard]] auto encodeValueBytes(const UserValue& value) const -> std::vector<std::uint8_t>;
+    [[nodiscard]] auto encodeValueBytes(const UserValue& value) const
+        -> std::vector<std::uint8_t>;
 
-    [[nodiscard]] static auto resolveMatchAddress(const scan::MatchesAndOldValuesArray& matches,
+    [[nodiscard]] static auto resolveMatchAddress(
+        const scan::MatchesAndOldValuesArray& matches,
         std::size_t match_index) -> std::expected<std::uintptr_t, std::string>;
 
     pid_t m_pid;

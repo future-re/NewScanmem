@@ -49,7 +49,8 @@ class MemoryWriter {
      * @param data Byte data to write
      * @return Expected bytes written or error message
      */
-    [[nodiscard]] auto writeBytes(void* addr, std::span<const std::uint8_t> data) const
+    [[nodiscard]] auto writeBytes(void* addr,
+                                  std::span<const std::uint8_t> data) const
         -> std::expected<std::size_t, std::string>;
 
     /**

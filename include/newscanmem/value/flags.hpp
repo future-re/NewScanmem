@@ -57,22 +57,19 @@ template <typename T>
 }  // namespace detail
 
 [[nodiscard]] constexpr auto operator|(MatchFlags lhs,
-                                              MatchFlags rhs) noexcept
-    -> MatchFlags {
+                                       MatchFlags rhs) noexcept -> MatchFlags {
     return static_cast<MatchFlags>(detail::toUnderlying(lhs) |
                                    detail::toUnderlying(rhs));
 }
 
 [[nodiscard]] constexpr auto operator&(MatchFlags lhs,
-                                              MatchFlags rhs) noexcept
-    -> MatchFlags {
+                                       MatchFlags rhs) noexcept -> MatchFlags {
     return static_cast<MatchFlags>(detail::toUnderlying(lhs) &
                                    detail::toUnderlying(rhs));
 }
 
 [[nodiscard]] constexpr auto operator^(MatchFlags lhs,
-                                              MatchFlags rhs) noexcept
-    -> MatchFlags {
+                                       MatchFlags rhs) noexcept -> MatchFlags {
     return static_cast<MatchFlags>(detail::toUnderlying(lhs) ^
                                    detail::toUnderlying(rhs));
 }
@@ -82,14 +79,14 @@ template <typename T>
     return static_cast<MatchFlags>(~detail::toUnderlying(flags));
 }
 
-constexpr auto operator|=(MatchFlags& lhs, MatchFlags rhs) noexcept
-    -> MatchFlags& {
+constexpr auto operator|=(MatchFlags& lhs,
+                          MatchFlags rhs) noexcept -> MatchFlags& {
     lhs = lhs | rhs;
     return lhs;
 }
 
-constexpr auto operator&=(MatchFlags& lhs, MatchFlags rhs) noexcept
-    -> MatchFlags& {
+constexpr auto operator&=(MatchFlags& lhs,
+                          MatchFlags rhs) noexcept -> MatchFlags& {
     lhs = lhs & rhs;
     return lhs;
 }

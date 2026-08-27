@@ -21,9 +21,9 @@ namespace scan {
  * @brief Context for a single scan operation at a memory location
  */
 struct ScanContext {
-    std::span<const std::uint8_t> memory;        ///< Current memory bytes
-    std::optional<Value> oldValue;               ///< Previous value (for delta matches)
-    std::optional<UserValue> userValue;          ///< User target value (for comparison)
+    std::span<const std::uint8_t> memory;  ///< Current memory bytes
+    std::optional<Value> oldValue;       ///< Previous value (for delta matches)
+    std::optional<UserValue> userValue;  ///< User target value (for comparison)
     MatchFlags requiredFlag{MatchFlags::EMPTY};  ///< Required type flag
     bool reverseEndianness{false};               ///< Reverse byte order flag
 
@@ -45,16 +45,20 @@ struct ScanContext {
  * @brief Result of a scan operation at a memory location
  */
 struct ScanResult {
-    bool matched{false};           ///< Whether this location matches
-    std::size_t matchLength{0};    ///< Number of bytes matched
+    bool matched{false};         ///< Whether this location matches
+    std::size_t matchLength{0};  ///< Number of bytes matched
     MatchFlags matchedFlag{MatchFlags::EMPTY};  ///< Type of match
 
     [[nodiscard]] static auto noMatch() -> ScanResult {
-        return ScanResult{.matched=false, .matchLength=0, .matchedFlag=MatchFlags::EMPTY};
+        return ScanResult{.matched = false,
+                          .matchLength = 0,
+                          .matchedFlag = MatchFlags::EMPTY};
     }
 
-    [[nodiscard]] static auto match(std::size_t length, MatchFlags flag) -> ScanResult {
-        return ScanResult{.matched=true, .matchLength=length, .matchedFlag=flag};
+    [[nodiscard]] static auto match(std::size_t length,
+                                    MatchFlags flag) -> ScanResult {
+        return ScanResult{
+            .matched = true, .matchLength = length, .matchedFlag = flag};
     }
 
     explicit operator bool() const noexcept { return matched; }
@@ -70,8 +74,10 @@ using ScanRoutine = std::function<ScanResult(const ScanContext& ctx)>;
  */
 [[nodiscard]] auto nullRoutine() -> ScanRoutine;
 
-[[nodiscard]] auto makeScanContext(std::span<const std::uint8_t> memory, const Value* old_value,
-                                   const UserValue* user_value, MatchFlags required_flag,
+[[nodiscard]] auto makeScanContext(std::span<const std::uint8_t> memory,
+                                   const Value* old_value,
+                                   const UserValue* user_value,
+                                   MatchFlags required_flag,
                                    bool reverse_endianness) -> ScanContext;
 
 }  // namespace scan

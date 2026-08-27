@@ -54,8 +54,7 @@ struct ByteMatch {
 
 // Common utilities (type-level convenience checks that introduce no
 // implementation dependencies)
-constexpr auto isNumericType(ScanDataType scanDataType) noexcept
-    -> bool {
+constexpr auto isNumericType(ScanDataType scanDataType) noexcept -> bool {
     switch (scanDataType) {
         case ScanDataType::INTEGER_8:
         case ScanDataType::INTEGER_16:
@@ -74,8 +73,7 @@ constexpr auto isNumericType(ScanDataType scanDataType) noexcept
     return false;
 }
 
-constexpr auto isAggregatedAny(ScanDataType scanDataType) noexcept
-    -> bool {
+constexpr auto isAggregatedAny(ScanDataType scanDataType) noexcept -> bool {
     return scanDataType == ScanDataType::ANY_NUMBER ||
            scanDataType == ScanDataType::ANY_INTEGER ||
            scanDataType == ScanDataType::ANY_FLOAT;
@@ -98,8 +96,7 @@ constexpr auto matchNeedsUserValue(ScanMatchType scanMatchType) noexcept
     }
 }
 
-constexpr auto matchUsesOldValue(ScanMatchType scanMatchType) noexcept
-    -> bool {
+constexpr auto matchUsesOldValue(ScanMatchType scanMatchType) noexcept -> bool {
     switch (scanMatchType) {
         case ScanMatchType::MATCH_UPDATE:
         case ScanMatchType::MATCH_NOT_CHANGED:

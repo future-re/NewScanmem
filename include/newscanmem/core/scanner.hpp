@@ -19,14 +19,14 @@
 #include <optional>
 #include <string>
 
-#include "newscanmem/scan/engine.hpp"
-#include "newscanmem/scan/types.hpp"
-#include "newscanmem/scan/filter.hpp"
-#include "newscanmem/scan/match_storage.hpp"
-#include "newscanmem/value/core.hpp"
-#include "newscanmem/value/flags.hpp"
 #include "newscanmem/core/maps.hpp"
 #include "newscanmem/core/scan_history.hpp"
+#include "newscanmem/scan/engine.hpp"
+#include "newscanmem/scan/filter.hpp"
+#include "newscanmem/scan/match_storage.hpp"
+#include "newscanmem/scan/types.hpp"
+#include "newscanmem/value/core.hpp"
+#include "newscanmem/value/flags.hpp"
 
 namespace core {
 
@@ -117,7 +117,8 @@ class Scanner {
     /**
      * @brief Get current/active matches from most recent scan
      */
-    [[nodiscard]] auto getMatches() const -> const scan::MatchesAndOldValuesArray&;
+    [[nodiscard]] auto getMatches() const
+        -> const scan::MatchesAndOldValuesArray&;
 
     /**
      * @brief Get mutable current/active matches
@@ -160,7 +161,8 @@ class Scanner {
     ScanHistory m_history;
     std::optional<ScanDataType> m_lastDataType;
 
-    [[nodiscard]] auto doScan(const ScanOptions& opts, const std::optional<UserValue>& value,
+    [[nodiscard]] auto doScan(const ScanOptions& opts,
+                              const std::optional<UserValue>& value,
                               bool saveToHistory) -> ScannerResult;
 
     auto saveResultToHistory(const ScanStats& stats, const ScanOptions& opts,

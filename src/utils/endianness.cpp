@@ -3,7 +3,7 @@
 namespace utils {
 
 auto getHost() -> Endianness {
-  return isLittleEndian() ? Endianness::LITTLE : Endianness::BIG;
+    return isLittleEndian() ? Endianness::LITTLE : Endianness::BIG;
 }
 
 }  // namespace utils

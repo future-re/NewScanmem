@@ -11,8 +11,8 @@
 #include <type_traits>
 
 #include "newscanmem/scan/types.hpp"
-#include "newscanmem/value/flags.hpp"
 #include "newscanmem/value/core.hpp"
+#include "newscanmem/value/flags.hpp"
 
 // Helpers for byte reading, endianness conversion, and type traits
 // Goal: provide unified reading and type-tagging utilities for
@@ -70,10 +70,11 @@ template <typename T>
 }
 
 template <typename T>
-[[nodiscard]] inline auto readTyped(const Value& value, bool reverseEndianness)
-    noexcept -> std::optional<T> {
-    return readTyped<T>(std::span<const std::uint8_t>(value.data(), value.size()),
-                        reverseEndianness);
+[[nodiscard]] inline auto readTyped(
+    const Value& value, bool reverseEndianness) noexcept -> std::optional<T> {
+    return readTyped<T>(
+        std::span<const std::uint8_t>(value.data(), value.size()),
+        reverseEndianness);
 }
 
 // Try to read old value from Value* (strictly checks flags and length)
@@ -107,8 +108,8 @@ template <typename T>
 
 template <typename T>
 [[nodiscard]] inline auto userValueHighAs(
-    const UserValue& value, bool reverseEndianness = false) noexcept
-    -> std::optional<T> {
+    const UserValue& value,
+    bool reverseEndianness = false) noexcept -> std::optional<T> {
     if (!value.secondary) {
         return std::nullopt;
     }
