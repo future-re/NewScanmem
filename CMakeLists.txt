@@ -7,7 +7,9 @@ if(POLICY CMP0167)
   cmake_policy(SET CMP0167 NEW)
 endif()
 
-enable_testing()
+# Standard CTest integration. BUILD_TESTING defaults to ON and can be disabled
+# explicitly for release-only builds.
+include(CTest)
 
 # 设置 C++ 标准和要求
 set(CMAKE_CXX_STANDARD 23)
@@ -24,18 +26,24 @@ include(CodeCoverage)
 # Prefer installed dependencies. FetchContent is only a fallback for a clean
 # checkout, so normal offline builds do not unexpectedly access the network.
 include(FetchContent)
-# GoogleTest is needed only for tests.
-find_package(GTest 1.14 CONFIG QUIET)
-if(NOT TARGET GTest::gtest)
-  FetchContent_Declare(
-    googletest
-    URL https://github.com/google/googletest/archive/refs/tags/v1.17.0.zip
-  )
-  FetchContent_MakeAvailable(googletest)
+
+if(BUILD_TESTING)
+  # GoogleTest is needed only for tests.
+  find_package(GTest 1.14 CONFIG QUIET)
+  if(NOT TARGET GTest::gtest)
+    FetchContent_Declare(
+      googletest
+      URL https://github.com/google/googletest/archive/refs/tags/v1.17.0.zip
+    )
+    FetchContent_MakeAvailable(googletest)
+  endif()
 endif()
 
 add_subdirectory(src)
-add_subdirectory(test)
+
+if(BUILD_TESTING)
+  add_subdirectory(test)
+endif()
 
 # 设置覆盖率报告（在所有子目录之后）
 setup_coverage_reporting()
