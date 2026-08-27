@@ -56,7 +56,7 @@ auto makeStringScanRoutine(const ScanMatchType match_type)
         if (match_type == ScanMatchType::MATCH_REGEX) {
             const auto match = findRegexPattern(&memory, context.memory.size(),
                                                 std::string(pattern));
-            return match
+            return match && match->offset == 0
                        ? scan::ScanResult::match(match->length, MatchFlags::B8)
                        : scan::ScanResult::noMatch();
         }
