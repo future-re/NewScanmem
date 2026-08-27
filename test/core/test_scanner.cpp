@@ -18,21 +18,7 @@ using core::Scanner;  // Scanner
 #include <cstdint>
 #include <cstring>
 
-// Test strategy:
-// - Create a child process with a dedicated mmap page filled with a repeating
-//   byte pattern that includes a target value (e.g. 0x2A == 42) multiple times.
-// - Parent performs a full scan (MATCH_ANY, INTEGER_8) and records match count.
-// - Parent then performs a filtered scan (MATCHEQUALTO, INTEGER_8, value=42)
-//   and expects the match count to reduce (or at least not increase).
-// - Parent performs another full scan (MATCH_ANY) and expects match count to
-//   reset (be >= filtered count).
-// - Additional test ensures calling filtered scan first returns an error.
-//
-// NOTE: The scan engine scans ALL_RW regions of the child, not just our page,
-// so we do not assert exact counts, only relational properties (narrowing &
-// reset behavior).
-
-static int g_pipe_write_fd_scanner = -1;  // write end used by child
+static int g_pipe_write_fd_scanner = -1;
 
 class ScannerTest : public ::testing::Test {
    protected:
@@ -47,9 +33,7 @@ class ScannerTest : public ::testing::Test {
             runChild();
             _exit(0);
         }
-        // Parent
-        ::close(pipefd[1]);  // close write end
-        // Read one pointer (base address) from child
+        ::close(pipefd[1]);
         uintptr_t addrValue = 0;
         std::size_t need = sizeof(uintptr_t);
         std::size_t got = 0;
@@ -80,20 +64,12 @@ class ScannerTest : public ::testing::Test {
         const auto pageSize = static_cast<size_t>(::sysconf(_SC_PAGESIZE));
         void* block = ::mmap(nullptr, pageSize, PROT_READ | PROT_WRITE,
                              MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-        if (block == MAP_FAILED) {
-            _exit(1);
-        }
+        if (block == MAP_FAILED) _exit(1);
         auto* bytes = static_cast<uint8_t*>(block);
-        // Fill first 256 bytes with pattern containing many 42 values
         const uint8_t pattern[] = {42, 7, 42, 9, 11, 42, 13, 15};
-        for (size_t i = 0; i < 256; ++i) {
-            bytes[i] = pattern[i % (sizeof(pattern))];
-        }
-        // Send base address to parent
+        for (size_t i = 0; i < 256; ++i) bytes[i] = pattern[i % sizeof(pattern)];
         auto out = reinterpret_cast<uintptr_t>(block);
-        // NOLINTNEXTLINE(cppcoreguidelines-pro-type-vararg)
         ::write(g_pipe_write_fd_scanner, &out, sizeof(out));
-        // Keep child alive; lightly touch memory
         while (true) {
             bytes[0] = bytes[0];
             std::this_thread::sleep_for(std::chrono::milliseconds(10));
@@ -104,20 +80,34 @@ class ScannerTest : public ::testing::Test {
     void* m_regionBase{nullptr};
 };
 
-// Test: filtered scan error when no prior full scan
 TEST(ScannerStandaloneTest, FilteredScanWithoutInitialFull) {
-    Scanner scanner(::getpid());  // current process
-    ScanOptions opts;             // defaults MATCH_ANY ANYNUMBER
+    Scanner scanner(::getpid());
+    ScanOptions opts;
     auto filtered = scanner.filter(opts);
     EXPECT_FALSE(filtered.success);
 }
 
-// Test: full scan then filtered scan narrowing and reset on new full scan
+TEST(ScannerStandaloneTest, MatchCountCacheInvalidatesOnMutableAccess) {
+    Scanner scanner(::getpid());
+    scan::MatchesAndOldValuesSwath swath;
+    swath.firstByteInChild = reinterpret_cast<void*>(0x1000);
+    swath.data.push_back(
+        {.oldByte = 1, .matchInfo = MatchFlags::B8, .matchLength = 1});
+    scanner.getMatches().addSwath(swath);
+
+    EXPECT_EQ(scanner.getMatchCount(), 1U);
+    EXPECT_TRUE(scanner.hasMatches());
+
+    scanner.getMatches().swaths.front().data.front().matchInfo = MatchFlags::EMPTY;
+
+    EXPECT_EQ(scanner.getMatchCount(), 0U);
+    EXPECT_FALSE(scanner.hasMatches());
+}
+
 TEST_F(ScannerTest, FullThenFilteredAndReset) {
     ASSERT_GT(childPid(), 0);
     Scanner scanner(childPid());
 
-    // Full scan (match any int8)
     ScanOptions fullOpts;
     fullOpts.dataType = ScanDataType::INTEGER_8;
     fullOpts.matchType = ScanMatchType::MATCH_ANY;
@@ -126,7 +116,6 @@ TEST_F(ScannerTest, FullThenFilteredAndReset) {
     auto fullCount = scanner.getMatchCount();
     ASSERT_GT(fullCount, 0U) << "Full scan should produce matches";
 
-    // Filtered scan (only bytes equal to 42)
     UserValue val = UserValue::of<int8_t>(42);
     ScanOptions filteredOpts;
     filteredOpts.dataType = ScanDataType::INTEGER_8;
@@ -138,7 +127,6 @@ TEST_F(ScannerTest, FullThenFilteredAndReset) {
     EXPECT_LE(narrowedCount, fullCount)
         << "Filtered scan should not increase matches";
 
-    // Another full scan should reset matches to a (likely) larger count
     auto fullAgain = scanner.snapshot(fullOpts);
     ASSERT_TRUE(fullAgain.success) << "Second full scan failed";
     auto fullAgainCount = scanner.getMatchCount();
