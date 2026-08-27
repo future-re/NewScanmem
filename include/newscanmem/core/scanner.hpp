@@ -44,115 +44,41 @@ struct ScannerResult {
  */
 class Scanner {
    public:
-    /**
-     * @brief Construct scanner for given process
-     * @param pid Target process ID
-     */
     explicit Scanner(pid_t pid);
 
-    // ====================================================================
-    // Explicit Public Operations
-    // ====================================================================
-
-    /**
-     * @brief Perform a full memory scan (clears existing matches)
-     * @param opts Scan options
-     * @param value Optional target value
-     * @param saveToHistory Whether to save to history
-     * @return Scan response with results
-     */
     [[nodiscard]] auto snapshot(
         const ScanOptions& opts,
         const std::optional<UserValue>& value = std::nullopt,
         bool saveToHistory = false) -> ScannerResult;
 
-    /**
-     * @brief Filter existing matches incrementally
-     * @param opts Scan options
-     * @param value Optional target value
-     * @param saveToHistory Whether to save to history
-     * @return Scan response with results
-     */
     [[nodiscard]] auto filter(
         const ScanOptions& opts,
         const std::optional<UserValue>& value = std::nullopt,
         bool saveToHistory = false) -> ScannerResult;
 
-    /**
-     * @brief Rescan: clear matches and perform full scan
-     * @param opts Scan options
-     * @param value Optional target value
-     * @param saveToHistory Whether to save to history
-     * @return Scan response with results
-     */
     [[nodiscard]] auto rescan(
         const ScanOptions& opts,
         const std::optional<UserValue>& value = std::nullopt,
         bool saveToHistory = false) -> ScannerResult;
 
-    // ====================================================================
-    // State Queries
-    // ====================================================================
-
-    /**
-     * @brief Get number of saved scan results in history
-     */
     [[nodiscard]] auto getResultCount() const -> std::size_t;
-
-    /**
-     * @brief Get a specific scan result by index
-     */
     [[nodiscard]] auto getResult(std::size_t index) const -> const ScanRecord*;
-
-    /**
-     * @brief Get all scan results
-     */
     [[nodiscard]] auto getResults() const -> const std::deque<ScanRecord>&;
-
-    /**
-     * @brief Clear scan result history
-     */
     auto clearResultHistory() -> void;
 
-    /**
-     * @brief Get current/active matches from most recent scan
-     */
     [[nodiscard]] auto getMatches() const
         -> const scan::MatchesAndOldValuesArray&;
 
-    /**
-     * @brief Get mutable current/active matches
-     */
+    // Returning mutable storage invalidates the cached match count because the
+    // caller may mutate match flags directly.
     [[nodiscard]] auto getMatches() -> scan::MatchesAndOldValuesArray&;
 
-    /**
-     * @brief Clear current/active matches (does not affect result history)
-     */
     auto clearMatches() -> void;
-
-    /**
-     * @brief Reset scanner state (clears matches and result history)
-     */
     auto reset() -> void;
 
-    /**
-     * @brief Get number of matches in current scan
-     */
     [[nodiscard]] auto getMatchCount() const -> std::size_t;
-
-    /**
-     * @brief Check if current scan has matches
-     */
     [[nodiscard]] auto hasMatches() const -> bool;
-
-    /**
-     * @brief Get target PID
-     */
     [[nodiscard]] auto getPid() const -> pid_t;
-
-    /**
-     * @brief Get last scan data type
-     */
     [[nodiscard]] auto getLastDataType() const -> std::optional<ScanDataType>;
 
    private:
@@ -160,6 +86,7 @@ class Scanner {
     scan::MatchesAndOldValuesArray m_matches;
     ScanHistory m_history;
     std::optional<ScanDataType> m_lastDataType;
+    mutable std::optional<std::size_t> m_matchCountCache{0};
 
     [[nodiscard]] auto doScan(const ScanOptions& opts,
                               const std::optional<UserValue>& value,
@@ -167,8 +94,8 @@ class Scanner {
 
     auto saveResultToHistory(const ScanStats& stats, const ScanOptions& opts,
                              const std::optional<UserValue>& value) -> void;
-
     auto pruneEmptySwaths() -> void;
+    auto invalidateMatchCount() noexcept -> void;
 };
 
 }  // namespace core
