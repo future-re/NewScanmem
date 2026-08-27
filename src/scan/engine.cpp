@@ -6,6 +6,8 @@
 #include <latch>
 #include <span>
 #include <thread>
+#include <utility>
+#include <vector>
 
 #include "newscanmem/core/proc_mem.hpp"
 #include "newscanmem/scan/job.hpp"
@@ -47,13 +49,15 @@ auto oldValue(const MatchesAndOldValuesArray* previous, void* address,
     return std::nullopt;
 }
 void scanBlock(const std::span<const std::uint8_t> buffer,
+               const std::size_t candidate_count,
                const std::size_t base_index, const std::size_t step,
                const ScanRoutine& routine, const UserValue* user_value,
                MatchesAndOldValuesSwath& swath, ScanStats& stats,
                void* block_base, const MatchesAndOldValuesArray* previous,
                const std::size_t old_length, const bool reverse) {
     const auto stride = std::max<std::size_t>(1, step);
-    for (std::size_t offset = 0; offset < buffer.size(); offset += stride) {
+    const auto scan_end = std::min(candidate_count, buffer.size());
+    for (std::size_t offset = 0; offset < scan_end; offset += stride) {
         auto* address =
             static_cast<void*>(static_cast<std::uint8_t*>(block_base) + offset);
         const auto old = oldValue(previous, address, old_length);
@@ -74,22 +78,33 @@ auto scanRegion(
     if (!region.isReadable() || region.size == 0) return std::nullopt;
     ++stats.regionsVisited;
     MatchesAndOldValuesSwath swath;
-    std::vector<std::uint8_t> buffer(options.blockSize);
+
+    // Read enough look-ahead bytes to let candidates near the end of one block
+    // see a complete scan window. Only the primary bytes are appended/scanned
+    // as candidate starts; look-ahead bytes are processed normally by the next
+    // iteration, so matches are neither missed nor counted twice.
+    const auto overlap = old_length > 0 ? old_length - 1 : 0;
+    std::vector<std::uint8_t> buffer(options.blockSize + overlap);
     for (std::size_t offset = 0; offset < region.size;) {
-        const auto to_read = std::min(region.size - offset, options.blockSize);
+        const auto primary_count =
+            std::min(region.size - offset, options.blockSize);
+        const auto to_read =
+            std::min(region.size - offset, primary_count + overlap);
         auto* base = static_cast<std::uint8_t*>(region.start) + offset;
         const auto read = reader.read(base, buffer.data(), to_read);
         if (!read || *read == 0) {
-            offset += to_read;
+            offset += primary_count;
             continue;
         }
+
+        const auto appended = std::min(*read, primary_count);
         const auto base_index = swath.data.size();
-        appendBytes(swath, buffer.data(), *read, base);
-        scanBlock(std::span{buffer.data(), *read}, base_index, options.step,
-                  routine, user_value, swath, stats, base, previous, old_length,
-                  options.reverseEndianness);
-        stats.bytesScanned += *read;
-        offset += *read;
+        appendBytes(swath, buffer.data(), appended, base);
+        scanBlock(std::span{buffer.data(), *read}, appended, base_index,
+                  options.step, routine, user_value, swath, stats, base,
+                  previous, old_length, options.reverseEndianness);
+        stats.bytesScanned += appended;
+        offset += appended;
     }
     return swath.data.empty()
                ? std::nullopt
