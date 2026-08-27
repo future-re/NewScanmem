@@ -1,5 +1,7 @@
 #include "newscanmem/cli/commands/count.hpp"
 
+#include "newscanmem/ui/show_message.hpp"
+
 namespace cli::commands {
 CountCommand::CountCommand(SessionState& session) : m_session(&session) {}
 auto CountCommand::getName() const -> std::string_view { return "count"; }
