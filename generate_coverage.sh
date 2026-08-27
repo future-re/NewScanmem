@@ -37,7 +37,7 @@ if [ $# -eq 0 ]; then
 else
     GENERATE_HTML=false
     GENERATE_SUMMARY=false
-    
+
     for arg in "$@"; do
         case $arg in
             --html)
@@ -98,10 +98,25 @@ echo ""
 
 # Create coverage directory
 mkdir -p "$COVERAGE_DIR"
+mkdir -p "$TEST_DIR"
 
 # Step 1: Run tests
 echo "Step 1/4: Running tests..."
 cd "$BUILD_DIR"
+
+# ctest can exit successfully even when zero tests are registered. Check the
+# discovered test list explicitly so coverage failures point at the real cause.
+TEST_COUNT=$(ctest -N | sed -n 's/^Total Tests: //p' | tail -n 1)
+if [ -z "$TEST_COUNT" ] || [ "$TEST_COUNT" -eq 0 ]; then
+    echo "Error: No tests were discovered by CTest in $BUILD_DIR"
+    echo "Reconfigure and rebuild with testing enabled:"
+    echo "  cmake -B build -DBUILD_TESTING=ON -DENABLE_COVERAGE=ON"
+    echo "  cmake --build build"
+    exit 1
+fi
+
+echo "Discovered $TEST_COUNT tests"
+rm -f "$TEST_DIR"/*.profraw
 LLVM_PROFILE_FILE="$TEST_DIR/%p.profraw" ctest --output-on-failure
 echo "✓ Tests completed"
 echo ""
@@ -112,7 +127,7 @@ PROFRAW_FILES=("$TEST_DIR"/*.profraw)
 if [ ${#PROFRAW_FILES[@]} -eq 0 ] || [ ! -f "${PROFRAW_FILES[0]}" ]; then
     echo "Error: No .profraw files found in $TEST_DIR"
     echo "Make sure tests were built with coverage flags enabled:"
-    echo "  cmake -B build -DENABLE_COVERAGE=ON"
+    echo "  cmake -B build -DBUILD_TESTING=ON -DENABLE_COVERAGE=ON"
     exit 1
 fi
 
@@ -193,43 +208,41 @@ echo "=== Coverage Analysis Complete ==="
 if [ "$CHECK_THRESHOLDS" = true ]; then
     echo ""
     echo "=== Checking Coverage Thresholds ==="
-    
-    # Extract coverage percentages from summary
+
     SUMMARY=$($LLVM_COV report \
         -instr-profile="$COVERAGE_DIR/coverage.profdata" \
         "${TEST_BINARIES[0]}" \
         "${OBJECT_ARGS[@]:2}" \
         -ignore-filename-regex='test/|build/|cmake-' \
         "$SOURCE_FILTER")
-    
-    # Parse total coverage from last line
+
     TOTAL_LINE=$(echo "$SUMMARY" | tail -n 1)
-    
+
     LINE_COV=$(echo "$TOTAL_LINE" | awk '{print $10}' | tr -d '%')
     FUNC_COV=$(echo "$TOTAL_LINE" | awk '{print $3}' | tr -d '%')
     REGION_COV=$(echo "$TOTAL_LINE" | awk '{print $7}' | tr -d '%')
-    
+
     echo "Line Coverage:     ${LINE_COV}% (minimum: ${MIN_LINE_COVERAGE}%)"
     echo "Function Coverage: ${FUNC_COV}% (minimum: ${MIN_FUNCTION_COVERAGE}%)"
     echo "Region Coverage:   ${REGION_COV}% (minimum: ${MIN_REGION_COVERAGE}%)"
-    
+
     FAILED=false
-    
+
     if (( $(echo "$LINE_COV < $MIN_LINE_COVERAGE" | bc -l) )); then
         echo "✗ Line coverage below threshold"
         FAILED=true
     fi
-    
+
     if (( $(echo "$FUNC_COV < $MIN_FUNCTION_COVERAGE" | bc -l) )); then
         echo "✗ Function coverage below threshold"
         FAILED=true
     fi
-    
+
     if (( $(echo "$REGION_COV < $MIN_REGION_COVERAGE" | bc -l) )); then
         echo "✗ Region coverage below threshold"
         FAILED=true
     fi
-    
+
     if [ "$FAILED" = true ]; then
         echo ""
         echo "Coverage check FAILED - coverage is below minimum thresholds"
@@ -252,12 +265,10 @@ if [ "$GENERATE_SUMMARY" = true ]; then
     echo "  Summary: $COVERAGE_DIR/summary.txt"
 fi
 
-# 如果存在 mkdocs 的复制脚本，则将生成的 HTML 报告复制到 mkdocs docs 目录
 COPY_SCRIPT="$SCRIPT_DIR/mkdocs/scripts/copy_coverage_html.sh"
 if [ -x "$COPY_SCRIPT" ] && [ -d "$COVERAGE_DIR/html" ]; then
     echo ""
     echo "Copying coverage HTML into mkdocs docs using $COPY_SCRIPT..."
-    # 以独立进程运行脚本（脚本本身会计算仓库根目录）
     "$COPY_SCRIPT"
     echo "✓ Copied coverage HTML into mkdocs/docs/coverage_html"
 fi
