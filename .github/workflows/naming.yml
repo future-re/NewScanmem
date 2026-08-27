@@ -1,0 +1,43 @@
+name: Naming Lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  packages: read
+  actions: read
+
+jobs:
+  naming:
+    name: clang-tidy naming
+    runs-on: ubuntu-22.04
+    container:
+      image: ghcr.io/future-re/newscanmem:latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure project
+        run: |
+          cmake -S . -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Debug \
+            -DCMAKE_CXX_COMPILER=clang++-20 \
+            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+            -DBUILD_TESTING=ON
+
+      - name: Build project
+        run: cmake --build build --parallel
+
+      - name: Check identifier naming
+        run: |
+          run-clang-tidy-20 \
+            -p build \
+            -checks='-*,readability-identifier-naming' \
+            -warnings-as-errors='readability-identifier-naming' \
+            -header-filter='^(.*[/\\])?(include|src|test|tests)[/\\].*'
