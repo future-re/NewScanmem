@@ -1,5 +1,10 @@
 #include "newscanmem/cli/commands/pid.hpp"
 
+#include <charconv>
+#include <filesystem>
+
+#include "newscanmem/ui/show_message.hpp"
+
 namespace cli::commands {
 PidCommand::PidCommand(SessionState& session) : m_session(&session) {}
 auto PidCommand::getName() const -> std::string_view { return "pid"; }
