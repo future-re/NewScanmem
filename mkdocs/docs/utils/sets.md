@@ -4,10 +4,10 @@
 
 `sets` 模块为 NewScanmem 项目提供集合操作和解析工具。它包括一个用于管理整数集合的 `Set` 类，以及一个强大的集合表达式解析器，支持范围、十六进制/十进制数字和取反操作。
 
-## 模块结构
+## 头文件
 
 ```cpp
-export module sets;
+#include "newscanmem/utils/sets.hpp"
 ```
 
 ## 依赖项
@@ -82,7 +82,7 @@ constexpr auto inc_arr_sz = [](size_t** valarr, size_t* arr_maxsz, size_t maxsz)
 ### 基本集合解析
 
 ```cpp
-import sets;
+#include "newscanmem/utils/sets.hpp"
 
 Set mySet;
 bool success = parse_uintset("1,2,3,4,5", mySet, 100);

@@ -1,8 +1,8 @@
 # Source layout
 
-The supported build consumes the traditional headers under
-`include/newscanmem/` and the ordinary translation unit `newscanmem.cpp`.
+The build consumes the traditional headers under
+`include/newscanmem/` and the ordinary translation units under `src/`.
 
-The historical `.cppm` files in this directory are retained as a recoverable
-reference for the migration; they are not listed in CMake and are not compiled.
-Do not add new implementation changes there.
+- `src/` contains `.cpp` implementation files
+- `include/newscanmem/` contains `.hpp` header files
+- Headers are organized by module (app, cli, core, scan, ui, utils, value)

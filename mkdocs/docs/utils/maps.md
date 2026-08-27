@@ -4,10 +4,10 @@
 
 Maps 模块提供读取和解析 Linux `/proc/[pid]/maps` 文件的功能，用于提取进程内存区域信息。这是一个现代化的 C++20 实现，用类型安全、符合 RAII 的接口替代了传统的 C 代码。
 
-## 模块结构
+## 头文件
 
 ```cpp
-import maps;
+#include "newscanmem/core/maps.hpp"
 ```
 
 ## 核心组件
@@ -94,7 +94,7 @@ struct Region {
 ### 基本用法
 
 ```cpp
-import maps;
+#include "newscanmem/core/maps.hpp"
 
 // 读取进程的所有内存区域
 auto result = maps::readProcessMaps(1234);
@@ -246,7 +246,7 @@ for (const auto& region : *regions) {
 
 ```cpp
 #include <iostream>
-import maps;
+#include "newscanmem/core/maps.hpp"
 
 int main() {
     pid_t target_pid = 1234; // 替换为实际 PID

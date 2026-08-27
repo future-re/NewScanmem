@@ -37,7 +37,7 @@ constexpr T littleEndianToHost(T value) noexcept; // 对称操作
 ## 使用示例
 
 ```cpp
-import utils.endianness;
+#include "newscanmem/utils/endianness.hpp"
 
 // 字节交换
 std::uint32_t v = 0x12345678u;
