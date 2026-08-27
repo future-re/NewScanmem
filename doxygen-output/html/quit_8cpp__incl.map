@@ -1,34 +1,25 @@
 <map id="src/cli/commands/quit.cpp" name="src/cli/commands/quit.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="373,5,565,31"/>
-<area shape="rect" id="Node000002" href="$quit_8hpp.html" title="Quit command implementation" alt="" coords="365,79,573,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="472,31,472,65,467,65,467,31"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="413,255,496,280"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="470,119,460,241,454,241,465,119"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="520,255,579,280"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="481,118,522,206,540,242,535,244,518,208,476,120"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="291,255,389,280"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="457,121,359,246,355,242,452,117"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="943,255,1006,280"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="574,114,672,135,774,164,869,205,945,245,942,250,866,210,772,169,671,140,573,119"/>
-<area shape="rect" id="Node000007" href="$command_8hpp.html" title="Command pattern base classes and registry for CLI" alt="" coords="532,174,761,199"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="509,116,612,166,610,170,507,121"/>
-<area shape="rect" id="Node000011" href="$show__message_8hpp.html" title=" " alt="" coords="143,167,310,207"/>
-<area shape="poly" id="edge14_Node000002_Node000011" title=" " alt="" coords="417,121,293,165,292,160,415,116"/>
-<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="620,202,496,252,494,247,618,197"/>
-<area shape="poly" id="edge10_Node000007_Node000004" title=" " alt="" coords="634,202,576,248,573,244,631,197"/>
-<area shape="poly" id="edge11_Node000007_Node000005" title=" " alt="" coords="603,202,399,254,397,249,601,197"/>
-<area shape="poly" id="edge13_Node000007_Node000006" title=" " alt="" coords="698,197,931,252,929,257,697,202"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="603,255,669,280"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="648,200,642,241,637,240,642,199"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="693,255,771,280"/>
-<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="661,198,711,243,707,247,657,201"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="795,255,919,280"/>
-<area shape="poly" id="edge12_Node000007_Node000010" title=" " alt="" coords="678,197,815,247,813,252,676,202"/>
-<area shape="poly" id="edge18_Node000011_Node000005" title=" " alt="" coords="256,205,313,244,310,249,253,209"/>
-<area shape="rect" id="Node000012" title=" " alt="" coords="5,255,72,280"/>
-<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="183,209,80,252,78,247,181,204"/>
-<area shape="rect" id="Node000013" title=" " alt="" coords="96,255,163,280"/>
-<area shape="poly" id="edge16_Node000011_Node000013" title=" " alt="" coords="205,209,156,248,153,244,201,205"/>
-<area shape="rect" id="Node000014" title=" " alt="" coords="187,255,267,280"/>
-<area shape="poly" id="edge17_Node000011_Node000014" title=" " alt="" coords="229,207,229,241,224,241,224,207"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="101,5,293,31"/>
+<area shape="rect" id="Node000002" href="$quit_8hpp.html" title="Quit command implementation" alt="" coords="93,79,301,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="200,31,200,65,195,65,195,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,240,88,265"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="180,121,70,232,66,228,176,117"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="112,240,171,265"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="193,120,153,228,148,226,188,118"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="195,240,293,265"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="205,118,225,191,237,226,232,228,220,193,199,120"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="657,240,719,265"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="291,116,382,137,477,164,572,199,651,232,649,237,570,204,475,169,380,142,290,121"/>
+<area shape="rect" id="Node000007" href="$command_8hpp.html" title="Command pattern base classes and registry for CLI" alt="" coords="235,167,464,192"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="235,116,316,158,313,162,233,121"/>
+<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="301,195,102,241,101,236,300,189"/>
+<area shape="poly" id="edge10_Node000007_Node000004" title=" " alt="" coords="317,195,185,239,183,234,315,189"/>
+<area shape="poly" id="edge11_Node000007_Node000005" title=" " alt="" coords="334,194,274,235,271,230,331,190"/>
+<area shape="poly" id="edge13_Node000007_Node000006" title=" " alt="" coords="412,189,644,237,642,242,411,195"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="317,240,382,265"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="352,192,352,226,347,226,347,192"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="407,240,484,265"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="366,190,420,229,417,234,363,194"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="509,240,633,265"/>
+<area shape="poly" id="edge12_Node000007_Node000010" title=" " alt="" coords="386,189,523,233,521,238,384,195"/>
 </map>
