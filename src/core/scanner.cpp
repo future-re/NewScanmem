@@ -17,6 +17,7 @@ auto Scanner::filter(const ScanOptions& options,
             .matchCount = 0,
             .success = false,
             .error = "No existing matches to filter. Run snapshot() first."};
+    invalidateMatchCount();
     const auto stats =
         filterMatches(m_pid, options, value ? &*value : nullptr, m_matches);
     if (!stats)
@@ -48,21 +49,34 @@ auto Scanner::getMatches() const -> const scan::MatchesAndOldValuesArray& {
     return m_matches;
 }
 auto Scanner::getMatches() -> scan::MatchesAndOldValuesArray& {
+    invalidateMatchCount();
     return m_matches;
 }
-void Scanner::clearMatches() { m_matches.swaths.clear(); }
+void Scanner::clearMatches() {
+    m_matches.swaths.clear();
+    m_matchCountCache = 0;
+}
 void Scanner::reset() {
     clearMatches();
     m_history.clear();
 }
 auto Scanner::getMatchCount() const -> std::size_t {
+    if (m_matchCountCache) return *m_matchCountCache;
     std::size_t count = 0;
     for (const auto& swath : m_matches.swaths)
         for (const auto& element : swath.data)
             if (element.matchInfo != MatchFlags::EMPTY) ++count;
+    m_matchCountCache = count;
     return count;
 }
-auto Scanner::hasMatches() const -> bool { return getMatchCount() != 0; }
+auto Scanner::hasMatches() const -> bool {
+    if (m_matchCountCache) return *m_matchCountCache != 0;
+    for (const auto& swath : m_matches.swaths)
+        for (const auto& element : swath.data)
+            if (element.matchInfo != MatchFlags::EMPTY) return true;
+    m_matchCountCache = 0;
+    return false;
+}
 auto Scanner::getPid() const -> pid_t { return m_pid; }
 auto Scanner::getLastDataType() const -> std::optional<ScanDataType> {
     return m_lastDataType;
@@ -71,6 +85,7 @@ auto Scanner::doScan(const ScanOptions& options,
                      const std::optional<UserValue>& value,
                      const bool save) -> ScannerResult {
     m_lastDataType = options.dataType;
+    invalidateMatchCount();
     const auto result = runScanParallel(
         m_pid, options, value ? &*value : nullptr, m_matches, nullptr);
     if (!result)
@@ -97,5 +112,7 @@ void Scanner::pruneEmptySwaths() {
             });
         });
     m_matches.swaths.erase(first, last);
+    invalidateMatchCount();
 }
+void Scanner::invalidateMatchCount() noexcept { m_matchCountCache.reset(); }
 }  // namespace core
