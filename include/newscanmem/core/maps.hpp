@@ -39,25 +39,13 @@ struct Region {
     void* loadAddr{};
     std::string filename;
     std::size_t id{};
-    [[nodiscard]] auto isReadable() const noexcept -> bool {
-        return flags.read;
-    }
-    [[nodiscard]] auto isWritable() const noexcept -> bool {
-        return flags.write;
-    }
-    [[nodiscard]] auto isExecutable() const noexcept -> bool {
-        return flags.exec;
-    }
-    [[nodiscard]] auto isShared() const noexcept -> bool {
-        return flags.shared;
-    }
-    [[nodiscard]] auto isPrivate() const noexcept -> bool {
-        return flags.exclusive;
-    }
+    [[nodiscard]] auto isReadable() const noexcept -> bool { return flags.read; }
+    [[nodiscard]] auto isWritable() const noexcept -> bool { return flags.write; }
+    [[nodiscard]] auto isExecutable() const noexcept -> bool { return flags.exec; }
+    [[nodiscard]] auto isShared() const noexcept -> bool { return flags.shared; }
+    [[nodiscard]] auto isPrivate() const noexcept -> bool { return flags.exclusive; }
     [[nodiscard]] auto asSpan() const noexcept
-        -> std::pair<void*, std::size_t> {
-        return {start, size};
-    }
+        -> std::pair<void*, std::size_t> { return {start, size}; }
     [[nodiscard]] auto contains(void* address) const noexcept -> bool {
         const auto begin = std::bit_cast<std::uintptr_t>(start);
         const auto value = std::bit_cast<std::uintptr_t>(address);
@@ -75,7 +63,7 @@ class MapsReader {
         -> std::expected<std::vector<Region>, Error>;
 #if !defined(NDEBUG) || defined(ENABLE_TEST_API)
     [[nodiscard]] static auto parseMapsFromStream(
-        std::istream& stream, const std::string& exe_name,
+        std::istream& stream, const std::string& exeName,
         RegionScanLevel level = RegionScanLevel::ALL) -> std::vector<Region>;
 #endif
    private:
@@ -84,23 +72,23 @@ class MapsReader {
         RegionScanLevel level) -> std::vector<Region>;
     static void updateRegionState(
         unsigned long start, unsigned long end, char exec,
-        const std::string& filename, const std::string& exe_name,
-        unsigned int& code_regions, unsigned int& exe_regions,
-        unsigned long& previous_end, unsigned long& load_address,
-        unsigned long& executable_load, bool& is_executable,
-        std::string& binary_name);
+        const std::string& filename, const std::string& exeName,
+        unsigned int& codeRegions, unsigned int& exeRegions,
+        unsigned long& previousEnd, unsigned long& loadAddress,
+        unsigned long& executableLoad, bool& isExecutable,
+        std::string& binaryName);
     [[nodiscard]] static auto determineRegionType(
-        bool is_executable, unsigned int code_regions,
+        bool isExecutable, unsigned int codeRegions,
         const std::string& filename) -> RegionType;
     [[nodiscard]] static auto regionUsefulForLevel(
         RegionType type, const std::string& filename,
-        const std::string& exe_name, RegionScanLevel level) -> bool;
+        const std::string& exeName, RegionScanLevel level) -> bool;
     [[nodiscard]] static auto parseMapLine(
-        const std::string& line, const std::string& exe_name,
-        unsigned int& code_regions, unsigned int& exe_regions,
-        unsigned long& previous_end, unsigned long& load_address,
-        unsigned long& executable_load, bool& is_executable,
-        std::string& binary_name,
+        const std::string& line, const std::string& exeName,
+        unsigned int& codeRegions, unsigned int& exeRegions,
+        unsigned long& previousEnd, unsigned long& loadAddress,
+        unsigned long& executableLoad, bool& isExecutable,
+        std::string& binaryName,
         RegionScanLevel level) -> std::optional<Region>;
 };
 [[nodiscard]] auto readProcessMaps(pid_t pid,

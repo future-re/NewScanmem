@@ -10,15 +10,16 @@
 namespace core {
 namespace {
 struct ParseState {
-    unsigned int code_regions{};
-    unsigned int exe_regions{};
-    unsigned long previous_end{};
-    unsigned long load_address{};
-    unsigned long executable_load{};
-    bool is_executable{};
-    std::string binary_name;
+    unsigned int codeRegions{};
+    unsigned int exeRegions{};
+    unsigned long previousEnd{};
+    unsigned long loadAddress{};
+    unsigned long executableLoad{};
+    bool isExecutable{};
+    std::string binaryName;
 };
 }  // namespace
+
 auto MapsReader::parseAll(std::istream& stream, const std::string& executable,
                           const RegionScanLevel level) -> std::vector<Region> {
     std::vector<Region> result;
@@ -26,41 +27,39 @@ auto MapsReader::parseAll(std::istream& stream, const std::string& executable,
     ParseState state;
     while (std::getline(stream, line)) {
         if (auto region = parseMapLine(
-                line, executable, state.code_regions, state.exe_regions,
-                state.previous_end, state.load_address, state.executable_load,
-                state.is_executable, state.binary_name, level)) {
+                line, executable, state.codeRegions, state.exeRegions,
+                state.previousEnd, state.loadAddress, state.executableLoad,
+                state.isExecutable, state.binaryName, level)) {
             region->id = result.size();
             result.push_back(std::move(*region));
         }
     }
     return result;
 }
+
 auto MapsReader::readProcessMaps(const pid_t pid, const RegionScanLevel level)
     -> std::expected<std::vector<Region>, Error> {
-    const auto maps_path =
+    const auto mapsPath =
         std::filesystem::path{"/proc"} / std::to_string(pid) / "maps";
-    const auto executable_path =
+    const auto executablePath =
         std::filesystem::path{"/proc"} / std::to_string(pid) / "exe";
-    if (!std::filesystem::exists(maps_path))
+    if (!std::filesystem::exists(mapsPath))
         return std::unexpected(Error{
-            .message =
-                std::format("Maps file {} does not exist", maps_path.string()),
-            .code =
-                std::make_error_code(std::errc::no_such_file_or_directory)});
-    std::ifstream maps{maps_path};
+            .message = std::format("Maps file {} does not exist", mapsPath.string()),
+            .code = std::make_error_code(std::errc::no_such_file_or_directory)});
+    std::ifstream maps{mapsPath};
     if (!maps)
         return std::unexpected(Error{
-            .message =
-                std::format("Failed to open maps file {}", maps_path.string()),
+            .message = std::format("Failed to open maps file {}", mapsPath.string()),
             .code = std::make_error_code(std::errc::permission_denied)});
     std::string executable;
-    if (std::filesystem::exists(executable_path)) try {
-            executable =
-                std::filesystem::read_symlink(executable_path).string();
+    if (std::filesystem::exists(executablePath)) try {
+            executable = std::filesystem::read_symlink(executablePath).string();
         } catch (const std::filesystem::filesystem_error&) {
         }
     return parseAll(maps, executable, level);
 }
+
 #if !defined(NDEBUG) || defined(ENABLE_TEST_API)
 auto MapsReader::parseMapsFromStream(
     std::istream& stream, const std::string& executable,
@@ -68,55 +67,56 @@ auto MapsReader::parseMapsFromStream(
     return parseAll(stream, executable, level);
 }
 #endif
+
 void MapsReader::updateRegionState(
     const unsigned long start, const unsigned long end, const char executable,
-    const std::string& filename, const std::string& exe_name,
-    unsigned int& code_regions, unsigned int& exe_regions,
-    unsigned long& previous_end, unsigned long& load_address,
-    unsigned long& executable_load, bool& is_executable,
-    std::string& binary_name) {
-    if (code_regions > 0) {
+    const std::string& filename, const std::string& exeName,
+    unsigned int& codeRegions, unsigned int& exeRegions,
+    unsigned long& previousEnd, unsigned long& loadAddress,
+    unsigned long& executableLoad, bool& isExecutable,
+    std::string& binaryName) {
+    if (codeRegions > 0) {
         if (executable == 'x' ||
-            (filename != binary_name &&
-             (!filename.empty() || start != previous_end)) ||
-            code_regions >= 4) {
-            code_regions = 0;
-            is_executable = false;
-            if (exe_regions > 1) exe_regions = 0;
+            (filename != binaryName && (!filename.empty() || start != previousEnd)) ||
+            codeRegions >= 4) {
+            codeRegions = 0;
+            isExecutable = false;
+            if (exeRegions > 1) exeRegions = 0;
         } else {
-            ++code_regions;
-            if (is_executable) ++exe_regions;
+            ++codeRegions;
+            if (isExecutable) ++exeRegions;
         }
     }
-    if (code_regions == 0) {
+    if (codeRegions == 0) {
         if (executable == 'x' && !filename.empty()) {
-            ++code_regions;
-            if (filename == exe_name) {
-                exe_regions = 1;
-                executable_load = start;
-                is_executable = true;
+            ++codeRegions;
+            if (filename == exeName) {
+                exeRegions = 1;
+                executableLoad = start;
+                isExecutable = true;
             }
-            binary_name = filename;
-        } else if (exe_regions == 1 && !filename.empty() &&
-                   filename == exe_name) {
-            code_regions = ++exe_regions;
-            load_address = executable_load;
-            is_executable = true;
-            binary_name = filename;
+            binaryName = filename;
+        } else if (exeRegions == 1 && !filename.empty() && filename == exeName) {
+            codeRegions = ++exeRegions;
+            loadAddress = executableLoad;
+            isExecutable = true;
+            binaryName = filename;
         }
-        if (exe_regions < 2) load_address = start;
+        if (exeRegions < 2) loadAddress = start;
     }
-    previous_end = end;
+    previousEnd = end;
 }
+
 auto MapsReader::determineRegionType(
-    const bool executable, const unsigned int code_regions,
+    const bool executable, const unsigned int codeRegions,
     const std::string& filename) -> RegionType {
     if (executable) return RegionType::EXE;
-    if (code_regions > 0) return RegionType::CODE;
+    if (codeRegions > 0) return RegionType::CODE;
     if (filename == "[heap]") return RegionType::HEAP;
     if (filename == "[stack]") return RegionType::STACK;
     return RegionType::UNKNOW;
 }
+
 auto MapsReader::regionUsefulForLevel(const RegionType type,
                                       const std::string& filename,
                                       const std::string& executable,
@@ -134,12 +134,13 @@ auto MapsReader::regionUsefulForLevel(const RegionType type,
     }
     return false;
 }
+
 auto MapsReader::parseMapLine(
     const std::string& line, const std::string& executable,
-    unsigned int& code_regions, unsigned int& exe_regions,
-    unsigned long& previous_end, unsigned long& load_address,
-    unsigned long& executable_load, bool& is_executable,
-    std::string& binary_name,
+    unsigned int& codeRegions, unsigned int& exeRegions,
+    unsigned long& previousEnd, unsigned long& loadAddress,
+    unsigned long& executableLoad, bool& isExecutable,
+    std::string& binaryName,
     const RegionScanLevel level) -> std::optional<Region> {
     unsigned long start{}, end{};
     char read{}, write{}, execute{}, cow{};
@@ -161,12 +162,11 @@ auto MapsReader::parseMapLine(
             filename.erase(0, first);
     }
     if (input.fail()) return std::nullopt;
-    updateRegionState(start, end, execute, filename, executable, code_regions,
-                      exe_regions, previous_end, load_address, executable_load,
-                      is_executable, binary_name);
+    updateRegionState(start, end, execute, filename, executable, codeRegions,
+                      exeRegions, previousEnd, loadAddress, executableLoad,
+                      isExecutable, binaryName);
     if (read != 'r' || end == start) return std::nullopt;
-    const auto type =
-        determineRegionType(is_executable, code_regions, filename);
+    const auto type = determineRegionType(isExecutable, codeRegions, filename);
     if (!regionUsefulForLevel(type, filename, executable, level) ||
         (level != RegionScanLevel::ALL && write != 'w'))
         return std::nullopt;
@@ -174,7 +174,7 @@ auto MapsReader::parseMapLine(
     result.start = std::bit_cast<void*>(start);
     result.size = end - start;
     result.type = type;
-    result.loadAddr = std::bit_cast<void*>(load_address);
+    result.loadAddr = std::bit_cast<void*>(loadAddress);
     result.filename = std::move(filename);
     result.flags = {.read = true,
                     .write = write == 'w',
@@ -183,6 +183,7 @@ auto MapsReader::parseMapLine(
                     .exclusive = cow == 'p'};
     return result;
 }
+
 auto readProcessMaps(const pid_t pid, const RegionScanLevel level)
     -> std::expected<std::vector<Region>, MapsReader::Error> {
     return MapsReader::readProcessMaps(pid, level);
