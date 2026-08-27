@@ -39,18 +39,17 @@ auto ProcMemIO::read(void* address, const std::span<std::uint8_t> buffer) const
         static_cast<off_t>(std::bit_cast<std::uintptr_t>(address));
     std::size_t total = 0;
     while (total < buffer.size()) {
-        const auto read_size =
+        const auto readSize =
             ::pread(m_fd, buffer.data() + total, buffer.size() - total,
                     offset + static_cast<off_t>(total));
-        if (read_size < 0) {
-            if (errno == EIO || errno == EFAULT || errno == EPERM ||
-                errno == EACCES)
-                break;
+        if (readSize < 0) {
+            if (errno == EINTR) continue;
+            if (errno == EIO || errno == EFAULT) break;
             return std::unexpected(
                 std::format("pread error: {}", std::strerror(errno)));
         }
-        if (read_size == 0) break;
-        total += static_cast<std::size_t>(read_size);
+        if (readSize == 0) break;
+        total += static_cast<std::size_t>(readSize);
     }
     return total;
 }
@@ -69,9 +68,11 @@ auto ProcMemIO::write(void* address, const std::span<const std::uint8_t> buffer)
         const auto written =
             ::pwrite(m_fd, buffer.data() + total, buffer.size() - total,
                      offset + static_cast<off_t>(total));
-        if (written < 0)
+        if (written < 0) {
+            if (errno == EINTR) continue;
             return std::unexpected(
                 std::format("pwrite error: {}", std::strerror(errno)));
+        }
         if (written == 0) break;
         total += static_cast<std::size_t>(written);
     }
