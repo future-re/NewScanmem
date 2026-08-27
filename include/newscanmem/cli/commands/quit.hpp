@@ -11,7 +11,6 @@
 #include <vector>
 
 #include "newscanmem/cli/command.hpp"
-#include "newscanmem/ui/show_message.hpp"
 
 namespace cli::commands {
 

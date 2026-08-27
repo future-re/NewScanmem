@@ -10,7 +10,6 @@
 #include <optional>
 #include <string>
 
-#include "newscanmem/core/maps.hpp"
 #include "newscanmem/core/scanner.hpp"
 #include "newscanmem/scan/types.hpp"
 #include "newscanmem/value/core.hpp"

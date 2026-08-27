@@ -11,4 +11,6 @@
   "editor.tabSize": 4,
   "cSpell.enabled": false,
   "files.autoSave": "afterDelay",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "xaver.clang-format",
 }

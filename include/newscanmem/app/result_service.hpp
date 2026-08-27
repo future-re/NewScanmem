@@ -10,12 +10,10 @@
 #include <bit>
 #include <cstddef>
 #include <expected>
-#include <optional>
 #include <string>
 #include <vector>
 
 #include "newscanmem/core/match.hpp"
-#include "newscanmem/core/region_classifier.hpp"
 #include "newscanmem/core/scanner.hpp"
 #include "newscanmem/utils/endianness.hpp"
 

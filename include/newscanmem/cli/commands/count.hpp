@@ -12,8 +12,6 @@
 
 #include "newscanmem/cli/command.hpp"
 #include "newscanmem/cli/session.hpp"
-#include "newscanmem/ui/show_message.hpp"
-
 namespace cli::commands {
 
 class CountCommand : public Command {

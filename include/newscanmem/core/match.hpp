@@ -5,7 +5,6 @@
  * @brief Match data structures and collection logic
  */
 
-#include <bit>
 #include <cstdint>
 #include <optional>
 #include <string>
@@ -15,7 +14,6 @@
 #include "newscanmem/core/region_filter.hpp"
 #include "newscanmem/scan/match_storage.hpp"
 #include "newscanmem/scan/types.hpp"
-#include "newscanmem/value/flags.hpp"
 
 namespace core {
 
@@ -76,15 +74,15 @@ class MatchCollector {
 
    private:
     [[nodiscard]] static auto getActualValueSize(
-        const scan::OldValueAndMatchInfo& cell, size_t default_value_size,
-        std::optional<ScanDataType> data_type) -> size_t;
+        const scan::OldValueAndMatchInfo& cell, size_t defaultValueSize,
+        std::optional<ScanDataType> dataType) -> size_t;
 
     [[nodiscard]] static auto extractValueBytes(
-        const scan::MatchesAndOldValuesSwath& swath, size_t start_index,
+        const scan::MatchesAndOldValuesSwath& swath, size_t startIndex,
         size_t count) -> std::vector<std::uint8_t>;
 
     [[nodiscard]] auto getClassifiedRegion(
-        std::uintptr_t address, bool collect_region) const -> std::string;
+        std::uintptr_t address, bool collectRegion) const -> std::string;
     std::optional<RegionClassifier> m_classifier;
 };
 

@@ -5,17 +5,14 @@
  * @brief PID command implementation for setting target process
  */
 
-#include <charconv>
 #include <cstdlib>
 #include <expected>
-#include <filesystem>
 #include <string>
 #include <string_view>
 #include <vector>
 
 #include "newscanmem/cli/command.hpp"
 #include "newscanmem/cli/session.hpp"
-#include "newscanmem/ui/show_message.hpp"
 
 namespace cli::commands {
 
