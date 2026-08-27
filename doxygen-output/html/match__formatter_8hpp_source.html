@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NewScanmem: include/newscanmem/core/match_formatter.hpp 源文件</title>
+<title>memseek: include/newscanmem/core/match_formatter.hpp 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">NewScanmem
+   <div id="projectname">memseek
    </div>
    <div id="projectbrief">Modern C++20 Memory Scanner</div>
   </td>
@@ -110,20 +110,20 @@ $(document).ready(function(){initNavTree('match__formatter_8hpp_source.html','')
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="match_8hpp.html">newscanmem/core/match.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="show__message_8hpp.html">newscanmem/ui/show_message.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">newscanmem/scan/types.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">newscanmem/scan/types.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="show__message_8hpp.html">newscanmem/ui/show_message.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacecore.html">core</a> {</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">// NOLINTNEXTLINE(readability-function-cognitive-complexity)</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>[[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="namespacecore.html#aeaf1c1daf217dcb0e2257985c03b2196">formatValueByType</a>(<span class="keyword">const</span> std::vector&lt;std::uint8_t&gt;&amp; value_bytes,</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                                     std::optional&lt;ScanDataType&gt; data_type, <span class="keywordtype">bool</span> big_endian)</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    -&gt; std::string;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>[[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="namespacecore.html#aeaf1c1daf217dcb0e2257985c03b2196">formatValueByType</a>(</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">const</span> std::vector&lt;std::uint8_t&gt;&amp; value_bytes,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    std::optional&lt;ScanDataType&gt; data_type, <span class="keywordtype">bool</span> big_endian) -&gt; std::string;</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
 <div class="foldopen" id="foldopen00038" data-start="{" data-end="};">
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="structcore_1_1FormatOptions.html">   38</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcore_1_1FormatOptions.html">FormatOptions</a> {</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structcore_1_1FormatOptions.html#aa2dd4d997776a8ca5d4ae8aeb647750e">   39</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structcore_1_1FormatOptions.html#aa2dd4d997776a8ca5d4ae8aeb647750e">showRegion</a> = <span class="keyword">true</span>;         <span class="comment">// 是否显示区域信息</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structcore_1_1FormatOptions.html#a206f850799bfb73d4f3ad1187a74d558">   40</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structcore_1_1FormatOptions.html#a206f850799bfb73d4f3ad1187a74d558">showIndex</a> = <span class="keyword">true</span>;          <span class="comment">// 是否显示索引</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structcore_1_1FormatOptions.html#aa2dd4d997776a8ca5d4ae8aeb647750e">   39</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structcore_1_1FormatOptions.html#aa2dd4d997776a8ca5d4ae8aeb647750e">showRegion</a> = <span class="keyword">true</span>;  <span class="comment">// 是否显示区域信息</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structcore_1_1FormatOptions.html#a206f850799bfb73d4f3ad1187a74d558">   40</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structcore_1_1FormatOptions.html#a206f850799bfb73d4f3ad1187a74d558">showIndex</a> = <span class="keyword">true</span>;   <span class="comment">// 是否显示索引</span></div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="structcore_1_1FormatOptions.html#ab2bd7194fe9bac1ff74efb59287986e8">   41</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structcore_1_1FormatOptions.html#ab2bd7194fe9bac1ff74efb59287986e8">bigEndianDisplay</a> = <span class="keyword">false</span>;  <span class="comment">// 是否按大端显示数值（与读取端序一致）</span></div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="structcore_1_1FormatOptions.html#a6853322d8c9011695ce0c48de76ea396">   42</a></span>    std::optional&lt;ScanDataType&gt; <a class="code hl_variable" href="structcore_1_1FormatOptions.html#a6853322d8c9011695ce0c48de76ea396">dataType</a>;  <span class="comment">// 扫描数据类型（用于按类型显示值）</span></div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>};</div>
@@ -132,18 +132,18 @@ $(document).ready(function(){initNavTree('match__formatter_8hpp_source.html','')
 <div class="foldopen" id="foldopen00049" data-start="{" data-end="};">
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classcore_1_1MatchFormatter.html">   49</a></span><span class="keyword">class </span><a class="code hl_class" href="classcore_1_1MatchFormatter.html">MatchFormatter</a> {</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    [[nodiscard]] <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1MatchFormatter.html#a436e50db024c06bed408861c338be4d9">format</a>(<span class="keyword">const</span> std::vector&lt;MatchEntry&gt;&amp; entries,</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                                     std::size_t total_count, <span class="keyword">const</span> <a class="code hl_struct" href="structcore_1_1FormatOptions.html">FormatOptions</a>&amp; options = {})</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        -&gt; std::vector&lt;std::string&gt;;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    [[nodiscard]] <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1MatchFormatter.html#a436e50db024c06bed408861c338be4d9">format</a>(</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keyword">const</span> std::vector&lt;MatchEntry&gt;&amp; entries, std::size_t total_count,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keyword">const</span> <a class="code hl_struct" href="structcore_1_1FormatOptions.html">FormatOptions</a>&amp; options = {}) -&gt; std::vector&lt;std::string&gt;;</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>};</div>
 </div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>}  <span class="comment">// namespace core</span></div>
 <div class="ttc" id="aclasscore_1_1MatchFormatter_html"><div class="ttname"><a href="classcore_1_1MatchFormatter.html">core::MatchFormatter</a></div><div class="ttdoc">Formats and displays match entries</div><div class="ttdef"><b>Definition</b> match_formatter.hpp:49</div></div>
-<div class="ttc" id="aclasscore_1_1MatchFormatter_html_a436e50db024c06bed408861c338be4d9"><div class="ttname"><a href="classcore_1_1MatchFormatter.html#a436e50db024c06bed408861c338be4d9">core::MatchFormatter::format</a></div><div class="ttdeci">static auto format(const std::vector&lt; MatchEntry &gt; &amp;entries, std::size_t total_count, const FormatOptions &amp;options={}) -&gt; std::vector&lt; std::string &gt;</div><div class="ttdoc">Format match entries into a list of strings</div><div class="ttdef"><b>Definition</b> match_formatter.cpp:12</div></div>
+<div class="ttc" id="aclasscore_1_1MatchFormatter_html_a436e50db024c06bed408861c338be4d9"><div class="ttname"><a href="classcore_1_1MatchFormatter.html#a436e50db024c06bed408861c338be4d9">core::MatchFormatter::format</a></div><div class="ttdeci">static auto format(const std::vector&lt; MatchEntry &gt; &amp;entries, std::size_t total_count, const FormatOptions &amp;options={}) -&gt; std::vector&lt; std::string &gt;</div><div class="ttdoc">Format match entries into a list of strings</div><div class="ttdef"><b>Definition</b> match_formatter.cpp:59</div></div>
 <div class="ttc" id="amatch_8hpp_html"><div class="ttname"><a href="match_8hpp.html">match.hpp</a></div><div class="ttdoc">Match data structures and collection logic</div></div>
 <div class="ttc" id="anamespacecore_html"><div class="ttname"><a href="namespacecore.html">core</a></div><div class="ttdef"><b>Definition</b> maps.hpp:17</div></div>
-<div class="ttc" id="anamespacecore_html_aeaf1c1daf217dcb0e2257985c03b2196"><div class="ttname"><a href="namespacecore.html#aeaf1c1daf217dcb0e2257985c03b2196">core::formatValueByType</a></div><div class="ttdeci">auto formatValueByType(const std::vector&lt; std::uint8_t &gt; &amp;value_bytes, std::optional&lt; ScanDataType &gt; data_type, bool big_endian) -&gt; std::string</div><div class="ttdoc">Format value according to data type</div><div class="ttdef"><b>Definition</b> match_formatter.cpp:7</div></div>
+<div class="ttc" id="anamespacecore_html_aeaf1c1daf217dcb0e2257985c03b2196"><div class="ttname"><a href="namespacecore.html#aeaf1c1daf217dcb0e2257985c03b2196">core::formatValueByType</a></div><div class="ttdeci">auto formatValueByType(const std::vector&lt; std::uint8_t &gt; &amp;value_bytes, std::optional&lt; ScanDataType &gt; data_type, bool big_endian) -&gt; std::string</div><div class="ttdoc">Format value according to data type</div><div class="ttdef"><b>Definition</b> match_formatter.cpp:14</div></div>
 <div class="ttc" id="ashow__message_8hpp_html"><div class="ttname"><a href="show__message_8hpp.html">show_message.hpp</a></div></div>
 <div class="ttc" id="astructcore_1_1FormatOptions_html"><div class="ttname"><a href="structcore_1_1FormatOptions.html">core::FormatOptions</a></div><div class="ttdoc">Options for match formatting and display</div><div class="ttdef"><b>Definition</b> match_formatter.hpp:38</div></div>
 <div class="ttc" id="astructcore_1_1FormatOptions_html_a206f850799bfb73d4f3ad1187a74d558"><div class="ttname"><a href="structcore_1_1FormatOptions.html#a206f850799bfb73d4f3ad1187a74d558">core::FormatOptions::showIndex</a></div><div class="ttdeci">bool showIndex</div><div class="ttdef"><b>Definition</b> match_formatter.hpp:40</div></div>

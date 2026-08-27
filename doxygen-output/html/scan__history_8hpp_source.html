@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NewScanmem: include/newscanmem/core/scan_history.hpp 源文件</title>
+<title>memseek: include/newscanmem/core/scan_history.hpp 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">NewScanmem
+   <div id="projectname">memseek
    </div>
    <div id="projectbrief">Modern C++20 Memory Scanner</div>
   </td>
@@ -134,13 +134,13 @@ $(document).ready(function(){initNavTree('scan__history_8hpp_source.html',''); i
 <div class="ttc" id="aclasscore_1_1ScanHistory_html"><div class="ttname"><a href="classcore_1_1ScanHistory.html">core::ScanHistory</a></div><div class="ttdoc">Manages a fixed-size history of scan results</div><div class="ttdef"><b>Definition</b> scan_history.hpp:20</div></div>
 <div class="ttc" id="aclasscore_1_1ScanHistory_html_a1bad940ad8002a14af1c8698b10bd9a7"><div class="ttname"><a href="classcore_1_1ScanHistory.html#a1bad940ad8002a14af1c8698b10bd9a7">core::ScanHistory::ScanHistory</a></div><div class="ttdeci">ScanHistory()=default</div></div>
 <div class="ttc" id="aclasscore_1_1ScanHistory_html_a333091d05ddb9017c14dab2c365d2e6d"><div class="ttname"><a href="classcore_1_1ScanHistory.html#a333091d05ddb9017c14dab2c365d2e6d">core::ScanHistory::add</a></div><div class="ttdeci">void add(ScanRecord result)</div><div class="ttdoc">Add a new scan result to history</div><div class="ttdef"><b>Definition</b> scan_history.cpp:4</div></div>
-<div class="ttc" id="aclasscore_1_1ScanHistory_html_a679db560a660141d7375d1b86dfdf404"><div class="ttname"><a href="classcore_1_1ScanHistory.html#a679db560a660141d7375d1b86dfdf404">core::ScanHistory::getAll</a></div><div class="ttdeci">auto getAll() const -&gt; const std::deque&lt; ScanRecord &gt; &amp;</div><div class="ttdoc">Get all scan results</div><div class="ttdef"><b>Definition</b> scan_history.cpp:7</div></div>
-<div class="ttc" id="aclasscore_1_1ScanHistory_html_ad77117af8a7feb089b712181d4f0bce4"><div class="ttname"><a href="classcore_1_1ScanHistory.html#ad77117af8a7feb089b712181d4f0bce4">core::ScanHistory::count</a></div><div class="ttdeci">auto count() const -&gt; std::size_t</div><div class="ttdoc">Get number of results in history</div><div class="ttdef"><b>Definition</b> scan_history.cpp:5</div></div>
-<div class="ttc" id="aclasscore_1_1ScanHistory_html_ae703fe35e0030246f4aee0a06968826c"><div class="ttname"><a href="classcore_1_1ScanHistory.html#ae703fe35e0030246f4aee0a06968826c">core::ScanHistory::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdoc">Clear all history</div><div class="ttdef"><b>Definition</b> scan_history.cpp:8</div></div>
-<div class="ttc" id="aclasscore_1_1ScanHistory_html_aeb1a916c928330cc80461c0b689feb31"><div class="ttname"><a href="classcore_1_1ScanHistory.html#aeb1a916c928330cc80461c0b689feb31">core::ScanHistory::get</a></div><div class="ttdeci">auto get(std::size_t index) const -&gt; const ScanRecord *</div><div class="ttdoc">Get a specific scan result by index</div><div class="ttdef"><b>Definition</b> scan_history.cpp:6</div></div>
+<div class="ttc" id="aclasscore_1_1ScanHistory_html_a679db560a660141d7375d1b86dfdf404"><div class="ttname"><a href="classcore_1_1ScanHistory.html#a679db560a660141d7375d1b86dfdf404">core::ScanHistory::getAll</a></div><div class="ttdeci">auto getAll() const -&gt; const std::deque&lt; ScanRecord &gt; &amp;</div><div class="ttdoc">Get all scan results</div><div class="ttdef"><b>Definition</b> scan_history.cpp:12</div></div>
+<div class="ttc" id="aclasscore_1_1ScanHistory_html_ad77117af8a7feb089b712181d4f0bce4"><div class="ttname"><a href="classcore_1_1ScanHistory.html#ad77117af8a7feb089b712181d4f0bce4">core::ScanHistory::count</a></div><div class="ttdeci">auto count() const -&gt; std::size_t</div><div class="ttdoc">Get number of results in history</div><div class="ttdef"><b>Definition</b> scan_history.cpp:8</div></div>
+<div class="ttc" id="aclasscore_1_1ScanHistory_html_ae703fe35e0030246f4aee0a06968826c"><div class="ttname"><a href="classcore_1_1ScanHistory.html#ae703fe35e0030246f4aee0a06968826c">core::ScanHistory::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdoc">Clear all history</div><div class="ttdef"><b>Definition</b> scan_history.cpp:15</div></div>
+<div class="ttc" id="aclasscore_1_1ScanHistory_html_aeb1a916c928330cc80461c0b689feb31"><div class="ttname"><a href="classcore_1_1ScanHistory.html#aeb1a916c928330cc80461c0b689feb31">core::ScanHistory::get</a></div><div class="ttdeci">auto get(std::size_t index) const -&gt; const ScanRecord *</div><div class="ttdoc">Get a specific scan result by index</div><div class="ttdef"><b>Definition</b> scan_history.cpp:9</div></div>
 <div class="ttc" id="anamespacecore_html"><div class="ttname"><a href="namespacecore.html">core</a></div><div class="ttdef"><b>Definition</b> maps.hpp:17</div></div>
-<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition</b> core.hpp:224</div></div>
-<div class="ttc" id="astructScanRecord_html"><div class="ttname"><a href="structScanRecord.html">ScanRecord</a></div><div class="ttdef"><b>Definition</b> types.hpp:160</div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition</b> core.hpp:227</div></div>
+<div class="ttc" id="astructScanRecord_html"><div class="ttname"><a href="structScanRecord.html">ScanRecord</a></div><div class="ttdef"><b>Definition</b> types.hpp:157</div></div>
 <div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

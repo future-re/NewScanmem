@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NewScanmem: include/newscanmem/cli/commands/quit.hpp 源文件</title>
+<title>memseek: include/newscanmem/cli/commands/quit.hpp 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">NewScanmem
+   <div id="projectname">memseek
    </div>
    <div id="projectbrief">Modern C++20 Memory Scanner</div>
   </td>
@@ -120,25 +120,26 @@ $(document).ready(function(){initNavTree('quit_8hpp_source.html',''); initResiza
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1commands_1_1QuitCommand.html#a6263d9647708d447a2afc6b00331614e">getUsage</a>() <span class="keyword">const</span> -&gt; std::string_view <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1commands_1_1QuitCommand.html#aba3bf8ce561572edd8f430c18f0e6daf">getAliases</a>() <span class="keyword">const</span> -&gt; std::vector&lt;std::string_view&gt; <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1commands_1_1QuitCommand.html#adbb0b876d4396e89028744ebadfc475c">validateArgs</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args) <span class="keyword">const</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        -&gt; std::expected&lt;void, std::string&gt; <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1commands_1_1QuitCommand.html#aaa1580b5aecac6463191fe582cacb041">execute</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args)</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        -&gt; std::expected&lt;CommandResult, std::string&gt; <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>};</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1commands_1_1QuitCommand.html#aba3bf8ce561572edd8f430c18f0e6daf">getAliases</a>() <span class="keyword">const</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        -&gt; std::vector&lt;std::string_view&gt; <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1commands_1_1QuitCommand.html#adbb0b876d4396e89028744ebadfc475c">validateArgs</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args) <span class="keyword">const</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        -&gt; std::expected&lt;void, std::string&gt; <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1commands_1_1QuitCommand.html#aaa1580b5aecac6463191fe582cacb041">execute</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args)</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        -&gt; std::expected&lt;CommandResult, std::string&gt; <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>};</div>
 </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>}  <span class="comment">// namespace cli::commands</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>}  <span class="comment">// namespace cli::commands</span></div>
 <div class="ttc" id="aclasscli_1_1Command_html"><div class="ttname"><a href="classcli_1_1Command.html">cli::Command</a></div><div class="ttdoc">Abstract base class for all CLI commands</div><div class="ttdef"><b>Definition</b> command.hpp:32</div></div>
 <div class="ttc" id="aclasscli_1_1commands_1_1QuitCommand_html"><div class="ttname"><a href="classcli_1_1commands_1_1QuitCommand.html">cli::commands::QuitCommand</a></div><div class="ttdoc">Exit the application</div><div class="ttdef"><b>Definition</b> quit.hpp:22</div></div>
-<div class="ttc" id="aclasscli_1_1commands_1_1QuitCommand_html_a6263d9647708d447a2afc6b00331614e"><div class="ttname"><a href="classcli_1_1commands_1_1QuitCommand.html#a6263d9647708d447a2afc6b00331614e">cli::commands::QuitCommand::getUsage</a></div><div class="ttdeci">auto getUsage() const -&gt; std::string_view override</div><div class="ttdoc">Get command usage information</div><div class="ttdef"><b>Definition</b> quit.cpp:6</div></div>
+<div class="ttc" id="aclasscli_1_1commands_1_1QuitCommand_html_a6263d9647708d447a2afc6b00331614e"><div class="ttname"><a href="classcli_1_1commands_1_1QuitCommand.html#a6263d9647708d447a2afc6b00331614e">cli::commands::QuitCommand::getUsage</a></div><div class="ttdeci">auto getUsage() const -&gt; std::string_view override</div><div class="ttdoc">Get command usage information</div><div class="ttdef"><b>Definition</b> quit.cpp:8</div></div>
 <div class="ttc" id="aclasscli_1_1commands_1_1QuitCommand_html_a6ff0b7b19e13e112f3560242eab9fb5a"><div class="ttname"><a href="classcli_1_1commands_1_1QuitCommand.html#a6ff0b7b19e13e112f3560242eab9fb5a">cli::commands::QuitCommand::getDescription</a></div><div class="ttdeci">auto getDescription() const -&gt; std::string_view override</div><div class="ttdoc">Get command description</div><div class="ttdef"><b>Definition</b> quit.cpp:5</div></div>
-<div class="ttc" id="aclasscli_1_1commands_1_1QuitCommand_html_aaa1580b5aecac6463191fe582cacb041"><div class="ttname"><a href="classcli_1_1commands_1_1QuitCommand.html#aaa1580b5aecac6463191fe582cacb041">cli::commands::QuitCommand::execute</a></div><div class="ttdeci">auto execute(const std::vector&lt; std::string &gt; &amp;args) -&gt; std::expected&lt; CommandResult, std::string &gt; override</div><div class="ttdoc">Execute the command</div><div class="ttdef"><b>Definition</b> quit.cpp:9</div></div>
-<div class="ttc" id="aclasscli_1_1commands_1_1QuitCommand_html_aba3bf8ce561572edd8f430c18f0e6daf"><div class="ttname"><a href="classcli_1_1commands_1_1QuitCommand.html#aba3bf8ce561572edd8f430c18f0e6daf">cli::commands::QuitCommand::getAliases</a></div><div class="ttdeci">auto getAliases() const -&gt; std::vector&lt; std::string_view &gt; override</div><div class="ttdoc">Get command aliases</div><div class="ttdef"><b>Definition</b> quit.cpp:7</div></div>
+<div class="ttc" id="aclasscli_1_1commands_1_1QuitCommand_html_aaa1580b5aecac6463191fe582cacb041"><div class="ttname"><a href="classcli_1_1commands_1_1QuitCommand.html#aaa1580b5aecac6463191fe582cacb041">cli::commands::QuitCommand::execute</a></div><div class="ttdeci">auto execute(const std::vector&lt; std::string &gt; &amp;args) -&gt; std::expected&lt; CommandResult, std::string &gt; override</div><div class="ttdoc">Execute the command</div><div class="ttdef"><b>Definition</b> quit.cpp:18</div></div>
+<div class="ttc" id="aclasscli_1_1commands_1_1QuitCommand_html_aba3bf8ce561572edd8f430c18f0e6daf"><div class="ttname"><a href="classcli_1_1commands_1_1QuitCommand.html#aba3bf8ce561572edd8f430c18f0e6daf">cli::commands::QuitCommand::getAliases</a></div><div class="ttdeci">auto getAliases() const -&gt; std::vector&lt; std::string_view &gt; override</div><div class="ttdoc">Get command aliases</div><div class="ttdef"><b>Definition</b> quit.cpp:9</div></div>
 <div class="ttc" id="aclasscli_1_1commands_1_1QuitCommand_html_ad29e934382e6842b1875e353142c1a69"><div class="ttname"><a href="classcli_1_1commands_1_1QuitCommand.html#ad29e934382e6842b1875e353142c1a69">cli::commands::QuitCommand::getName</a></div><div class="ttdeci">auto getName() const -&gt; std::string_view override</div><div class="ttdoc">Get command name</div><div class="ttdef"><b>Definition</b> quit.cpp:4</div></div>
-<div class="ttc" id="aclasscli_1_1commands_1_1QuitCommand_html_adbb0b876d4396e89028744ebadfc475c"><div class="ttname"><a href="classcli_1_1commands_1_1QuitCommand.html#adbb0b876d4396e89028744ebadfc475c">cli::commands::QuitCommand::validateArgs</a></div><div class="ttdeci">auto validateArgs(const std::vector&lt; std::string &gt; &amp;args) const -&gt; std::expected&lt; void, std::string &gt; override</div><div class="ttdoc">Validate command arguments</div><div class="ttdef"><b>Definition</b> quit.cpp:8</div></div>
+<div class="ttc" id="aclasscli_1_1commands_1_1QuitCommand_html_adbb0b876d4396e89028744ebadfc475c"><div class="ttname"><a href="classcli_1_1commands_1_1QuitCommand.html#adbb0b876d4396e89028744ebadfc475c">cli::commands::QuitCommand::validateArgs</a></div><div class="ttdeci">auto validateArgs(const std::vector&lt; std::string &gt; &amp;args) const -&gt; std::expected&lt; void, std::string &gt; override</div><div class="ttdoc">Validate command arguments</div><div class="ttdef"><b>Definition</b> quit.cpp:12</div></div>
 <div class="ttc" id="acommand_8hpp_html"><div class="ttname"><a href="command_8hpp.html">command.hpp</a></div><div class="ttdoc">Command pattern base classes and registry for CLI</div></div>
 <div class="ttc" id="anamespacecli_1_1commands_html"><div class="ttname"><a href="namespacecli_1_1commands.html">cli::commands</a></div><div class="ttdef"><b>Definition</b> count.hpp:17</div></div>
 <div class="ttc" id="ashow__message_8hpp_html"><div class="ttname"><a href="show__message_8hpp.html">show_message.hpp</a></div></div>

@@ -25,7 +25,7 @@
     
     
       
-        <title>并发架构分析 - NewScanmem Documentation</title>
+        <title>并发架构分析 - memseek Documentation</title>
       
     
     
@@ -82,7 +82,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href=".." title="NewScanmem Documentation" class="md-header__button md-logo" aria-label="NewScanmem Documentation" data-md-component="logo">
+    <a href=".." title="memseek Documentation" class="md-header__button md-logo" aria-label="memseek Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -96,7 +96,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            NewScanmem Documentation
+            memseek Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -192,13 +192,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="NewScanmem Documentation" class="md-nav__button md-logo" aria-label="NewScanmem Documentation" data-md-component="logo">
+    <a href=".." title="memseek Documentation" class="md-nav__button md-logo" aria-label="memseek Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    NewScanmem Documentation
+    memseek Documentation
   </label>
   
     <div class="md-nav__source">
@@ -1511,7 +1511,7 @@
 
 
 <h1 id="_1">并发架构设计与分析</h1>
-<p>本文档详细分析了 NewScanmem 在引入并发扫描时面临的挑战，并提出了基于 Map-Reduce 模型的解决方案。</p>
+<p>本文档详细分析了 memseek 在引入并发扫描时面临的挑战，并提出了基于 Map-Reduce 模型的解决方案。</p>
 <h2 id="1">1. 为什么目前的架构不支持并发？</h2>
 <p>目前的 <code>Scanner</code> 和 <code>Engine</code> 设计是单线程的。如果简单地尝试在 <code>runScanInternal</code> 中开启多线程（例如使用 OpenMP），程序将面临两个致命问题：<strong>数据竞争 (Data Race)</strong> 和 <strong>资源竞争 (Resource Contention)</strong>。</p>
 <h3 id="a-data-race">A. 数据竞争 (Data Race)</h3>

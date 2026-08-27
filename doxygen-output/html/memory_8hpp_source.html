@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NewScanmem: include/newscanmem/core/memory.hpp 源文件</title>
+<title>memseek: include/newscanmem/core/memory.hpp 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">NewScanmem
+   <div id="projectname">memseek
    </div>
    <div id="projectbrief">Modern C++20 Memory Scanner</div>
   </td>
@@ -127,28 +127,29 @@ $(document).ready(function(){initNavTree('memory_8hpp_source.html',''); initResi
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
 </div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1MemoryWriter.html#a1b78c4bc08d1a9d6c4c2947813158e15">writeBytes</a>(<span class="keywordtype">void</span>* addr, std::span&lt;const std::uint8_t&gt; data) <span class="keyword">const</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        -&gt; std::expected&lt;std::size_t, std::string&gt;;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1MemoryWriter.html#afa7afc84d7b4ecb90ee60bd8f6227555">writeString</a>(<span class="keywordtype">void</span>* addr, <span class="keyword">const</span> <span class="keywordtype">char</span>* str) <span class="keyword">const</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        -&gt; std::expected&lt;std::size_t, std::string&gt;;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classcore_1_1MemoryWriter.html#a9ebcc6fa02a36252c8e7dcedd3f9a840">   68</a></span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1MemoryWriter.html#a9ebcc6fa02a36252c8e7dcedd3f9a840">getPid</a>() const -&gt; pid_t { <span class="keywordflow">return</span> m_pid; }</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    pid_t m_pid;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>};</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1MemoryWriter.html#a1b78c4bc08d1a9d6c4c2947813158e15">writeBytes</a>(<span class="keywordtype">void</span>* addr,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                                  std::span&lt;const std::uint8_t&gt; data) <span class="keyword">const</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        -&gt; std::expected&lt;std::size_t, std::string&gt;;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1MemoryWriter.html#afa7afc84d7b4ecb90ee60bd8f6227555">writeString</a>(<span class="keywordtype">void</span>* addr, <span class="keyword">const</span> <span class="keywordtype">char</span>* str) <span class="keyword">const</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        -&gt; std::expected&lt;std::size_t, std::string&gt;;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classcore_1_1MemoryWriter.html#a9ebcc6fa02a36252c8e7dcedd3f9a840">   69</a></span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1MemoryWriter.html#a9ebcc6fa02a36252c8e7dcedd3f9a840">getPid</a>() const -&gt; pid_t { <span class="keywordflow">return</span> m_pid; }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    pid_t m_pid;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>};</div>
 </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>}  <span class="comment">// namespace core</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>}  <span class="comment">// namespace core</span></div>
 <div class="ttc" id="aclasscore_1_1MemoryWriter_html"><div class="ttname"><a href="classcore_1_1MemoryWriter.html">core::MemoryWriter</a></div><div class="ttdoc">High-level interface for writing to process memory</div><div class="ttdef"><b>Definition</b> memory.hpp:25</div></div>
 <div class="ttc" id="aclasscore_1_1MemoryWriter_html_a1b78c4bc08d1a9d6c4c2947813158e15"><div class="ttname"><a href="classcore_1_1MemoryWriter.html#a1b78c4bc08d1a9d6c4c2947813158e15">core::MemoryWriter::writeBytes</a></div><div class="ttdeci">auto writeBytes(void *addr, std::span&lt; const std::uint8_t &gt; data) const -&gt; std::expected&lt; std::size_t, std::string &gt;</div><div class="ttdoc">Write byte array to memory address</div><div class="ttdef"><b>Definition</b> memory.cpp:4</div></div>
 <div class="ttc" id="aclasscore_1_1MemoryWriter_html_a42d80a675561be2b06aa0dcae792585e"><div class="ttname"><a href="classcore_1_1MemoryWriter.html#a42d80a675561be2b06aa0dcae792585e">core::MemoryWriter::write</a></div><div class="ttdeci">auto write(void *addr, const T &amp;value) -&gt; std::expected&lt; std::size_t, std::string &gt;</div><div class="ttdoc">Write scalar value to memory address</div><div class="ttdef"><b>Definition</b> memory.hpp:41</div></div>
-<div class="ttc" id="aclasscore_1_1MemoryWriter_html_a9ebcc6fa02a36252c8e7dcedd3f9a840"><div class="ttname"><a href="classcore_1_1MemoryWriter.html#a9ebcc6fa02a36252c8e7dcedd3f9a840">core::MemoryWriter::getPid</a></div><div class="ttdeci">auto getPid() const -&gt; pid_t</div><div class="ttdoc">Get target PID</div><div class="ttdef"><b>Definition</b> memory.hpp:68</div></div>
+<div class="ttc" id="aclasscore_1_1MemoryWriter_html_a9ebcc6fa02a36252c8e7dcedd3f9a840"><div class="ttname"><a href="classcore_1_1MemoryWriter.html#a9ebcc6fa02a36252c8e7dcedd3f9a840">core::MemoryWriter::getPid</a></div><div class="ttdeci">auto getPid() const -&gt; pid_t</div><div class="ttdoc">Get target PID</div><div class="ttdef"><b>Definition</b> memory.hpp:69</div></div>
 <div class="ttc" id="aclasscore_1_1MemoryWriter_html_aaf7bb0186935285bf63a4d16840f41d7"><div class="ttname"><a href="classcore_1_1MemoryWriter.html#aaf7bb0186935285bf63a4d16840f41d7">core::MemoryWriter::MemoryWriter</a></div><div class="ttdeci">MemoryWriter(pid_t pid)</div><div class="ttdoc">Construct memory writer for given process</div><div class="ttdef"><b>Definition</b> memory.hpp:31</div></div>
-<div class="ttc" id="aclasscore_1_1MemoryWriter_html_afa7afc84d7b4ecb90ee60bd8f6227555"><div class="ttname"><a href="classcore_1_1MemoryWriter.html#afa7afc84d7b4ecb90ee60bd8f6227555">core::MemoryWriter::writeString</a></div><div class="ttdeci">auto writeString(void *addr, const char *str) const -&gt; std::expected&lt; std::size_t, std::string &gt;</div><div class="ttdoc">Write C-style string to memory address</div><div class="ttdef"><b>Definition</b> memory.cpp:12</div></div>
+<div class="ttc" id="aclasscore_1_1MemoryWriter_html_afa7afc84d7b4ecb90ee60bd8f6227555"><div class="ttname"><a href="classcore_1_1MemoryWriter.html#afa7afc84d7b4ecb90ee60bd8f6227555">core::MemoryWriter::writeString</a></div><div class="ttdeci">auto writeString(void *addr, const char *str) const -&gt; std::expected&lt; std::size_t, std::string &gt;</div><div class="ttdoc">Write C-style string to memory address</div><div class="ttdef"><b>Definition</b> memory.cpp:15</div></div>
 <div class="ttc" id="anamespacecore_html"><div class="ttname"><a href="namespacecore.html">core</a></div><div class="ttdef"><b>Definition</b> maps.hpp:17</div></div>
-<div class="ttc" id="anamespacecore_html_a99445fcc9b198d0a35ffde606ce2a556"><div class="ttname"><a href="namespacecore.html#a99445fcc9b198d0a35ffde606ce2a556">core::writeValue</a></div><div class="ttdeci">auto writeValue(pid_t pid, void *addr, const T &amp;value) -&gt; std::expected&lt; std::size_t, std::string &gt;</div><div class="ttdoc">One-shot write scalar value</div><div class="ttdef"><b>Definition</b> proc_mem.hpp:134</div></div>
+<div class="ttc" id="anamespacecore_html_a99445fcc9b198d0a35ffde606ce2a556"><div class="ttname"><a href="namespacecore.html#a99445fcc9b198d0a35ffde606ce2a556">core::writeValue</a></div><div class="ttdeci">auto writeValue(pid_t pid, void *addr, const T &amp;value) -&gt; std::expected&lt; std::size_t, std::string &gt;</div><div class="ttdoc">One-shot write scalar value</div><div class="ttdef"><b>Definition</b> proc_mem.hpp:135</div></div>
 <div class="ttc" id="anamespacevalue_html"><div class="ttname"><a href="namespacevalue.html">value</a></div><div class="ttdef"><b>Definition</b> parser.hpp:22</div></div>
 <div class="ttc" id="aproc__mem_8hpp_html"><div class="ttname"><a href="proc__mem_8hpp.html">proc_mem.hpp</a></div><div class="ttdoc">Process memory I/O via /proc/&lt;pid&gt;/mem (进程内存 I/O)</div></div>
 </div><!-- fragment --></div><!-- contents -->

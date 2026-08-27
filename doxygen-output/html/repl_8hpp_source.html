@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NewScanmem: include/newscanmem/cli/repl.hpp 源文件</title>
+<title>memseek: include/newscanmem/cli/repl.hpp 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">NewScanmem
+   <div id="projectname">memseek
    </div>
    <div id="projectbrief">Modern C++20 Memory Scanner</div>
   </td>
@@ -124,31 +124,33 @@ $(document).ready(function(){initNavTree('repl_8hpp_source.html',''); initResiza
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1REPL.html#abe1d1a08f88d4e6d5ef4eb466b98861e">run</a>() -&gt; int;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1REPL.html#a29fe4d64ed6dade9427df57ce1713478">executeLine</a>(<span class="keyword">const</span> std::string&amp; line) -&gt; std::expected&lt;CommandResult, std::string&gt;;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1REPL.html#aaf18b0c5e2404f78b4dcf46e1296232f">setPrompt</a>(std::string_view prompt) -&gt; void;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1REPL.html#ac0314ca8b70e6618d05ef8675008dd0f">setPromptBuilder</a>(std::function&lt;std::string()&gt; builder) -&gt; void;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1REPL.html#a9ad6ec47aea4cf49232042baa19e090d">getPrompt</a>() <span class="keyword">const</span> -&gt; std::string_view;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keyword">static</span> <span class="keyword">auto</span> executeCommand(<span class="keyword">const</span> std::string&amp; command_name, <span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args)</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        -&gt; std::expected&lt;CommandResult, std::string&gt;;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    std::shared_ptr&lt;ui::UserInterface&gt; m_ui;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    std::string m_prompt;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    std::function&lt;std::string()&gt; m_promptBuilder;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>};</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1REPL.html#a29fe4d64ed6dade9427df57ce1713478">executeLine</a>(<span class="keyword">const</span> std::string&amp; line)</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        -&gt; std::expected&lt;CommandResult, std::string&gt;;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1REPL.html#aaf18b0c5e2404f78b4dcf46e1296232f">setPrompt</a>(std::string_view prompt) -&gt; void;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1REPL.html#ac0314ca8b70e6618d05ef8675008dd0f">setPromptBuilder</a>(std::function&lt;std::string()&gt; builder) -&gt; void;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1REPL.html#a9ad6ec47aea4cf49232042baa19e090d">getPrompt</a>() <span class="keyword">const</span> -&gt; std::string_view;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">static</span> <span class="keyword">auto</span> executeCommand(<span class="keyword">const</span> std::string&amp; command_name,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>                               <span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args)</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        -&gt; std::expected&lt;CommandResult, std::string&gt;;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    std::shared_ptr&lt;ui::UserInterface&gt; m_ui;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    std::string m_prompt;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    std::function&lt;std::string()&gt; m_promptBuilder;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>};</div>
 </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>}  <span class="comment">// namespace cli</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>}  <span class="comment">// namespace cli</span></div>
 <div class="ttc" id="aclasscli_1_1REPL_html"><div class="ttname"><a href="classcli_1_1REPL.html">cli::REPL</a></div><div class="ttdoc">Read-Eval-Print-Loop for interactive command execution</div><div class="ttdef"><b>Definition</b> repl.hpp:26</div></div>
-<div class="ttc" id="aclasscli_1_1REPL_html_a29fe4d64ed6dade9427df57ce1713478"><div class="ttname"><a href="classcli_1_1REPL.html#a29fe4d64ed6dade9427df57ce1713478">cli::REPL::executeLine</a></div><div class="ttdeci">static auto executeLine(const std::string &amp;line) -&gt; std::expected&lt; CommandResult, std::string &gt;</div><div class="ttdoc">Parse and execute a single command line</div><div class="ttdef"><b>Definition</b> repl.cpp:6</div></div>
-<div class="ttc" id="aclasscli_1_1REPL_html_a9ad6ec47aea4cf49232042baa19e090d"><div class="ttname"><a href="classcli_1_1REPL.html#a9ad6ec47aea4cf49232042baa19e090d">cli::REPL::getPrompt</a></div><div class="ttdeci">auto getPrompt() const -&gt; std::string_view</div><div class="ttdoc">Get the current prompt string</div><div class="ttdef"><b>Definition</b> repl.cpp:9</div></div>
-<div class="ttc" id="aclasscli_1_1REPL_html_aaf18b0c5e2404f78b4dcf46e1296232f"><div class="ttname"><a href="classcli_1_1REPL.html#aaf18b0c5e2404f78b4dcf46e1296232f">cli::REPL::setPrompt</a></div><div class="ttdeci">auto setPrompt(std::string_view prompt) -&gt; void</div><div class="ttdoc">Set the prompt string</div><div class="ttdef"><b>Definition</b> repl.cpp:7</div></div>
-<div class="ttc" id="aclasscli_1_1REPL_html_abe1d1a08f88d4e6d5ef4eb466b98861e"><div class="ttname"><a href="classcli_1_1REPL.html#abe1d1a08f88d4e6d5ef4eb466b98861e">cli::REPL::run</a></div><div class="ttdeci">auto run() -&gt; int</div><div class="ttdoc">Start the REPL loop</div><div class="ttdef"><b>Definition</b> repl.cpp:5</div></div>
-<div class="ttc" id="aclasscli_1_1REPL_html_ac0314ca8b70e6618d05ef8675008dd0f"><div class="ttname"><a href="classcli_1_1REPL.html#ac0314ca8b70e6618d05ef8675008dd0f">cli::REPL::setPromptBuilder</a></div><div class="ttdeci">auto setPromptBuilder(std::function&lt; std::string()&gt; builder) -&gt; void</div><div class="ttdef"><b>Definition</b> repl.cpp:8</div></div>
+<div class="ttc" id="aclasscli_1_1REPL_html_a29fe4d64ed6dade9427df57ce1713478"><div class="ttname"><a href="classcli_1_1REPL.html#a29fe4d64ed6dade9427df57ce1713478">cli::REPL::executeLine</a></div><div class="ttdeci">static auto executeLine(const std::string &amp;line) -&gt; std::expected&lt; CommandResult, std::string &gt;</div><div class="ttdoc">Parse and execute a single command line</div><div class="ttdef"><b>Definition</b> repl.cpp:34</div></div>
+<div class="ttc" id="aclasscli_1_1REPL_html_a9ad6ec47aea4cf49232042baa19e090d"><div class="ttname"><a href="classcli_1_1REPL.html#a9ad6ec47aea4cf49232042baa19e090d">cli::REPL::getPrompt</a></div><div class="ttdeci">auto getPrompt() const -&gt; std::string_view</div><div class="ttdoc">Get the current prompt string</div><div class="ttdef"><b>Definition</b> repl.cpp:46</div></div>
+<div class="ttc" id="aclasscli_1_1REPL_html_aaf18b0c5e2404f78b4dcf46e1296232f"><div class="ttname"><a href="classcli_1_1REPL.html#aaf18b0c5e2404f78b4dcf46e1296232f">cli::REPL::setPrompt</a></div><div class="ttdeci">auto setPrompt(std::string_view prompt) -&gt; void</div><div class="ttdoc">Set the prompt string</div><div class="ttdef"><b>Definition</b> repl.cpp:42</div></div>
+<div class="ttc" id="aclasscli_1_1REPL_html_abe1d1a08f88d4e6d5ef4eb466b98861e"><div class="ttname"><a href="classcli_1_1REPL.html#abe1d1a08f88d4e6d5ef4eb466b98861e">cli::REPL::run</a></div><div class="ttdeci">auto run() -&gt; int</div><div class="ttdoc">Start the REPL loop</div><div class="ttdef"><b>Definition</b> repl.cpp:9</div></div>
+<div class="ttc" id="aclasscli_1_1REPL_html_ac0314ca8b70e6618d05ef8675008dd0f"><div class="ttname"><a href="classcli_1_1REPL.html#ac0314ca8b70e6618d05ef8675008dd0f">cli::REPL::setPromptBuilder</a></div><div class="ttdeci">auto setPromptBuilder(std::function&lt; std::string()&gt; builder) -&gt; void</div><div class="ttdef"><b>Definition</b> repl.cpp:43</div></div>
 <div class="ttc" id="acommand_8hpp_html"><div class="ttname"><a href="command_8hpp.html">command.hpp</a></div><div class="ttdoc">Command pattern base classes and registry for CLI</div></div>
 <div class="ttc" id="ainterface_8hpp_html"><div class="ttname"><a href="interface_8hpp.html">interface.hpp</a></div><div class="ttdoc">Abstract user interface for scanmem</div></div>
 <div class="ttc" id="anamespacecli_html"><div class="ttname"><a href="namespacecli.html">cli</a></div><div class="ttdef"><b>Definition</b> app.hpp:12</div></div>

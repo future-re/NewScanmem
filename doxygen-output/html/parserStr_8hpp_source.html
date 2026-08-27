@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NewScanmem: include/newscanmem/utils/parserStr.hpp 源文件</title>
+<title>memseek: include/newscanmem/utils/parserStr.hpp 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">NewScanmem
+   <div id="projectname">memseek
    </div>
    <div id="projectbrief">Modern C++20 Memory Scanner</div>
   </td>
@@ -195,21 +195,22 @@ $(document).ready(function(){initNavTree('parserStr_8hpp_source.html',''); initR
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>[[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">auto</span> <a class="code hl_function" href="namespaceutils.html#ab99675aa2755259ac19f280602273888">parseDouble</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">str</a>) -&gt; std::optional&lt;double&gt;;</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>[[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">auto</span> <a class="code hl_function" href="namespaceutils.html#a42e78d2f253bb07ff306a891e1f79996">parseAddress</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">str</a>) -&gt; std::optional&lt;std::uintptr_t&gt;;</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>[[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">auto</span> <a class="code hl_function" href="namespaceutils.html#a3622e3f60f96cc13336b16fe233998af">parsePid</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">str</a>) -&gt; std::optional&lt;pid_t&gt;;</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>[[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">auto</span> <a class="code hl_function" href="namespaceutils.html#a5f16168672fafe56238f1ba592351a70">parseBoolean</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">str</a>) -&gt; std::optional&lt;bool&gt;;</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>}  <span class="comment">// namespace utils</span></div>
-<div class="ttc" id="aflags_8hpp_html_a2bd4546b83b208d80dfb2fc0829d9cb1"><div class="ttname"><a href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">flagForType</a></div><div class="ttdeci">consteval auto flagForType() noexcept -&gt; MatchFlags</div><div class="ttdef"><b>Definition</b> flags.hpp:106</div></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>[[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">auto</span> <a class="code hl_function" href="namespaceutils.html#a42e78d2f253bb07ff306a891e1f79996">parseAddress</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">str</a>)</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    -&gt; std::optional&lt;std::uintptr_t&gt;;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>[[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">auto</span> <a class="code hl_function" href="namespaceutils.html#a3622e3f60f96cc13336b16fe233998af">parsePid</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">str</a>) -&gt; std::optional&lt;pid_t&gt;;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>[[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">auto</span> <a class="code hl_function" href="namespaceutils.html#a5f16168672fafe56238f1ba592351a70">parseBoolean</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">str</a>) -&gt; std::optional&lt;bool&gt;;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>}  <span class="comment">// namespace utils</span></div>
+<div class="ttc" id="aflags_8hpp_html_a2bd4546b83b208d80dfb2fc0829d9cb1"><div class="ttname"><a href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">flagForType</a></div><div class="ttdeci">consteval auto flagForType() noexcept -&gt; MatchFlags</div><div class="ttdef"><b>Definition</b> flags.hpp:103</div></div>
 <div class="ttc" id="anamespaceutils_html"><div class="ttname"><a href="namespaceutils.html">utils</a></div><div class="ttdef"><b>Definition</b> endianness.hpp:30</div></div>
-<div class="ttc" id="anamespaceutils_html_a3622e3f60f96cc13336b16fe233998af"><div class="ttname"><a href="namespaceutils.html#a3622e3f60f96cc13336b16fe233998af">utils::parsePid</a></div><div class="ttdeci">auto parsePid(std::string_view str) -&gt; std::optional&lt; pid_t &gt;</div><div class="ttdoc">Parse PID (process ID) with validation</div><div class="ttdef"><b>Definition</b> parserStr.cpp:21</div></div>
-<div class="ttc" id="anamespaceutils_html_a42e78d2f253bb07ff306a891e1f79996"><div class="ttname"><a href="namespaceutils.html#a42e78d2f253bb07ff306a891e1f79996">utils::parseAddress</a></div><div class="ttdeci">auto parseAddress(std::string_view str) -&gt; std::optional&lt; std::uintptr_t &gt;</div><div class="ttdoc">Parse hexadecimal address string to an integer address value</div><div class="ttdef"><b>Definition</b> parserStr.cpp:15</div></div>
+<div class="ttc" id="anamespaceutils_html_a3622e3f60f96cc13336b16fe233998af"><div class="ttname"><a href="namespaceutils.html#a3622e3f60f96cc13336b16fe233998af">utils::parsePid</a></div><div class="ttdeci">auto parsePid(std::string_view str) -&gt; std::optional&lt; pid_t &gt;</div><div class="ttdoc">Parse PID (process ID) with validation</div><div class="ttdef"><b>Definition</b> parserStr.cpp:33</div></div>
+<div class="ttc" id="anamespaceutils_html_a42e78d2f253bb07ff306a891e1f79996"><div class="ttname"><a href="namespaceutils.html#a42e78d2f253bb07ff306a891e1f79996">utils::parseAddress</a></div><div class="ttdeci">auto parseAddress(std::string_view str) -&gt; std::optional&lt; std::uintptr_t &gt;</div><div class="ttdoc">Parse hexadecimal address string to an integer address value</div><div class="ttdef"><b>Definition</b> parserStr.cpp:23</div></div>
 <div class="ttc" id="anamespaceutils_html_a456b88d65a3364c7e5d38550ca3c6555"><div class="ttname"><a href="namespaceutils.html#a456b88d65a3364c7e5d38550ca3c6555">utils::parseInteger</a></div><div class="ttdeci">auto parseInteger(std::string_view str) -&gt; std::optional&lt; T &gt;</div><div class="ttdoc">Parse integer with optional hex prefix and sign</div><div class="ttdef"><b>Definition</b> parserStr.hpp:32</div></div>
-<div class="ttc" id="anamespaceutils_html_a5f16168672fafe56238f1ba592351a70"><div class="ttname"><a href="namespaceutils.html#a5f16168672fafe56238f1ba592351a70">utils::parseBoolean</a></div><div class="ttdeci">auto parseBoolean(std::string_view str) -&gt; std::optional&lt; bool &gt;</div><div class="ttdoc">Parse boolean value</div><div class="ttdef"><b>Definition</b> parserStr.cpp:26</div></div>
+<div class="ttc" id="anamespaceutils_html_a5f16168672fafe56238f1ba592351a70"><div class="ttname"><a href="namespaceutils.html#a5f16168672fafe56238f1ba592351a70">utils::parseBoolean</a></div><div class="ttdeci">auto parseBoolean(std::string_view str) -&gt; std::optional&lt; bool &gt;</div><div class="ttdoc">Parse boolean value</div><div class="ttdef"><b>Definition</b> parserStr.cpp:39</div></div>
 <div class="ttc" id="anamespaceutils_html_a6bde04e891cfaa4510840a4f66c82641"><div class="ttname"><a href="namespaceutils.html#a6bde04e891cfaa4510840a4f66c82641">utils::isFloatToken</a></div><div class="ttdeci">auto isFloatToken(std::string_view str) -&gt; bool</div><div class="ttdef"><b>Definition</b> parserStr.cpp:4</div></div>
-<div class="ttc" id="anamespaceutils_html_ab99675aa2755259ac19f280602273888"><div class="ttname"><a href="namespaceutils.html#ab99675aa2755259ac19f280602273888">utils::parseDouble</a></div><div class="ttdeci">auto parseDouble(std::string_view str) -&gt; std::optional&lt; double &gt;</div><div class="ttdef"><b>Definition</b> parserStr.cpp:10</div></div>
+<div class="ttc" id="anamespaceutils_html_ab99675aa2755259ac19f280602273888"><div class="ttname"><a href="namespaceutils.html#ab99675aa2755259ac19f280602273888">utils::parseDouble</a></div><div class="ttdeci">auto parseDouble(std::string_view str) -&gt; std::optional&lt; double &gt;</div><div class="ttdef"><b>Definition</b> parserStr.cpp:15</div></div>
 <div class="ttc" id="anamespacevalue_html"><div class="ttname"><a href="namespacevalue.html">value</a></div><div class="ttdef"><b>Definition</b> parser.hpp:22</div></div>
 <div class="ttc" id="autils_2string_8hpp_html"><div class="ttname"><a href="utils_2string_8hpp.html">string.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

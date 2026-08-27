@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "NewScanmem", "index.html", [
+  [ "memseek", "index.html", [
     [ "Source layout", "md_src_2README.html", null ],
     [ "弃用列表", "deprecated.html", null ],
     [ "命名空间", "namespaces.html", [

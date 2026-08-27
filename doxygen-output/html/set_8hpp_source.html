@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NewScanmem: include/newscanmem/cli/commands/set.hpp 源文件</title>
+<title>memseek: include/newscanmem/cli/commands/set.hpp 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">NewScanmem
+   <div id="projectname">memseek
    </div>
    <div id="projectbrief">Modern C++20 Memory Scanner</div>
   </td>
@@ -106,48 +106,47 @@ $(document).ready(function(){initNavTree('set_8hpp_source.html',''); initResizab
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;string_view&gt;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="command_8hpp.html">newscanmem/cli/command.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="session_8hpp.html">newscanmem/cli/session.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="app__config_8hpp.html">newscanmem/cli/app_config.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">// 确保显式使用 cli 命名空间</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">using </span><a class="code hl_struct" href="structcli_1_1AppConfig.html">cli::AppConfig</a>;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacecli_1_1commands.html">cli::commands</a> {</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="foldopen" id="foldopen00023" data-start="{" data-end="};">
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classcli_1_1commands_1_1SetCommand.html">   23</a></span><span class="keyword">class </span><a class="code hl_class" href="classcli_1_1commands_1_1SetCommand.html">SetCommand</a> : <span class="keyword">public</span> <a class="code hl_class" href="classcli_1_1Command.html">Command</a> {</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_class" href="classcli_1_1commands_1_1SetCommand.html">SetCommand</a>(<a class="code hl_struct" href="structcli_1_1SessionState.html">cli::SessionState</a>&amp; session, <a class="code hl_struct" href="structcli_1_1AppConfig.html">AppConfig</a>&amp; config);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1commands_1_1SetCommand.html#a321a268a214b277d654043dd2df6e7fc">getName</a>() <span class="keyword">const</span> -&gt; std::string_view <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1commands_1_1SetCommand.html#a31d766fd0ee5a763fc55ffb4952650e5">getDescription</a>() <span class="keyword">const</span> -&gt; std::string_view <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1commands_1_1SetCommand.html#a63dd653a15e4f692bb8b14d62fb3b481">getUsage</a>() <span class="keyword">const</span> -&gt; std::string_view <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1commands_1_1SetCommand.html#aa4d76e3a1f7232003d62490d55535f70">validateArgs</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args) <span class="keyword">const</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        -&gt; std::expected&lt;void, std::string&gt; <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1commands_1_1SetCommand.html#ace4822b91178d8b770ea31ea01730ad9">execute</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args)</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        -&gt; std::expected&lt;CommandResult, std::string&gt; <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <a class="code hl_struct" href="structcli_1_1SessionState.html">cli::SessionState</a>* m_session;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_struct" href="structcli_1_1AppConfig.html">AppConfig</a>* m_config;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>};</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="app__config_8hpp.html">newscanmem/cli/app_config.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="command_8hpp.html">newscanmem/cli/command.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="session_8hpp.html">newscanmem/cli/session.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">// 确保显式使用 cli 命名空间</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">using </span><a class="code hl_struct" href="structcli_1_1AppConfig.html">cli::AppConfig</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacecli_1_1commands.html">cli::commands</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="};">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classcli_1_1commands_1_1SetCommand.html">   22</a></span><span class="keyword">class </span><a class="code hl_class" href="classcli_1_1commands_1_1SetCommand.html">SetCommand</a> : <span class="keyword">public</span> <a class="code hl_class" href="classcli_1_1Command.html">Command</a> {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <a class="code hl_class" href="classcli_1_1commands_1_1SetCommand.html">SetCommand</a>(<a class="code hl_struct" href="structcli_1_1SessionState.html">cli::SessionState</a>&amp; session, <a class="code hl_struct" href="structcli_1_1AppConfig.html">AppConfig</a>&amp; config);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1commands_1_1SetCommand.html#a321a268a214b277d654043dd2df6e7fc">getName</a>() <span class="keyword">const</span> -&gt; std::string_view <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1commands_1_1SetCommand.html#a31d766fd0ee5a763fc55ffb4952650e5">getDescription</a>() <span class="keyword">const</span> -&gt; std::string_view <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1commands_1_1SetCommand.html#a63dd653a15e4f692bb8b14d62fb3b481">getUsage</a>() <span class="keyword">const</span> -&gt; std::string_view <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1commands_1_1SetCommand.html#aa4d76e3a1f7232003d62490d55535f70">validateArgs</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args) <span class="keyword">const</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        -&gt; std::expected&lt;void, std::string&gt; <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1commands_1_1SetCommand.html#ace4822b91178d8b770ea31ea01730ad9">execute</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args)</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        -&gt; std::expected&lt;CommandResult, std::string&gt; <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <a class="code hl_struct" href="structcli_1_1SessionState.html">cli::SessionState</a>* m_session;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <a class="code hl_struct" href="structcli_1_1AppConfig.html">AppConfig</a>* m_config;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>};</div>
 </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}  <span class="comment">// namespace cli::commands</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}  <span class="comment">// namespace cli::commands</span></div>
 <div class="ttc" id="aapp__config_8hpp_html"><div class="ttname"><a href="app__config_8hpp.html">app_config.hpp</a></div><div class="ttdoc">Application configuration structure</div></div>
 <div class="ttc" id="aclasscli_1_1Command_html"><div class="ttname"><a href="classcli_1_1Command.html">cli::Command</a></div><div class="ttdoc">Abstract base class for all CLI commands</div><div class="ttdef"><b>Definition</b> command.hpp:32</div></div>
-<div class="ttc" id="aclasscli_1_1commands_1_1SetCommand_html"><div class="ttname"><a href="classcli_1_1commands_1_1SetCommand.html">cli::commands::SetCommand</a></div><div class="ttdef"><b>Definition</b> set.hpp:23</div></div>
+<div class="ttc" id="aclasscli_1_1commands_1_1SetCommand_html"><div class="ttname"><a href="classcli_1_1commands_1_1SetCommand.html">cli::commands::SetCommand</a></div><div class="ttdef"><b>Definition</b> set.hpp:22</div></div>
 <div class="ttc" id="aclasscli_1_1commands_1_1SetCommand_html_a31d766fd0ee5a763fc55ffb4952650e5"><div class="ttname"><a href="classcli_1_1commands_1_1SetCommand.html#a31d766fd0ee5a763fc55ffb4952650e5">cli::commands::SetCommand::getDescription</a></div><div class="ttdeci">auto getDescription() const -&gt; std::string_view override</div><div class="ttdoc">Get command description</div><div class="ttdef"><b>Definition</b> set.cpp:14</div></div>
 <div class="ttc" id="aclasscli_1_1commands_1_1SetCommand_html_a321a268a214b277d654043dd2df6e7fc"><div class="ttname"><a href="classcli_1_1commands_1_1SetCommand.html#a321a268a214b277d654043dd2df6e7fc">cli::commands::SetCommand::getName</a></div><div class="ttdeci">auto getName() const -&gt; std::string_view override</div><div class="ttdoc">Get command name</div><div class="ttdef"><b>Definition</b> set.cpp:13</div></div>
 <div class="ttc" id="aclasscli_1_1commands_1_1SetCommand_html_a63dd653a15e4f692bb8b14d62fb3b481"><div class="ttname"><a href="classcli_1_1commands_1_1SetCommand.html#a63dd653a15e4f692bb8b14d62fb3b481">cli::commands::SetCommand::getUsage</a></div><div class="ttdeci">auto getUsage() const -&gt; std::string_view override</div><div class="ttdoc">Get command usage information</div><div class="ttdef"><b>Definition</b> set.cpp:17</div></div>
-<div class="ttc" id="aclasscli_1_1commands_1_1SetCommand_html_aa4d76e3a1f7232003d62490d55535f70"><div class="ttname"><a href="classcli_1_1commands_1_1SetCommand.html#aa4d76e3a1f7232003d62490d55535f70">cli::commands::SetCommand::validateArgs</a></div><div class="ttdeci">auto validateArgs(const std::vector&lt; std::string &gt; &amp;args) const -&gt; std::expected&lt; void, std::string &gt; override</div><div class="ttdoc">Validate command arguments</div><div class="ttdef"><b>Definition</b> set.cpp:27</div></div>
-<div class="ttc" id="aclasscli_1_1commands_1_1SetCommand_html_ace4822b91178d8b770ea31ea01730ad9"><div class="ttname"><a href="classcli_1_1commands_1_1SetCommand.html#ace4822b91178d8b770ea31ea01730ad9">cli::commands::SetCommand::execute</a></div><div class="ttdeci">auto execute(const std::vector&lt; std::string &gt; &amp;args) -&gt; std::expected&lt; CommandResult, std::string &gt; override</div><div class="ttdoc">Execute the command</div><div class="ttdef"><b>Definition</b> set.cpp:32</div></div>
+<div class="ttc" id="aclasscli_1_1commands_1_1SetCommand_html_aa4d76e3a1f7232003d62490d55535f70"><div class="ttname"><a href="classcli_1_1commands_1_1SetCommand.html#aa4d76e3a1f7232003d62490d55535f70">cli::commands::SetCommand::validateArgs</a></div><div class="ttdeci">auto validateArgs(const std::vector&lt; std::string &gt; &amp;args) const -&gt; std::expected&lt; void, std::string &gt; override</div><div class="ttdoc">Validate command arguments</div><div class="ttdef"><b>Definition</b> set.cpp:29</div></div>
+<div class="ttc" id="aclasscli_1_1commands_1_1SetCommand_html_ace4822b91178d8b770ea31ea01730ad9"><div class="ttname"><a href="classcli_1_1commands_1_1SetCommand.html#ace4822b91178d8b770ea31ea01730ad9">cli::commands::SetCommand::execute</a></div><div class="ttdeci">auto execute(const std::vector&lt; std::string &gt; &amp;args) -&gt; std::expected&lt; CommandResult, std::string &gt; override</div><div class="ttdoc">Execute the command</div><div class="ttdef"><b>Definition</b> set.cpp:35</div></div>
 <div class="ttc" id="acommand_8hpp_html"><div class="ttname"><a href="command_8hpp.html">command.hpp</a></div><div class="ttdoc">Command pattern base classes and registry for CLI</div></div>
 <div class="ttc" id="anamespacecli_1_1commands_html"><div class="ttname"><a href="namespacecli_1_1commands.html">cli::commands</a></div><div class="ttdef"><b>Definition</b> count.hpp:17</div></div>
 <div class="ttc" id="asession_8hpp_html"><div class="ttname"><a href="session_8hpp.html">session.hpp</a></div><div class="ttdoc">Shared session state for CLI commands (pid + scanner)</div></div>
