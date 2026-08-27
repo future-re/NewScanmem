@@ -8,7 +8,7 @@
 
 ### A. 数据竞争 (Data Race)
 
-这是最致命的问题。请看 `src/scan/engine.cppm` 中的核心扫描循环：
+这是最致命的问题。请看 `src/scan/engine.cpp` 中的核心扫描循环：
 
 ```cpp
 // ❌ 伪代码：如果直接并行化
