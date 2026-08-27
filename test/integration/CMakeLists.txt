@@ -1,5 +1,5 @@
 # 集成测试目标程序编译配置
-# 这些是用于测试 NewScanmem 的目标进程
+# 这些是用于测试 memseek 的目标进程
 # 使用方式：手动运行 test_integration.py 脚本进行测试
 
 set(INTEGRATION_TARGETS

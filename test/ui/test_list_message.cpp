@@ -66,7 +66,7 @@ TEST(ListMessageTest, FormatVariousDataTypes) {
     // 3. Test String
     {
         std::vector<MatchEntry> entries;
-        std::string val = "NewScanmem";
+        std::string val = "memseek";
         std::vector<uint8_t> bytes(val.begin(), val.end());
         entries.push_back({2, 0x3000, bytes, "anon"});
 
@@ -80,7 +80,7 @@ TEST(ListMessageTest, FormatVariousDataTypes) {
         }
         std::cout << out << std::endl;
 
-        EXPECT_NE(out.find("NewScanmem"), std::string::npos);
+        EXPECT_NE(out.find("memseek"), std::string::npos);
     }
 
     // 4. Test Hex Bytes (No data type)

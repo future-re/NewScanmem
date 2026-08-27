@@ -8,7 +8,7 @@ find_package(GTest REQUIRED)
 include(GoogleTest)
 
 # 统一的测试依赖库集合
-set(TEST_LIBS GTest::GTest GTest::Main NewScanmem_lib)
+set(TEST_LIBS GTest::GTest GTest::Main memseek_lib)
 
 # 自动收集当前目录下的单元测试源文件，排除单独管理的集成测试与 e2e 测试
 file(GLOB_RECURSE TEST_SOURCES CONFIGURE_DEPENDS

@@ -1,4 +1,4 @@
-# NewScanmem MCP bridge
+# memseek MCP bridge
 
 `newscanmem_server.py` is a dependency-free stdio MCP server independent of the
 C++ module build. Configure an MCP client with:

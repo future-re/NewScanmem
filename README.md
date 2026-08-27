@@ -1,6 +1,6 @@
-# NewScanmem
+# memseek
 
-NewScanmem 是一个使用现代 C++ 重构的 `scanmem`，公共接口位于 `include/newscanmem/`，旨在通过强类型和稳定的头文件接口提升可读性、可维护性和集成能力。
+memseek 是一个使用现代 C++ 重构的内存扫描工具，公共接口位于 `include/newscanmem/`，旨在通过强类型和稳定的头文件接口提升可读性、可维护性和集成能力。
 
 [原项目 Scanmem地址](https://github.com/scanmem/scanmem)
 
@@ -8,9 +8,9 @@ NewScanmem 是一个使用现代 C++ 重构的 `scanmem`，公共接口位于 `i
 
 ## 📋 项目简介 | Project Overview
 
-`scanmem` 是一个简单的交互式内存扫描工具，通常用于调试和修改运行中的程序。NewScanmem 在原有功能的基础上，使用 C++20 和普通 `.hpp` 接口进行重构，并引入了更高效的字符串处理和内存管理方式。
+`scanmem` 是一个简单的交互式内存扫描工具，通常用于调试和修改运行中的程序。memseek 在原有功能的基础上，使用 C++23 和普通 `.hpp` 接口进行重构，并引入了更高效的字符串处理和内存管理方式。
 
-NewScanmem 是一个现代化的 Linux 内存扫描工具，专为进程内存分析和调试设计。
+memseek 是一个现代化的 Linux 内存扫描工具，专为进程内存分析和调试设计。
 
 ---
 
@@ -44,7 +44,7 @@ cd mkdocs && mkdocs gh-deploy
 
 项目的完整文档已部署至 GitHub Pages，您可以通过以下链接访问：
 
-- [NewScanmem 文档站点](https://future-re.github.io/NewScanmem/)（推荐）
+- [memseek 文档站点](https://future-re.github.io/NewScanmem/)（推荐）
 
 ---
 
@@ -55,7 +55,7 @@ cd mkdocs && mkdocs gh-deploy
 ```bash
 # 克隆仓库 | Clone repository
 git clone https://github.com/future-re/NewScanmem.git
-cd NewScanmem
+cd memseek
 
 # 创建构建目录 | Create build directory
 mkdir build && cd build
@@ -67,7 +67,7 @@ cmake ..
 ninja
 
 # 运行 | Run
-./NewScanmem
+./memseek
 ```
 
 ### 系统要求 | System Requirements
@@ -89,7 +89,7 @@ ninja
 ```bash
 # 克隆仓库 | Clone repository
 git clone https://github.com/future-re/NewScanmem.git
-cd NewScanmem
+cd memseek
 
 # 创建构建目录 | Create build directory
 mkdir build && cd build
@@ -104,7 +104,7 @@ cmake --build build
 ./generate_coverage.sh
 
 # 运行 | Run
-./NewScanmem
+./memseek
 ```
 
 ### 系统要求 | System Requirements

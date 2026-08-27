@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 通用集成测试脚本：测试扫描和修改各种类型的值
-启动目标进程，使用 NewScanmem 扫描并修改其内存中的值
+启动目标进程，使用 memseek 扫描并修改其内存中的值
 
 用法:
     python3 test_integration.py <target_name> <value_type> <expected_value>
@@ -64,7 +64,7 @@ def find_executable(name: str, build_dir: Path) -> Path:
 
 def main():
     # 解析命令行参数
-    parser = argparse.ArgumentParser(description='Integration test for NewScanmem')
+    parser = argparse.ArgumentParser(description='Integration test for memseek')
     parser.add_argument('target_name', help='Target executable name (e.g., target_fixed_int)')
     parser.add_argument('value_type', help='Value type to scan (e.g., int64, FLOAT_64)')
     parser.add_argument('expected_value', help='Expected value in target process')
@@ -85,7 +85,7 @@ def main():
     # 查找可执行文件
     try:
         target_exe = find_executable(args.target_name, build_dir)
-        scanmem_exe = find_executable("NewScanmem", build_dir)
+        scanmem_exe = find_executable("memseek", build_dir)
     except FileNotFoundError as e:
         print(f"Error: {e}", file=sys.stderr)
         return 1
@@ -114,7 +114,7 @@ def main():
     print(f"Target PID: {pid}")
     
     try:
-        # 使用 NewScanmem 进行扫描和修改
+        # 使用 memseek 进行扫描和修改
         print(f"\n[2] Scanning process {pid} for {args.value_type} value {args.expected_value}")
         
         # 准备命令序列
@@ -125,7 +125,7 @@ def main():
             "list",  # 列出所有匹配，用于找到 exe 区域的索引
         ]
         
-        # 执行 NewScanmem 获取匹配列表
+        # 执行 memseek 获取匹配列表
         print(f"[3] Executing scan commands...")
         
         scanmem_cmd = [str(scanmem_exe)]
@@ -189,13 +189,13 @@ def main():
             )
 
             if scanmem_result.returncode != 0:
-                print(f"[6] NewScanmem failed (index {idx}) with exit code {scanmem_result.returncode}", file=sys.stderr)
+                print(f"[6] memseek failed (index {idx}) with exit code {scanmem_result.returncode}", file=sys.stderr)
                 print(f"STDOUT:\n{scanmem_result.stdout}", file=sys.stderr)
                 print(f"STDERR:\n{scanmem_result.stderr}", file=sys.stderr)
                 # 失败则继续尝试下一个索引
                 continue
             else:
-                print(f"[6] NewScanmem executed successfully for index {idx}")
+                print(f"[6] memseek executed successfully for index {idx}")
                 stdout_clean = strip_ansi_codes(scanmem_result.stdout)
                 stderr_clean = strip_ansi_codes(scanmem_result.stderr)
                 if stdout_clean.strip():

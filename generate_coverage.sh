@@ -91,7 +91,7 @@ if [ -z "$LLVM_PROFDATA" ]; then
     exit 1
 fi
 
-echo "=== Coverage Analysis for NewScanmem ==="
+echo "=== Coverage Analysis for memseek ==="
 echo "Using llvm-cov: $LLVM_COV"
 echo "Using llvm-profdata: $LLVM_PROFDATA"
 echo ""

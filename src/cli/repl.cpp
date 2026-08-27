@@ -11,7 +11,7 @@ auto REPL::run() -> int {
         ui::MessagePrinter::error("No user interface provided");
         return 1;
     }
-    ui::MessagePrinter::info("NewScanmem Interactive Console");
+    ui::MessagePrinter::info("memseek Interactive Console");
     ui::MessagePrinter::info(
         "Type 'help' for available commands, 'quit' to exit\n");
     for (;;) {

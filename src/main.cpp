@@ -35,7 +35,7 @@ auto parseArgs(int argc, char* argv[], cli::AppConfig& config) -> bool {
             return false;
         }
         if (arg == "--version") {
-            std::cout << "NewScanmem " << version::string() << '\n';
+            std::cout << "memseek " << version::string() << '\n';
             return false;
         }
         if (arg == "-b" || arg == "--batch") {

@@ -163,7 +163,7 @@ failures=0
   echo ""
 } > "$REPORT_FILE"
 
-print_header "NewScanmem Integration Tests"
+print_header "memseek Integration Tests"
 echo -e "${COLOR_YELLOW}Report will be saved to:${COLOR_RESET} $REPORT_FILE"
 
 # ===============================================================================

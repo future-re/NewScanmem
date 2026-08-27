@@ -1,6 +1,6 @@
 ---
 name: newscanmem
-description: Use NewScanmem MCP tools for constrained Linux process-memory inspection and evidence-based scans.
+description: Use memseek MCP tools for constrained Linux process-memory inspection and evidence-based scans.
 ---
 
 Use `list_processes`, `inspect_maps`, `read_memory`, and `scan_numeric` for
