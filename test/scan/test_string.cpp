@@ -1,104 +1,77 @@
-// Unit tests for scan.string module - focus on nullptr safety
-
 #include <gtest/gtest.h>
 
 #include <cstdint>
 #include <span>
-#include <string>
-#include <vector>
+#include <string_view>
 
-#include "newscanmem/scan/string.hpp"
 #include "newscanmem/scan/routine.hpp"
+#include "newscanmem/scan/string.hpp"
 #include "newscanmem/scan/types.hpp"
 #include "newscanmem/value/core.hpp"
 #include "newscanmem/value/flags.hpp"
 
-class ScanStringTest : public ::testing::Test {
-   protected:
-    Value m_mem;
-};
+namespace {
 
-TEST_F(ScanStringTest,
-       MakeStringScanRoutineMATCH_ANYMatchesFullLength) {
-    std::vector<uint8_t> data = {'H', 'e', 'l', 'l', 'o'};
-    m_mem = Value(data);
+auto bytes(const std::string_view text) -> std::span<const std::uint8_t> {
+    return {reinterpret_cast<const std::uint8_t*>(text.data()), text.size()};
+}
 
+TEST(ScanStringTest, MatchAnyMatchesFullLength) {
     auto routine = makeStringScanRoutine(ScanMatchType::MATCH_ANY);
-    auto ctx = scan::makeScanContext(
-        std::span<const uint8_t>(m_mem.bytes.data(), m_mem.bytes.size()),
-        nullptr, nullptr, MatchFlags::EMPTY, false);
-    auto result = routine(ctx);
+    auto context = scan::makeScanContext(bytes("Hello"), nullptr, nullptr,
+                                         MatchFlags::EMPTY, false);
 
-    EXPECT_EQ(result.matchLength, data.size());
-}
+    const auto result = routine(context);
 
-TEST_F(ScanStringTest,
-       MakeStringScanRoutineStringMatchWorks) {
-    std::vector<uint8_t> data = {'H', 'e', 'l', 'l', 'o', ' ',
-                                 'W', 'o', 'r', 'l', 'd'};
-    m_mem = Value(data);
-
-    UserValue userValue = UserValue::fromString("Hello");
-
-    auto routine = makeStringScanRoutine(ScanMatchType::MATCH_EQUAL_TO);
-    auto ctx = scan::makeScanContext(
-        std::span<const uint8_t>(m_mem.bytes.data(), m_mem.bytes.size()),
-        nullptr, &userValue, userValue.flag(), false);
-
-    auto result = routine(ctx);
-
-    EXPECT_EQ(result.matchLength, 5U);  // "Hello" is 5 bytes
-}
-
-TEST_F(ScanStringTest, RegexRoutineMatchesOnlyAtCurrentScanPosition) {
-    std::vector<uint8_t> data = {'t', 'e', 's', 't', '1', '2', '3'};
-    m_mem = Value(data);
-    UserValue userValue = UserValue::fromString("[0-9]+");
-    auto routine = makeStringScanRoutine(ScanMatchType::MATCH_REGEX);
-
-    auto fullContext = scan::makeScanContext(
-        std::span<const uint8_t>(m_mem.bytes.data(), m_mem.bytes.size()),
-        nullptr, &userValue, userValue.flag(), false);
-    const auto shiftedResult = routine(fullContext);
-    EXPECT_FALSE(shiftedResult);
-
-    auto numberContext = scan::makeScanContext(
-        std::span<const uint8_t>(m_mem.bytes.data() + 4, 3), nullptr,
-        &userValue, userValue.flag(), false);
-    const auto exactResult = routine(numberContext);
-    EXPECT_TRUE(exactResult);
-    EXPECT_EQ(exactResult.matchLength, 3U);
-}
-
-TEST_F(ScanStringTest, StringRoutineSetsFlags) {
-    std::vector<uint8_t> data = {'T', 'e', 's', 't'};
-    m_mem = Value(data);
-
-    auto routine = makeStringScanRoutine(ScanMatchType::MATCH_ANY);
-    auto ctx = scan::makeScanContext(
-        std::span<const uint8_t>(m_mem.bytes.data(), m_mem.bytes.size()),
-        nullptr, nullptr, MatchFlags::EMPTY, false);
-    auto result = routine(ctx);
-
-    EXPECT_EQ(result.matchLength, data.size());
+    EXPECT_TRUE(result);
+    EXPECT_EQ(result.matchLength, 5U);
     EXPECT_EQ(result.matchedFlag, MatchFlags::B8);
 }
 
-// Test findRegexPattern directly
-TEST_F(ScanStringTest, FindRegexPatternReturnsMatch) {
-    std::vector<uint8_t> data = {'a', 'b', 'c', '1', '2', '3', 'x', 'y', 'z'};
-    m_mem = Value(data);
+TEST(ScanStringTest, ExactStringMatchWorks) {
+    UserValue userValue = UserValue::fromString("Hello");
+    auto routine = makeStringScanRoutine(ScanMatchType::MATCH_EQUAL_TO);
+    auto context = scan::makeScanContext(bytes("Hello World"), nullptr,
+                                         &userValue, userValue.flag(), false);
 
-    auto match = findRegexPattern(&m_mem, m_mem.bytes.size(), "[0-9]+");
+    const auto result = routine(context);
 
-    ASSERT_TRUE(match.has_value());
-    EXPECT_EQ(match->offset, 3U);  // "123" starts at offset 3
-    EXPECT_EQ(match->length, 3U);  // "123" has length 3
+    EXPECT_TRUE(result);
+    EXPECT_EQ(result.matchLength, 5U);
 }
 
-// Test getCachedRegex with invalid pattern
-TEST_F(ScanStringTest, GetCachedRegexInvalidPatternReturnsNull) {
-    const auto* regex = getCachedRegex("[invalid(");
+TEST(ScanStringTest, RegexBlockMatcherReturnsAllMatches) {
+    const auto matches = findRegexMatches(bytes("abc123xyz456"), "[0-9]+");
 
-    EXPECT_EQ(regex, nullptr);
+    ASSERT_EQ(matches.size(), 2U);
+    EXPECT_EQ(matches[0].offset, 3U);
+    EXPECT_EQ(matches[0].length, 3U);
+    EXPECT_EQ(matches[1].offset, 9U);
+    EXPECT_EQ(matches[1].length, 3U);
 }
+
+TEST(ScanStringTest, RegexBlockMatcherPreservesOverlappingMatches) {
+    const auto matches = findRegexMatches(bytes("ababa"), "aba");
+
+    ASSERT_EQ(matches.size(), 2U);
+    EXPECT_EQ(matches[0].offset, 0U);
+    EXPECT_EQ(matches[0].length, 3U);
+    EXPECT_EQ(matches[1].offset, 2U);
+    EXPECT_EQ(matches[1].length, 3U);
+}
+
+TEST(ScanStringTest, InvalidRegexReturnsNoMatches) {
+    EXPECT_TRUE(findRegexMatches(bytes("abc123"), "[invalid(").empty());
+    EXPECT_EQ(getCachedRegex("[invalid("), nullptr);
+}
+
+TEST(ScanStringTest, RegexIsHandledByBlockMatcherNotPerAddressRoutine) {
+    UserValue userValue = UserValue::fromString("a.c");
+    auto routine = makeStringScanRoutine(ScanMatchType::MATCH_REGEX);
+    auto context = scan::makeScanContext(bytes("abc"), nullptr, &userValue,
+                                         userValue.flag(), false);
+
+    EXPECT_FALSE(routine(context));
+}
+
+}  // namespace
