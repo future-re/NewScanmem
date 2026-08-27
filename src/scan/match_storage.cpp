@@ -91,19 +91,19 @@ void MatchesAndOldValuesArray::deleteInAddressRange(void* start, void* end,
     for (auto& swath : swaths) {
         if (swath.firstByteInChild == nullptr || swath.data.empty()) continue;
         const auto base = std::bit_cast<std::uintptr_t>(swath.firstByteInChild);
-        const auto swath_end = base + swath.data.size();
-        const auto clamped_start = std::max(lower, base);
-        const auto clamped_end = std::min(upper, swath_end);
-        if (clamped_start >= clamped_end) continue;
-        const auto first = static_cast<std::size_t>(clamped_start - base);
-        const auto last = static_cast<std::size_t>(clamped_end - base);
+        const auto swathEnd = base + swath.data.size();
+        const auto clampedStart = std::max(lower, base);
+        const auto clampedEnd = std::min(upper, swathEnd);
+        if (clampedStart >= clampedEnd) continue;
+        const auto first = static_cast<std::size_t>(clampedStart - base);
+        const auto last = static_cast<std::size_t>(clampedEnd - base);
         for (std::size_t index = first; index < last; ++index)
             if (swath.data[index].matchInfo != MatchFlags::EMPTY) ++matches;
         swath.data.erase(
             swath.data.begin() + static_cast<std::ptrdiff_t>(first),
             swath.data.begin() + static_cast<std::ptrdiff_t>(last));
         if (first == 0)
-            swath.firstByteInChild = std::bit_cast<void*>(clamped_end);
+            swath.firstByteInChild = std::bit_cast<void*>(clampedEnd);
     }
     const auto remove = std::ranges::remove_if(
         swaths, [](const auto& swath) { return swath.data.empty(); });

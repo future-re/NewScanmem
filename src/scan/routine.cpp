@@ -5,14 +5,14 @@ auto nullRoutine() -> ScanRoutine {
     return [](const ScanContext&) { return ScanResult::noMatch(); };
 }
 auto makeScanContext(const std::span<const std::uint8_t> memory,
-                     const Value* old_value, const UserValue* user_value,
+                     const Value* oldValue, const UserValue* userValue,
                      const MatchFlags flag,
-                     const bool reverse_endianness) -> ScanContext {
+                     const bool reverseEndianness) -> ScanContext {
     ScanContext context{.memory = memory,
                         .requiredFlag = flag,
-                        .reverseEndianness = reverse_endianness};
-    if (old_value != nullptr) context.oldValue = *old_value;
-    if (user_value != nullptr) context.userValue = *user_value;
+                        .reverseEndianness = reverseEndianness};
+    if (oldValue != nullptr) context.oldValue = *oldValue;
+    if (userValue != nullptr) context.userValue = *userValue;
     return context;
 }
 }  // namespace scan

@@ -10,16 +10,16 @@
 
 namespace scan {
 [[nodiscard]] auto runScan(
-    pid_t pid, const ScanOptions& options, const UserValue* user_value,
+    pid_t pid, const ScanOptions& options, const UserValue* userValue,
     MatchesAndOldValuesArray& output) -> std::expected<ScanStats, std::string>;
 [[nodiscard]] auto runScanWithPrevious(
-    pid_t pid, const ScanOptions& options, const UserValue* user_value,
+    pid_t pid, const ScanOptions& options, const UserValue* userValue,
     MatchesAndOldValuesArray& output,
-    const MatchesAndOldValuesArray& previous_snapshot)
+    const MatchesAndOldValuesArray& previousSnapshot)
     -> std::expected<ScanStats, std::string>;
 [[nodiscard]] auto runScanParallel(
-    pid_t pid, const ScanOptions& options, const UserValue* user_value,
+    pid_t pid, const ScanOptions& options, const UserValue* userValue,
     MatchesAndOldValuesArray& output,
-    const MatchesAndOldValuesArray* previous_snapshot)
+    const MatchesAndOldValuesArray* previousSnapshot)
     -> std::expected<ScanStats, std::string>;
 }  // namespace scan

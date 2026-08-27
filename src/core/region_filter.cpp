@@ -1,8 +1,8 @@
 #include "newscanmem/core/region_filter.hpp"
 
 namespace core {
-RegionFilter::RegionFilter(std::unordered_set<RegionType> allowed_types)
-    : m_allowedTypes(std::move(allowed_types)) {}
+RegionFilter::RegionFilter(std::unordered_set<RegionType> allowedTypes)
+    : m_allowedTypes(std::move(allowedTypes)) {}
 auto RegionFilter::fromTypeNames(const std::vector<std::string>& names)
     -> RegionFilter {
     std::unordered_set<RegionType> types;

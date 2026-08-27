@@ -24,5 +24,5 @@
     std::span<const std::uint8_t> pattern,
     std::span<const std::uint8_t> mask) -> std::optional<ByteMatch>;
 
-[[nodiscard]] auto makeBytearrayScanRoutine(ScanMatchType match_type)
+[[nodiscard]] auto makeBytearrayScanRoutine(ScanMatchType matchType)
     -> scan::ScanRoutine;

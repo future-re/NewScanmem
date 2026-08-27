@@ -16,5 +16,5 @@
     std::span<const std::uint8_t> memory,
     std::string_view pattern) -> std::vector<ByteMatch>;
 
-[[nodiscard]] auto makeStringScanRoutine(ScanMatchType match_type)
+[[nodiscard]] auto makeStringScanRoutine(ScanMatchType matchType)
     -> scan::ScanRoutine;

@@ -20,10 +20,10 @@ class MatchesAndOldValuesSwath {
     void* firstByteInChild{nullptr};
     std::vector<OldValueAndMatchInfo> data;
     void addElement(void* address, std::uint8_t byte, MatchFlags flags);
-    void appendRange(void* base_address, const std::uint8_t* bytes,
+    void appendRange(void* baseAddress, const std::uint8_t* bytes,
                      std::size_t length,
                      MatchFlags initial = MatchFlags::EMPTY);
-    void markRangeByIndex(std::size_t start_index, std::size_t length,
+    void markRangeByIndex(std::size_t startIndex, std::size_t length,
                           MatchFlags flags);
     void markRangeByAddress(void* address, std::size_t length,
                             MatchFlags flags);
@@ -40,7 +40,7 @@ class MatchesAndOldValuesArray {
     [[nodiscard]] auto nthMatch(std::size_t index)
         -> std::optional<std::pair<MatchesAndOldValuesSwath*, std::size_t>>;
     void deleteInAddressRange(void* start, void* end,
-                              unsigned long& match_count);
+                              unsigned long& matchCount);
     [[nodiscard]] auto getRawBytesAt(void* address, std::size_t length,
                                      std::vector<std::uint8_t>& output) const
         -> bool;

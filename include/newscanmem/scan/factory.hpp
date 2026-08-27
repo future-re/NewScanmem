@@ -20,18 +20,17 @@ namespace scan {
  * @brief Create a scan routine for the given data type and match type
  * @param dataType The data type to scan for
  * @param matchType The match condition
- * @param requiredFlag The required type flag (usually from user value)
  * @param reverseEndianness Whether to reverse byte order
  * @return A ScanRoutine that performs the matching
  */
-[[nodiscard]] auto makeScanRoutine(ScanDataType data_type,
-                                   ScanMatchType match_type,
-                                   bool reverse_endianness) -> ScanRoutine;
+[[nodiscard]] auto makeScanRoutine(ScanDataType dataType,
+                                   ScanMatchType matchType,
+                                   bool reverseEndianness) -> ScanRoutine;
 
 /**
  * @brief Check if a scan routine is available for the given configuration
  */
-[[nodiscard]] auto isRoutineAvailable(ScanDataType data_type,
-                                      ScanMatchType match_type) -> bool;
+[[nodiscard]] auto isRoutineAvailable(ScanDataType dataType,
+                                      ScanMatchType matchType) -> bool;
 
 }  // namespace scan

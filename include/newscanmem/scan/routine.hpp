@@ -75,9 +75,9 @@ using ScanRoutine = std::function<ScanResult(const ScanContext& ctx)>;
 [[nodiscard]] auto nullRoutine() -> ScanRoutine;
 
 [[nodiscard]] auto makeScanContext(std::span<const std::uint8_t> memory,
-                                   const Value* old_value,
-                                   const UserValue* user_value,
-                                   MatchFlags required_flag,
-                                   bool reverse_endianness) -> ScanContext;
+                                   const Value* oldValue,
+                                   const UserValue* userValue,
+                                   MatchFlags requiredFlag,
+                                   bool reverseEndianness) -> ScanContext;
 
 }  // namespace scan

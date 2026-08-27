@@ -15,9 +15,9 @@ enum class RegionFilterMode : std::uint8_t { DISABLED, SCAN_TIME, EXPORT_TIME };
 
 class RegionFilter {
    public:
-    RegionFilter(std::unordered_set<RegionType> allowed_types = {});
+    RegionFilter(std::unordered_set<RegionType> allowedTypes = {});
     [[nodiscard]] static auto fromTypeNames(
-        const std::vector<std::string>& type_names) -> RegionFilter;
+        const std::vector<std::string>& typeNames) -> RegionFilter;
     [[nodiscard]] auto isTypeAllowed(RegionType type) const -> bool;
     [[nodiscard]] auto isRegionAllowed(const Region& region) const -> bool;
     [[nodiscard]] auto isAddressAllowed(

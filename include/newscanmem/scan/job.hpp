@@ -26,10 +26,10 @@ namespace scan {
     -> std::expected<std::vector<core::Region>, std::string>;
 
 [[nodiscard]] auto prepareScanRoutine(const ScanOptions& opts,
-                                      const UserValue* user_value)
+                                      const UserValue* userValue)
     -> std::expected<ScanRoutine, std::string>;
 
 [[nodiscard]] auto scanWindowSize(const ScanOptions& opts,
-                                  const UserValue* user_value) -> std::size_t;
+                                  const UserValue* userValue) -> std::size_t;
 
 }  // namespace scan
