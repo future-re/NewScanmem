@@ -11,10 +11,8 @@
       
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../../concurrency/">
       
-      
-        <link rel="next" href="../sets/">
       
       
         
@@ -25,7 +23,7 @@
     
     
       
-        <title>内存映射 (maps) - NewScanmem Documentation</title>
+        <title>Semantic Runtime Scanner 路线 - NewScanmem Documentation</title>
       
     
     
@@ -66,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#maps" class="md-skip">
+        <a href="#newscanmem-semantic-runtime-scanner" class="md-skip">
           跳转至
         </a>
       
@@ -102,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              内存映射 (maps)
+              Semantic Runtime Scanner 路线
             
           </span>
         </div>
@@ -382,20 +380,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -416,7 +412,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -570,20 +566,18 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
         
           
           <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
@@ -604,7 +598,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -622,7 +616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../utils/" class="md-nav__link">
         
   
   
@@ -647,37 +641,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    内存映射 (maps)
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../utils/maps/" class="md-nav__link">
         
   
   
@@ -693,433 +660,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        概述
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        头文件
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        核心组件
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="核心组件">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. 区域类型
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1. 区域类型">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#region_type" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        region_type 枚举
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. 扫描级别
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. 扫描级别">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#regionscanlevel" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        RegionScanLevel 枚举
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 区域元数据
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. 区域元数据">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#regionflags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        RegionFlags 结构
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#region" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Region 结构
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        使用示例
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="使用示例">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        基本用法
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        过滤扫描
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        错误处理
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#maps_reader" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        类：maps_reader
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="类：maps_reader">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        静态方法
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="静态方法">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#read_process_maps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        read_process_maps
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        错误处理模块
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="错误处理模块">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#maps_readererror" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        maps_reader::error 结构
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        常见错误场景
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        高级功能
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="高级功能">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        区域分析
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        权限检查
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        性能说明
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        线程安全
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        平台兼容性
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#c" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        从传统 C 代码迁移
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="从传统 C 代码迁移">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#c-c" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        传统 C → 现代 C++
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        示例
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="示例">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_18" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        完整工作示例
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cli" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        与 CLI 的集成
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1132,7 +672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sets/" class="md-nav__link">
+      <a href="../../utils/sets/" class="md-nav__link">
         
   
   
@@ -1160,7 +700,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../endianness/" class="md-nav__link">
+      <a href="../../utils/endianness/" class="md-nav__link">
         
   
   
@@ -1533,18 +1073,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1565,7 +1107,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1608,10 +1150,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../roadmap/semantic_runtime_scanner/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semantic Runtime Scanner 路线
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1627,6 +1196,241 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 背景与目标
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-memory-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Memory Timeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-semantic-diff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Semantic Diff
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-memory-hotspot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Memory Hotspot
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-pointer-object-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Pointer / Object Graph
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-automatic-structure-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Automatic Structure Recovery
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-memory-region-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Memory Region Classification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-secret-scanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Secret Scanner
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-allocation-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Allocation Tracking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-cross-layer-runtime-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Cross-layer Runtime View
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-ai-natural-language-scan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. AI / Natural Language Scan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-ai-runtime-agent-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. AI Runtime / Agent Runtime 扩展方向
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-scanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Scanner 架构演进
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. 推荐实施顺序
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. 推荐实施顺序">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1temporal-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1：Temporal Runtime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2semantic-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2：Semantic Memory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3runtime-inspector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3：Runtime Inspector
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4ai-assisted-scanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4：AI-assisted Scanner
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. 项目定位演进
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1666,251 +1470,165 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        概述
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        头文件
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        核心组件
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="核心组件">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 区域类型
+        1. 背景与目标
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="1. 区域类型">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#region_type" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        region_type 枚举
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. 扫描级别
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. 扫描级别">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#regionscanlevel" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        RegionScanLevel 枚举
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 区域元数据
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. 区域元数据">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#regionflags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        RegionFlags 结构
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#region" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Region 结构
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#2-memory-timeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        使用示例
+        2. Memory Timeline
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="使用示例">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        基本用法
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        过滤扫描
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        错误处理
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#maps_reader" class="md-nav__link">
+  <a href="#3-semantic-diff" class="md-nav__link">
     <span class="md-ellipsis">
       
-        类：maps_reader
+        3. Semantic Diff
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="类：maps_reader">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        静态方法
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="静态方法">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#read_process_maps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        read_process_maps
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#4-memory-hotspot" class="md-nav__link">
     <span class="md-ellipsis">
       
-        错误处理模块
+        4. Memory Hotspot
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="错误处理模块">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-pointer-object-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Pointer / Object Graph
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-automatic-structure-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Automatic Structure Recovery
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-memory-region-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Memory Region Classification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-secret-scanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Secret Scanner
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-allocation-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Allocation Tracking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-cross-layer-runtime-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Cross-layer Runtime View
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-ai-natural-language-scan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. AI / Natural Language Scan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-ai-runtime-agent-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. AI Runtime / Agent Runtime 扩展方向
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-scanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Scanner 架构演进
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. 推荐实施顺序
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. 推荐实施顺序">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#maps_readererror" class="md-nav__link">
+  <a href="#phase-1temporal-runtime" class="md-nav__link">
     <span class="md-ellipsis">
       
-        maps_reader::error 结构
+        Phase 1：Temporal Runtime
       
     </span>
   </a>
@@ -1918,10 +1636,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#phase-2semantic-memory" class="md-nav__link">
     <span class="md-ellipsis">
       
-        常见错误场景
+        Phase 2：Semantic Memory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3runtime-inspector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3：Runtime Inspector
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4ai-assisted-scanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4：AI-assisted Scanner
       
     </span>
   </a>
@@ -1934,138 +1674,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#15" class="md-nav__link">
     <span class="md-ellipsis">
       
-        高级功能
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="高级功能">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        区域分析
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        权限检查
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        性能说明
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        线程安全
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        平台兼容性
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#c" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        从传统 C 代码迁移
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="从传统 C 代码迁移">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#c-c" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        传统 C → 现代 C++
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        示例
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="示例">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_18" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        完整工作示例
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cli" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        与 CLI 的集成
+        15. 项目定位演进
       
     </span>
   </a>
@@ -2092,251 +1704,385 @@
   
 
 
-<h1 id="maps">Maps 模块文档</h1>
-<h2 id="_1">概述</h2>
-<p>Maps 模块提供读取和解析 Linux <code>/proc/[pid]/maps</code> 文件的功能，用于提取进程内存区域信息。这是一个现代化的 C++20 实现，用类型安全、符合 RAII 的接口替代了传统的 C 代码。</p>
-<h2 id="_2">头文件</h2>
-<pre><code class="language-cpp">#include &quot;newscanmem/core/maps.hpp&quot;
-</code></pre>
-<h2 id="_3">核心组件</h2>
-<h3 id="1">1. 区域类型</h3>
-<h4 id="region_type"><code>region_type</code> 枚举</h4>
-<p>表示内存区域的分类：</p>
-<pre><code class="language-cpp">enum class RegionType : uint8_t {
-    MISC,   // 杂项内存区域
-    EXE,    // 可执行文件二进制区域
-    CODE,   // 代码段（共享库等）
-    HEAP,   // 堆内存区域
-    STACK   // 栈内存区域
-};
-
-constexpr std::array&lt;std::string_view, 5&gt; REGION_TYPE_NAMES = {
-    &quot;misc&quot;, &quot;exe&quot;, &quot;code&quot;, &quot;heap&quot;, &quot;stack&quot;
-};
-</code></pre>
-<h3 id="2">2. 扫描级别</h3>
-<h4 id="regionscanlevel"><code>RegionScanLevel</code> 枚举</h4>
-<p>控制包含哪些内存区域的扫描：</p>
-<pre><code class="language-cpp">enum class RegionScanLevel : uint8_t {
-    ALL,                       // 所有可读区域
-    ALL_RW,                    // 所有可读/可写区域
-    HEAP_STACK_EXECUTABLE,     // 堆、栈和可执行区域
-    HEAP_STACK_EXECUTABLE_BSS  // 上述加上 BSS 段
-};
-</code></pre>
-<h3 id="3">3. 区域元数据</h3>
-<h4 id="regionflags"><code>RegionFlags</code> 结构</h4>
-<p>包含内存区域的权限和状态标志：</p>
-<pre><code class="language-cpp">struct RegionFlags {
-    bool read : 1;    // 读权限
-    bool write : 1;   // 写权限
-    bool exec : 1;    // 执行权限
-    bool shared : 1;  // 共享映射
-    bool private_ : 1; // 私有映射
-};
-</code></pre>
-<h4 id="region"><code>Region</code> 结构</h4>
-<p>关于内存区域的完整信息：</p>
-<pre><code class="language-cpp">struct Region {
-    void* start;           // 起始地址
-    std::size_t size;      // 区域大小（字节）
-    RegionType type;       // 区域分类
-    RegionFlags flags;     // 权限标志
-    void* loadAddr;        // ELF 文件的加载地址
-    std::string filename;  // 关联文件路径
-    std::size_t id;        // 唯一标识符
-
-    // 辅助方法
-    [[nodiscard]] bool isReadable() const noexcept;
-    [[nodiscard]] bool isWritable() const noexcept;
-    [[nodiscard]] bool isExecutable() const noexcept;
-    [[nodiscard]] bool isShared() const noexcept;
-    [[nodiscard]] bool isPrivate() const noexcept;
-
-    [[nodiscard]] std::pair&lt;void*, std::size_t&gt; asSpan() const noexcept;
-    [[nodiscard]] bool contains(void* address) const noexcept;
-};
-</code></pre>
-<h2 id="_4">使用示例</h2>
-<h3 id="_5">基本用法</h3>
-<pre><code class="language-cpp">#include &quot;newscanmem/core/maps.hpp&quot;
-
-// 读取进程的所有内存区域
-auto result = maps::readProcessMaps(1234);
-if (result) {
-    for (const auto&amp; region : *result) {
-        std::cout &lt;&lt; std::format(&quot;区域: {}-{} ({})\n&quot;, 
-                               region.start, 
-                               static_cast&lt;char*&gt;(region.start) + region.size,
-                               REGION_TYPE_NAMES[static_cast&lt;size_t&gt;(region.type)]);
-    }
-}
-</code></pre>
-<h3 id="_6">过滤扫描</h3>
-<pre><code class="language-cpp">// 只扫描堆和栈区域
-auto regions = maps::readProcessMaps(
-    pid, 
-    maps::RegionScanLevel::HEAP_STACK_EXECUTABLE
-);
-
-if (regions) {
-    for (const auto&amp; region : *regions) {
-        if (region.type == maps::region_type::heap) {
-            std::cout &lt;&lt; &quot;找到堆区域: &quot; &lt;&lt; region.filename &lt;&lt; &quot;\n&quot;;
-        }
-    }
-}
-</code></pre>
-<h3 id="_7">错误处理</h3>
-<pre><code class="language-cpp">auto result = maps::read_process_maps(pid);
-if (!result) {
-    std::cerr &lt;&lt; &quot;错误: &quot; &lt;&lt; result.error().message &lt;&lt; &quot;\n&quot;;
-    return;
-}
-</code></pre>
-<h2 id="maps_reader">类：<code>maps_reader</code></h2>
-<h3 id="_8">静态方法</h3>
-<h4 id="read_process_maps"><code>read_process_maps</code></h4>
-<p>从进程读取内存区域：</p>
-<pre><code class="language-cpp">[[nodiscard]] static std::expected&lt;std::vector&lt;region&gt;, error&gt; 
-read_process_maps(pid_t pid, region_scan_level level = region_scan_level::all);
-</code></pre>
-<p><strong>参数：</strong></p>
+<h1 id="newscanmem-semantic-runtime-scanner">NewScanmem 下一代特性规划：Semantic Runtime Scanner</h1>
+<h2 id="1">1. 背景与目标</h2>
+<p>NewScanmem 当前定位是现代 C++ 实现的进程内存扫描工具，核心能力仍围绕数值、字符串、字节模式扫描以及基于上一次扫描结果的过滤展开。</p>
+<p>传统内存扫描器通常回答的是：</p>
 <ul>
-<li><code>pid</code>: 目标进程 ID</li>
-<li><code>level</code>: 扫描级别过滤器（默认：<code>all</code>）</li>
+<li>某个数值存在哪个地址？</li>
+<li>哪些地址发生了增加、减少或变化？</li>
+<li>如何读取或修改目标进程中的某段内存？</li>
 </ul>
-<p><strong>返回值：</strong></p>
+<p>下一阶段希望将 NewScanmem 从 <strong>Memory Scanner</strong> 演进为 <strong>Semantic Runtime Scanner</strong>：不仅发现“哪个地址匹配”，还能够描述“程序运行时发生了什么”。</p>
+<p>核心演进方向：</p>
+<pre><code class="language-text">byte / value / address
+        ↓
+object / state / relationship
+        ↓
+behavior / timeline / semantic finding
+</code></pre>
+<p>最终目标是形成如下处理模型：</p>
+<pre><code class="language-text">observe
+  ↓
+snapshot
+  ↓
+diff
+  ↓
+detect
+  ↓
+finding
+  ↓
+explain
+</code></pre>
+<hr />
+<h2 id="2-memory-timeline">2. Memory Timeline</h2>
+<p>Memory Timeline 用于持续记录目标进程内存状态随时间的变化，而不是只保留一次扫描及其结果。</p>
+<p>计划能力：</p>
 <ul>
-<li><code>std::expected</code> 包含区域向量或错误信息</li>
+<li>周期性采集内存快照；</li>
+<li>记录内存区域的创建、增长、变化和消失；</li>
+<li>查询某个地址或区域在过去一段时间内的变化历史；</li>
+<li>支持按时间窗口分析，例如“过去 10 秒变化最频繁的区域”；</li>
+<li>为后续对象生命周期、Secret 生命周期和 Runtime Event 提供统一时间轴。</li>
 </ul>
-<p><strong>错误处理：</strong></p>
+<p>示例：</p>
+<pre><code class="language-text">12:31:01  region 0x7f120000 created   8 MB
+12:31:03  region 0x7f120000 changed   63%
+12:31:05  region 0x7f120000 entropy   2.1 -&gt; 7.8
+12:31:11  region 0x7f120000 released
+</code></pre>
+<p>建议引入核心概念：</p>
+<pre><code class="language-cpp">struct MemorySnapshot;
+struct MemoryEvent;
+struct MemoryTimeline;
+</code></pre>
+<hr />
+<h2 id="3-semantic-diff">3. Semantic Diff</h2>
+<p>现有扫描通常只关心 equal、changed、increased、decreased 等值级比较。Semantic Diff 将比较范围扩展到内存区域和运行时状态。</p>
+<p>候选检测项：</p>
 <ul>
-<li>返回 <code>std::error_code</code> 和适当的错误消息</li>
-<li>常见错误：文件未找到、权限被拒绝、格式无效</li>
+<li>新出现的内存区域；</li>
+<li>消失的区域；</li>
+<li>区域大小变化；</li>
+<li>高频修改区域；</li>
+<li>字符串出现或消失；</li>
+<li>内存熵显著变化；</li>
+<li>指针关系变化；</li>
+<li>疑似结构体布局变化；</li>
+<li>大块内存突增或突降。</li>
 </ul>
-<h2 id="_9">错误处理模块</h2>
-<h3 id="maps_readererror"><code>maps_reader::error</code> 结构</h3>
-<pre><code class="language-cpp">struct error {
-    std::string message;   // 人类可读的错误描述
-    std::error_code code;  // 系统错误代码
+<p>输出不再只是地址列表，而是结构化 Finding：</p>
+<pre><code class="language-cpp">struct Finding {
+    Address address;
+    FindingType type;
+    float confidence;
+    std::string description;
 };
 </code></pre>
-<h3 id="_10">常见错误场景</h3>
+<p>示例：</p>
+<pre><code class="language-text">Finding: HighEntropyRegion
+Address: 0x7f120000
+Size: 4 MB
+Entropy: 2.4 -&gt; 7.9
+Confidence: 0.93
+</code></pre>
+<hr />
+<h2 id="4-memory-hotspot">4. Memory Hotspot</h2>
+<p>Memory Hotspot 用于发现“哪些内存位置最活跃”。它类似 CPU profiler，但关注内存修改频率和变化强度。</p>
+<p>计划能力：</p>
+<ul>
+<li>统计地址或区域的修改次数；</li>
+<li>计算 writes/s 或 change-rate；</li>
+<li>对热点地址进行聚类；</li>
+<li>与线程、调用栈或时间线关联；</li>
+<li>找出异常高频更新的数据结构。</li>
+</ul>
+<p>示例：</p>
+<pre><code class="language-text">0x7f100010   39123 changes/s
+0x7f100080    8211 changes/s
+0x7f102000    2190 changes/s
+</code></pre>
+<p>该能力可用于实时程序、游戏、服务进程和 Agent Runtime 的状态分析。</p>
+<hr />
+<h2 id="5-pointer-object-graph">5. Pointer / Object Graph</h2>
+<p>传统 pointer scan 主要用于找到稳定指针链。下一阶段可以进一步构建运行时对象引用图。</p>
+<p>核心思路：</p>
+<pre><code class="language-text">Memory Address / Object
+          │
+        pointer
+          ↓
+Memory Address / Object
+</code></pre>
+<p>计划能力：</p>
+<ul>
+<li>自动识别疑似指针；</li>
+<li>判断目标地址所属内存区域；</li>
+<li>构建对象引用关系图；</li>
+<li>查询谁引用了某个对象；</li>
+<li>查询对象是否可以从全局/栈 root 到达；</li>
+<li>检测循环引用或异常引用链；</li>
+<li>将引用图与 Memory Timeline 联动。</li>
+</ul>
+<p>这使 NewScanmem 可以从“地址扫描器”逐步进入 Heap/Object Inspector 的能力范围。</p>
+<hr />
+<h2 id="6-automatic-structure-recovery">6. Automatic Structure Recovery</h2>
+<p>Structure Recovery 用于在缺少源码和调试符号时，对重复内存布局进行推断。</p>
+<p>可以综合以下特征：</p>
+<ul>
+<li>地址对齐；</li>
+<li>整数/浮点数分布；</li>
+<li>有效指针；</li>
+<li>指针指向字符串；</li>
+<li>重复布局；</li>
+<li>字段随时间的变化规律；</li>
+<li>不同对象实例之间的相似性。</li>
+</ul>
+<p>示例：</p>
+<pre><code class="language-text">Candidate Object @ 0x1000
+
++0x00  int32   1234
++0x08  char*   &quot;alice&quot;
++0x10  float   98.5
++0x18  ptr     CandidateObject
+</code></pre>
+<p>该功能不要求一次性恢复完整 C++ 类型，而是生成带置信度的候选布局。</p>
+<hr />
+<h2 id="7-memory-region-classification">7. Memory Region Classification</h2>
+<p>在现有 <code>/proc/&lt;pid&gt;/maps</code> 和内存读取能力基础上，对区域增加更高层分类。</p>
+<p>基础类别：</p>
+<ul>
+<li>heap；</li>
+<li>stack；</li>
+<li>executable mapping；</li>
+<li>file-backed mmap；</li>
+<li>anonymous mapping；</li>
+<li>shared memory。</li>
+</ul>
+<p>进一步可识别：</p>
+<ul>
+<li>疑似对象池；</li>
+<li>疑似压缩数据；</li>
+<li>疑似加密数据；</li>
+<li>大型缓存；</li>
+<li>高频更新 buffer；</li>
+<li>长生命周期只读数据。</li>
+</ul>
+<p>区域分类结果可作为其他 detector 的输入，而不是单纯作为 UI 标签。</p>
+<hr />
+<h2 id="8-secret-scanner">8. Secret Scanner</h2>
+<p>增加面向安全分析的敏感信息检测能力。</p>
+<p>候选类型：</p>
+<ul>
+<li>API Key；</li>
+<li>JWT；</li>
+<li>Bearer Token；</li>
+<li>Access Token；</li>
+<li>Private Key；</li>
+<li>Password-like string；</li>
+<li>Credential；</li>
+<li>其他可配置敏感数据模式。</li>
+</ul>
+<p>检测不应只依赖正则表达式，可以综合：</p>
+<pre><code class="language-text">pattern
+  + entropy
+  + region type
+  + lifetime
+  + copy relationship
+  + reference relationship
+</code></pre>
+<p>示例：</p>
+<pre><code class="language-text">Potential Secret
+
+Type: Bearer Token
+Address: 0x7f223000
+Region: heap
+First Seen: 12:32:08
+Lifetime: 12.3 s
+Copies: 3
+</code></pre>
+<p>后续可进一步研究敏感数据从创建、复制到释放的 Runtime Data Flow。</p>
+<hr />
+<h2 id="9-allocation-tracking">9. Allocation Tracking</h2>
+<p>从“地址存在什么”进一步升级到“这块内存从哪里来、活了多久”。</p>
+<p>计划能力：</p>
+<ul>
+<li>记录 allocation/free；</li>
+<li>记录 allocation size；</li>
+<li>记录生命周期；</li>
+<li>关联线程；</li>
+<li>可选关联调用栈；</li>
+<li>检测长期未释放对象；</li>
+<li>识别频繁分配/释放热点。</li>
+</ul>
+<p>示例：</p>
+<pre><code class="language-text">Allocation 0x12340000
+Size: 4 MB
+Created: 12:30:01
+Last Changed: 12:30:09
+Freed: 12:30:12
+Lifetime: 11 s
+</code></pre>
+<p>实现层可逐步评估 malloc hook、uprobes、eBPF 等机制，并与现有扫描引擎保持解耦。</p>
+<hr />
+<h2 id="10-cross-layer-runtime-view">10. Cross-layer Runtime View</h2>
+<p>长期目标之一是将内存事件和其他运行时事件关联起来。</p>
+<pre><code class="language-text">process
+   ↓
+thread
+   ↓
+syscall / function / allocation
+   ↓
+memory region
+   ↓
+semantic finding
+</code></pre>
+<p>典型问题：</p>
+<ul>
+<li>哪个线程导致了这块区域发生变化？</li>
+<li>哪次 allocation 创建了这个对象？</li>
+<li>哪次 read/socket 操作后出现了这段高熵 buffer？</li>
+<li>某个敏感字符串何时进入进程内存？</li>
+</ul>
+<p>这一层可以让 NewScanmem 从内存分析工具进一步演进为 Runtime Inspector。</p>
+<hr />
+<h2 id="11-ai-natural-language-scan">11. AI / Natural Language Scan</h2>
+<p>AI 不应直接扫描数 GB 原始内存，而应该负责“生成扫描计划”和“解释结构化结果”。</p>
+<p>推荐模型：</p>
+<pre><code class="language-text">Natural Language Intent
+          ↓
+      Scan Plan
+          ↓
+C++ Scanner / Detector Pipeline
+          ↓
+       Findings
+          ↓
+ Semantic Explanation
+</code></pre>
+<p>示例：</p>
+<pre><code class="language-text">用户：找最近 5 秒新出现的大块高熵内存。
+</code></pre>
+<p>可转换为：</p>
+<pre><code class="language-text">window = 5s
+region_state = new
+size &gt; 1 MB
+entropy &gt; 7.0
+</code></pre>
+<p>或者：</p>
+<pre><code class="language-text">用户：找看起来像用户对象的数据结构。
+</code></pre>
+<p>由 AI 组合：</p>
+<pre><code class="language-text">RepeatedLayoutDetector
++ PointerDetector
++ StringReferenceDetector
++ TemporalCorrelationDetector
+</code></pre>
+<p>AI 层的重点是规划、组合和解释，而不是替代底层扫描器。</p>
+<hr />
+<h2 id="12-ai-runtime-agent-runtime">12. AI Runtime / Agent Runtime 扩展方向</h2>
+<p>在基础 Runtime Scanner 成熟后，可以继续增加面向 AI Runtime 的专用 Detector。</p>
+<p>候选方向：</p>
+<ul>
+<li>Tensor buffer 识别；</li>
+<li>Model mmap 识别；</li>
+<li>KV Cache 变化追踪；</li>
+<li>CPU/GPU 内存关联；</li>
+<li>Token/Request 与内存增长关联；</li>
+<li>Agent tool 调用前后的 Runtime Diff；</li>
+<li>Agent 产生的文件、进程、网络和内存行为关联。</li>
+</ul>
+<p>这部分应建立在通用 Timeline、Finding 和 Detector 架构之上，而不应该和核心内存扫描逻辑强耦合。</p>
+<hr />
+<h2 id="13-scanner">13. Scanner 架构演进</h2>
+<p>建议逐步将扫描模块从按“数据类型”组织，扩展为按“检测语义”组织：</p>
+<pre><code class="language-text">scanner/
+    memory/
+        numeric
+        string
+        bytes
+
+    structure/
+        pointer
+        object
+        graph
+
+    temporal/
+        snapshot
+        diff
+        mutation
+
+    security/
+        secret
+        credential
+
+    runtime/
+        allocation
+        mmap
+        hotspot
+
+    ai/
+        tensor
+        kv_cache
+</code></pre>
+<p>统一抽象可以逐步收敛为：</p>
+<pre><code class="language-text">ScanRequest
+    ↓
+Scanner / Detector
+    ↓
+Finding
+</code></pre>
+<p>这样现有 numeric/string/bytes scanner 可以继续作为基础能力存在，而不需要推翻重写。</p>
+<hr />
+<h2 id="14">14. 推荐实施顺序</h2>
+<h3 id="phase-1temporal-runtime">Phase 1：Temporal Runtime</h3>
+<p>优先实现：</p>
 <ol>
-<li><strong>进程不存在</strong>：<code>no_such_file_or_directory</code></li>
-<li><strong>权限被拒绝</strong>：<code>permission_denied</code></li>
-<li><strong>格式无效</strong>：<code>invalid_argument</code></li>
+<li><code>MemorySnapshot</code>；</li>
+<li><code>MemoryTimeline</code>；</li>
+<li><code>MemoryEvent</code>；</li>
+<li>Semantic Diff；</li>
+<li>Memory Hotspot。</li>
 </ol>
-<h2 id="_11">高级功能</h2>
-<h3 id="_12">区域分析</h3>
-<pre><code class="language-cpp">// 检查地址是否在任意区域内
-auto regions = maps::read_process_maps(pid);
-void* address = /* 某个地址 */;
-
-for (const auto&amp; region : *regions) {
-    if (region.contains(address)) {
-        std::cout &lt;&lt; &quot;地址在: &quot; &lt;&lt; region.filename &lt;&lt; &quot;中找到\n&quot;;
-        break;
-    }
-}
-</code></pre>
-<h3 id="_13">权限检查</h3>
-<pre><code class="language-cpp">// 查找可写可执行区域（潜在的 shellcode 目标）
-for (const auto&amp; region : *regions) {
-    if (region.isWritable() &amp;&amp; region.isExecutable()) {
-        std::cout &lt;&lt; &quot;WX 区域: &quot; &lt;&lt; region.filename &lt;&lt; &quot;\n&quot;;
-    }
-}
-</code></pre>
-<h2 id="_14">性能说明</h2>
-<ul>
-<li><strong>内存高效</strong>：对小文件名使用带有 SSO 的 <code>std::string</code></li>
-<li><strong>零拷贝</strong>：直接从映射行提取字符串</li>
-<li><strong>提前过滤</strong>：根据扫描级别在解析期间过滤区域</li>
-<li><strong>RAII</strong>：通过 <code>std::ifstream</code> 自动清理资源</li>
-</ul>
-<h2 id="_15">线程安全</h2>
-<ul>
-<li><strong>线程安全</strong>：所有方法对并发访问都是线程安全的</li>
-<li><strong>无共享状态</strong>：每次调用创建独立状态</li>
-<li><strong>不可变结果</strong>：返回的向量包含不可变数据</li>
-</ul>
-<h2 id="_16">平台兼容性</h2>
-<ul>
-<li><strong>仅 Linux</strong>：需要 <code>/proc/[pid]/maps</code> 文件系统</li>
-<li><strong>需要 C++23</strong>：使用 <code>std::expected</code> 和其他 C++23 特性</li>
-<li><strong>支持 64 位</strong>：处理 32 位和 64 位地址空间</li>
-</ul>
-<h2 id="c">从传统 C 代码迁移</h2>
-<h3 id="c-c">传统 C → 现代 C++</h3>
-<table>
-<thead>
-<tr>
-<th>传统 C</th>
-<th>现代 C++</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>region_t*</code></td>
-<td><code>maps::region</code></td>
-</tr>
-<tr>
-<td><code>list_t</code></td>
-<td><code>std::vector&lt;region&gt;</code></td>
-</tr>
-<tr>
-<td><code>bool return</code></td>
-<td><code>std::expected</code></td>
-</tr>
-<tr>
-<td><code>char*</code> 文件名</td>
-<td><code>std::string</code></td>
-</tr>
-<tr>
-<td>手动内存管理</td>
-<td>RAII</td>
-</tr>
-<tr>
-<td>错误代码</td>
-<td>异常安全的错误处理</td>
-</tr>
-</tbody>
-</table>
-<h2 id="_17">示例</h2>
-<h3 id="_18">完整工作示例</h3>
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-#include &quot;newscanmem/core/maps.hpp&quot;
-
-int main() {
-    pid_t target_pid = 1234; // 替换为实际 PID
-
-    auto regions = maps::readProcessMaps(target_pid);
-    if (!regions) {
-        std::cerr &lt;&lt; &quot;读取映射失败: &quot; &lt;&lt; regions.error().message &lt;&lt; &quot;\n&quot;;
-        return 1;
-    }
-
-    std::cout &lt;&lt; &quot;找到 &quot; &lt;&lt; regions-&gt;size() &lt;&lt; &quot; 个内存区域:\n&quot;;
-
-    for (const auto&amp; region : *regions) {
-        std::cout &lt;&lt; std::format(
-            &quot;0x{:x}-0x{:x} {} {} {}\n&quot;,
-            reinterpret_cast&lt;uintptr_t&gt;(region.start),
-            reinterpret_cast&lt;uintptr_t&gt;(region.start) + region.size,
-            region.isReadable() ? 'r' : '-',
-            region.isWritable() ? 'w' : '-',
-            region.isExecutable() ? 'x' : '-',
-            region.filename.empty() ? &quot;[匿名]&quot; : region.filename
-        );
-    }
-
-    return 0;
-}
-</code></pre>
-<h2 id="cli">与 CLI 的集成</h2>
-<p><code>maps</code> 模块在 CLI 中用于检索和显示目标进程的内存区域信息。例如，<code>list</code> 命令利用此模块解析并输出 <code>/proc/[pid]/maps</code> 数据。</p>
+<p>目标：从“一次扫描”升级为“持续观察”。</p>
+<h3 id="phase-2semantic-memory">Phase 2：Semantic Memory</h3>
+<p>实现：</p>
+<ol>
+<li>Pointer Detector；</li>
+<li>Object Graph；</li>
+<li>Structure Recovery；</li>
+<li>Region Classification；</li>
+<li>Secret Scanner。</li>
+</ol>
+<p>目标：从“地址和值”升级为“对象、关系和语义”。</p>
+<h3 id="phase-3runtime-inspector">Phase 3：Runtime Inspector</h3>
+<p>实现：</p>
+<ol>
+<li>Allocation Tracking；</li>
+<li>Runtime Event Correlation；</li>
+<li>Cross-layer Runtime View；</li>
+<li>可插拔 Detector Pipeline。</li>
+</ol>
+<p>目标：解释程序运行过程中发生了什么。</p>
+<h3 id="phase-4ai-assisted-scanner">Phase 4：AI-assisted Scanner</h3>
+<p>实现：</p>
+<ol>
+<li>Natural Language Scan；</li>
+<li>Scan Plan 生成；</li>
+<li>Findings 自动解释；</li>
+<li>AI Runtime / Agent Runtime 专用 Detector。</li>
+</ol>
+<p>目标：让用户从“指定地址和值”转向“描述问题和意图”。</p>
+<hr />
+<h2 id="15">15. 项目定位演进</h2>
+<p>当前定位：</p>
+<blockquote>
+<p>Modern C++ memory scanner.</p>
+</blockquote>
+<p>推荐长期定位：</p>
+<blockquote>
+<p><strong>NewScanmem — Semantic Runtime Scanner</strong></p>
+<p>Inspect not only what exists in memory, but how runtime state changes, relates and behaves.</p>
+</blockquote>
+<p>这一路线的关键不是给传统 scanmem 加一个聊天框，而是让扫描对象本身从 <code>value/address</code> 升级为 <code>state/object/relationship/behavior/timeline</code>。</p>
 
 
 
