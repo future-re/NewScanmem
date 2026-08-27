@@ -1,17 +1,5 @@
 var NAVTREEINDEX6 =
 {
-"types_8hpp.html#a67986707d17cc91d949eb328ec7fb6f0ad85c332a620efc6baafab41461d1ed98":[5,0,0,0,4,9,4,3],
-"types_8hpp.html#a67986707d17cc91d949eb328ec7fb6f0ae36c2b34118fa54eee2914c440d2d66a":[5,0,0,0,4,9,4,1],
-"types_8hpp.html#a6afe1a8713ed8327d1bffe2d79dd49b0":[5,0,0,0,4,9,10],
-"types_8hpp.html#a76c7d19363d98752abd6dfeb2832edb1":[5,0,0,0,4,9,8],
-"types_8hpp.html#aa76ce477d8694cc6cd4f0530cc7a7cd8":[5,0,0,0,4,9,6],
-"types_8hpp_source.html":[5,0,0,0,4,9],
-"user__input_8cpp.html":[5,0,1,4,5],
-"user__input_8hpp.html":[5,0,0,0,5,5],
-"user__input_8hpp_source.html":[5,0,0,0,5,5],
-"utils_2string_8cpp.html":[5,0,1,5,4],
-"utils_2string_8hpp.html":[5,0,0,0,6,5],
-"utils_2string_8hpp_source.html":[5,0,0,0,6,5],
 "utils_2version_8hpp.html":[5,0,0,0,6,6],
 "utils_2version_8hpp_source.html":[5,0,0,0,6,6],
 "value_2value_8hpp.html":[5,0,0,0,7,3],
