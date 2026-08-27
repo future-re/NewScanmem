@@ -1,6 +1,6 @@
 <map id="src/core/memory_writer.cpp" name="src/core/memory_writer.cpp">
 <area shape="rect" id="Node000001" title=" " alt="" coords="2523,5,2725,31"/>
-<area shape="rect" id="Node000002" href="$memory__writer_8hpp.html" title="Memory writing abstraction using process_vm_writev" alt="" coords="2522,79,2726,119"/>
+<area shape="rect" id="Node000002" href="$memory__writer_8hpp.html" title="Memory writing abstraction using process memory access" alt="" coords="2522,79,2726,119"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2627,31,2627,65,2621,65,2621,31"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="2309,577,2395,603"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="2619,120,2540,293,2477,413,2404,531,2374,568,2370,565,2399,528,2472,410,2535,291,2614,118"/>

@@ -66,7 +66,7 @@
 <area shape="poly" id="edge22_Node000018_Node000011" title=" " alt="" coords="2540,222,2706,267,2705,272,2538,228"/>
 <area shape="rect" id="Node000019" href="$session_8hpp.html" title="Shared session state for CLI commands (pid + scanner)" alt="" coords="1107,269,1271,309"/>
 <area shape="poly" id="edge25_Node000018_Node000019" title=" " alt="" coords="2360,224,2041,256,1730,275,1462,286,1271,290,1271,285,1462,280,1730,270,2040,250,2359,219"/>
-<area shape="rect" id="Node000036" href="$memory__writer_8hpp.html" title="Memory writing abstraction using process_vm_writev" alt="" coords="2237,269,2423,309"/>
+<area shape="rect" id="Node000036" href="$memory__writer_8hpp.html" title="Memory writing abstraction using process memory access" alt="" coords="2237,269,2423,309"/>
 <area shape="poly" id="edge47_Node000018_Node000036" title=" " alt="" coords="2418,232,2359,271,2356,267,2415,227"/>
 <area shape="rect" id="Node000038" href="$scanner_8cpp.html" title=" " alt="" coords="2058,277,2213,302"/>
 <area shape="poly" id="edge49_Node000018_Node000038" title=" " alt="" coords="2373,227,2179,279,2177,274,2371,222"/>

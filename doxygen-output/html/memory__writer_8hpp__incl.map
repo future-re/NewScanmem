@@ -1,5 +1,5 @@
 <map id="include/newscanmem/core/memory_writer.hpp" name="include/newscanmem/core/memory_writer.hpp">
-<area shape="rect" id="Node000001" title="Memory writing abstraction using process_vm_writev" alt="" coords="2531,5,2717,45"/>
+<area shape="rect" id="Node000001" title="Memory writing abstraction using process memory access" alt="" coords="2531,5,2717,45"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="2309,504,2395,529"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2619,47,2540,220,2477,339,2404,458,2374,495,2370,492,2399,454,2472,337,2535,217,2614,44"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="2126,577,2165,603"/>

@@ -64,7 +64,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classcore_1_1MemoryWriter.html#a3974583377eb4f032755e6a18adf4739",
+"classcore_1_1MemoryWriter.html#a384da4d85393617aaeceffe471c281f2",
 "classui_1_1UserInterface.html#a76436bf07917b7c63363d893e07a9ee8",
 "logging_8hpp.html#a6b50893705cf2a59daf6b680304017ddadc30ec20708ef7b0f641ef78b7880a15",
 "proc__mem_8cpp.html#a9b9299e713784696c1df515d1f4c35c0",
