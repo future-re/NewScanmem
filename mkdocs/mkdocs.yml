@@ -58,3 +58,4 @@ nav:
     - '命名规则': NamingConvention.md
   - 架构设计:
     - '并发架构分析': concurrency.md
+    - 'Semantic Runtime Scanner 路线': roadmap/semantic_runtime_scanner.md
