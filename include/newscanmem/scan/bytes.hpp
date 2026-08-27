@@ -3,11 +3,22 @@
 #include <cstddef>
 #include <cstdint>
 #include <optional>
+#include <span>
 #include <vector>
 
 #include "newscanmem/scan/routine.hpp"
 #include "newscanmem/scan/types.hpp"
 
+[[nodiscard]] auto compareBytes(std::span<const std::uint8_t> memory,
+                                std::span<const std::uint8_t> pattern,
+                                MatchFlags* flags) -> unsigned int;
+[[nodiscard]] auto compareBytesMasked(
+    std::span<const std::uint8_t> memory,
+    std::span<const std::uint8_t> pattern,
+    std::span<const std::uint8_t> mask,
+    MatchFlags* flags) -> unsigned int;
+
+// Compatibility overloads for callers that still own data as Value/vector.
 [[nodiscard]] auto compareBytes(const Value* memory, std::size_t memory_length,
                                 const std::uint8_t* pattern,
                                 std::size_t pattern_length,
