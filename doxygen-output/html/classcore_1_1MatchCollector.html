@@ -94,19 +94,21 @@ $(document).ready(function(){initNavTree('classcore_1_1MatchCollector.html','');
   <div class="summary">
 <a href="#pub-methods">Public 成员函数</a> &#124;
 <a href="classcore_1_1MatchCollector-members.html">所有成员列表</a>  </div>
-  <div class="headertitle"><div class="title">core::MatchCollector类 参考<span class="mlabels"><span class="mlabel">export</span></span><div class="ingroups">模块 <a class="el" href="module_core_8match.html">core.match</a></div></div></div>
+  <div class="headertitle"><div class="title">core::MatchCollector类 参考</div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>Collects match entries from scanner results  
  <a href="classcore_1_1MatchCollector.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="match_8hpp_source.html">match.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:adf919bc14d0bfa57f1a5c4426b0a4d3a" id="r_adf919bc14d0bfa57f1a5c4426b0a4d3a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MatchCollector.html#adf919bc14d0bfa57f1a5c4426b0a4d3a">MatchCollector</a> (std::optional&lt; <a class="el" href="classcore_1_1RegionClassifier.html">RegionClassifier</a> &gt; classifier=std::nullopt)</td></tr>
+<tr class="memitem:adf919bc14d0bfa57f1a5c4426b0a4d3a" id="r_adf919bc14d0bfa57f1a5c4426b0a4d3a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MatchCollector.html#adf919bc14d0bfa57f1a5c4426b0a4d3a">MatchCollector</a> (std::optional&lt; <a class="el" href="classcore_1_1RegionClassifier.html">RegionClassifier</a> &gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">classifier</a>=std::nullopt)</td></tr>
 <tr class="memdesc:adf919bc14d0bfa57f1a5c4426b0a4d3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create collector with optional region classifier  <br /></td></tr>
 <tr class="separator:adf919bc14d0bfa57f1a5c4426b0a4d3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b61cb797bb8efcbe6491896a37d1320" id="r_a3b61cb797bb8efcbe6491896a37d1320"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MatchCollector.html#a3b61cb797bb8efcbe6491896a37d1320">collect</a> (const <a class="el" href="structcore_1_1MatchSource.html">MatchSource</a> &amp;source, const <a class="el" href="structcore_1_1MatchCollectionOptions.html">MatchCollectionOptions</a> &amp;options={}) const -&gt; std::pair&lt; std::vector&lt; <a class="el" href="structcore_1_1MatchEntry.html">MatchEntry</a> &gt;, size_t &gt;</td></tr>
+<tr class="memitem:a3b61cb797bb8efcbe6491896a37d1320" id="r_a3b61cb797bb8efcbe6491896a37d1320"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1MatchCollector.html#a3b61cb797bb8efcbe6491896a37d1320">collect</a> (<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> <a class="el" href="structcore_1_1MatchSource.html">MatchSource</a> &amp;<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">source</a>, <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> <a class="el" href="structcore_1_1MatchCollectionOptions.html">MatchCollectionOptions</a> &amp;options={}) <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> -&gt; std::pair&lt; std::vector&lt; <a class="el" href="structcore_1_1MatchEntry.html">MatchEntry</a> &gt;, <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">size_t</a> &gt;</td></tr>
 <tr class="memdesc:a3b61cb797bb8efcbe6491896a37d1320"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collect match entries from scanner  <br /></td></tr>
 <tr class="separator:a3b61cb797bb8efcbe6491896a37d1320"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -132,7 +134,7 @@ Public 成员函数</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span><span class="mlabel">export</span></span>  </td>
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -153,33 +155,25 @@ Public 成员函数</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto core::MatchCollector::collect </td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> core::MatchCollector::collect </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structcore_1_1MatchSource.html">MatchSource</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> <a class="el" href="structcore_1_1MatchSource.html">MatchSource</a> &amp;&#160;</td>
           <td class="paramname"><em>source</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="structcore_1_1MatchCollectionOptions.html">MatchCollectionOptions</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> <a class="el" href="structcore_1_1MatchCollectionOptions.html">MatchCollectionOptions</a> &amp;&#160;</td>
           <td class="paramname"><em>options</em> = <code>{}</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> const -&gt; std::pair&lt;std::vector&lt;<a class="el" href="structcore_1_1MatchEntry.html">MatchEntry</a>&gt;, size_t&gt; </td>
+          <td></td><td> const -&gt; std::pair&lt;std::vector&lt;<a class="el" href="structcore_1_1MatchEntry.html">MatchEntry</a>&gt;, <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">size_t</a>&gt;</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Collect match entries from scanner </p>
@@ -196,7 +190,8 @@ Public 成员函数</h2></td></tr>
 </div>
 </div>
 <hr/>该类的文档由以下文件生成:<ul>
-<li>src/core/<a class="el" href="match_8cppm.html">match.cppm</a></li>
+<li>include/newscanmem/core/<a class="el" href="match_8hpp_source.html">match.hpp</a></li>
+<li>src/core/<a class="el" href="match_8cpp.html">match.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

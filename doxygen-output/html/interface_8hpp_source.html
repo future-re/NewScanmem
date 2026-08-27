@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: include/newscanmem/ui/interface.hpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('interface_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">interface.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="interface_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;optional&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;string_view&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceui.html">ui</a> {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2">   19</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2">MessageLevel</a> : std::uint8_t { <a class="code hl_enumvalue" href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2a551b723eafd6a31d444fcb2f5920fbd3">INFO</a>, <a class="code hl_enumvalue" href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2a059e9861e0400dfbe05c98a841f3f96b">WARNING</a>, <a class="code hl_enumvalue" href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2abb1ca97ec761fc37101737ba0aa2e7c5">ERROR</a>, <a class="code hl_enumvalue" href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2adc30ec20708ef7b0f641ef78b7880a15">DEBUG</a> };</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classui_1_1UserInterface.html">   26</a></span><span class="keyword">class </span><a class="code hl_class" href="classui_1_1UserInterface.html">UserInterface</a> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classui_1_1UserInterface.html#a76436bf07917b7c63363d893e07a9ee8">   28</a></span>    <a class="code hl_function" href="classui_1_1UserInterface.html#a76436bf07917b7c63363d893e07a9ee8">UserInterface</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classui_1_1UserInterface.html#a079b8c35ea12bb50db9e6b4dc23647d5">   29</a></span>    <a class="code hl_function" href="classui_1_1UserInterface.html#a079b8c35ea12bb50db9e6b4dc23647d5">UserInterface</a>(<span class="keyword">const</span> <a class="code hl_class" href="classui_1_1UserInterface.html">UserInterface</a>&amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classui_1_1UserInterface.html#aa7156089c13b28c6b420f7c13ba32ac1">   30</a></span>    <span class="keyword">auto</span> <a class="code hl_function" href="classui_1_1UserInterface.html#aa7156089c13b28c6b420f7c13ba32ac1">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classui_1_1UserInterface.html">UserInterface</a>&amp;) -&gt; <a class="code hl_class" href="classui_1_1UserInterface.html">UserInterface</a>&amp; = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classui_1_1UserInterface.html#aced6e9954e710d009a8903020c4489b5">   31</a></span>    <a class="code hl_function" href="classui_1_1UserInterface.html#aced6e9954e710d009a8903020c4489b5">UserInterface</a>(<a class="code hl_class" href="classui_1_1UserInterface.html">UserInterface</a>&amp;&amp;) <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">noexcept</a> = <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">default</a>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classui_1_1UserInterface.html#a7492f75681f7d60e013c0f2953929942">   32</a></span>    <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">operator</a>=(<a class="code hl_class" href="classui_1_1UserInterface.html">UserInterface</a>&amp;&amp;) <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">noexcept</a> -&gt; <a class="code hl_class" href="classui_1_1UserInterface.html">UserInterface</a>&amp; = <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">default</a>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classui_1_1UserInterface.html#aaa8fc8d97277269762e38d54ef5c618b">   33</a></span>    <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">virtual</a> ~<a class="code hl_class" href="classui_1_1UserInterface.html">UserInterface</a>() = <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">default</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classui_1_1UserInterface.html#a82923f1be6622deb601019f3a2ab74dd">   39</a></span>    <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">virtual</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> <a class="code hl_function" href="classui_1_1UserInterface.html#a82923f1be6622deb601019f3a2ab74dd">print</a>(<a class="code hl_namespace" href="namespacestd.html">std</a>::<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">string_view</a> message) -&gt; <span class="keywordtype">void</span> = 0;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classui_1_1UserInterface.html#af2578bff6af32ded69ce715f13a81238">   45</a></span>    <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">virtual</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> <a class="code hl_function" href="classui_1_1UserInterface.html#af2578bff6af32ded69ce715f13a81238">printError</a>(<a class="code hl_namespace" href="namespacestd.html">std</a>::<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">string_view</a> message) -&gt; <span class="keywordtype">void</span> = 0;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classui_1_1UserInterface.html#a291fd5629aff85bcd424d3a81787bf84">   51</a></span>    <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">virtual</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> <a class="code hl_function" href="classui_1_1UserInterface.html#a291fd5629aff85bcd424d3a81787bf84">printWarning</a>(<a class="code hl_namespace" href="namespacestd.html">std</a>::<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">string_view</a> message) -&gt; <span class="keywordtype">void</span> = 0;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classui_1_1UserInterface.html#a92392bb1bdad4b61ca96122fded06494">   57</a></span>    <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">virtual</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> <a class="code hl_function" href="classui_1_1UserInterface.html#a92392bb1bdad4b61ca96122fded06494">printInfo</a>(<a class="code hl_namespace" href="namespacestd.html">std</a>::<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">string_view</a> message) -&gt; <span class="keywordtype">void</span> = 0;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classui_1_1UserInterface.html#a3fb9f2e6ab424b2f2ad7893514de6338">   63</a></span>    <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">virtual</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> <a class="code hl_function" href="classui_1_1UserInterface.html#a3fb9f2e6ab424b2f2ad7893514de6338">printDebug</a>(<a class="code hl_namespace" href="namespacestd.html">std</a>::<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">string_view</a> message) -&gt; <span class="keywordtype">void</span> = 0;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">virtual</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> <a class="code hl_function" href="classui_1_1UserInterface.html#a431171b79f1cd5fdd376331c6e8a3b04">printMessage</a>(<a class="code hl_enumeration" href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2">MessageLevel</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">level</a>, <a class="code hl_namespace" href="namespacestd.html">std</a>::<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">string_view</a> message) -&gt; <span class="keywordtype">void</span>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classui_1_1UserInterface.html#a4b4208cd72f8cd34a8d9968323d30151">   77</a></span>    <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">virtual</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> <a class="code hl_function" href="classui_1_1UserInterface.html#a4b4208cd72f8cd34a8d9968323d30151">getLine</a>(<a class="code hl_namespace" href="namespacestd.html">std</a>::<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">string_view</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">prompt</a>)</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        -&gt; <a class="code hl_namespace" href="namespacestd.html">std</a>::<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">optional</a>&lt;<a class="code hl_namespace" href="namespacestd.html">std</a>::<span class="keywordtype">string</span>&gt; = 0;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">virtual</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> <a class="code hl_function" href="classui_1_1UserInterface.html#a4709eb0e9ed65f015425211d7fe4acf7">readLine</a>(<a class="code hl_namespace" href="namespacestd.html">std</a>::<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">string_view</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">prompt</a>) -&gt; <a class="code hl_namespace" href="namespacestd.html">std</a>::<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">optional</a>&lt;<a class="code hl_namespace" href="namespacestd.html">std</a>::<span class="keywordtype">string</span>&gt;;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classui_1_1UserInterface.html#ab0c6bfe441b14269680f5e684a27257e">   93</a></span>    <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">virtual</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> <a class="code hl_function" href="classui_1_1UserInterface.html#ab0c6bfe441b14269680f5e684a27257e">confirm</a>(<a class="code hl_namespace" href="namespacestd.html">std</a>::<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">string_view</a> message) -&gt; <span class="keywordtype">bool</span> = 0;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">virtual</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> <a class="code hl_function" href="classui_1_1UserInterface.html#a72484d4e0a1751ba0ec8bc0dbfd3d996">clearScreen</a>() -&gt; <span class="keywordtype">void</span>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">virtual</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> <a class="code hl_function" href="classui_1_1UserInterface.html#a7152d2f842830d9f6974c4908caa7271">setDebugMode</a>(<span class="keywordtype">bool</span> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">enabled</a>) -&gt; <span class="keywordtype">void</span>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    [[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">virtual</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> <a class="code hl_function" href="classui_1_1UserInterface.html#a3a11af3f2576ab7b62348afe5aefa2ce">isDebugMode</a>() <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> -&gt; <span class="keywordtype">bool</span>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>   <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">private</a>:</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordtype">bool</span> m_debugModeEnabled = <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">false</a>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>};</div>
+</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>}  <span class="comment">// namespace ui</span></div>
+<div class="ttc" id="aclassui_1_1UserInterface_html"><div class="ttname"><a href="classui_1_1UserInterface.html">ui::UserInterface</a></div><div class="ttdoc">Abstract interface for user interaction</div><div class="ttdef"><b>Definition</b> interface.hpp:26</div></div>
+<div class="ttc" id="aclassui_1_1UserInterface_html_a079b8c35ea12bb50db9e6b4dc23647d5"><div class="ttname"><a href="classui_1_1UserInterface.html#a079b8c35ea12bb50db9e6b4dc23647d5">ui::UserInterface::UserInterface</a></div><div class="ttdeci">UserInterface(const UserInterface &amp;)=default</div></div>
+<div class="ttc" id="aclassui_1_1UserInterface_html_a291fd5629aff85bcd424d3a81787bf84"><div class="ttname"><a href="classui_1_1UserInterface.html#a291fd5629aff85bcd424d3a81787bf84">ui::UserInterface::printWarning</a></div><div class="ttdeci">virtual auto printWarning(std::string_view message) -&gt; void=0</div><div class="ttdoc">Print warning message</div></div>
+<div class="ttc" id="aclassui_1_1UserInterface_html_a3a11af3f2576ab7b62348afe5aefa2ce"><div class="ttname"><a href="classui_1_1UserInterface.html#a3a11af3f2576ab7b62348afe5aefa2ce">ui::UserInterface::isDebugMode</a></div><div class="ttdeci">virtual auto isDebugMode() const -&gt; bool</div><div class="ttdoc">Check if debug mode is enabled</div><div class="ttdef"><b>Definition</b> interface.cpp:8</div></div>
+<div class="ttc" id="aclassui_1_1UserInterface_html_a3fb9f2e6ab424b2f2ad7893514de6338"><div class="ttname"><a href="classui_1_1UserInterface.html#a3fb9f2e6ab424b2f2ad7893514de6338">ui::UserInterface::printDebug</a></div><div class="ttdeci">virtual auto printDebug(std::string_view message) -&gt; void=0</div><div class="ttdoc">Print debug message</div></div>
+<div class="ttc" id="aclassui_1_1UserInterface_html_a431171b79f1cd5fdd376331c6e8a3b04"><div class="ttname"><a href="classui_1_1UserInterface.html#a431171b79f1cd5fdd376331c6e8a3b04">ui::UserInterface::printMessage</a></div><div class="ttdeci">virtual auto printMessage(MessageLevel level, std::string_view message) -&gt; void</div><div class="ttdoc">Print message with specific level</div><div class="ttdef"><b>Definition</b> interface.cpp:4</div></div>
+<div class="ttc" id="aclassui_1_1UserInterface_html_a4709eb0e9ed65f015425211d7fe4acf7"><div class="ttname"><a href="classui_1_1UserInterface.html#a4709eb0e9ed65f015425211d7fe4acf7">ui::UserInterface::readLine</a></div><div class="ttdeci">virtual auto readLine(std::string_view prompt) -&gt; std::optional&lt; std::string &gt;</div><div class="ttdoc">Read line from user (alias for getLine)</div><div class="ttdef"><b>Definition</b> interface.cpp:5</div></div>
+<div class="ttc" id="aclassui_1_1UserInterface_html_a4b4208cd72f8cd34a8d9968323d30151"><div class="ttname"><a href="classui_1_1UserInterface.html#a4b4208cd72f8cd34a8d9968323d30151">ui::UserInterface::getLine</a></div><div class="ttdeci">virtual auto getLine(std::string_view prompt) -&gt; std::optional&lt; std::string &gt;=0</div><div class="ttdoc">Read line from user</div></div>
+<div class="ttc" id="aclassui_1_1UserInterface_html_a7152d2f842830d9f6974c4908caa7271"><div class="ttname"><a href="classui_1_1UserInterface.html#a7152d2f842830d9f6974c4908caa7271">ui::UserInterface::setDebugMode</a></div><div class="ttdeci">virtual auto setDebugMode(bool enabled) -&gt; void</div><div class="ttdoc">Set debug mode</div><div class="ttdef"><b>Definition</b> interface.cpp:7</div></div>
+<div class="ttc" id="aclassui_1_1UserInterface_html_a72484d4e0a1751ba0ec8bc0dbfd3d996"><div class="ttname"><a href="classui_1_1UserInterface.html#a72484d4e0a1751ba0ec8bc0dbfd3d996">ui::UserInterface::clearScreen</a></div><div class="ttdeci">virtual auto clearScreen() -&gt; void</div><div class="ttdoc">Clear screen</div><div class="ttdef"><b>Definition</b> interface.cpp:6</div></div>
+<div class="ttc" id="aclassui_1_1UserInterface_html_a76436bf07917b7c63363d893e07a9ee8"><div class="ttname"><a href="classui_1_1UserInterface.html#a76436bf07917b7c63363d893e07a9ee8">ui::UserInterface::UserInterface</a></div><div class="ttdeci">UserInterface()=default</div></div>
+<div class="ttc" id="aclassui_1_1UserInterface_html_a82923f1be6622deb601019f3a2ab74dd"><div class="ttname"><a href="classui_1_1UserInterface.html#a82923f1be6622deb601019f3a2ab74dd">ui::UserInterface::print</a></div><div class="ttdeci">virtual auto print(std::string_view message) -&gt; void=0</div><div class="ttdoc">Print message to user</div></div>
+<div class="ttc" id="aclassui_1_1UserInterface_html_a92392bb1bdad4b61ca96122fded06494"><div class="ttname"><a href="classui_1_1UserInterface.html#a92392bb1bdad4b61ca96122fded06494">ui::UserInterface::printInfo</a></div><div class="ttdeci">virtual auto printInfo(std::string_view message) -&gt; void=0</div><div class="ttdoc">Print informational message</div></div>
+<div class="ttc" id="aclassui_1_1UserInterface_html_aa7156089c13b28c6b420f7c13ba32ac1"><div class="ttname"><a href="classui_1_1UserInterface.html#aa7156089c13b28c6b420f7c13ba32ac1">ui::UserInterface::operator=</a></div><div class="ttdeci">auto operator=(const UserInterface &amp;) -&gt; UserInterface &amp;=default</div></div>
+<div class="ttc" id="aclassui_1_1UserInterface_html_ab0c6bfe441b14269680f5e684a27257e"><div class="ttname"><a href="classui_1_1UserInterface.html#ab0c6bfe441b14269680f5e684a27257e">ui::UserInterface::confirm</a></div><div class="ttdeci">virtual auto confirm(std::string_view message) -&gt; bool=0</div><div class="ttdoc">Ask user for confirmation</div></div>
+<div class="ttc" id="aclassui_1_1UserInterface_html_aced6e9954e710d009a8903020c4489b5"><div class="ttname"><a href="classui_1_1UserInterface.html#aced6e9954e710d009a8903020c4489b5">ui::UserInterface::UserInterface</a></div><div class="ttdeci">UserInterface(UserInterface &amp;&amp;) noexcept=default</div></div>
+<div class="ttc" id="aclassui_1_1UserInterface_html_af2578bff6af32ded69ce715f13a81238"><div class="ttname"><a href="classui_1_1UserInterface.html#af2578bff6af32ded69ce715f13a81238">ui::UserInterface::printError</a></div><div class="ttdeci">virtual auto printError(std::string_view message) -&gt; void=0</div><div class="ttdoc">Print error message</div></div>
+<div class="ttc" id="aflags_8hpp_html_a2bd4546b83b208d80dfb2fc0829d9cb1"><div class="ttname"><a href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">flagForType</a></div><div class="ttdeci">consteval auto flagForType() noexcept -&gt; MatchFlags</div><div class="ttdef"><b>Definition</b> flags.hpp:106</div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition</b> core.hpp:224</div></div>
+<div class="ttc" id="anamespaceui_html"><div class="ttname"><a href="namespaceui.html">ui</a></div><div class="ttdef"><b>Definition</b> console.hpp:11</div></div>
+<div class="ttc" id="anamespaceui_html_a4b8a6d96aee295a8102d06460fe071f2"><div class="ttname"><a href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2">ui::MessageLevel</a></div><div class="ttdeci">MessageLevel</div><div class="ttdoc">Message importance level</div><div class="ttdef"><b>Definition</b> interface.hpp:19</div></div>
+<div class="ttc" id="anamespaceui_html_a4b8a6d96aee295a8102d06460fe071f2a059e9861e0400dfbe05c98a841f3f96b"><div class="ttname"><a href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2a059e9861e0400dfbe05c98a841f3f96b">ui::MessageLevel::WARNING</a></div><div class="ttdeci">@ WARNING</div></div>
+<div class="ttc" id="anamespaceui_html_a4b8a6d96aee295a8102d06460fe071f2a551b723eafd6a31d444fcb2f5920fbd3"><div class="ttname"><a href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2a551b723eafd6a31d444fcb2f5920fbd3">ui::MessageLevel::INFO</a></div><div class="ttdeci">@ INFO</div></div>
+<div class="ttc" id="anamespaceui_html_a4b8a6d96aee295a8102d06460fe071f2abb1ca97ec761fc37101737ba0aa2e7c5"><div class="ttname"><a href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2abb1ca97ec761fc37101737ba0aa2e7c5">ui::MessageLevel::ERROR</a></div><div class="ttdeci">@ ERROR</div></div>
+<div class="ttc" id="anamespaceui_html_a4b8a6d96aee295a8102d06460fe071f2adc30ec20708ef7b0f641ef78b7880a15"><div class="ttname"><a href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2adc30ec20708ef7b0f641ef78b7880a15">ui::MessageLevel::DEBUG</a></div><div class="ttdeci">@ DEBUG</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_61322cca43ef6011f730695c31aaa6cc.html">newscanmem</a></li><li class="navelem"><a class="el" href="dir_ca0892c25de47923020ce218191adf45.html">ui</a></li><li class="navelem"><a class="el" href="interface_8hpp.html">interface.hpp</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -724,7 +724,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        模块结构
+        头文件
       
     </span>
   </a>
@@ -1652,7 +1652,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        模块结构
+        头文件
       
     </span>
   </a>
@@ -2067,8 +2067,8 @@
 <h1 id="maps">Maps 模块文档</h1>
 <h2 id="_1">概述</h2>
 <p>Maps 模块提供读取和解析 Linux <code>/proc/[pid]/maps</code> 文件的功能，用于提取进程内存区域信息。这是一个现代化的 C++20 实现，用类型安全、符合 RAII 的接口替代了传统的 C 代码。</p>
-<h2 id="_2">模块结构</h2>
-<pre><code class="language-cpp">import maps;
+<h2 id="_2">头文件</h2>
+<pre><code class="language-cpp">#include &quot;newscanmem/core/maps.hpp&quot;
 </code></pre>
 <h2 id="_3">核心组件</h2>
 <h3 id="1">1. 区域类型</h3>
@@ -2131,7 +2131,7 @@ constexpr std::array&lt;std::string_view, 5&gt; REGION_TYPE_NAMES = {
 </code></pre>
 <h2 id="_4">使用示例</h2>
 <h3 id="_5">基本用法</h3>
-<pre><code class="language-cpp">import maps;
+<pre><code class="language-cpp">#include &quot;newscanmem/core/maps.hpp&quot;
 
 // 读取进程的所有内存区域
 auto result = maps::readProcessMaps(1234);
@@ -2279,7 +2279,7 @@ for (const auto&amp; region : *regions) {
 <h2 id="_17">示例</h2>
 <h3 id="_18">完整工作示例</h3>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
-import maps;
+#include &quot;newscanmem/core/maps.hpp&quot;
 
 int main() {
     pid_t target_pid = 1234; // 替换为实际 PID
@@ -2361,7 +2361,7 @@ int main() {
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.language", "content.language_select"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

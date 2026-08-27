@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: include/newscanmem/core/memory.hpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('memory_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">memory.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="memory_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;bit&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;expected&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;span&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="proc__mem_8hpp.html">newscanmem/core/proc_mem.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacecore.html">core</a> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="};">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classcore_1_1MemoryWriter.html">   25</a></span><span class="keyword">class </span><a class="code hl_class" href="classcore_1_1MemoryWriter.html">MemoryWriter</a> {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classcore_1_1MemoryWriter.html#aaf7bb0186935285bf63a4d16840f41d7">   31</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classcore_1_1MemoryWriter.html#aaf7bb0186935285bf63a4d16840f41d7">MemoryWriter</a>(pid_t pid) : m_pid(pid) {}</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="}">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classcore_1_1MemoryWriter.html#a42d80a675561be2b06aa0dcae792585e">   41</a></span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1MemoryWriter.html#a42d80a675561be2b06aa0dcae792585e">write</a>(<span class="keywordtype">void</span>* addr, <span class="keyword">const</span> T&amp; <a class="code hl_namespace" href="namespacevalue.html">value</a>)</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        -&gt; std::expected&lt;std::size_t, std::string&gt; {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespacecore.html#a99445fcc9b198d0a35ffde606ce2a556">writeValue</a>(m_pid, addr, <a class="code hl_namespace" href="namespacevalue.html">value</a>);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
+</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1MemoryWriter.html#a1b78c4bc08d1a9d6c4c2947813158e15">writeBytes</a>(<span class="keywordtype">void</span>* addr, std::span&lt;const std::uint8_t&gt; data) <span class="keyword">const</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        -&gt; std::expected&lt;std::size_t, std::string&gt;;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1MemoryWriter.html#afa7afc84d7b4ecb90ee60bd8f6227555">writeString</a>(<span class="keywordtype">void</span>* addr, <span class="keyword">const</span> <span class="keywordtype">char</span>* str) <span class="keyword">const</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        -&gt; std::expected&lt;std::size_t, std::string&gt;;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classcore_1_1MemoryWriter.html#a9ebcc6fa02a36252c8e7dcedd3f9a840">   68</a></span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1MemoryWriter.html#a9ebcc6fa02a36252c8e7dcedd3f9a840">getPid</a>() const -&gt; pid_t { <span class="keywordflow">return</span> m_pid; }</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    pid_t m_pid;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>};</div>
+</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>}  <span class="comment">// namespace core</span></div>
+<div class="ttc" id="aclasscore_1_1MemoryWriter_html"><div class="ttname"><a href="classcore_1_1MemoryWriter.html">core::MemoryWriter</a></div><div class="ttdoc">High-level interface for writing to process memory</div><div class="ttdef"><b>Definition</b> memory.hpp:25</div></div>
+<div class="ttc" id="aclasscore_1_1MemoryWriter_html_a1b78c4bc08d1a9d6c4c2947813158e15"><div class="ttname"><a href="classcore_1_1MemoryWriter.html#a1b78c4bc08d1a9d6c4c2947813158e15">core::MemoryWriter::writeBytes</a></div><div class="ttdeci">auto writeBytes(void *addr, std::span&lt; const std::uint8_t &gt; data) const -&gt; std::expected&lt; std::size_t, std::string &gt;</div><div class="ttdoc">Write byte array to memory address</div><div class="ttdef"><b>Definition</b> memory.cpp:4</div></div>
+<div class="ttc" id="aclasscore_1_1MemoryWriter_html_a42d80a675561be2b06aa0dcae792585e"><div class="ttname"><a href="classcore_1_1MemoryWriter.html#a42d80a675561be2b06aa0dcae792585e">core::MemoryWriter::write</a></div><div class="ttdeci">auto write(void *addr, const T &amp;value) -&gt; std::expected&lt; std::size_t, std::string &gt;</div><div class="ttdoc">Write scalar value to memory address</div><div class="ttdef"><b>Definition</b> memory.hpp:41</div></div>
+<div class="ttc" id="aclasscore_1_1MemoryWriter_html_a9ebcc6fa02a36252c8e7dcedd3f9a840"><div class="ttname"><a href="classcore_1_1MemoryWriter.html#a9ebcc6fa02a36252c8e7dcedd3f9a840">core::MemoryWriter::getPid</a></div><div class="ttdeci">auto getPid() const -&gt; pid_t</div><div class="ttdoc">Get target PID</div><div class="ttdef"><b>Definition</b> memory.hpp:68</div></div>
+<div class="ttc" id="aclasscore_1_1MemoryWriter_html_aaf7bb0186935285bf63a4d16840f41d7"><div class="ttname"><a href="classcore_1_1MemoryWriter.html#aaf7bb0186935285bf63a4d16840f41d7">core::MemoryWriter::MemoryWriter</a></div><div class="ttdeci">MemoryWriter(pid_t pid)</div><div class="ttdoc">Construct memory writer for given process</div><div class="ttdef"><b>Definition</b> memory.hpp:31</div></div>
+<div class="ttc" id="aclasscore_1_1MemoryWriter_html_afa7afc84d7b4ecb90ee60bd8f6227555"><div class="ttname"><a href="classcore_1_1MemoryWriter.html#afa7afc84d7b4ecb90ee60bd8f6227555">core::MemoryWriter::writeString</a></div><div class="ttdeci">auto writeString(void *addr, const char *str) const -&gt; std::expected&lt; std::size_t, std::string &gt;</div><div class="ttdoc">Write C-style string to memory address</div><div class="ttdef"><b>Definition</b> memory.cpp:12</div></div>
+<div class="ttc" id="anamespacecore_html"><div class="ttname"><a href="namespacecore.html">core</a></div><div class="ttdef"><b>Definition</b> maps.hpp:17</div></div>
+<div class="ttc" id="anamespacecore_html_a99445fcc9b198d0a35ffde606ce2a556"><div class="ttname"><a href="namespacecore.html#a99445fcc9b198d0a35ffde606ce2a556">core::writeValue</a></div><div class="ttdeci">auto writeValue(pid_t pid, void *addr, const T &amp;value) -&gt; std::expected&lt; std::size_t, std::string &gt;</div><div class="ttdoc">One-shot write scalar value</div><div class="ttdef"><b>Definition</b> proc_mem.hpp:134</div></div>
+<div class="ttc" id="anamespacevalue_html"><div class="ttname"><a href="namespacevalue.html">value</a></div><div class="ttdef"><b>Definition</b> parser.hpp:22</div></div>
+<div class="ttc" id="aproc__mem_8hpp_html"><div class="ttname"><a href="proc__mem_8hpp.html">proc_mem.hpp</a></div><div class="ttdoc">Process memory I/O via /proc/&lt;pid&gt;/mem (进程内存 I/O)</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_61322cca43ef6011f730695c31aaa6cc.html">newscanmem</a></li><li class="navelem"><a class="el" href="dir_344b773e9868a2a477171a970fcc5b76.html">core</a></li><li class="navelem"><a class="el" href="memory_8hpp.html">memory.hpp</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

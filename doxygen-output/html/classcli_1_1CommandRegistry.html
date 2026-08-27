@@ -95,61 +95,55 @@ $(document).ready(function(){initNavTree('classcli_1_1CommandRegistry.html','');
 <a href="#pub-methods">Public 成员函数</a> &#124;
 <a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
 <a href="classcli_1_1CommandRegistry-members.html">所有成员列表</a>  </div>
-  <div class="headertitle"><div class="title">cli::CommandRegistry类 参考<span class="mlabels"><span class="mlabel">export</span></span><div class="ingroups">模块 <a class="el" href="module_cli_8command.html">cli.command</a></div></div></div>
+  <div class="headertitle"><div class="title">cli::CommandRegistry类 参考</div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>Registry for managing available commands  
  <a href="classcli_1_1CommandRegistry.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="command_8hpp_source.html">command.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:a8f14771b016774e9da360d03dc5dec8c" id="r_a8f14771b016774e9da360d03dc5dec8c"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1CommandRegistry.html#a8f14771b016774e9da360d03dc5dec8c">registerCommand</a> (std::unique_ptr&lt; <a class="el" href="classcli_1_1Command.html">Command</a> &gt; command) -&gt; void</td></tr>
-<tr class="memdesc:a8f14771b016774e9da360d03dc5dec8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a command  <br /></td></tr>
-<tr class="separator:a8f14771b016774e9da360d03dc5dec8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfde99daf55053964256a61206ff3622" id="r_acfde99daf55053964256a61206ff3622"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1CommandRegistry.html#acfde99daf55053964256a61206ff3622">findCommand</a> (std::string_view name) -&gt; <a class="el" href="classcli_1_1Command.html">Command</a> *</td></tr>
+<tr class="memitem:acbc4d069a1878288034a8b79ff4209b5" id="r_acbc4d069a1878288034a8b79ff4209b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1CommandRegistry.html#acbc4d069a1878288034a8b79ff4209b5">registerCommand</a> (std::unique_ptr&lt; <a class="el" href="classcli_1_1Command.html">Command</a> &gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">command</a>) -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a></td></tr>
+<tr class="memdesc:acbc4d069a1878288034a8b79ff4209b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a command  <br /></td></tr>
+<tr class="separator:acbc4d069a1878288034a8b79ff4209b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfde99daf55053964256a61206ff3622" id="r_acfde99daf55053964256a61206ff3622"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1CommandRegistry.html#acfde99daf55053964256a61206ff3622">findCommand</a> (std::string_view <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">name</a>) -&gt; <a class="el" href="classcli_1_1Command.html">Command</a> *</td></tr>
 <tr class="memdesc:acfde99daf55053964256a61206ff3622"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find command by name or alias  <br /></td></tr>
 <tr class="separator:acfde99daf55053964256a61206ff3622"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af19b8657b520546dc63ded0c2658a376" id="r_af19b8657b520546dc63ded0c2658a376"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1CommandRegistry.html#af19b8657b520546dc63ded0c2658a376">getAllCommands</a> () const -&gt; std::vector&lt; <a class="el" href="classcli_1_1Command.html">Command</a> * &gt;</td></tr>
+<tr class="memitem:af19b8657b520546dc63ded0c2658a376" id="r_af19b8657b520546dc63ded0c2658a376"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1CommandRegistry.html#af19b8657b520546dc63ded0c2658a376">getAllCommands</a> () <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> -&gt; std::vector&lt; <a class="el" href="classcli_1_1Command.html">Command</a> * &gt;</td></tr>
 <tr class="memdesc:af19b8657b520546dc63ded0c2658a376"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all registered commands  <br /></td></tr>
 <tr class="separator:af19b8657b520546dc63ded0c2658a376"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54e726491de4a32cb19d6a58a76e9087" id="r_a54e726491de4a32cb19d6a58a76e9087"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1CommandRegistry.html#a54e726491de4a32cb19d6a58a76e9087">clear</a> () -&gt; void</td></tr>
-<tr class="memdesc:a54e726491de4a32cb19d6a58a76e9087"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all registered commands  <br /></td></tr>
-<tr class="separator:a54e726491de4a32cb19d6a58a76e9087"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa322d21a47cf3b2324a21637245fd96a" id="r_aa322d21a47cf3b2324a21637245fd96a"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1CommandRegistry.html#aa322d21a47cf3b2324a21637245fd96a">size</a> () const -&gt; std::size_t</td></tr>
+<tr class="memitem:a5d2f6b0f752c3eaf9324abef53c62a58" id="r_a5d2f6b0f752c3eaf9324abef53c62a58"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1CommandRegistry.html#a5d2f6b0f752c3eaf9324abef53c62a58">clear</a> () -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a></td></tr>
+<tr class="memdesc:a5d2f6b0f752c3eaf9324abef53c62a58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all registered commands  <br /></td></tr>
+<tr class="separator:a5d2f6b0f752c3eaf9324abef53c62a58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa322d21a47cf3b2324a21637245fd96a" id="r_aa322d21a47cf3b2324a21637245fd96a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1CommandRegistry.html#aa322d21a47cf3b2324a21637245fd96a">size</a> () <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> -&gt; std::size_t</td></tr>
 <tr class="memdesc:aa322d21a47cf3b2324a21637245fd96a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of registered commands  <br /></td></tr>
 <tr class="separator:aa322d21a47cf3b2324a21637245fd96a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
-<tr class="memitem:a54d09e6c4d3cb447de57054ebd664760" id="r_a54d09e6c4d3cb447de57054ebd664760"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1CommandRegistry.html#a54d09e6c4d3cb447de57054ebd664760">instance</a> () -&gt; <a class="el" href="classcli_1_1CommandRegistry.html">CommandRegistry</a> &amp;</td></tr>
-<tr class="memdesc:a54d09e6c4d3cb447de57054ebd664760"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get singleton instance  <br /></td></tr>
-<tr class="separator:a54d09e6c4d3cb447de57054ebd664760"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a141319e9ea91dd5dc1bd37766501ec50" id="r_a141319e9ea91dd5dc1bd37766501ec50"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">static</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1CommandRegistry.html#a141319e9ea91dd5dc1bd37766501ec50">instance</a> () -&gt; <a class="el" href="classcli_1_1CommandRegistry.html">CommandRegistry</a> &amp;</td></tr>
+<tr class="memdesc:a141319e9ea91dd5dc1bd37766501ec50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get singleton instance  <br /></td></tr>
+<tr class="separator:a141319e9ea91dd5dc1bd37766501ec50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>Registry for managing available commands </p>
 </div><h2 class="groupheader">成员函数说明</h2>
-<a id="a54e726491de4a32cb19d6a58a76e9087" name="a54e726491de4a32cb19d6a58a76e9087"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54e726491de4a32cb19d6a58a76e9087">&#9670;&#160;</a></span>clear()</h2>
+<a id="a5d2f6b0f752c3eaf9324abef53c62a58" name="a5d2f6b0f752c3eaf9324abef53c62a58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d2f6b0f752c3eaf9324abef53c62a58">&#9670;&#160;</a></span>clear()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto cli::CommandRegistry::clear </td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a> cli::CommandRegistry::clear </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> -&gt; void </td>
+          <td> -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Clear all registered commands </p>
@@ -161,23 +155,15 @@ Public 成员函数</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto cli::CommandRegistry::findCommand </td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> cli::CommandRegistry::findCommand </td>
           <td>(</td>
           <td class="paramtype">std::string_view&#160;</td>
           <td class="paramname"><em>name</em></td><td>)</td>
-          <td> -&gt; <a class="el" href="classcli_1_1Command.html">Command</a>* </td>
+          <td> -&gt; <a class="el" href="classcli_1_1Command.html">Command</a>*</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Find command by name or alias </p>
@@ -196,22 +182,14 @@ Public 成员函数</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto cli::CommandRegistry::getAllCommands </td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> cli::CommandRegistry::getAllCommands </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const -&gt; std::vector&lt;<a class="el" href="classcli_1_1Command.html">Command</a>*&gt; </td>
+          <td> const -&gt; std::vector&lt;<a class="el" href="classcli_1_1Command.html">Command</a>*&gt;</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Get all registered commands </p>
@@ -219,8 +197,8 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a54d09e6c4d3cb447de57054ebd664760" name="a54d09e6c4d3cb447de57054ebd664760"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54d09e6c4d3cb447de57054ebd664760">&#9670;&#160;</a></span>instance()</h2>
+<a id="a141319e9ea91dd5dc1bd37766501ec50" name="a141319e9ea91dd5dc1bd37766501ec50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a141319e9ea91dd5dc1bd37766501ec50">&#9670;&#160;</a></span>instance()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -229,15 +207,15 @@ Public 成员函数</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static auto cli::CommandRegistry::instance </td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> cli::CommandRegistry::instance </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> -&gt; <a class="el" href="classcli_1_1CommandRegistry.html">CommandRegistry</a>&amp; </td>
+          <td> -&gt; <a class="el" href="classcli_1_1CommandRegistry.html">CommandRegistry</a>&amp;</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -247,28 +225,20 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a8f14771b016774e9da360d03dc5dec8c" name="a8f14771b016774e9da360d03dc5dec8c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f14771b016774e9da360d03dc5dec8c">&#9670;&#160;</a></span>registerCommand()</h2>
+<a id="acbc4d069a1878288034a8b79ff4209b5" name="acbc4d069a1878288034a8b79ff4209b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbc4d069a1878288034a8b79ff4209b5">&#9670;&#160;</a></span>registerCommand()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto cli::CommandRegistry::registerCommand </td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a> cli::CommandRegistry::registerCommand </td>
           <td>(</td>
           <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classcli_1_1Command.html">Command</a> &gt;&#160;</td>
           <td class="paramname"><em>command</em></td><td>)</td>
-          <td> -&gt; void </td>
+          <td> -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Register a command </p>
@@ -286,22 +256,14 @@ Public 成员函数</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto cli::CommandRegistry::size </td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> cli::CommandRegistry::size </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const -&gt; std::size_t </td>
+          <td> const -&gt; std::size_t</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Get number of registered commands </p>
@@ -310,7 +272,8 @@ Public 成员函数</h2></td></tr>
 </div>
 </div>
 <hr/>该类的文档由以下文件生成:<ul>
-<li>src/cli/<a class="el" href="command_8cppm.html">command.cppm</a></li>
+<li>include/newscanmem/cli/<a class="el" href="command_8hpp_source.html">command.hpp</a></li>
+<li>src/cli/<a class="el" href="command_8cpp.html">command.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

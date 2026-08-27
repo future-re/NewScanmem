@@ -1,0 +1,18 @@
+<map id="include/newscanmem/core/match.hpp" name="include/newscanmem/core/match.hpp">
+<area shape="rect" id="Node000001" title="Match data structures and collection logic" alt="" coords="448,5,612,45"/>
+<area shape="rect" id="Node000002" href="$result__service_8hpp.html" title="Thin application service for current match presentation" alt="" coords="231,93,405,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="472,53,365,96,363,91,470,48"/>
+<area shape="rect" id="Node000006" href="$match__formatter_8hpp.html" title="Match result formatting and display" alt="" coords="433,93,627,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="533,59,533,93,527,93,527,59"/>
+<area shape="rect" id="Node000008" href="$match_8cpp.html" title=" " alt="" coords="652,101,797,126"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="586,49,700,98,698,103,584,53"/>
+<area shape="rect" id="Node000003" href="$result__service_8cpp.html" title=" " alt="" coords="5,181,196,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="254,141,134,184,132,179,252,136"/>
+<area shape="rect" id="Node000004" href="$list_8cpp.html" title=" " alt="" coords="221,181,407,207"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="319,147,317,181,312,181,314,147"/>
+<area shape="rect" id="Node000005" href="$scan_8cpp.html" title=" " alt="" coords="431,181,629,207"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="382,136,500,179,498,184,381,141"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="533,147,533,181,527,181,527,147"/>
+<area shape="rect" id="Node000007" href="$match__formatter_8cpp.html" title=" " alt="" coords="653,181,866,207"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="599,135,727,179,725,184,597,140"/>
+</map>

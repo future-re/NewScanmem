@@ -8,7 +8,7 @@ var searchData=
   ['matchedflag_5',['matchedFlag',['../structscan_1_1ScanResult.html#a8487b2106bf6878ab1586fc5e335f898',1,'scan::ScanResult']]],
   ['matches_6',['matches',['../structcore_1_1MatchSource.html#a68d2d5ddd5ecdc6e95c338015d022e52',1,'core::MatchSource::matches'],['../structScanStats.html#a6135b36c975b50e71a934d36fad14756',1,'ScanStats::matches'],['../structScanRecord.html#a253bcc0894871ba4bcf1f550e6b58f8d',1,'ScanRecord::matches']]],
   ['matchinfo_7',['matchInfo',['../structscan_1_1OldValueAndMatchInfo.html#ae2f389af24189d0c897c3ea1178b4d19',1,'scan::OldValueAndMatchInfo']]],
-  ['matchlength_8',['matchlength',['../structscan_1_1ScanResult.html#a176bdb57e466705d251492fd2653c453',1,'scan::ScanResult::matchLength'],['../structscan_1_1OldValueAndMatchInfo.html#aa478a24ba8b133896ed816d25f3e0ba0',1,'scan::OldValueAndMatchInfo::matchLength']]],
+  ['matchlength_8',['matchlength',['../structscan_1_1ScanResult.html#a176bdb57e466705d251492fd2653c453',1,'scan::ScanResult::matchLength'],['../structscan_1_1OldValueAndMatchInfo.html#a155916fe5afe71aff1035b3bf924742e',1,'scan::OldValueAndMatchInfo::matchLength']]],
   ['matchtype_9',['matchType',['../structScanOptions.html#a8655f255aade6fb8e1a5c460ef250c5d',1,'ScanOptions']]],
   ['memory_10',['memory',['../structscan_1_1ScanContext.html#a7b1ca583e2be7a86d52bff85ca36676d',1,'scan::ScanContext']]],
   ['message_11',['message',['../structcli_1_1CommandResult.html#af5fd9fbdf0df1f3bab3ef258849e3ab0',1,'cli::CommandResult::message'],['../structcore_1_1MapsReader_1_1Error.html#aa9a445a3c75fc63ecff0f5083d9cc492',1,'core::MapsReader::Error::message']]],

@@ -27,25 +27,25 @@ var namespacecore =
       [ "DEAD", "namespacecore.html#a7c631f2329b573f9f3e97ac102e1bfb3abb4784231ff45108ee20bad16e4a2e8c", null ],
       [ "ZOMBIE", "namespacecore.html#a7c631f2329b573f9f3e97ac102e1bfb3a81596a5a9c2174b0a286cbf3ccf3528b", null ]
     ] ],
-    [ "RegionFilterMode", "namespacecore.html#a72a2e8d29b79f853c273543adab4dfe4", [
-      [ "DISABLED", "namespacecore.html#a72a2e8d29b79f853c273543adab4dfe4a055c1a591abb0e8cd86dc969727bcc0b", null ],
-      [ "SCAN_TIME", "namespacecore.html#a72a2e8d29b79f853c273543adab4dfe4a10858ce34d7366d0e45d3153cd0a8715", null ],
-      [ "EXPORT_TIME", "namespacecore.html#a72a2e8d29b79f853c273543adab4dfe4a3bde2629cb4717430be97eae1a0b460e", null ]
+    [ "RegionFilterMode", "namespacecore.html#acce81c500fe892fd106971f55c4e89b2", [
+      [ "DISABLED", "namespacecore.html#acce81c500fe892fd106971f55c4e89b2a055c1a591abb0e8cd86dc969727bcc0b", null ],
+      [ "SCAN_TIME", "namespacecore.html#acce81c500fe892fd106971f55c4e89b2a10858ce34d7366d0e45d3153cd0a8715", null ],
+      [ "EXPORT_TIME", "namespacecore.html#acce81c500fe892fd106971f55c4e89b2a3bde2629cb4717430be97eae1a0b460e", null ]
     ] ],
-    [ "RegionScanLevel", "namespacecore.html#a4f0a0af961035f2bb7659bd168afc3ee", [
-      [ "ALL", "namespacecore.html#a4f0a0af961035f2bb7659bd168afc3eea5fb1f955b45e38e31789286a1790398d", null ],
-      [ "ALL_RW", "namespacecore.html#a4f0a0af961035f2bb7659bd168afc3eea408087a95707a9857e7c25b832e69702", null ],
-      [ "HEAP_STACK_EXECUTABLE", "namespacecore.html#a4f0a0af961035f2bb7659bd168afc3eea95e4cb86af4f28a343bf95b52fe85d88", null ],
-      [ "HEAP_STACK_EXECUTABLE_BSS", "namespacecore.html#a4f0a0af961035f2bb7659bd168afc3eeaf45b04bf5d0a44e5c26ea5bd869e1c8b", null ]
+    [ "RegionScanLevel", "namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7", [
+      [ "ALL", "namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7a5fb1f955b45e38e31789286a1790398d", null ],
+      [ "ALL_RW", "namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7a408087a95707a9857e7c25b832e69702", null ],
+      [ "HEAP_STACK_EXECUTABLE", "namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7a95e4cb86af4f28a343bf95b52fe85d88", null ],
+      [ "HEAP_STACK_EXECUTABLE_BSS", "namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7af45b04bf5d0a44e5c26ea5bd869e1c8b", null ]
     ] ],
-    [ "RegionType", "namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16b", [
-      [ "UNKNOW", "namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16ba4de97a9981203bdf3d1f9c51b0ba341f", null ],
-      [ "EXE", "namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16ba5c6e4f44044eb1d3591aaa440ed6f3ad", null ],
-      [ "CODE", "namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16ba08054846bbc9933fd0395f8be516a9f9", null ],
-      [ "HEAP", "namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16bab6722804f5872cdd88347da194d42087", null ],
-      [ "STACK", "namespacecore.html#a9bdc76c71ea4c5d24dad91020abad16ba0fac686d86aba414411b58f6bce53a76", null ]
+    [ "RegionType", "namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8", [
+      [ "UNKNOW", "namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8a4de97a9981203bdf3d1f9c51b0ba341f", null ],
+      [ "EXE", "namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8a5c6e4f44044eb1d3591aaa440ed6f3ad", null ],
+      [ "CODE", "namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8a08054846bbc9933fd0395f8be516a9f9", null ],
+      [ "HEAP", "namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8ab6722804f5872cdd88347da194d42087", null ],
+      [ "STACK", "namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8a0fac686d86aba414411b58f6bce53a76", null ]
     ] ],
-    [ "formatValueByType", "namespacecore.html#a8fc2c70ddd2ac4ab5bcbd567bae58e1b", null ],
+    [ "formatValueByType", "namespacecore.html#aeaf1c1daf217dcb0e2257985c03b2196", null ],
     [ "readProcessMaps", "namespacecore.html#a146e68cbe4ef66265e9f370b733f982f", null ],
     [ "writeBytes", "namespacecore.html#a9b9299e713784696c1df515d1f4c35c0", null ],
     [ "writeValue", "namespacecore.html#a99445fcc9b198d0a35ffde606ce2a556", null ],

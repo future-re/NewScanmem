@@ -11,6 +11,8 @@ var namespaces_dup =
       [ "swapBytes", "namespacedetail.html#aff190188b65e4c3776fc6744be48bf2b", null ],
       [ "toUnderlying", "namespacedetail.html#a11c3b156442a3ee2895b61c9d94ffd6e", null ],
       [ "tryNumericSequence", "namespacedetail.html#a1b5b5992a0a2cfeeacee2d94009514c1", null ],
+      [ "tryNumericSequence< double, float >", "namespacedetail.html#a60557203f7571b9aba1c0b87edfd2452", null ],
+      [ "tryNumericSequence< uint64_t, int64_t, uint32_t, int32_t, uint16_t, int16_t, uint8_t, int8_t >", "namespacedetail.html#a142e42510e7f15abf99a7e34bac5a435", null ],
       [ "widthFlag", "namespacedetail.html#afa11beea144d0c67faf454b831a26c59", null ]
     ] ],
     [ "scan", "namespacescan.html", "namespacescan" ],

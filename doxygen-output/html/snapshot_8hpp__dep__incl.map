@@ -1,0 +1,7 @@
+<map id="include/newscanmem/cli/commands/snapshot.hpp" name="include/newscanmem/cli/commands/snapshot.hpp">
+<area shape="rect" id="Node000001" title="Snapshot command: manually create baseline snapshot" alt="" coords="56,5,264,45"/>
+<area shape="rect" id="Node000002" href="$app_8cpp.html" title=" " alt="" coords="5,93,120,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,56,79,95,76,91,124,52"/>
+<area shape="rect" id="Node000003" href="$snapshot_8cpp.html" title=" " alt="" coords="144,93,371,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="196,52,244,91,241,95,192,56"/>
+</map>

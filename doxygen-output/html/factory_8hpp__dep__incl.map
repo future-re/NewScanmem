@@ -1,0 +1,13 @@
+<map id="include/newscanmem/scan/factory.hpp" name="include/newscanmem/scan/factory.hpp">
+<area shape="rect" id="Node000001" title="Canonical scan routine factory plus thin legacy wrapper" alt="" coords="256,5,420,45"/>
+<area shape="rect" id="Node000002" href="$job_8hpp.html" title="Shared scan preparation helpers" alt="" coords="165,93,329,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="310,57,269,95,266,91,306,53"/>
+<area shape="rect" id="Node000006" href="$factory_8cpp.html" title=" " alt="" coords="353,101,504,126"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="370,53,418,98,414,102,366,57"/>
+<area shape="rect" id="Node000003" href="$engine_8cpp.html" title=" " alt="" coords="5,181,156,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="196,142,106,184,104,179,194,137"/>
+<area shape="rect" id="Node000004" href="$filter_8cpp.html" title=" " alt="" coords="180,181,315,207"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="250,147,250,181,245,181,245,147"/>
+<area shape="rect" id="Node000005" href="$job_8cpp.html" title=" " alt="" coords="339,181,465,207"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="298,137,380,179,378,184,295,142"/>
+</map>

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['warn_0',['warn',['../classui_1_1MessagePrinter.html#a6457f0a02e190766c2d7d1ea41042e77',1,'ui::MessagePrinter::warn(std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const'],['../classui_1_1MessagePrinter.html#ac090a82ddbd5ca6356d068919ffdeada',1,'ui::MessagePrinter::warn(std::string_view msg)'],['../classutils_1_1Logger.html#a05fab6f80b1120555910ffdb81cbb441',1,'utils::Logger::warn()']]],
+  ['warn_0',['warn',['../classui_1_1MessagePrinter.html#a6457f0a02e190766c2d7d1ea41042e77',1,'ui::MessagePrinter::warn(std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const'],['../classui_1_1MessagePrinter.html#aed343ab8b94b487c9e24a5d26ce05c3d',1,'ui::MessagePrinter::warn(std::string_view msg)'],['../classutils_1_1Logger.html#a05fab6f80b1120555910ffdb81cbb441',1,'utils::Logger::warn()']]],
   ['watchcommand_1',['WatchCommand',['../classcli_1_1commands_1_1WatchCommand.html#ae2e6191be5ce0be306d7f71db7852094',1,'cli::commands::WatchCommand']]],
   ['widthflag_2',['widthFlag',['../namespacedetail.html#afa11beea144d0c67faf454b831a26c59',1,'detail']]],
   ['write_3',['write',['../classcore_1_1MemoryWriter.html#a42d80a675561be2b06aa0dcae792585e',1,'core::MemoryWriter::write()'],['../classcore_1_1ProcMemIO.html#a7dc0b7ce056ba94c86e59a7856dccee6',1,'core::ProcMemIO::write()']]],

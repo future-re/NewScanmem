@@ -1,0 +1,23 @@
+<map id="include/newscanmem/ui/interface.hpp" name="include/newscanmem/ui/interface.hpp">
+<area shape="rect" id="Node000001" title="Abstract user interface for scanmem" alt="" coords="339,5,503,45"/>
+<area shape="rect" id="Node000002" href="$app_8hpp.html" title=" " alt="" coords="433,93,597,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="454,53,496,91,493,95,450,57"/>
+<area shape="rect" id="Node000006" href="$repl_8hpp.html" title="Read&#45;Eval&#45;Print&#45;Loop for interactive CLI" alt="" coords="57,93,221,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="347,52,202,96,200,91,345,47"/>
+<area shape="rect" id="Node000008" href="$console_8hpp.html" title=" " alt="" coords="245,93,409,133"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="392,57,350,95,346,91,388,53"/>
+<area shape="rect" id="Node000010" href="$interface_8cpp.html" title=" " alt="" coords="622,101,769,126"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="495,47,660,98,658,103,493,52"/>
+<area shape="rect" id="Node000003" href="$app_8cpp.html" title=" " alt="" coords="309,181,423,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="469,142,389,184,387,179,466,137"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html" title=" " alt="" coords="608,181,713,207"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="563,137,640,179,638,183,561,142"/>
+<area shape="rect" id="Node000005" href="$scanmem_8cpp.html" title=" " alt="" coords="447,181,583,207"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="518,147,518,181,513,181,513,147"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="208,135,333,179,332,184,206,140"/>
+<area shape="rect" id="Node000007" href="$repl_8cpp.html" title=" " alt="" coords="5,181,121,207"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="114,145,77,183,73,179,110,141"/>
+<area shape="poly" id="edge9_Node000008_Node000003" title=" " alt="" coords="345,145,363,180,358,182,340,147"/>
+<area shape="rect" id="Node000009" href="$console_8cpp.html" title=" " alt="" coords="146,181,285,207"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="291,143,234,183,231,179,288,139"/>
+</map>

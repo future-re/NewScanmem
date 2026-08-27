@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: include/newscanmem/cli/repl.hpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('repl_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">repl.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="repl_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;expected&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;string_view&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="command_8hpp.html">newscanmem/cli/command.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="interface_8hpp.html">newscanmem/ui/interface.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="show__message_8hpp.html">newscanmem/ui/show_message.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacecli.html">cli</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classcli_1_1REPL.html">   26</a></span><span class="keyword">class </span><a class="code hl_class" href="classcli_1_1REPL.html">REPL</a> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classcli_1_1REPL.html">REPL</a>(std::shared_ptr&lt;ui::UserInterface&gt; userInterface,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                  std::string prompt = <span class="stringliteral">&quot;&gt; &quot;</span>,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                  std::function&lt;std::string()&gt; promptBuilder = {});</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1REPL.html#abe1d1a08f88d4e6d5ef4eb466b98861e">run</a>() -&gt; int;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1REPL.html#a29fe4d64ed6dade9427df57ce1713478">executeLine</a>(<span class="keyword">const</span> std::string&amp; line) -&gt; std::expected&lt;CommandResult, std::string&gt;;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1REPL.html#aaf18b0c5e2404f78b4dcf46e1296232f">setPrompt</a>(std::string_view prompt) -&gt; void;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1REPL.html#ac0314ca8b70e6618d05ef8675008dd0f">setPromptBuilder</a>(std::function&lt;std::string()&gt; builder) -&gt; void;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcli_1_1REPL.html#a9ad6ec47aea4cf49232042baa19e090d">getPrompt</a>() <span class="keyword">const</span> -&gt; std::string_view;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keyword">static</span> <span class="keyword">auto</span> executeCommand(<span class="keyword">const</span> std::string&amp; command_name, <span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args)</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        -&gt; std::expected&lt;CommandResult, std::string&gt;;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    std::shared_ptr&lt;ui::UserInterface&gt; m_ui;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    std::string m_prompt;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    std::function&lt;std::string()&gt; m_promptBuilder;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>};</div>
+</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>}  <span class="comment">// namespace cli</span></div>
+<div class="ttc" id="aclasscli_1_1REPL_html"><div class="ttname"><a href="classcli_1_1REPL.html">cli::REPL</a></div><div class="ttdoc">Read-Eval-Print-Loop for interactive command execution</div><div class="ttdef"><b>Definition</b> repl.hpp:26</div></div>
+<div class="ttc" id="aclasscli_1_1REPL_html_a29fe4d64ed6dade9427df57ce1713478"><div class="ttname"><a href="classcli_1_1REPL.html#a29fe4d64ed6dade9427df57ce1713478">cli::REPL::executeLine</a></div><div class="ttdeci">static auto executeLine(const std::string &amp;line) -&gt; std::expected&lt; CommandResult, std::string &gt;</div><div class="ttdoc">Parse and execute a single command line</div><div class="ttdef"><b>Definition</b> repl.cpp:6</div></div>
+<div class="ttc" id="aclasscli_1_1REPL_html_a9ad6ec47aea4cf49232042baa19e090d"><div class="ttname"><a href="classcli_1_1REPL.html#a9ad6ec47aea4cf49232042baa19e090d">cli::REPL::getPrompt</a></div><div class="ttdeci">auto getPrompt() const -&gt; std::string_view</div><div class="ttdoc">Get the current prompt string</div><div class="ttdef"><b>Definition</b> repl.cpp:9</div></div>
+<div class="ttc" id="aclasscli_1_1REPL_html_aaf18b0c5e2404f78b4dcf46e1296232f"><div class="ttname"><a href="classcli_1_1REPL.html#aaf18b0c5e2404f78b4dcf46e1296232f">cli::REPL::setPrompt</a></div><div class="ttdeci">auto setPrompt(std::string_view prompt) -&gt; void</div><div class="ttdoc">Set the prompt string</div><div class="ttdef"><b>Definition</b> repl.cpp:7</div></div>
+<div class="ttc" id="aclasscli_1_1REPL_html_abe1d1a08f88d4e6d5ef4eb466b98861e"><div class="ttname"><a href="classcli_1_1REPL.html#abe1d1a08f88d4e6d5ef4eb466b98861e">cli::REPL::run</a></div><div class="ttdeci">auto run() -&gt; int</div><div class="ttdoc">Start the REPL loop</div><div class="ttdef"><b>Definition</b> repl.cpp:5</div></div>
+<div class="ttc" id="aclasscli_1_1REPL_html_ac0314ca8b70e6618d05ef8675008dd0f"><div class="ttname"><a href="classcli_1_1REPL.html#ac0314ca8b70e6618d05ef8675008dd0f">cli::REPL::setPromptBuilder</a></div><div class="ttdeci">auto setPromptBuilder(std::function&lt; std::string()&gt; builder) -&gt; void</div><div class="ttdef"><b>Definition</b> repl.cpp:8</div></div>
+<div class="ttc" id="acommand_8hpp_html"><div class="ttname"><a href="command_8hpp.html">command.hpp</a></div><div class="ttdoc">Command pattern base classes and registry for CLI</div></div>
+<div class="ttc" id="ainterface_8hpp_html"><div class="ttname"><a href="interface_8hpp.html">interface.hpp</a></div><div class="ttdoc">Abstract user interface for scanmem</div></div>
+<div class="ttc" id="anamespacecli_html"><div class="ttname"><a href="namespacecli.html">cli</a></div><div class="ttdef"><b>Definition</b> app.hpp:12</div></div>
+<div class="ttc" id="ashow__message_8hpp_html"><div class="ttname"><a href="show__message_8hpp.html">show_message.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_61322cca43ef6011f730695c31aaa6cc.html">newscanmem</a></li><li class="navelem"><a class="el" href="dir_d31eaeb6d823332a180a968b1135dab5.html">cli</a></li><li class="navelem"><a class="el" href="repl_8hpp.html">repl.hpp</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

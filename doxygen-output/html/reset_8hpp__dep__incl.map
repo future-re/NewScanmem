@@ -1,0 +1,7 @@
+<map id="include/newscanmem/cli/commands/reset.hpp" name="include/newscanmem/cli/commands/reset.hpp">
+<area shape="rect" id="Node000001" title="Reset command: clear matches and history" alt="" coords="62,5,245,45"/>
+<area shape="rect" id="Node000002" href="$app_8cpp.html" title=" " alt="" coords="5,93,120,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,56,78,95,75,91,119,52"/>
+<area shape="rect" id="Node000003" href="$reset_8cpp.html" title=" " alt="" coords="144,93,344,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="187,52,232,91,229,95,184,56"/>
+</map>

@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: include/newscanmem/ui/terminal.hpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('terminal_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">terminal.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="terminal_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;termios.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;array&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceui.html">ui</a> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="foldopen" id="foldopen00020" data-start="{" data-end="};">
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classui_1_1RawMode.html">   20</a></span><span class="keyword">class </span><a class="code hl_class" href="classui_1_1RawMode.html">RawMode</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classui_1_1RawMode.html#a48ef731666a47dda000a761fc9325553">   22</a></span>    <a class="code hl_function" href="classui_1_1RawMode.html#a48ef731666a47dda000a761fc9325553">RawMode</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classui_1_1RawMode.html#a11c4bb764030bb600c9cb59ae91b60ad">   23</a></span>    <a class="code hl_function" href="classui_1_1RawMode.html#a11c4bb764030bb600c9cb59ae91b60ad">RawMode</a>(<span class="keyword">const</span> <a class="code hl_class" href="classui_1_1RawMode.html">RawMode</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classui_1_1RawMode.html#ac7f37ac35f492e195161aed1ac9c707a">   24</a></span>    <span class="keyword">auto</span> <a class="code hl_function" href="classui_1_1RawMode.html#ac7f37ac35f492e195161aed1ac9c707a">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classui_1_1RawMode.html">RawMode</a>&amp;) -&gt; <a class="code hl_class" href="classui_1_1RawMode.html">RawMode</a>&amp; = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classui_1_1RawMode.html#a839080d1d4e822ace982e0bc59cb75e0">   25</a></span>    <a class="code hl_function" href="classui_1_1RawMode.html#a839080d1d4e822ace982e0bc59cb75e0">RawMode</a>(<a class="code hl_class" href="classui_1_1RawMode.html">RawMode</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classui_1_1RawMode.html#a53c9a437d42d63e6595ded6037352d41">   26</a></span>    <span class="keyword">auto</span> <a class="code hl_function" href="classui_1_1RawMode.html#a53c9a437d42d63e6595ded6037352d41">operator=</a>(<a class="code hl_class" href="classui_1_1RawMode.html">RawMode</a>&amp;&amp;) -&gt; <a class="code hl_class" href="classui_1_1RawMode.html">RawMode</a>&amp; = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">auto</span> <a class="code hl_function" href="classui_1_1RawMode.html#a806cb8fa2d5582a56eced25be8c330cf">enable</a>() -&gt; <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">bool</a>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <a class="code hl_function" href="classui_1_1RawMode.html#a6820a3e0aee520a9e7205ce618742e2d">~RawMode</a>();</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">termios</a> m_original{};</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">bool</span> m_active{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>};</div>
+</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="foldopen" id="foldopen00045" data-start="{" data-end="};">
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627">   45</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627">KeyAction</a> : std::uint8_t {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <a class="code hl_enumvalue" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a331b3100a485d8cacff1d3df8e9b0c13">ENTER</a>,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_enumvalue" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a6f5d8e41084b4d3d47fa621c459eede1">BACKSPACE</a>,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_enumvalue" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627ad7aa835d76fc894935ade13f4d0624f8">MOVE_LEFT</a>,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_enumvalue" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a3dc5ed1f827e8c9a6392edb90af992d5">MOVE_RIGHT</a>,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <a class="code hl_enumvalue" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a2a840417b5da27f30bb7494cc4ebeed9">EOF_SIGNAL</a>,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <a class="code hl_enumvalue" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a918ad5ef488cbd16df6d54785a6bb34e">INSERT_CHAR</a>,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <a class="code hl_enumvalue" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a29f47414c6f001d81f2d074d829e99b0">TAB_COMPLETE</a>,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <a class="code hl_enumvalue" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627aa2e843feab94ef623fea888f07c28696">IGNORE</a></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>};</div>
+</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="foldopen" id="foldopen00060" data-start="{" data-end="};">
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="structui_1_1KeyEvent.html">   60</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structui_1_1KeyEvent.html">KeyEvent</a> {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="structui_1_1KeyEvent.html#af33c98ac57ec71d17027a399357726d0">   61</a></span>    <a class="code hl_enumeration" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627">KeyAction</a> <a class="code hl_variable" href="structui_1_1KeyEvent.html#af33c98ac57ec71d17027a399357726d0">action</a>{<a class="code hl_enumvalue" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627aa2e843feab94ef623fea888f07c28696">KeyAction::IGNORE</a>};</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="structui_1_1KeyEvent.html#a4475cf8e61185b67aba9a7f83bca9ed1">   62</a></span>    <span class="keywordtype">char</span> <a class="code hl_variable" href="structui_1_1KeyEvent.html#a4475cf8e61185b67aba9a7f83bca9ed1">character</a>{0};</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>};</div>
+</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>[[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">auto</span> <a class="code hl_function" href="namespaceui.html#a3144e0f770336bf1c2731dd0d451525a">readKey</a>() -&gt; KeyEvent;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>}  <span class="comment">// namespace ui</span></div>
+<div class="ttc" id="aclassui_1_1RawMode_html"><div class="ttname"><a href="classui_1_1RawMode.html">ui::RawMode</a></div><div class="ttdoc">RAII guard for terminal raw mode (disables canonical input &amp; echo)</div><div class="ttdef"><b>Definition</b> terminal.hpp:20</div></div>
+<div class="ttc" id="aclassui_1_1RawMode_html_a11c4bb764030bb600c9cb59ae91b60ad"><div class="ttname"><a href="classui_1_1RawMode.html#a11c4bb764030bb600c9cb59ae91b60ad">ui::RawMode::RawMode</a></div><div class="ttdeci">RawMode(const RawMode &amp;)=delete</div></div>
+<div class="ttc" id="aclassui_1_1RawMode_html_a48ef731666a47dda000a761fc9325553"><div class="ttname"><a href="classui_1_1RawMode.html#a48ef731666a47dda000a761fc9325553">ui::RawMode::RawMode</a></div><div class="ttdeci">RawMode()=default</div></div>
+<div class="ttc" id="aclassui_1_1RawMode_html_a53c9a437d42d63e6595ded6037352d41"><div class="ttname"><a href="classui_1_1RawMode.html#a53c9a437d42d63e6595ded6037352d41">ui::RawMode::operator=</a></div><div class="ttdeci">auto operator=(RawMode &amp;&amp;) -&gt; RawMode &amp;=delete</div></div>
+<div class="ttc" id="aclassui_1_1RawMode_html_a6820a3e0aee520a9e7205ce618742e2d"><div class="ttname"><a href="classui_1_1RawMode.html#a6820a3e0aee520a9e7205ce618742e2d">ui::RawMode::~RawMode</a></div><div class="ttdeci">~RawMode()</div><div class="ttdef"><b>Definition</b> terminal.cpp:5</div></div>
+<div class="ttc" id="aclassui_1_1RawMode_html_a806cb8fa2d5582a56eced25be8c330cf"><div class="ttname"><a href="classui_1_1RawMode.html#a806cb8fa2d5582a56eced25be8c330cf">ui::RawMode::enable</a></div><div class="ttdeci">auto enable() -&gt; bool</div><div class="ttdoc">Enable raw mode on stdin</div><div class="ttdef"><b>Definition</b> terminal.cpp:4</div></div>
+<div class="ttc" id="aclassui_1_1RawMode_html_a839080d1d4e822ace982e0bc59cb75e0"><div class="ttname"><a href="classui_1_1RawMode.html#a839080d1d4e822ace982e0bc59cb75e0">ui::RawMode::RawMode</a></div><div class="ttdeci">RawMode(RawMode &amp;&amp;)=delete</div></div>
+<div class="ttc" id="aclassui_1_1RawMode_html_ac7f37ac35f492e195161aed1ac9c707a"><div class="ttname"><a href="classui_1_1RawMode.html#ac7f37ac35f492e195161aed1ac9c707a">ui::RawMode::operator=</a></div><div class="ttdeci">auto operator=(const RawMode &amp;) -&gt; RawMode &amp;=delete</div></div>
+<div class="ttc" id="aflags_8hpp_html_a2bd4546b83b208d80dfb2fc0829d9cb1"><div class="ttname"><a href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">flagForType</a></div><div class="ttdeci">consteval auto flagForType() noexcept -&gt; MatchFlags</div><div class="ttdef"><b>Definition</b> flags.hpp:106</div></div>
+<div class="ttc" id="anamespaceui_html"><div class="ttname"><a href="namespaceui.html">ui</a></div><div class="ttdef"><b>Definition</b> console.hpp:11</div></div>
+<div class="ttc" id="anamespaceui_html_a2efe88e2c1c96ccd92d265c9ba945627"><div class="ttname"><a href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627">ui::KeyAction</a></div><div class="ttdeci">KeyAction</div><div class="ttdoc">Categorized keyboard input actions</div><div class="ttdef"><b>Definition</b> terminal.hpp:45</div></div>
+<div class="ttc" id="anamespaceui_html_a2efe88e2c1c96ccd92d265c9ba945627a29f47414c6f001d81f2d074d829e99b0"><div class="ttname"><a href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a29f47414c6f001d81f2d074d829e99b0">ui::KeyAction::TAB_COMPLETE</a></div><div class="ttdeci">@ TAB_COMPLETE</div></div>
+<div class="ttc" id="anamespaceui_html_a2efe88e2c1c96ccd92d265c9ba945627a2a840417b5da27f30bb7494cc4ebeed9"><div class="ttname"><a href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a2a840417b5da27f30bb7494cc4ebeed9">ui::KeyAction::EOF_SIGNAL</a></div><div class="ttdeci">@ EOF_SIGNAL</div></div>
+<div class="ttc" id="anamespaceui_html_a2efe88e2c1c96ccd92d265c9ba945627a331b3100a485d8cacff1d3df8e9b0c13"><div class="ttname"><a href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a331b3100a485d8cacff1d3df8e9b0c13">ui::KeyAction::ENTER</a></div><div class="ttdeci">@ ENTER</div></div>
+<div class="ttc" id="anamespaceui_html_a2efe88e2c1c96ccd92d265c9ba945627a3dc5ed1f827e8c9a6392edb90af992d5"><div class="ttname"><a href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a3dc5ed1f827e8c9a6392edb90af992d5">ui::KeyAction::MOVE_RIGHT</a></div><div class="ttdeci">@ MOVE_RIGHT</div></div>
+<div class="ttc" id="anamespaceui_html_a2efe88e2c1c96ccd92d265c9ba945627a6f5d8e41084b4d3d47fa621c459eede1"><div class="ttname"><a href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a6f5d8e41084b4d3d47fa621c459eede1">ui::KeyAction::BACKSPACE</a></div><div class="ttdeci">@ BACKSPACE</div></div>
+<div class="ttc" id="anamespaceui_html_a2efe88e2c1c96ccd92d265c9ba945627a918ad5ef488cbd16df6d54785a6bb34e"><div class="ttname"><a href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a918ad5ef488cbd16df6d54785a6bb34e">ui::KeyAction::INSERT_CHAR</a></div><div class="ttdeci">@ INSERT_CHAR</div></div>
+<div class="ttc" id="anamespaceui_html_a2efe88e2c1c96ccd92d265c9ba945627aa2e843feab94ef623fea888f07c28696"><div class="ttname"><a href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627aa2e843feab94ef623fea888f07c28696">ui::KeyAction::IGNORE</a></div><div class="ttdeci">@ IGNORE</div></div>
+<div class="ttc" id="anamespaceui_html_a2efe88e2c1c96ccd92d265c9ba945627ad7aa835d76fc894935ade13f4d0624f8"><div class="ttname"><a href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627ad7aa835d76fc894935ade13f4d0624f8">ui::KeyAction::MOVE_LEFT</a></div><div class="ttdeci">@ MOVE_LEFT</div></div>
+<div class="ttc" id="anamespaceui_html_a3144e0f770336bf1c2731dd0d451525a"><div class="ttname"><a href="namespaceui.html#a3144e0f770336bf1c2731dd0d451525a">ui::readKey</a></div><div class="ttdeci">auto readKey() -&gt; KeyEvent</div><div class="ttdoc">Read a single key event from stdin (raw mode assumed)</div><div class="ttdef"><b>Definition</b> terminal.cpp:6</div></div>
+<div class="ttc" id="astructui_1_1KeyEvent_html"><div class="ttname"><a href="structui_1_1KeyEvent.html">ui::KeyEvent</a></div><div class="ttdoc">A single keyboard event with action type and optional character</div><div class="ttdef"><b>Definition</b> terminal.hpp:60</div></div>
+<div class="ttc" id="astructui_1_1KeyEvent_html_a4475cf8e61185b67aba9a7f83bca9ed1"><div class="ttname"><a href="structui_1_1KeyEvent.html#a4475cf8e61185b67aba9a7f83bca9ed1">ui::KeyEvent::character</a></div><div class="ttdeci">char character</div><div class="ttdef"><b>Definition</b> terminal.hpp:62</div></div>
+<div class="ttc" id="astructui_1_1KeyEvent_html_af33c98ac57ec71d17027a399357726d0"><div class="ttname"><a href="structui_1_1KeyEvent.html#af33c98ac57ec71d17027a399357726d0">ui::KeyEvent::action</a></div><div class="ttdeci">KeyAction action</div><div class="ttdef"><b>Definition</b> terminal.hpp:61</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_61322cca43ef6011f730695c31aaa6cc.html">newscanmem</a></li><li class="navelem"><a class="el" href="dir_ca0892c25de47923020ce218191adf45.html">ui</a></li><li class="navelem"><a class="el" href="terminal_8hpp.html">terminal.hpp</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -95,35 +95,37 @@ $(document).ready(function(){initNavTree('classcli_1_1REPL.html',''); initResiza
 <a href="#pub-methods">Public 成员函数</a> &#124;
 <a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
 <a href="classcli_1_1REPL-members.html">所有成员列表</a>  </div>
-  <div class="headertitle"><div class="title">cli::REPL类 参考<span class="mlabels"><span class="mlabel">export</span></span><div class="ingroups">模块 <a class="el" href="module_cli_8repl.html">cli.repl</a></div></div></div>
+  <div class="headertitle"><div class="title">cli::REPL类 参考</div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>Read-Eval-Print-Loop for interactive command execution  
  <a href="classcli_1_1REPL.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="repl_8hpp_source.html">repl.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:aa72d0c64b8ea3e658c744c1f770ca4f4" id="r_aa72d0c64b8ea3e658c744c1f770ca4f4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1REPL.html#aa72d0c64b8ea3e658c744c1f770ca4f4">REPL</a> (std::shared_ptr&lt; <a class="el" href="classui_1_1UserInterface.html">ui::UserInterface</a> &gt; userInterface, std::string prompt=&quot;&gt; &quot;, std::function&lt; std::string()&gt; promptBuilder={})</td></tr>
+<tr class="memitem:aa72d0c64b8ea3e658c744c1f770ca4f4" id="r_aa72d0c64b8ea3e658c744c1f770ca4f4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1REPL.html#aa72d0c64b8ea3e658c744c1f770ca4f4">REPL</a> (std::shared_ptr&lt; <a class="el" href="classui_1_1UserInterface.html">ui::UserInterface</a> &gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">userInterface</a>, std::string <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">prompt</a>=&quot;&gt; &quot;, std::function&lt; std::string()&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">promptBuilder</a>={})</td></tr>
 <tr class="memdesc:aa72d0c64b8ea3e658c744c1f770ca4f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor  <br /></td></tr>
 <tr class="separator:aa72d0c64b8ea3e658c744c1f770ca4f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe1d1a08f88d4e6d5ef4eb466b98861e" id="r_abe1d1a08f88d4e6d5ef4eb466b98861e"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1REPL.html#abe1d1a08f88d4e6d5ef4eb466b98861e">run</a> () -&gt; int</td></tr>
+<tr class="memitem:abe1d1a08f88d4e6d5ef4eb466b98861e" id="r_abe1d1a08f88d4e6d5ef4eb466b98861e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1REPL.html#abe1d1a08f88d4e6d5ef4eb466b98861e">run</a> () -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">int</a></td></tr>
 <tr class="memdesc:abe1d1a08f88d4e6d5ef4eb466b98861e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the <a class="el" href="classcli_1_1REPL.html" title="Read-Eval-Print-Loop for interactive command execution">REPL</a> loop  <br /></td></tr>
 <tr class="separator:abe1d1a08f88d4e6d5ef4eb466b98861e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a036f7d363265f39bfa9d1bd1efe1cbb9" id="r_a036f7d363265f39bfa9d1bd1efe1cbb9"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1REPL.html#a036f7d363265f39bfa9d1bd1efe1cbb9">setPrompt</a> (std::string_view prompt) -&gt; void</td></tr>
-<tr class="memdesc:a036f7d363265f39bfa9d1bd1efe1cbb9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structSet.html">Set</a> the prompt string  <br /></td></tr>
-<tr class="separator:a036f7d363265f39bfa9d1bd1efe1cbb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7884f6c3e4eda983eba7c79bd39022dd" id="r_a7884f6c3e4eda983eba7c79bd39022dd"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1REPL.html#a7884f6c3e4eda983eba7c79bd39022dd">setPromptBuilder</a> (std::function&lt; std::string()&gt; builder) -&gt; void</td></tr>
-<tr class="separator:a7884f6c3e4eda983eba7c79bd39022dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ad6ec47aea4cf49232042baa19e090d" id="r_a9ad6ec47aea4cf49232042baa19e090d"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1REPL.html#a9ad6ec47aea4cf49232042baa19e090d">getPrompt</a> () const -&gt; std::string_view</td></tr>
+<tr class="memitem:aaf18b0c5e2404f78b4dcf46e1296232f" id="r_aaf18b0c5e2404f78b4dcf46e1296232f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1REPL.html#aaf18b0c5e2404f78b4dcf46e1296232f">setPrompt</a> (std::string_view <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">prompt</a>) -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a></td></tr>
+<tr class="memdesc:aaf18b0c5e2404f78b4dcf46e1296232f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structSet.html">Set</a> the prompt string  <br /></td></tr>
+<tr class="separator:aaf18b0c5e2404f78b4dcf46e1296232f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0314ca8b70e6618d05ef8675008dd0f" id="r_ac0314ca8b70e6618d05ef8675008dd0f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1REPL.html#ac0314ca8b70e6618d05ef8675008dd0f">setPromptBuilder</a> (std::function&lt; std::string()&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">builder</a>) -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a></td></tr>
+<tr class="separator:ac0314ca8b70e6618d05ef8675008dd0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ad6ec47aea4cf49232042baa19e090d" id="r_a9ad6ec47aea4cf49232042baa19e090d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1REPL.html#a9ad6ec47aea4cf49232042baa19e090d">getPrompt</a> () <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> -&gt; std::string_view</td></tr>
 <tr class="memdesc:a9ad6ec47aea4cf49232042baa19e090d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current prompt string  <br /></td></tr>
 <tr class="separator:a9ad6ec47aea4cf49232042baa19e090d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
-<tr class="memitem:a14f2743c1a10c4cd911cbbd29bce92ef" id="r_a14f2743c1a10c4cd911cbbd29bce92ef"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1REPL.html#a14f2743c1a10c4cd911cbbd29bce92ef">executeLine</a> (const std::string &amp;line) -&gt; std::expected&lt; <a class="el" href="structcli_1_1CommandResult.html">CommandResult</a>, std::string &gt;</td></tr>
-<tr class="memdesc:a14f2743c1a10c4cd911cbbd29bce92ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse and execute a single command line  <br /></td></tr>
-<tr class="separator:a14f2743c1a10c4cd911cbbd29bce92ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29fe4d64ed6dade9427df57ce1713478" id="r_a29fe4d64ed6dade9427df57ce1713478"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">static</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1REPL.html#a29fe4d64ed6dade9427df57ce1713478">executeLine</a> (<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> std::string &amp;<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">line</a>) -&gt; std::expected&lt; <a class="el" href="structcli_1_1CommandResult.html">CommandResult</a>, std::string &gt;</td></tr>
+<tr class="memdesc:a29fe4d64ed6dade9427df57ce1713478"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse and execute a single command line  <br /></td></tr>
+<tr class="separator:a29fe4d64ed6dade9427df57ce1713478"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>Read-Eval-Print-Loop for interactive command execution </p>
@@ -163,7 +165,7 @@ Public 成员函数</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span><span class="mlabel">export</span></span>  </td>
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -180,8 +182,8 @@ Public 成员函数</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">成员函数说明</h2>
-<a id="a14f2743c1a10c4cd911cbbd29bce92ef" name="a14f2743c1a10c4cd911cbbd29bce92ef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14f2743c1a10c4cd911cbbd29bce92ef">&#9670;&#160;</a></span>executeLine()</h2>
+<a id="a29fe4d64ed6dade9427df57ce1713478" name="a29fe4d64ed6dade9427df57ce1713478"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29fe4d64ed6dade9427df57ce1713478">&#9670;&#160;</a></span>executeLine()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -190,16 +192,16 @@ Public 成员函数</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static auto cli::REPL::executeLine </td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> cli::REPL::executeLine </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> std::string &amp;&#160;</td>
           <td class="paramname"><em>line</em></td><td>)</td>
-          <td> -&gt; std::expected&lt;<a class="el" href="structcli_1_1CommandResult.html">CommandResult</a>, std::string&gt; </td>
+          <td> -&gt; std::expected&lt;<a class="el" href="structcli_1_1CommandResult.html">CommandResult</a>, std::string&gt;</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">export</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -220,22 +222,14 @@ Public 成员函数</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto cli::REPL::getPrompt </td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> cli::REPL::getPrompt </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const -&gt; std::string_view </td>
+          <td> const -&gt; std::string_view</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Get the current prompt string </p>
@@ -248,22 +242,14 @@ Public 成员函数</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto cli::REPL::run </td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> cli::REPL::run </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> -&gt; int </td>
+          <td> -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">int</a></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Start the <a class="el" href="classcli_1_1REPL.html" title="Read-Eval-Print-Loop for interactive command execution">REPL</a> loop </p>
@@ -271,28 +257,20 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a036f7d363265f39bfa9d1bd1efe1cbb9" name="a036f7d363265f39bfa9d1bd1efe1cbb9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a036f7d363265f39bfa9d1bd1efe1cbb9">&#9670;&#160;</a></span>setPrompt()</h2>
+<a id="aaf18b0c5e2404f78b4dcf46e1296232f" name="aaf18b0c5e2404f78b4dcf46e1296232f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf18b0c5e2404f78b4dcf46e1296232f">&#9670;&#160;</a></span>setPrompt()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto cli::REPL::setPrompt </td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a> cli::REPL::setPrompt </td>
           <td>(</td>
           <td class="paramtype">std::string_view&#160;</td>
           <td class="paramname"><em>prompt</em></td><td>)</td>
-          <td> -&gt; void </td>
+          <td> -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p><a class="el" href="structSet.html">Set</a> the prompt string </p>
@@ -305,34 +283,27 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a7884f6c3e4eda983eba7c79bd39022dd" name="a7884f6c3e4eda983eba7c79bd39022dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7884f6c3e4eda983eba7c79bd39022dd">&#9670;&#160;</a></span>setPromptBuilder()</h2>
+<a id="ac0314ca8b70e6618d05ef8675008dd0f" name="ac0314ca8b70e6618d05ef8675008dd0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0314ca8b70e6618d05ef8675008dd0f">&#9670;&#160;</a></span>setPromptBuilder()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto cli::REPL::setPromptBuilder </td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a> cli::REPL::setPromptBuilder </td>
           <td>(</td>
           <td class="paramtype">std::function&lt; std::string()&gt;&#160;</td>
           <td class="paramname"><em>builder</em></td><td>)</td>
-          <td> -&gt; void </td>
+          <td> -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <hr/>该类的文档由以下文件生成:<ul>
-<li>src/cli/<a class="el" href="repl_8cppm.html">repl.cppm</a></li>
+<li>include/newscanmem/cli/<a class="el" href="repl_8hpp_source.html">repl.hpp</a></li>
+<li>src/cli/<a class="el" href="repl_8cpp.html">repl.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

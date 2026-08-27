@@ -95,87 +95,58 @@ $(document).ready(function(){initNavTree('classscan_1_1MatchesAndOldValuesSwath.
 <a href="#pub-methods">Public 成员函数</a> &#124;
 <a href="#pub-attribs">Public 属性</a> &#124;
 <a href="classscan_1_1MatchesAndOldValuesSwath-members.html">所有成员列表</a>  </div>
-  <div class="headertitle"><div class="title">scan::MatchesAndOldValuesSwath类 参考<span class="mlabels"><span class="mlabel">export</span></span><div class="ingroups">模块 <a class="el" href="module_scan_8match__storage.html">scan.match_storage</a></div></div></div>
+  <div class="headertitle"><div class="title">scan::MatchesAndOldValuesSwath类 参考</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="match__storage_8hpp_source.html">match_storage.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:aab9f1745000429693cb749328237a167" id="r_aab9f1745000429693cb749328237a167"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html#aab9f1745000429693cb749328237a167">MatchesAndOldValuesSwath</a> ()=default</td></tr>
-<tr class="separator:aab9f1745000429693cb749328237a167"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66c0a02df04ba7a0731aaf909b8b1638" id="r_a66c0a02df04ba7a0731aaf909b8b1638"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html#a66c0a02df04ba7a0731aaf909b8b1638">addElement</a> (void *addr, uint8_t byte, <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> matchFlags)</td></tr>
-<tr class="separator:a66c0a02df04ba7a0731aaf909b8b1638"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d75740077358246210e676ca71d4d00" id="r_a2d75740077358246210e676ca71d4d00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html#a2d75740077358246210e676ca71d4d00">appendRange</a> (void *baseAddr, const uint8_t *bytes, size_t length, <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> initial=<a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552aba2b45bdc11e2a4a6e86aab2ac693cbb">MatchFlags::EMPTY</a>)</td></tr>
-<tr class="separator:a2d75740077358246210e676ca71d4d00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f204c43ecbae5a8c1c9ff40e60f79ba" id="r_a1f204c43ecbae5a8c1c9ff40e60f79ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html#a1f204c43ecbae5a8c1c9ff40e60f79ba">markRangeByIndex</a> (size_t startIndex, size_t length, <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> flags)</td></tr>
-<tr class="separator:a1f204c43ecbae5a8c1c9ff40e60f79ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e8993fde21c3a7b7152a3451ae13b62" id="r_a4e8993fde21c3a7b7152a3451ae13b62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html#a4e8993fde21c3a7b7152a3451ae13b62">markRangeByAddress</a> (void *addr, size_t length, <a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> flags)</td></tr>
-<tr class="separator:a4e8993fde21c3a7b7152a3451ae13b62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8761c91f23136f817cdfb82e99a5f010" id="r_a8761c91f23136f817cdfb82e99a5f010"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html#a8761c91f23136f817cdfb82e99a5f010">toPrintableString</a> (size_t idx, size_t len) const -&gt; std::string</td></tr>
-<tr class="separator:a8761c91f23136f817cdfb82e99a5f010"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d3614a2d6bc45ebc56152d2a12f2de5" id="r_a1d3614a2d6bc45ebc56152d2a12f2de5"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html#a1d3614a2d6bc45ebc56152d2a12f2de5">toByteArrayText</a> (size_t idx, size_t len) const -&gt; std::string</td></tr>
-<tr class="separator:a1d3614a2d6bc45ebc56152d2a12f2de5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5083b3fa071914b6dd34d6b84e9201c4" id="r_a5083b3fa071914b6dd34d6b84e9201c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html#a5083b3fa071914b6dd34d6b84e9201c4">addElement</a> (<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a> *address, std::uint8_t <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">byte</a>, <a class="el" href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> flags)</td></tr>
+<tr class="separator:a5083b3fa071914b6dd34d6b84e9201c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a385d0819af32972418e65b3dbbbdf168" id="r_a385d0819af32972418e65b3dbbbdf168"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html#a385d0819af32972418e65b3dbbbdf168">appendRange</a> (<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a> *<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">base_address</a>, <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> std::uint8_t *bytes, std::size_t length, <a class="el" href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">initial</a>=<a class="el" href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552aba2b45bdc11e2a4a6e86aab2ac693cbb">MatchFlags::EMPTY</a>)</td></tr>
+<tr class="separator:a385d0819af32972418e65b3dbbbdf168"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc75478661dd843adc419f835d6a0dfa" id="r_adc75478661dd843adc419f835d6a0dfa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html#adc75478661dd843adc419f835d6a0dfa">markRangeByIndex</a> (std::size_t <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">start_index</a>, std::size_t length, <a class="el" href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> flags)</td></tr>
+<tr class="separator:adc75478661dd843adc419f835d6a0dfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a993ed6826a1419848b6d456773d4a580" id="r_a993ed6826a1419848b6d456773d4a580"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html#a993ed6826a1419848b6d456773d4a580">markRangeByAddress</a> (<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a> *address, std::size_t length, <a class="el" href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> flags)</td></tr>
+<tr class="separator:a993ed6826a1419848b6d456773d4a580"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1872614178a04d267e4c8daaa839e63" id="r_af1872614178a04d267e4c8daaa839e63"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html#af1872614178a04d267e4c8daaa839e63">toPrintableString</a> (std::size_t index, std::size_t length) <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> -&gt; std::string</td></tr>
+<tr class="separator:af1872614178a04d267e4c8daaa839e63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf96097329f0907fe2600b962d3234bc" id="r_aaf96097329f0907fe2600b962d3234bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html#aaf96097329f0907fe2600b962d3234bc">toByteArrayText</a> (std::size_t index, std::size_t length) <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> -&gt; std::string</td></tr>
+<tr class="separator:aaf96097329f0907fe2600b962d3234bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public 属性</h2></td></tr>
-<tr class="memitem:a6586552cbe98579ab57f08b974d8e355" id="r_a6586552cbe98579ab57f08b974d8e355"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html#a6586552cbe98579ab57f08b974d8e355">firstByteInChild</a> = nullptr</td></tr>
+<tr class="memitem:a6586552cbe98579ab57f08b974d8e355" id="r_a6586552cbe98579ab57f08b974d8e355"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html#a6586552cbe98579ab57f08b974d8e355">firstByteInChild</a> {<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nullptr</a>}</td></tr>
 <tr class="separator:a6586552cbe98579ab57f08b974d8e355"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a598f7450c4c42c0ebe1557bfe09c3ebc" id="r_a598f7450c4c42c0ebe1557bfe09c3ebc"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structscan_1_1OldValueAndMatchInfo.html">OldValueAndMatchInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscan_1_1MatchesAndOldValuesSwath.html#a598f7450c4c42c0ebe1557bfe09c3ebc">data</a></td></tr>
 <tr class="separator:a598f7450c4c42c0ebe1557bfe09c3ebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">构造及析构函数说明</h2>
-<a id="aab9f1745000429693cb749328237a167" name="aab9f1745000429693cb749328237a167"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab9f1745000429693cb749328237a167">&#9670;&#160;</a></span>MatchesAndOldValuesSwath()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">scan::MatchesAndOldValuesSwath::MatchesAndOldValuesSwath </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span><span class="mlabel">default</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">成员函数说明</h2>
-<a id="a66c0a02df04ba7a0731aaf909b8b1638" name="a66c0a02df04ba7a0731aaf909b8b1638"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a66c0a02df04ba7a0731aaf909b8b1638">&#9670;&#160;</a></span>addElement()</h2>
+<a id="a5083b3fa071914b6dd34d6b84e9201c4" name="a5083b3fa071914b6dd34d6b84e9201c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5083b3fa071914b6dd34d6b84e9201c4">&#9670;&#160;</a></span>addElement()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void scan::MatchesAndOldValuesSwath::addElement </td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a> scan::MatchesAndOldValuesSwath::addElement </td>
           <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>addr</em>, </td>
+          <td class="paramtype"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a> *&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramtype">std::uint8_t&#160;</td>
           <td class="paramname"><em>byte</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a>&#160;</td>
-          <td class="paramname"><em>matchFlags</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a>&#160;</td>
+          <td class="paramname"><em>flags</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -183,47 +154,39 @@ Public 属性</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a2d75740077358246210e676ca71d4d00" name="a2d75740077358246210e676ca71d4d00"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2d75740077358246210e676ca71d4d00">&#9670;&#160;</a></span>appendRange()</h2>
+<a id="a385d0819af32972418e65b3dbbbdf168" name="a385d0819af32972418e65b3dbbbdf168"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a385d0819af32972418e65b3dbbbdf168">&#9670;&#160;</a></span>appendRange()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void scan::MatchesAndOldValuesSwath::appendRange </td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a> scan::MatchesAndOldValuesSwath::appendRange </td>
           <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>baseAddr</em>, </td>
+          <td class="paramtype"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a> *&#160;</td>
+          <td class="paramname"><em>base_address</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> std::uint8_t *&#160;</td>
           <td class="paramname"><em>bytes</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t&#160;</td>
+          <td class="paramtype">std::size_t&#160;</td>
           <td class="paramname"><em>length</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a>&#160;</td>
-          <td class="paramname"><em>initial</em> = <code><a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552aba2b45bdc11e2a4a6e86aab2ac693cbb">MatchFlags::EMPTY</a></code>&#160;</td>
+          <td class="paramtype"><a class="el" href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a>&#160;</td>
+          <td class="paramname"><em>initial</em> = <code><a class="el" href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552aba2b45bdc11e2a4a6e86aab2ac693cbb">MatchFlags::EMPTY</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -231,40 +194,32 @@ Public 属性</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a4e8993fde21c3a7b7152a3451ae13b62" name="a4e8993fde21c3a7b7152a3451ae13b62"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4e8993fde21c3a7b7152a3451ae13b62">&#9670;&#160;</a></span>markRangeByAddress()</h2>
+<a id="a993ed6826a1419848b6d456773d4a580" name="a993ed6826a1419848b6d456773d4a580"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a993ed6826a1419848b6d456773d4a580">&#9670;&#160;</a></span>markRangeByAddress()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void scan::MatchesAndOldValuesSwath::markRangeByAddress </td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a> scan::MatchesAndOldValuesSwath::markRangeByAddress </td>
           <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>addr</em>, </td>
+          <td class="paramtype"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a> *&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t&#160;</td>
+          <td class="paramtype">std::size_t&#160;</td>
           <td class="paramname"><em>length</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a>&#160;</td>
           <td class="paramname"><em>flags</em>&#160;</td>
         </tr>
         <tr>
@@ -273,40 +228,32 @@ Public 属性</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a1f204c43ecbae5a8c1c9ff40e60f79ba" name="a1f204c43ecbae5a8c1c9ff40e60f79ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f204c43ecbae5a8c1c9ff40e60f79ba">&#9670;&#160;</a></span>markRangeByIndex()</h2>
+<a id="adc75478661dd843adc419f835d6a0dfa" name="adc75478661dd843adc419f835d6a0dfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc75478661dd843adc419f835d6a0dfa">&#9670;&#160;</a></span>markRangeByIndex()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void scan::MatchesAndOldValuesSwath::markRangeByIndex </td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a> scan::MatchesAndOldValuesSwath::markRangeByIndex </td>
           <td>(</td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>startIndex</em>, </td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>start_index</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t&#160;</td>
+          <td class="paramtype">std::size_t&#160;</td>
           <td class="paramname"><em>length</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="flags_8cppm.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a>&#160;</td>
           <td class="paramname"><em>flags</em>&#160;</td>
         </tr>
         <tr>
@@ -315,83 +262,62 @@ Public 属性</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a1d3614a2d6bc45ebc56152d2a12f2de5" name="a1d3614a2d6bc45ebc56152d2a12f2de5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d3614a2d6bc45ebc56152d2a12f2de5">&#9670;&#160;</a></span>toByteArrayText()</h2>
+<a id="aaf96097329f0907fe2600b962d3234bc" name="aaf96097329f0907fe2600b962d3234bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf96097329f0907fe2600b962d3234bc">&#9670;&#160;</a></span>toByteArrayText()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto scan::MatchesAndOldValuesSwath::toByteArrayText </td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> scan::MatchesAndOldValuesSwath::toByteArrayText </td>
           <td>(</td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>idx</em>, </td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>len</em>&#160;</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> const -&gt; std::string </td>
+          <td></td><td> const -&gt; std::string</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a8761c91f23136f817cdfb82e99a5f010" name="a8761c91f23136f817cdfb82e99a5f010"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8761c91f23136f817cdfb82e99a5f010">&#9670;&#160;</a></span>toPrintableString()</h2>
+<a id="af1872614178a04d267e4c8daaa839e63" name="af1872614178a04d267e4c8daaa839e63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1872614178a04d267e4c8daaa839e63">&#9670;&#160;</a></span>toPrintableString()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto scan::MatchesAndOldValuesSwath::toPrintableString </td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> scan::MatchesAndOldValuesSwath::toPrintableString </td>
           <td>(</td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>idx</em>, </td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>len</em>&#160;</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> const -&gt; std::string </td>
+          <td></td><td> const -&gt; std::string</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -402,19 +328,11 @@ Public 属性</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">std::vector&lt;<a class="el" href="structscan_1_1OldValueAndMatchInfo.html">OldValueAndMatchInfo</a>&gt; scan::MatchesAndOldValuesSwath::data</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -424,25 +342,18 @@ Public 属性</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void* scan::MatchesAndOldValuesSwath::firstByteInChild = nullptr</td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a>* scan::MatchesAndOldValuesSwath::firstByteInChild {<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nullptr</a>}</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <hr/>该类的文档由以下文件生成:<ul>
-<li>src/scan/<a class="el" href="match__storage_8cppm.html">match_storage.cppm</a></li>
+<li>include/newscanmem/scan/<a class="el" href="match__storage_8hpp_source.html">match_storage.hpp</a></li>
+<li>src/scan/<a class="el" href="match__storage_8cpp.html">match_storage.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: include/newscanmem/ui/user_input.hpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('user__input_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">user_input.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="user__input_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;optional&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;span&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="core_8hpp.html">newscanmem/value/core.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="flags_8hpp.html">newscanmem/value/flags.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// Lightweight UI-facing wrapper around the canonical scan operand model.</span></div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="structUserInput.html">   14</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structUserInput.html">UserInput</a> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="structUserInput.html#aed23398e823f7b7989187b1de237be86">   15</a></span>    <a class="code hl_enumeration" href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552">ValueType</a> <a class="code hl_variable" href="structUserInput.html#aed23398e823f7b7989187b1de237be86">valueType</a>{<a class="code hl_enumvalue" href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552aba2b45bdc11e2a4a6e86aab2ac693cbb">MatchFlags::EMPTY</a>};</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="structUserInput.html#a9b20373870c401312ac11a0827fc342c">   16</a></span>    <a class="code hl_struct" href="structUserValue.html">UserValue</a> <a class="code hl_variable" href="structUserInput.html#a9b20373870c401312ac11a0827fc342c">value</a>;  <span class="comment">// Primary value (number/bytes/string)</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="structUserInput.html#ace219b17c2e355536141cda8a241e6f9">   18</a></span>    <a class="code hl_function" href="structUserInput.html#ace219b17c2e355536141cda8a241e6f9">UserInput</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="comment">// --- Convenience constructors (Number) ---</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structUserInput.html#adb9379c35d95bf355c49a230889fec4d">   22</a></span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="structUserInput.html#adb9379c35d95bf355c49a230889fec4d">fromNumber</a>(<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">val</a>) -&gt; <a class="code hl_struct" href="structUserInput.html">UserInput</a> {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <a class="code hl_struct" href="structUserInput.html">UserInput</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">input</a>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">input</a>.<a class="code hl_variable" href="structUserInput.html#a9b20373870c401312ac11a0827fc342c">value</a> = UserValue::fromScalar&lt;T&gt;(<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">val</a>);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">input</a>.valueType = <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">input</a>.value.flag();</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">input</a>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    }</div>
+</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="comment">// --- Convenience constructors (RangeNumber) ---</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="}">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="structUserInput.html#a034094d4736d9cad00ac20b29ad2a115">   31</a></span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="structUserInput.html#a034094d4736d9cad00ac20b29ad2a115">fromRange</a>(<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">loVal</a>, <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">hiVal</a>) -&gt; <a class="code hl_struct" href="structUserInput.html">UserInput</a> {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <a class="code hl_struct" href="structUserInput.html">UserInput</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">input</a>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">input</a>.<a class="code hl_variable" href="structUserInput.html#a9b20373870c401312ac11a0827fc342c">value</a> =</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            <a class="code hl_struct" href="structUserValue.html">UserValue</a>{Value::of&lt;T&gt;(<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">loVal</a>), Value::of&lt;T&gt;(<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">hiVal</a>)};</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">input</a>.valueType = <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">input</a>.value.<a class="code hl_function" href="structUserValue.html#af6798dc1f2d8dff30dde0e0100ef8481">flag</a>();</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">input</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    }</div>
+</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="comment">// --- Convenience constructors (Bytes) ---</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="structUserInput.html#a0426a55155e58859724f7e4599364390">fromBytes</a>(std::span&lt;const std::uint8_t&gt; <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">span</a>) -&gt; <a class="code hl_function" href="structUserInput.html#ace219b17c2e355536141cda8a241e6f9">UserInput</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="comment">// --- Convenience constructors (BytesWithMask) ---</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="structUserInput.html#ab6da7bcbba8ba90975b795e37cdea732">fromBytesWithMask</a>(std::span&lt;const std::uint8_t&gt; <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">span</a>,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                                  std::span&lt;const std::uint8_t&gt; mask)</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        -&gt; <a class="code hl_function" href="structUserInput.html#ace219b17c2e355536141cda8a241e6f9">UserInput</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="comment">// --- 构造便捷函数（String）---</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="structUserInput.html#a53c109ac1cb56fff0baada728c0f169c">fromString</a>(<span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">stringInput</a>) -&gt; <a class="code hl_function" href="structUserInput.html#ace219b17c2e355536141cda8a241e6f9">UserInput</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
+</div>
+<div class="ttc" id="acore_8hpp_html"><div class="ttname"><a href="core_8hpp.html">core.hpp</a></div><div class="ttdoc">Core single-value container</div></div>
+<div class="ttc" id="aflags_8hpp_html"><div class="ttname"><a href="flags_8hpp.html">flags.hpp</a></div></div>
+<div class="ttc" id="aflags_8hpp_html_a2bd4546b83b208d80dfb2fc0829d9cb1"><div class="ttname"><a href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">flagForType</a></div><div class="ttdeci">consteval auto flagForType() noexcept -&gt; MatchFlags</div><div class="ttdef"><b>Definition</b> flags.hpp:106</div></div>
+<div class="ttc" id="aflags_8hpp_html_a9d00fc74e19b56eaf046eef943fac552"><div class="ttname"><a href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a></div><div class="ttdeci">MatchFlags</div><div class="ttdef"><b>Definition</b> flags.hpp:23</div></div>
+<div class="ttc" id="aflags_8hpp_html_a9d00fc74e19b56eaf046eef943fac552aba2b45bdc11e2a4a6e86aab2ac693cbb"><div class="ttname"><a href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552aba2b45bdc11e2a4a6e86aab2ac693cbb">MatchFlags::EMPTY</a></div><div class="ttdeci">@ EMPTY</div></div>
+<div class="ttc" id="astructUserInput_html"><div class="ttname"><a href="structUserInput.html">UserInput</a></div><div class="ttdef"><b>Definition</b> user_input.hpp:14</div></div>
+<div class="ttc" id="astructUserInput_html_a034094d4736d9cad00ac20b29ad2a115"><div class="ttname"><a href="structUserInput.html#a034094d4736d9cad00ac20b29ad2a115">UserInput::fromRange</a></div><div class="ttdeci">static auto fromRange(T loVal, T hiVal) -&gt; UserInput</div><div class="ttdef"><b>Definition</b> user_input.hpp:31</div></div>
+<div class="ttc" id="astructUserInput_html_a0426a55155e58859724f7e4599364390"><div class="ttname"><a href="structUserInput.html#a0426a55155e58859724f7e4599364390">UserInput::fromBytes</a></div><div class="ttdeci">static auto fromBytes(std::span&lt; const std::uint8_t &gt; span) -&gt; UserInput</div><div class="ttdef"><b>Definition</b> user_input.cpp:3</div></div>
+<div class="ttc" id="astructUserInput_html_a53c109ac1cb56fff0baada728c0f169c"><div class="ttname"><a href="structUserInput.html#a53c109ac1cb56fff0baada728c0f169c">UserInput::fromString</a></div><div class="ttdeci">static auto fromString(const std::string &amp;stringInput) -&gt; UserInput</div><div class="ttdef"><b>Definition</b> user_input.cpp:5</div></div>
+<div class="ttc" id="astructUserInput_html_a9b20373870c401312ac11a0827fc342c"><div class="ttname"><a href="structUserInput.html#a9b20373870c401312ac11a0827fc342c">UserInput::value</a></div><div class="ttdeci">UserValue value</div><div class="ttdef"><b>Definition</b> user_input.hpp:16</div></div>
+<div class="ttc" id="astructUserInput_html_ab6da7bcbba8ba90975b795e37cdea732"><div class="ttname"><a href="structUserInput.html#ab6da7bcbba8ba90975b795e37cdea732">UserInput::fromBytesWithMask</a></div><div class="ttdeci">static auto fromBytesWithMask(std::span&lt; const std::uint8_t &gt; span, std::span&lt; const std::uint8_t &gt; mask) -&gt; UserInput</div><div class="ttdef"><b>Definition</b> user_input.cpp:4</div></div>
+<div class="ttc" id="astructUserInput_html_ace219b17c2e355536141cda8a241e6f9"><div class="ttname"><a href="structUserInput.html#ace219b17c2e355536141cda8a241e6f9">UserInput::UserInput</a></div><div class="ttdeci">UserInput()=default</div></div>
+<div class="ttc" id="astructUserInput_html_adb9379c35d95bf355c49a230889fec4d"><div class="ttname"><a href="structUserInput.html#adb9379c35d95bf355c49a230889fec4d">UserInput::fromNumber</a></div><div class="ttdeci">static auto fromNumber(T val) -&gt; UserInput</div><div class="ttdef"><b>Definition</b> user_input.hpp:22</div></div>
+<div class="ttc" id="astructUserInput_html_aed23398e823f7b7989187b1de237be86"><div class="ttname"><a href="structUserInput.html#aed23398e823f7b7989187b1de237be86">UserInput::valueType</a></div><div class="ttdeci">ValueType valueType</div><div class="ttdef"><b>Definition</b> user_input.hpp:15</div></div>
+<div class="ttc" id="astructUserValue_html"><div class="ttname"><a href="structUserValue.html">UserValue</a></div><div class="ttdef"><b>Definition</b> core.hpp:144</div></div>
+<div class="ttc" id="astructUserValue_html_af6798dc1f2d8dff30dde0e0100ef8481"><div class="ttname"><a href="structUserValue.html#af6798dc1f2d8dff30dde0e0100ef8481">UserValue::flag</a></div><div class="ttdeci">auto flag() const noexcept -&gt; MatchFlags</div><div class="ttdef"><b>Definition</b> core.hpp:191</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_61322cca43ef6011f730695c31aaa6cc.html">newscanmem</a></li><li class="navelem"><a class="el" href="dir_ca0892c25de47923020ce218191adf45.html">ui</a></li><li class="navelem"><a class="el" href="user__input_8hpp.html">user_input.hpp</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

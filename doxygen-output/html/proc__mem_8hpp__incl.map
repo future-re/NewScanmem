@@ -1,0 +1,27 @@
+<map id="include/newscanmem/core/proc_mem.hpp" name="include/newscanmem/core/proc_mem.hpp">
+<area shape="rect" id="Node000001" title="Process memory I/O via /proc/&lt;pid&gt;/mem (进程内存 I/O)" alt="" coords="472,5,636,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,68,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="472,38,297,60,82,96,81,91,296,55,472,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="93,93,189,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="472,45,203,96,202,90,471,40"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="213,93,293,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="482,48,307,93,305,88,481,43"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="317,93,391,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="507,48,397,91,395,86,505,43"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="416,93,455,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="527,48,466,88,463,84,524,43"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="479,93,541,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="546,47,526,83,521,80,541,44"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="566,93,633,119"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="567,44,588,80,583,83,563,47"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="657,93,723,119"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="588,43,659,84,657,89,585,48"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="747,93,830,119"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="611,43,742,87,741,92,609,48"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="854,93,921,119"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="637,43,841,90,840,96,635,48"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="945,93,998,119"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="637,36,771,58,932,91,931,96,770,63,636,41"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="1022,93,1081,119"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="636,33,804,55,1009,91,1008,96,804,60,636,38"/>
+</map>

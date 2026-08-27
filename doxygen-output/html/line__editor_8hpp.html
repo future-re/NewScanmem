@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: include/newscanmem/ui/line_editor.hpp 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('line__editor_8hpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#namespaces">命名空间</a> &#124;
+<a href="#typedef-members">类型定义</a>  </div>
+  <div class="headertitle"><div class="title">line_editor.hpp 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;cstddef&gt;</code><br />
+<code>#include &lt;functional&gt;</code><br />
+<code>#include &lt;optional&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;string_view&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+line_editor.hpp 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="line__editor_8hpp__incl.png" border="0" usemap="#ainclude_2newscanmem_2ui_2line__editor_8hpp" alt=""/></div>
+<map name="ainclude_2newscanmem_2ui_2line__editor_8hpp" id="ainclude_2newscanmem_2ui_2line__editor_8hpp">
+<area shape="rect" title=" " alt="" coords="212,5,376,45"/>
+<area shape="rect" title=" " alt="" coords="5,93,76,119"/>
+<area shape="poly" title=" " alt="" coords="234,48,90,92,89,87,233,43"/>
+<area shape="rect" title=" " alt="" coords="100,93,187,119"/>
+<area shape="poly" title=" " alt="" coords="259,48,179,89,177,84,257,43"/>
+<area shape="rect" title=" " alt="" coords="211,93,286,119"/>
+<area shape="poly" title=" " alt="" coords="285,47,265,83,260,80,281,44"/>
+<area shape="rect" title=" " alt="" coords="310,93,369,119"/>
+<area shape="poly" title=" " alt="" coords="307,44,328,80,323,83,303,47"/>
+<area shape="rect" title=" " alt="" coords="393,93,491,119"/>
+<area shape="poly" title=" " alt="" coords="331,43,409,84,407,89,328,48"/>
+<area shape="rect" title=" " alt="" coords="515,93,577,119"/>
+<area shape="poly" title=" " alt="" coords="355,43,502,88,501,93,354,48"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件直接或间接的被哪些文件引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="line__editor_8hpp__dep__incl.png" border="0" usemap="#ainclude_2newscanmem_2ui_2line__editor_8hppdep" alt=""/></div>
+<map name="ainclude_2newscanmem_2ui_2line__editor_8hppdep" id="ainclude_2newscanmem_2ui_2line__editor_8hppdep">
+<area shape="rect" title=" " alt="" coords="147,5,311,45"/>
+<area shape="rect" href="console_8hpp.html" title=" " alt="" coords="55,93,219,133"/>
+<area shape="poly" title=" " alt="" coords="201,57,160,95,156,91,197,53"/>
+<area shape="rect" href="line__editor_8cpp.html" title=" " alt="" coords="243,101,399,126"/>
+<area shape="poly" title=" " alt="" coords="261,53,310,98,307,102,258,57"/>
+<area shape="rect" href="app_8cpp.html" title=" " alt="" coords="5,181,120,207"/>
+<area shape="poly" title=" " alt="" coords="112,145,76,183,72,179,108,142"/>
+<area shape="rect" href="console_8cpp.html" title=" " alt="" coords="144,181,283,207"/>
+<area shape="poly" title=" " alt="" coords="167,141,204,179,200,183,163,145"/>
+</map>
+</div>
+</div>
+<p><a href="line__editor_8hpp_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classui_1_1LineEditor.html">ui::LineEditor</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+命名空间</h2></td></tr>
+<tr class="memitem:namespaceui" id="r_namespaceui"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceui.html">ui</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:adfe71bb0e06e4a7c2565858feecdcc78" id="r_adfe71bb0e06e4a7c2565858feecdcc78"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceui.html#adfe71bb0e06e4a7c2565858feecdcc78">ui::CompletionCallback</a> = std::function&lt; std::vector&lt; std::string &gt;(std::string_view)&gt;</td></tr>
+<tr class="separator:adfe71bb0e06e4a7c2565858feecdcc78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_61322cca43ef6011f730695c31aaa6cc.html">newscanmem</a></li><li class="navelem"><a class="el" href="dir_ca0892c25de47923020ce218191adf45.html">ui</a></li><li class="navelem"><a class="el" href="line__editor_8hpp.html">line_editor.hpp</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

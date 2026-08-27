@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: include/newscanmem/scan/routine.hpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('routine_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">routine.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="routine_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;optional&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;span&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="core_8hpp.html">newscanmem/value/core.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="flags_8hpp.html">newscanmem/value/flags.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacescan.html">scan</a> {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="};">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structscan_1_1ScanContext.html">   23</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structscan_1_1ScanContext.html">ScanContext</a> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structscan_1_1ScanContext.html#a7b1ca583e2be7a86d52bff85ca36676d">   24</a></span>    std::span&lt;const std::uint8_t&gt; <a class="code hl_variable" href="structscan_1_1ScanContext.html#a7b1ca583e2be7a86d52bff85ca36676d">memory</a>;        </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structscan_1_1ScanContext.html#a7e8207f9526f9f3920195a107b81dc78">   25</a></span>    std::optional&lt;Value&gt; <a class="code hl_variable" href="structscan_1_1ScanContext.html#a7e8207f9526f9f3920195a107b81dc78">oldValue</a>;               </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structscan_1_1ScanContext.html#a3227b885a0f44707ea00c5efb8a59edc">   26</a></span>    std::optional&lt;UserValue&gt; <a class="code hl_variable" href="structscan_1_1ScanContext.html#a3227b885a0f44707ea00c5efb8a59edc">userValue</a>;          </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="structscan_1_1ScanContext.html#ab086b0e5abdc5da3d09746e5a39dd9c1">   27</a></span>    <a class="code hl_enumeration" href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> <a class="code hl_variable" href="structscan_1_1ScanContext.html#ab086b0e5abdc5da3d09746e5a39dd9c1">requiredFlag</a>{<a class="code hl_enumvalue" href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552aba2b45bdc11e2a4a6e86aab2ac693cbb">MatchFlags::EMPTY</a>};  </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structscan_1_1ScanContext.html#a9c78f105095df9526ff0ab4d13974ef0">   28</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structscan_1_1ScanContext.html#a9c78f105095df9526ff0ab4d13974ef0">reverseEndianness</a>{<span class="keyword">false</span>};               </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="}">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structscan_1_1ScanContext.html#a15d0f86d897986009c51c6503c93fecf">   30</a></span>    [[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">auto</span> <a class="code hl_function" href="structscan_1_1ScanContext.html#a15d0f86d897986009c51c6503c93fecf">memorySize</a>() <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">noexcept</a> -&gt; <a class="code hl_namespace" href="namespacestd.html">std</a>::<span class="keywordtype">size_t</span> {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structscan_1_1ScanContext.html#a7b1ca583e2be7a86d52bff85ca36676d">memory</a>.size();</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    }</div>
+</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="structscan_1_1ScanContext.html#af7b8618f83c1a8921c6151eaac72c4d4">   34</a></span>    [[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">auto</span> <a class="code hl_function" href="structscan_1_1ScanContext.html#af7b8618f83c1a8921c6151eaac72c4d4">hasUserValue</a>() <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">noexcept</a> -&gt; <span class="keywordtype">bool</span> {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structscan_1_1ScanContext.html#a3227b885a0f44707ea00c5efb8a59edc">userValue</a>.has_value();</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    }</div>
+</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="foldopen" id="foldopen00038" data-start="{" data-end="}">
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="structscan_1_1ScanContext.html#aa2d3455b7b811337cefa8bb2ff366551">   38</a></span>    [[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">auto</span> <a class="code hl_function" href="structscan_1_1ScanContext.html#aa2d3455b7b811337cefa8bb2ff366551">hasOldValue</a>() <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">noexcept</a> -&gt; <span class="keywordtype">bool</span> {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structscan_1_1ScanContext.html#a7e8207f9526f9f3920195a107b81dc78">oldValue</a>.has_value();</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    }</div>
+</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>};</div>
+</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="foldopen" id="foldopen00047" data-start="{" data-end="};">
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="structscan_1_1ScanResult.html">   47</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structscan_1_1ScanResult.html">ScanResult</a> {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="structscan_1_1ScanResult.html#aca4b01318e8860d2e696e70d5db3ba89">   48</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structscan_1_1ScanResult.html#aca4b01318e8860d2e696e70d5db3ba89">matched</a>{<span class="keyword">false</span>};           </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="structscan_1_1ScanResult.html#a176bdb57e466705d251492fd2653c453">   49</a></span>    std::size_t <a class="code hl_variable" href="structscan_1_1ScanResult.html#a176bdb57e466705d251492fd2653c453">matchLength</a>{0};    </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="structscan_1_1ScanResult.html#a8487b2106bf6878ab1586fc5e335f898">   50</a></span>    <a class="code hl_enumeration" href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> <a class="code hl_variable" href="structscan_1_1ScanResult.html#a8487b2106bf6878ab1586fc5e335f898">matchedFlag</a>{<a class="code hl_enumvalue" href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552aba2b45bdc11e2a4a6e86aab2ac693cbb">MatchFlags::EMPTY</a>};  </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="foldopen" id="foldopen00052" data-start="{" data-end="}">
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="structscan_1_1ScanResult.html#a08a896f75b78259545d613bef6f81d49">   52</a></span>    [[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="structscan_1_1ScanResult.html#a08a896f75b78259545d613bef6f81d49">noMatch</a>() -&gt; <a class="code hl_struct" href="structscan_1_1ScanResult.html">ScanResult</a> {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">return</span> <a class="code hl_struct" href="structscan_1_1ScanResult.html">ScanResult</a>{.<a class="code hl_variable" href="structscan_1_1ScanResult.html#aca4b01318e8860d2e696e70d5db3ba89">matched</a>=<span class="keyword">false</span>, .matchLength=0, .matchedFlag=<a class="code hl_enumvalue" href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552aba2b45bdc11e2a4a6e86aab2ac693cbb">MatchFlags::EMPTY</a>};</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
+</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="foldopen" id="foldopen00056" data-start="{" data-end="}">
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structscan_1_1ScanResult.html#a6003b3aed7e49ffe6fd047699ef3625e">   56</a></span>    [[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="structscan_1_1ScanResult.html#a6003b3aed7e49ffe6fd047699ef3625e">match</a>(std::size_t length, <a class="code hl_enumeration" href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> flag) -&gt; <a class="code hl_struct" href="structscan_1_1ScanResult.html">ScanResult</a> {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">return</span> <a class="code hl_struct" href="structscan_1_1ScanResult.html">ScanResult</a>{.<a class="code hl_variable" href="structscan_1_1ScanResult.html#aca4b01318e8860d2e696e70d5db3ba89">matched</a>=<span class="keyword">true</span>, .matchLength=length, .matchedFlag=flag};</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    }</div>
+</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="structscan_1_1ScanResult.html#a5585b6b180c20d86df0c3b5ee5e4635b">   60</a></span>    <span class="keyword">explicit</span> <span class="keyword">operator</span> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">bool</a>() <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">noexcept</a> { <span class="keywordflow">return</span> <a class="code hl_variable" href="structscan_1_1ScanResult.html#aca4b01318e8860d2e696e70d5db3ba89">matched</a>; }</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>};</div>
+</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">   66</a></span><span class="keyword">using </span><a class="code hl_typedef" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">ScanRoutine</a> = std::function&lt;<a class="code hl_struct" href="structscan_1_1ScanResult.html">ScanResult</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structscan_1_1ScanContext.html">ScanContext</a>&amp; <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">ctx</a>)&gt;;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>[[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">auto</span> <a class="code hl_function" href="namespacescan.html#a522b4708799baf2cfa4609ec02c94081">nullRoutine</a>() -&gt; <a class="code hl_typedef" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">ScanRoutine</a>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>[[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">auto</span> <a class="code hl_function" href="namespacescan.html#aceb6024a9754d6e1cf97597c75c283d8">makeScanContext</a>(std::span&lt;const std::uint8_t&gt; memory, <span class="keyword">const</span> <a class="code hl_struct" href="structValue.html">Value</a>* <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">old_value</a>,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                                   <span class="keyword">const</span> <a class="code hl_struct" href="structUserValue.html">UserValue</a>* <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">user_value</a>, <a class="code hl_enumeration" href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">required_flag</a>,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                                   <span class="keywordtype">bool</span> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">reverse_endianness</a>) -&gt; <a class="code hl_struct" href="structscan_1_1ScanContext.html">ScanContext</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>}  <span class="comment">// namespace scan</span></div>
+<div class="ttc" id="acore_8hpp_html"><div class="ttname"><a href="core_8hpp.html">core.hpp</a></div><div class="ttdoc">Core single-value container</div></div>
+<div class="ttc" id="aflags_8hpp_html"><div class="ttname"><a href="flags_8hpp.html">flags.hpp</a></div></div>
+<div class="ttc" id="aflags_8hpp_html_a2bd4546b83b208d80dfb2fc0829d9cb1"><div class="ttname"><a href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">flagForType</a></div><div class="ttdeci">consteval auto flagForType() noexcept -&gt; MatchFlags</div><div class="ttdef"><b>Definition</b> flags.hpp:106</div></div>
+<div class="ttc" id="aflags_8hpp_html_a9d00fc74e19b56eaf046eef943fac552"><div class="ttname"><a href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a></div><div class="ttdeci">MatchFlags</div><div class="ttdef"><b>Definition</b> flags.hpp:23</div></div>
+<div class="ttc" id="aflags_8hpp_html_a9d00fc74e19b56eaf046eef943fac552aba2b45bdc11e2a4a6e86aab2ac693cbb"><div class="ttname"><a href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552aba2b45bdc11e2a4a6e86aab2ac693cbb">MatchFlags::EMPTY</a></div><div class="ttdeci">@ EMPTY</div></div>
+<div class="ttc" id="anamespacescan_html"><div class="ttname"><a href="namespacescan.html">scan</a></div><div class="ttdef"><b>Definition</b> engine.hpp:11</div></div>
+<div class="ttc" id="anamespacescan_html_a522b4708799baf2cfa4609ec02c94081"><div class="ttname"><a href="namespacescan.html#a522b4708799baf2cfa4609ec02c94081">scan::nullRoutine</a></div><div class="ttdeci">auto nullRoutine() -&gt; ScanRoutine</div><div class="ttdoc">Null scan routine that never matches</div><div class="ttdef"><b>Definition</b> routine.cpp:4</div></div>
+<div class="ttc" id="anamespacescan_html_aacf8ab44fe879bda5070b3b61ec7ceaa"><div class="ttname"><a href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">scan::ScanRoutine</a></div><div class="ttdeci">std::function&lt; ScanResult(const ScanContext &amp;ctx)&gt; ScanRoutine</div><div class="ttdoc">Modern scan routine type</div><div class="ttdef"><b>Definition</b> routine.hpp:66</div></div>
+<div class="ttc" id="anamespacescan_html_aceb6024a9754d6e1cf97597c75c283d8"><div class="ttname"><a href="namespacescan.html#aceb6024a9754d6e1cf97597c75c283d8">scan::makeScanContext</a></div><div class="ttdeci">auto makeScanContext(std::span&lt; const std::uint8_t &gt; memory, const Value *old_value, const UserValue *user_value, MatchFlags required_flag, bool reverse_endianness) -&gt; ScanContext</div><div class="ttdef"><b>Definition</b> routine.cpp:5</div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition</b> core.hpp:224</div></div>
+<div class="ttc" id="astructUserValue_html"><div class="ttname"><a href="structUserValue.html">UserValue</a></div><div class="ttdef"><b>Definition</b> core.hpp:144</div></div>
+<div class="ttc" id="astructValue_html"><div class="ttname"><a href="structValue.html">Value</a></div><div class="ttdef"><b>Definition</b> core.hpp:28</div></div>
+<div class="ttc" id="astructscan_1_1ScanContext_html"><div class="ttname"><a href="structscan_1_1ScanContext.html">scan::ScanContext</a></div><div class="ttdoc">Context for a single scan operation at a memory location</div><div class="ttdef"><b>Definition</b> routine.hpp:23</div></div>
+<div class="ttc" id="astructscan_1_1ScanContext_html_a15d0f86d897986009c51c6503c93fecf"><div class="ttname"><a href="structscan_1_1ScanContext.html#a15d0f86d897986009c51c6503c93fecf">scan::ScanContext::memorySize</a></div><div class="ttdeci">auto memorySize() const noexcept -&gt; std::size_t</div><div class="ttdef"><b>Definition</b> routine.hpp:30</div></div>
+<div class="ttc" id="astructscan_1_1ScanContext_html_a3227b885a0f44707ea00c5efb8a59edc"><div class="ttname"><a href="structscan_1_1ScanContext.html#a3227b885a0f44707ea00c5efb8a59edc">scan::ScanContext::userValue</a></div><div class="ttdeci">std::optional&lt; UserValue &gt; userValue</div><div class="ttdoc">User target value (for comparison)</div><div class="ttdef"><b>Definition</b> routine.hpp:26</div></div>
+<div class="ttc" id="astructscan_1_1ScanContext_html_a7b1ca583e2be7a86d52bff85ca36676d"><div class="ttname"><a href="structscan_1_1ScanContext.html#a7b1ca583e2be7a86d52bff85ca36676d">scan::ScanContext::memory</a></div><div class="ttdeci">std::span&lt; const std::uint8_t &gt; memory</div><div class="ttdoc">Current memory bytes</div><div class="ttdef"><b>Definition</b> routine.hpp:24</div></div>
+<div class="ttc" id="astructscan_1_1ScanContext_html_a7e8207f9526f9f3920195a107b81dc78"><div class="ttname"><a href="structscan_1_1ScanContext.html#a7e8207f9526f9f3920195a107b81dc78">scan::ScanContext::oldValue</a></div><div class="ttdeci">std::optional&lt; Value &gt; oldValue</div><div class="ttdoc">Previous value (for delta matches)</div><div class="ttdef"><b>Definition</b> routine.hpp:25</div></div>
+<div class="ttc" id="astructscan_1_1ScanContext_html_a9c78f105095df9526ff0ab4d13974ef0"><div class="ttname"><a href="structscan_1_1ScanContext.html#a9c78f105095df9526ff0ab4d13974ef0">scan::ScanContext::reverseEndianness</a></div><div class="ttdeci">bool reverseEndianness</div><div class="ttdoc">Reverse byte order flag</div><div class="ttdef"><b>Definition</b> routine.hpp:28</div></div>
+<div class="ttc" id="astructscan_1_1ScanContext_html_aa2d3455b7b811337cefa8bb2ff366551"><div class="ttname"><a href="structscan_1_1ScanContext.html#aa2d3455b7b811337cefa8bb2ff366551">scan::ScanContext::hasOldValue</a></div><div class="ttdeci">auto hasOldValue() const noexcept -&gt; bool</div><div class="ttdef"><b>Definition</b> routine.hpp:38</div></div>
+<div class="ttc" id="astructscan_1_1ScanContext_html_ab086b0e5abdc5da3d09746e5a39dd9c1"><div class="ttname"><a href="structscan_1_1ScanContext.html#ab086b0e5abdc5da3d09746e5a39dd9c1">scan::ScanContext::requiredFlag</a></div><div class="ttdeci">MatchFlags requiredFlag</div><div class="ttdoc">Required type flag</div><div class="ttdef"><b>Definition</b> routine.hpp:27</div></div>
+<div class="ttc" id="astructscan_1_1ScanContext_html_af7b8618f83c1a8921c6151eaac72c4d4"><div class="ttname"><a href="structscan_1_1ScanContext.html#af7b8618f83c1a8921c6151eaac72c4d4">scan::ScanContext::hasUserValue</a></div><div class="ttdeci">auto hasUserValue() const noexcept -&gt; bool</div><div class="ttdef"><b>Definition</b> routine.hpp:34</div></div>
+<div class="ttc" id="astructscan_1_1ScanResult_html"><div class="ttname"><a href="structscan_1_1ScanResult.html">scan::ScanResult</a></div><div class="ttdoc">Result of a scan operation at a memory location</div><div class="ttdef"><b>Definition</b> routine.hpp:47</div></div>
+<div class="ttc" id="astructscan_1_1ScanResult_html_a08a896f75b78259545d613bef6f81d49"><div class="ttname"><a href="structscan_1_1ScanResult.html#a08a896f75b78259545d613bef6f81d49">scan::ScanResult::noMatch</a></div><div class="ttdeci">static auto noMatch() -&gt; ScanResult</div><div class="ttdef"><b>Definition</b> routine.hpp:52</div></div>
+<div class="ttc" id="astructscan_1_1ScanResult_html_a176bdb57e466705d251492fd2653c453"><div class="ttname"><a href="structscan_1_1ScanResult.html#a176bdb57e466705d251492fd2653c453">scan::ScanResult::matchLength</a></div><div class="ttdeci">std::size_t matchLength</div><div class="ttdoc">Number of bytes matched</div><div class="ttdef"><b>Definition</b> routine.hpp:49</div></div>
+<div class="ttc" id="astructscan_1_1ScanResult_html_a6003b3aed7e49ffe6fd047699ef3625e"><div class="ttname"><a href="structscan_1_1ScanResult.html#a6003b3aed7e49ffe6fd047699ef3625e">scan::ScanResult::match</a></div><div class="ttdeci">static auto match(std::size_t length, MatchFlags flag) -&gt; ScanResult</div><div class="ttdef"><b>Definition</b> routine.hpp:56</div></div>
+<div class="ttc" id="astructscan_1_1ScanResult_html_a8487b2106bf6878ab1586fc5e335f898"><div class="ttname"><a href="structscan_1_1ScanResult.html#a8487b2106bf6878ab1586fc5e335f898">scan::ScanResult::matchedFlag</a></div><div class="ttdeci">MatchFlags matchedFlag</div><div class="ttdoc">Type of match</div><div class="ttdef"><b>Definition</b> routine.hpp:50</div></div>
+<div class="ttc" id="astructscan_1_1ScanResult_html_aca4b01318e8860d2e696e70d5db3ba89"><div class="ttname"><a href="structscan_1_1ScanResult.html#aca4b01318e8860d2e696e70d5db3ba89">scan::ScanResult::matched</a></div><div class="ttdeci">bool matched</div><div class="ttdoc">Whether this location matches</div><div class="ttdef"><b>Definition</b> routine.hpp:48</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_61322cca43ef6011f730695c31aaa6cc.html">newscanmem</a></li><li class="navelem"><a class="el" href="dir_796cc72c58eeaae50026198018c43cff.html">scan</a></li><li class="navelem"><a class="el" href="routine_8hpp.html">routine.hpp</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

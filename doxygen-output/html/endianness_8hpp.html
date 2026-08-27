@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: include/newscanmem/utils/endianness.hpp 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('endianness_8hpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">命名空间</a> &#124;
+<a href="#enum-members">枚举</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">endianness.hpp 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;bit&gt;</code><br />
+<code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;type_traits&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+endianness.hpp 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="endianness_8hpp__incl.png" border="0" usemap="#ainclude_2newscanmem_2utils_2endianness_8hpp" alt=""/></div>
+<map name="ainclude_2newscanmem_2utils_2endianness_8hpp" id="ainclude_2newscanmem_2utils_2endianness_8hpp">
+<area shape="rect" title=" " alt="" coords="20,5,184,45"/>
+<area shape="rect" title=" " alt="" coords="5,93,44,119"/>
+<area shape="poly" title=" " alt="" coords="85,47,48,85,44,82,81,44"/>
+<area shape="rect" title=" " alt="" coords="69,93,135,119"/>
+<area shape="poly" title=" " alt="" coords="105,46,105,79,99,79,99,46"/>
+<area shape="rect" title=" " alt="" coords="160,93,252,119"/>
+<area shape="poly" title=" " alt="" coords="129,43,181,83,178,87,126,48"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件直接或间接的被哪些文件引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="endianness_8hpp__dep__incl.png" border="0" usemap="#ainclude_2newscanmem_2utils_2endianness_8hppdep" alt=""/></div>
+<map name="ainclude_2newscanmem_2utils_2endianness_8hppdep" id="ainclude_2newscanmem_2utils_2endianness_8hppdep">
+<area shape="rect" title=" " alt="" coords="1545,5,1709,45"/>
+<area shape="rect" href="result__service_8hpp.html" title="Thin application service for current match presentation" alt="" coords="126,181,299,221"/>
+<area shape="poly" title=" " alt="" coords="1531,38,1010,93,664,135,312,184,300,186,299,181,311,179,663,129,1010,88,1531,33"/>
+<area shape="rect" href="session_8hpp.html" title="Shared session state for CLI commands (pid + scanner)" alt="" coords="1447,93,1611,133"/>
+<area shape="poly" title=" " alt="" coords="1597,56,1552,95,1549,91,1594,52"/>
+<area shape="rect" href="memory__writer_8hpp.html" title="Memory writing abstraction using process_vm_writev" alt="" coords="2096,93,2281,133"/>
+<area shape="poly" title=" " alt="" coords="1724,39,2096,95,2096,101,1723,44"/>
+<area shape="rect" href="endianness_8cpp.html" title=" " alt="" coords="2306,101,2485,126"/>
+<area shape="poly" title=" " alt="" coords="1723,31,1982,54,2294,91,2339,98,2338,103,2294,96,1981,59,1723,36"/>
+<area shape="rect" href="result__service_8cpp.html" title=" " alt="" coords="5,269,196,295"/>
+<area shape="poly" title=" " alt="" coords="176,231,119,271,116,267,173,227"/>
+<area shape="rect" href="list_8cpp.html" title=" " alt="" coords="442,269,629,295"/>
+<area shape="poly" title=" " alt="" coords="304,222,489,267,488,272,303,227"/>
+<area shape="rect" href="scan_8cpp.html" title=" " alt="" coords="221,269,418,295"/>
+<area shape="poly" title=" " alt="" coords="251,227,305,267,302,271,248,232"/>
+<area shape="rect" href="app_8hpp.html" title=" " alt="" coords="2132,181,2296,221"/>
+<area shape="poly" title=" " alt="" coords="1625,120,1851,144,2120,179,2132,181,2132,186,2119,184,1850,149,1624,126"/>
+<area shape="rect" href="count_8hpp.html" title="Count command: show current match count" alt="" coords="1923,181,2108,221"/>
+<area shape="poly" title=" " alt="" coords="1625,129,1910,179,1923,181,1922,186,1910,184,1624,134"/>
+<area shape="rect" href="list_8hpp.html" title="List command: display current matches with addresses and values" alt="" coords="527,181,696,221"/>
+<area shape="poly" title=" " alt="" coords="1433,122,1110,142,909,160,708,184,696,186,696,180,707,179,909,155,1110,137,1432,116"/>
+<area shape="rect" href="pid_8hpp.html" title="PID command implementation for setting target process" alt="" coords="720,181,889,221"/>
+<area shape="poly" title=" " alt="" coords="1433,125,1191,148,901,184,890,186,889,180,900,179,1191,142,1433,120"/>
+<area shape="rect" href="reset_8hpp.html" title="Reset command: clear matches and history" alt="" coords="913,181,1096,221"/>
+<area shape="poly" title=" " alt="" coords="1434,132,1108,184,1097,186,1096,181,1107,179,1433,126"/>
+<area shape="rect" href="scan_8hpp.html" title="Scan command: full/filtered workflow with optional value" alt="" coords="323,181,502,221"/>
+<area shape="poly" title=" " alt="" coords="1433,120,1032,138,774,157,514,184,502,186,502,180,514,179,774,152,1031,133,1432,115"/>
+<area shape="rect" href="set_8hpp.html" title="Simple configuration mutation command (session &amp; app config)" alt="" coords="1120,181,1289,221"/>
+<area shape="poly" title=" " alt="" coords="1445,139,1276,184,1275,179,1444,134"/>
+<area shape="rect" href="snapshot_8hpp.html" title="Snapshot command: manually create baseline snapshot" alt="" coords="1314,181,1522,221"/>
+<area shape="poly" title=" " alt="" coords="1495,144,1444,183,1441,179,1492,140"/>
+<area shape="rect" href="watch_8hpp.html" title="Watch command: monitor specific address for value changes" alt="" coords="1547,181,1735,221"/>
+<area shape="poly" title=" " alt="" coords="1566,140,1617,179,1614,183,1563,144"/>
+<area shape="rect" href="write_8hpp.html" title="Write command: modify memory at matched addresses" alt="" coords="2320,181,2503,221"/>
+<area shape="poly" title=" " alt="" coords="1624,117,1930,139,2119,156,2309,179,2320,180,2319,186,2308,184,2119,162,1929,144,1624,123"/>
+<area shape="rect" href="session_8cpp.html" title=" " alt="" coords="1759,189,1899,214"/>
+<area shape="poly" title=" " alt="" coords="1608,134,1789,186,1788,191,1607,140"/>
+<area shape="rect" href="app_8cpp.html" title=" " alt="" coords="1298,269,1413,295"/>
+<area shape="poly" title=" " alt="" coords="2118,224,1923,243,1770,250,1618,255,1425,272,1413,273,1412,268,1424,267,1617,250,1769,244,1922,238,2118,219"/>
+<area shape="rect" href="main_8cpp.html" title=" " alt="" coords="2307,269,2412,295"/>
+<area shape="poly" title=" " alt="" coords="2262,225,2339,267,2337,271,2259,230"/>
+<area shape="rect" href="scanmem_8cpp.html" title=" " alt="" coords="2146,269,2282,295"/>
+<area shape="poly" title=" " alt="" coords="2217,235,2217,269,2211,269,2211,235"/>
+<area shape="poly" title=" " alt="" coords="1909,224,1772,240,1665,249,1559,257,1425,272,1413,274,1412,268,1424,267,1559,252,1664,243,1771,235,1908,219"/>
+<area shape="rect" href="count_8cpp.html" title=" " alt="" coords="1919,269,2122,295"/>
+<area shape="poly" title=" " alt="" coords="2020,235,2023,269,2017,269,2015,235"/>
+<area shape="poly" title=" " alt="" coords="586,233,549,271,545,267,582,229"/>
+<area shape="poly" title=" " alt="" coords="710,219,872,237,999,244,1126,251,1286,267,1298,268,1298,274,1286,272,1125,256,999,249,872,242,709,224"/>
+<area shape="poly" title=" " alt="" coords="903,219,1096,244,1286,267,1298,268,1297,274,1286,272,1096,249,903,224"/>
+<area shape="rect" href="pid_8cpp.html" title=" " alt="" coords="653,269,839,295"/>
+<area shape="poly" title=" " alt="" coords="785,234,757,271,753,267,780,231"/>
+<area shape="poly" title=" " alt="" coords="1102,222,1305,267,1303,272,1101,227"/>
+<area shape="rect" href="reset_8cpp.html" title=" " alt="" coords="863,269,1063,295"/>
+<area shape="poly" title=" " alt="" coords="991,235,972,270,967,268,986,232"/>
+<area shape="poly" title=" " alt="" coords="381,232,335,271,332,267,378,228"/>
+<area shape="poly" title=" " alt="" coords="516,219,733,238,903,244,1072,249,1286,267,1298,268,1298,273,1286,272,1071,254,902,249,733,243,515,224"/>
+<area shape="poly" title=" " alt="" coords="1254,225,1334,267,1332,272,1251,230"/>
+<area shape="rect" href="set_8cpp.html" title=" " alt="" coords="1087,269,1274,295"/>
+<area shape="poly" title=" " alt="" coords="1197,235,1187,270,1182,268,1192,234"/>
+<area shape="poly" title=" " alt="" coords="1396,234,1367,271,1363,267,1392,231"/>
+<area shape="rect" href="snapshot_8cpp.html" title=" " alt="" coords="1437,269,1663,295"/>
+<area shape="poly" title=" " alt="" coords="1463,226,1532,267,1529,271,1460,231"/>
+<area shape="poly" title=" " alt="" coords="1560,228,1398,272,1396,267,1558,222"/>
+<area shape="rect" href="watch_8cpp.html" title=" " alt="" coords="1688,269,1895,295"/>
+<area shape="poly" title=" " alt="" coords="1690,225,1770,267,1768,272,1687,230"/>
+<area shape="poly" title=" " alt="" coords="2306,224,2172,237,2058,245,1864,249,1671,253,1558,260,1425,272,1413,273,1412,268,1424,267,1557,254,1671,248,1864,244,2058,239,2172,232,2306,219"/>
+<area shape="rect" href="write_8cpp.html" title=" " alt="" coords="2438,269,2638,295"/>
+<area shape="poly" title=" " alt="" coords="2455,227,2521,267,2518,271,2452,231"/>
+<area shape="poly" title=" " alt="" coords="2296,131,2437,158,2491,170,2517,179,2532,201,2539,226,2542,269,2536,269,2534,227,2527,203,2514,183,2490,175,2436,163,2295,136"/>
+<area shape="rect" href="memory__writer_8cpp.html" title=" " alt="" coords="2578,189,2781,214"/>
+<area shape="poly" title=" " alt="" coords="2296,131,2614,186,2613,191,2295,136"/>
+</map>
+</div>
+</div>
+<p><a href="endianness_8hpp_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+命名空间</h2></td></tr>
+<tr class="memitem:namespacedetail" id="r_namespacedetail"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedetail.html">detail</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceutils" id="r_namespaceutils"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html">utils</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+枚举</h2></td></tr>
+<tr class="memitem:a9b386dd2997f6356dc5ad20ce16003cc" id="r_a9b386dd2997f6356dc5ad20ce16003cc"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">utils::Endianness</a> { <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cca1314341b466dcb5e2c880b76414c49fe">utils::LITTLE</a>
+, <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003ccaa60c6c694491d75b439073b8cb05b139">utils::BIG</a>
+ }</td></tr>
+<tr class="separator:a9b386dd2997f6356dc5ad20ce16003cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:aff190188b65e4c3776fc6744be48bf2b" id="r_aff190188b65e4c3776fc6744be48bf2b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">constexpr</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedetail.html#aff190188b65e4c3776fc6744be48bf2b">detail::swapBytes</a> (<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">uint8_t</a> value) <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">noexcept</a> -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">uint8_t</a></td></tr>
+<tr class="separator:aff190188b65e4c3776fc6744be48bf2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93e8c6f46325bf4cd18530ed3db59b71" id="r_a93e8c6f46325bf4cd18530ed3db59b71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">constexpr</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedetail.html#a93e8c6f46325bf4cd18530ed3db59b71">detail::swapBytes</a> (<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">uint16_t</a> value) <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">noexcept</a> -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">uint16_t</a></td></tr>
+<tr class="separator:a93e8c6f46325bf4cd18530ed3db59b71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15a21289437f105dab2ffef908feeaf7" id="r_a15a21289437f105dab2ffef908feeaf7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">constexpr</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedetail.html#a15a21289437f105dab2ffef908feeaf7">detail::swapBytes</a> (<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">uint32_t</a> value) <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">noexcept</a> -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">uint32_t</a></td></tr>
+<tr class="separator:a15a21289437f105dab2ffef908feeaf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa61f7443552eef65706ca99283eacc2d" id="r_aa61f7443552eef65706ca99283eacc2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">constexpr</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedetail.html#aa61f7443552eef65706ca99283eacc2d">detail::swapBytes</a> (<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">uint64_t</a> value) <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">noexcept</a> -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">uint64_t</a></td></tr>
+<tr class="separator:aa61f7443552eef65706ca99283eacc2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1eca079a070edba567ae6920eee8eb0" id="r_ab1eca079a070edba567ae6920eee8eb0"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">typename</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a> &gt; </td></tr>
+<tr class="memitem:ab1eca079a070edba567ae6920eee8eb0"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">constexpr</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils.html#ab1eca079a070edba567ae6920eee8eb0">utils::swapBytes</a> (<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a> value) <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">noexcept</a> -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a></td></tr>
+<tr class="separator:ab1eca079a070edba567ae6920eee8eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1294d3772177d832662a183da812730" id="r_ab1294d3772177d832662a183da812730"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">typename</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a> &gt; </td></tr>
+<tr class="memitem:ab1294d3772177d832662a183da812730"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">constexpr</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils.html#ab1294d3772177d832662a183da812730">utils::hostToNetwork</a> (<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a> value) <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">noexcept</a> -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a></td></tr>
+<tr class="separator:ab1294d3772177d832662a183da812730"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8a17769e8020bd0dd30cd257ce21ccd" id="r_af8a17769e8020bd0dd30cd257ce21ccd"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">typename</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a> &gt; </td></tr>
+<tr class="memitem:af8a17769e8020bd0dd30cd257ce21ccd"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">constexpr</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils.html#af8a17769e8020bd0dd30cd257ce21ccd">utils::networkToHost</a> (<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a> value) <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">noexcept</a> -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a></td></tr>
+<tr class="separator:af8a17769e8020bd0dd30cd257ce21ccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97022d89a68c435e218e7d7231b23d6f" id="r_a97022d89a68c435e218e7d7231b23d6f"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">typename</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a> &gt; </td></tr>
+<tr class="memitem:a97022d89a68c435e218e7d7231b23d6f"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">constexpr</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a97022d89a68c435e218e7d7231b23d6f">utils::hostToLittleEndian</a> (<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a> value) <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">noexcept</a> -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a></td></tr>
+<tr class="separator:a97022d89a68c435e218e7d7231b23d6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad29bf669b42ac7d5dc515e64e638c410" id="r_ad29bf669b42ac7d5dc515e64e638c410"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">typename</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a> &gt; </td></tr>
+<tr class="memitem:ad29bf669b42ac7d5dc515e64e638c410"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">constexpr</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils.html#ad29bf669b42ac7d5dc515e64e638c410">utils::littleEndianToHost</a> (<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a> value) <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">noexcept</a> -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a></td></tr>
+<tr class="separator:ad29bf669b42ac7d5dc515e64e638c410"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a715e0f3bd35b3504e091f77a7ae1de2e" id="r_a715e0f3bd35b3504e091f77a7ae1de2e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">constexpr</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a715e0f3bd35b3504e091f77a7ae1de2e">utils::isBigEndian</a> () <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">noexcept</a> -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">bool</a></td></tr>
+<tr class="separator:a715e0f3bd35b3504e091f77a7ae1de2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a915e03ea533a95d375075d41a74e7aeb" id="r_a915e03ea533a95d375075d41a74e7aeb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">constexpr</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a915e03ea533a95d375075d41a74e7aeb">utils::isLittleEndian</a> () <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">noexcept</a> -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">bool</a></td></tr>
+<tr class="separator:a915e03ea533a95d375075d41a74e7aeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56d2b3a10b48b378dc7d308f2c8e5996" id="r_a56d2b3a10b48b378dc7d308f2c8e5996"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">typename</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a> &gt; </td></tr>
+<tr class="memitem:a56d2b3a10b48b378dc7d308f2c8e5996"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">constexpr</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a56d2b3a10b48b378dc7d308f2c8e5996">utils::swapBytesIntegral</a> (<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a> value) <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">noexcept</a> -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a></td></tr>
+<tr class="separator:a56d2b3a10b48b378dc7d308f2c8e5996"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84b9cbc873018d8701ba5930643441bc" id="r_a84b9cbc873018d8701ba5930643441bc"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">typename</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a> &gt; </td></tr>
+<tr class="memitem:a84b9cbc873018d8701ba5930643441bc"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">constexpr</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a84b9cbc873018d8701ba5930643441bc">utils::toTargetEndian</a> (<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a> value, <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">Endianness</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">target</a>) <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">noexcept</a> -&gt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a></td></tr>
+<tr class="separator:a84b9cbc873018d8701ba5930643441bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30b4b3e4177bc7f02df665fa43350c35" id="r_a30b4b3e4177bc7f02df665fa43350c35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a30b4b3e4177bc7f02df665fa43350c35">utils::getHost</a> () -&gt; <a class="el" href="namespaceutils.html#a9b386dd2997f6356dc5ad20ce16003cc">Endianness</a></td></tr>
+<tr class="separator:a30b4b3e4177bc7f02df665fa43350c35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_61322cca43ef6011f730695c31aaa6cc.html">newscanmem</a></li><li class="navelem"><a class="el" href="dir_bb9d9abae0ab8a14b7d852c975963016.html">utils</a></li><li class="navelem"><a class="el" href="endianness_8hpp.html">endianness.hpp</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

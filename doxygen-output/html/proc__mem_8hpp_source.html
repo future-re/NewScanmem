@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: include/newscanmem/core/proc_mem.hpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('proc__mem_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">proc_mem.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="proc__mem_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;fcntl.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;sys/types.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;sys/uio.h&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;bit&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;cerrno&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;cstring&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;expected&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;format&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;span&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacecore.html">core</a> {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="foldopen" id="foldopen00040" data-start="{" data-end="};">
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classcore_1_1ProcMemIO.html">   40</a></span><span class="keyword">class </span><a class="code hl_class" href="classcore_1_1ProcMemIO.html">ProcMemIO</a> {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classcore_1_1ProcMemIO.html#a42cd2f98a6236b38266f8342a2285954">   42</a></span>    <a class="code hl_function" href="classcore_1_1ProcMemIO.html#a42cd2f98a6236b38266f8342a2285954">ProcMemIO</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classcore_1_1ProcMemIO.html#af784aebeb14a992723d546478a4f3e9a">   43</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classcore_1_1ProcMemIO.html#af784aebeb14a992723d546478a4f3e9a">ProcMemIO</a>(pid_t pid) : m_pid(pid) {}</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1ProcMemIO.html#ac2931baefb8977d121dc22d97df82d49">open</a>(<span class="keywordtype">bool</span> writable) -&gt; std::expected&lt;void, std::string&gt;;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1ProcMemIO.html#ac2931baefb8977d121dc22d97df82d49">open</a>() -&gt; std::expected&lt;void, std::string&gt;;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <a class="code hl_function" href="classcore_1_1ProcMemIO.html#a225eeccc5d886724c5af63499b25f911">~ProcMemIO</a>();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classcore_1_1ProcMemIO.html#ac8f679d6ed83f2deaf3c29e637c76c19">   60</a></span>    <a class="code hl_function" href="classcore_1_1ProcMemIO.html#ac8f679d6ed83f2deaf3c29e637c76c19">ProcMemIO</a>(<span class="keyword">const</span> <a class="code hl_class" href="classcore_1_1ProcMemIO.html">ProcMemIO</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classcore_1_1ProcMemIO.html#a44defbd199d3e2d7b1d28b8f68be3d57">   61</a></span>    <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1ProcMemIO.html#a44defbd199d3e2d7b1d28b8f68be3d57">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classcore_1_1ProcMemIO.html">ProcMemIO</a>&amp;) -&gt; <a class="code hl_class" href="classcore_1_1ProcMemIO.html">ProcMemIO</a>&amp; = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <a class="code hl_function" href="classcore_1_1ProcMemIO.html#a42cd2f98a6236b38266f8342a2285954">ProcMemIO</a>(<a class="code hl_class" href="classcore_1_1ProcMemIO.html">ProcMemIO</a>&amp;&amp; other) <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1ProcMemIO.html#a44defbd199d3e2d7b1d28b8f68be3d57">operator=</a>(<a class="code hl_class" href="classcore_1_1ProcMemIO.html">ProcMemIO</a>&amp;&amp; other) <span class="keyword">noexcept</span> -&gt; <a class="code hl_class" href="classcore_1_1ProcMemIO.html">ProcMemIO</a>&amp;;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1ProcMemIO.html#aa97d8278f52dad7b175c6c9e1c25223a">read</a>(<span class="keywordtype">void</span>* addr, std::span&lt;std::uint8_t&gt; buf) <span class="keyword">const</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        -&gt; std::expected&lt;std::size_t, std::string&gt;;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1ProcMemIO.html#aa97d8278f52dad7b175c6c9e1c25223a">read</a>(<span class="keywordtype">void</span>* addr, std::uint8_t* buf, std::size_t len) <span class="keyword">const</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        -&gt; std::expected&lt;std::size_t, std::string&gt;;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1ProcMemIO.html#a7dc0b7ce056ba94c86e59a7856dccee6">write</a>(<span class="keywordtype">void</span>* addr, std::span&lt;const std::uint8_t&gt; buf) <span class="keyword">const</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        -&gt; std::expected&lt;std::size_t, std::string&gt;;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00101" data-start="{" data-end="}">
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classcore_1_1ProcMemIO.html#a8357ab7e7daead00bc1e03c198255fa5">  101</a></span>    [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1ProcMemIO.html#a8357ab7e7daead00bc1e03c198255fa5">writeScalar</a>(<span class="keywordtype">void</span>* addr, <span class="keyword">const</span> T&amp; <a class="code hl_namespace" href="namespacevalue.html">value</a>)</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        -&gt; std::expected&lt;std::size_t, std::string&gt; {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keyword">static_assert</span>(std::is_trivially_copyable_v&lt;T&gt;);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="keyword">auto</span> bytes = std::as_bytes(std::span{&amp;<a class="code hl_namespace" href="namespacevalue.html">value</a>, 1});</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="classcore_1_1ProcMemIO.html#a7dc0b7ce056ba94c86e59a7856dccee6">write</a>(addr, std::span&lt;const std::uint8_t&gt;{</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                               std::bit_cast&lt;const std::uint8_t*&gt;(bytes.data()),</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                               bytes.size()});</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    }</div>
+</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    pid_t m_pid{-1};</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordtype">int</span> m_fd{-1};</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>};</div>
+</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>[[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="namespacecore.html#a9b9299e713784696c1df515d1f4c35c0">writeBytes</a>(pid_t pid, <span class="keywordtype">void</span>* addr, std::span&lt;const std::uint8_t&gt; buf)</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    -&gt; std::expected&lt;std::size_t, std::string&gt;;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00134" data-start="{" data-end="}">
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="namespacecore.html#a99445fcc9b198d0a35ffde606ce2a556">  134</a></span>[[nodiscard]] <span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespacecore.html#a99445fcc9b198d0a35ffde606ce2a556">writeValue</a>(pid_t pid, <span class="keywordtype">void</span>* addr, <span class="keyword">const</span> T&amp; <a class="code hl_namespace" href="namespacevalue.html">value</a>)</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    -&gt; std::expected&lt;std::size_t, std::string&gt; {</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keyword">static_assert</span>(std::is_trivially_copyable_v&lt;T&gt;);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <a class="code hl_class" href="classcore_1_1ProcMemIO.html">ProcMemIO</a> memIO{pid};</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordflow">if</span> (<span class="keyword">auto</span> err = memIO.open(<span class="keyword">true</span>); !err) {</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        <span class="keywordflow">return</span> std::unexpected{err.error()};</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    }</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keywordflow">return</span> memIO.<a class="code hl_function" href="classcore_1_1ProcMemIO.html#a8357ab7e7daead00bc1e03c198255fa5">writeScalar</a>&lt;T&gt;(addr, <a class="code hl_namespace" href="namespacevalue.html">value</a>);</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>}</div>
+</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>}  <span class="comment">// namespace core</span></div>
+<div class="ttc" id="aclasscore_1_1ProcMemIO_html"><div class="ttname"><a href="classcore_1_1ProcMemIO.html">core::ProcMemIO</a></div><div class="ttdoc">RAII wrapper for /proc/&lt;pid&gt;/mem file descriptor</div><div class="ttdef"><b>Definition</b> proc_mem.hpp:40</div></div>
+<div class="ttc" id="aclasscore_1_1ProcMemIO_html_a225eeccc5d886724c5af63499b25f911"><div class="ttname"><a href="classcore_1_1ProcMemIO.html#a225eeccc5d886724c5af63499b25f911">core::ProcMemIO::~ProcMemIO</a></div><div class="ttdeci">~ProcMemIO()</div><div class="ttdef"><b>Definition</b> proc_mem.cpp:14</div></div>
+<div class="ttc" id="aclasscore_1_1ProcMemIO_html_a42cd2f98a6236b38266f8342a2285954"><div class="ttname"><a href="classcore_1_1ProcMemIO.html#a42cd2f98a6236b38266f8342a2285954">core::ProcMemIO::ProcMemIO</a></div><div class="ttdeci">ProcMemIO()=default</div></div>
+<div class="ttc" id="aclasscore_1_1ProcMemIO_html_a44defbd199d3e2d7b1d28b8f68be3d57"><div class="ttname"><a href="classcore_1_1ProcMemIO.html#a44defbd199d3e2d7b1d28b8f68be3d57">core::ProcMemIO::operator=</a></div><div class="ttdeci">auto operator=(const ProcMemIO &amp;) -&gt; ProcMemIO &amp;=delete</div></div>
+<div class="ttc" id="aclasscore_1_1ProcMemIO_html_a7dc0b7ce056ba94c86e59a7856dccee6"><div class="ttname"><a href="classcore_1_1ProcMemIO.html#a7dc0b7ce056ba94c86e59a7856dccee6">core::ProcMemIO::write</a></div><div class="ttdeci">auto write(void *addr, std::span&lt; const std::uint8_t &gt; buf) const -&gt; std::expected&lt; std::size_t, std::string &gt;</div><div class="ttdoc">Write bytes to target process memory</div><div class="ttdef"><b>Definition</b> proc_mem.cpp:29</div></div>
+<div class="ttc" id="aclasscore_1_1ProcMemIO_html_a8357ab7e7daead00bc1e03c198255fa5"><div class="ttname"><a href="classcore_1_1ProcMemIO.html#a8357ab7e7daead00bc1e03c198255fa5">core::ProcMemIO::writeScalar</a></div><div class="ttdeci">auto writeScalar(void *addr, const T &amp;value) -&gt; std::expected&lt; std::size_t, std::string &gt;</div><div class="ttdoc">Write scalar value to target memory</div><div class="ttdef"><b>Definition</b> proc_mem.hpp:101</div></div>
+<div class="ttc" id="aclasscore_1_1ProcMemIO_html_aa97d8278f52dad7b175c6c9e1c25223a"><div class="ttname"><a href="classcore_1_1ProcMemIO.html#aa97d8278f52dad7b175c6c9e1c25223a">core::ProcMemIO::read</a></div><div class="ttdeci">auto read(void *addr, std::span&lt; std::uint8_t &gt; buf) const -&gt; std::expected&lt; std::size_t, std::string &gt;</div><div class="ttdoc">Read bytes from target process memory</div><div class="ttdef"><b>Definition</b> proc_mem.cpp:20</div></div>
+<div class="ttc" id="aclasscore_1_1ProcMemIO_html_ac2931baefb8977d121dc22d97df82d49"><div class="ttname"><a href="classcore_1_1ProcMemIO.html#ac2931baefb8977d121dc22d97df82d49">core::ProcMemIO::open</a></div><div class="ttdeci">auto open() -&gt; std::expected&lt; void, std::string &gt;</div><div class="ttdoc">Open /proc/&lt;pid&gt;/mem in read-only mode (convenience overload)</div><div class="ttdef"><b>Definition</b> proc_mem.cpp:13</div></div>
+<div class="ttc" id="aclasscore_1_1ProcMemIO_html_ac8f679d6ed83f2deaf3c29e637c76c19"><div class="ttname"><a href="classcore_1_1ProcMemIO.html#ac8f679d6ed83f2deaf3c29e637c76c19">core::ProcMemIO::ProcMemIO</a></div><div class="ttdeci">ProcMemIO(const ProcMemIO &amp;)=delete</div></div>
+<div class="ttc" id="aclasscore_1_1ProcMemIO_html_af784aebeb14a992723d546478a4f3e9a"><div class="ttname"><a href="classcore_1_1ProcMemIO.html#af784aebeb14a992723d546478a4f3e9a">core::ProcMemIO::ProcMemIO</a></div><div class="ttdeci">ProcMemIO(pid_t pid)</div><div class="ttdef"><b>Definition</b> proc_mem.hpp:43</div></div>
+<div class="ttc" id="anamespacecore_html"><div class="ttname"><a href="namespacecore.html">core</a></div><div class="ttdef"><b>Definition</b> maps.hpp:17</div></div>
+<div class="ttc" id="anamespacecore_html_a99445fcc9b198d0a35ffde606ce2a556"><div class="ttname"><a href="namespacecore.html#a99445fcc9b198d0a35ffde606ce2a556">core::writeValue</a></div><div class="ttdeci">auto writeValue(pid_t pid, void *addr, const T &amp;value) -&gt; std::expected&lt; std::size_t, std::string &gt;</div><div class="ttdoc">One-shot write scalar value</div><div class="ttdef"><b>Definition</b> proc_mem.hpp:134</div></div>
+<div class="ttc" id="anamespacecore_html_a9b9299e713784696c1df515d1f4c35c0"><div class="ttname"><a href="namespacecore.html#a9b9299e713784696c1df515d1f4c35c0">core::writeBytes</a></div><div class="ttdeci">auto writeBytes(pid_t pid, void *addr, std::span&lt; const std::uint8_t &gt; buf) -&gt; std::expected&lt; std::size_t, std::string &gt;</div><div class="ttdoc">One-shot write: opens, writes, and closes /proc/&lt;pid&gt;/mem</div><div class="ttdef"><b>Definition</b> proc_mem.cpp:36</div></div>
+<div class="ttc" id="anamespacevalue_html"><div class="ttname"><a href="namespacevalue.html">value</a></div><div class="ttdef"><b>Definition</b> parser.hpp:22</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_61322cca43ef6011f730695c31aaa6cc.html">newscanmem</a></li><li class="navelem"><a class="el" href="dir_344b773e9868a2a477171a970fcc5b76.html">core</a></li><li class="navelem"><a class="el" href="proc__mem_8hpp.html">proc_mem.hpp</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

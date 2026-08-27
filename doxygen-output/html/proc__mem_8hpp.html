@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: include/newscanmem/core/proc_mem.hpp 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('proc__mem_8hpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#namespaces">命名空间</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">proc_mem.hpp 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Process memory I/O via /proc/&lt;pid&gt;/mem (进程内存 I/O)  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &lt;fcntl.h&gt;</code><br />
+<code>#include &lt;sys/types.h&gt;</code><br />
+<code>#include &lt;sys/uio.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &lt;bit&gt;</code><br />
+<code>#include &lt;cerrno&gt;</code><br />
+<code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;cstring&gt;</code><br />
+<code>#include &lt;expected&gt;</code><br />
+<code>#include &lt;format&gt;</code><br />
+<code>#include &lt;span&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+proc_mem.hpp 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="proc__mem_8hpp__incl.png" border="0" usemap="#ainclude_2newscanmem_2core_2proc__mem_8hpp" alt=""/></div>
+<map name="ainclude_2newscanmem_2core_2proc__mem_8hpp" id="ainclude_2newscanmem_2core_2proc__mem_8hpp">
+<area shape="rect" title="Process memory I/O via /proc/&lt;pid&gt;/mem (进程内存 I/O)" alt="" coords="472,5,636,45"/>
+<area shape="rect" title=" " alt="" coords="5,93,68,119"/>
+<area shape="poly" title=" " alt="" coords="472,38,297,60,82,96,81,91,296,55,472,33"/>
+<area shape="rect" title=" " alt="" coords="93,93,189,119"/>
+<area shape="poly" title=" " alt="" coords="472,45,203,96,202,90,471,40"/>
+<area shape="rect" title=" " alt="" coords="213,93,293,119"/>
+<area shape="poly" title=" " alt="" coords="482,48,307,93,305,88,481,43"/>
+<area shape="rect" title=" " alt="" coords="317,93,391,119"/>
+<area shape="poly" title=" " alt="" coords="507,48,397,91,395,86,505,43"/>
+<area shape="rect" title=" " alt="" coords="416,93,455,119"/>
+<area shape="poly" title=" " alt="" coords="527,48,466,88,463,84,524,43"/>
+<area shape="rect" title=" " alt="" coords="479,93,541,119"/>
+<area shape="poly" title=" " alt="" coords="546,47,526,83,521,80,541,44"/>
+<area shape="rect" title=" " alt="" coords="566,93,633,119"/>
+<area shape="poly" title=" " alt="" coords="567,44,588,80,583,83,563,47"/>
+<area shape="rect" title=" " alt="" coords="657,93,723,119"/>
+<area shape="poly" title=" " alt="" coords="588,43,659,84,657,89,585,48"/>
+<area shape="rect" title=" " alt="" coords="747,93,830,119"/>
+<area shape="poly" title=" " alt="" coords="611,43,742,87,741,92,609,48"/>
+<area shape="rect" title=" " alt="" coords="854,93,921,119"/>
+<area shape="poly" title=" " alt="" coords="637,43,841,90,840,96,635,48"/>
+<area shape="rect" title=" " alt="" coords="945,93,998,119"/>
+<area shape="poly" title=" " alt="" coords="637,36,771,58,932,91,931,96,770,63,636,41"/>
+<area shape="rect" title=" " alt="" coords="1022,93,1081,119"/>
+<area shape="poly" title=" " alt="" coords="636,33,804,55,1009,91,1008,96,804,60,636,38"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件直接或间接的被哪些文件引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="proc__mem_8hpp__dep__incl.png" border="0" usemap="#ainclude_2newscanmem_2core_2proc__mem_8hppdep" alt=""/></div>
+<map name="ainclude_2newscanmem_2core_2proc__mem_8hppdep" id="ainclude_2newscanmem_2core_2proc__mem_8hppdep">
+<area shape="rect" title="Process memory I/O via /proc/&lt;pid&gt;/mem (进程内存 I/O)" alt="" coords="409,5,573,45"/>
+<area shape="rect" href="memory_8hpp.html" title="Memory writing interface wrapping proc.mem" alt="" coords="5,93,169,133"/>
+<area shape="poly" title=" " alt="" coords="396,49,170,97,169,92,395,44"/>
+<area shape="rect" href="memory__writer_8hpp.html" title="Memory writing abstraction using process_vm_writev" alt="" coords="195,93,380,133"/>
+<area shape="poly" title=" " alt="" coords="435,53,333,96,331,91,433,48"/>
+<area shape="rect" href="proc__mem_8cpp.html" title=" " alt="" coords="405,101,578,126"/>
+<area shape="poly" title=" " alt="" coords="494,59,494,100,489,100,489,59"/>
+<area shape="rect" href="engine_8cpp.html" title=" " alt="" coords="603,101,753,126"/>
+<area shape="poly" title=" " alt="" coords="546,49,654,98,652,103,543,53"/>
+<area shape="rect" href="filter_8cpp.html" title=" " alt="" coords="777,101,912,126"/>
+<area shape="poly" title=" " alt="" coords="583,46,798,98,797,103,581,51"/>
+<area shape="rect" href="memory_8cpp.html" title=" " alt="" coords="6,181,163,207"/>
+<area shape="poly" title=" " alt="" coords="89,147,88,181,82,181,84,147"/>
+<area shape="rect" href="write_8cpp.html" title=" " alt="" coords="187,181,387,207"/>
+<area shape="poly" title=" " alt="" coords="290,147,290,181,285,181,285,147"/>
+<area shape="rect" href="memory__writer_8cpp.html" title=" " alt="" coords="411,181,614,207"/>
+<area shape="poly" title=" " alt="" coords="355,135,480,179,479,184,353,140"/>
+</map>
+</div>
+</div>
+<p><a href="proc__mem_8hpp_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1ProcMemIO.html">core::ProcMemIO</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">RAII wrapper for /proc/&lt;pid&gt;/mem file descriptor  <a href="classcore_1_1ProcMemIO.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+命名空间</h2></td></tr>
+<tr class="memitem:namespacecore" id="r_namespacecore"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecore.html">core</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a9b9299e713784696c1df515d1f4c35c0" id="r_a9b9299e713784696c1df515d1f4c35c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecore.html#a9b9299e713784696c1df515d1f4c35c0">core::writeBytes</a> (<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">pid_t</a> pid, <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a> *<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">addr</a>, std::span&lt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> std::uint8_t &gt; buf) -&gt; std::expected&lt; std::size_t, std::string &gt;</td></tr>
+<tr class="memdesc:a9b9299e713784696c1df515d1f4c35c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">One-shot write: opens, writes, and closes /proc/&lt;pid&gt;/mem  <br /></td></tr>
+<tr class="separator:a9b9299e713784696c1df515d1f4c35c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99445fcc9b198d0a35ffde606ce2a556" id="r_a99445fcc9b198d0a35ffde606ce2a556"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">typename</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a> &gt; </td></tr>
+<tr class="memitem:a99445fcc9b198d0a35ffde606ce2a556"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecore.html#a99445fcc9b198d0a35ffde606ce2a556">core::writeValue</a> (<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">pid_t</a> pid, <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">void</a> *<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">addr</a>, <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">T</a> &amp;value) -&gt; std::expected&lt; std::size_t, std::string &gt;</td></tr>
+<tr class="memdesc:a99445fcc9b198d0a35ffde606ce2a556"><td class="mdescLeft">&#160;</td><td class="mdescRight">One-shot write scalar value  <br /></td></tr>
+<tr class="separator:a99445fcc9b198d0a35ffde606ce2a556"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>Process memory I/O via /proc/&lt;pid&gt;/mem (进程内存 I/O) </p>
+<p>Unified low-level read/write interface for target process memory. Used by core.scanner, scan.engine, and scan.filter.</p>
+<p>Provides minimal read/write capabilities using pread/pwrite on /proc/&lt;pid&gt;/mem. Requirements:</p><ul>
+<li>Sufficient privileges (root or CAP_SYS_PTRACE)</li>
+<li>Does NOT auto-attach/detach ptrace (caller manages debugging policy)</li>
+<li>Single fd open/reuse + one-shot convenience functions </li>
+</ul>
+</div></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_61322cca43ef6011f730695c31aaa6cc.html">newscanmem</a></li><li class="navelem"><a class="el" href="dir_344b773e9868a2a477171a970fcc5b76.html">core</a></li><li class="navelem"><a class="el" href="proc__mem_8hpp.html">proc_mem.hpp</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -752,7 +752,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        模块结构
+        头文件
       
     </span>
   </a>
@@ -1517,7 +1517,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        模块结构
+        头文件
       
     </span>
   </a>
@@ -1797,15 +1797,14 @@
 <h1 id="_1">集合模块文档</h1>
 <h2 id="_2">概述</h2>
 <p><code>sets</code> 模块为 NewScanmem 项目提供集合操作和解析工具。它包括一个用于管理整数集合的 <code>Set</code> 类，以及一个强大的集合表达式解析器，支持范围、十六进制/十进制数字和取反操作。</p>
-<h2 id="_3">模块结构</h2>
-<pre><code class="language-cpp">export module sets;
+<h2 id="_3">头文件</h2>
+<pre><code class="language-cpp">#include &quot;newscanmem/utils/sets.hpp&quot;
 </code></pre>
 <h2 id="_4">依赖项</h2>
 <ul>
 <li><code>&lt;algorithm&gt;</code> - 标准算法</li>
-<li><code>&lt;boost/regex.hpp&gt;</code> - 正则表达式支持</li>
-<li><code>&lt;boost/spirit/include/phoenix.hpp&gt;</code> - Boost Spirit Phoenix 语义动作</li>
-<li><code>&lt;boost/spirit/include/qi.hpp&gt;</code> - Boost Spirit Qi 解析</li>
+<li><code>&lt;charconv&gt;</code> - 十进制和十六进制数字解析</li>
+<li><code>&lt;string_view&gt;</code> - 集合表达式分段解析</li>
 <li><code>&lt;cctype&gt;</code> - 字符分类</li>
 <li><code>&lt;compare&gt;</code> - 三路比较</li>
 <li><code>&lt;cstdlib&gt;</code> - C 标准库</li>
@@ -1859,7 +1858,7 @@ constexpr auto inc_arr_sz = [](size_t** valarr, size_t* arr_maxsz, size_t maxsz)
 <p>一个已弃用的 C 风格内存管理工具，用于动态数组大小调整。</p>
 <h2 id="_10">使用示例</h2>
 <h3 id="_11">基本集合解析</h3>
-<pre><code class="language-cpp">import sets;
+<pre><code class="language-cpp">#include &quot;newscanmem/utils/sets.hpp&quot;
 
 Set mySet;
 bool success = parse_uintset(&quot;1,2,3,4,5&quot;, mySet, 100);
@@ -1964,7 +1963,7 @@ parse_uintset(&quot;!1,2,3&quot;, invertedSet, 10);
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.language", "content.language_select"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

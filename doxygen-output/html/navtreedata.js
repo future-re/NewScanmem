@@ -25,17 +25,8 @@
 var NAVTREE =
 [
   [ "NewScanmem", "index.html", [
+    [ "Source layout", "md_src_2README.html", null ],
     [ "弃用列表", "deprecated.html", null ],
-    [ "模块", "modules.html", [
-      [ "模块列表", "modules.html", "modules_dup" ],
-      [ "模块成员", "modulemembers.html", [
-        [ "全部", "modulemembers.html", "modulemembers_dup" ],
-        [ "函数", "modulemembers_func.html", "modulemembers_func" ],
-        [ "变量", "modulemembers_vars.html", null ],
-        [ "类型定义", "modulemembers_type.html", null ],
-        [ "枚举", "modulemembers_enum.html", null ]
-      ] ]
-    ] ],
     [ "命名空间", "namespaces.html", [
       [ "命名空间列表", "namespaces.html", "namespaces_dup" ],
       [ "命名空间成员", "namespacemembers.html", [
@@ -73,16 +64,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classcli_1_1commands_1_1QuitCommand.html#aba3bf8ce561572edd8f430c18f0e6daf",
-"classcore_1_1ProcMemIO.html#acdcd9ca1c0889bf54df7d5fba0de17de",
-"classui_1_1ConsoleUI.html#a89a9daa8575af0bd95626d92a8c9eac3",
-"core_8cppm.html",
-"module_cli_8commands_8help.html#a034ea8ba51735ad36f3f5fc99de2a0e1",
-"module_scan_8match__storage.html#adb6466011e3792193e69389cf1a6e8ec",
-"namespacecore.html#a7c631f2329b573f9f3e97ac102e1bfb3abb4784231ff45108ee20bad16e4a2e8c",
-"show__message_8cppm.html#ad24c90bdb275cf70e7fc993888dc744b",
-"structcli_1_1SessionState.html#a5973fc6feb4cab4d1ad424cae7172e9a",
-"structscan_1_1ScanContext.html#a7b1ca583e2be7a86d52bff85ca36676d"
+"classcore_1_1MemoryWriter.html#a3974583377eb4f032755e6a18adf4739",
+"classui_1_1UserInterface.html#a76436bf07917b7c63363d893e07a9ee8",
+"logging_8hpp.html#a6b50893705cf2a59daf6b680304017ddadc30ec20708ef7b0f641ef78b7880a15",
+"proc__mem_8cpp.html#a9b9299e713784696c1df515d1f4c35c0",
+"structcli_1_1CommandResult.html#affa318d121f655743c92bfd95adfbbc9",
+"types_8hpp.html#aa76ce477d8694cc6cd4f0530cc7a7cd8"
 ];
 
 var SYNCONMSG = '点击 关闭 面板同步';

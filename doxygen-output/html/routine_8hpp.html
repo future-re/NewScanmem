@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: include/newscanmem/scan/routine.hpp 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('routine_8hpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#namespaces">命名空间</a> &#124;
+<a href="#typedef-members">类型定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">routine.hpp 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Canonical scan routine abstractions and compatibility shims  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &lt;cstddef&gt;</code><br />
+<code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;functional&gt;</code><br />
+<code>#include &lt;optional&gt;</code><br />
+<code>#include &lt;span&gt;</code><br />
+<code>#include &quot;<a class="el" href="core_8hpp_source.html">newscanmem/value/core.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="flags_8hpp_source.html">newscanmem/value/flags.hpp</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+routine.hpp 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="routine_8hpp__incl.png" border="0" usemap="#ainclude_2newscanmem_2scan_2routine_8hpp" alt=""/></div>
+<map name="ainclude_2newscanmem_2scan_2routine_8hpp" id="ainclude_2newscanmem_2scan_2routine_8hpp">
+<area shape="rect" title="Canonical scan routine abstractions and compatibility shims" alt="" coords="517,5,681,45"/>
+<area shape="rect" title=" " alt="" coords="25,167,95,192"/>
+<area shape="poly" title=" " alt="" coords="533,48,110,167,108,162,531,43"/>
+<area shape="rect" title=" " alt="" coords="100,240,167,265"/>
+<area shape="poly" title=" " alt="" coords="516,36,384,52,232,78,160,96,97,117,46,141,28,154,14,168,9,179,9,189,15,199,25,208,54,224,88,237,86,242,52,229,22,212,11,202,4,191,4,178,10,165,24,150,44,136,95,112,159,91,231,73,384,47,516,31"/>
+<area shape="rect" title=" " alt="" coords="781,93,867,119"/>
+<area shape="poly" title=" " alt="" coords="654,43,779,86,777,91,652,48"/>
+<area shape="rect" title=" " alt="" coords="1083,167,1157,192"/>
+<area shape="poly" title=" " alt="" coords="633,43,770,116,850,138,916,147,983,152,1069,164,1069,169,983,157,915,152,849,143,768,121,631,48"/>
+<area shape="rect" title=" " alt="" coords="892,93,945,119"/>
+<area shape="poly" title=" " alt="" coords="681,42,879,90,878,96,680,48"/>
+<area shape="rect" href="core_8hpp.html" title="Core single&#45;value container" alt="" coords="492,93,705,119"/>
+<area shape="poly" title=" " alt="" coords="601,46,601,79,596,79,596,46"/>
+<area shape="rect" href="flags_8hpp.html" title=" " alt="" coords="171,167,387,192"/>
+<area shape="poly" title=" " alt="" coords="560,48,316,163,314,158,558,43"/>
+<area shape="poly" title=" " alt="" coords="492,121,315,141,115,169,110,170,109,165,114,164,314,136,491,115"/>
+<area shape="poly" title=" " alt="" coords="492,111,399,116,301,126,216,143,183,155,160,169,150,181,143,196,136,227,131,226,138,194,146,178,157,165,181,150,215,138,300,121,398,111,492,106"/>
+<area shape="poly" title=" " alt="" coords="706,115,873,134,1070,164,1069,169,872,140,705,120"/>
+<area shape="rect" title=" " alt="" coords="461,167,547,192"/>
+<area shape="poly" title=" " alt="" coords="585,121,532,160,529,156,582,117"/>
+<area shape="rect" title=" " alt="" coords="571,167,627,192"/>
+<area shape="poly" title=" " alt="" coords="601,119,601,153,596,153,596,119"/>
+<area shape="rect" title=" " alt="" coords="651,167,690,192"/>
+<area shape="poly" title=" " alt="" coords="612,117,651,155,647,159,609,121"/>
+<area shape="rect" title=" " alt="" coords="816,167,883,192"/>
+<area shape="poly" title=" " alt="" coords="640,116,804,162,802,167,638,121"/>
+<area shape="rect" title=" " alt="" coords="907,167,973,192"/>
+<area shape="poly" title=" " alt="" coords="661,116,894,164,893,169,660,121"/>
+<area shape="rect" title=" " alt="" coords="368,240,427,265"/>
+<area shape="poly" title=" " alt="" coords="549,121,499,140,474,153,451,169,426,197,409,228,405,226,422,194,448,165,471,148,497,135,547,116"/>
+<area shape="rect" title=" " alt="" coords="541,240,633,265"/>
+<area shape="poly" title=" " alt="" coords="636,116,665,129,692,146,708,168,710,180,705,193,679,220,647,238,644,233,676,216,700,191,704,180,703,169,689,150,663,134,634,121"/>
+<area shape="rect" title=" " alt="" coords="998,167,1058,192"/>
+<area shape="poly" title=" " alt="" coords="692,116,826,135,985,164,984,169,825,141,691,121"/>
+<area shape="rect" title=" " alt="" coords="702,240,765,265"/>
+<area shape="poly" title=" " alt="" coords="650,116,690,135,709,148,725,165,737,195,739,226,734,226,732,197,720,168,706,152,688,139,647,121"/>
+<area shape="poly" title=" " alt="" coords="548,121,344,166,343,161,547,116"/>
+<area shape="poly" title=" " alt="" coords="256,194,170,236,168,232,254,190"/>
+<area shape="poly" title=" " alt="" coords="299,190,367,230,365,235,296,194"/>
+<area shape="poly" title=" " alt="" coords="329,189,528,235,526,240,328,195"/>
+<area shape="poly" title=" " alt="" coords="352,189,689,242,688,247,351,195"/>
+<area shape="rect" title=" " alt="" coords="239,240,319,265"/>
+<area shape="poly" title=" " alt="" coords="281,192,281,226,276,226,276,192"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件直接或间接的被哪些文件引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="routine_8hpp__dep__incl.png" border="0" usemap="#ainclude_2newscanmem_2scan_2routine_8hppdep" alt=""/></div>
+<map name="ainclude_2newscanmem_2scan_2routine_8hppdep" id="ainclude_2newscanmem_2scan_2routine_8hppdep">
+<area shape="rect" title="Canonical scan routine abstractions and compatibility shims" alt="" coords="379,5,543,45"/>
+<area shape="rect" href="bytes_8hpp.html" title=" " alt="" coords="627,93,791,133"/>
+<area shape="poly" title=" " alt="" coords="529,47,655,91,654,96,527,52"/>
+<area shape="rect" href="factory_8hpp.html" title="Canonical scan routine factory plus thin legacy wrapper" alt="" coords="349,181,513,221"/>
+<area shape="poly" title=" " alt="" coords="443,58,429,94,425,140,430,181,425,182,420,141,423,93,439,56"/>
+<area shape="rect" href="job_8hpp.html" title="Shared scan preparation helpers" alt="" coords="165,269,329,309"/>
+<area shape="poly" title=" " alt="" coords="365,43,260,65,217,79,188,95,161,124,146,153,144,184,156,220,178,247,207,267,204,271,175,251,152,223,139,185,141,152,157,121,184,91,214,74,259,60,364,37"/>
+<area shape="rect" href="engine_8cpp.html" title=" " alt="" coords="5,357,156,383"/>
+<area shape="poly" title=" " alt="" coords="365,39,238,60,184,76,163,85,149,95,124,126,106,161,94,199,86,238,81,309,82,357,77,357,75,309,81,237,89,198,101,159,120,123,146,91,161,80,182,71,237,54,364,33"/>
+<area shape="rect" href="filter_8cpp.html" title=" " alt="" coords="575,357,709,383"/>
+<area shape="poly" title=" " alt="" coords="557,34,698,56,761,72,805,91,828,110,843,129,862,181,865,215,855,246,834,273,807,297,775,318,741,335,680,360,678,355,739,330,772,313,804,293,830,270,850,243,860,214,857,182,839,132,825,114,802,96,760,77,697,62,556,39"/>
+<area shape="rect" href="numeric_8hpp.html" title=" " alt="" coords="199,93,363,133"/>
+<area shape="poly" title=" " alt="" coords="410,54,321,96,319,91,408,49"/>
+<area shape="rect" href="scan_2string_8hpp.html" title=" " alt="" coords="439,93,603,133"/>
+<area shape="poly" title=" " alt="" coords="484,55,510,92,505,95,480,58"/>
+<area shape="rect" href="routine_8cpp.html" title=" " alt="" coords="922,101,1074,126"/>
+<area shape="poly" title=" " alt="" coords="557,37,904,91,943,98,942,103,903,96,556,42"/>
+<area shape="poly" title=" " alt="" coords="636,140,493,184,491,179,634,135"/>
+<area shape="rect" href="bytes_8cpp.html" title=" " alt="" coords="704,189,847,214"/>
+<area shape="poly" title=" " alt="" coords="734,143,768,187,764,190,730,146"/>
+<area shape="rect" href="scan_2string_8cpp.html" title=" " alt="" coords="537,189,680,214"/>
+<area shape="poly" title=" " alt="" coords="678,144,624,190,621,186,675,140"/>
+<area shape="poly" title=" " alt="" coords="380,230,289,272,286,267,377,225"/>
+<area shape="rect" href="factory_8cpp.html" title=" " alt="" coords="356,277,507,302"/>
+<area shape="poly" title=" " alt="" coords="434,235,434,276,429,276,429,235"/>
+<area shape="poly" title=" " alt="" coords="196,318,106,360,104,355,194,313"/>
+<area shape="poly" title=" " alt="" coords="343,307,585,355,584,360,342,312"/>
+<area shape="rect" href="job_8cpp.html" title=" " alt="" coords="184,357,311,383"/>
+<area shape="poly" title=" " alt="" coords="250,323,250,357,245,357,245,323"/>
+<area shape="poly" title=" " alt="" coords="327,138,400,179,397,184,324,142"/>
+<area shape="rect" href="numeric_8cpp.html" title=" " alt="" coords="167,189,325,214"/>
+<area shape="poly" title=" " alt="" coords="270,147,253,189,248,187,265,145"/>
+<area shape="poly" title=" " alt="" coords="493,145,453,183,449,179,489,141"/>
+<area shape="poly" title=" " alt="" coords="552,141,598,186,595,190,548,145"/>
+</map>
+</div>
+</div>
+<p><a href="routine_8hpp_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structscan_1_1ScanContext.html">scan::ScanContext</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context for a single scan operation at a memory location  <a href="structscan_1_1ScanContext.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structscan_1_1ScanResult.html">scan::ScanResult</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Result of a scan operation at a memory location  <a href="structscan_1_1ScanResult.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+命名空间</h2></td></tr>
+<tr class="memitem:namespacescan" id="r_namespacescan"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html">scan</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:aacf8ab44fe879bda5070b3b61ec7ceaa" id="r_aacf8ab44fe879bda5070b3b61ec7ceaa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">scan::ScanRoutine</a> = std::function&lt; <a class="el" href="structscan_1_1ScanResult.html">ScanResult</a>(<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> <a class="el" href="structscan_1_1ScanContext.html">ScanContext</a> &amp;<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">ctx</a>)&gt;</td></tr>
+<tr class="memdesc:aacf8ab44fe879bda5070b3b61ec7ceaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modern scan routine type  <br /></td></tr>
+<tr class="separator:aacf8ab44fe879bda5070b3b61ec7ceaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a522b4708799baf2cfa4609ec02c94081" id="r_a522b4708799baf2cfa4609ec02c94081"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#a522b4708799baf2cfa4609ec02c94081">scan::nullRoutine</a> () -&gt; <a class="el" href="namespacescan.html#aacf8ab44fe879bda5070b3b61ec7ceaa">ScanRoutine</a></td></tr>
+<tr class="memdesc:a522b4708799baf2cfa4609ec02c94081"><td class="mdescLeft">&#160;</td><td class="mdescRight">Null scan routine that never matches  <br /></td></tr>
+<tr class="separator:a522b4708799baf2cfa4609ec02c94081"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aceb6024a9754d6e1cf97597c75c283d8" id="r_aceb6024a9754d6e1cf97597c75c283d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescan.html#aceb6024a9754d6e1cf97597c75c283d8">scan::makeScanContext</a> (std::span&lt; <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> std::uint8_t &gt; memory, <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> <a class="el" href="structValue.html">Value</a> *<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">old_value</a>, <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> <a class="el" href="structUserValue.html">UserValue</a> *<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">user_value</a>, <a class="el" href="flags_8hpp.html#a9d00fc74e19b56eaf046eef943fac552">MatchFlags</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">required_flag</a>, <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">bool</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">reverse_endianness</a>) -&gt; <a class="el" href="structscan_1_1ScanContext.html">ScanContext</a></td></tr>
+<tr class="separator:aceb6024a9754d6e1cf97597c75c283d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>Canonical scan routine abstractions and compatibility shims </p>
+</div></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_61322cca43ef6011f730695c31aaa6cc.html">newscanmem</a></li><li class="navelem"><a class="el" href="dir_796cc72c58eeaae50026198018c43cff.html">scan</a></li><li class="navelem"><a class="el" href="routine_8hpp.html">routine.hpp</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

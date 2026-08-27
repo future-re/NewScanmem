@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: include/newscanmem/scan/engine.hpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('engine_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">engine.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="engine_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;expected&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="match__storage_8hpp.html">newscanmem/scan/match_storage.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">newscanmem/scan/types.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="core_8hpp.html">newscanmem/value/core.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="foldopen" id="foldopen00011" data-start="{" data-end="}">
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="namespacescan.html">   11</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacescan.html">scan</a> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>[[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="namespacescan.html#a8a9a98a5b9aa1a210defc2452594e036">runScan</a>(pid_t pid, <span class="keyword">const</span> <a class="code hl_struct" href="structScanOptions.html">ScanOptions</a>&amp; options, <span class="keyword">const</span> <a class="code hl_struct" href="structUserValue.html">UserValue</a>* user_value,</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>                           <a class="code hl_class" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a>&amp; output) -&gt; std::expected&lt;ScanStats, std::string&gt;;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>[[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="namespacescan.html#ae05fcde48bb39adf48e716cc836e04f8">runScanWithPrevious</a>(pid_t pid, <span class="keyword">const</span> <a class="code hl_struct" href="structScanOptions.html">ScanOptions</a>&amp; options, <span class="keyword">const</span> <a class="code hl_struct" href="structUserValue.html">UserValue</a>* user_value,</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <a class="code hl_class" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a>&amp; output, <span class="keyword">const</span> <a class="code hl_class" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a>&amp; previous_snapshot) -&gt; std::expected&lt;ScanStats, std::string&gt;;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>[[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="namespacescan.html#a0ff7b3cdff133712e122d2c9fa400bee">runScanParallel</a>(pid_t pid, <span class="keyword">const</span> <a class="code hl_struct" href="structScanOptions.html">ScanOptions</a>&amp; options, <span class="keyword">const</span> <a class="code hl_struct" href="structUserValue.html">UserValue</a>* user_value,</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_class" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a>&amp; output, <span class="keyword">const</span> <a class="code hl_class" href="classscan_1_1MatchesAndOldValuesArray.html">MatchesAndOldValuesArray</a>* previous_snapshot) -&gt; std::expected&lt;ScanStats, std::string&gt;;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>}  <span class="comment">// namespace scan</span></div>
+</div>
+<div class="ttc" id="aclassscan_1_1MatchesAndOldValuesArray_html"><div class="ttname"><a href="classscan_1_1MatchesAndOldValuesArray.html">scan::MatchesAndOldValuesArray</a></div><div class="ttdef"><b>Definition</b> match_storage.hpp:24</div></div>
+<div class="ttc" id="acore_8hpp_html"><div class="ttname"><a href="core_8hpp.html">core.hpp</a></div><div class="ttdoc">Core single-value container</div></div>
+<div class="ttc" id="amatch__storage_8hpp_html"><div class="ttname"><a href="match__storage_8hpp.html">match_storage.hpp</a></div></div>
+<div class="ttc" id="anamespacescan_html"><div class="ttname"><a href="namespacescan.html">scan</a></div><div class="ttdef"><b>Definition</b> engine.hpp:11</div></div>
+<div class="ttc" id="anamespacescan_html_a0ff7b3cdff133712e122d2c9fa400bee"><div class="ttname"><a href="namespacescan.html#a0ff7b3cdff133712e122d2c9fa400bee">scan::runScanParallel</a></div><div class="ttdeci">auto runScanParallel(pid_t pid, const ScanOptions &amp;options, const UserValue *user_value, MatchesAndOldValuesArray &amp;output, const MatchesAndOldValuesArray *previous_snapshot) -&gt; std::expected&lt; ScanStats, std::string &gt;</div><div class="ttdef"><b>Definition</b> engine.cpp:33</div></div>
+<div class="ttc" id="anamespacescan_html_a8a9a98a5b9aa1a210defc2452594e036"><div class="ttname"><a href="namespacescan.html#a8a9a98a5b9aa1a210defc2452594e036">scan::runScan</a></div><div class="ttdeci">auto runScan(pid_t pid, const ScanOptions &amp;options, const UserValue *user_value, MatchesAndOldValuesArray &amp;output) -&gt; std::expected&lt; ScanStats, std::string &gt;</div><div class="ttdef"><b>Definition</b> engine.cpp:31</div></div>
+<div class="ttc" id="anamespacescan_html_ae05fcde48bb39adf48e716cc836e04f8"><div class="ttname"><a href="namespacescan.html#ae05fcde48bb39adf48e716cc836e04f8">scan::runScanWithPrevious</a></div><div class="ttdeci">auto runScanWithPrevious(pid_t pid, const ScanOptions &amp;options, const UserValue *user_value, MatchesAndOldValuesArray &amp;output, const MatchesAndOldValuesArray &amp;previous_snapshot) -&gt; std::expected&lt; ScanStats, std::string &gt;</div><div class="ttdef"><b>Definition</b> engine.cpp:32</div></div>
+<div class="ttc" id="astructScanOptions_html"><div class="ttname"><a href="structScanOptions.html">ScanOptions</a></div><div class="ttdef"><b>Definition</b> types.hpp:143</div></div>
+<div class="ttc" id="astructUserValue_html"><div class="ttname"><a href="structUserValue.html">UserValue</a></div><div class="ttdef"><b>Definition</b> core.hpp:144</div></div>
+<div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_61322cca43ef6011f730695c31aaa6cc.html">newscanmem</a></li><li class="navelem"><a class="el" href="dir_796cc72c58eeaae50026198018c43cff.html">scan</a></li><li class="navelem"><a class="el" href="engine_8hpp.html">engine.hpp</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

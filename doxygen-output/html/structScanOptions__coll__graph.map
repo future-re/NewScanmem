@@ -1,7 +1,7 @@
 <map id="ScanOptions" name="ScanOptions">
 <area shape="rect" id="Node000001" title=" " alt="" coords="43,181,145,207"/>
-<area shape="rect" id="Node000002" href="$structcore_1_1RegionFilterConfig.html" title="Configuration for region filtering in scans and exports" alt="" coords="5,93,183,119"/>
+<area shape="rect" id="Node000002" href="$structcore_1_1RegionFilterConfig.html" title=" " alt="" coords="5,93,183,119"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,133,97,181,91,181,91,133"/>
-<area shape="rect" id="Node000003" href="$classcore_1_1RegionFilter.html" title="Manages region&#45;based filtering for memory scanning" alt="" coords="26,5,162,31"/>
+<area shape="rect" id="Node000003" href="$classcore_1_1RegionFilter.html" title=" " alt="" coords="26,5,162,31"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="97,45,97,93,91,93,91,45"/>
 </map>

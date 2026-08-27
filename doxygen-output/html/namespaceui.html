@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('namespaceui.html',''); initResizable()
 <a href="#typedef-members">类型定义</a> &#124;
 <a href="#enum-members">枚举</a> &#124;
 <a href="#func-members">函数</a>  </div>
-  <div class="headertitle"><div class="title">ui 命名空间参考<span class="mlabels"><span class="mlabel">export</span></span></div></div>
+  <div class="headertitle"><div class="title">ui 命名空间参考</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -109,13 +109,11 @@ $(document).ready(function(){initNavTree('namespaceui.html',''); initResizable()
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 类</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classui_1_1ConsoleUI.html">ConsoleUI</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Console-based implementation of <a class="el" href="classui_1_1UserInterface.html" title="Abstract interface for user interaction">UserInterface</a>  <a href="classui_1_1ConsoleUI.html#details">更多...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structui_1_1KeyEvent.html">KeyEvent</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A single keyboard event with action type and optional character  <a href="structui_1_1KeyEvent.html#details">更多...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classui_1_1LineEditor.html">LineEditor</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interactive line editor with cursor movement and tab completion  <a href="classui_1_1LineEditor.html#details">更多...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structui_1_1MessageContext.html">MessageContext</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,20 +128,19 @@ $(document).ready(function(){initNavTree('namespaceui.html',''); initResizable()
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 类型定义</h2></td></tr>
-<tr class="memitem:adfe71bb0e06e4a7c2565858feecdcc78" id="r_adfe71bb0e06e4a7c2565858feecdcc78"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceui.html#adfe71bb0e06e4a7c2565858feecdcc78">ui::CompletionCallback</a> = std::function&lt; std::vector&lt; std::string &gt;(std::string_view)&gt;</td></tr>
-<tr class="memdesc:adfe71bb0e06e4a7c2565858feecdcc78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Completion callback function type  <br /></td></tr>
+<tr class="memitem:adfe71bb0e06e4a7c2565858feecdcc78" id="r_adfe71bb0e06e4a7c2565858feecdcc78"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceui.html#adfe71bb0e06e4a7c2565858feecdcc78">CompletionCallback</a> = std::function&lt; std::vector&lt; std::string &gt;(std::string_view)&gt;</td></tr>
 <tr class="separator:adfe71bb0e06e4a7c2565858feecdcc78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 枚举</h2></td></tr>
-<tr class="memitem:a4b8a6d96aee295a8102d06460fe071f2" id="r_a4b8a6d96aee295a8102d06460fe071f2"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2">ui::MessageLevel</a> : std::uint8_t { <a class="el" href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2a551b723eafd6a31d444fcb2f5920fbd3">INFO</a>
+<tr class="memitem:a4b8a6d96aee295a8102d06460fe071f2" id="r_a4b8a6d96aee295a8102d06460fe071f2"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2">MessageLevel</a> : std::uint8_t { <a class="el" href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2a551b723eafd6a31d444fcb2f5920fbd3">INFO</a>
 , <a class="el" href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2a059e9861e0400dfbe05c98a841f3f96b">WARNING</a>
 , <a class="el" href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2abb1ca97ec761fc37101737ba0aa2e7c5">ERROR</a>
 , <a class="el" href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2adc30ec20708ef7b0f641ef78b7880a15">DEBUG</a>
  }</td></tr>
 <tr class="memdesc:a4b8a6d96aee295a8102d06460fe071f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Message importance level  <a href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2">更多...</a><br /></td></tr>
 <tr class="separator:a4b8a6d96aee295a8102d06460fe071f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44e6b543cec37673f5eaa69b80960a99" id="r_a44e6b543cec37673f5eaa69b80960a99"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99">ui::MessageType</a> : uint8_t { <br />
+<tr class="memitem:a44e6b543cec37673f5eaa69b80960a99" id="r_a44e6b543cec37673f5eaa69b80960a99"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99">MessageType</a> : uint8_t { <br />
 &#160;&#160;<a class="el" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a551b723eafd6a31d444fcb2f5920fbd3">INFO</a>
 , <a class="el" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a32bd8a1db2275458673903bdb84cb277">WARN</a>
 , <a class="el" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99abb1ca97ec761fc37101737ba0aa2e7c5">ERROR</a>
@@ -153,7 +150,7 @@ $(document).ready(function(){initNavTree('namespaceui.html',''); initResizable()
 <br />
  }</td></tr>
 <tr class="separator:a44e6b543cec37673f5eaa69b80960a99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2efe88e2c1c96ccd92d265c9ba945627" id="r_a2efe88e2c1c96ccd92d265c9ba945627"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627">ui::KeyAction</a> : std::uint8_t { <br />
+<tr class="memitem:a2efe88e2c1c96ccd92d265c9ba945627" id="r_a2efe88e2c1c96ccd92d265c9ba945627"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627">KeyAction</a> : std::uint8_t { <br />
 &#160;&#160;<a class="el" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a331b3100a485d8cacff1d3df8e9b0c13">ENTER</a>
 , <a class="el" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627a6f5d8e41084b4d3d47fa621c459eede1">BACKSPACE</a>
 , <a class="el" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627ad7aa835d76fc894935ade13f4d0624f8">MOVE_LEFT</a>
@@ -170,13 +167,11 @@ $(document).ready(function(){initNavTree('namespaceui.html',''); initResizable()
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:a02903ff89a09404ef09cdbcae5e330e4" id="r_a02903ff89a09404ef09cdbcae5e330e4"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceui.html#a02903ff89a09404ef09cdbcae5e330e4">ui::makeConsoleUI</a> () -&gt; <a class="el" href="classui_1_1ConsoleUI.html">ConsoleUI</a></td></tr>
-<tr class="memdesc:a02903ff89a09404ef09cdbcae5e330e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create console UI with default settings  <br /></td></tr>
+<tr class="memitem:a02903ff89a09404ef09cdbcae5e330e4" id="r_a02903ff89a09404ef09cdbcae5e330e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceui.html#a02903ff89a09404ef09cdbcae5e330e4">makeConsoleUI</a> () -&gt; <a class="el" href="classui_1_1ConsoleUI.html">ConsoleUI</a></td></tr>
 <tr class="separator:a02903ff89a09404ef09cdbcae5e330e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abef5789b57a74dc96b8c8fc35a30a125" id="r_abef5789b57a74dc96b8c8fc35a30a125"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceui.html#abef5789b57a74dc96b8c8fc35a30a125">ui::makeConsoleUI</a> (bool debugMode, bool backendMode) -&gt; <a class="el" href="classui_1_1ConsoleUI.html">ConsoleUI</a></td></tr>
-<tr class="memdesc:abef5789b57a74dc96b8c8fc35a30a125"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create console UI with specified options  <br /></td></tr>
-<tr class="separator:abef5789b57a74dc96b8c8fc35a30a125"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3144e0f770336bf1c2731dd0d451525a" id="r_a3144e0f770336bf1c2731dd0d451525a"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceui.html#a3144e0f770336bf1c2731dd0d451525a">ui::readKey</a> () -&gt; <a class="el" href="structui_1_1KeyEvent.html">KeyEvent</a></td></tr>
+<tr class="memitem:ac5bb1796634b6938af309f38d37dd852" id="r_ac5bb1796634b6938af309f38d37dd852"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceui.html#ac5bb1796634b6938af309f38d37dd852">makeConsoleUI</a> (<a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">bool</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">debug_mode</a>, <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">bool</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">backend_mode</a>) -&gt; <a class="el" href="classui_1_1ConsoleUI.html">ConsoleUI</a></td></tr>
+<tr class="separator:ac5bb1796634b6938af309f38d37dd852"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3144e0f770336bf1c2731dd0d451525a" id="r_a3144e0f770336bf1c2731dd0d451525a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceui.html#a3144e0f770336bf1c2731dd0d451525a">readKey</a> () -&gt; <a class="el" href="structui_1_1KeyEvent.html">KeyEvent</a></td></tr>
 <tr class="memdesc:a3144e0f770336bf1c2731dd0d451525a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a single key event from stdin (raw mode assumed)  <br /></td></tr>
 <tr class="separator:a3144e0f770336bf1c2731dd0d451525a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -186,29 +181,12 @@ $(document).ready(function(){initNavTree('namespaceui.html',''); initResizable()
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespaceui.html#adfe71bb0e06e4a7c2565858feecdcc78">ui::CompletionCallback</a> = typedef std::function&lt;std::vector&lt;std::string&gt;(std::string_view)&gt;</td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">using</a> <a class="el" href="namespaceui.html#adfe71bb0e06e4a7c2565858feecdcc78">ui::CompletionCallback</a> = <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">typedef</a> std::function&lt;std::vector&lt;std::string&gt;(std::string_view)&gt;</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-
-<p>Completion callback function type </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">prefix</td><td>Current input prefix to complete </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd>Vector of possible completions </dd></dl>
 
 </div>
 </div>
@@ -223,12 +201,12 @@ $(document).ready(function(){initNavTree('namespaceui.html',''); initResizable()
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">enum class <a class="el" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627">ui::KeyAction</a> : std::uint8_t</td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">enum</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">class</a> <a class="el" href="namespaceui.html#a2efe88e2c1c96ccd92d265c9ba945627">ui::KeyAction</a> : std::uint8_t</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span><span class="mlabel">strong</span></span>  </td>
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -257,12 +235,12 @@ $(document).ready(function(){initNavTree('namespaceui.html',''); initResizable()
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">enum class <a class="el" href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2">ui::MessageLevel</a> : std::uint8_t</td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">enum</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">class</a> <a class="el" href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2">ui::MessageLevel</a> : std::uint8_t</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span><span class="mlabel">strong</span></span>  </td>
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -287,12 +265,12 @@ $(document).ready(function(){initNavTree('namespaceui.html',''); initResizable()
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">enum class <a class="el" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99">ui::MessageType</a> : uint8_t</td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">enum</a> <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">class</a> <a class="el" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99">ui::MessageType</a> : <a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">uint8_t</a></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">export</span><span class="mlabel">strong</span></span>  </td>
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -312,72 +290,43 @@ $(document).ready(function(){initNavTree('namespaceui.html',''); initResizable()
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto ui::makeConsoleUI </td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> ui::makeConsoleUI </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> -&gt; <a class="el" href="classui_1_1ConsoleUI.html">ConsoleUI</a> </td>
+          <td> -&gt; <a class="el" href="classui_1_1ConsoleUI.html">ConsoleUI</a></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Create console UI with default settings </p>
-<dl class="section return"><dt>返回</dt><dd>Console UI instance </dd></dl>
-
 </div>
 </div>
-<a id="abef5789b57a74dc96b8c8fc35a30a125" name="abef5789b57a74dc96b8c8fc35a30a125"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abef5789b57a74dc96b8c8fc35a30a125">&#9670;&#160;</a></span>makeConsoleUI() <span class="overload">[2/2]</span></h2>
+<a id="ac5bb1796634b6938af309f38d37dd852" name="ac5bb1796634b6938af309f38d37dd852"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5bb1796634b6938af309f38d37dd852">&#9670;&#160;</a></span>makeConsoleUI() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto ui::makeConsoleUI </td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> ui::makeConsoleUI </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>debugMode</em>, </td>
+          <td class="paramtype"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">bool</a>&#160;</td>
+          <td class="paramname"><em>debug_mode</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>backendMode</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">bool</a>&#160;</td>
+          <td class="paramname"><em>backend_mode</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; <a class="el" href="classui_1_1ConsoleUI.html">ConsoleUI</a> </td>
+          <td></td><td> -&gt; <a class="el" href="classui_1_1ConsoleUI.html">ConsoleUI</a></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-
-<p>Create console UI with specified options </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">debugMode</td><td>Enable debug output </td></tr>
-    <tr><td class="paramname">backendMode</td><td>Enable backend mode </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd>Console UI instance </dd></dl>
 
 </div>
 </div>
@@ -386,22 +335,14 @@ $(document).ready(function(){initNavTree('namespaceui.html',''); initResizable()
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto ui::readKey </td>
+          <td class="memname"><a class="el" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">auto</a> ui::readKey </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> -&gt; <a class="el" href="structui_1_1KeyEvent.html">KeyEvent</a> </td>
+          <td> -&gt; <a class="el" href="structui_1_1KeyEvent.html">KeyEvent</a></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">export</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Read a single key event from stdin (raw mode assumed) </p>

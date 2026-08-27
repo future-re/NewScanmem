@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: include/newscanmem/core/maps.hpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('maps_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">maps.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="maps_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;array&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;bit&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;expected&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;istream&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;optional&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;string_view&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;system_error&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;sys/types.h&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="}">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="namespacecore.html">   17</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacecore.html">core</a> {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8">   18</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8">RegionType</a> : std::uint8_t { <a class="code hl_enumvalue" href="namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8a4de97a9981203bdf3d1f9c51b0ba341f">UNKNOW</a>, <a class="code hl_enumvalue" href="namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8a5c6e4f44044eb1d3591aaa440ed6f3ad">EXE</a>, <a class="code hl_enumvalue" href="namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8a08054846bbc9933fd0395f8be516a9f9">CODE</a>, <a class="code hl_enumvalue" href="namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8ab6722804f5872cdd88347da194d42087">HEAP</a>, <a class="code hl_enumvalue" href="namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8a0fac686d86aba414411b58f6bce53a76">STACK</a> };</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="namespacecore.html#a9cbc794a299a247419a8c580a01e623a">   19</a></span><span class="keyword">constexpr</span> std::array&lt;std::string_view, 5&gt; <a class="code hl_variable" href="namespacecore.html#a9cbc794a299a247419a8c580a01e623a">REGION_TYPE_NAMES</a>{<span class="stringliteral">&quot;unknow&quot;</span>, <span class="stringliteral">&quot;exe&quot;</span>, <span class="stringliteral">&quot;code&quot;</span>, <span class="stringliteral">&quot;heap&quot;</span>, <span class="stringliteral">&quot;stack&quot;</span>};</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7">   20</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7">RegionScanLevel</a> : std::uint8_t { <a class="code hl_enumvalue" href="namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7a5fb1f955b45e38e31789286a1790398d">ALL</a>, <a class="code hl_enumvalue" href="namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7a408087a95707a9857e7c25b832e69702">ALL_RW</a>, <a class="code hl_enumvalue" href="namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7a95e4cb86af4f28a343bf95b52fe85d88">HEAP_STACK_EXECUTABLE</a>, <a class="code hl_enumvalue" href="namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7af45b04bf5d0a44e5c26ea5bd869e1c8b">HEAP_STACK_EXECUTABLE_BSS</a> };</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="structcore_1_1RegionFlags.html#aacacfdd7e88e6bde49beae649054c7cd">   21</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcore_1_1RegionFlags.html">RegionFlags</a> { <span class="keywordtype">bool</span> <a class="code hl_variable" href="structcore_1_1RegionFlags.html#a1ad624e07985838bd525ba8ca406302a">read</a> : 1; <span class="keywordtype">bool</span> <a class="code hl_variable" href="structcore_1_1RegionFlags.html#a9251534ed90fe711e94ef89c2b2f5eb8">write</a> : 1; <span class="keywordtype">bool</span> <a class="code hl_variable" href="structcore_1_1RegionFlags.html#a3b4e03ada1358b72bcf1486c34c5e317">exec</a> : 1; <span class="keywordtype">bool</span> <a class="code hl_variable" href="structcore_1_1RegionFlags.html#af65df61dea754dd979f5c531aa75fd79">shared</a> : 1; <span class="keywordtype">bool</span> <a class="code hl_variable" href="structcore_1_1RegionFlags.html#aacacfdd7e88e6bde49beae649054c7cd">exclusive</a> : 1; };</div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="};">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structcore_1_1Region.html">   22</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcore_1_1Region.html">Region</a> {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structcore_1_1Region.html#a57f739ffab0712092d7721e2e20ff174">   23</a></span>  <span class="keywordtype">void</span>* <a class="code hl_variable" href="structcore_1_1Region.html#aaf402760124d38b40e00f8d59f0a9539">start</a>{}; std::size_t <a class="code hl_variable" href="structcore_1_1Region.html#a6ba91430b2642c5adeb8ffe4078e6318">size</a>{}; <a class="code hl_enumeration" href="namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8">RegionType</a> <a class="code hl_variable" href="structcore_1_1Region.html#a061e9836e64e27513695d8f9a2a28c2e">type</a>{<a class="code hl_enumvalue" href="namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8a4de97a9981203bdf3d1f9c51b0ba341f">RegionType::UNKNOW</a>}; RegionFlags <a class="code hl_variable" href="structcore_1_1Region.html#a29e42731b96a1d1aec6c2fedabda791c">flags</a>{}; <span class="keywordtype">void</span>* <a class="code hl_variable" href="structcore_1_1Region.html#ae788f67862f749decc719bc7413b8059">loadAddr</a>{}; std::string <a class="code hl_variable" href="structcore_1_1Region.html#a57f739ffab0712092d7721e2e20ff174">filename</a>; std::size_t <span class="keywordtype">id</span>{};</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structcore_1_1Region.html#a8a04354a20a7094fe9876d8dd0fc097a">   24</a></span>  [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="structcore_1_1Region.html#a8a04354a20a7094fe9876d8dd0fc097a">isReadable</a>() const noexcept -&gt; <span class="keywordtype">bool</span> { <span class="keywordflow">return</span> <a class="code hl_variable" href="structcore_1_1Region.html#a29e42731b96a1d1aec6c2fedabda791c">flags</a>.<a class="code hl_variable" href="structcore_1_1RegionFlags.html#a1ad624e07985838bd525ba8ca406302a">read</a>; }</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structcore_1_1Region.html#adf7ab55a76173bf974819e1f99c73673">   25</a></span>  [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="structcore_1_1Region.html#adf7ab55a76173bf974819e1f99c73673">isWritable</a>() const noexcept -&gt; <span class="keywordtype">bool</span> { <span class="keywordflow">return</span> <a class="code hl_variable" href="structcore_1_1Region.html#a29e42731b96a1d1aec6c2fedabda791c">flags</a>.<a class="code hl_variable" href="structcore_1_1RegionFlags.html#a9251534ed90fe711e94ef89c2b2f5eb8">write</a>; }</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structcore_1_1Region.html#a42d7e58110136172f9dc270589784619">   26</a></span>  [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="structcore_1_1Region.html#a42d7e58110136172f9dc270589784619">isExecutable</a>() const noexcept -&gt; <span class="keywordtype">bool</span> { <span class="keywordflow">return</span> <a class="code hl_variable" href="structcore_1_1Region.html#a29e42731b96a1d1aec6c2fedabda791c">flags</a>.<a class="code hl_variable" href="structcore_1_1RegionFlags.html#a3b4e03ada1358b72bcf1486c34c5e317">exec</a>; }</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="structcore_1_1Region.html#a6537456f6f318ee31c4eed67fb538b93">   27</a></span>  [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="structcore_1_1Region.html#a6537456f6f318ee31c4eed67fb538b93">isShared</a>() const noexcept -&gt; <span class="keywordtype">bool</span> { <span class="keywordflow">return</span> <a class="code hl_variable" href="structcore_1_1Region.html#a29e42731b96a1d1aec6c2fedabda791c">flags</a>.<a class="code hl_variable" href="structcore_1_1RegionFlags.html#af65df61dea754dd979f5c531aa75fd79">shared</a>; }</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structcore_1_1Region.html#aad728d4eef88f8962ae4427df66bb520">   28</a></span>  [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="structcore_1_1Region.html#aad728d4eef88f8962ae4427df66bb520">isPrivate</a>() const noexcept -&gt; <span class="keywordtype">bool</span> { <span class="keywordflow">return</span> <a class="code hl_variable" href="structcore_1_1Region.html#a29e42731b96a1d1aec6c2fedabda791c">flags</a>.<a class="code hl_variable" href="structcore_1_1RegionFlags.html#aacacfdd7e88e6bde49beae649054c7cd">exclusive</a>; }</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="structcore_1_1Region.html#abb0a122c3549bc47e4d48fa3514dbde6">   29</a></span>  [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="structcore_1_1Region.html#abb0a122c3549bc47e4d48fa3514dbde6">asSpan</a>() const noexcept -&gt; <a class="code hl_namespace" href="namespacestd.html">std</a>::pair&lt;<span class="keywordtype">void</span>*, <a class="code hl_namespace" href="namespacestd.html">std</a>::<span class="keywordtype">size_t</span>&gt; { <span class="keywordflow">return</span> {<a class="code hl_variable" href="structcore_1_1Region.html#aaf402760124d38b40e00f8d59f0a9539">start</a>, <a class="code hl_variable" href="structcore_1_1Region.html#a6ba91430b2642c5adeb8ffe4078e6318">size</a>}; }</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structcore_1_1Region.html#a8d3047fcaf3435bad143c3dae39e2ccc">   30</a></span>  [[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="structcore_1_1Region.html#a8d3047fcaf3435bad143c3dae39e2ccc">contains</a>(<span class="keywordtype">void</span>* address) <span class="keyword">const</span> <span class="keyword">noexcept</span> -&gt; <span class="keywordtype">bool</span> { <span class="keyword">const</span> <span class="keyword">auto</span> begin = std::bit_cast&lt;std::uintptr_t&gt;(<a class="code hl_variable" href="structcore_1_1Region.html#aaf402760124d38b40e00f8d59f0a9539">start</a>); <span class="keyword">const</span> <span class="keyword">auto</span> <a class="code hl_namespace" href="namespacevalue.html">value</a> = std::bit_cast&lt;std::uintptr_t&gt;(address); <span class="keywordflow">return</span> <a class="code hl_namespace" href="namespacevalue.html">value</a> &gt;= begin &amp;&amp; <a class="code hl_namespace" href="namespacevalue.html">value</a> - begin &lt; <a class="code hl_variable" href="structcore_1_1Region.html#a6ba91430b2642c5adeb8ffe4078e6318">size</a>; }</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>};</div>
+</div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="};">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classcore_1_1MapsReader.html">   32</a></span><span class="keyword">class </span><a class="code hl_class" href="classcore_1_1MapsReader.html">MapsReader</a> {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="structcore_1_1MapsReader_1_1Error.html#ac6d908bdc04deec2dd809409b604d4db">   34</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structcore_1_1MapsReader_1_1Error.html">Error</a> { std::string <a class="code hl_variable" href="structcore_1_1MapsReader_1_1Error.html#aa9a445a3c75fc63ecff0f5083d9cc492">message</a>; std::error_code <a class="code hl_variable" href="structcore_1_1MapsReader_1_1Error.html#ac6d908bdc04deec2dd809409b604d4db">code</a>; };</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  [[nodiscard]] <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1MapsReader.html#a4a47de6592a5a5e807cc97bd5f53d7de">readProcessMaps</a>(pid_t pid, <a class="code hl_enumeration" href="namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7">RegionScanLevel</a> level = <a class="code hl_enumvalue" href="namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7a408087a95707a9857e7c25b832e69702">RegionScanLevel::ALL_RW</a>) -&gt; std::expected&lt;std::vector&lt;Region&gt;, <a class="code hl_struct" href="structcore_1_1MapsReader_1_1Error.html">Error</a>&gt;;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#if !defined(NDEBUG) || defined(ENABLE_TEST_API)</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  [[nodiscard]] <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classcore_1_1MapsReader.html#a6f1312fa66f01b8a984c44184cfc441e">parseMapsFromStream</a>(std::istream&amp; stream, <span class="keyword">const</span> std::string&amp; exe_name, <a class="code hl_enumeration" href="namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7">RegionScanLevel</a> level = <a class="code hl_enumvalue" href="namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7a5fb1f955b45e38e31789286a1790398d">RegionScanLevel::ALL</a>) -&gt; std::vector&lt;Region&gt;;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  [[nodiscard]] <span class="keyword">static</span> <span class="keyword">auto</span> parseAll(std::istream&amp; stream, <span class="keyword">const</span> std::string&amp; executable,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                                     <a class="code hl_enumeration" href="namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7">RegionScanLevel</a> level) -&gt; std::vector&lt;Region&gt;;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> updateRegionState(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> start, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> end, <span class="keywordtype">char</span> exec, <span class="keyword">const</span> std::string&amp; filename, <span class="keyword">const</span> std::string&amp; exe_name, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>&amp; <a class="code hl_variable" href="maps_8cpp.html#a60e2e8b867aaa9eea223cf8ed5f0e7ab">code_regions</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>&amp; <a class="code hl_variable" href="maps_8cpp.html#afaa12bc9d4ffde59377165bb09050403">exe_regions</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>&amp; <a class="code hl_variable" href="maps_8cpp.html#a389c3239bfa85f9bdae5511d4a747f65">previous_end</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>&amp; <a class="code hl_variable" href="maps_8cpp.html#ad30bccd4098709c52363205aa25d5735">load_address</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>&amp; <a class="code hl_variable" href="maps_8cpp.html#afdf0597174f5c88ce6af7890051c0dc2">executable_load</a>, <span class="keywordtype">bool</span>&amp; <a class="code hl_variable" href="maps_8cpp.html#a437a42babf58ebad5b0799223f20d6e1">is_executable</a>, std::string&amp; <a class="code hl_variable" href="maps_8cpp.html#a8f09edb430a8c23eec5f30ed1f86fb95">binary_name</a>);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  [[nodiscard]] <span class="keyword">static</span> <span class="keyword">auto</span> determineRegionType(<span class="keywordtype">bool</span> <a class="code hl_variable" href="maps_8cpp.html#a437a42babf58ebad5b0799223f20d6e1">is_executable</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="maps_8cpp.html#a60e2e8b867aaa9eea223cf8ed5f0e7ab">code_regions</a>, <span class="keyword">const</span> std::string&amp; filename) -&gt; <a class="code hl_enumeration" href="namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8">RegionType</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  [[nodiscard]] <span class="keyword">static</span> <span class="keyword">auto</span> regionUsefulForLevel(<a class="code hl_enumeration" href="namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8">RegionType</a> type, <span class="keyword">const</span> std::string&amp; filename, <span class="keyword">const</span> std::string&amp; exe_name, <a class="code hl_enumeration" href="namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7">RegionScanLevel</a> level) -&gt; bool;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  [[nodiscard]] <span class="keyword">static</span> <span class="keyword">auto</span> parseMapLine(<span class="keyword">const</span> std::string&amp; line, <span class="keyword">const</span> std::string&amp; exe_name, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>&amp; <a class="code hl_variable" href="maps_8cpp.html#a60e2e8b867aaa9eea223cf8ed5f0e7ab">code_regions</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>&amp; <a class="code hl_variable" href="maps_8cpp.html#afaa12bc9d4ffde59377165bb09050403">exe_regions</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>&amp; <a class="code hl_variable" href="maps_8cpp.html#a389c3239bfa85f9bdae5511d4a747f65">previous_end</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>&amp; <a class="code hl_variable" href="maps_8cpp.html#ad30bccd4098709c52363205aa25d5735">load_address</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>&amp; <a class="code hl_variable" href="maps_8cpp.html#afdf0597174f5c88ce6af7890051c0dc2">executable_load</a>, <span class="keywordtype">bool</span>&amp; <a class="code hl_variable" href="maps_8cpp.html#a437a42babf58ebad5b0799223f20d6e1">is_executable</a>, std::string&amp; <a class="code hl_variable" href="maps_8cpp.html#a8f09edb430a8c23eec5f30ed1f86fb95">binary_name</a>, <a class="code hl_enumeration" href="namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7">RegionScanLevel</a> level) -&gt; std::optional&lt;Region&gt;;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>};</div>
+</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>[[nodiscard]] <span class="keyword">auto</span> <a class="code hl_function" href="namespacecore.html#a146e68cbe4ef66265e9f370b733f982f">readProcessMaps</a>(pid_t pid, <a class="code hl_enumeration" href="namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7">RegionScanLevel</a> level = <a class="code hl_enumvalue" href="namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7a5fb1f955b45e38e31789286a1790398d">RegionScanLevel::ALL</a>) -&gt; std::expected&lt;std::vector&lt;Region&gt;, <a class="code hl_struct" href="structcore_1_1MapsReader_1_1Error.html">MapsReader::Error</a>&gt;;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}  <span class="comment">// namespace core</span></div>
+</div>
+<div class="ttc" id="aclasscore_1_1MapsReader_html"><div class="ttname"><a href="classcore_1_1MapsReader.html">core::MapsReader</a></div><div class="ttdef"><b>Definition</b> maps.hpp:32</div></div>
+<div class="ttc" id="aclasscore_1_1MapsReader_html_a4a47de6592a5a5e807cc97bd5f53d7de"><div class="ttname"><a href="classcore_1_1MapsReader.html#a4a47de6592a5a5e807cc97bd5f53d7de">core::MapsReader::readProcessMaps</a></div><div class="ttdeci">static auto readProcessMaps(pid_t pid, RegionScanLevel level=RegionScanLevel::ALL_RW) -&gt; std::expected&lt; std::vector&lt; Region &gt;, Error &gt;</div><div class="ttdef"><b>Definition</b> maps.cpp:15</div></div>
+<div class="ttc" id="aclasscore_1_1MapsReader_html_a6f1312fa66f01b8a984c44184cfc441e"><div class="ttname"><a href="classcore_1_1MapsReader.html#a6f1312fa66f01b8a984c44184cfc441e">core::MapsReader::parseMapsFromStream</a></div><div class="ttdeci">static auto parseMapsFromStream(std::istream &amp;stream, const std::string &amp;exe_name, RegionScanLevel level=RegionScanLevel::ALL) -&gt; std::vector&lt; Region &gt;</div><div class="ttdef"><b>Definition</b> maps.cpp:23</div></div>
+<div class="ttc" id="amaps_8cpp_html_a389c3239bfa85f9bdae5511d4a747f65"><div class="ttname"><a href="maps_8cpp.html#a389c3239bfa85f9bdae5511d4a747f65">previous_end</a></div><div class="ttdeci">unsigned long previous_end</div><div class="ttdef"><b>Definition</b> maps.cpp:12</div></div>
+<div class="ttc" id="amaps_8cpp_html_a437a42babf58ebad5b0799223f20d6e1"><div class="ttname"><a href="maps_8cpp.html#a437a42babf58ebad5b0799223f20d6e1">is_executable</a></div><div class="ttdeci">bool is_executable</div><div class="ttdef"><b>Definition</b> maps.cpp:12</div></div>
+<div class="ttc" id="amaps_8cpp_html_a60e2e8b867aaa9eea223cf8ed5f0e7ab"><div class="ttname"><a href="maps_8cpp.html#a60e2e8b867aaa9eea223cf8ed5f0e7ab">code_regions</a></div><div class="ttdeci">unsigned int code_regions</div><div class="ttdef"><b>Definition</b> maps.cpp:12</div></div>
+<div class="ttc" id="amaps_8cpp_html_a8f09edb430a8c23eec5f30ed1f86fb95"><div class="ttname"><a href="maps_8cpp.html#a8f09edb430a8c23eec5f30ed1f86fb95">binary_name</a></div><div class="ttdeci">std::string binary_name</div><div class="ttdef"><b>Definition</b> maps.cpp:12</div></div>
+<div class="ttc" id="amaps_8cpp_html_ad30bccd4098709c52363205aa25d5735"><div class="ttname"><a href="maps_8cpp.html#ad30bccd4098709c52363205aa25d5735">load_address</a></div><div class="ttdeci">unsigned long load_address</div><div class="ttdef"><b>Definition</b> maps.cpp:12</div></div>
+<div class="ttc" id="amaps_8cpp_html_afaa12bc9d4ffde59377165bb09050403"><div class="ttname"><a href="maps_8cpp.html#afaa12bc9d4ffde59377165bb09050403">exe_regions</a></div><div class="ttdeci">unsigned int exe_regions</div><div class="ttdef"><b>Definition</b> maps.cpp:12</div></div>
+<div class="ttc" id="amaps_8cpp_html_afdf0597174f5c88ce6af7890051c0dc2"><div class="ttname"><a href="maps_8cpp.html#afdf0597174f5c88ce6af7890051c0dc2">executable_load</a></div><div class="ttdeci">unsigned long executable_load</div><div class="ttdef"><b>Definition</b> maps.cpp:12</div></div>
+<div class="ttc" id="anamespacecore_html"><div class="ttname"><a href="namespacecore.html">core</a></div><div class="ttdef"><b>Definition</b> maps.hpp:17</div></div>
+<div class="ttc" id="anamespacecore_html_a146e68cbe4ef66265e9f370b733f982f"><div class="ttname"><a href="namespacecore.html#a146e68cbe4ef66265e9f370b733f982f">core::readProcessMaps</a></div><div class="ttdeci">auto readProcessMaps(pid_t pid, RegionScanLevel level=RegionScanLevel::ALL) -&gt; std::expected&lt; std::vector&lt; Region &gt;, MapsReader::Error &gt;</div><div class="ttdef"><b>Definition</b> maps.cpp:38</div></div>
+<div class="ttc" id="anamespacecore_html_a56e248853362dd13b6a11a5981b4b5c8"><div class="ttname"><a href="namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8">core::RegionType</a></div><div class="ttdeci">RegionType</div><div class="ttdef"><b>Definition</b> maps.hpp:18</div></div>
+<div class="ttc" id="anamespacecore_html_a56e248853362dd13b6a11a5981b4b5c8a08054846bbc9933fd0395f8be516a9f9"><div class="ttname"><a href="namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8a08054846bbc9933fd0395f8be516a9f9">core::RegionType::CODE</a></div><div class="ttdeci">@ CODE</div></div>
+<div class="ttc" id="anamespacecore_html_a56e248853362dd13b6a11a5981b4b5c8a0fac686d86aba414411b58f6bce53a76"><div class="ttname"><a href="namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8a0fac686d86aba414411b58f6bce53a76">core::RegionType::STACK</a></div><div class="ttdeci">@ STACK</div></div>
+<div class="ttc" id="anamespacecore_html_a56e248853362dd13b6a11a5981b4b5c8a4de97a9981203bdf3d1f9c51b0ba341f"><div class="ttname"><a href="namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8a4de97a9981203bdf3d1f9c51b0ba341f">core::RegionType::UNKNOW</a></div><div class="ttdeci">@ UNKNOW</div></div>
+<div class="ttc" id="anamespacecore_html_a56e248853362dd13b6a11a5981b4b5c8a5c6e4f44044eb1d3591aaa440ed6f3ad"><div class="ttname"><a href="namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8a5c6e4f44044eb1d3591aaa440ed6f3ad">core::RegionType::EXE</a></div><div class="ttdeci">@ EXE</div></div>
+<div class="ttc" id="anamespacecore_html_a56e248853362dd13b6a11a5981b4b5c8ab6722804f5872cdd88347da194d42087"><div class="ttname"><a href="namespacecore.html#a56e248853362dd13b6a11a5981b4b5c8ab6722804f5872cdd88347da194d42087">core::RegionType::HEAP</a></div><div class="ttdeci">@ HEAP</div></div>
+<div class="ttc" id="anamespacecore_html_a9a3a62dc48f4305ecb74c1cc28ffa2d7"><div class="ttname"><a href="namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7">core::RegionScanLevel</a></div><div class="ttdeci">RegionScanLevel</div><div class="ttdef"><b>Definition</b> maps.hpp:20</div></div>
+<div class="ttc" id="anamespacecore_html_a9a3a62dc48f4305ecb74c1cc28ffa2d7a408087a95707a9857e7c25b832e69702"><div class="ttname"><a href="namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7a408087a95707a9857e7c25b832e69702">core::RegionScanLevel::ALL_RW</a></div><div class="ttdeci">@ ALL_RW</div></div>
+<div class="ttc" id="anamespacecore_html_a9a3a62dc48f4305ecb74c1cc28ffa2d7a5fb1f955b45e38e31789286a1790398d"><div class="ttname"><a href="namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7a5fb1f955b45e38e31789286a1790398d">core::RegionScanLevel::ALL</a></div><div class="ttdeci">@ ALL</div></div>
+<div class="ttc" id="anamespacecore_html_a9a3a62dc48f4305ecb74c1cc28ffa2d7a95e4cb86af4f28a343bf95b52fe85d88"><div class="ttname"><a href="namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7a95e4cb86af4f28a343bf95b52fe85d88">core::RegionScanLevel::HEAP_STACK_EXECUTABLE</a></div><div class="ttdeci">@ HEAP_STACK_EXECUTABLE</div></div>
+<div class="ttc" id="anamespacecore_html_a9a3a62dc48f4305ecb74c1cc28ffa2d7af45b04bf5d0a44e5c26ea5bd869e1c8b"><div class="ttname"><a href="namespacecore.html#a9a3a62dc48f4305ecb74c1cc28ffa2d7af45b04bf5d0a44e5c26ea5bd869e1c8b">core::RegionScanLevel::HEAP_STACK_EXECUTABLE_BSS</a></div><div class="ttdeci">@ HEAP_STACK_EXECUTABLE_BSS</div></div>
+<div class="ttc" id="anamespacecore_html_a9cbc794a299a247419a8c580a01e623a"><div class="ttname"><a href="namespacecore.html#a9cbc794a299a247419a8c580a01e623a">core::REGION_TYPE_NAMES</a></div><div class="ttdeci">constexpr std::array&lt; std::string_view, 5 &gt; REGION_TYPE_NAMES</div><div class="ttdef"><b>Definition</b> maps.hpp:19</div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition</b> core.hpp:224</div></div>
+<div class="ttc" id="anamespacevalue_html"><div class="ttname"><a href="namespacevalue.html">value</a></div><div class="ttdef"><b>Definition</b> parser.hpp:22</div></div>
+<div class="ttc" id="astructcore_1_1MapsReader_1_1Error_html"><div class="ttname"><a href="structcore_1_1MapsReader_1_1Error.html">core::MapsReader::Error</a></div><div class="ttdef"><b>Definition</b> maps.hpp:34</div></div>
+<div class="ttc" id="astructcore_1_1MapsReader_1_1Error_html_aa9a445a3c75fc63ecff0f5083d9cc492"><div class="ttname"><a href="structcore_1_1MapsReader_1_1Error.html#aa9a445a3c75fc63ecff0f5083d9cc492">core::MapsReader::Error::message</a></div><div class="ttdeci">std::string message</div><div class="ttdef"><b>Definition</b> maps.hpp:34</div></div>
+<div class="ttc" id="astructcore_1_1MapsReader_1_1Error_html_ac6d908bdc04deec2dd809409b604d4db"><div class="ttname"><a href="structcore_1_1MapsReader_1_1Error.html#ac6d908bdc04deec2dd809409b604d4db">core::MapsReader::Error::code</a></div><div class="ttdeci">std::error_code code</div><div class="ttdef"><b>Definition</b> maps.hpp:34</div></div>
+<div class="ttc" id="astructcore_1_1RegionFlags_html"><div class="ttname"><a href="structcore_1_1RegionFlags.html">core::RegionFlags</a></div><div class="ttdef"><b>Definition</b> maps.hpp:21</div></div>
+<div class="ttc" id="astructcore_1_1RegionFlags_html_a1ad624e07985838bd525ba8ca406302a"><div class="ttname"><a href="structcore_1_1RegionFlags.html#a1ad624e07985838bd525ba8ca406302a">core::RegionFlags::read</a></div><div class="ttdeci">bool read</div><div class="ttdef"><b>Definition</b> maps.hpp:21</div></div>
+<div class="ttc" id="astructcore_1_1RegionFlags_html_a3b4e03ada1358b72bcf1486c34c5e317"><div class="ttname"><a href="structcore_1_1RegionFlags.html#a3b4e03ada1358b72bcf1486c34c5e317">core::RegionFlags::exec</a></div><div class="ttdeci">bool exec</div><div class="ttdef"><b>Definition</b> maps.hpp:21</div></div>
+<div class="ttc" id="astructcore_1_1RegionFlags_html_a9251534ed90fe711e94ef89c2b2f5eb8"><div class="ttname"><a href="structcore_1_1RegionFlags.html#a9251534ed90fe711e94ef89c2b2f5eb8">core::RegionFlags::write</a></div><div class="ttdeci">bool write</div><div class="ttdef"><b>Definition</b> maps.hpp:21</div></div>
+<div class="ttc" id="astructcore_1_1RegionFlags_html_aacacfdd7e88e6bde49beae649054c7cd"><div class="ttname"><a href="structcore_1_1RegionFlags.html#aacacfdd7e88e6bde49beae649054c7cd">core::RegionFlags::exclusive</a></div><div class="ttdeci">bool exclusive</div><div class="ttdef"><b>Definition</b> maps.hpp:21</div></div>
+<div class="ttc" id="astructcore_1_1RegionFlags_html_af65df61dea754dd979f5c531aa75fd79"><div class="ttname"><a href="structcore_1_1RegionFlags.html#af65df61dea754dd979f5c531aa75fd79">core::RegionFlags::shared</a></div><div class="ttdeci">bool shared</div><div class="ttdef"><b>Definition</b> maps.hpp:21</div></div>
+<div class="ttc" id="astructcore_1_1Region_html"><div class="ttname"><a href="structcore_1_1Region.html">core::Region</a></div><div class="ttdef"><b>Definition</b> maps.hpp:22</div></div>
+<div class="ttc" id="astructcore_1_1Region_html_a061e9836e64e27513695d8f9a2a28c2e"><div class="ttname"><a href="structcore_1_1Region.html#a061e9836e64e27513695d8f9a2a28c2e">core::Region::type</a></div><div class="ttdeci">RegionType type</div><div class="ttdef"><b>Definition</b> maps.hpp:23</div></div>
+<div class="ttc" id="astructcore_1_1Region_html_a29e42731b96a1d1aec6c2fedabda791c"><div class="ttname"><a href="structcore_1_1Region.html#a29e42731b96a1d1aec6c2fedabda791c">core::Region::flags</a></div><div class="ttdeci">RegionFlags flags</div><div class="ttdef"><b>Definition</b> maps.hpp:23</div></div>
+<div class="ttc" id="astructcore_1_1Region_html_a42d7e58110136172f9dc270589784619"><div class="ttname"><a href="structcore_1_1Region.html#a42d7e58110136172f9dc270589784619">core::Region::isExecutable</a></div><div class="ttdeci">auto isExecutable() const noexcept -&gt; bool</div><div class="ttdef"><b>Definition</b> maps.hpp:26</div></div>
+<div class="ttc" id="astructcore_1_1Region_html_a57f739ffab0712092d7721e2e20ff174"><div class="ttname"><a href="structcore_1_1Region.html#a57f739ffab0712092d7721e2e20ff174">core::Region::filename</a></div><div class="ttdeci">std::string filename</div><div class="ttdef"><b>Definition</b> maps.hpp:23</div></div>
+<div class="ttc" id="astructcore_1_1Region_html_a6537456f6f318ee31c4eed67fb538b93"><div class="ttname"><a href="structcore_1_1Region.html#a6537456f6f318ee31c4eed67fb538b93">core::Region::isShared</a></div><div class="ttdeci">auto isShared() const noexcept -&gt; bool</div><div class="ttdef"><b>Definition</b> maps.hpp:27</div></div>
+<div class="ttc" id="astructcore_1_1Region_html_a6ba91430b2642c5adeb8ffe4078e6318"><div class="ttname"><a href="structcore_1_1Region.html#a6ba91430b2642c5adeb8ffe4078e6318">core::Region::size</a></div><div class="ttdeci">std::size_t size</div><div class="ttdef"><b>Definition</b> maps.hpp:23</div></div>
+<div class="ttc" id="astructcore_1_1Region_html_a8a04354a20a7094fe9876d8dd0fc097a"><div class="ttname"><a href="structcore_1_1Region.html#a8a04354a20a7094fe9876d8dd0fc097a">core::Region::isReadable</a></div><div class="ttdeci">auto isReadable() const noexcept -&gt; bool</div><div class="ttdef"><b>Definition</b> maps.hpp:24</div></div>
+<div class="ttc" id="astructcore_1_1Region_html_a8d3047fcaf3435bad143c3dae39e2ccc"><div class="ttname"><a href="structcore_1_1Region.html#a8d3047fcaf3435bad143c3dae39e2ccc">core::Region::contains</a></div><div class="ttdeci">auto contains(void *address) const noexcept -&gt; bool</div><div class="ttdef"><b>Definition</b> maps.hpp:30</div></div>
+<div class="ttc" id="astructcore_1_1Region_html_aad728d4eef88f8962ae4427df66bb520"><div class="ttname"><a href="structcore_1_1Region.html#aad728d4eef88f8962ae4427df66bb520">core::Region::isPrivate</a></div><div class="ttdeci">auto isPrivate() const noexcept -&gt; bool</div><div class="ttdef"><b>Definition</b> maps.hpp:28</div></div>
+<div class="ttc" id="astructcore_1_1Region_html_aaf402760124d38b40e00f8d59f0a9539"><div class="ttname"><a href="structcore_1_1Region.html#aaf402760124d38b40e00f8d59f0a9539">core::Region::start</a></div><div class="ttdeci">void * start</div><div class="ttdef"><b>Definition</b> maps.hpp:23</div></div>
+<div class="ttc" id="astructcore_1_1Region_html_abb0a122c3549bc47e4d48fa3514dbde6"><div class="ttname"><a href="structcore_1_1Region.html#abb0a122c3549bc47e4d48fa3514dbde6">core::Region::asSpan</a></div><div class="ttdeci">auto asSpan() const noexcept -&gt; std::pair&lt; void *, std::size_t &gt;</div><div class="ttdef"><b>Definition</b> maps.hpp:29</div></div>
+<div class="ttc" id="astructcore_1_1Region_html_adf7ab55a76173bf974819e1f99c73673"><div class="ttname"><a href="structcore_1_1Region.html#adf7ab55a76173bf974819e1f99c73673">core::Region::isWritable</a></div><div class="ttdeci">auto isWritable() const noexcept -&gt; bool</div><div class="ttdef"><b>Definition</b> maps.hpp:25</div></div>
+<div class="ttc" id="astructcore_1_1Region_html_ae788f67862f749decc719bc7413b8059"><div class="ttname"><a href="structcore_1_1Region.html#ae788f67862f749decc719bc7413b8059">core::Region::loadAddr</a></div><div class="ttdeci">void * loadAddr</div><div class="ttdef"><b>Definition</b> maps.hpp:23</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_61322cca43ef6011f730695c31aaa6cc.html">newscanmem</a></li><li class="navelem"><a class="el" href="dir_344b773e9868a2a477171a970fcc5b76.html">core</a></li><li class="navelem"><a class="el" href="maps_8hpp.html">maps.hpp</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

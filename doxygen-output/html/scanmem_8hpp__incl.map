@@ -1,0 +1,36 @@
+<map id="include/newscanmem/scanmem.hpp" name="include/newscanmem/scanmem.hpp">
+<area shape="rect" id="Node000001" title="Scanmem entry module &#45; delegates to CLI application framework" alt="" coords="685,5,849,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,255,88,280"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="711,48,95,253,93,248,709,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="1087,255,1145,280"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="796,43,1090,245,1087,249,793,48"/>
+<area shape="rect" id="Node000004" href="$app__config_8hpp.html" title="Application configuration structure" alt="" coords="687,93,847,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="769,46,769,79,764,79,764,46"/>
+<area shape="poly" id="edge6_Node000004_Node000003" title=" " alt="" coords="811,131,1078,247,1076,251,809,136"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="967,255,1063,280"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="799,131,985,245,982,249,796,136"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="112,255,187,280"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="691,136,201,256,199,251,690,131"/>
+<area shape="rect" id="Node000007" href="$maps_8hpp.html" title=" " alt="" coords="531,181,744,207"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="737,136,669,176,667,172,734,131"/>
+<area shape="poly" id="edge11_Node000007_Node000002" title=" " alt="" coords="531,207,335,226,102,257,102,252,335,221,530,201"/>
+<area shape="poly" id="edge14_Node000007_Node000003" title=" " alt="" coords="744,203,896,222,1073,252,1072,257,895,227,744,208"/>
+<area shape="poly" id="edge19_Node000007_Node000005" title=" " alt="" coords="699,204,953,252,952,257,698,209"/>
+<area shape="poly" id="edge13_Node000007_Node000006" title=" " alt="" coords="534,209,380,229,201,257,200,252,380,224,533,204"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="887,255,943,280"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="685,204,874,252,873,257,684,209"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="211,255,250,280"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="533,209,408,228,264,258,263,252,407,222,532,204"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="275,255,341,280"/>
+<area shape="poly" id="edge10_Node000007_Node000010" title=" " alt="" coords="580,209,355,257,354,252,579,204"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="365,255,437,280"/>
+<area shape="poly" id="edge12_Node000007_Node000011" title=" " alt="" coords="600,209,451,254,450,249,599,204"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="462,255,559,280"/>
+<area shape="poly" id="edge15_Node000007_Node000012" title=" " alt="" coords="618,209,545,250,542,245,616,204"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="583,255,691,280"/>
+<area shape="poly" id="edge16_Node000007_Node000013" title=" " alt="" coords="640,207,640,241,635,241,635,207"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="715,255,775,280"/>
+<area shape="poly" id="edge17_Node000007_Node000014" title=" " alt="" coords="656,204,718,245,715,249,653,209"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="799,255,862,280"/>
+<area shape="poly" id="edge18_Node000007_Node000015" title=" " alt="" coords="669,204,787,247,786,252,667,209"/>
+</map>

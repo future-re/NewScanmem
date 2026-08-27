@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: include/newscanmem/utils/string.hpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('utils_2string_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">string.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="utils_2string_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string_view&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceutils.html">utils</a> {</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="foldopen" id="foldopen00009" data-start="{" data-end="};">
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="classutils_1_1StringUtils.html">    9</a></span><span class="keyword">class </span><a class="code hl_class" href="classutils_1_1StringUtils.html">StringUtils</a> {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  [[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classutils_1_1StringUtils.html#a0298b89b3d74996beecd0f883b23dacf">toLower</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">str</a>) -&gt; std::string;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  [[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classutils_1_1StringUtils.html#afaeb81b43722419b99c8b3a15a10c27f">toUpper</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">str</a>) -&gt; std::string;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  [[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classutils_1_1StringUtils.html#a16ffd57fd3a30851a6bf2c91c55e859f">trim</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">str</a>) -&gt; std::string_view;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  [[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classutils_1_1StringUtils.html#ab9eabf597bbf4f1f05fe5d64400f130f">trimLeft</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">str</a>) -&gt; std::string_view;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  [[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classutils_1_1StringUtils.html#a55f448ea07c9395d514d29eb953e6e71">trimRight</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">str</a>) -&gt; std::string_view;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  [[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classutils_1_1StringUtils.html#a1fcc40483f01334abcb37a3d7067284e">split</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">str</a>, <span class="keywordtype">char</span> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">delimiter</a>)</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>      -&gt; std::vector&lt;std::string_view&gt;;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  [[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classutils_1_1StringUtils.html#a1fcc40483f01334abcb37a3d7067284e">split</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">str</a>, std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">delimiters</a>)</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>      -&gt; std::vector&lt;std::string_view&gt;;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  [[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classutils_1_1StringUtils.html#a0b62fa1b902630b1ac28a8c22acc9d71">startsWith</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">str</a>, std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">prefix</a>) -&gt; <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">bool</a>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  [[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classutils_1_1StringUtils.html#a15788886776510d84286e44163f18c9a">endsWith</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">str</a>, std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">suffix</a>) -&gt; <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">bool</a>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  [[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classutils_1_1StringUtils.html#a571c2ebc20f8272c63cdc9b2eb55fedc">contains</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">str</a>, std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">substring</a>) -&gt; <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">bool</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  [[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classutils_1_1StringUtils.html#acb180fa40bdc6788aec07e6b484543ba">join</a>(<span class="keyword">const</span> std::vector&lt;std::string_view&gt;&amp; <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">strings</a>,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>                                 std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">delimiter</a>) -&gt; std::string;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>};</div>
+</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>}  <span class="comment">// namespace utils</span></div>
+<div class="ttc" id="aclassutils_1_1StringUtils_html"><div class="ttname"><a href="classutils_1_1StringUtils.html">utils::StringUtils</a></div><div class="ttdef"><b>Definition</b> string.hpp:9</div></div>
+<div class="ttc" id="aclassutils_1_1StringUtils_html_a0298b89b3d74996beecd0f883b23dacf"><div class="ttname"><a href="classutils_1_1StringUtils.html#a0298b89b3d74996beecd0f883b23dacf">utils::StringUtils::toLower</a></div><div class="ttdeci">static auto toLower(std::string_view str) -&gt; std::string</div><div class="ttdef"><b>Definition</b> string.cpp:9</div></div>
+<div class="ttc" id="aclassutils_1_1StringUtils_html_a0b62fa1b902630b1ac28a8c22acc9d71"><div class="ttname"><a href="classutils_1_1StringUtils.html#a0b62fa1b902630b1ac28a8c22acc9d71">utils::StringUtils::startsWith</a></div><div class="ttdeci">static auto startsWith(std::string_view str, std::string_view prefix) -&gt; bool</div><div class="ttdef"><b>Definition</b> string.cpp:66</div></div>
+<div class="ttc" id="aclassutils_1_1StringUtils_html_a15788886776510d84286e44163f18c9a"><div class="ttname"><a href="classutils_1_1StringUtils.html#a15788886776510d84286e44163f18c9a">utils::StringUtils::endsWith</a></div><div class="ttdeci">static auto endsWith(std::string_view str, std::string_view suffix) -&gt; bool</div><div class="ttdef"><b>Definition</b> string.cpp:70</div></div>
+<div class="ttc" id="aclassutils_1_1StringUtils_html_a16ffd57fd3a30851a6bf2c91c55e859f"><div class="ttname"><a href="classutils_1_1StringUtils.html#a16ffd57fd3a30851a6bf2c91c55e859f">utils::StringUtils::trim</a></div><div class="ttdeci">static auto trim(std::string_view str) -&gt; std::string_view</div><div class="ttdef"><b>Definition</b> string.cpp:23</div></div>
+<div class="ttc" id="aclassutils_1_1StringUtils_html_a1fcc40483f01334abcb37a3d7067284e"><div class="ttname"><a href="classutils_1_1StringUtils.html#a1fcc40483f01334abcb37a3d7067284e">utils::StringUtils::split</a></div><div class="ttdeci">static auto split(std::string_view str, char delimiter) -&gt; std::vector&lt; std::string_view &gt;</div><div class="ttdef"><b>Definition</b> string.cpp:38</div></div>
+<div class="ttc" id="aclassutils_1_1StringUtils_html_a55f448ea07c9395d514d29eb953e6e71"><div class="ttname"><a href="classutils_1_1StringUtils.html#a55f448ea07c9395d514d29eb953e6e71">utils::StringUtils::trimRight</a></div><div class="ttdeci">static auto trimRight(std::string_view str) -&gt; std::string_view</div><div class="ttdef"><b>Definition</b> string.cpp:31</div></div>
+<div class="ttc" id="aclassutils_1_1StringUtils_html_a571c2ebc20f8272c63cdc9b2eb55fedc"><div class="ttname"><a href="classutils_1_1StringUtils.html#a571c2ebc20f8272c63cdc9b2eb55fedc">utils::StringUtils::contains</a></div><div class="ttdeci">static auto contains(std::string_view str, std::string_view substring) -&gt; bool</div><div class="ttdef"><b>Definition</b> string.cpp:74</div></div>
+<div class="ttc" id="aclassutils_1_1StringUtils_html_ab9eabf597bbf4f1f05fe5d64400f130f"><div class="ttname"><a href="classutils_1_1StringUtils.html#ab9eabf597bbf4f1f05fe5d64400f130f">utils::StringUtils::trimLeft</a></div><div class="ttdeci">static auto trimLeft(std::string_view str) -&gt; std::string_view</div><div class="ttdef"><b>Definition</b> string.cpp:25</div></div>
+<div class="ttc" id="aclassutils_1_1StringUtils_html_acb180fa40bdc6788aec07e6b484543ba"><div class="ttname"><a href="classutils_1_1StringUtils.html#acb180fa40bdc6788aec07e6b484543ba">utils::StringUtils::join</a></div><div class="ttdeci">static auto join(const std::vector&lt; std::string_view &gt; &amp;strings, std::string_view delimiter) -&gt; std::string</div><div class="ttdef"><b>Definition</b> string.cpp:78</div></div>
+<div class="ttc" id="aclassutils_1_1StringUtils_html_afaeb81b43722419b99c8b3a15a10c27f"><div class="ttname"><a href="classutils_1_1StringUtils.html#afaeb81b43722419b99c8b3a15a10c27f">utils::StringUtils::toUpper</a></div><div class="ttdeci">static auto toUpper(std::string_view str) -&gt; std::string</div><div class="ttdef"><b>Definition</b> string.cpp:16</div></div>
+<div class="ttc" id="aflags_8hpp_html_a2bd4546b83b208d80dfb2fc0829d9cb1"><div class="ttname"><a href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">flagForType</a></div><div class="ttdeci">consteval auto flagForType() noexcept -&gt; MatchFlags</div><div class="ttdef"><b>Definition</b> flags.hpp:106</div></div>
+<div class="ttc" id="anamespaceutils_html"><div class="ttname"><a href="namespaceutils.html">utils</a></div><div class="ttdef"><b>Definition</b> endianness.hpp:30</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_61322cca43ef6011f730695c31aaa6cc.html">newscanmem</a></li><li class="navelem"><a class="el" href="dir_bb9d9abae0ab8a14b7d852c975963016.html">utils</a></li><li class="navelem"><a class="el" href="utils_2string_8hpp.html">string.hpp</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

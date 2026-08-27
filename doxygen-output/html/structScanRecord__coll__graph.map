@@ -6,8 +6,8 @@
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="222,235,222,284,217,284,217,235"/>
 <area shape="rect" id="Node000004" href="$structScanOptions.html" title=" " alt="" coords="347,189,449,214"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="365,223,243,286,240,282,363,218"/>
-<area shape="rect" id="Node000005" href="$structcore_1_1RegionFilterConfig.html" title="Configuration for region filtering in scans and exports" alt="" coords="309,93,487,119"/>
+<area shape="rect" id="Node000005" href="$structcore_1_1RegionFilterConfig.html" title=" " alt="" coords="309,93,487,119"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="401,132,401,189,395,189,395,132"/>
-<area shape="rect" id="Node000006" href="$classcore_1_1RegionFilter.html" title="Manages region&#45;based filtering for memory scanning" alt="" coords="330,5,466,31"/>
+<area shape="rect" id="Node000006" href="$classcore_1_1RegionFilter.html" title=" " alt="" coords="330,5,466,31"/>
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="401,45,401,93,395,93,395,45"/>
 </map>

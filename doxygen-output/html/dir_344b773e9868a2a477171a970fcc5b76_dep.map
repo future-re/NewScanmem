@@ -1,0 +1,16 @@
+<map id="include/newscanmem/core" name="include/newscanmem/core">
+<area shape="rect" id="node1" href="dir_513ad5af3e084b423e3f5957b832f005.html" title="value" alt="" coords="27,125,85,151"/>
+<area shape="rect" id="node2" href="dir_796cc72c58eeaae50026198018c43cff.html" title="scan" alt="" coords="110,125,162,151"/>
+<area shape="rect" id="node3" href="dir_bb9d9abae0ab8a14b7d852c975963016.html" title="utils" alt="" coords="187,125,237,151"/>
+<area shape="rect" id="node4" href="dir_ca0892c25de47923020ce218191adf45.html" title="ui" alt="" coords="262,125,301,151"/>
+<area shape="rect" id="node5" href="dir_344b773e9868a2a477171a970fcc5b76.html" title="core" alt="" coords="148,52,199,77"/>
+<area shape="poly" id="edge1" href="dir_000006_000019.html" alt="" coords="156,80,88,120,86,116,153,75"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000006_000019.html" title="5" alt="" coords="90,116,100,130"/>
+<area shape="poly" id="edge2" href="dir_000006_000011.html" alt="" coords="170,79,151,115,146,112,165,76"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000006_000011.html" title="9" alt="" coords="153,106,163,120"/>
+<area shape="poly" id="edge3" href="dir_000006_000017.html" alt="" coords="182,76,202,112,197,115,177,79"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000006_000017.html" title="2" alt="" coords="200,98,209,113"/>
+<area shape="poly" id="edge4" href="dir_000006_000014.html" alt="" coords="192,75,254,115,251,120,189,80"/>
+<area shape="rect" id="edge4-headlabel" href="dir_000006_000014.html" title="1" alt="" coords="248,101,258,115"/>
+<area shape="rect" id="clust1" href="dir_61322cca43ef6011f730695c31aaa6cc.html" title="newscanmem" alt="" coords="16,16,312,161"/>
+</map>

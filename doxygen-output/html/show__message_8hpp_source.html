@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: include/newscanmem/ui/show_message.hpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('show__message_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">show_message.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="show__message_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;format&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;string_view&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceui.html">ui</a> {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99">   10</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99">MessageType</a> : <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">uint8_t</a> { <a class="code hl_enumvalue" href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2a551b723eafd6a31d444fcb2f5920fbd3">INFO</a>, <a class="code hl_enumvalue" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a32bd8a1db2275458673903bdb84cb277">WARN</a>, <a class="code hl_enumvalue" href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2abb1ca97ec761fc37101737ba0aa2e7c5">ERROR</a>, <a class="code hl_enumvalue" href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2adc30ec20708ef7b0f641ef78b7880a15">DEBUG</a>, <a class="code hl_enumvalue" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a2e40ad879e955201df4dedbf8d479a12">USER</a> };</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="structui_1_1MessageContext.html">   12</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structui_1_1MessageContext.html">MessageContext</a> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="structui_1_1MessageContext.html#ad48c5ba8f0363164f6ff65d2bf8ac0e0">   13</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structui_1_1MessageContext.html#ad48c5ba8f0363164f6ff65d2bf8ac0e0">debugMode</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="structui_1_1MessageContext.html#a4d11ee01fdc9c637a58d5aff56a677ad">   14</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structui_1_1MessageContext.html#a4d11ee01fdc9c637a58d5aff56a677ad">backendMode</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="structui_1_1MessageContext.html#a2613ffcea4c42a6722e996d86a79df4e">   15</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structui_1_1MessageContext.html#a2613ffcea4c42a6722e996d86a79df4e">colorMode</a> = <span class="keyword">true</span>;  <span class="comment">// 默认启用彩色输出</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>};</div>
+</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">// ANSI 颜色码</span></div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="namespaceui_1_1color.html">   19</a></span><span class="keyword">namespace </span>color {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="namespaceui_1_1color.html#ad819c282c1897eaf1d54ba8078109470">   20</a></span><span class="keyword">constexpr</span> std::string_view <a class="code hl_variable" href="namespaceui_1_1color.html#ad819c282c1897eaf1d54ba8078109470">RESET</a> = <span class="stringliteral">&quot;\033[0m&quot;</span>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="namespaceui_1_1color.html#af320a0c17c6ec9a8e8f4cbdf5facd766">   21</a></span><span class="keyword">constexpr</span> std::string_view <a class="code hl_variable" href="namespaceui_1_1color.html#af320a0c17c6ec9a8e8f4cbdf5facd766">BOLD</a> = <span class="stringliteral">&quot;\033[1m&quot;</span>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="namespaceui_1_1color.html#ad24c90bdb275cf70e7fc993888dc744b">   22</a></span><span class="keyword">constexpr</span> std::string_view <a class="code hl_variable" href="namespaceui_1_1color.html#ad24c90bdb275cf70e7fc993888dc744b">DIM</a> = <span class="stringliteral">&quot;\033[2m&quot;</span>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">// 前景色</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="namespaceui_1_1color.html#ac2cebcbd2ace228258aff3c500c5dc80">   25</a></span><span class="keyword">constexpr</span> std::string_view <a class="code hl_variable" href="namespaceui_1_1color.html#ac2cebcbd2ace228258aff3c500c5dc80">BLACK</a> = <span class="stringliteral">&quot;\033[30m&quot;</span>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="namespaceui_1_1color.html#ae03871e05f14eaa77840d3eb1aad56a0">   26</a></span><span class="keyword">constexpr</span> std::string_view <a class="code hl_variable" href="namespaceui_1_1color.html#ae03871e05f14eaa77840d3eb1aad56a0">RED</a> = <span class="stringliteral">&quot;\033[31m&quot;</span>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="namespaceui_1_1color.html#a66fde3a90292a685e1b4359a39eddbcf">   27</a></span><span class="keyword">constexpr</span> std::string_view <a class="code hl_variable" href="namespaceui_1_1color.html#a66fde3a90292a685e1b4359a39eddbcf">GREEN</a> = <span class="stringliteral">&quot;\033[32m&quot;</span>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="namespaceui_1_1color.html#a0d9f7b4d6ebece3c6bbb559d12d42ce3">   28</a></span><span class="keyword">constexpr</span> std::string_view <a class="code hl_variable" href="namespaceui_1_1color.html#a0d9f7b4d6ebece3c6bbb559d12d42ce3">YELLOW</a> = <span class="stringliteral">&quot;\033[33m&quot;</span>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="namespaceui_1_1color.html#af9e067985096e67e9d9f8d5e5694341b">   29</a></span><span class="keyword">constexpr</span> std::string_view <a class="code hl_variable" href="namespaceui_1_1color.html#af9e067985096e67e9d9f8d5e5694341b">BLUE</a> = <span class="stringliteral">&quot;\033[34m&quot;</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="namespaceui_1_1color.html#addde567215c75ee4918b2fcec8d5583e">   30</a></span><span class="keyword">constexpr</span> std::string_view <a class="code hl_variable" href="namespaceui_1_1color.html#addde567215c75ee4918b2fcec8d5583e">MAGENTA</a> = <span class="stringliteral">&quot;\033[35m&quot;</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="namespaceui_1_1color.html#a3b15367997ee75c6fa303786159fdc41">   31</a></span><span class="keyword">constexpr</span> std::string_view <a class="code hl_variable" href="namespaceui_1_1color.html#a3b15367997ee75c6fa303786159fdc41">CYAN</a> = <span class="stringliteral">&quot;\033[36m&quot;</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="namespaceui_1_1color.html#a089f9c5f0403fed030cd3ef54a14089d">   32</a></span><span class="keyword">constexpr</span> std::string_view <a class="code hl_variable" href="namespaceui_1_1color.html#a089f9c5f0403fed030cd3ef54a14089d">WHITE</a> = <span class="stringliteral">&quot;\033[37m&quot;</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">// 明亮前景色</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="namespaceui_1_1color.html#a7ff0fd024f2ec84e39725a3f3eb1ba6e">   35</a></span><span class="keyword">constexpr</span> std::string_view <a class="code hl_variable" href="namespaceui_1_1color.html#a7ff0fd024f2ec84e39725a3f3eb1ba6e">BRIGHT_RED</a> = <span class="stringliteral">&quot;\033[91m&quot;</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="namespaceui_1_1color.html#ae8a88904a28fadfdbd251f2237139684">   36</a></span><span class="keyword">constexpr</span> std::string_view <a class="code hl_variable" href="namespaceui_1_1color.html#ae8a88904a28fadfdbd251f2237139684">BRIGHT_GREEN</a> = <span class="stringliteral">&quot;\033[92m&quot;</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="namespaceui_1_1color.html#a6829b4fa3cb9211b4ac106c73ba19be6">   37</a></span><span class="keyword">constexpr</span> std::string_view <a class="code hl_variable" href="namespaceui_1_1color.html#a6829b4fa3cb9211b4ac106c73ba19be6">BRIGHT_YELLOW</a> = <span class="stringliteral">&quot;\033[93m&quot;</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="namespaceui_1_1color.html#ac06ec1a62d6827026cb0a9c1199c1ac8">   38</a></span><span class="keyword">constexpr</span> std::string_view <a class="code hl_variable" href="namespaceui_1_1color.html#ac06ec1a62d6827026cb0a9c1199c1ac8">BRIGHT_BLUE</a> = <span class="stringliteral">&quot;\033[94m&quot;</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="namespaceui_1_1color.html#acfa0fd6f7a65d361860225f8900a2a51">   39</a></span><span class="keyword">constexpr</span> std::string_view <a class="code hl_variable" href="namespaceui_1_1color.html#acfa0fd6f7a65d361860225f8900a2a51">BRIGHT_MAGENTA</a> = <span class="stringliteral">&quot;\033[95m&quot;</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="namespaceui_1_1color.html#a7607d89e60c252589d71b08b8a95d09d">   40</a></span><span class="keyword">constexpr</span> std::string_view <a class="code hl_variable" href="namespaceui_1_1color.html#a7607d89e60c252589d71b08b8a95d09d">BRIGHT_CYAN</a> = <span class="stringliteral">&quot;\033[96m&quot;</span>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>}  <span class="comment">// namespace color</span></div>
+</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="};">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classui_1_1MessagePrinter.html">   43</a></span><span class="keyword">class </span><a class="code hl_class" href="classui_1_1MessagePrinter.html">MessagePrinter</a> {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_class" href="classui_1_1MessagePrinter.html">MessagePrinter</a>(<a class="code hl_struct" href="structui_1_1MessageContext.html">MessageContext</a> <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">ctx</a> = {});</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">Args</a>&gt;</div>
+<div class="foldopen" id="foldopen00048" data-start="{" data-end="}">
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classui_1_1MessagePrinter.html#a26a52c93ef10707ed58a54f65251fcd9">   48</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classui_1_1MessagePrinter.html#a26a52c93ef10707ed58a54f65251fcd9">print</a>(<a class="code hl_enumeration" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99">MessageType</a> type, std::format_string&lt;Args...&gt; <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">fmt</a>,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>               <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">Args</a>&amp;&amp;... <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">args</a>)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        std::string <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">msg</a> = std::format(<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">fmt</a>, std::forward&lt;Args&gt;(<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">args</a>)...);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordflow">if</span> (m_ctx.<a class="code hl_variable" href="structui_1_1MessageContext.html#a2613ffcea4c42a6722e996d86a79df4e">colorMode</a>) {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            <span class="keywordflow">switch</span> (type) {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a551b723eafd6a31d444fcb2f5920fbd3">MessageType::INFO</a>:</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                    std::cerr &lt;&lt; std::format(<span class="stringliteral">&quot;{}{}info:{} {}\n&quot;</span>, <a class="code hl_variable" href="namespaceui_1_1color.html#af320a0c17c6ec9a8e8f4cbdf5facd766">color::BOLD</a>,</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                                             <a class="code hl_variable" href="namespaceui_1_1color.html#af9e067985096e67e9d9f8d5e5694341b">color::BLUE</a>, <a class="code hl_variable" href="namespaceui_1_1color.html#ad819c282c1897eaf1d54ba8078109470">color::RESET</a>, <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">msg</a>);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a32bd8a1db2275458673903bdb84cb277">MessageType::WARN</a>:</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                    std::cerr &lt;&lt; std::format(<span class="stringliteral">&quot;{}{}warn:{} {}\n&quot;</span>, <a class="code hl_variable" href="namespaceui_1_1color.html#af320a0c17c6ec9a8e8f4cbdf5facd766">color::BOLD</a>,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                                             <a class="code hl_variable" href="namespaceui_1_1color.html#a0d9f7b4d6ebece3c6bbb559d12d42ce3">color::YELLOW</a>, <a class="code hl_variable" href="namespaceui_1_1color.html#ad819c282c1897eaf1d54ba8078109470">color::RESET</a>, <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">msg</a>);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99abb1ca97ec761fc37101737ba0aa2e7c5">MessageType::ERROR</a>:</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                    std::cerr &lt;&lt; std::format(<span class="stringliteral">&quot;{}{}error:{} {}\n&quot;</span>, <a class="code hl_variable" href="namespaceui_1_1color.html#af320a0c17c6ec9a8e8f4cbdf5facd766">color::BOLD</a>,</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                                             <a class="code hl_variable" href="namespaceui_1_1color.html#ae03871e05f14eaa77840d3eb1aad56a0">color::RED</a>, <a class="code hl_variable" href="namespaceui_1_1color.html#ad819c282c1897eaf1d54ba8078109470">color::RESET</a>, <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">msg</a>);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99adc30ec20708ef7b0f641ef78b7880a15">MessageType::DEBUG</a>:</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                    <span class="keywordflow">if</span> (m_ctx.<a class="code hl_variable" href="structui_1_1MessageContext.html#ad48c5ba8f0363164f6ff65d2bf8ac0e0">debugMode</a>) {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                        std::cerr &lt;&lt; std::format(<span class="stringliteral">&quot;{}debug:{} {}\n&quot;</span>, <a class="code hl_variable" href="namespaceui_1_1color.html#ad24c90bdb275cf70e7fc993888dc744b">color::DIM</a>,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                                                 <a class="code hl_variable" href="namespaceui_1_1color.html#ad819c282c1897eaf1d54ba8078109470">color::RESET</a>, <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">msg</a>);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                    }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a2e40ad879e955201df4dedbf8d479a12">MessageType::USER</a>:</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>                    <span class="keywordflow">if</span> (!m_ctx.<a class="code hl_variable" href="structui_1_1MessageContext.html#a4d11ee01fdc9c637a58d5aff56a677ad">backendMode</a>) {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                        std::cout &lt;&lt; <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">msg</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                    }</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            <span class="comment">// 无颜色模式</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            <span class="keywordflow">switch</span> (type) {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a551b723eafd6a31d444fcb2f5920fbd3">MessageType::INFO</a>:</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                    std::cerr &lt;&lt; std::format(<span class="stringliteral">&quot;info: {}\n&quot;</span>, <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">msg</a>);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a32bd8a1db2275458673903bdb84cb277">MessageType::WARN</a>:</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                    std::cerr &lt;&lt; std::format(<span class="stringliteral">&quot;warn: {}\n&quot;</span>, <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">msg</a>);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99abb1ca97ec761fc37101737ba0aa2e7c5">MessageType::ERROR</a>:</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                    std::cerr &lt;&lt; std::format(<span class="stringliteral">&quot;error: {}\n&quot;</span>, <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">msg</a>);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99adc30ec20708ef7b0f641ef78b7880a15">MessageType::DEBUG</a>:</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                    <span class="keywordflow">if</span> (m_ctx.<a class="code hl_variable" href="structui_1_1MessageContext.html#ad48c5ba8f0363164f6ff65d2bf8ac0e0">debugMode</a>) {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                        std::cerr &lt;&lt; std::format(<span class="stringliteral">&quot;debug: {}\n&quot;</span>, <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">msg</a>);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                    }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>                <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a2e40ad879e955201df4dedbf8d479a12">MessageType::USER</a>:</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                    <span class="keywordflow">if</span> (!m_ctx.<a class="code hl_variable" href="structui_1_1MessageContext.html#a4d11ee01fdc9c637a58d5aff56a677ad">backendMode</a>) {</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                        std::cout &lt;&lt; <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">msg</a> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>                    }</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            }</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        }</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    }</div>
+</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="comment">// Convenience member functions</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">Args</a>&gt;</div>
+<div class="foldopen" id="foldopen00106" data-start="{" data-end="}">
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classui_1_1MessagePrinter.html#a18f56d1da697e9af499c9378f0677235">  106</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classui_1_1MessagePrinter.html#a18f56d1da697e9af499c9378f0677235">info</a>(std::format_string&lt;Args...&gt; <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">fmt</a>, <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">Args</a>&amp;&amp;... <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">args</a>)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <a class="code hl_function" href="classui_1_1MessagePrinter.html#a26a52c93ef10707ed58a54f65251fcd9">print</a>(<a class="code hl_enumvalue" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a551b723eafd6a31d444fcb2f5920fbd3">MessageType::INFO</a>, <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">fmt</a>, std::forward&lt;Args&gt;(<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">args</a>)...);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    }</div>
+</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">Args</a>&gt;</div>
+<div class="foldopen" id="foldopen00110" data-start="{" data-end="}">
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="classui_1_1MessagePrinter.html#a6457f0a02e190766c2d7d1ea41042e77">  110</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classui_1_1MessagePrinter.html#a6457f0a02e190766c2d7d1ea41042e77">warn</a>(std::format_string&lt;Args...&gt; <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">fmt</a>, <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">Args</a>&amp;&amp;... <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">args</a>)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <a class="code hl_function" href="classui_1_1MessagePrinter.html#a26a52c93ef10707ed58a54f65251fcd9">print</a>(<a class="code hl_enumvalue" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a32bd8a1db2275458673903bdb84cb277">MessageType::WARN</a>, <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">fmt</a>, std::forward&lt;Args&gt;(<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">args</a>)...);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    }</div>
+</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">Args</a>&gt;</div>
+<div class="foldopen" id="foldopen00114" data-start="{" data-end="}">
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="classui_1_1MessagePrinter.html#ad09c33fdf5ec0710b52cfcc68959b804">  114</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classui_1_1MessagePrinter.html#ad09c33fdf5ec0710b52cfcc68959b804">error</a>(std::format_string&lt;Args...&gt; <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">fmt</a>, <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">Args</a>&amp;&amp;... <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">args</a>)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <a class="code hl_function" href="classui_1_1MessagePrinter.html#a26a52c93ef10707ed58a54f65251fcd9">print</a>(<a class="code hl_enumvalue" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99abb1ca97ec761fc37101737ba0aa2e7c5">MessageType::ERROR</a>, <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">fmt</a>, std::forward&lt;Args&gt;(<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">args</a>)...);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    }</div>
+</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">Args</a>&gt;</div>
+<div class="foldopen" id="foldopen00118" data-start="{" data-end="}">
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="classui_1_1MessagePrinter.html#a28b7ca475180ff9baf58271b09f48e3d">  118</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classui_1_1MessagePrinter.html#a28b7ca475180ff9baf58271b09f48e3d">debug</a>(std::format_string&lt;Args...&gt; <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">fmt</a>, <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">Args</a>&amp;&amp;... <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">args</a>)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        <a class="code hl_function" href="classui_1_1MessagePrinter.html#a26a52c93ef10707ed58a54f65251fcd9">print</a>(<a class="code hl_enumvalue" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99adc30ec20708ef7b0f641ef78b7880a15">MessageType::DEBUG</a>, <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">fmt</a>, std::forward&lt;Args&gt;(<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">args</a>)...);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    }</div>
+</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">Args</a>&gt;</div>
+<div class="foldopen" id="foldopen00122" data-start="{" data-end="}">
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="classui_1_1MessagePrinter.html#abac2f918314d58d36cc044d447f6672e">  122</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classui_1_1MessagePrinter.html#abac2f918314d58d36cc044d447f6672e">user</a>(std::format_string&lt;Args...&gt; <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">fmt</a>, <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">Args</a>&amp;&amp;... <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">args</a>)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <a class="code hl_function" href="classui_1_1MessagePrinter.html#a26a52c93ef10707ed58a54f65251fcd9">print</a>(<a class="code hl_enumvalue" href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a2e40ad879e955201df4dedbf8d479a12">MessageType::USER</a>, <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">fmt</a>, std::forward&lt;Args&gt;(<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">args</a>)...);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    }</div>
+</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="comment">// Static convenience function for simple string messages (默认带颜色)</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classui_1_1MessagePrinter.html#a18f56d1da697e9af499c9378f0677235">info</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">msg</a>);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classui_1_1MessagePrinter.html#a6457f0a02e190766c2d7d1ea41042e77">warn</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">msg</a>);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classui_1_1MessagePrinter.html#ad09c33fdf5ec0710b52cfcc68959b804">error</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">msg</a>);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classui_1_1MessagePrinter.html#ad56107a9512998491836066f39a3d3e2">success</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">msg</a>);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classui_1_1MessagePrinter.html#ac30670915f6d7f5ee4675b2df5e2683b">plain</a>(std::string_view <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">msg</a>);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="comment">// Expose context</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    [[<a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">nodiscard</a>]] <span class="keyword">auto</span> <a class="code hl_function" href="classui_1_1MessagePrinter.html#a2354d91a79650d00650a672513bba693">conext</a>() <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> -&gt; <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">const</a> <a class="code hl_struct" href="structui_1_1MessageContext.html">MessageContext</a>&amp;;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>   <a class="code hl_function" href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">private</a>:</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <a class="code hl_struct" href="structui_1_1MessageContext.html">MessageContext</a> m_ctx;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>};</div>
+</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>}  <span class="comment">// namespace ui</span></div>
+<div class="ttc" id="aclassui_1_1MessagePrinter_html"><div class="ttname"><a href="classui_1_1MessagePrinter.html">ui::MessagePrinter</a></div><div class="ttdef"><b>Definition</b> show_message.hpp:43</div></div>
+<div class="ttc" id="aclassui_1_1MessagePrinter_html_a18f56d1da697e9af499c9378f0677235"><div class="ttname"><a href="classui_1_1MessagePrinter.html#a18f56d1da697e9af499c9378f0677235">ui::MessagePrinter::info</a></div><div class="ttdeci">void info(std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</div><div class="ttdef"><b>Definition</b> show_message.hpp:106</div></div>
+<div class="ttc" id="aclassui_1_1MessagePrinter_html_a2354d91a79650d00650a672513bba693"><div class="ttname"><a href="classui_1_1MessagePrinter.html#a2354d91a79650d00650a672513bba693">ui::MessagePrinter::conext</a></div><div class="ttdeci">auto conext() const -&gt; const MessageContext &amp;</div><div class="ttdef"><b>Definition</b> show_message.cpp:10</div></div>
+<div class="ttc" id="aclassui_1_1MessagePrinter_html_a26a52c93ef10707ed58a54f65251fcd9"><div class="ttname"><a href="classui_1_1MessagePrinter.html#a26a52c93ef10707ed58a54f65251fcd9">ui::MessagePrinter::print</a></div><div class="ttdeci">void print(MessageType type, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</div><div class="ttdef"><b>Definition</b> show_message.hpp:48</div></div>
+<div class="ttc" id="aclassui_1_1MessagePrinter_html_a28b7ca475180ff9baf58271b09f48e3d"><div class="ttname"><a href="classui_1_1MessagePrinter.html#a28b7ca475180ff9baf58271b09f48e3d">ui::MessagePrinter::debug</a></div><div class="ttdeci">void debug(std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</div><div class="ttdef"><b>Definition</b> show_message.hpp:118</div></div>
+<div class="ttc" id="aclassui_1_1MessagePrinter_html_a6457f0a02e190766c2d7d1ea41042e77"><div class="ttname"><a href="classui_1_1MessagePrinter.html#a6457f0a02e190766c2d7d1ea41042e77">ui::MessagePrinter::warn</a></div><div class="ttdeci">void warn(std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</div><div class="ttdef"><b>Definition</b> show_message.hpp:110</div></div>
+<div class="ttc" id="aclassui_1_1MessagePrinter_html_abac2f918314d58d36cc044d447f6672e"><div class="ttname"><a href="classui_1_1MessagePrinter.html#abac2f918314d58d36cc044d447f6672e">ui::MessagePrinter::user</a></div><div class="ttdeci">void user(std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</div><div class="ttdef"><b>Definition</b> show_message.hpp:122</div></div>
+<div class="ttc" id="aclassui_1_1MessagePrinter_html_ac30670915f6d7f5ee4675b2df5e2683b"><div class="ttname"><a href="classui_1_1MessagePrinter.html#ac30670915f6d7f5ee4675b2df5e2683b">ui::MessagePrinter::plain</a></div><div class="ttdeci">static void plain(std::string_view msg)</div><div class="ttdef"><b>Definition</b> show_message.cpp:9</div></div>
+<div class="ttc" id="aclassui_1_1MessagePrinter_html_ad09c33fdf5ec0710b52cfcc68959b804"><div class="ttname"><a href="classui_1_1MessagePrinter.html#ad09c33fdf5ec0710b52cfcc68959b804">ui::MessagePrinter::error</a></div><div class="ttdeci">void error(std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</div><div class="ttdef"><b>Definition</b> show_message.hpp:114</div></div>
+<div class="ttc" id="aclassui_1_1MessagePrinter_html_ad56107a9512998491836066f39a3d3e2"><div class="ttname"><a href="classui_1_1MessagePrinter.html#ad56107a9512998491836066f39a3d3e2">ui::MessagePrinter::success</a></div><div class="ttdeci">static void success(std::string_view msg)</div><div class="ttdef"><b>Definition</b> show_message.cpp:8</div></div>
+<div class="ttc" id="aflags_8hpp_html_a2bd4546b83b208d80dfb2fc0829d9cb1"><div class="ttname"><a href="flags_8hpp.html#a2bd4546b83b208d80dfb2fc0829d9cb1">flagForType</a></div><div class="ttdeci">consteval auto flagForType() noexcept -&gt; MatchFlags</div><div class="ttdef"><b>Definition</b> flags.hpp:106</div></div>
+<div class="ttc" id="anamespaceui_1_1color_html_a089f9c5f0403fed030cd3ef54a14089d"><div class="ttname"><a href="namespaceui_1_1color.html#a089f9c5f0403fed030cd3ef54a14089d">ui::color::WHITE</a></div><div class="ttdeci">constexpr std::string_view WHITE</div><div class="ttdef"><b>Definition</b> show_message.hpp:32</div></div>
+<div class="ttc" id="anamespaceui_1_1color_html_a0d9f7b4d6ebece3c6bbb559d12d42ce3"><div class="ttname"><a href="namespaceui_1_1color.html#a0d9f7b4d6ebece3c6bbb559d12d42ce3">ui::color::YELLOW</a></div><div class="ttdeci">constexpr std::string_view YELLOW</div><div class="ttdef"><b>Definition</b> show_message.hpp:28</div></div>
+<div class="ttc" id="anamespaceui_1_1color_html_a3b15367997ee75c6fa303786159fdc41"><div class="ttname"><a href="namespaceui_1_1color.html#a3b15367997ee75c6fa303786159fdc41">ui::color::CYAN</a></div><div class="ttdeci">constexpr std::string_view CYAN</div><div class="ttdef"><b>Definition</b> show_message.hpp:31</div></div>
+<div class="ttc" id="anamespaceui_1_1color_html_a66fde3a90292a685e1b4359a39eddbcf"><div class="ttname"><a href="namespaceui_1_1color.html#a66fde3a90292a685e1b4359a39eddbcf">ui::color::GREEN</a></div><div class="ttdeci">constexpr std::string_view GREEN</div><div class="ttdef"><b>Definition</b> show_message.hpp:27</div></div>
+<div class="ttc" id="anamespaceui_1_1color_html_a6829b4fa3cb9211b4ac106c73ba19be6"><div class="ttname"><a href="namespaceui_1_1color.html#a6829b4fa3cb9211b4ac106c73ba19be6">ui::color::BRIGHT_YELLOW</a></div><div class="ttdeci">constexpr std::string_view BRIGHT_YELLOW</div><div class="ttdef"><b>Definition</b> show_message.hpp:37</div></div>
+<div class="ttc" id="anamespaceui_1_1color_html_a7607d89e60c252589d71b08b8a95d09d"><div class="ttname"><a href="namespaceui_1_1color.html#a7607d89e60c252589d71b08b8a95d09d">ui::color::BRIGHT_CYAN</a></div><div class="ttdeci">constexpr std::string_view BRIGHT_CYAN</div><div class="ttdef"><b>Definition</b> show_message.hpp:40</div></div>
+<div class="ttc" id="anamespaceui_1_1color_html_a7ff0fd024f2ec84e39725a3f3eb1ba6e"><div class="ttname"><a href="namespaceui_1_1color.html#a7ff0fd024f2ec84e39725a3f3eb1ba6e">ui::color::BRIGHT_RED</a></div><div class="ttdeci">constexpr std::string_view BRIGHT_RED</div><div class="ttdef"><b>Definition</b> show_message.hpp:35</div></div>
+<div class="ttc" id="anamespaceui_1_1color_html_ac06ec1a62d6827026cb0a9c1199c1ac8"><div class="ttname"><a href="namespaceui_1_1color.html#ac06ec1a62d6827026cb0a9c1199c1ac8">ui::color::BRIGHT_BLUE</a></div><div class="ttdeci">constexpr std::string_view BRIGHT_BLUE</div><div class="ttdef"><b>Definition</b> show_message.hpp:38</div></div>
+<div class="ttc" id="anamespaceui_1_1color_html_ac2cebcbd2ace228258aff3c500c5dc80"><div class="ttname"><a href="namespaceui_1_1color.html#ac2cebcbd2ace228258aff3c500c5dc80">ui::color::BLACK</a></div><div class="ttdeci">constexpr std::string_view BLACK</div><div class="ttdef"><b>Definition</b> show_message.hpp:25</div></div>
+<div class="ttc" id="anamespaceui_1_1color_html_acfa0fd6f7a65d361860225f8900a2a51"><div class="ttname"><a href="namespaceui_1_1color.html#acfa0fd6f7a65d361860225f8900a2a51">ui::color::BRIGHT_MAGENTA</a></div><div class="ttdeci">constexpr std::string_view BRIGHT_MAGENTA</div><div class="ttdef"><b>Definition</b> show_message.hpp:39</div></div>
+<div class="ttc" id="anamespaceui_1_1color_html_ad24c90bdb275cf70e7fc993888dc744b"><div class="ttname"><a href="namespaceui_1_1color.html#ad24c90bdb275cf70e7fc993888dc744b">ui::color::DIM</a></div><div class="ttdeci">constexpr std::string_view DIM</div><div class="ttdef"><b>Definition</b> show_message.hpp:22</div></div>
+<div class="ttc" id="anamespaceui_1_1color_html_ad819c282c1897eaf1d54ba8078109470"><div class="ttname"><a href="namespaceui_1_1color.html#ad819c282c1897eaf1d54ba8078109470">ui::color::RESET</a></div><div class="ttdeci">constexpr std::string_view RESET</div><div class="ttdef"><b>Definition</b> show_message.hpp:20</div></div>
+<div class="ttc" id="anamespaceui_1_1color_html_addde567215c75ee4918b2fcec8d5583e"><div class="ttname"><a href="namespaceui_1_1color.html#addde567215c75ee4918b2fcec8d5583e">ui::color::MAGENTA</a></div><div class="ttdeci">constexpr std::string_view MAGENTA</div><div class="ttdef"><b>Definition</b> show_message.hpp:30</div></div>
+<div class="ttc" id="anamespaceui_1_1color_html_ae03871e05f14eaa77840d3eb1aad56a0"><div class="ttname"><a href="namespaceui_1_1color.html#ae03871e05f14eaa77840d3eb1aad56a0">ui::color::RED</a></div><div class="ttdeci">constexpr std::string_view RED</div><div class="ttdef"><b>Definition</b> show_message.hpp:26</div></div>
+<div class="ttc" id="anamespaceui_1_1color_html_ae8a88904a28fadfdbd251f2237139684"><div class="ttname"><a href="namespaceui_1_1color.html#ae8a88904a28fadfdbd251f2237139684">ui::color::BRIGHT_GREEN</a></div><div class="ttdeci">constexpr std::string_view BRIGHT_GREEN</div><div class="ttdef"><b>Definition</b> show_message.hpp:36</div></div>
+<div class="ttc" id="anamespaceui_1_1color_html_af320a0c17c6ec9a8e8f4cbdf5facd766"><div class="ttname"><a href="namespaceui_1_1color.html#af320a0c17c6ec9a8e8f4cbdf5facd766">ui::color::BOLD</a></div><div class="ttdeci">constexpr std::string_view BOLD</div><div class="ttdef"><b>Definition</b> show_message.hpp:21</div></div>
+<div class="ttc" id="anamespaceui_1_1color_html_af9e067985096e67e9d9f8d5e5694341b"><div class="ttname"><a href="namespaceui_1_1color.html#af9e067985096e67e9d9f8d5e5694341b">ui::color::BLUE</a></div><div class="ttdeci">constexpr std::string_view BLUE</div><div class="ttdef"><b>Definition</b> show_message.hpp:29</div></div>
+<div class="ttc" id="anamespaceui_html"><div class="ttname"><a href="namespaceui.html">ui</a></div><div class="ttdef"><b>Definition</b> console.hpp:11</div></div>
+<div class="ttc" id="anamespaceui_html_a44e6b543cec37673f5eaa69b80960a99"><div class="ttname"><a href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99">ui::MessageType</a></div><div class="ttdeci">MessageType</div><div class="ttdef"><b>Definition</b> show_message.hpp:10</div></div>
+<div class="ttc" id="anamespaceui_html_a44e6b543cec37673f5eaa69b80960a99a2e40ad879e955201df4dedbf8d479a12"><div class="ttname"><a href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a2e40ad879e955201df4dedbf8d479a12">ui::MessageType::USER</a></div><div class="ttdeci">@ USER</div></div>
+<div class="ttc" id="anamespaceui_html_a44e6b543cec37673f5eaa69b80960a99a32bd8a1db2275458673903bdb84cb277"><div class="ttname"><a href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a32bd8a1db2275458673903bdb84cb277">ui::MessageType::WARN</a></div><div class="ttdeci">@ WARN</div></div>
+<div class="ttc" id="anamespaceui_html_a44e6b543cec37673f5eaa69b80960a99a551b723eafd6a31d444fcb2f5920fbd3"><div class="ttname"><a href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a551b723eafd6a31d444fcb2f5920fbd3">ui::MessageType::INFO</a></div><div class="ttdeci">@ INFO</div></div>
+<div class="ttc" id="anamespaceui_html_a44e6b543cec37673f5eaa69b80960a99abb1ca97ec761fc37101737ba0aa2e7c5"><div class="ttname"><a href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99abb1ca97ec761fc37101737ba0aa2e7c5">ui::MessageType::ERROR</a></div><div class="ttdeci">@ ERROR</div></div>
+<div class="ttc" id="anamespaceui_html_a44e6b543cec37673f5eaa69b80960a99adc30ec20708ef7b0f641ef78b7880a15"><div class="ttname"><a href="namespaceui.html#a44e6b543cec37673f5eaa69b80960a99adc30ec20708ef7b0f641ef78b7880a15">ui::MessageType::DEBUG</a></div><div class="ttdeci">@ DEBUG</div></div>
+<div class="ttc" id="anamespaceui_html_a4b8a6d96aee295a8102d06460fe071f2a551b723eafd6a31d444fcb2f5920fbd3"><div class="ttname"><a href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2a551b723eafd6a31d444fcb2f5920fbd3">ui::MessageLevel::INFO</a></div><div class="ttdeci">@ INFO</div></div>
+<div class="ttc" id="anamespaceui_html_a4b8a6d96aee295a8102d06460fe071f2abb1ca97ec761fc37101737ba0aa2e7c5"><div class="ttname"><a href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2abb1ca97ec761fc37101737ba0aa2e7c5">ui::MessageLevel::ERROR</a></div><div class="ttdeci">@ ERROR</div></div>
+<div class="ttc" id="anamespaceui_html_a4b8a6d96aee295a8102d06460fe071f2adc30ec20708ef7b0f641ef78b7880a15"><div class="ttname"><a href="namespaceui.html#a4b8a6d96aee295a8102d06460fe071f2adc30ec20708ef7b0f641ef78b7880a15">ui::MessageLevel::DEBUG</a></div><div class="ttdeci">@ DEBUG</div></div>
+<div class="ttc" id="astructui_1_1MessageContext_html"><div class="ttname"><a href="structui_1_1MessageContext.html">ui::MessageContext</a></div><div class="ttdef"><b>Definition</b> show_message.hpp:12</div></div>
+<div class="ttc" id="astructui_1_1MessageContext_html_a2613ffcea4c42a6722e996d86a79df4e"><div class="ttname"><a href="structui_1_1MessageContext.html#a2613ffcea4c42a6722e996d86a79df4e">ui::MessageContext::colorMode</a></div><div class="ttdeci">bool colorMode</div><div class="ttdef"><b>Definition</b> show_message.hpp:15</div></div>
+<div class="ttc" id="astructui_1_1MessageContext_html_a4d11ee01fdc9c637a58d5aff56a677ad"><div class="ttname"><a href="structui_1_1MessageContext.html#a4d11ee01fdc9c637a58d5aff56a677ad">ui::MessageContext::backendMode</a></div><div class="ttdeci">bool backendMode</div><div class="ttdef"><b>Definition</b> show_message.hpp:14</div></div>
+<div class="ttc" id="astructui_1_1MessageContext_html_ad48c5ba8f0363164f6ff65d2bf8ac0e0"><div class="ttname"><a href="structui_1_1MessageContext.html#ad48c5ba8f0363164f6ff65d2bf8ac0e0">ui::MessageContext::debugMode</a></div><div class="ttdeci">bool debugMode</div><div class="ttdef"><b>Definition</b> show_message.hpp:13</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_61322cca43ef6011f730695c31aaa6cc.html">newscanmem</a></li><li class="navelem"><a class="el" href="dir_ca0892c25de47923020ce218191adf45.html">ui</a></li><li class="navelem"><a class="el" href="show__message_8hpp.html">show_message.hpp</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

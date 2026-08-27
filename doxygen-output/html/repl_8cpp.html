@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: src/cli/repl.cpp 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('repl_8cpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">命名空间</a>  </div>
+  <div class="headertitle"><div class="title">repl.cpp 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="repl_8hpp_source.html">newscanmem/cli/repl.hpp</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+repl.cpp 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="repl_8cpp__incl.png" border="0" usemap="#asrc_2cli_2repl_8cpp" alt=""/></div>
+<map name="asrc_2cli_2repl_8cpp" id="asrc_2cli_2repl_8cpp">
+<area shape="rect" title=" " alt="" coords="513,5,629,31"/>
+<area shape="rect" href="repl_8hpp.html" title="Read&#45;Eval&#45;Print&#45;Loop for interactive CLI" alt="" coords="476,79,665,104"/>
+<area shape="poly" title=" " alt="" coords="573,31,573,65,568,65,568,31"/>
+<area shape="rect" title=" " alt="" coords="5,240,88,265"/>
+<area shape="poly" title=" " alt="" coords="476,96,408,101,331,111,252,128,176,154,144,171,115,191,69,232,65,228,112,187,142,166,174,150,250,123,330,106,407,96,476,91"/>
+<area shape="rect" title=" " alt="" coords="1067,159,1154,185"/>
+<area shape="poly" title=" " alt="" coords="666,96,848,114,953,129,1057,149,1069,153,1067,158,1055,155,952,134,847,119,665,101"/>
+<area shape="rect" title=" " alt="" coords="112,240,189,265"/>
+<area shape="poly" title=" " alt="" coords="476,103,328,122,262,136,217,154,199,170,184,189,162,228,158,226,179,186,195,166,215,150,261,131,327,116,475,97"/>
+<area shape="rect" title=" " alt="" coords="539,240,597,265"/>
+<area shape="poly" title=" " alt="" coords="573,104,571,226,566,226,568,104"/>
+<area shape="rect" title=" " alt="" coords="622,240,719,265"/>
+<area shape="poly" title=" " alt="" coords="578,103,596,143,624,191,653,228,648,231,619,193,592,145,573,105"/>
+<area shape="rect" title=" " alt="" coords="1178,159,1238,185"/>
+<area shape="poly" title=" " alt="" coords="666,90,770,94,896,103,1033,121,1167,149,1174,152,1173,157,1166,155,1032,126,896,108,770,99,666,95"/>
+<area shape="rect" title=" " alt="" coords="451,240,514,265"/>
+<area shape="poly" title=" " alt="" coords="567,105,498,229,493,227,562,103"/>
+<area shape="rect" href="command_8hpp.html" title="Command pattern base classes and registry for CLI" alt="" coords="228,159,457,185"/>
+<area shape="poly" title=" " alt="" coords="538,107,390,157,388,152,537,101"/>
+<area shape="rect" href="interface_8hpp.html" title="Abstract user interface for scanmem" alt="" coords="633,159,852,185"/>
+<area shape="poly" title=" " alt="" coords="597,102,706,151,704,156,595,106"/>
+<area shape="rect" href="show__message_8hpp.html" title=" " alt="" coords="877,152,1043,192"/>
+<area shape="poly" title=" " alt="" coords="628,101,864,149,863,154,627,107"/>
+<area shape="poly" title=" " alt="" coords="300,187,102,239,101,234,299,182"/>
+<area shape="poly" title=" " alt="" coords="316,187,192,237,190,232,314,182"/>
+<area shape="poly" title=" " alt="" coords="376,182,527,234,525,239,375,187"/>
+<area shape="poly" title=" " alt="" coords="391,182,611,234,609,239,390,187"/>
+<area shape="poly" title=" " alt="" coords="365,183,451,231,449,236,362,187"/>
+<area shape="rect" title=" " alt="" coords="362,240,427,265"/>
+<area shape="poly" title=" " alt="" coords="353,183,382,227,377,230,348,186"/>
+<area shape="rect" title=" " alt="" coords="214,240,338,265"/>
+<area shape="poly" title=" " alt="" coords="335,187,297,231,293,228,331,183"/>
+<area shape="poly" title=" " alt="" coords="718,187,607,237,605,232,716,182"/>
+<area shape="poly" title=" " alt="" coords="734,187,693,231,689,228,730,183"/>
+<area shape="rect" title=" " alt="" coords="843,240,909,265"/>
+<area shape="poly" title=" " alt="" coords="764,183,846,231,843,235,761,187"/>
+<area shape="rect" title=" " alt="" coords="744,240,819,265"/>
+<area shape="poly" title=" " alt="" coords="751,184,772,226,767,229,746,186"/>
+<area shape="poly" title=" " alt="" coords="891,195,727,239,726,234,890,189"/>
+<area shape="poly" title=" " alt="" coords="941,194,900,232,897,229,938,190"/>
+<area shape="rect" title=" " alt="" coords="1037,240,1104,265"/>
+<area shape="poly" title=" " alt="" coords="988,190,1045,230,1042,234,985,194"/>
+<area shape="rect" title=" " alt="" coords="933,240,1013,265"/>
+<area shape="poly" title=" " alt="" coords="966,192,972,226,966,227,961,193"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+命名空间</h2></td></tr>
+<tr class="memitem:namespacecli" id="r_namespacecli"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecli.html">cli</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_b78fdfbbb632ce54d070469d6a721373.html">cli</a></li><li class="navelem"><a class="el" href="repl_8cpp.html">repl.cpp</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

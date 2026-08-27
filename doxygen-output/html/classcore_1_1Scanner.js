@@ -1,8 +1,8 @@
 var classcore_1_1Scanner =
 [
     [ "Scanner", "classcore_1_1Scanner.html#aa4f39c860299a9b19799409dbf2a8cb2", null ],
-    [ "clearMatches", "classcore_1_1Scanner.html#ab8624ad193ac828e10fd0b440508effd", null ],
-    [ "clearResultHistory", "classcore_1_1Scanner.html#ac95d7917671d1dee4650693650ea22f9", null ],
+    [ "clearMatches", "classcore_1_1Scanner.html#ae0cab748848e3fee9a2b2b760d7e5192", null ],
+    [ "clearResultHistory", "classcore_1_1Scanner.html#ac24e51071cb7131a7ff72238143901b0", null ],
     [ "filter", "classcore_1_1Scanner.html#a7a141b7f33c721eb51b760204c01a0c9", null ],
     [ "getLastDataType", "classcore_1_1Scanner.html#a175cff5ca3dd3a6769de4d06e9daccd6", null ],
     [ "getMatchCount", "classcore_1_1Scanner.html#a0fdc585f1b3064570c06478c7871093f", null ],
@@ -14,6 +14,6 @@ var classcore_1_1Scanner =
     [ "getResults", "classcore_1_1Scanner.html#ab65f9fe4ffc9875efa65430a2f069ccb", null ],
     [ "hasMatches", "classcore_1_1Scanner.html#aa4e7c5e1c6475faecbc92452b1a511a6", null ],
     [ "rescan", "classcore_1_1Scanner.html#a28bc89ff8c798b53cfd307e4913552d9", null ],
-    [ "reset", "classcore_1_1Scanner.html#aa833ee1e069e430aca2d983a206c11ce", null ],
+    [ "reset", "classcore_1_1Scanner.html#a57e11a2163de97a8c87ea8cc388682f9", null ],
     [ "snapshot", "classcore_1_1Scanner.html#af3732d180574a84696b5f0ac09a2e50d", null ]
 ];

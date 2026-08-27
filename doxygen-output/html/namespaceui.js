@@ -51,6 +51,6 @@ var namespaceui =
       [ "USER", "namespaceui.html#a44e6b543cec37673f5eaa69b80960a99a2e40ad879e955201df4dedbf8d479a12", null ]
     ] ],
     [ "makeConsoleUI", "namespaceui.html#a02903ff89a09404ef09cdbcae5e330e4", null ],
-    [ "makeConsoleUI", "namespaceui.html#abef5789b57a74dc96b8c8fc35a30a125", null ],
+    [ "makeConsoleUI", "namespaceui.html#ac5bb1796634b6938af309f38d37dd852", null ],
     [ "readKey", "namespaceui.html#a3144e0f770336bf1c2731dd0d451525a", null ]
 ];

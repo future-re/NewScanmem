@@ -9,9 +9,8 @@ var indexSectionsWithContent =
   6: "csv",
   7: "eklmprs",
   8: "abcdefhilmrstuwz",
-  9: "弃",
-  10: "v",
-  11: "acsuv"
+  9: "ls弃",
+  10: "v"
 };
 
 var indexSectionNames =
@@ -26,8 +25,7 @@ var indexSectionNames =
   7: "enums",
   8: "enumvalues",
   9: "pages",
-  10: "concepts",
-  11: "modules"
+  10: "concepts"
 };
 
 var indexSectionLabels =
@@ -42,7 +40,6 @@ var indexSectionLabels =
   7: "枚举",
   8: "枚举值",
   9: "页",
-  10: "概念",
-  11: "模块"
+  10: "概念"
 };
 

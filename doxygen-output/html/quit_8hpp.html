@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NewScanmem: include/newscanmem/cli/commands/quit.hpp 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">NewScanmem
+   </div>
+   <div id="projectbrief">Modern C++20 Memory Scanner</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('quit_8hpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#namespaces">命名空间</a>  </div>
+  <div class="headertitle"><div class="title">quit.hpp 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Quit command implementation  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &lt;expected&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;string_view&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &quot;<a class="el" href="command_8hpp_source.html">newscanmem/cli/command.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="show__message_8hpp_source.html">newscanmem/ui/show_message.hpp</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+quit.hpp 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="quit_8hpp__incl.png" border="0" usemap="#ainclude_2newscanmem_2cli_2commands_2quit_8hpp" alt=""/></div>
+<map name="ainclude_2newscanmem_2cli_2commands_2quit_8hpp" id="ainclude_2newscanmem_2cli_2commands_2quit_8hpp">
+<area shape="rect" title="Quit command implementation" alt="" coords="382,5,557,45"/>
+<area shape="rect" title=" " alt="" coords="413,181,496,207"/>
+<area shape="poly" title=" " alt="" coords="470,46,460,168,454,168,465,45"/>
+<area shape="rect" title=" " alt="" coords="520,181,579,207"/>
+<area shape="poly" title=" " alt="" coords="481,44,522,132,540,168,535,171,518,134,476,47"/>
+<area shape="rect" title=" " alt="" coords="291,181,389,207"/>
+<area shape="poly" title=" " alt="" coords="457,47,359,172,355,169,452,44"/>
+<area shape="rect" title=" " alt="" coords="943,181,1006,207"/>
+<area shape="poly" title=" " alt="" coords="557,37,662,59,774,91,869,131,945,172,942,177,866,136,772,96,661,64,556,43"/>
+<area shape="rect" href="command_8hpp.html" title="Command pattern base classes and registry for CLI" alt="" coords="532,101,761,126"/>
+<area shape="poly" title=" " alt="" coords="509,43,612,92,610,97,507,48"/>
+<area shape="rect" href="show__message_8hpp.html" title=" " alt="" coords="143,93,310,133"/>
+<area shape="poly" title=" " alt="" coords="417,48,293,91,292,86,415,43"/>
+<area shape="poly" title=" " alt="" coords="620,128,496,179,494,174,618,124"/>
+<area shape="poly" title=" " alt="" coords="634,128,576,175,573,171,631,124"/>
+<area shape="poly" title=" " alt="" coords="603,129,399,181,397,175,601,123"/>
+<area shape="poly" title=" " alt="" coords="698,123,931,178,929,183,697,129"/>
+<area shape="rect" title=" " alt="" coords="603,181,669,207"/>
+<area shape="poly" title=" " alt="" coords="648,127,642,168,637,167,642,126"/>
+<area shape="rect" title=" " alt="" coords="693,181,771,207"/>
+<area shape="poly" title=" " alt="" coords="661,124,711,170,707,174,657,128"/>
+<area shape="rect" title=" " alt="" coords="795,181,919,207"/>
+<area shape="poly" title=" " alt="" coords="678,124,815,174,813,179,676,129"/>
+<area shape="poly" title=" " alt="" coords="256,131,313,171,310,175,253,136"/>
+<area shape="rect" title=" " alt="" coords="5,181,72,207"/>
+<area shape="poly" title=" " alt="" coords="183,136,80,178,78,173,181,131"/>
+<area shape="rect" title=" " alt="" coords="96,181,163,207"/>
+<area shape="poly" title=" " alt="" coords="205,136,156,175,153,170,201,131"/>
+<area shape="rect" title=" " alt="" coords="187,181,267,207"/>
+<area shape="poly" title=" " alt="" coords="229,134,229,167,224,167,224,134"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件直接或间接的被哪些文件引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="quit_8hpp__dep__incl.png" border="0" usemap="#ainclude_2newscanmem_2cli_2commands_2quit_8hppdep" alt=""/></div>
+<map name="ainclude_2newscanmem_2cli_2commands_2quit_8hppdep" id="ainclude_2newscanmem_2cli_2commands_2quit_8hppdep">
+<area shape="rect" title="Quit command implementation" alt="" coords="63,5,238,45"/>
+<area shape="rect" href="app_8cpp.html" title=" " alt="" coords="5,93,120,119"/>
+<area shape="poly" title=" " alt="" coords="121,57,78,95,74,91,117,53"/>
+<area shape="rect" href="quit_8cpp.html" title=" " alt="" coords="144,93,336,119"/>
+<area shape="poly" title=" " alt="" coords="184,52,228,91,225,95,181,56"/>
+</map>
+</div>
+</div>
+<p><a href="quit_8hpp_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcli_1_1commands_1_1QuitCommand.html">cli::commands::QuitCommand</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exit the application  <a href="classcli_1_1commands_1_1QuitCommand.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+命名空间</h2></td></tr>
+<tr class="memitem:namespacecli" id="r_namespacecli"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecli.html">cli</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacecli_1_1commands" id="r_namespacecli_1_1commands"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecli_1_1commands.html">cli::commands</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>Quit command implementation </p>
+</div></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_61322cca43ef6011f730695c31aaa6cc.html">newscanmem</a></li><li class="navelem"><a class="el" href="dir_d31eaeb6d823332a180a968b1135dab5.html">cli</a></li><li class="navelem"><a class="el" href="dir_630c60a17b333f446586a98b7ec61d03.html">commands</a></li><li class="navelem"><a class="el" href="quit_8hpp.html">quit.hpp</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>
