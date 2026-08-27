@@ -5,6 +5,7 @@
 #include <bit>
 #include <latch>
 #include <span>
+#include <string_view>
 #include <thread>
 #include <utility>
 #include <vector>
@@ -115,10 +116,6 @@ auto scanRegion(
     ++stats.regionsVisited;
     MatchesAndOldValuesSwath swath;
 
-    // Read enough look-ahead bytes to let candidates near the end of one block
-    // see a complete scan window. Only the primary bytes are appended/scanned
-    // as candidate starts; look-ahead bytes are processed normally by the next
-    // iteration, so matches are neither missed nor counted twice.
     const auto overlap = oldLength > 0 ? oldLength - 1 : 0;
     std::vector<std::uint8_t> buffer(options.blockSize + overlap);
     const bool regexBlockMode = options.dataType == ScanDataType::STRING &&
