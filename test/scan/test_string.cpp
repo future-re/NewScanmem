@@ -50,20 +50,24 @@ TEST_F(ScanStringTest,
     EXPECT_EQ(result.matchLength, 5U);  // "Hello" is 5 bytes
 }
 
-TEST_F(ScanStringTest, RegexMatchWithNullSaveFlagsDoesNotCrash) {
+TEST_F(ScanStringTest, RegexRoutineMatchesOnlyAtCurrentScanPosition) {
     std::vector<uint8_t> data = {'t', 'e', 's', 't', '1', '2', '3'};
     m_mem = Value(data);
-
     UserValue userValue = UserValue::fromString("[0-9]+");
-
     auto routine = makeStringScanRoutine(ScanMatchType::MATCH_REGEX);
-    auto ctx = scan::makeScanContext(
+
+    auto fullContext = scan::makeScanContext(
         std::span<const uint8_t>(m_mem.bytes.data(), m_mem.bytes.size()),
         nullptr, &userValue, userValue.flag(), false);
+    const auto shiftedResult = routine(fullContext);
+    EXPECT_FALSE(shiftedResult);
 
-    auto result = routine(ctx);
-
-    EXPECT_EQ(result.matchLength, 3U);  // "123" matches the regex
+    auto numberContext = scan::makeScanContext(
+        std::span<const uint8_t>(m_mem.bytes.data() + 4, 3), nullptr,
+        &userValue, userValue.flag(), false);
+    const auto exactResult = routine(numberContext);
+    EXPECT_TRUE(exactResult);
+    EXPECT_EQ(exactResult.matchLength, 3U);
 }
 
 TEST_F(ScanStringTest, StringRoutineSetsFlags) {
