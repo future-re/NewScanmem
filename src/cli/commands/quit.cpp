@@ -1,5 +1,7 @@
 #include "newscanmem/cli/commands/quit.hpp"
 
+#include "newscanmem/ui/show_message.hpp"
+
 namespace cli::commands {
 auto QuitCommand::getName() const -> std::string_view { return "quit"; }
 auto QuitCommand::getDescription() const -> std::string_view {
