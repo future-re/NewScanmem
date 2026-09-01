@@ -23,7 +23,8 @@ Checks: >-
   -modernize-use-trailing-return-type,
   -readability-function-cognitive-complexity,
   -readability-magic-numbers,
-  -readability-redundant-declaration
+  -readability-redundant-declaration,
+  -performance-no-int-to-ptr
 
 WarningsAsErrors: ''
 HeaderFilterRegex: '^(.*[/\\])?(include|src|test|tests)[/\\].*'
