@@ -1,4 +1,4 @@
-#include "newscanmem/core/region_filter.hpp"
+#include "memseek/core/region_filter.hpp"
 
 namespace core {
 RegionFilter::RegionFilter(std::unordered_set<RegionType> allowedTypes)

@@ -1,6 +1,6 @@
-#include "newscanmem/cli/commands/quit.hpp"
+#include "memseek/cli/commands/quit.hpp"
 
-#include "newscanmem/ui/show_message.hpp"
+#include "memseek/ui/show_message.hpp"
 
 namespace cli::commands {
 auto QuitCommand::getName() const -> std::string_view { return "quit"; }

@@ -1,4 +1,4 @@
-#include "newscanmem/cli/commands/scan.hpp"
+#include "memseek/cli/commands/scan.hpp"
 
 #include <format>
 #include <optional>
@@ -6,14 +6,14 @@
 #include <string_view>
 #include <vector>
 
-#include "newscanmem/app/result_service.hpp"
-#include "newscanmem/app/scan_service.hpp"
-#include "newscanmem/core/match_formatter.hpp"
-#include "newscanmem/scan/types.hpp"
-#include "newscanmem/ui/show_message.hpp"
-#include "newscanmem/utils/logging.hpp"
-#include "newscanmem/value/core.hpp"
-#include "newscanmem/value/parser.hpp"
+#include "memseek/app/result_service.hpp"
+#include "memseek/app/scan_service.hpp"
+#include "memseek/core/match_formatter.hpp"
+#include "memseek/scan/types.hpp"
+#include "memseek/ui/show_message.hpp"
+#include "memseek/utils/logging.hpp"
+#include "memseek/value/core.hpp"
+#include "memseek/value/parser.hpp"
 
 namespace cli::commands {
 

@@ -37,7 +37,7 @@
   - 验收：CTest 通过，覆盖率阈值达标。
 
 - [ ] 设计稳定 C API（优先级：高）
-  - 在 `include/newscanmem.h` 定义最小可用函数集：
+  - 在 `include/memseek.h` 定义最小可用函数集：
     - `ns_open`, `ns_attach`, `ns_scan`, `ns_read`, `ns_write`, `ns_close`
     - 错误码与不透明句柄类型，避免 C++ 细节泄露到 ABI。
   - 设计文档：接口说明、线程安全策略、错误处理与版本化策略。
@@ -45,7 +45,7 @@
 
 - [ ] 实现并导出 C API（优先级：高）
   - 新增桥接实现 `.cpp`（非模块 TU），`extern "C"` 调用 C++20 模块。
-  - 生成共享库 `libnewscanmem`，并提供 C 示例与 CTest。
+  - 生成共享库 `libmemseek`，并提供 C 示例与 CTest。
   - 验收：示例可编译运行，导出符号可用（`nm`/`dumpbin` 验证）。
 
 - [ ] Python 绑定方案选型（优先级：中）
@@ -55,7 +55,7 @@
 
 - [ ] 实现 Python 包（优先级：中）
   - 建立 `python/` 目录，使用 `pyproject.toml` + `scikit-build-core`/CMake 构建。
-  - 实现模块 `newscanmem` 封装高层 API；编写 `pytest` 最小用例与示例。
+  - 实现模块 `memseek` 封装高层 API；编写 `pytest` 最小用例与示例。
   - 验收：本地 `pip install -e .` 成功，测试通过，示例可运行。
 
 - [ ] GUI 原型设计（优先级：中）

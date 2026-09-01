@@ -1,4 +1,4 @@
-#include "newscanmem/ui/interface.hpp"
+#include "memseek/ui/interface.hpp"
 
 namespace ui {
 void UserInterface::printMessage(const MessageLevel level,

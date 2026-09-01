@@ -4,7 +4,7 @@
 #include <sstream>
 #include <string>
 
-#include "newscanmem/ui/show_message.hpp"
+#include "memseek/ui/show_message.hpp"
 
 using ui::MessageContext;
 using ui::MessagePrinter;

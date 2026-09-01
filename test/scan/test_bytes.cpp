@@ -5,12 +5,12 @@
 #include <string>
 #include <vector>
 
-#include "newscanmem/scan/bytes.hpp"
-#include "newscanmem/scan/routine.hpp"
-#include "newscanmem/scan/string.hpp"
-#include "newscanmem/scan/types.hpp"
-#include "newscanmem/value/core.hpp"
-#include "newscanmem/value/flags.hpp"
+#include "memseek/scan/bytes.hpp"
+#include "memseek/scan/routine.hpp"
+#include "memseek/scan/string.hpp"
+#include "memseek/scan/types.hpp"
+#include "memseek/value/core.hpp"
+#include "memseek/value/flags.hpp"
 
 namespace {
 

@@ -1,4 +1,4 @@
-#include "newscanmem/scan/numeric.hpp"
+#include "memseek/scan/numeric.hpp"
 
 namespace detail {
 

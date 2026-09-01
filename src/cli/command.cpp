@@ -1,4 +1,4 @@
-#include "newscanmem/cli/command.hpp"
+#include "memseek/cli/command.hpp"
 
 namespace cli {
 auto Command::getAliases() const -> std::vector<std::string_view> { return {}; }

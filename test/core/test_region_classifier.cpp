@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <string>
 
-#include "newscanmem/core/region_classifier.hpp"
+#include "memseek/core/region_classifier.hpp"
 
 using core::RegionClassifier;
 

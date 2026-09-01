@@ -4,13 +4,13 @@
 #include <string>
 #include <vector>
 
-#include "newscanmem/core/match.hpp"
-#include "newscanmem/core/scanner.hpp"
-#include "newscanmem/core/region_filter.hpp"
-#include "newscanmem/core/maps.hpp"
-#include "newscanmem/core/region_classifier.hpp"
-#include "newscanmem/scan/match_storage.hpp"
-#include "newscanmem/value/flags.hpp"
+#include "memseek/core/match.hpp"
+#include "memseek/core/scanner.hpp"
+#include "memseek/core/region_filter.hpp"
+#include "memseek/core/maps.hpp"
+#include "memseek/core/region_classifier.hpp"
+#include "memseek/scan/match_storage.hpp"
+#include "memseek/value/flags.hpp"
 
 using core::MatchCollectionOptions;
 using core::MatchCollector;

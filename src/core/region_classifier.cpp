@@ -1,4 +1,4 @@
-#include "newscanmem/core/region_classifier.hpp"
+#include "memseek/core/region_classifier.hpp"
 
 namespace core {
 RegionClassifier::RegionClassifier(std::vector<RegionLookupEntry> regions)

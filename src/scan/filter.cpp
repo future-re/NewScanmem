@@ -1,12 +1,12 @@
-#include "newscanmem/scan/filter.hpp"
+#include "memseek/scan/filter.hpp"
 
 #include <span>
 #include <vector>
 
-#include "newscanmem/core/proc_mem.hpp"
-#include "newscanmem/scan/job.hpp"
-#include "newscanmem/scan/routine.hpp"
-#include "newscanmem/value/flags.hpp"
+#include "memseek/core/proc_mem.hpp"
+#include "memseek/scan/job.hpp"
+#include "memseek/scan/routine.hpp"
+#include "memseek/value/flags.hpp"
 
 namespace {
 auto oldValueForCell(const scan::MatchesAndOldValuesSwath& swath,

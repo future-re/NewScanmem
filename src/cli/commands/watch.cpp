@@ -1,4 +1,4 @@
-#include "newscanmem/cli/commands/watch.hpp"
+#include "memseek/cli/commands/watch.hpp"
 
 #include <sys/uio.h>
 
@@ -9,7 +9,7 @@
 #include <format>
 #include <thread>
 
-#include "newscanmem/ui/show_message.hpp"
+#include "memseek/ui/show_message.hpp"
 
 namespace cli::commands {
 

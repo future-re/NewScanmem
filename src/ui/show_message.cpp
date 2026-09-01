@@ -1,4 +1,4 @@
-#include "newscanmem/ui/show_message.hpp"
+#include "memseek/ui/show_message.hpp"
 
 namespace ui {
 MessagePrinter::MessagePrinter(const MessageContext context) : m_ctx(context) {}

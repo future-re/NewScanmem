@@ -1,8 +1,8 @@
-#include "newscanmem/core/memory_writer.hpp"
-#include "newscanmem/core/scanner.hpp"
-#include "newscanmem/scan/match_storage.hpp"
-#include "newscanmem/value/core.hpp"
-#include "newscanmem/value/flags.hpp"
+#include "memseek/core/memory_writer.hpp"
+#include "memseek/core/scanner.hpp"
+#include "memseek/scan/match_storage.hpp"
+#include "memseek/value/core.hpp"
+#include "memseek/value/flags.hpp"
 
 #include <gtest/gtest.h>
 #include <unistd.h>

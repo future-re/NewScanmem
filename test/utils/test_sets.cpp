@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "newscanmem/utils/sets.hpp"
+#include "memseek/utils/sets.hpp"
 
 TEST(ParseUintSetTest, ValidInput) {
     Set set;

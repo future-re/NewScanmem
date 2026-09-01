@@ -1,6 +1,6 @@
 # memseek
 
-memseek 是一个使用现代 C++ 重构的内存扫描工具，公共接口位于 `include/newscanmem/`，旨在通过强类型和稳定的头文件接口提升可读性、可维护性和集成能力。
+memseek 是一个使用现代 C++ 重构的内存扫描工具，公共接口位于 `include/memseek/`，旨在通过强类型和稳定的头文件接口提升可读性、可维护性和集成能力。
 
 [原项目 Scanmem地址](https://github.com/scanmem/scanmem)
 
@@ -16,7 +16,7 @@ memseek 是一个现代化的 Linux 内存扫描工具，专为进程内存分�
 
 ## 🚀 特性
 
-- **稳定头文件接口**：公共头文件位于 `include/newscanmem/`，不依赖 C++ Modules 或 BMI 缓存。
+- **稳定头文件接口**：公共头文件位于 `include/memseek/`，不依赖 C++ Modules 或 BMI 缓存。
 - **现代化代码风格**：引入强类型枚举（`enum class`）、`std::string_view` 等现代 C++ 特性。
 - **标准库实现**：正则、集合解析和文件操作使用 C++ 标准库，减少外部依赖。
 - **高效内存扫描**：优化内存扫描逻辑，提升性能和稳定性。
@@ -44,7 +44,7 @@ cd mkdocs && mkdocs gh-deploy
 
 项目的完整文档已部署至 GitHub Pages，您可以通过以下链接访问：
 
-- [memseek 文档站点](https://future-re.github.io/NewScanmem/)（推荐）
+- [memseek 文档站点](https://future-re.github.io/Memseek/)（推荐）
 
 ---
 
@@ -54,7 +54,7 @@ cd mkdocs && mkdocs gh-deploy
 
 ```bash
 # 克隆仓库 | Clone repository
-git clone https://github.com/future-re/NewScanmem.git
+git clone https://github.com/future-re/Memseek.git
 cd memseek
 
 # 创建构建目录 | Create build directory
@@ -88,7 +88,7 @@ ninja
 
 ```bash
 # 克隆仓库 | Clone repository
-git clone https://github.com/future-re/NewScanmem.git
+git clone https://github.com/future-re/Memseek.git
 cd memseek
 
 # 创建构建目录 | Create build directory

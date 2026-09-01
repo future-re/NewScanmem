@@ -1,10 +1,10 @@
-#include "newscanmem/scanmem.hpp"
+#include "memseek/scanmem.hpp"
 
 #include <exception>
 #include <string>
 
-#include "newscanmem/cli/app.hpp"
-#include "newscanmem/cli/app_config.hpp"
+#include "memseek/cli/app.hpp"
+#include "memseek/cli/app_config.hpp"
 
 namespace scanmem {
 

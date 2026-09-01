@@ -1,4 +1,4 @@
-#include "newscanmem/utils/string.hpp"
+#include "memseek/utils/string.hpp"
 
 #include <algorithm>
 #include <cctype>

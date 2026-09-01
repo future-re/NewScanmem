@@ -1,4 +1,4 @@
-#include "newscanmem/core/scanner.hpp"
+#include "memseek/core/scanner.hpp"
 
 namespace core {
 Scanner::Scanner(const pid_t pid) : m_pid(pid) {}

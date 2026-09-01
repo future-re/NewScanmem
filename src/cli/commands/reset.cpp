@@ -1,4 +1,4 @@
-#include "newscanmem/cli/commands/reset.hpp"
+#include "memseek/cli/commands/reset.hpp"
 
 namespace cli::commands {
 ResetCommand::ResetCommand(SessionState& session) : m_session(&session) {}

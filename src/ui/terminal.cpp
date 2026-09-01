@@ -1,4 +1,4 @@
-#include "newscanmem/ui/terminal.hpp"
+#include "memseek/ui/terminal.hpp"
 
 namespace ui {
 auto RawMode::enable() -> bool {

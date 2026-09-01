@@ -1,4 +1,4 @@
-#include "newscanmem/cli/repl.hpp"
+#include "memseek/cli/repl.hpp"
 
 namespace cli {
 REPL::REPL(std::shared_ptr<ui::UserInterface> interface, std::string prompt,

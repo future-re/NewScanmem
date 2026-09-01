@@ -1,4 +1,4 @@
-#include "newscanmem/core/process_checker.hpp"
+#include "memseek/core/process_checker.hpp"
 
 #include <filesystem>
 #include <fstream>

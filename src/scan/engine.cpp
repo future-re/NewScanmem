@@ -1,4 +1,4 @@
-#include "newscanmem/scan/engine.hpp"
+#include "memseek/scan/engine.hpp"
 
 #include <algorithm>
 #include <atomic>
@@ -10,10 +10,10 @@
 #include <utility>
 #include <vector>
 
-#include "newscanmem/core/proc_mem.hpp"
-#include "newscanmem/scan/job.hpp"
-#include "newscanmem/scan/routine.hpp"
-#include "newscanmem/scan/string.hpp"
+#include "memseek/core/proc_mem.hpp"
+#include "memseek/scan/job.hpp"
+#include "memseek/scan/routine.hpp"
+#include "memseek/scan/string.hpp"
 
 namespace scan {
 namespace {

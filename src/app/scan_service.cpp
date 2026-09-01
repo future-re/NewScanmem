@@ -1,4 +1,4 @@
-#include "newscanmem/app/scan_service.hpp"
+#include "memseek/app/scan_service.hpp"
 
 namespace app {
 namespace {

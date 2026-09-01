@@ -1,9 +1,9 @@
-#include "newscanmem/memory_region.hpp"
+#include "memseek/memory_region.hpp"
 
 #include <fstream>
 #include <sstream>
 
-namespace newscanmem {
+namespace memseek {
 std::expected<MemoryRegionList, std::string> readProcess(
     pid_t pid, MemoryScanLevel level) {
     MemoryRegionList regionList{};
@@ -122,4 +122,4 @@ std::expected<MemoryRegionList, std::string> readProcess(
 
     return regionList;
 }
-}  // namespace newscanmem
+}  // namespace memseek

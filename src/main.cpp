@@ -3,9 +3,9 @@
 #include <string>
 #include <string_view>
 
-#include "newscanmem/cli/app.hpp"
-#include "newscanmem/cli/app_config.hpp"
-#include "newscanmem/utils/version.hpp"
+#include "memseek/cli/app.hpp"
+#include "memseek/cli/app_config.hpp"
+#include "memseek/utils/version.hpp"
 
 namespace {
 auto parsePid(std::string_view text, pid_t& output) -> bool {

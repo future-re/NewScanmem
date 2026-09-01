@@ -1,4 +1,4 @@
-#include "newscanmem/core/proc_mem.hpp"
+#include "memseek/core/proc_mem.hpp"
 
 namespace core {
 auto ProcMemIO::open(const bool writable) -> std::expected<void, std::string> {

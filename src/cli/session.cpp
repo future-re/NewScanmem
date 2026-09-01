@@ -1,4 +1,4 @@
-#include "newscanmem/cli/session.hpp"
+#include "memseek/cli/session.hpp"
 
 namespace cli {
 auto SessionState::ensureScanner() -> Scanner* {

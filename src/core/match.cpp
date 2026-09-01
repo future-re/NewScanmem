@@ -1,4 +1,4 @@
-#include "newscanmem/core/match.hpp"
+#include "memseek/core/match.hpp"
 
 namespace core {
 MatchCollector::MatchCollector(std::optional<RegionClassifier> classifier)

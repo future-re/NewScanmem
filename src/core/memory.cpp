@@ -1,4 +1,4 @@
-#include "newscanmem/core/memory.hpp"
+#include "memseek/core/memory.hpp"
 
 namespace core {
 auto MemoryWriter::writeBytes(void* address,

@@ -1,10 +1,10 @@
 # memseek MCP bridge
 
-`newscanmem_server.py` is a dependency-free stdio MCP server independent of the
+`memseek_server.py` is a dependency-free stdio MCP server independent of the
 C++ module build. Configure an MCP client with:
 
 ```json
-{"mcpServers":{"newscanmem":{"command":"python3","args":["/absolute/path/to/NewScanmem/mcp/newscanmem_server.py"]}}}
+{"mcpServers":{"memseek":{"command":"python3","args":["/absolute/path/to/Memseek/mcp/memseek_server.py"]}}}
 ```
 
 Tools: `list_processes`, `inspect_maps`, `read_memory`, `scan_numeric`, and

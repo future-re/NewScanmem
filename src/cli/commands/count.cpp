@@ -1,6 +1,6 @@
-#include "newscanmem/cli/commands/count.hpp"
+#include "memseek/cli/commands/count.hpp"
 
-#include "newscanmem/ui/show_message.hpp"
+#include "memseek/ui/show_message.hpp"
 
 namespace cli::commands {
 CountCommand::CountCommand(SessionState& session) : m_session(&session) {}

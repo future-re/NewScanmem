@@ -7,7 +7,7 @@ Maps 模块提供读取和解析 Linux `/proc/[pid]/maps` 文件的功能，用�
 ## 头文件
 
 ```cpp
-#include "newscanmem/core/maps.hpp"
+#include "memseek/core/maps.hpp"
 ```
 
 ## 核心组件
@@ -94,7 +94,7 @@ struct Region {
 ### 基本用法
 
 ```cpp
-#include "newscanmem/core/maps.hpp"
+#include "memseek/core/maps.hpp"
 
 // 读取进程的所有内存区域
 auto result = maps::readProcessMaps(1234);
@@ -246,7 +246,7 @@ for (const auto& region : *regions) {
 
 ```cpp
 #include <iostream>
-#include "newscanmem/core/maps.hpp"
+#include "memseek/core/maps.hpp"
 
 int main() {
     pid_t target_pid = 1234; // 替换为实际 PID

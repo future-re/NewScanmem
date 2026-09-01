@@ -1,9 +1,9 @@
-#include "newscanmem/scan/bytes.hpp"
+#include "memseek/scan/bytes.hpp"
 
 #include <algorithm>
 #include <span>
 
-#include "newscanmem/value/flags.hpp"
+#include "memseek/value/flags.hpp"
 
 auto compareBytes(const std::span<const std::uint8_t> memory,
                   const std::span<const std::uint8_t> pattern,

@@ -1,4 +1,4 @@
-#include "newscanmem/cli/commands/snapshot.hpp"
+#include "memseek/cli/commands/snapshot.hpp"
 
 namespace cli::commands {
 SnapshotCommand::SnapshotCommand(SessionState& session) : m_session(&session) {}

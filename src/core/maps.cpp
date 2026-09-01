@@ -1,4 +1,4 @@
-#include "newscanmem/core/maps.hpp"
+#include "memseek/core/maps.hpp"
 
 #include <bit>
 #include <filesystem>

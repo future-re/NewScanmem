@@ -1,10 +1,10 @@
 // Unit tests for scan::filter
 #include <gtest/gtest.h>
 
-#include "newscanmem/scan/filter.hpp"
-#include "newscanmem/scan/types.hpp"
-#include "newscanmem/scan/match_storage.hpp"
-#include "newscanmem/value/core.hpp"
+#include "memseek/scan/filter.hpp"
+#include "memseek/scan/types.hpp"
+#include "memseek/scan/match_storage.hpp"
+#include "memseek/value/core.hpp"
 
 using namespace scan;
 

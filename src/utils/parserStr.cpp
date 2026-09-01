@@ -1,4 +1,4 @@
-#include "newscanmem/utils/parserStr.hpp"
+#include "memseek/utils/parserStr.hpp"
 
 namespace utils {
 auto isFloatToken(const std::string_view str) -> bool {

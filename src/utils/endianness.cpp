@@ -1,4 +1,4 @@
-#include "newscanmem/utils/endianness.hpp"
+#include "memseek/utils/endianness.hpp"
 
 namespace utils {
 

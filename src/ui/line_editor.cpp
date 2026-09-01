@@ -1,10 +1,10 @@
-#include "newscanmem/ui/line_editor.hpp"
+#include "memseek/ui/line_editor.hpp"
 
 #include <unistd.h>
 
 #include <iostream>
 
-#include "newscanmem/ui/terminal.hpp"
+#include "memseek/ui/terminal.hpp"
 
 namespace ui {
 void LineEditor::setCompletionCallback(CompletionCallback callback) {

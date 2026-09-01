@@ -6,11 +6,11 @@
 #include <gtest/gtest.h>
 #include <unistd.h>
 
-#include "newscanmem/core/match.hpp"
-#include "newscanmem/core/scanner.hpp"
-#include "newscanmem/core/region_classifier.hpp"
-#include "newscanmem/value/core.hpp"
-#include "newscanmem/scan/types.hpp"
+#include "memseek/core/match.hpp"
+#include "memseek/core/scanner.hpp"
+#include "memseek/core/region_classifier.hpp"
+#include "memseek/value/core.hpp"
+#include "memseek/scan/types.hpp"
 
 using namespace core;
 

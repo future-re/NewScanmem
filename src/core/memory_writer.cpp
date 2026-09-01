@@ -1,4 +1,4 @@
-#include "newscanmem/core/memory_writer.hpp"
+#include "memseek/core/memory_writer.hpp"
 
 namespace core {
 MemoryWriter::MemoryWriter(const pid_t pid, const utils::Endianness mode)

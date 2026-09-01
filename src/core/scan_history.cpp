@@ -1,4 +1,4 @@
-#include "newscanmem/core/scan_history.hpp"
+#include "memseek/core/scan_history.hpp"
 
 namespace core {
 void ScanHistory::add(ScanRecord result) {

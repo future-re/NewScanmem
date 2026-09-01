@@ -1,4 +1,4 @@
-#include "newscanmem/ui/console.hpp"
+#include "memseek/ui/console.hpp"
 
 #include <cctype>
 #include <iostream>

@@ -6,11 +6,11 @@
 #include <span>
 #include <vector>
 
-#include "newscanmem/scan/numeric.hpp"
-#include "newscanmem/scan/routine.hpp"
-#include "newscanmem/scan/types.hpp"
-#include "newscanmem/value/core.hpp"
-#include "newscanmem/value/flags.hpp"
+#include "memseek/scan/numeric.hpp"
+#include "memseek/scan/routine.hpp"
+#include "memseek/scan/types.hpp"
+#include "memseek/value/core.hpp"
+#include "memseek/value/flags.hpp"
 
 class ScanNumericTest : public ::testing::Test {
    protected:

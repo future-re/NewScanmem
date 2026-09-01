@@ -8,8 +8,8 @@
 #include <unordered_set>
 #include <vector>
 
-#include "newscanmem/core/region_filter.hpp"
-#include "newscanmem/core/maps.hpp"
+#include "memseek/core/region_filter.hpp"
+#include "memseek/core/maps.hpp"
 
 using namespace core;
 

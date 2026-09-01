@@ -7,7 +7,7 @@
 ## 头文件
 
 ```cpp
-#include "newscanmem/utils/sets.hpp"
+#include "memseek/utils/sets.hpp"
 ```
 
 ## 依赖项
@@ -82,7 +82,7 @@ constexpr auto inc_arr_sz = [](size_t** valarr, size_t* arr_maxsz, size_t maxsz)
 ### 基本集合解析
 
 ```cpp
-#include "newscanmem/utils/sets.hpp"
+#include "memseek/utils/sets.hpp"
 
 Set mySet;
 bool success = parse_uintset("1,2,3,4,5", mySet, 100);

@@ -1,11 +1,11 @@
 // Tests for parallel scan consistency vs sequential
 
-#include "newscanmem/scan/engine.hpp"
-#include "newscanmem/scan/match_storage.hpp"
-#include "newscanmem/scan/types.hpp"
-#include "newscanmem/value/core.hpp"
-#include "newscanmem/value/flags.hpp"
-#include "newscanmem/core/maps.hpp"
+#include "memseek/scan/engine.hpp"
+#include "memseek/scan/match_storage.hpp"
+#include "memseek/scan/types.hpp"
+#include "memseek/value/core.hpp"
+#include "memseek/value/flags.hpp"
+#include "memseek/core/maps.hpp"
 
 #include <gtest/gtest.h>
 #include <signal.h>

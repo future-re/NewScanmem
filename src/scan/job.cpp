@@ -1,4 +1,4 @@
-#include "newscanmem/scan/job.hpp"
+#include "memseek/scan/job.hpp"
 
 namespace scan {
 auto prepareScanRegions(const pid_t pid, const ScanOptions& options)

@@ -1,9 +1,9 @@
-#include "newscanmem/core/scanner.hpp"
+#include "memseek/core/scanner.hpp"
 
 using core::Scanner;  // Scanner
-#include "newscanmem/scan/engine.hpp"
-#include "newscanmem/scan/types.hpp"
-#include "newscanmem/value/core.hpp"
+#include "memseek/scan/engine.hpp"
+#include "memseek/scan/types.hpp"
+#include "memseek/value/core.hpp"
 
 #include <gtest/gtest.h>
 

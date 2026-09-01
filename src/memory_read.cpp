@@ -1,4 +1,4 @@
-#include "newscanmem/memory_read.hpp"
+#include "memseek/memory_read.hpp"
 
 #include <cerrno>
 #include <cstring>
@@ -10,7 +10,7 @@
 #include <unistd.h>
 #endif
 
-namespace newscanmem {
+namespace memseek {
 
 std::expected<MemoryRead, std::string> MemoryRead::readMemory(
     pid_t pid, const MemoryRegion& region) {
@@ -46,4 +46,4 @@ std::expected<MemoryRead, std::string> MemoryRead::readMemory(
 
 #endif
 }
-}  // namespace newscanmem
+}  // namespace memseek

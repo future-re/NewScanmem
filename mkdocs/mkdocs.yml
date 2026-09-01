@@ -8,7 +8,7 @@ theme:
     - content.language
     - content.language_select
 
-repo_url: https://github.com/future-re/NewScanmem
+repo_url: https://github.com/future-re/Memseek
 repo_name: GitHub
 
 # 排除目录，防止覆盖率HTML被MkDocs处理（但保留doxygen-output以便复制）

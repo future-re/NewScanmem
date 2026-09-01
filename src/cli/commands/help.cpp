@@ -1,9 +1,9 @@
-#include "newscanmem/cli/commands/help.hpp"
+#include "memseek/cli/commands/help.hpp"
 
 #include <algorithm>
 #include <sstream>
 
-#include "newscanmem/ui/show_message.hpp"
+#include "memseek/ui/show_message.hpp"
 
 namespace cli::commands {
 

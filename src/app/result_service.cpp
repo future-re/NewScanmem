@@ -1,4 +1,4 @@
-#include "newscanmem/app/result_service.hpp"
+#include "memseek/app/result_service.hpp"
 
 namespace app {
 auto ResultService::getMatches(const CurrentMatchListRequest& request)

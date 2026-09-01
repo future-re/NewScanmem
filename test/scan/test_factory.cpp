@@ -1,10 +1,10 @@
 // Unit tests for scan::factory
 #include <gtest/gtest.h>
 
-#include "newscanmem/scan/factory.hpp"
-#include "newscanmem/scan/types.hpp"
-#include "newscanmem/value/core.hpp"
-#include "newscanmem/value/flags.hpp"
+#include "memseek/scan/factory.hpp"
+#include "memseek/scan/types.hpp"
+#include "memseek/value/core.hpp"
+#include "memseek/value/flags.hpp"
 
 TEST(ScanFactoryTest, GetRoutineInteger8) {
     auto routine =

@@ -1,4 +1,4 @@
-#include "newscanmem/scan/string.hpp"
+#include "memseek/scan/string.hpp"
 
 #include <bit>
 #include <memory>
@@ -7,8 +7,8 @@
 #include <string_view>
 #include <vector>
 
-#include "newscanmem/scan/bytes.hpp"
-#include "newscanmem/value/flags.hpp"
+#include "memseek/scan/bytes.hpp"
+#include "memseek/value/flags.hpp"
 
 auto getCachedRegex(const std::string_view pattern) noexcept -> const std::regex* {
     thread_local std::string cachedPattern;

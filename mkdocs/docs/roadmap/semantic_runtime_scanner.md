@@ -1,8 +1,8 @@
-# NewScanmem 下一代特性规划：Semantic Runtime Scanner
+# Memseek 下一代特性规划：Semantic Runtime Scanner
 
 ## 1. 背景与目标
 
-NewScanmem 当前定位是现代 C++ 实现的进程内存扫描工具，核心能力仍围绕数值、字符串、字节模式扫描以及基于上一次扫描结果的过滤展开。
+Memseek 当前定位是现代 C++ 实现的进程内存扫描工具，核心能力仍围绕数值、字符串、字节模式扫描以及基于上一次扫描结果的过滤展开。
 
 传统内存扫描器通常回答的是：
 
@@ -10,7 +10,7 @@ NewScanmem 当前定位是现代 C++ 实现的进程内存扫描工具，核心�
 - 哪些地址发生了增加、减少或变化？
 - 如何读取或修改目标进程中的某段内存？
 
-下一阶段希望将 NewScanmem 从 **Memory Scanner** 演进为 **Semantic Runtime Scanner**：不仅发现“哪个地址匹配”，还能够描述“程序运行时发生了什么”。
+下一阶段希望将 Memseek 从 **Memory Scanner** 演进为 **Semantic Runtime Scanner**：不仅发现“哪个地址匹配”，还能够描述“程序运行时发生了什么”。
 
 核心演进方向：
 
@@ -158,7 +158,7 @@ Memory Address / Object
 - 检测循环引用或异常引用链；
 - 将引用图与 Memory Timeline 联动。
 
-这使 NewScanmem 可以从“地址扫描器”逐步进入 Heap/Object Inspector 的能力范围。
+这使 Memseek 可以从“地址扫描器”逐步进入 Heap/Object Inspector 的能力范围。
 
 ---
 
@@ -312,7 +312,7 @@ semantic finding
 - 哪次 read/socket 操作后出现了这段高熵 buffer？
 - 某个敏感字符串何时进入进程内存？
 
-这一层可以让 NewScanmem 从内存分析工具进一步演进为 Runtime Inspector。
+这一层可以让 Memseek 从内存分析工具进一步演进为 Runtime Inspector。
 
 ---
 
@@ -493,7 +493,7 @@ Finding
 
 推荐长期定位：
 
-> **NewScanmem — Semantic Runtime Scanner**
+> **Memseek — Semantic Runtime Scanner**
 >
 > Inspect not only what exists in memory, but how runtime state changes, relates and behaves.
 

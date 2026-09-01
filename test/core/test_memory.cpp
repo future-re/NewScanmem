@@ -1,5 +1,5 @@
-#include "newscanmem/core/memory.hpp"
-#include "newscanmem/core/proc_mem.hpp"
+#include "memseek/core/memory.hpp"
+#include "memseek/core/proc_mem.hpp"
 
 using core::MemoryWriter;
 using core::ProcMemIO;

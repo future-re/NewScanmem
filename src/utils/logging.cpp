@@ -1,4 +1,4 @@
-#include "newscanmem/utils/logging.hpp"
+#include "memseek/utils/logging.hpp"
 
 namespace utils {
 Logger::Logger(std::string name, const std::optional<std::string> filename,

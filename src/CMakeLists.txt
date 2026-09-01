@@ -1,8 +1,14 @@
 # --- Source files ---
-file(GLOB_RECURSE NEWSCANMEM_SOURCES CONFIGURE_DEPENDS
+file(GLOB_RECURSE MEMSEEK_SOURCES CONFIGURE_DEPENDS
     "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
 
-add_library(memseek_lib STATIC ${NEWSCANMEM_SOURCES})
+# These components are being refactored and are intentionally left out of the
+# current build. Keep the filter here so newly added files in those folders do
+# not get picked up by the recursive glob automatically.
+list(FILTER MEMSEEK_SOURCES EXCLUDE REGEX
+    "/(app|cli|core|generated|ui|utils)/")
+
+add_library(memseek_lib STATIC ${MEMSEEK_SOURCES})
 
 # 查找 ICU
 find_package(ICU REQUIRED COMPONENTS uc i18n)
@@ -15,7 +21,9 @@ target_include_directories(memseek_lib PUBLIC
 
 # Header files for installation
 file(GLOB_RECURSE MEMSEEK_HEADERS CONFIGURE_DEPENDS
-    "${CMAKE_SOURCE_DIR}/include/newscanmem/*.hpp")
+    "${CMAKE_SOURCE_DIR}/include/memseek/*.hpp")
+list(FILTER MEMSEEK_HEADERS EXCLUDE REGEX
+    "/(app|cli|core|generated|ui|utils)/")
 target_sources(memseek_lib PUBLIC
     FILE_SET HEADERS
     BASE_DIRS "${CMAKE_SOURCE_DIR}/include"

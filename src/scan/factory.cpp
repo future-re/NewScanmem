@@ -1,4 +1,4 @@
-#include "newscanmem/scan/factory.hpp"
+#include "memseek/scan/factory.hpp"
 
 namespace scan {
 auto makeScanRoutine(const ScanDataType type, const ScanMatchType match,

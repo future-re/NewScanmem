@@ -1,4 +1,4 @@
-#include "newscanmem/ui/user_input.hpp"
+#include "memseek/ui/user_input.hpp"
 
 auto UserInput::fromBytes(const std::span<const std::uint8_t> bytes)
     -> UserInput {

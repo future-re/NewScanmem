@@ -1,10 +1,10 @@
-#include "newscanmem/cli/commands/set.hpp"
+#include "memseek/cli/commands/set.hpp"
 
 #include <charconv>
 #include <sstream>
 
-#include "newscanmem/core/maps.hpp"
-#include "newscanmem/ui/show_message.hpp"
+#include "memseek/core/maps.hpp"
+#include "memseek/ui/show_message.hpp"
 
 namespace cli::commands {
 
