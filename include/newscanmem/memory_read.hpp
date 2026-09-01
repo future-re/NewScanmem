@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include <span>
+#include <vector>
 
 #include "memory_region.hpp"
 namespace newscanmem {
