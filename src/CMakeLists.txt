@@ -6,7 +6,7 @@ file(GLOB_RECURSE MEMSEEK_SOURCES CONFIGURE_DEPENDS
 # current build. Keep the filter here so newly added files in those folders do
 # not get picked up by the recursive glob automatically.
 list(FILTER MEMSEEK_SOURCES EXCLUDE REGEX
-    "/(app|cli|core|generated|ui|utils)/")
+    "/(app|cli|core|generated|scan|ui|utils)/")
 
 add_library(memseek_lib STATIC ${MEMSEEK_SOURCES})
 
@@ -23,7 +23,7 @@ target_include_directories(memseek_lib PUBLIC
 file(GLOB_RECURSE MEMSEEK_HEADERS CONFIGURE_DEPENDS
     "${CMAKE_SOURCE_DIR}/include/memseek/*.hpp")
 list(FILTER MEMSEEK_HEADERS EXCLUDE REGEX
-    "/(app|cli|core|generated|ui|utils)/")
+    "/(app|cli|core|generated|scan|ui|utils)/")
 target_sources(memseek_lib PUBLIC
     FILE_SET HEADERS
     BASE_DIRS "${CMAKE_SOURCE_DIR}/include"
