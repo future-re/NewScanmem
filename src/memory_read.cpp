@@ -25,7 +25,7 @@ std::expected<MemoryRead, std::string> MemoryRead::readMemory(
 
     iovec remote{
         .iov_base = reinterpret_cast<void*>(region.start),
-        .iov_len = region.size,   
+        .iov_len = region.size,
     };
 
     const ssize_t bytesRead = ::process_vm_readv(pid, &local, 1, &remote, 1, 0);

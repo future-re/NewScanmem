@@ -44,7 +44,7 @@ enum class ValueType : uint8_t {
     BIN_ARRAY = 0x31,  // binary data
 };
 
-template <typename T>
+template <ValueSupportedType T>
 constexpr ValueType getValueType() {
     using CleanT = std::remove_cvref_t<T>;
     if constexpr (std::is_same_v<CleanT, uint8_t>) {
@@ -102,7 +102,7 @@ class Value {
     }
 
     template <ValueSupportedType T>
-    T as() const {
+    std::remove_cvref_t<T> as() const {
         using CleanT = std::remove_cvref_t<T>;
 
         if (m_type != getValueType<CleanT>()) {
@@ -142,6 +142,16 @@ class Value {
         }
 
         return {reinterpret_cast<const char*>(m_data.data()), m_data.size()};
+    }
+
+    [[nodiscard]]
+    std::size_t size() const noexcept {
+        return m_data.size();
+    }
+
+    [[nodiscard]]
+    bool empty() const noexcept {
+        return m_data.empty();
     }
 };
 }  // namespace memseek

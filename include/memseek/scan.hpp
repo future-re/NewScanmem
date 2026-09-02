@@ -48,9 +48,8 @@ class MemoryScanner {
     }
 
     [[nodiscard]]
-    static std::vector<ScanResult> scanExact(
-        pid_t pid, MemoryScanLevel level,
-        const std::vector<std::byte>& target) {
+    static std::vector<ScanResult> scanExact(pid_t pid, MemoryScanLevel level,
+                                             const Value& target) {
         std::vector<ScanResult> results;
         auto memoryResult = readProcess(pid, level);
         if (!memoryResult) {
