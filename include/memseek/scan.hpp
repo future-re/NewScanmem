@@ -62,7 +62,7 @@ class MemoryScanner {
                 continue;
             }
             const auto& memoryRead = *readResult;
-            auto tmpResults = scanExact(memoryRead, Value(target));
+            auto tmpResults = scanExact(memoryRead, target);
             if (!tmpResults.empty()) {
                 results.insert(results.end(), tmpResults.begin(),
                                tmpResults.end());
