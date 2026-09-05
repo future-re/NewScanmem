@@ -12,6 +12,9 @@ class MemoryRead {
     std::vector<std::byte> m_buffer;
 
    public:
+    MemoryRead(std::uintptr_t address, std::vector<std::byte> buffer)
+        : m_address(address), m_buffer(std::move(buffer)) {}
+
     MemoryRead(std::uintptr_t address, std::size_t size)
         : m_address(address), m_buffer(size) {}
 
